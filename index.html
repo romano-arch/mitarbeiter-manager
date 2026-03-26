@@ -893,6 +893,31 @@ body.lock-active main{margin-top:46px}
   </div>
 </div>
 
+<!-- BLOCK 1b: Weitere Daten (ausklappbar) -->
+<div style="border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden">
+  <button onclick="toggleWeitere()" id="weitere-toggle-btn"
+    style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--s1);border:none;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s"
+    onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">📋 Weitere Personaldaten</span>
+      <span style="font-size:10px;color:var(--muted2)">(optional)</span>
+    </div>
+    <span id="weitere-arrow" style="font-size:12px;color:var(--muted);transition:transform .2s">▸</span>
+  </button>
+  <div id="weitere-panel" style="display:none;padding:12px 14px;border-top:1px solid var(--border)">
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px;padding:8px 10px;background:var(--s1);border-radius:6px;border-left:3px solid var(--acc)">
+      💡 Dieser Bereich ist für zukünftige Felder reserviert (z.B. Adresse, Geburtsdatum, Bankverbindung). 
+      Felder werden ergänzt sobald das Programm vollständig stabil ist.
+    </div>
+    <div class="fg2">
+      <div class="fg">
+        <label>Notiz / Interne Info</label>
+        <textarea id="f-weitere-notiz" rows="2" placeholder="Interne Hinweise zum Mitarbeiter..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- BLOCK 2: Mitarbeiter-Typ -->
 <div style="border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:10px;background:var(--s1)">
   <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px">
@@ -1148,7 +1173,65 @@ function updAMLabels() {
 const WT = ['Mo','Di','Mi','Do','Fr','Sa','So'];
 
 // ── CLOUD CONFIG ──────────────────────────────────────────
-const API_URL = 'https://script.google.com/macros/s/AKfycbw-8-z68dOpDdheOYWd5suFqcaxMYwXHJsplF5GxTNVuR2CDBgUE5YUbu3acJbzlhqVIQ/exec';
+// ══════════════════════════════════════════════════════════
+// SUPABASE BACKEND (ersetzt Google Apps Script)
+// ══════════════════════════════════════════════════════════
+const SUPA_URL = 'https://hdcvzfljwhjepeceigfk.supabase.co';
+const SUPA_KEY = 'sb_publishable_BWyqcnc30a6ZpO3WpWCbNQ_QxzAdPdb';
+const SUPA_HEADERS = {
+  'Content-Type': 'application/json',
+  'apikey': SUPA_KEY,
+  'Authorization': 'Bearer ' + SUPA_KEY,
+  'Prefer': 'resolution=merge-duplicates'
+};
+
+// ══════════════════════════════════════════════════════════
+// BENUTZER & PINs – hier anpassen!
+// ══════════════════════════════════════════════════════════
+const USERS = {
+  'Romano':  { pin: '5478', rolle: 'admin' },
+  'Adler':   { pin: '3265', rolle: 'admin' },
+  'Richter': { pin: '6556', rolle: 'admin' },
+  'Incecik': { pin: '4471', rolle: 'ol' },
+  'Grippo':  { pin: '7823', rolle: 'ol' }
+};
+
+async function supaFetch(table, method='GET', body=null, query='') {
+  const url = SUPA_URL + '/rest/v1/' + table + (query ? '?' + query : '');
+  const opts = { method, headers: SUPA_HEADERS };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(url, opts);
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(table + ' ' + method + ': ' + err);
+  }
+  if (method === 'GET') return await res.json();
+  return true;
+}
+
+async function supaLoad(table) {
+  const rows = await supaFetch(table, 'GET', null, 'select=data&order=id');
+  return rows.map(r => r.data);
+}
+
+async function supaSave(table, items) {
+  if (!items || !items.length) return;
+  const rows = items.map(item => ({ id: item.id, data: item }));
+  await supaFetch(table, 'POST', rows);
+}
+
+async function supaDelete(table, id) {
+  await supaFetch(table, 'DELETE', null, 'id=eq.' + encodeURIComponent(id));
+}
+
+async function supaStateGet(key) {
+  const rows = await supaFetch('app_state', 'GET', null, 'key=eq.' + key + '&select=value');
+  return rows.length ? rows[0].value : null;
+}
+
+async function supaStateSet(key, value) {
+  await supaFetch('app_state', 'POST', [{ key, value }]);
+}
 // ── TARIFVERTRAG GEBÄUDEREINIGUNG ─────────────────────────
 // Lohntarifvertrag 2025/2026 · IG BAU / BIV · allgemeinverbindlich
 const TARIFLOHN = {
@@ -1500,23 +1583,25 @@ async function doLoginUI() {
   const btn = document.querySelector('.login-btn');
   btn.textContent = 'Wird geprüft…'; btn.disabled = true;
   try {
-    const res = await apiCall({ action: 'login', name, pin });
-    if (res.ok) {
-      _token = res.token;
-      _currentUser = res.user;
-      _currentRolle = res.rolle || 'admin';
-      sessionStorage.setItem('mm_token', _token);
-      sessionStorage.setItem('mm_user', _currentUser);
-      sessionStorage.setItem('mm_rolle', _currentRolle);
-      sessionStorage.setItem('mm_pin', pin); // für Auto-Relogin
-      document.getElementById('login-overlay').classList.add('hidden');
-      document.getElementById('user-name-badge').textContent = _currentUser;
-      await initApp();
-    } else {
-      showLoginErr(res.error || 'Falsche Zugangsdaten');
+    // Lokale Benutzerprüfung – kein Server nötig
+    const user = USERS[name];
+    if (!user || user.pin !== pin) {
+      showLoginErr('Falscher Name oder PIN.');
+      btn.textContent = 'Anmelden →'; btn.disabled = false;
+      return;
     }
+    _token = 'local_' + Date.now();
+    _currentUser = name;
+    _currentRolle = user.rolle;
+    sessionStorage.setItem('mm_token', _token);
+    sessionStorage.setItem('mm_user', _currentUser);
+    sessionStorage.setItem('mm_rolle', _currentRolle);
+    sessionStorage.setItem('mm_pin', pin);
+    document.getElementById('login-overlay').classList.add('hidden');
+    document.getElementById('user-name-badge').textContent = _currentUser;
+    await initApp();
   } catch(e) {
-    showLoginErr('Server nicht erreichbar. Bitte API_URL prüfen.');
+    showLoginErr('Fehler beim Anmelden: ' + e.message);
   }
   btn.textContent = 'Anmelden →'; btn.disabled = false;
 }
@@ -1528,7 +1613,6 @@ function showLoginErr(msg) {
 
 function doLogout() {
   if (!confirm('Wirklich abmelden?')) return;
-  apiCall({ action: 'lock_release', token: _token, user: _currentUser }).catch(()=>{});
   sessionStorage.removeItem('mm_token');
   sessionStorage.removeItem('mm_user');
   sessionStorage.removeItem('mm_rolle');
@@ -1536,24 +1620,8 @@ function doLogout() {
   location.reload();
 }
 
-// ── API CALLS ─────────────────────────────────────────────
-async function apiCall(body, retries = 2) {
-  for (let i = 0; i <= retries; i++) {
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(body)
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return await res.json();
-    } catch(e) {
-      if (i === retries) throw e;
-      // Kurz warten vor erneutem Versuch (GAS iFrame-Verbindungsfehler)
-      await new Promise(r => setTimeout(r, 1500 + i * 1000));
-    }
-  }
-}
+// ── API CALLS (Supabase – apiCall nicht mehr nötig) ───────
+// Alle Aufrufe laufen direkt über supaFetch / supaLoad / supaSave
 
 // ── APP INIT ──────────────────────────────────────────────
 async function initApp() {
@@ -1575,46 +1643,47 @@ async function initApp() {
 }
 
 async function refreshData() {
-  setSyncState('syncing', 'Synchronisiert…');
-  let res;
+  setSyncState('syncing', 'Lade Daten…');
   try {
-    res = await apiCall({ action: 'load', token: _token });
-  } catch(fetchErr) {
+    const [maData, objData, kundenData] = await Promise.all([
+      supaLoad('mitarbeiter'),
+      supaLoad('objekte'),
+      supaLoad('kunden')
+    ]);
+    ma = maData || [];
+    obj = objData || [];
+    kunden = kundenData || [];
+    // kunden[] aus obj[] sichern falls leer
+    if (!kunden.length && obj.length) {
+      const names = [...new Set(obj.map(o => o.name).filter(Boolean))];
+      kunden = names.map(n => ({ id: 'k_' + n.replace(/\s/g,'_'), name: n, standorte: [n], status: 'aktiv' }));
+    }
+    deleteTestData();
+    updStats(); updFilters(); render();
+    setSyncState('ok', 'Zuletzt geladen: ' + new Date().toLocaleTimeString('de-DE'));
+  } catch(e) {
     setSyncState('error', 'Verbindungsfehler!');
-    showAlert('Verbindungsfehler: ' + fetchErr.message, '#c81e1e');
-    throw fetchErr;
+    showAlert('Laden fehlgeschlagen: ' + e.message, '#c81e1e');
+    throw e;
   }
-  if (!res.ok) {
-    setSyncState('error', 'Fehler!');
-    showAlert('Load-Fehler: ' + (res.error || 'unbekannt'), '#c81e1e');
-    if (res.expired) throw new Error('SESSION_EXPIRED');
-    throw new Error(res.error || 'load failed');
-  }
-  ma = res.ma || [];
-  obj = res.obj || [];
-  kunden = res.kunden || [];
-  deleteTestData();
-  updStats(); updFilters(); render();
-  setSyncState('ok', 'Zuletzt geladen: ' + new Date().toLocaleTimeString('de-DE'));
 }
 
 // ── SAVE ──────────────────────────────────────────────────
 async function saveAll() {
   setSyncState('syncing', 'Speichert…');
   try {
-    const res = await apiCall({ action: 'save', token: _token, ma, obj, kunden });
-    if (res.ok) {
-      setSyncState('ok', 'Gespeichert um ' + new Date().toLocaleTimeString('de-DE') + ' · ' + _currentUser);
-      _dirty = false;
-      const btn = document.getElementById('save-btn');
-      if (btn) { btn.style.background=''; btn.style.color=''; btn.textContent='💾 Speichern'; }
-    } else {
-      setSyncState('error', 'Speicherfehler!');
-      showAlert('Speichern fehlgeschlagen: ' + (res.error||''), '#c81e1e');
-    }
+    await Promise.all([
+      supaSave('mitarbeiter', ma),
+      supaSave('objekte', obj),
+      supaSave('kunden', kunden)
+    ]);
+    setSyncState('ok', 'Gespeichert um ' + new Date().toLocaleTimeString('de-DE') + ' · ' + _currentUser);
+    _dirty = false;
+    const btn = document.getElementById('save-btn');
+    if (btn) { btn.style.background=''; btn.style.color=''; btn.textContent='💾 Speichern'; }
   } catch(e) {
     setSyncState('error', 'Speicherfehler!');
-    showAlert('Keine Verbindung zum Server!', '#c81e1e');
+    showAlert('Speichern fehlgeschlagen: ' + e.message, '#c81e1e');
   }
   updStats(); updFilters();
 }
@@ -1637,10 +1706,12 @@ function startLockPing() {
 
 async function checkLock() {
   try {
-    const res = await apiCall({ action: 'lock_check', token: _token });
+    const lock = await supaStateGet('lock');
     const banner = document.getElementById('lock-banner');
-    if (res.locked && !res.isMe) {
-      document.getElementById('lock-user').textContent = res.lockedBy;
+    const isMe = lock && lock.user === _currentUser;
+    const stale = lock && (Date.now() - lock.ts) > 120000; // 2 Min abgelaufen
+    if (lock && !isMe && !stale) {
+      document.getElementById('lock-user').textContent = lock.user;
       banner.classList.add('visible');
       document.body.classList.add('lock-active');
     } else {
@@ -1652,77 +1723,42 @@ async function checkLock() {
 
 async function acquireLock() {
   try {
-    await apiCall({ action: 'lock_acquire', token: _token, user: _currentUser });
+    await supaStateSet('lock', { user: _currentUser, ts: Date.now() });
   } catch(e) {}
 }
 
 async function releaseLock() {
   try {
-    await apiCall({ action: 'lock_release', token: _token, user: _currentUser });
+    await supaStateSet('lock', null);
   } catch(e) {}
 }
 
 // Lock erwerben wenn Modal geöffnet wird
 
 
-// ── WARTE bis GAS-Backend erreichbar ist ──────────────────
-async function waitForBackend(maxVersuche = 10) {
-  for (let i = 0; i < maxVersuche; i++) {
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ action: 'ping' })
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.ok) return true;
-      }
-    } catch(e) {}
-    await new Promise(r => setTimeout(r, 1000));
-  }
-  return false;
-}
+// waitForBackend: nicht mehr nötig mit Supabase
 
 // ── AUTO-LOGIN wenn Token noch vorhanden ──────────────────
 document.addEventListener('DOMContentLoaded', async function autoLogin() {
   if (!_token || !_currentUser) return; // kein Token → Login-Screen bleibt sichtbar
-
+  // Benutzer noch gültig prüfen
+  const user = USERS[_currentUser];
+  const savedPin = sessionStorage.getItem('mm_pin');
+  if (!user || !savedPin || user.pin !== savedPin) {
+    sessionStorage.clear();
+    _token = null; _currentUser = null;
+    document.getElementById('login-overlay').classList.remove('hidden');
+    return;
+  }
+  _currentRolle = user.rolle;
   document.getElementById('login-overlay').classList.add('hidden');
   document.getElementById('user-name-badge').textContent = _currentUser;
   setSyncState('syncing', 'Verbinde…');
-
-  // Warten bis Backend erreichbar
-  const erreichbar = await waitForBackend(10);
-  if (!erreichbar) {
-    setSyncState('error', 'Server nicht erreichbar');
-    showAlert('Server nicht erreichbar – bitte Seite neu laden.', '#c81e1e');
-    return;
-  }
-
   try {
     await initApp();
   } catch(e) {
-    // Token ungültig → automatisch neu einloggen
-    const savedPin = sessionStorage.getItem('mm_pin');
-    if (_currentUser && savedPin) {
-      try {
-        const res = await apiCall({ action: 'login', name: _currentUser, pin: savedPin });
-        if (res.ok) {
-          _token = res.token;
-          _currentRolle = res.rolle || 'admin';
-          sessionStorage.setItem('mm_token', _token);
-          sessionStorage.setItem('mm_rolle', _currentRolle);
-          await initApp();
-          return;
-        }
-      } catch(e2) {}
-    }
-    // Relogin fehlgeschlagen → Login-Screen
-    sessionStorage.clear();
-    _token = null; _currentUser = null; _currentRolle = 'admin';
-    document.getElementById('login-overlay').classList.remove('hidden');
-    applyRoles();
+    setSyncState('error', 'Verbindungsfehler');
+    showAlert('Laden fehlgeschlagen: ' + e.message, '#c81e1e');
   }
 });
 function gObj(name){return obj.find(o=>o.name===name)||null;}
@@ -3016,6 +3052,12 @@ document.getElementById('mam-f-ol').value=m.objektleiter||'M';
 document.getElementById('f-ein').value=m.eintrittsdatum||'';
 document.getElementById('f-aus').value=m.austrittsdatum||'';
 document.getElementById('f-urltage').value=m.urlaub_jahres||calcUrlaubTage(m);
+// Weitere Daten
+document.getElementById('f-weitere-notiz').value=m.weitere_notiz||'';
+// Panel zurücksetzen (eingeklappt)
+const wp=document.getElementById('weitere-panel');
+const wa=document.getElementById('weitere-arrow');
+if(wp){wp.style.display='none';} if(wa){wa.textContent='▸';wa.style.transform='';}
 document.getElementById('f-lohngruppe').value=m.lohngruppe||'';
 renderLohnartChips(m.datev_lohnarten||[]);
 document.getElementById('f-minijob').checked=!!(m.minijob);
@@ -3575,6 +3617,7 @@ m.status=document.getElementById('f-st').value;m.telefon=document.getElementById
 m.objektleiter=document.getElementById('mam-f-ol').value;
 m.eintrittsdatum=document.getElementById('f-ein').value;m.austrittsdatum=document.getElementById('f-aus').value;
 m.urlaub_jahres=parseFloat(document.getElementById('f-urltage').value)||0;
+m.weitere_notiz=document.getElementById('f-weitere-notiz').value||'';
 m.verstetigt=document.getElementById('f-verstetigt').checked;
 m.lohngruppe=document.getElementById('f-lohngruppe').value;
 m.datev_lohnarten=getLohnartChips();
@@ -5580,6 +5623,15 @@ function renderZettel(confirmed) {
   }
 }
 
+function toggleWeitere() {
+  const panel = document.getElementById('weitere-panel');
+  const arrow = document.getElementById('weitere-arrow');
+  const open = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  arrow.style.transform = open ? 'rotate(90deg)' : '';
+  arrow.textContent = open ? '▾' : '▸';
+}
+
 function toggleZettel() {
   const box = document.getElementById('zettel-box');
   const confirmed = box.classList.contains('confirmed');
@@ -6742,7 +6794,8 @@ function lvAnzeigen() {
 }
 
 window.addEventListener('unload', ()=>{
-  navigator.sendBeacon && navigator.sendBeacon(API_URL, JSON.stringify({
+  // sendBeacon: nicht mehr nötig mit Supabase
+  if(false && navigator.sendBeacon) navigator.sendBeacon('', JSON.stringify({
     action:'lock_release', token:_token, user:_currentUser
   }));
 });</script>
