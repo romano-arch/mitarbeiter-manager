@@ -379,88 +379,104 @@ body.lock-active main{margin-top:46px}
 
 /* ── Bottom Nav Bar auf Mobile ── */
 @media(max-width:768px){
-  /* Tabs unten fixieren als Bottom-Navigation */
+  /* ── Tabs: Bottom Navigation ── */
   .tabs{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    top:auto;
-    z-index:90;
-    background:var(--white);
-    border-top:1px solid var(--border);
-    border-bottom:none;
-    padding:0;
-    display:flex;
-    justify-content:space-around;
-    align-items:stretch;
-    height:56px;
-    box-shadow:0 -2px 10px rgba(0,0,0,.08);
-    padding-bottom:env(safe-area-inset-bottom);
+    position:fixed !important;
+    bottom:0 !important;
+    left:0 !important;
+    right:0 !important;
+    top:auto !important;
+    z-index:90 !important;
+    background:var(--white) !important;
+    border-top:1px solid var(--border) !important;
+    border-bottom:none !important;
+    padding:0 0 env(safe-area-inset-bottom) 0 !important;
+    display:flex !important;
+    justify-content:space-around !important;
+    align-items:stretch !important;
+    height:calc(56px + env(safe-area-inset-bottom)) !important;
+    box-shadow:0 -2px 10px rgba(0,0,0,.10) !important;
+    flex-wrap:nowrap !important;
+    overflow:visible !important;
   }
   .tab{
-    flex:1;
-    flex-direction:column;
-    gap:2px;
-    padding:6px 4px;
-    font-size:10px;
-    border-radius:0;
-    border:none;
-    min-height:0;
-    justify-content:center;
-    align-items:center;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    color:var(--muted);
+    flex:1 !important;
+    flex-direction:column !important;
+    gap:2px !important;
+    padding:6px 2px !important;
+    font-size:10px !important;
+    border-radius:0 !important;
+    border:none !important;
+    border-top:3px solid transparent !important;
+    min-height:0 !important;
+    justify-content:center !important;
+    align-items:center !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    color:var(--muted) !important;
+    background:transparent !important;
   }
   .tab.active{
-    background:transparent;
-    color:var(--acc);
-    border:none;
-    font-weight:700;
-    border-top:2px solid var(--acc);
+    background:transparent !important;
+    color:var(--acc) !important;
+    border:none !important;
+    border-top:3px solid var(--acc) !important;
+    font-weight:700 !important;
   }
-  /* Main content: Platz für Bottom-Nav lassen */
+  .tab-icon{font-size:20px !important;line-height:1}
+  .tab-lbl{font-size:10px !important;line-height:1.2;margin-top:1px}
+
+  /* Main: Platz für Bottom-Nav + Header */
   main{
-    padding:10px 10px calc(60px + env(safe-area-inset-bottom)) 10px;
+    padding:10px 10px calc(68px + env(safe-area-inset-bottom)) 10px !important;
   }
 
-  /* ── Header kompakter ── */
+  /* ── Header: nur Logo + Abmelden ── */
   header{
-    padding:0 10px;
-    padding-left:max(10px, env(safe-area-inset-left));
-    padding-right:max(10px, env(safe-area-inset-right));
+    padding:0 10px !important;
+    overflow:hidden;
   }
-  /* Krank/Urlaub-Badges im Header wieder anzeigen (nur die wichtigen) */
-  .hstats{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none}
-  .hstats::-webkit-scrollbar{display:none}
-  .hstat{padding:4px 8px;gap:5px;flex-shrink:0}
-  .hstat .hl{display:none} /* Label ausblenden, nur Zahl */
-  .hv{font-size:13px}
-  /* OL-Badges ausblenden auf sehr kleinen Screens */
-  #hs-m,#hs-i,#hs-ausgeschieden,#hs-alle{display:none}
+  /* Stats komplett ausblenden im Header – zu eng */
+  .hstats{display:none !important}
+  /* Sync-Bar ausblenden */
+  #sync-bar{display:none !important}
 
-  /* ── Toolbar: Filter einklappbar ── */
+  /* ── Toolbar ── */
   .toolbar{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:6px;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:8px !important;
   }
   .toolbar .sw{
-    grid-column:1/-1;
-    order:-1;
-    min-width:0;
+    width:100% !important;
+    min-width:0 !important;
+    order:-1 !important;
   }
   .toolbar select.fsel{
-    width:100%;
-    font-size:13px;
-    padding:9px 8px;
+    width:100% !important;
+    font-size:14px !important;
+    padding:10px 10px !important;
+    min-height:44px !important;
   }
-  /* DATEV + Mitarbeiter Buttons: volle Breite */
-  .toolbar .btn-p,
-  .toolbar .btn-s{
-    min-height:44px;
+  /* Monat-Navigator: eigene Zeile */
+  .toolbar > div[style*="display:flex"][style*="border"]{
+    width:100% !important;
+    justify-content:center !important;
+  }
+  /* Buttons: volle Breite */
+  .toolbar .btn{
+    width:100% !important;
+    min-height:48px !important;
+    font-size:15px !important;
+    justify-content:center !important;
+  }
+  #admin-tools-wrap{
+    width:100% !important;
+    display:block !important;
+  }
+  #btn-admin-tools{
+    width:100% !important;
+    min-height:44px !important;
   }
 
   /* ── MA-Karte verbessert ── */
@@ -546,11 +562,18 @@ body.lock-active main{margin-top:46px}
 
   /* ── Alert (Toast) ── */
   #alert{
-    bottom:calc(64px + env(safe-area-inset-bottom));
+    bottom:calc(72px + env(safe-area-inset-bottom));
     left:10px;
     right:10px;
   }
   .amsg{text-align:center;width:100%}
+
+  /* ── User-Badge im Header kürzen ── */
+  .user-badge span:last-child{display:none}
+  .user-badge{padding:5px 8px;font-size:12px}
+
+  /* ── Lock-Banner ── */
+  #lock-banner{font-size:11px;padding:6px 10px}
 
   /* ── Login-Box ── */
   .login-box{
