@@ -2745,8 +2745,21 @@ function delObj(){
   let msg = `⚠ Kunde dauerhaft löschen\n\n"${o.name}" wirklich unwiderruflich löschen?`;
   if(maZugeordnet.length>0) msg += `\n\n⚠ Achtung: ${maZugeordnet.length} Mitarbeiter sind noch diesem Kunden zugeordnet! Die Objekt-Zuweisung bleibt bei den MA erhalten und muss manuell bereinigt werden.`;
   if(!confirm(msg)) return;
-  obj = obj.filter(x=>x.id!==eOid);
-  saveAll(); renderObj(); renderDash(); closeOM();
+  const _delId = eOid;
+  obj = obj.filter(x=>x.id!==_delId);
+  // Kunden-Eintrag ebenfalls entfernen
+  kunden = kunden.filter(k=>!(k.standorte&&k.standorte.includes(o.name)&&k.standorte.length===1));
+  setSyncState('syncing','Löscht…');
+  Promise.all([
+    supaDelete('objekte', _delId),
+    supaDelete('kunden', 'kd_'+_delId)
+  ]).then(()=>{
+    setSyncState('ok','Gelöscht · '+new Date().toLocaleTimeString('de-DE'));
+  }).catch(e=>{
+    setSyncState('error','Löschen fehlgeschlagen!');
+    showAlert('Löschen fehlgeschlagen: '+e.message,'#c81e1e');
+  });
+  renderObj(); renderDash(); closeOM();
   showAlert(`"${o.name}" gelöscht`, '#374151');
 }
 
@@ -2796,7 +2809,20 @@ if(kdIdx >= 0){
 // Alphabetisch halten
 kunden.sort((a,b)=>(a.kurzname||a.vollname||a.name||'').localeCompare(b.kurzname||b.vollname||b.name||'','de'));
 obj.sort((a,b)=>(a.name||'').localeCompare(b.name||'','de'));
-saveAll();renderObj();closeOMandReturn();showAlert(eOid?'Kunde gespeichert ✓':'Neuer Kunde angelegt ✓');
+// Nur dieses Objekt + zugehörigen Kunden-Eintrag speichern
+const _kdToSave = kunden.filter(k=>k.standorte&&k.standorte.includes(o.name));
+setSyncState('syncing','Speichert…');
+Promise.all([
+  supaSave('objekte',[o]),
+  _kdToSave.length ? supaSave('kunden',_kdToSave) : Promise.resolve()
+]).then(()=>{
+  setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
+  _dirty=false;
+}).catch(e=>{
+  setSyncState('error','Speicherfehler!');
+  showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e');
+});
+renderObj();closeOMandReturn();showAlert(eOid?'Kunde gespeichert ✓':'Neuer Kunde angelegt ✓');
 }
 function omGlobalWTUpdate(){ omUpdGesamt(); }
 function closeOM(){
@@ -3834,12 +3860,30 @@ m.objekte=JSON.parse(JSON.stringify(mao));
 if(eMAid){const i=ma.findIndex(x=>x.id===eMAid);ma[i]=m;}else ma.push(m);
 // Bidirektionaler Sync: MA-Objekte → Reviere
 syncMAToRev(m);
-vtSyncToMAB();saveAll();render();closeMAMandReturn();showAlert(eMAid?'Gespeichert ✓':'Hinzugefügt ✓');
+vtSyncToMAB();
+// Nur diesen einen MA speichern (kein kompletter Array-Überschreib)
+setSyncState('syncing','Speichert…');
+supaSave('mitarbeiter',[m]).then(()=>{
+  setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
+  _dirty=false;
+}).catch(e=>{
+  setSyncState('error','Speicherfehler!');
+  showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e');
+});
+render();closeMAMandReturn();showAlert(eMAid?'Gespeichert ✓':'Hinzugefügt ✓');
 }
 function delMA(id){
 const m=ma.find(x=>x.id===id);
 if(!confirm(`⚠ Mitarbeiter löschen\n\n"${m.nachname}${m.vorname?' '+m.vorname:''}" wirklich dauerhaft löschen?\n\nDiese Aktion kann nicht rückgängig gemacht werden!`))return;
-ma=ma.filter(x=>x.id!==id);saveAll();updStats();updFilters();render();showAlert('Gelöscht','#374151');
+ma=ma.filter(x=>x.id!==id);
+setSyncState('syncing','Löscht…');
+supaDelete('mitarbeiter',id).then(()=>{
+  setSyncState('ok','Gelöscht · '+new Date().toLocaleTimeString('de-DE'));
+}).catch(e=>{
+  setSyncState('error','Löschen fehlgeschlagen!');
+  showAlert('Löschen fehlgeschlagen: '+e.message,'#c81e1e');
+});
+updStats();updFilters();render();showAlert('Gelöscht','#374151');
 }
 // ============================================================
 // ROLLENBASIERTE ZUGANGSKONTROLLE
