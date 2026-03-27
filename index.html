@@ -877,7 +877,7 @@ body.lock-active main{margin-top:46px}
   <div class="fg2" style="margin-bottom:8px">
     <div class="fg"><label>Telefon</label><input id="f-tel"></div>
     <div class="fg"><label>Objektleiter *</label><select id="mam-f-ol"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select></div>
-    <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein"></div>
+    <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein" oninput="calcUrlaubAnspruch()"></div>
     <div class="fg"><label>Austrittsdatum</label><input type="date" id="f-aus"></div>
   </div>
   <div class="fg2">
@@ -1019,6 +1019,22 @@ body.lock-active main{margin-top:46px}
       </div>
       <div class="kal-grid" id="kal-grid"></div>
       <div class="kal-summary" id="kal-summary"></div>
+    </div>
+    <!-- URLAUBSANSPRUCH-BOX -->
+    <div id="urlaub-anspruch-box" style="margin-top:12px;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:11px 14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--acc)">🏖 Urlaubsanspruch</div>
+
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="text-align:center">
+          <div style="font-size:28px;font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace" id="urlaub-result">–</div>
+          <div style="font-size:10px;color:var(--muted)">Tage/Jahr</div>
+        </div>
+        <div style="flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--text2);line-height:1.7" id="urlaub-formel">Bitte Wochentage und Eintrittsdatum eintragen.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1569,6 +1585,19 @@ let _token = sessionStorage.getItem('mm_token') || null;
 let _currentUser = sessionStorage.getItem('mm_user') || null;
 let _currentRolle = sessionStorage.getItem('mm_rolle') || 'admin';
 function isOL(){ return _currentRolle === 'ol'; }
+function getVisibleMA() {
+  if (!isOL()) return ma;
+  // OL-Kürzel: 'I' für Incecik, 'M' für Grippo (laut mam-f-ol Werten)
+  const olKuerzel = _currentUser === 'Incecik' ? 'I' : 'M';
+  return ma.filter(m => m.objektleiter === olKuerzel);
+}
+function getVisibleKunden() {
+  if (!isOL()) return obj;
+  const visMA = getVisibleMA();
+  const kundenSet = new Set();
+  visMA.forEach(m => maKu(m).forEach(k => kundenSet.add(k)));
+  return obj.filter(o => kundenSet.has(o.name));
+}
 function isAdmin(){ return !isOL(); }
 let _lockPingInterval = null;
 let _autoSaveTimeout = null;
@@ -1889,6 +1918,31 @@ const abrMod=m.abrechnungsmodell||'arbeitstage';
 return Math.round(t*10)/10;
 }
 function maOSoll(o, monatKey, maAbrModell){
+  // Schulferien: Arbeitsverhältnis ruht → 0h
+  if (o.schulferien && o.ferien_von && o.ferien_bis) {
+    const mk = monatKey || getAM();
+    const [y, m] = mk.split('-').map(Number);
+    const monatStart = new Date(y, m - 1, 1);
+    const monatEnde  = new Date(y, m, 0); // letzter Tag des Monats
+    const ferienVon  = new Date(o.ferien_von);
+    const ferienBis  = new Date(o.ferien_bis);
+    if (!isNaN(ferienVon) && !isNaN(ferienBis)) {
+      // Vollständig in Ferien → 0
+      if (ferienVon <= monatStart && ferienBis >= monatEnde) return 0;
+      // Teilweise in Ferien → anteilige Kürzung
+      if (ferienBis >= monatStart && ferienVon <= monatEnde) {
+        const overlapStart = ferienVon > monatStart ? ferienVon : monatStart;
+        const overlapEnde  = ferienBis < monatEnde  ? ferienBis  : monatEnde;
+        const ferienTage = Math.round((overlapEnde - overlapStart) / 86400000) + 1;
+        const monatTage  = monatEnde.getDate();
+        const faktor = Math.max(0, 1 - ferienTage / monatTage);
+        // Weiter unten normal berechnen, dann Faktor anwenden
+        o._schulFerienFaktor = faktor;
+      }
+    }
+  } else {
+    delete o._schulFerienFaktor;
+  }
   // einsatz_ab / einsatz_bis: anteilige Stunden
   if (o.einsatz_ab || o.einsatz_bis) {
     const mk = monatKey || getAM();
@@ -1902,37 +1956,41 @@ function maOSoll(o, monatKey, maAbrModell){
     }
   }
   const mk = monatKey || getAM();
+  // Schulferien-Faktor anwenden (0 = kein Anteil, <1 = teilweise Ferien)
+  const _sfFaktor = (o._schulFerienFaktor !== undefined) ? o._schulFerienFaktor : 1;
+  delete o._schulFerienFaktor;
+  const _applyFaktor = (std) => Math.round(std * _sfFaktor * 10) / 10;
   // MA-Abrechnungsmodell 'arbeitstage' übersteuert Objekt-Modell
   const effModell = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich') ? 'arbeitstage' : (o.modell || 'arbeitstage');
   if(effModell==='arbeitstage'){
     // Wochentage eingetragen → tatsächliche Vorkommen im Monat zählen
     const ws = wSum(o.wochentage||{});
-    if(ws > 0) return calcWochentagStunden(o.wochentage||{}, mk);
+    if(ws > 0) return _applyFaktor(calcWochentagStunden(o.wochentage||{}, mk));
     // Fallback: std_tag × AT
     const stdTag = parseFloat(o.std_tag) || 0;
     const arbT = parseInt(o.arbtage_monat?.[mk]) || ARBEITSTAGE[mk] || 21;
-    if(stdTag>0) return Math.round(stdTag*arbT*10)/10;
-    return parseFloat(o.std_monat)||0;
+    if(stdTag>0) return _applyFaktor(Math.round(stdTag*arbT*10)/10);
+    return _applyFaktor(parseFloat(o.std_monat)||0);
   }
   // Modell 14-Tage: exakte Einsätze ab festem Startdatum
   if(effModell==='14tage'){
     if(o.rhythmus_start){
       const std14 = calc14TageStunden(o.wochentage||{}, o.rhythmus_start, mk);
-      if(std14>0) return std14;
+      if(std14>0) return _applyFaktor(std14);
     }
     // Fallback ohne Startdatum: ÷2 × 4,33
     const ws14=wSum(o.wochentage||{});
-    if(ws14>0) return Math.round(ws14/2*WPM*10)/10;
-    return parseFloat(o.std_monat)||0;
+    if(ws14>0) return _applyFaktor(Math.round(ws14/2*WPM*10)/10);
+    return _applyFaktor(parseFloat(o.std_monat)||0);
   }
   // Modell monatlich: feste Monatsstunden
   if(effModell==='monatlich'){
-    return parseFloat(o.std_monat)||0;
+    return _applyFaktor(parseFloat(o.std_monat)||0);
   }
   // Modell 4,33: Wochenstunden × 4,33
   const ws=wSum(o.wochentage||{});
-  if(ws>0) return Math.round(ws*WPM*10)/10;
-  return parseFloat(o.std_monat)||0;
+  if(ws>0) return _applyFaktor(Math.round(ws*WPM*10)/10);
+  return _applyFaktor(parseFloat(o.std_monat)||0);
 }
 function maSG(m,mk){
   if(m.status==='Ausgeschieden'||m.austrittsdatum) return 0;
@@ -1954,8 +2012,8 @@ function maLG(m,mk){
 function maKu(m){return(m.objekte||[]).map(o=>o.kunde).filter(Boolean);}
 function isEh(o){return o.aktiv===false||o.status==='ehemalig';}
 function updStats(){
-// Gesamt = nur aktive MA (nicht Ausgeschiedene / mit Austrittsdatum)
-const aktiveMA = ma.filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum);
+// Gesamt = nur aktive MA (nicht Ausgeschiedene / mit Austrittsdatum) – OL sieht nur eigene
+const aktiveMA = getVisibleMA().filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum);
 document.getElementById('st-total').textContent=aktiveMA.length;
 // Krank/Urlaub: heutiger Tag aus abwesenheiten[] (wie Heute-Ansicht), nicht m.status
 const heuteKey=(()=>{const n=new Date();const p=v=>String(v).padStart(2,'0');return `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}`;})();
@@ -1994,7 +2052,7 @@ const ol=document.getElementById('f-ol').value;
 const ku=document.getElementById('f-kunde').value;
 // Heutiges Datum für Krank/Urlaub-Abgleich aus abwesenheiten[]
 const _hk=(()=>{const n=new Date();const p=v=>String(v).padStart(2,'0');return `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}`;})();
-return ma.map(m=>{m._sg=maSG(m);m._lg=maLG(m);m._objekte=maKu(m).join(', ');return m;})
+return getVisibleMA().map(m=>{m._sg=maSG(m);m._lg=maLG(m);m._objekte=maKu(m).join(', ');return m;})
 .filter(m=>{
 const txt=`${m.nachname||''} ${m.vorname||''} ${m.persnr||''} ${maKu(m).join(' ')}`.toLowerCase();
 const istEhemaliger = m.status==='Ausgeschieden' || !!m.austrittsdatum;
@@ -2149,8 +2207,10 @@ function renderObj(){
 const q=(document.getElementById('osearch').value||'').toLowerCase();
 const sf=document.getElementById('of-st').value;
 
-// Kunden filtern
+// Kunden filtern – OL sieht nur eigene Kunden
+const _visKdNames = isOL() ? new Set(getVisibleKunden().map(o=>o.name)) : null;
 let kdList = kunden.filter(k=>{
+  if(_visKdNames && !k.standorte.some(s=>_visKdNames.has(s))) return false;
   if(!k.vollname.toLowerCase().includes(q) && !k.kurzname.toLowerCase().includes(q) &&
      !k.standorte.some(s=>s.toLowerCase().includes(q))) return false;
   if(sf==='aktiv' && k.status==='ehemalig') return false;
@@ -2161,10 +2221,12 @@ let kdList = kunden.filter(k=>{
 // Fallback: Objekte ohne Kunden auch anzeigen
 const zugeordneteStandorte = new Set(kunden.flatMap(k=>k.standorte));
 const ohneKunde = obj.filter(o=>!zugeordneteStandorte.has(o.name) &&
+  (!_visKdNames || _visKdNames.has(o.name)) &&
   (sf===''||sf==='aktiv') &&
   (q===''||o.name.toLowerCase().includes(q)));
 
-const tot=kunden.length, akt=kunden.filter(k=>k.status!=='ehemalig').length;
+const _visKdAll = isOL() ? kdList : kunden;
+const tot=_visKdAll.length, akt=_visKdAll.filter(k=>k.status!=='ehemalig').length;
 document.getElementById('oinfo').innerHTML=
   `${tot} Kunden · <span style="color:var(--green)">${akt} aktiv</span>`;
 
@@ -2633,6 +2695,9 @@ omGlobalWTUpdate();
 document.getElementById('of-vn').value=o.vollname||'';
 document.getElementById('of-nr').value=o.kundennummer||'';
 document.getElementById('of-s').value=isEh(o)?'ehemalig':'aktiv';
+  // Speichern-Button: für OL ausblenden (nur lesend)
+  const omSaveBtn = document.querySelector('#ombg .btn-p');
+  if(omSaveBtn) omSaveBtn.style.display = isOL() ? 'none' : '';
   // Löschen-Button: nur bei bestehendem Objekt und nur Admin
   const delBtn = document.getElementById('om-del-btn');
   if(delBtn) delBtn.style.display = (id && !isOL()) ? 'inline-flex' : 'none';
@@ -3038,6 +3103,78 @@ function calcUrlaubTage(m) {
   return Math.min(28 + jahre, 30);
 }
 
+function calcUrlaubAnspruch() {
+  // Arbeitstage/Woche aus mao[] ableiten: welche Wochentage haben Stunden > 0?
+  const aktiveTage = new Set();
+  mao.forEach(o => {
+    const wt = o.wochentage || {};
+    WT.forEach(t => { if ((parseFloat(wt[t]) || 0) > 0) aktiveTage.add(t); });
+  });
+  const arbTagePW = aktiveTage.size || 5;
+
+  // Eintrittsdatum aus Feld
+  const einStr = document.getElementById('f-ein')?.value || '';
+
+  // Schulferien-Einsätze: aktive Monate berechnen
+  // Ferienzeit = Summe aller ferien_von/ferien_bis über alle mao-Einsätze
+  let ferienMonate = 0;
+  mao.forEach(o => {
+    if (o.schulferien && o.ferien_von && o.ferien_bis) {
+      const von = new Date(o.ferien_von);
+      const bis = new Date(o.ferien_bis);
+      if (!isNaN(von) && !isNaN(bis) && bis >= von) {
+        const diffMs = bis.getTime() - von.getTime();
+        const diffMon = diffMs / (1000 * 60 * 60 * 24 * 30.44);
+        ferienMonate += diffMon;
+      }
+    }
+  });
+  const aktiveMonate = Math.max(0, 12 - ferienMonate);
+
+  // Modul A: Teilzeit
+  const basis = 28;
+  const teilzeit = basis / 5 * arbTagePW;
+
+  // Modul B: Schulferien-Kürzung wenn vorhanden
+  let sollMonate = 12;
+  let schulText = '';
+  if (ferienMonate > 0) {
+    sollMonate = aktiveMonate;
+    schulText = `Schulferien: −${Math.round(ferienMonate*10)/10} Mon. → ${Math.round(aktiveMonate*10)/10} aktive Monate`;
+  }
+
+  // Modul C: Pro-Rata wenn Eintritt im Jahr 2026
+  let proRata = teilzeit / 12 * sollMonate;
+  let proRataText = '';
+  if (einStr) {
+    const eintritt = new Date(einStr);
+    if (!isNaN(eintritt.getTime()) && eintritt.getFullYear() === 2026) {
+      const startMonat = eintritt.getMonth() + 1;
+      const eintrittMonate = Math.min(12 - startMonat + 1, sollMonate);
+      proRata = teilzeit / 12 * eintrittMonate;
+      proRataText = `Pro-Rata Eintritt: ${eintrittMonate} Mon.`;
+    }
+  }
+
+  // Rundung §5 Abs. 2 BUrlG
+  const dezimal = proRata - Math.floor(proRata);
+  const ergebnis = dezimal >= 0.5 ? Math.ceil(proRata) : Math.floor(proRata);
+
+  // Anzeige
+  const resultEl = document.getElementById('urlaub-result');
+  const formelEl = document.getElementById('urlaub-formel');
+  if (resultEl) resultEl.textContent = ergebnis;
+
+  const lines = [];
+  lines.push(`Basis: 28 Tage · ${arbTagePW} AT/Wo → ${Math.round(teilzeit*100)/100} Tage/Jahr`);
+  if (schulText) lines.push(schulText);
+  if (proRataText) lines.push(proRataText);
+  lines.push(`Ergebnis (§5 BUrlG gerundet): ${ergebnis} Tage`);
+  if (formelEl) formelEl.innerHTML = lines.map(l => `<span style="display:block">${l}</span>`).join('');
+
+  window._urlaubAnspruchAktuell = ergebnis;
+}
+
 function openMAM(id=null){
 const mambg=document.getElementById('mambg');
 if(!mambg._fromOM){ mambg.style.zIndex='200'; }
@@ -3079,6 +3216,8 @@ const initMd=(m.monats_daten||{})[getAM()]||{};
 renderZettel(!!initMd.zettel_ok);
 _vtData=JSON.parse(JSON.stringify(initMd.vertretungen||[]));
 renderVtBlock(m, initMd);
+// Urlaubsanspruch berechnen
+setTimeout(calcUrlaubAnspruch, 50);
 }
 function maoTaOpen(i, inp) {
   const list = obj.filter(o=>!isEh(o)).map(o=>({id:o.name, label:o.name+(o.vollname&&o.vollname!==o.name?' – '+o.vollname:'')}));
@@ -3117,7 +3256,9 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
     ? (wsG>0 ? Math.round(wsG/5*261/12*10)/10 : parseFloat(o.std_monat)||0)
     : maOSoll(o, mk, _abrModell);
   const kap=oKapM(o.kunde); const bel=oBel(o.kunde);
-  const altSoll=eMAid?((ma.find(x=>x.id===eMAid)?.objekte||[]).find(x=>x.kunde===o.kunde)?.std_monat||0):0;
+  const _existMA=eMAid?ma.find(x=>x.id===eMAid):null;
+  const _existObj=_existMA?(_existMA.objekte||[]).find(x=>x.kunde===o.kunde):null;
+  const altSoll=_existObj?maOSoll(_existObj,mk,_existMA.abrechnungsmodell||'arbeitstage'):0;
   const belNeu=Math.round((bel-altSoll+sollM)*10)/10;
   const pct=kap>0?Math.round(belNeu/kap*100):0;
   const hc=kap>0&&pct>100?'kh-o':kap>0?'kh-ok':'kh-n';
@@ -3206,6 +3347,7 @@ ${o.modell==='monatlich'?`<div style="display:flex;align-items:center;gap:10px;m
 </div>
 ${o.kunde?`<div class="kap-hint ${hc}" style="margin-top:8px">${kap>0?`📊 Kap: <strong>${kap}h/Mon</strong> · mit MA: <strong>${belNeu}h (${pct}%)</strong>${pct>100?' — ⚠ ÜBERSCHREITUNG!':' ✓ OK'}`:`ℹ <strong>"${o.kunde}"</strong> – keine Kapazität hinterlegt. <button class="btn-i btn-sm" onclick="openOMfromMAM('${o.kunde}')">Jetzt eintragen</button>`}</div>`:''}
 ${renderEinsatzAbBlock(o, i, mk)}
+${renderSchulferienBlock(o, i)}
 </div>`;
 }).join('');
 }
@@ -3307,6 +3449,55 @@ function einsatzBisClear(i) {
   delete mao[i].einsatz_bis;
   renderMAO();
 }
+function renderSchulferienBlock(o, i) {
+  if (!o.kunde) return '';
+  const aktiv = !!o.schulferien;
+  const von = o.ferien_von || '';
+  const bis = o.ferien_bis || '';
+  let infoHTML = '';
+  if (aktiv && von && bis) {
+    const vonD = new Date(von);
+    const bisD = new Date(bis);
+    if (!isNaN(vonD) && !isNaN(bisD) && bisD >= vonD) {
+      const diffMs = bisD - vonD;
+      const diffMon = Math.round(diffMs / (1000*60*60*24*30.44) * 10) / 10;
+      const vonStr = vonD.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
+      const bisStr = bisD.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
+      infoHTML = `<div style="font-size:11px;color:var(--orange);margin-top:4px">🏫 Ferien: ${vonStr} – ${bisStr} (≈ ${diffMon} Mon.) · Sollstunden = 0 in Ferienzeit</div>`;
+    }
+  }
+  return `<div style="margin-top:8px;background:${aktiv?'var(--obg)':'var(--s1)'};border:1px solid ${aktiv?'var(--obd)':'var(--border)'};border-radius:var(--r);padding:9px 12px;">
+  <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;font-weight:600;color:${aktiv?'var(--orange)':'var(--muted)'};text-transform:none;letter-spacing:0">
+    <input type="checkbox" ${aktiv?'checked':''} style="width:14px;height:14px;cursor:pointer" onchange="schulferienToggle(${i}, this.checked)">
+    🏫 Schulferien (Arbeitsverhältnis ruht – kein Lohn)
+  </label>
+  ${aktiv ? `<div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+    <div style="flex:1;min-width:140px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Ferien <strong>von</strong></div>
+      <input type="date" value="${von}" oninput="schulferienSet(${i},'von',this.value)"
+        style="font-size:12px;padding:4px 8px;border:1px solid var(--obd);border-radius:6px;background:#fffbeb;font-family:inherit;color:var(--text);outline:none;width:100%">
+    </div>
+    <div style="flex:1;min-width:140px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Ferien <strong>bis</strong></div>
+      <input type="date" value="${bis}" oninput="schulferienSet(${i},'bis',this.value)"
+        style="font-size:12px;padding:4px 8px;border:1px solid var(--obd);border-radius:6px;background:#fffbeb;font-family:inherit;color:var(--text);outline:none;width:100%">
+    </div>
+  </div>${infoHTML}` : ''}
+</div>`;
+}
+function schulferienToggle(i, aktiv) {
+  mao[i].schulferien = aktiv;
+  if (!aktiv) { delete mao[i].ferien_von; delete mao[i].ferien_bis; }
+  renderMAO();
+  calcUrlaubAnspruch();
+}
+function schulferienSet(i, field, val) {
+  if (field === 'von') mao[i].ferien_von = val;
+  else mao[i].ferien_bis = val;
+  renderMAO();
+  calcUrlaubAnspruch();
+}
+
 function toggleVerstetigt(){
   const cb = document.getElementById('f-verstetigt');
   if(cb) cb.checked = !cb.checked;
@@ -3368,6 +3559,7 @@ function updMAWT(i){
   if(sEl)sEl.textContent=Math.round(ws*100)/100;
   // std_monat nicht mehr setzen – Berechnung erfolgt via calcWochentagStunden
   renderMAO();
+  calcUrlaubAnspruch();
 }
 function updArbTage(i){
   const stdTag=parseFloat(mao[i].std_tag)||0;
@@ -3617,6 +3809,7 @@ m.status=document.getElementById('f-st').value;m.telefon=document.getElementById
 m.objektleiter=document.getElementById('mam-f-ol').value;
 m.eintrittsdatum=document.getElementById('f-ein').value;m.austrittsdatum=document.getElementById('f-aus').value;
 m.urlaub_jahres=parseFloat(document.getElementById('f-urltage').value)||0;
+m.urlaub_anspruch=window._urlaubAnspruchAktuell||0;
 m.weitere_notiz=document.getElementById('f-weitere-notiz').value||'';
 m.verstetigt=document.getElementById('f-verstetigt').checked;
 m.lohngruppe=document.getElementById('f-lohngruppe').value;
@@ -3749,7 +3942,7 @@ function renderHeute(){
   const datumStr = heute.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
 
   // ── Karte 1: Urlaub heute ─────────────────────────────
-  const urlauber = ma.filter(m => m.abwesenheiten?.[heuteKey]==='urlaub' && m.status!=='Ausgeschieden');
+  const urlauber = getVisibleMA().filter(m => m.abwesenheiten?.[heuteKey]==='urlaub' && m.status!=='Ausgeschieden');
   let urlCard = '';
   if(urlauber.length){
     urlCard = urlauber.map(m => {
@@ -3818,7 +4011,7 @@ function renderHeute(){
   }
 
   // ── Karte 4: Krank heute ──────────────────────────────
-  const krank = ma.filter(m => m.abwesenheiten?.[heuteKey]==='krank' && m.status!=='Ausgeschieden');
+  const krank = getVisibleMA().filter(m => m.abwesenheiten?.[heuteKey]==='krank' && m.status!=='Ausgeschieden');
   let krankCard = '';
   if(krank.length){
     krankCard = krank.map(m=>`<div class="heute-entry" style="cursor:pointer" onclick="showTab('liste');setTimeout(()=>openMAM('${m.id}'),50)">
@@ -4146,7 +4339,7 @@ function renderUrlaub() {
   }
 
   // MA filtern
-  let maList = ma.filter(m => _ganttStatus==='alle' ? true : m.status !== 'Ausgeschieden');
+  let maList = getVisibleMA().filter(m => _ganttStatus==='alle' ? true : m.status !== 'Ausgeschieden');
   // OL sieht immer nur eigene MA (kein Override möglich)
   const olZwang = isOL() ? (_currentUser==='Incecik'?'I':_currentUser==='Grippo'?'M':'') : '';
   const aktiverOLFilter = olZwang || _ganttOL;
@@ -4303,30 +4496,32 @@ function renderUrlaub() {
 }
 
 function renderDash(){
-const ku={};ma.forEach(m=>maKu(m).forEach(k=>{ku[k]=(ku[k]||0)+1;}));
+const _visMA = getVisibleMA();
+const _visObj = getVisibleKunden();
+const ku={};_visMA.forEach(m=>maKu(m).forEach(k=>{ku[k]=(ku[k]||0)+1;}));
 const ks=Object.entries(ku).sort((a,b)=>b[1]-a[1]);
-const lohn=ma.reduce((s,m)=>s+maLG(m),0);
-const krank=ma.reduce((s,m)=>s+(m.monats_daten?.[getAM()]?.krank||0),0);
-const url=ma.reduce((s,m)=>s+(m.monats_daten?.[getAM()]?.urlaub||0),0);
-const ov=obj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);return k>0&&b>k;}).length;
-const vGesamt=ma.filter(m=>m.verstetigt).length;
-const vBestaetigt=ma.filter(m=>m.verstetigt&&m.monats_daten?.[getAM()]?.zettel_ok).length;
-const maAktiv=ma.filter(m=>m.status==='Aktiv').length;
-const datevFreigabe=ma.filter(m=>m.status==='Aktiv'&&(
+const lohn=_visMA.reduce((s,m)=>s+maLG(m),0);
+const krank=_visMA.reduce((s,m)=>s+(m.monats_daten?.[getAM()]?.krank||0),0);
+const url=_visMA.reduce((s,m)=>s+(m.monats_daten?.[getAM()]?.urlaub||0),0);
+const ov=_visObj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);return k>0&&b>k;}).length;
+const vGesamt=_visMA.filter(m=>m.verstetigt).length;
+const vBestaetigt=_visMA.filter(m=>m.verstetigt&&m.monats_daten?.[getAM()]?.zettel_ok).length;
+const maAktiv=_visMA.filter(m=>m.status==='Aktiv').length;
+const datevFreigabe=_visMA.filter(m=>m.status==='Aktiv'&&(
   m.monats_daten?.[getAM()]?.zettel_ok && maSG(m) > 0
 )).length;
-const eh=obj.filter(o=>isEh(o)).length;
+const eh=_visObj.filter(o=>isEh(o)).length;
 
 // Ehemalige MA: Status=Ausgeschieden ODER Austrittsdatum gesetzt
-const ehMA=ma.filter(m=>m.status==='Ausgeschieden'||!!m.austrittsdatum)
+const ehMA=_visMA.filter(m=>m.status==='Ausgeschieden'||!!m.austrittsdatum)
   .sort((a,b)=>{
     const ad=a.austrittsdatum||'9999', bd=b.austrittsdatum||'9999';
     return bd.localeCompare(ad); // neueste zuerst
   });
 
 document.getElementById('dash-c').innerHTML=`
-<div class="dcard" style="cursor:pointer" onclick="showTab('liste')" title="Zur Mitarbeiterliste"><h3>👥 Mitarbeiter</h3><div class="dbig">${ma.length}</div><div class="dsub">${ma.filter(m=>m.status==='Aktiv').length} aktiv · ${ehMA.length} ehemalig</div></div>
-<div class="dcard" style="cursor:pointer" onclick="showTab('objekte')" title="Zur Kundenliste"><h3>🏢 Kunden</h3><div class="dbig">${kunden.length}</div><div class="dsub">${kunden.filter(k=>k.status!=='ehemalig').length} aktiv · ${kunden.filter(k=>k.status==='ehemalig').length} ehemalig</div></div>
+<div class="dcard" style="cursor:pointer" onclick="showTab('liste')" title="Zur Mitarbeiterliste"><h3>👥 Mitarbeiter</h3><div class="dbig">${_visMA.length}</div><div class="dsub">${_visMA.filter(m=>m.status==='Aktiv').length} aktiv · ${ehMA.length} ehemalig</div></div>
+<div class="dcard" style="cursor:pointer" onclick="showTab('objekte')" title="Zur Kundenliste"><h3>🏢 Kunden</h3><div class="dbig">${_visObj.length}</div><div class="dsub">${_visObj.filter(o=>!isEh(o)).length} aktiv · ${_visObj.filter(o=>isEh(o)).length} ehemalig</div></div>
 <div class="dcard"><h3>⚠ Kapazität überschritten</h3><div class="dbig" style="color:${ov>0?'var(--red)':'var(--green)'}">${ov}</div><div class="dsub">Objekte über Kapazität</div></div>
 <div class="dcard"><h3>👤 Grippo / Incecik</h3><div class="dbig" style="font-size:22px"><span style="color:var(--ol-m)">${ma.filter(m=>m.objektleiter==='M').length}</span> / <span style="color:var(--ol-i)">${ma.filter(m=>m.objektleiter==='I').length}</span></div></div>
 <div class="dcard"><h3>💶 Lohn/Monat (geschätzt)</h3><div class="dbig" style="font-size:22px">€ ${lohn.toLocaleString('de-DE',{maximumFractionDigits:0})}</div></div>
@@ -4337,7 +4532,7 @@ document.getElementById('dash-c').innerHTML=`
 <div class="dcard" style="grid-column:1/-1"><h3>🏢 Kunden &amp; Mitarbeiter</h3>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;margin-top:8px;max-height:340px;overflow-y:auto">
 ${ks.filter(([k])=>obj.find(o=>o.name===k&&!isEh(o))).map(([kundeName])=>{
-  const maList=ma.filter(m=>m.status!=='Ausgeschieden'&&maKu(m).includes(kundeName));
+  const maList=_visMA.filter(m=>m.status!=='Ausgeschieden'&&maKu(m).includes(kundeName));
   return `<div onclick="openOMbyName('${kundeName.replace(/'/g,"\\'")}')" style="cursor:pointer;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:9px 11px;transition:border-color .15s" onmouseover="this.style.borderColor='var(--acc)'" onmouseout="this.style.borderColor='var(--border)'">
 <div style="font-weight:600;font-size:12px;color:var(--text);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${kundeName}">${kundeName}</div>
 <div style="display:flex;flex-wrap:wrap;gap:2px">${maList.length?maList.map(m=>`<span style="font-size:10px;padding:1px 5px;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:4px;color:var(--acc);white-space:nowrap">${m.nachname}</span>`).join(''):'<span style="font-size:11px;color:var(--muted2)">–</span>'}</div>
@@ -4415,7 +4610,7 @@ if(t==='minijob')renderMinijob();
 function renderMinijob() {
   const container = document.getElementById('minijob-list');
   if (!container) return;
-  const minijobber = ma.filter(m => m.minijob && m.status !== 'Ausgeschieden');
+  const minijobber = getVisibleMA().filter(m => m.minijob && m.status !== 'Ausgeschieden');
   if (!minijobber.length) {
     container.innerHTML = '<div class="empty">Keine aktiven Minijobber gefunden.</div>';
     return;
