@@ -3704,14 +3704,20 @@ function renderSollInfo(m, mk){
     const arbT = (o.arbtage_monat&&o.arbtage_monat[mk]) ? parseInt(o.arbtage_monat[mk]) : ARBEITSTAGE[mk]||21;
     const ws = wSum(o.wochentage||{});
     const _14eins = o.modell==='14tage' ? calc14TageEinsaetze(o.wochentage||{}, o.rhythmus_start, mk) : 0;
-    let formel = effMod==='arbeitstage'
-      ? `${stdTag}h/Tag × <input type="number" min="1" max="31" value="${arbT}"
+    // Formelanzeige: Objekt-Modell hat Vorrang vor MA-Abrechnungsmodell
+    let formel;
+    if(o.modell==='14tage'){
+      formel = `📅 ${_14eins}× Einsatz × ${Math.round(ws*100)/100}h = <strong>${soll}h</strong>`;
+    } else if(o.modell==='verstetigt'){
+      formel = `${Math.round(ws*100)/100}h/Wo × 261/12/5 = <strong>${soll}h</strong>`;
+    } else if(effMod==='arbeitstage'){
+      formel = `${stdTag}h/Tag × <input type="number" min="1" max="31" value="${arbT}"
           style="width:48px;padding:2px 4px;border:1px solid var(--border);border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:center;background:var(--white);outline:none"
           title="Arbeitstage ${mk} anpassen"
-          onchange="updArbTageMonat('${m.id||''}','${o.kunde}','${mk}',this.value)"> AT = <strong>${soll}h</strong>`
-      : o.modell==='14tage'
-        ? `📅 ${_14eins}× Einsatz × ${Math.round(ws*100)/100}h = <strong>${soll}h</strong>`
-        : `${Math.round(ws*100)/100}h/Wo × 4,33 = <strong>${soll}h</strong>`;
+          onchange="updArbTageMonat('${m.id||''}','${o.kunde}','${mk}',this.value)"> AT = <strong>${soll}h</strong>`;
+    } else {
+      formel = `${Math.round(ws*100)/100}h/Wo × 4,33 = <strong>${soll}h</strong>`;
+    }
     html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px">
       <span style="color:var(--text2)">${o.kunde||'–'}</span>
       <span style="color:var(--muted)">${formel}</span>
