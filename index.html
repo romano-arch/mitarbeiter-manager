@@ -3808,6 +3808,12 @@ if(val==='urlaub')u++;
 else if(val==='krank')k++;
 }
 });
+// Direkt in monats_daten schreiben (nicht nur DOM)
+const mk=`${y}-${String(mo+1).padStart(2,'0')}`;
+if(!m.monats_daten)m.monats_daten={};
+if(!m.monats_daten[mk])m.monats_daten[mk]={urlaub:0,krank:0,notiz:'',zettel_ok:false,vertretungen:[],sonderstunden:[]};
+m.monats_daten[mk].urlaub=u;
+m.monats_daten[mk].krank=k;
 const curMonthIdx=ami;
 if(mo===curMonthIdx && y===2026){
 const urlEl=document.getElementById('md-url');
