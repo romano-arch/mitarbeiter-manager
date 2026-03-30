@@ -4163,6 +4163,56 @@ function renderHeute(){
     </div>`;
   }
 
+  // ── Vertretungsstunden heute nach OL ─────────────────
+  const _vtStatM = {}; // ol -> {krank:0, urlaub:0, maSet:Set}
+  getVisibleMA().forEach(m => {
+    if(m.status==='Ausgeschieden') return;
+    const vts = (m.monats_daten?.[heuteMk]?.vertretungen||[]).filter(v=>v.maId&&v.stunden);
+    if(!vts.length) return;
+    const ol = m.objektleiter||'?';
+    if(!_vtStatM[ol]) _vtStatM[ol]={krank:0,urlaub:0,maSet:new Set(),list:[]};
+    vts.forEach(v=>{
+      const std = parseFloat(v.stunden)||0;
+      const grund = (v.grund||'krank').toLowerCase();
+      if(grund==='urlaub') _vtStatM[ol].urlaub+=std;
+      else _vtStatM[ol].krank+=std;
+      _vtStatM[ol].maSet.add(m.id);
+      _vtStatM[ol].list.push({abwesend:m.nachname+(m.vorname?' '+m.vorname:''), vertreter:v.maName||'?', objekt:v.objekt||'', stunden:std, grund:grund});
+    });
+  });
+  const _olLabels = {'M':'Fr. Grippo','I':'Hr. Incecik'};
+  const _olColors = {'M':'var(--ol-m)','I':'var(--ol-i)'};
+  const _olBg    = {'M':'var(--olm-bg)','I':'var(--oli-bg)'};
+  let vtStatHtml = '';
+  ['M','I'].forEach(ol=>{
+    const s = _vtStatM[ol];
+    if(!s) return;
+    const gesamt = Math.round((s.krank+s.urlaub)*10)/10;
+    vtStatHtml += `<div style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span class="olb ol-${ol}">${ol}</span>
+        <strong style="color:${_olColors[ol]}">${_olLabels[ol]}</strong>
+        <span style="font-size:12px;color:var(--muted)">${s.maSet.size} MA betroffen · Gesamt: <strong>${gesamt}h</strong></span>
+        <span style="margin-left:6px;font-size:11px;padding:2px 8px;border-radius:10px;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d">🤒 ${Math.round(s.krank*10)/10}h</span>
+        <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 ${Math.round(s.urlaub*10)/10}h</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px">
+        ${s.list.map(e=>`<div style="background:${e.grund==='urlaub'?'var(--bbg)':'var(--ybg)'};border:1px solid ${e.grund==='urlaub'?'#93c5fd':'#fcd34d'};border-radius:var(--r);padding:7px 10px;font-size:12px">
+          <div style="font-weight:600">${e.abwesend} <span style="font-weight:400;color:var(--muted)">→ ${e.vertreter}</span></div>
+          <div style="color:var(--muted);margin-top:2px">${e.objekt||'–'} · <strong>${e.stunden}h</strong> · ${e.grund==='urlaub'?'🏖 Urlaub':'🤒 Krank'}</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  });
+  if(vtStatHtml){
+    h += `<div style="margin-bottom:14px">
+      <div class="heute-karte" style="border-color:#a5b4fc">
+        <div class="heute-karte-title">📊 Vertretungsstunden ${heuteMk.replace('2026-','')}/2026 – nach Objektleiter</div>
+        <div style="padding:4px 0">${vtStatHtml}</div>
+      </div>
+    </div>`;
+  }
+
   // ── Monatsarchiv Kalender ──────────────────────────────
   h += `<div class="kal-arch" id="kal-arch-wrap">${_renderArchKal()}</div>`;
 
@@ -4700,6 +4750,17 @@ document.getElementById('dash-c').innerHTML=`
     </div>
   </h3>
   <div style="overflow-x:auto" id="stat-table-wrap">${buildStatTable(_statSort)}</div>
+</div>
+
+<div class="dcard" style="grid-column:1/-1;margin-top:8px">
+  <h3 style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+    🔄 Vertretungsstatistik – ${getAMShort()} (Krank & Urlaub)
+    <div style="display:flex;gap:6px">
+      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d">🤒 Krank-Vt.</span>
+      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 Urlaub-Vt.</span>
+    </div>
+  </h3>
+  ${buildVtStatKachel()}
 </div>
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
@@ -7045,6 +7106,60 @@ function buildMonatsUebersicht() {
     html += '</div>';
   }
 
+  return html;
+}
+
+function buildVtStatKachel() {
+  const mk = getAM();
+  // Pro OL: krank-Vt-Stunden, urlaub-Vt-Stunden, betroffene MA
+  const stat = {}; // ol -> {krank, urlaub, maKrank:Set, maUrlaub:Set}
+  getVisibleMA().forEach(m => {
+    if(m.status==='Ausgeschieden') return;
+    const vts = (m.monats_daten?.[mk]?.vertretungen||[]).filter(v=>v.maId&&parseFloat(v.stunden)>0);
+    if(!vts.length) return;
+    const ol = m.objektleiter||'?';
+    if(!stat[ol]) stat[ol]={krank:0,urlaub:0,maKrank:new Set(),maUrlaub:new Set()};
+    vts.forEach(v=>{
+      const std = parseFloat(v.stunden)||0;
+      const grund = (v.grund||'krank').toLowerCase();
+      if(grund==='urlaub'){ stat[ol].urlaub+=std; stat[ol].maUrlaub.add(m.id); }
+      else { stat[ol].krank+=std; stat[ol].maKrank.add(m.id); }
+    });
+  });
+  const olLabels = {'M':'Fr. Grippo','I':'Hr. Incecik'};
+  const olColors = {'M':'var(--ol-m)','I':'var(--ol-i)'};
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">';
+  let hasData = false;
+  ['M','I'].forEach(ol=>{
+    const s = stat[ol];
+    const krank = s ? Math.round(s.krank*10)/10 : 0;
+    const urlaub = s ? Math.round(s.urlaub*10)/10 : 0;
+    const gesamt = Math.round((krank+urlaub)*10)/10;
+    const nKrank = s ? s.maKrank.size : 0;
+    const nUrlaub = s ? s.maUrlaub.size : 0;
+    if(gesamt>0) hasData=true;
+    html += `<div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:14px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span class="olb ol-${ol}">${ol}</span>
+        <strong style="color:${olColors[ol]}">${olLabels[ol]||ol}</strong>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="flex:1;background:var(--ybg);border:1px solid #fcd34d;border-radius:var(--r);padding:10px;text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--yellow);font-family:'IBM Plex Mono',monospace">${krank}h</div>
+          <div style="font-size:11px;color:var(--yellow);margin-top:2px">🤒 Krank-Vertretung</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:1px">${nKrank} MA betroffen</div>
+        </div>
+        <div style="flex:1;background:var(--bbg);border:1px solid #93c5fd;border-radius:var(--r);padding:10px;text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--blue);font-family:'IBM Plex Mono',monospace">${urlaub}h</div>
+          <div style="font-size:11px;color:var(--blue);margin-top:2px">🏖 Urlaub-Vertretung</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:1px">${nUrlaub} MA betroffen</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted);text-align:right">Gesamt: <strong style="color:var(--text)">${gesamt}h</strong></div>
+    </div>`;
+  });
+  html += '</div>';
+  if(!hasData) html = '<div style="color:var(--muted);font-size:13px;padding:10px 0">Keine Vertretungsdaten für ' + mk + ' vorhanden.</div>';
   return html;
 }
 
