@@ -1090,7 +1090,7 @@ body.lock-active main{margin-top:46px}
     <div class="sh">Monatsdaten 2026</div><div class="mtabs" id="mtabs"></div>
 <div class="mpanel">
   <!-- STUNDENZETTEL-BOX – temporär ausgeblendet (aktivieren wenn Programm stabil) -->
-  <div class="zettel-box" id="zettel-box" onclick="toggleZettel()" style="display:none">
+  <div class="zettel-box" id="zettel-box" onclick="toggleZettel()">
     <div class="zettel-icon" id="zettel-icon">📄</div>
     <div>
       <div class="zettel-lbl" id="zettel-lbl">Stundenzettel liegt noch nicht vor</div>
@@ -6586,8 +6586,8 @@ function openDatevCheck() {
     : `✅ Alle ${aktiveMA.length} MA geprüft – bereit für Export`;
   document.getElementById('datev-check-sub').textContent = subText;
   const exportBtn = document.getElementById('datev-export-btn');
-  exportBtn.style.opacity = fehlerCount > 0 ? '0.5' : '1';
-  exportBtn.title = fehlerCount > 0 ? 'Bitte zuerst alle Fehler beheben' : '';
+  exportBtn.style.opacity = '1';
+  exportBtn.title = '';
   document.getElementById('datev-check-bg').classList.add('open');
 }
 
@@ -6795,8 +6795,8 @@ function exportDatevLohnarten() {
     const las = m.datev_lohnarten || [];
     if (!las.length) { ohneLA.push(m.nachname+(m.vorname?' '+m.vorname:'')); return; }
 
-    // Stundenlohn: erster Eintrag mit Stundenlohn
-    const sl = parseFloat((m.objekte||[{}])[0]?.stundenlohn) || 0;
+    // Stundenlohn: erster Eintrag mit Stundenlohn > 0 (nicht zwingend objekte[0])
+    const sl = parseFloat((m.objekte||[]).find(o => parseFloat(o.stundenlohn) > 0)?.stundenlohn) || 0;
 
     las.forEach(la => {
       const laKey = la.trim();
@@ -6819,18 +6819,18 @@ function exportDatevLohnarten() {
           ftNachWT[wtKey]++;
         });
         wtKeys.forEach(wt => {
-          const stdWT = parseFloat((m.objekte||[{}])[0]?.wochentage?.[wt]) || 0;
+          const stdWT = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
           std += stdWT * ftNachWT[wt];
         });
         betrag = r2(std * sl);
       } else if (laKey.startsWith('2004')) {
-        // Sonntagsstunden × Stundenlohn (steuerfrei)
-        const stdSo = parseFloat((m.objekte||[{}])[0]?.wochentage?.So) || 0;
+        // Sonntagsstunden × Stundenlohn (steuerfrei) – alle Objekte summieren
+        const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
         std = r2(stdSo * anzSonntage);
         betrag = r2(std * sl);
       } else if (laKey.startsWith('2005')) {
-        // Sonntagsstunden × 15 € fest (steuerpflichtig)
-        const stdSo = parseFloat((m.objekte||[{}])[0]?.wochentage?.So) || 0;
+        // Sonntagsstunden × 15 € fest (steuerpflichtig) – alle Objekte summieren
+        const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
         std = r2(stdSo * anzSonntage);
         betrag = r2(std * 15);
       }
