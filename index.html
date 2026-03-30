@@ -3713,6 +3713,28 @@ function renderSollInfo(m, mk){
       <span style="color:var(--muted)">${formel}</span>
     </div>`;
   });
+  // Sonderstunden addieren
+  const md = (m.monats_daten||{})[mk]||{};
+  const sonderStd = (md.sonderstunden||[]).reduce((s,e)=>s+(parseFloat(e.stunden)||0),0);
+  if(sonderStd > 0){
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <span style="color:var(--text2)">⚡ Sondereinsätze</span>
+      <span style="color:var(--orange);font-family:'IBM Plex Mono',monospace;font-weight:600">+${hhmm(sonderStd)}</span>
+    </div>`;
+    gesamtSoll += sonderStd;
+  }
+  // Vertretungsgutschriften addieren
+  const vtStd = (md.vertretungs_gutschrift||[]).reduce((s,g)=>{
+    const std = g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined ? g.manuelleAnpassung : g.stunden;
+    return s+(parseFloat(std)||0);
+  },0);
+  if(vtStd > 0){
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <span style="color:var(--text2)">⬆ Vertretungsgutschriften</span>
+      <span style="color:var(--blue);font-family:'IBM Plex Mono',monospace;font-weight:600">+${hhmm(vtStd)}</span>
+    </div>`;
+    gesamtSoll += vtStd;
+  }
   html += `<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:13px">
     <span>Gesamt Soll ${mk.replace('2026-','').replace(/^0/,'')}/${mk.slice(0,4)}</span>
     <span style="color:var(--acc);font-family:'IBM Plex Mono',monospace">${hhmm(gesamtSoll)}</span>
