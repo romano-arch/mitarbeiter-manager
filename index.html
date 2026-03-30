@@ -6873,6 +6873,12 @@ function exportDatevLohnarten() {
         const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
         std = r2(stdSo * anzSonntage);
         betrag = r2(std * 15);
+      } else {
+        // Alle anderen Lohnarten (z.B. 2206) = normale Monatsstunden (Soll) × Stundenlohn
+        std = r2(maOSoll((m.objekte||[])[0]||{}, monat, m.abrechnungsmodell||'arbeitstage'));
+        // Soll über alle Objekte summieren
+        std = r2((m.objekte||[]).reduce((s,o) => s + maOSoll(o, monat, m.abrechnungsmodell||'arbeitstage'), 0));
+        betrag = r2(std * sl);
       }
 
       // Nur ausgeben wenn Stunden > 0
