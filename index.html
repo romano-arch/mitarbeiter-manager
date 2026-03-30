@@ -1966,7 +1966,7 @@ function maOSoll(o, monatKey, maAbrModell){
   delete o._schulFerienFaktor;
   const _applyFaktor = (std) => Math.round(std * _sfFaktor * 10) / 10;
   // MA-Abrechnungsmodell 'arbeitstage' übersteuert Objekt-Modell
-  const effModell = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich') ? 'arbeitstage' : (o.modell || 'arbeitstage');
+  const effModell = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich' && o.modell !== '14tage') ? 'arbeitstage' : (o.modell || 'arbeitstage');
   if(effModell==='arbeitstage'){
     // Wochentage eingetragen → tatsächliche Vorkommen im Monat zählen
     const ws = wSum(o.wochentage||{});
@@ -6157,6 +6157,8 @@ function _vtAutoFlush() {
   if (!m.monats_daten[k]) m.monats_daten[k] = {urlaub:0, krank:0, notiz:'', zettel_ok:false, vertretungen:[], sonderstunden:[]};
   // Alle Zeilen mit MA-Name speichern (auch ohne Stunden – werden beim finalen Save gefiltert)
   m.monats_daten[k].vertretungen = (_vtData||[]).filter(v => v.maId || v.maName);
+  // Gutschrift sofort beim Vertreter eintragen (nicht erst beim Speichern-Button)
+  vtSyncToMAB();
   if (_autoSaveTimeout) clearTimeout(_autoSaveTimeout);
   _autoSaveTimeout = setTimeout(() => saveAll(), 800);
 }
