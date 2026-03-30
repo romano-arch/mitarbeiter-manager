@@ -3668,8 +3668,12 @@ m.monats_daten[k]={
 }
 function renderMP(m,i){
 const k=MK[i];const md=(m.monats_daten||{})[k]||{};
-document.getElementById('md-url').value=md.urlaub||'';
-document.getElementById('md-krank').value=md.krank||'';
+// Urlaub/Krank immer live aus abwesenheiten zählen (Kalender ist die Wahrheit)
+const _abPrefix=k+'-';
+let _abU=0,_abK=0;
+Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_abPrefix)){if(t==='urlaub')_abU++;else if(t==='krank')_abK++;}});
+document.getElementById('md-url').value=_abU||'';
+document.getElementById('md-krank').value=_abK||'';
 document.getElementById('md-notiz').value=md.notiz||'';
 const gp=(md.grund_mehrarbeit||'').split(': ');
 const _gdEl=document.getElementById('md-grund');if(_gdEl)_gdEl.value=gp[0]||'';
