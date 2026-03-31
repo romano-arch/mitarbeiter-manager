@@ -1850,7 +1850,8 @@ function calc14TageEinsaetze(wochentage, startDatum, monatKey) {
   if (!startDatum || !wochentage || !monatKey) return 0;
   const [y, m] = monatKey.split('-').map(Number);
   const daysInMonth = new Date(y, m, 0).getDate();
-  const start = new Date(startDatum);
+  const _sd1 = startDatum.split('-').map(Number);
+  const start = new Date(_sd1[0], _sd1[1]-1, _sd1[2]);
   // Referenzdatum: der früheste Einsatz-Kandidat (start oder 1. des Monats)
   // Wir zählen alle Tage im Monat die im 14-Tage-Raster ab start liegen
   let count = 0;
@@ -1874,7 +1875,8 @@ function calc14TageStunden(wochentage, startDatum, monatKey) {
   if (!startDatum || !wochentage || !monatKey) return 0;
   const [y, m] = monatKey.split('-').map(Number);
   const daysInMonth = new Date(y, m, 0).getDate();
-  const start = new Date(startDatum);
+  const _sd2 = startDatum.split('-').map(Number);
+  const start = new Date(_sd2[0], _sd2[1]-1, _sd2[2]);
   let totalStd = 0;
   const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
   for (let d = 1; d <= daysInMonth; d++) {
@@ -6663,8 +6665,17 @@ function openDatevCheck() {
           status = 'err';
         }
       } else if (!mjStatus.ok) {
-        problems.push('Minijob-Grenze überschritten');
-        status = 'err';
+        // Nur warnen wenn aktueller Monat oder Jahresgrenze überschritten
+        const _sl = mjStatus.sl;
+        const _abrMod = m.abrechnungsmodell||'arbeitstage';
+        const _aktStd = (m.objekte||[]).reduce((s,o)=>s+maOSoll(o,getAM(),_abrMod),0);
+        const _aktLohn = Math.round(_aktStd * _sl * 100) / 100;
+        const _aktProblem = _aktLohn > MINIJOB_MAX_MONAT || _aktStd > minijobMaxStd(_sl);
+        const _jahrProblem = mjStatus.jahresLohn > mjStatus.jahresGrenze;
+        if (_aktProblem || _jahrProblem) {
+          problems.push('Minijob-Grenze überschritten');
+          status = 'err';
+        }
       }
     }
 
