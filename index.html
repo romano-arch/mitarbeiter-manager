@@ -1820,7 +1820,8 @@ function calcUebergabeSplit(wochentage, datum, monatKey) {
   // datum: "YYYY-MM-DD", monatKey: "2026-03"
   if (!datum || !wochentage || !monatKey) return null;
   const [y, m] = monatKey.split('-').map(Number);
-  const splitDate = new Date(datum);
+  const _spArr = datum.split('-').map(Number);
+  const splitDate = new Date(_spArr[0], _spArr[1]-1, _spArr[2]);
   const daysInMonth = new Date(y, m, 0).getDate();
   // Wochentags-Map: JS getDay() 0=So,1=Mo,...,6=Sa → WT-Keys
   const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
@@ -1887,6 +1888,49 @@ function calc14TageStunden(wochentage, startDatum, monatKey) {
     if (diffDays % 14 !== 0) continue;
     const wtKey = WT_IDX[dt.getDay()];
     const std = parseFloat(wochentage[wtKey]) || 0;
+    totalStd += std;
+  }
+  return Math.round(totalStd * 100) / 100;
+}
+
+// 14-Tage: nur Einsätze ab einem bestimmten Datum (einsatz_ab)
+function calc14TageStundenAb(wochentage, rhythmusStart, einsatzAb, monatKey) {
+  if (!rhythmusStart || !monatKey) return 0;
+  const [y, m] = monatKey.split('-').map(Number);
+  const daysInMonth = new Date(y, m, 0).getDate();
+  const _rs = rhythmusStart.split('-').map(Number);
+  const start = new Date(_rs[0], _rs[1]-1, _rs[2]);
+  const _ea = einsatzAb.split('-').map(Number);
+  const abDate = new Date(_ea[0], _ea[1]-1, _ea[2]);
+  const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+  let totalStd = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dt = new Date(y, m - 1, d);
+    if (dt < abDate) continue; // vor einsatz_ab
+    const diffDays = Math.round((dt - start) / 86400000);
+    if (diffDays < 0 || diffDays % 14 !== 0) continue;
+    const std = parseFloat(wochentage[WT_IDX[dt.getDay()]]) || 0;
+    totalStd += std;
+  }
+  return Math.round(totalStd * 100) / 100;
+}
+// 14-Tage: nur Einsätze bis zu einem bestimmten Datum (einsatz_bis)
+function calc14TageStundenBis(wochentage, rhythmusStart, einsatzBis, monatKey) {
+  if (!rhythmusStart || !monatKey) return 0;
+  const [y, m] = monatKey.split('-').map(Number);
+  const daysInMonth = new Date(y, m, 0).getDate();
+  const _rs = rhythmusStart.split('-').map(Number);
+  const start = new Date(_rs[0], _rs[1]-1, _rs[2]);
+  const _eb = einsatzBis.split('-').map(Number);
+  const bisDate = new Date(_eb[0], _eb[1]-1, _eb[2]);
+  const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+  let totalStd = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dt = new Date(y, m - 1, d);
+    if (dt > bisDate) continue; // nach einsatz_bis
+    const diffDays = Math.round((dt - start) / 86400000);
+    if (diffDays < 0 || diffDays % 14 !== 0) continue;
+    const std = parseFloat(wochentage[WT_IDX[dt.getDay()]]) || 0;
     totalStd += std;
   }
   return Math.round(totalStd * 100) / 100;
@@ -1970,6 +2014,17 @@ function maOSoll(o, monatKey, maAbrModell){
   if (o.einsatz_ab || o.einsatz_bis) {
     delete o._schulFerienStd; // Seiteneffekt bereinigen vor frühem return
     const mk = monatKey || getAM();
+    const _effMod14 = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich' && o.modell !== '14tage') ? 'arbeitstage' : (o.modell || 'arbeitstage');
+    // 14-Tage-Modell: calcUebergabeSplit ignoriert Rhythmus → eigene Logik
+    if (_effMod14 === '14tage' && o.rhythmus_start) {
+      if (o.einsatz_ab) {
+        // Nur Einsätze ab einsatz_ab zählen die im 14-Tage-Rhythmus liegen
+        return calc14TageStundenAb(o.wochentage||{}, o.rhythmus_start, o.einsatz_ab, mk);
+      }
+      if (o.einsatz_bis) {
+        return calc14TageStundenBis(o.wochentage||{}, o.rhythmus_start, o.einsatz_bis, mk);
+      }
+    }
     if (o.einsatz_ab) {
       const split = calcUebergabeSplit(o.wochentage||{}, o.einsatz_ab, mk);
       return split ? split.neuStd : 0;
