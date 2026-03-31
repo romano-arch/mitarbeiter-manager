@@ -1934,19 +1934,23 @@ function maOSoll(o, monatKey, maAbrModell){
     if (!isNaN(ferienVon) && !isNaN(ferienBis)) {
       // Vollständig in Ferien → 0
       if (ferienVon <= monatStart && ferienBis >= monatEnde) return 0;
-      // Teilweise in Ferien → anteilige Kürzung
+      // Teilweise in Ferien → tatsächliche Arbeitsstunden der Ferientage abziehen
       if (ferienBis >= monatStart && ferienVon <= monatEnde) {
         const overlapStart = ferienVon > monatStart ? ferienVon : monatStart;
         const overlapEnde  = ferienBis < monatEnde  ? ferienBis  : monatEnde;
-        const ferienTage = Math.round((overlapEnde - overlapStart) / 86400000) + 1;
-        const monatTage  = monatEnde.getDate();
-        const faktor = Math.max(0, 1 - ferienTage / monatTage);
-        // Weiter unten normal berechnen, dann Faktor anwenden
-        o._schulFerienFaktor = faktor;
+        // Wochentags-Map: JS getDay() → WT-Keys
+        const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+        let ferienStd = 0;
+        for (let d = new Date(overlapStart); d <= overlapEnde; d.setDate(d.getDate() + 1)) {
+          const wtKey = WT_IDX[d.getDay()];
+          ferienStd += parseFloat((o.wochentage||{})[wtKey]) || 0;
+        }
+        // Weiter unten Gesamtstunden berechnen, dann Ferienabzug anwenden
+        o._schulFerienStd = Math.round(ferienStd * 100) / 100;
       }
     }
   } else {
-    delete o._schulFerienFaktor;
+    delete o._schulFerienStd;
   }
   // einsatz_ab / einsatz_bis: anteilige Stunden
   if (o.einsatz_ab || o.einsatz_bis) {
@@ -1961,41 +1965,41 @@ function maOSoll(o, monatKey, maAbrModell){
     }
   }
   const mk = monatKey || getAM();
-  // Schulferien-Faktor anwenden (0 = kein Anteil, <1 = teilweise Ferien)
-  const _sfFaktor = (o._schulFerienFaktor !== undefined) ? o._schulFerienFaktor : 1;
-  delete o._schulFerienFaktor;
-  const _applyFaktor = (std) => Math.round(std * _sfFaktor * 10) / 10;
+  // Schulferien-Abzug anwenden (tatsächliche Arbeitsstunden der Ferientage)
+  const _sfAbzug = (o._schulFerienStd !== undefined) ? o._schulFerienStd : 0;
+  delete o._schulFerienStd;
+  const _applyFerienAbzug = (std) => Math.round(Math.max(0, std - _sfAbzug) * 10) / 10;
   // MA-Abrechnungsmodell 'arbeitstage' übersteuert Objekt-Modell
   const effModell = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich' && o.modell !== '14tage') ? 'arbeitstage' : (o.modell || 'arbeitstage');
   if(effModell==='arbeitstage'){
     // Wochentage eingetragen → tatsächliche Vorkommen im Monat zählen
     const ws = wSum(o.wochentage||{});
-    if(ws > 0) return _applyFaktor(calcWochentagStunden(o.wochentage||{}, mk));
+    if(ws > 0) return _applyFerienAbzug(calcWochentagStunden(o.wochentage||{}, mk));
     // Fallback: std_tag × AT
     const stdTag = parseFloat(o.std_tag) || 0;
     const arbT = parseInt(o.arbtage_monat?.[mk]) || ARBEITSTAGE[mk] || 21;
-    if(stdTag>0) return _applyFaktor(Math.round(stdTag*arbT*10)/10);
-    return _applyFaktor(parseFloat(o.std_monat)||0);
+    if(stdTag>0) return _applyFerienAbzug(Math.round(stdTag*arbT*10)/10);
+    return _applyFerienAbzug(parseFloat(o.std_monat)||0);
   }
   // Modell 14-Tage: exakte Einsätze ab festem Startdatum
   if(effModell==='14tage'){
     if(o.rhythmus_start){
       const std14 = calc14TageStunden(o.wochentage||{}, o.rhythmus_start, mk);
-      if(std14>0) return _applyFaktor(std14);
+      if(std14>0) return _applyFerienAbzug(std14);
     }
     // Fallback ohne Startdatum: ÷2 × 4,33
     const ws14=wSum(o.wochentage||{});
-    if(ws14>0) return _applyFaktor(Math.round(ws14/2*WPM*10)/10);
-    return _applyFaktor(parseFloat(o.std_monat)||0);
+    if(ws14>0) return _applyFerienAbzug(Math.round(ws14/2*WPM*10)/10);
+    return _applyFerienAbzug(parseFloat(o.std_monat)||0);
   }
   // Modell monatlich: feste Monatsstunden
   if(effModell==='monatlich'){
-    return _applyFaktor(parseFloat(o.std_monat)||0);
+    return _applyFerienAbzug(parseFloat(o.std_monat)||0);
   }
   // Modell 4,33: Wochenstunden × 4,33
   const ws=wSum(o.wochentage||{});
-  if(ws>0) return _applyFaktor(Math.round(ws*WPM*10)/10);
-  return _applyFaktor(parseFloat(o.std_monat)||0);
+  if(ws>0) return _applyFerienAbzug(Math.round(ws*WPM*10)/10);
+  return _applyFerienAbzug(parseFloat(o.std_monat)||0);
 }
 function maSG(m,mk){
   if(m.status==='Ausgeschieden'||m.austrittsdatum) return 0;
