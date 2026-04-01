@@ -6858,42 +6858,22 @@ function exportDatevLohnarten() {
   const monatDATEV = monat.slice(5,7) + '/' + monat.slice(0,4); // MM/YYYY für DATEV
   const feiertage = new Set(getFeiertageImMonat(monat));
   const alleSonntage = getWochentageImMonat(monat, 'So');
-  // Sonntage die KEIN Feiertag sind
   const sonntageOhneFT = alleSonntage.filter(d => !feiertage.has(d));
   const anzSonntage = sonntageOhneFT.length;
-  const anzFeiertage = feiertage.size;
-
-  const csv = v => `"${(v??'').toString().replace(/"/g,'""')}"`;
   const r2 = v => Math.round(v*100)/100;
 
-  // Hilfsfunktion: KST-Aufschlüsselung für einen MA berechnen
-  // Gibt [{kst, stunden}] anteilig nach Soll-Stunden je Objekt zurück
-  function kstAufschluesselung(m, gesamtStd) {
-    const objekte = (m.objekte||[]).filter(o => o.kunde && o.kunde.trim());
-    if (!objekte.length) return [];
-    // Gesamt-Wochenstunden des MA (Summe aller Objekte)
-    const wtKeys = ['Mo','Di','Mi','Do','Fr','Sa','So'];
-    const gesamtWS = objekte.reduce((sum, o) => {
-      return sum + wtKeys.reduce((s, wt) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
-    }, 0);
-    if (gesamtWS <= 0) return [];
-    // Für jedes Objekt anteilige Stunden + KST aus Kunden-Array
-    const result = [];
-    objekte.forEach(o => {
-      const objWS = wtKeys.reduce((s, wt) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
-      if (objWS <= 0) return;
-      const anteil = objWS / gesamtWS;
-      const anteilStd = r2(gesamtStd * anteil);
-      // KST aus obj[]-Array (Kunden-Stammdaten)
-      const kunde = obj.find(x => x.name === o.kunde || x.id === o.kundeId);
-      const kst = kunde?.kostenstelle || '';
-      result.push({ kst, stunden: anteilStd });
-    });
-    return result;
+  // DATEV ACS-Zeilenformat: "WERT;" für jeden der 9 Felder
+  // Felder: PersNr | leer | leer | Lohnart | leer | leer | Stunden | leer | KST
+  function datevZeile(persnr, lohnart, stunden, kst) {
+    const f = v => '"' + (v??'').toString().replace(/"/g, '""') + ';"';
+    return [f(persnr), f(''), f(''), f(lohnart), f(''), f(''), f(stunden), f(''), f(kst)].join(';');
   }
 
-  // Header mit Kostenstelle-Spalte (DATEV Lohn & Gehalt kompatibel)
-  const rows = [['Personal-Nr.','Nachname','Vorname','Lohnart','Stunden','Betrag','Monat','Kostenstelle'].join(';')];
+  // Zeile 1: DATEV-Header "Beraternr;Mandantennr;MM/YYYY"
+  const BERATER_NR  = '0082851';
+  const MANDANT_NR  = '00012';
+  const headerZelle = '"' + BERATER_NR + ';' + MANDANT_NR + ';' + monatDATEV + '"';
+  const rows = [headerZelle + ';;;;;;;;'];
 
   let ohneLA = [];
   data.forEach(m => {
@@ -6901,26 +6881,26 @@ function exportDatevLohnarten() {
     const las = m.datev_lohnarten || [];
     if (!las.length) { ohneLA.push(m.nachname+(m.vorname?' '+m.vorname:'')); return; }
 
-    // Stundenlohn: erster Eintrag mit Stundenlohn > 0 (nicht zwingend objekte[0])
     const sl = parseFloat((m.objekte||[]).find(o => parseFloat(o.stundenlohn) > 0)?.stundenlohn) || 0;
+
+    // KST: erste Kostenstelle aus Kunden-Stammdaten des MA
+    const ersteKunde = obj.find(x => x.name === (m.objekte||[])[0]?.kunde || x.id === (m.objekte||[])[0]?.kundeId);
+    const kst = ersteKunde?.kostenstelle || '';
 
     las.forEach(la => {
       const laKey = la.trim();
-      let std = 0, betrag = 0;
+      let std = 0;
 
       if (laKey === '2199') {
-        // Sonderstunden dieses MA im Monat
         std = (md.sonderstunden||[])
           .filter(e => e.maId === m.id)
           .reduce((s,e) => s + (parseFloat(e.stunden)||0), 0);
-        betrag = r2(std * sl);
       } else if (laKey.startsWith('2003')) {
-        // Feiertagsstunden: wochentage × Anzahl Feiertage im Monat nach Wochentag
         const wtKeys = ['Mo','Di','Mi','Do','Fr','Sa','So'];
         const ftNachWT = {};
         wtKeys.forEach(wt => ftNachWT[wt] = 0);
         feiertage.forEach(ftDate => {
-          const dow = new Date(ftDate).getDay(); // 0=So
+          const dow = new Date(ftDate).getDay();
           const wtKey = wtKeys[dow===0 ? 6 : dow-1];
           ftNachWT[wtKey]++;
         });
@@ -6928,59 +6908,25 @@ function exportDatevLohnarten() {
           const stdWT = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
           std += stdWT * ftNachWT[wt];
         });
-        betrag = r2(std * sl);
+        std = r2(std);
       } else if (laKey.startsWith('2004')) {
-        // Sonntagsstunden × Stundenlohn (steuerfrei) – alle Objekte summieren
         const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
         std = r2(stdSo * anzSonntage);
-        betrag = r2(std * sl);
       } else if (laKey.startsWith('2005')) {
-        // Sonntagsstunden × 15 € fest (steuerpflichtig) – alle Objekte summieren
         const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
         std = r2(stdSo * anzSonntage);
-        betrag = r2(std * 15);
       } else {
-        // Alle anderen Lohnarten (z.B. 2206) = normale Monatsstunden (Soll) × Stundenlohn
-        std = r2(maOSoll((m.objekte||[])[0]||{}, monat, m.abrechnungsmodell||'arbeitstage'));
-        // Soll über alle Objekte summieren
+        // 2206 + alle anderen = Soll-Monatsstunden über alle Objekte
         std = r2((m.objekte||[]).reduce((s,o) => s + maOSoll(o, monat, m.abrechnungsmodell||'arbeitstage'), 0));
-        betrag = r2(std * sl);
       }
 
-      // Nur ausgeben wenn Stunden > 0
       if (std <= 0) return;
 
-      // Zeile 1: Gesamtstunden ohne KST (DATEV-Hauptzeile für Lohnabrechnung)
-      rows.push([
-        csv(m.persnr||''),
-        csv(m.nachname||''),
-        csv(m.vorname||''),
-        csv(laKey),
-        csv(std.toString().replace('.',',')),
-        csv(betrag.toString().replace('.',',')),
-        csv(monatDATEV),
-        csv('')  // KST leer → DATEV nutzt Stammkostenstelle
-      ].join(';'));
-
-      // Zeile 2+: KST-Aufschlüsselung (nur bei Lohnart 2010/Normalstunden sinnvoll,
-      // aber wir geben sie für alle Lohnarten aus – Steuerberater kann filtern)
-      const kstZeilen = kstAufschluesselung(m, std);
-      kstZeilen.forEach(kz => {
-        rows.push([
-          csv(m.persnr||''),
-          csv(m.nachname||''),
-          csv(m.vorname||''),
-          csv(laKey),
-          csv(kz.stunden.toString().replace('.',',')),
-          csv(''),  // Betrag leer – nur Kostenverteilung, kein doppelter Betrag
-          csv(monatDATEV),
-          csv(kz.kst)
-        ].join(';'));
-      });
+      rows.push(datevZeile(m.persnr||'', laKey, std.toString().replace('.',','), kst));
     });
   });
 
-  dl('\uFEFF'+rows.join('\n'), 'DATEV_LohnGehalt_'+monat.replace('-','_')+'_'+td()+'.csv', 'text/csv');
+  dl('\uFEFF'+rows.join('\r\n'), 'DATEV_LohnGehalt_'+monat.replace('-','_')+'_'+td()+'.csv', 'text/csv');
   let msg = (rows.length-1) + ' Buchungszeilen exportiert \u2713';
   if (ohneLA.length) msg += '\n\n\u26a0 ' + ohneLA.length + ' MA ohne Lohnart (nicht exportiert):\n' + ohneLA.slice(0,10).join(', ') + (ohneLA.length>10?'\u2026':'');
   showAlert(msg);
