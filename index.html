@@ -6926,6 +6926,8 @@ function exportDatevLohnarten() {
     });
   });
 
+  // Auf 304 Zeilen auffüllen (DATEV ACS-Format: feste Dateigröße)
+  while (rows.length < 304) rows.push(';;;;;;;;');
   dl('\uFEFF'+rows.join('\r\n'), 'DATEV_LohnGehalt_'+monat.replace('-','_')+'_'+td()+'.csv', 'text/csv');
   let msg = (rows.length-1) + ' Buchungszeilen exportiert \u2713';
   if (ohneLA.length) msg += '\n\n\u26a0 ' + ohneLA.length + ' MA ohne Lohnart (nicht exportiert):\n' + ohneLA.slice(0,10).join(', ') + (ohneLA.length>10?'\u2026':'');
