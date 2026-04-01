@@ -6866,7 +6866,7 @@ function exportDatevLohnarten() {
   // Felder: PersNr;Kalendertag;Ausfallschlüssel;Lohnart;Stundenanzahl;Tagesanzahl;Wert;AbwFaktor;AbwLV;KST;Kostenträger;Bemerkung
   // Monatserfassung: Kalendertag+Ausfallschlüssel leer, Wert (Feld 7) gefüllt
   function datevZeile(persnr, lohnart, wert, kst) {
-    return [persnr, '', '', lohnart, '', '', wert, '', '', kst, '', ''].join(';');
+    return [persnr, '', '', lohnart, '', '', wert, '', kst].join(';');
   }
 
   // Zeile 1: DATEV-Header – drei separate Felder: Beraternr;Mandantennr;MM/JJJJ
