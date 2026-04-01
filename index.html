@@ -6862,22 +6862,17 @@ function exportDatevLohnarten() {
   const anzSonntage = sonntageOhneFT.length;
   const r2 = v => Math.round(v*100)/100;
 
-  // DATEV ACS-Zeilenformat: "WERT;" für jeden der 9 Felder
-  // Felder: PersNr | leer | leer | Lohnart | leer | leer | Stunden | leer | KST
-  function datevZeile(persnr, lohnart, stunden, kst) {
-    // 9 Blöcke je "WERT;", getrennt durch Semikolon.
-    // Nach Hochkommata-Entfernung in DATEV ACS ergibt das 18 Felder:
-    // [0]=PersNr [1-5]=leer [6]=Lohnart [7-11]=leer [12]=Stunden [13-15]=leer [16]=KST [17]=leer
-    const f = v => '"' + (v??'').toString().replace(/"/g, '""') + ';"';
-    const e = '";"';
-    return [f(persnr), e, e, f(lohnart), e, e, f(stunden), e, f(kst)].join(';');
+  // DATEV Monatserfassung – laut offizieller Schnittstellenbeschreibung (Dok. st9007223006235275):
+  // Felder: PersNr;Kalendertag;Ausfallschlüssel;Lohnart;Stundenanzahl;Tagesanzahl;Wert;AbwFaktor;AbwLV;KST;Kostenträger;Bemerkung
+  // Monatserfassung: Kalendertag+Ausfallschlüssel leer, Wert (Feld 7) gefüllt
+  function datevZeile(persnr, lohnart, wert, kst) {
+    return [persnr, '', '', lohnart, '', '', wert, '', '', kst, '', ''].join(';');
   }
 
-  // Zeile 1: DATEV-Header "Beraternr;Mandantennr;MM/YYYY"
+  // Zeile 1: DATEV-Header – drei separate Felder: Beraternr;Mandantennr;MM/JJJJ
   const BERATER_NR  = '0082851';
   const MANDANT_NR  = '00012';
-  const headerZelle = '"' + BERATER_NR + ';' + MANDANT_NR + ';' + monatDATEV + '"';
-  const rows = [headerZelle + ';;;;;;;;'];
+  const rows = [BERATER_NR + ';' + MANDANT_NR + ';' + monatDATEV];
 
   let ohneLA = [];
   data.forEach(m => {
@@ -6930,8 +6925,6 @@ function exportDatevLohnarten() {
     });
   });
 
-  // Auf 304 Zeilen auffüllen (DATEV ACS-Format: feste Dateigröße)
-  while (rows.length < 304) rows.push(';;;;;;;;');
   dl(rows.join('\r\n'), 'DATEV_LohnGehalt_'+monatDATEV.replace('/','-')+'.csv', 'text/plain');
   let msg = (rows.length-1) + ' Buchungszeilen exportiert \u2713';
   if (ohneLA.length) msg += '\n\n\u26a0 ' + ohneLA.length + ' MA ohne Lohnart (nicht exportiert):\n' + ohneLA.slice(0,10).join(', ') + (ohneLA.length>10?'\u2026':'');
