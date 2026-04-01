@@ -1548,12 +1548,10 @@ function updLohngruppeInfo() {
         const jahrLohn = Math.round(lohn * 12 * 100) / 100;
         // Ausnahme-Prüfung: Krankheitsvertretung erlaubt bis 2× 1.206€/Monat
         const mjStatus = calcMinijobStatus(m);
-        // Prüfe aktuellen Monat separat (nicht nur mjStatus der übers Jahr geht)
-          const aktuellProblem = lohn > MINIJOB_MAX_MONAT || std > maxStd;
+        if (!mjStatus.ok || lohn > MINIJOB_MAX_MONAT || std > maxStd) {
+          const isAusnahme = mjStatus.ausnahmeGenutzt;
+          const hatMonatProblem = mjStatus.monatProbleme.some(p=>!p.isAusnahme && p.mk===getAM());
           const hatAusnahmeMk = mjStatus.monatProbleme.some(p=>p.isAusnahme && p.mk===getAM());
-          const andereProbleme = mjStatus.monatProbleme.filter(p=>!p.isAusnahme && p.mk!==getAM());
-          const jahresProblem = mjStatus.jahresLohn > mjStatus.jahresGrenze;
-          if (!mjStatus.ok || aktuellProblem) {
           let w = '';
           if (hatAusnahmeMk) {
             w = '<div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--r);padding:10px 14px">';
@@ -1562,23 +1560,14 @@ function updLohngruppeInfo() {
             if (mjStatus.jahresLohn > MINIJOB_MAX_JAHR) w += '<div style="font-size:12px;margin-top:3px">Jahreslohn: <strong>' + mjStatus.jahresLohn.toFixed(2) + ' €</strong> (Ausnahme-Jahresgrenze: 8.442 €)</div>';
             if (mjStatus.ausnahmeMonateCount >= 2) w += '<div style="font-size:12px;color:var(--red);font-weight:600;margin-top:4px">⛔ Max. 2 Ausnahme-Monate erreicht!</div>';
             w += '</div>';
-          } else if (aktuellProblem || jahresProblem) {
-            // Aktueller Monat ist tatsächlich problematisch
+          } else if (lohn > MINIJOB_MAX_MONAT || std > maxStd || mjStatus.jahresLohn > mjStatus.jahresGrenze) {
             w = '<div style="background:var(--rbg);border:1px solid var(--rbd);border-radius:var(--r);padding:10px 14px">';
             w += '<div style="font-weight:600;color:var(--red);margin-bottom:4px">🚫 Minijob-Grenze überschritten!</div>';
-            if (lohn > MINIJOB_MAX_MONAT) w += '<div style="font-size:12px">Lohn ' + getAMShort() + ': <strong>' + lohn.toFixed(2) + ' €</strong> &gt; 603 € (Monatsgrenze)</div>';
+            if (lohn > MINIJOB_MAX_MONAT) w += '<div style="font-size:12px">Lohn: <strong>' + lohn.toFixed(2) + ' €</strong> &gt; 603 € (Monatsgrenze)</div>';
             if (std > maxStd) w += '<div style="font-size:12px">Stunden: <strong>' + std + 'h</strong> &gt; ' + maxStd + 'h</div>';
-            if (jahresProblem) w += '<div style="font-size:12px">Jahreslohn: <strong>' + mjStatus.jahresLohn.toFixed(2) + ' €</strong> &gt; ' + mjStatus.jahresGrenze + ' €</div>';
+            if (mjStatus.jahresLohn > mjStatus.jahresGrenze) w += '<div style="font-size:12px">Jahreslohn: <strong>' + mjStatus.jahresLohn.toFixed(2) + ' €</strong> &gt; ' + mjStatus.jahresGrenze + ' €</div>';
             const krankVtMoeglich = mjStatus.monatProbleme.some(p=>!p.isKrankVt && p.mk===getAM());
             if (!krankVtMoeglich && mjStatus.ausnahmeMonateCount < 2) w += '<div style="font-size:11px;color:var(--muted);margin-top:4px">💡 Ausnahme möglich wenn Krankheitsvertretung (max. 2×/Jahr, max. 1.206 €/Monat)</div>';
-            w += '</div>';
-          } else if (andereProbleme.length > 0) {
-            // Problem liegt in anderen Monaten (z.B. Jul/Dez bei Schulkräften) — Hinweis statt Alarm
-            const mnNames = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
-            const probLabels = andereProbleme.map(p => { const idx = parseInt(p.mk.split('-')[1])-1; return mnNames[idx] + ' (' + p.lohn.toFixed(0) + '€)'; }).join(', ');
-            w = '<div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--r);padding:10px 14px">';
-            w += '<div style="font-weight:600;color:#92400e;margin-bottom:4px">⚠ Monatsgrenze in anderen Monaten überschritten</div>';
-            w += '<div style="font-size:12px">' + probLabels + ' &gt; 603 € – bitte Ferien vollständig eintragen</div>';
             w += '</div>';
           }
           if (w) { warnBox.style.display = 'block'; warnBox.innerHTML = w; }
@@ -1820,8 +1809,7 @@ function calcUebergabeSplit(wochentage, datum, monatKey) {
   // datum: "YYYY-MM-DD", monatKey: "2026-03"
   if (!datum || !wochentage || !monatKey) return null;
   const [y, m] = monatKey.split('-').map(Number);
-  const _spArr = datum.split('-').map(Number);
-  const splitDate = new Date(_spArr[0], _spArr[1]-1, _spArr[2]);
+  const splitDate = new Date(datum);
   const daysInMonth = new Date(y, m, 0).getDate();
   // Wochentags-Map: JS getDay() 0=So,1=Mo,...,6=Sa → WT-Keys
   const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
@@ -1851,8 +1839,7 @@ function calc14TageEinsaetze(wochentage, startDatum, monatKey) {
   if (!startDatum || !wochentage || !monatKey) return 0;
   const [y, m] = monatKey.split('-').map(Number);
   const daysInMonth = new Date(y, m, 0).getDate();
-  const _sd1 = startDatum.split('-').map(Number);
-  const start = new Date(_sd1[0], _sd1[1]-1, _sd1[2]);
+  const start = new Date(startDatum);
   // Referenzdatum: der früheste Einsatz-Kandidat (start oder 1. des Monats)
   // Wir zählen alle Tage im Monat die im 14-Tage-Raster ab start liegen
   let count = 0;
@@ -1876,8 +1863,7 @@ function calc14TageStunden(wochentage, startDatum, monatKey) {
   if (!startDatum || !wochentage || !monatKey) return 0;
   const [y, m] = monatKey.split('-').map(Number);
   const daysInMonth = new Date(y, m, 0).getDate();
-  const _sd2 = startDatum.split('-').map(Number);
-  const start = new Date(_sd2[0], _sd2[1]-1, _sd2[2]);
+  const start = new Date(startDatum);
   let totalStd = 0;
   const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
   for (let d = 1; d <= daysInMonth; d++) {
@@ -1888,49 +1874,6 @@ function calc14TageStunden(wochentage, startDatum, monatKey) {
     if (diffDays % 14 !== 0) continue;
     const wtKey = WT_IDX[dt.getDay()];
     const std = parseFloat(wochentage[wtKey]) || 0;
-    totalStd += std;
-  }
-  return Math.round(totalStd * 100) / 100;
-}
-
-// 14-Tage: nur Einsätze ab einem bestimmten Datum (einsatz_ab)
-function calc14TageStundenAb(wochentage, rhythmusStart, einsatzAb, monatKey) {
-  if (!rhythmusStart || !monatKey) return 0;
-  const [y, m] = monatKey.split('-').map(Number);
-  const daysInMonth = new Date(y, m, 0).getDate();
-  const _rs = rhythmusStart.split('-').map(Number);
-  const start = new Date(_rs[0], _rs[1]-1, _rs[2]);
-  const _ea = einsatzAb.split('-').map(Number);
-  const abDate = new Date(_ea[0], _ea[1]-1, _ea[2]);
-  const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
-  let totalStd = 0;
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dt = new Date(y, m - 1, d);
-    if (dt < abDate) continue; // vor einsatz_ab
-    const diffDays = Math.round((dt - start) / 86400000);
-    if (diffDays < 0 || diffDays % 14 !== 0) continue;
-    const std = parseFloat(wochentage[WT_IDX[dt.getDay()]]) || 0;
-    totalStd += std;
-  }
-  return Math.round(totalStd * 100) / 100;
-}
-// 14-Tage: nur Einsätze bis zu einem bestimmten Datum (einsatz_bis)
-function calc14TageStundenBis(wochentage, rhythmusStart, einsatzBis, monatKey) {
-  if (!rhythmusStart || !monatKey) return 0;
-  const [y, m] = monatKey.split('-').map(Number);
-  const daysInMonth = new Date(y, m, 0).getDate();
-  const _rs = rhythmusStart.split('-').map(Number);
-  const start = new Date(_rs[0], _rs[1]-1, _rs[2]);
-  const _eb = einsatzBis.split('-').map(Number);
-  const bisDate = new Date(_eb[0], _eb[1]-1, _eb[2]);
-  const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
-  let totalStd = 0;
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dt = new Date(y, m - 1, d);
-    if (dt > bisDate) continue; // nach einsatz_bis
-    const diffDays = Math.round((dt - start) / 86400000);
-    if (diffDays < 0 || diffDays % 14 !== 0) continue;
-    const std = parseFloat(wochentage[WT_IDX[dt.getDay()]]) || 0;
     totalStd += std;
   }
   return Math.round(totalStd * 100) / 100;
@@ -1986,9 +1929,8 @@ function maOSoll(o, monatKey, maAbrModell){
     const [y, m] = mk.split('-').map(Number);
     const monatStart = new Date(y, m - 1, 1);
     const monatEnde  = new Date(y, m, 0); // letzter Tag des Monats
-    const _parseLok = s => { const [yy,mm,dd] = s.split('-').map(Number); return new Date(yy, mm-1, dd); };
-    const ferienVon  = _parseLok(o.ferien_von);
-    const ferienBis  = _parseLok(o.ferien_bis);
+    const ferienVon  = new Date(o.ferien_von);
+    const ferienBis  = new Date(o.ferien_bis);
     if (!isNaN(ferienVon) && !isNaN(ferienBis)) {
       // Vollständig in Ferien → 0
       if (ferienVon <= monatStart && ferienBis >= monatEnde) return 0;
@@ -2012,19 +1954,7 @@ function maOSoll(o, monatKey, maAbrModell){
   }
   // einsatz_ab / einsatz_bis: anteilige Stunden
   if (o.einsatz_ab || o.einsatz_bis) {
-    delete o._schulFerienStd; // Seiteneffekt bereinigen vor frühem return
     const mk = monatKey || getAM();
-    const _effMod14 = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich' && o.modell !== '14tage') ? 'arbeitstage' : (o.modell || 'arbeitstage');
-    // 14-Tage-Modell: calcUebergabeSplit ignoriert Rhythmus → eigene Logik
-    if (_effMod14 === '14tage' && o.rhythmus_start) {
-      if (o.einsatz_ab) {
-        // Nur Einsätze ab einsatz_ab zählen die im 14-Tage-Rhythmus liegen
-        return calc14TageStundenAb(o.wochentage||{}, o.rhythmus_start, o.einsatz_ab, mk);
-      }
-      if (o.einsatz_bis) {
-        return calc14TageStundenBis(o.wochentage||{}, o.rhythmus_start, o.einsatz_bis, mk);
-      }
-    }
     if (o.einsatz_ab) {
       const split = calcUebergabeSplit(o.wochentage||{}, o.einsatz_ab, mk);
       return split ? split.neuStd : 0;
@@ -3229,9 +3159,8 @@ function calcUrlaubAnspruch() {
   let ferienMonate = 0;
   mao.forEach(o => {
     if (o.schulferien && o.ferien_von && o.ferien_bis) {
-      const _pl = s => { const [yy,mm,dd] = s.split('-').map(Number); return new Date(yy,mm-1,dd); };
-      const von = _pl(o.ferien_von);
-      const bis = _pl(o.ferien_bis);
+      const von = new Date(o.ferien_von);
+      const bis = new Date(o.ferien_bis);
       if (!isNaN(von) && !isNaN(bis) && bis >= von) {
         const diffMs = bis.getTime() - von.getTime();
         const diffMon = diffMs / (1000 * 60 * 60 * 24 * 30.44);
@@ -3568,9 +3497,8 @@ function renderSchulferienBlock(o, i) {
   const bis = o.ferien_bis || '';
   let infoHTML = '';
   if (aktiv && von && bis) {
-    const _plok = s => { const [yy,mm,dd] = s.split('-').map(Number); return new Date(yy,mm-1,dd); };
-    const vonD = _plok(von);
-    const bisD = _plok(bis);
+    const vonD = new Date(von);
+    const bisD = new Date(bis);
     if (!isNaN(vonD) && !isNaN(bisD) && bisD >= vonD) {
       const diffMs = bisD - vonD;
       const diffMon = Math.round(diffMs / (1000*60*60*24*30.44) * 10) / 10;
@@ -6720,17 +6648,8 @@ function openDatevCheck() {
           status = 'err';
         }
       } else if (!mjStatus.ok) {
-        // Nur warnen wenn aktueller Monat oder Jahresgrenze überschritten
-        const _sl = mjStatus.sl;
-        const _abrMod = m.abrechnungsmodell||'arbeitstage';
-        const _aktStd = (m.objekte||[]).reduce((s,o)=>s+maOSoll(o,getAM(),_abrMod),0);
-        const _aktLohn = Math.round(_aktStd * _sl * 100) / 100;
-        const _aktProblem = _aktLohn > MINIJOB_MAX_MONAT || _aktStd > minijobMaxStd(_sl);
-        const _jahrProblem = mjStatus.jahresLohn > mjStatus.jahresGrenze;
-        if (_aktProblem || _jahrProblem) {
-          problems.push('Minijob-Grenze überschritten');
-          status = 'err';
-        }
+        problems.push('Minijob-Grenze überschritten');
+        status = 'err';
       }
     }
 
@@ -6936,6 +6855,7 @@ function getFeiertageImMonat(monatKey) {
 function exportDatevLohnarten() {
   const data = ma.filter(m => m.status !== 'Ausgeschieden');
   const monat = getAM();
+  const monatDATEV = monat.slice(5,7) + '/' + monat.slice(0,4); // MM/YYYY für DATEV
   const feiertage = new Set(getFeiertageImMonat(monat));
   const alleSonntage = getWochentageImMonat(monat, 'So');
   // Sonntage die KEIN Feiertag sind
@@ -7038,7 +6958,7 @@ function exportDatevLohnarten() {
         csv(laKey),
         csv(std.toString().replace('.',',')),
         csv(betrag.toString().replace('.',',')),
-        csv(monat),
+        csv(monatDATEV),
         csv('')  // KST leer → DATEV nutzt Stammkostenstelle
       ].join(';'));
 
@@ -7053,7 +6973,7 @@ function exportDatevLohnarten() {
           csv(laKey),
           csv(kz.stunden.toString().replace('.',',')),
           csv(''),  // Betrag leer – nur Kostenverteilung, kein doppelter Betrag
-          csv(monat),
+          csv(monatDATEV),
           csv(kz.kst)
         ].join(';'));
       });
