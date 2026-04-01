@@ -6885,7 +6885,7 @@ function exportDatevLohnarten() {
 
     // KST: erste Kostenstelle aus Kunden-Stammdaten des MA
     const ersteKunde = obj.find(x => x.name === (m.objekte||[])[0]?.kunde || x.id === (m.objekte||[])[0]?.kundeId);
-    const kst = ersteKunde?.kostenstelle || '';
+    const kst = ersteKunde?.kostenstelle || '00';
 
     las.forEach(la => {
       const laKey = la.trim();
