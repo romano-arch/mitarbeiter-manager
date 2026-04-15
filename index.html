@@ -6871,7 +6871,16 @@ function vtAddRow() {
 
 function _vtMAList() {
   return ma.filter(x => x.status !== 'Ausgeschieden' && x.id !== eMAid)
-    .map(x => ({id: x.id, label: x.nachname + (x.vorname ? ', ' + x.vorname : '')}));
+    .map(x => {
+      const name = x.nachname + (x.vorname ? ', ' + x.vorname : '');
+      const pnr  = x.persnr || x.id || '';
+      return {
+        id:     x.id,
+        label:  name,
+        pnr:    pnr,
+        search: (name + ' ' + pnr).toLowerCase()
+      };
+    });
 }
 function _vtObjList() {
   const curMA = eMAid ? ma.find(x => x.id === eMAid) : null;
@@ -7124,7 +7133,9 @@ function taOpenFor(inputEl, list, onPick) {
 
   // Aktuelle Eingabe als Suchbegriff
   const q = (inputEl.value || '').toLowerCase().trim();
-  const matches = q ? list.filter(x => x.label.toLowerCase().includes(q)) : list;
+  const matches = q
+    ? list.filter(x => (x.search || x.label.toLowerCase()).includes(q))
+    : list;
   _taCurrentMatches = matches;
   _taCurrentCb = onPick;
   _taCurrentInpId = inputEl.id || '';
@@ -7132,14 +7143,17 @@ function taOpenFor(inputEl, list, onPick) {
   const r = inputEl.getBoundingClientRect();
   drop.style.top   = (r.bottom + 2) + 'px';
   drop.style.left  = r.left + 'px';
-  drop.style.width = Math.max(r.width, 200) + 'px';
+  drop.style.width = Math.max(r.width, 220) + 'px';
 
   if (!matches.length) {
     drop.innerHTML = '<div class="ta-empty">Keine Treffer</div>';
   } else {
-    drop.innerHTML = matches.slice(0, 14).map((item, idx) =>
-      `<div class="ta-item" data-idx="${idx}">${item.label}</div>`
-    ).join('');
+    drop.innerHTML = matches.slice(0, 14).map((item, idx) => {
+      const badge = item.pnr
+        ? `<span style="float:right;font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-left:6px">${item.pnr}</span>`
+        : '';
+      return `<div class="ta-item" data-idx="${idx}">${badge}${item.label}</div>`;
+    }).join('');
   }
   drop.style.display = 'block';
 }
@@ -7172,15 +7186,20 @@ function taFilter(inpId_or_dropId, q, list, onPick) {
   }
 
   const lq = (q || '').toLowerCase().trim();
-  const matches = lq ? list.filter(x => x.label.toLowerCase().includes(lq)) : list;
+  const matches = lq
+    ? list.filter(x => (x.search || x.label.toLowerCase()).includes(lq))
+    : list;
   _taCurrentMatches = matches;
 
   if (!matches.length) {
     drop.innerHTML = '<div class="ta-empty">Keine Treffer</div>';
   } else {
-    drop.innerHTML = matches.slice(0, 14).map((item, idx) =>
-      `<div class="ta-item" data-idx="${idx}">${item.label}</div>`
-    ).join('');
+    drop.innerHTML = matches.slice(0, 14).map((item, idx) => {
+      const badge = item.pnr
+        ? `<span style="float:right;font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-left:6px">${item.pnr}</span>`
+        : '';
+      return `<div class="ta-item" data-idx="${idx}">${badge}${item.label}</div>`;
+    }).join('');
   }
   drop.style.display = 'block';
 }
