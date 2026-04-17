@@ -1758,6 +1758,7 @@ async function refreshData() {
       kunden = names.map(n => ({ id: 'k_' + n.replace(/\s/g,'_'), name: n, standorte: [n], status: 'aktiv' }));
     }
     deleteTestData();
+    _migrateHistoryBis();
     updStats(); updFilters(); render();
     setSyncState('ok', 'Zuletzt geladen: ' + new Date().toLocaleTimeString('de-DE'));
   } catch(e) {
@@ -1999,25 +2000,33 @@ function calc14TageStunden(wochentage, startDatum, monatKey) {
   const [y, m] = monatKey.split('-').map(Number);
   let totalStd = 0;
   for (const anker of ankertage) {
-    // Alle 14 Tage des Blocks durchgehen – keine Lücken-Abbrüche, Mo+Mi+Fr wird korrekt gezählt
+    // Block: Ankertag + aufeinanderfolgende Tage MIT Stunden (Lücke = Blockende)
     for (let offset = 0; offset < 14; offset++) {
       const dt = new Date(anker.getTime() + offset * 86400000);
       if (dt.getMonth() !== m - 1) break; // Monatsgrenze
       const wtKey = WT_IDX[dt.getDay()];
-      totalStd += parseFloat(wochentage[wtKey]) || 0;
+      const std = parseFloat(wochentage[wtKey]) || 0;
+      if (std > 0) {
+        totalStd += std;
+      } else if (offset > 0) {
+        break; // Erste Lücke nach Blockstart = Blockende
+      }
+      // offset === 0 && std === 0: Ankertag ohne Stunden → weiter (Folgetage können Stunden haben)
     }
   }
   return Math.round(totalStd * 100) / 100;
 }
 // Hilfsfunktion: Stunden pro Einsatzblock (für Formelanzeige)
 function calc14TageStdProBlock(wochentage) {
-  const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
-  // Summiert aufeinanderfolgende Tage ab dem ersten Tag mit Stunden
-  let blockStd = 0;
-  let inBlock = false;
+  // Summiert aufeinanderfolgende Tage MIT Stunden ab dem ersten Tag mit Stunden
+  // (identische Logik wie calc14TageStunden – erste Lücke = Blockende)
   const keys = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+  let blockStd = 0;
+  let started = false;
   for (const k of keys) {
-    blockStd += parseFloat(wochentage[k]) || 0;
+    const std = parseFloat(wochentage[k]) || 0;
+    if (std > 0) { blockStd += std; started = true; }
+    else if (started) break; // erste Lücke nach Blockbeginn = Ende
   }
   return Math.round(blockStd * 100) / 100;
 }
@@ -2061,7 +2070,14 @@ function oBel(name, monatKey){
 let t=0;
 ma.filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum).forEach(m=>{
 const abrMod=m.abrechnungsmodell||'arbeitstage';
-(m.objekte||[]).forEach(o=>{if(o.kunde===name)t+=maOSollMA(m,o,monatKey,abrMod);});
+// FIX DUP-1: Pro MA nur den ERSTEN Eintrag pro Kunde zählen – Duplikate ignorieren
+let gezaehlt=false;
+(m.objekte||[]).forEach(o=>{
+  if(o.kunde!==name)return;
+  if(gezaehlt)return; // doppelter Eintrag → überspringen
+  gezaehlt=true;
+  t+=maOSollMA(m,o,monatKey,abrMod);
+});
 });
 return Math.round(t*10)/10;
 }
@@ -2087,6 +2103,50 @@ function _objekteStundenGeaendert(alt, neu) {
 
 // Archiviert geänderte Objekte in m.objekte_history, bevor m.objekte überschrieben wird.
 // Wird aus saveMA() aufgerufen.
+// ── EINMALIGE MIGRATION: History gueltig_bis von aktuellem Monat auf Vormonat korrigieren ──
+// Betrifft History-Einträge die mit dem alten Bug gespeichert wurden:
+// gueltig_bis = Monat der Änderung (falsch) statt Vormonat (richtig)
+function _migrateHistoryBis() {
+  let geaendert = 0;
+  ma.forEach(m => {
+    if (!m.objekte_history || !m.objekte_history.length) return;
+    let dirty = false;
+    m.objekte_history.forEach(h => {
+      if (!h.gueltig_bis) return;
+      // Prüfen: Hat m.objekte für denselben Kunden einen Eintrag?
+      // Wenn ja: der History-Eintrag darf NICHT denselben Monat wie m.objekte abdecken
+      // wenn gueltig_bis == aktueller Monat UND m.objekte[kunde] existiert → Bug
+      const hatAktuellenEintrag = (m.objekte||[]).some(o => o.kunde === h.kunde);
+      if (!hatAktuellenEintrag) return; // kein aktueller Eintrag → ok
+      // Prüfe ob gueltig_bis >= aktueller Stand (d.h. History überlappt mit aktuellem Eintrag)
+      // Fix: gueltig_bis um einen Monat zurücksetzen
+      const [y, mo] = h.gueltig_bis.split('-').map(Number);
+      if (!y || !mo) return;
+      const vormonat = mo <= 1 ? `${y-1}-12` : `${y}-${String(mo-1).padStart(2,'0')}`;
+      // Nur korrigieren wenn der Vormonat sinnvoll ist (nicht vor gueltig_ab)
+      const ab = h.gueltig_ab || '2000-01';
+      if (vormonat >= ab) {
+        h.gueltig_bis = vormonat;
+        dirty = true;
+        geaendert++;
+      }
+    });
+    // Duplikate nach Migration entfernen
+    if (dirty) {
+      const seen = new Set();
+      m.objekte_history = m.objekte_history.filter(h => {
+        const k = h.kunde + '|' + (h.gueltig_ab||'') + '|' + (h.gueltig_bis||'');
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+    }
+  });
+  if (geaendert > 0) {
+    console.log('[MM] History-Migration: ' + geaendert + ' Einträge korrigiert (gueltig_bis → Vormonat)');
+  }
+}
+
 function _archiveObjekteHistory(m, neueObjekte) {
   if (!m || !m.id) return;
   const aktuellesMonatKey = getAM(); // YYYY-MM des aktuell gewählten Monats
@@ -2096,22 +2156,30 @@ function _archiveObjekteHistory(m, neueObjekte) {
     : (m.objekte || []);
   if (!m.objekte_history) m.objekte_history = [];
 
+  // Vormonat berechnen: History-Eintrag gilt bis EINSCHLIESSLICH des Monats VOR der Änderung
+  // Beispiel: Änderung wird im April gespeichert → alter Stand gilt bis März (gueltig_bis = "2026-03")
+  //           Ab April gilt der neue Stand in m.objekte
+  const [_amY, _amMo] = aktuellesMonatKey.split('-').map(Number);
+  const vormonatKey = _amMo <= 1
+    ? `${_amY-1}-12`
+    : `${_amY}-${String(_amMo-1).padStart(2,'0')}`;
+
   neueObjekte.forEach(neu => {
     if (!neu.kunde) return;
     const alt = alteObjekte.find(a => a.kunde === neu.kunde);
     if (!alt) return; // Neues Objekt – noch keine History nötig
     if (!_objekteStundenGeaendert(alt, neu)) return; // Keine Änderung
 
-    // Prüfen ob bereits ein History-Eintrag für diesen Kunden + Monat existiert
+    // Prüfen ob bereits ein History-Eintrag für diesen Kunden + Vormonat existiert
     // (verhindert Duplikate bei mehrfachem Speichern im selben Monat)
     const bereitsArchiviert = m.objekte_history.some(h =>
-      h.kunde === alt.kunde && h.gueltig_bis === aktuellesMonatKey
+      h.kunde === alt.kunde && h.gueltig_bis === vormonatKey
     );
     if (bereitsArchiviert) return;
 
-    // Alten Stand archivieren
+    // Alten Stand archivieren – gilt bis Ende des VORMONATS
     const eintrag = JSON.parse(JSON.stringify(alt));
-    eintrag.gueltig_bis = aktuellesMonatKey; // letzter gültiger Monat
+    eintrag.gueltig_bis = vormonatKey; // letzter gültiger Monat = Monat VOR der Änderung
     // gueltig_ab: entweder schon gesetzt, oder aus vorigen History-Einträgen ableiten
     const vorige = m.objekte_history
       .filter(h => h.kunde === alt.kunde)
@@ -3914,15 +3982,49 @@ function diagnoseHistoryProbleme() {
   const problems = [];
   ma.filter(m => m.status !== 'Ausgeschieden' && !m.austrittsdatum).forEach(m => {
     const abrMod = m.abrechnungsmodell || 'arbeitstage';
-    (m.objekte || []).forEach(o => {
-      if (!o.kunde) return;
-      const histO = _getHistoryObjekt(m, o.kunde, mk);
-      if (!histO) return;
-      const currStd = Math.round(maOSoll(o, mk, abrMod) * 10) / 10;
-      const histStd = Math.round(maOSoll(histO, mk, abrMod) * 10) / 10;
-      if (Math.abs(histStd - currStd) >= 0.5) {
-        problems.push({ m, kunde: o.kunde, currStd, histStd,
-          von: histO.gueltig_ab || '?', bis: histO.gueltig_bis || '?' });
+    const hist = m.objekte_history || [];
+    // Prüfe History-Einträge auf echte Probleme:
+    // 1) Überlappende Einträge für denselben Kunden
+    // 2) History-Eintrag greift für aktuellen Monat, obwohl aktueller Stand anders ist
+    //    → nur melden wenn gueltig_bis >= mk (also der History-Eintrag für diesen Monat gilt)
+    //    UND gueltig_bis NICHT der letzte Monat vor dem aktuellen ist (das ist normal)
+    const kundenInHist = [...new Set(hist.map(h => h.kunde))];
+    kundenInHist.forEach(kunde => {
+      const eintraege = hist.filter(h => h.kunde === kunde)
+        .sort((a,b) => (a.gueltig_ab||'').localeCompare(b.gueltig_ab||''));
+      // Überlappungsprüfung
+      for (let i = 0; i < eintraege.length - 1; i++) {
+        const a = eintraege[i], b = eintraege[i+1];
+        const aBis = a.gueltig_bis || '2099-12';
+        const bAb  = b.gueltig_ab  || '2000-01';
+        if (aBis >= bAb) {
+          const currO = (m.objekte||[]).find(o => o.kunde === kunde) || {};
+          const currStd = Math.round(maOSoll(currO, mk, abrMod) * 10) / 10;
+          const histStd = Math.round(maOSoll(a, mk, abrMod) * 10) / 10;
+          problems.push({ m, kunde, currStd, histStd,
+            von: a.gueltig_ab || '?', bis: a.gueltig_bis || '?',
+            hinweis: '⚠ Überlappung' });
+        }
+      }
+      // Prüfe: greift ein History-Eintrag für genau den aktuellen Monat?
+      // Das wäre ein Problem wenn auch ein aktueller Eintrag in m.objekte existiert
+      // mit anderen Stunden — denn dann wäre unklar welcher gilt.
+      const treffer = eintraege.filter(h => {
+        const ab  = h.gueltig_ab  || '2000-01';
+        const bis = h.gueltig_bis || '2099-12';
+        return mk >= ab && mk <= bis;
+      });
+      if (treffer.length > 0) {
+        const currO = (m.objekte||[]).find(o => o.kunde === kunde);
+        if (currO) {
+          const currStd = Math.round(maOSoll(currO, mk, abrMod) * 10) / 10;
+          const histStd = Math.round(maOSoll(treffer[0], mk, abrMod) * 10) / 10;
+          if (Math.abs(histStd - currStd) >= 0.5) {
+            problems.push({ m, kunde, currStd, histStd,
+              von: treffer[0].gueltig_ab || '?', bis: treffer[0].gueltig_bis || '?',
+              hinweis: '🔴 History deckt aktuellen Monat ab' });
+          }
+        }
       }
     });
   });
@@ -4541,6 +4643,19 @@ if(m.abrechnungsmodell==='arbeitstage'){
       if(ws>0) o.std_tag=Math.round(ws/5*100)/100;
     }
   });
+}
+// FIX DUP-2: Duplikate in mao erkennen und warnen bevor gespeichert wird
+const _maoKunden = mao.map(o=>o.kunde).filter(Boolean);
+const _maoDups = _maoKunden.filter((k,i)=>_maoKunden.indexOf(k)!==i);
+if(_maoDups.length > 0){
+  const dupListe = [...new Set(_maoDups)].join(', ');
+  if(!confirm('⚠ Doppelte Objekt-Einträge gefunden:\n\n' + dupListe + '\n\nNur der ERSTE Eintrag wird gespeichert, der Rest wird entfernt.\n\nFortfahren?')){
+    if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}return;
+  }
+  // Duplikate entfernen – ersten Treffer behalten
+  const _seen=new Set();
+  mao=mao.filter(o=>{if(!o.kunde)return true;if(_seen.has(o.kunde))return false;_seen.add(o.kunde);return true;});
+  renderMAO();
 }
 // History automatisch sichern bevor m.objekte überschrieben wird
 if(eMAid) _archiveObjekteHistory(m, mao);
@@ -5456,53 +5571,152 @@ function toggleDashSection(id){
 }
 function showKapOverModal(){
   const mk=getAM();
-  const _visMA=getVisibleMA();
-  const rows=[];
-  _visMA.filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum).forEach(m=>{
-    const abrMod=m.abrechnungsmodell||'arbeitstage';
-    (m.objekte||[]).forEach(o=>{
-      if(!o.kunde)return;
-      const kap=oKapM(o.kunde,mk);
-      const bel=oBel(o.kunde,mk);
-      if(kap>0&&bel>kap+0.5){
-        rows.push({m,kunde:o.kunde,kap,bel,maStd:maOSollMA(m,o,mk,abrMod)});
-      }
-    });
+
+  // ── Alle überlasteten Objekte sammeln (alle MA, auch ausgeschiedene) ──
+  // Objekte ermitteln die belegt > kapazität sind
+  const alleObj = typeof getVisibleKunden === 'function' ? getVisibleKunden() : obj;
+  const overObjekte = alleObj.filter(o => {
+    const k = oKapM(o.name, mk);
+    const b = oBel(o.name, mk);
+    return k > 0 && b > k + 0.5;
   });
-  const seen=new Set();
-  const uniq=rows.filter(r=>{const k=r.m.id+'|'+r.kunde;if(seen.has(k))return false;seen.add(k);return true;});
-  uniq.sort((a,b)=>(a.m.nachname||'').localeCompare(b.m.nachname||'','de'));
-  document.getElementById('kap-over-sub').textContent=uniq.length+' Zuordnung(en) mit Überschreitung – '+getAMShort();
-  const body=document.getElementById('kap-over-body');
-  if(!uniq.length){
-    body.innerHTML='<div style="color:var(--green);padding:20px;text-align:center;font-size:14px">✅ Keine Kapazitätsüberschreitungen im aktuellen Monat</div>';
-  } else {
-    body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:13px">
-      <thead><tr style="background:var(--s1)">
-        <th style="padding:8px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Mitarbeiter</th>
-        <th style="padding:8px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">OL</th>
-        <th style="padding:8px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Objekt</th>
-        <th style="padding:8px 10px;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Kapazität</th>
-        <th style="padding:8px 10px;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Belegt</th>
-        <th style="padding:8px 10px;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">MA-Std</th>
-        <th style="padding:8px 10px;border-bottom:1px solid var(--border)"></th>
-      </tr></thead>
-      <tbody>${uniq.map(r=>{
-        const ol=r.m.objektleiter||'?';
-        const ueber=Math.round((r.bel-r.kap)*10)/10;
-        return `<tr style="cursor:pointer" onclick="closeKapOverModal();openMAM('${r.m.id}')">
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><strong style="color:var(--text2)">${r.m.nachname||'–'}</strong>${r.m.vorname?' <span style="color:var(--muted);font-size:12px"> '+r.m.vorname+'</span>':''}</td>
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span class="olb ol-${ol}">${ol}</span></td>
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:12px">${r.kunde}</td>
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border);text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px">${r.kap}h</td>
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border);text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);font-weight:600">${r.bel}h <span style="font-size:10px">+${ueber}h</span></td>
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border);text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)">${Math.round(r.maStd*10)/10}h</td>
-          <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><button class="btn btn-o btn-sm" onclick="event.stopPropagation();closeKapOverModal();openMAM('${r.m.id}')">✏️</button></td>
-        </tr>`;
-      }).join('')}</tbody>
-    </table>`;
+
+  document.getElementById('kap-over-sub').textContent = overObjekte.length + ' Objekt(e) mit Überschreitung – ' + getAMShort();
+  const body = document.getElementById('kap-over-body');
+
+  if (!overObjekte.length) {
+    body.innerHTML = '<div style="color:var(--green);padding:20px;text-align:center;font-size:14px">✅ Keine Kapazitätsüberschreitungen im aktuellen Monat</div>';
+    document.getElementById('kap-over-bg').style.display = 'flex';
+    return;
   }
-  document.getElementById('kap-over-bg').style.display='flex';
+
+  // Pro Objekt: ALLE MA die darauf buchen aufschlüsseln (inkl. ausgeschiedene)
+  let html = '';
+  overObjekte.sort((a,b) => (a.name||'').localeCompare(b.name||'','de')).forEach(objekt => {
+    const kap = oKapM(objekt.name, mk);
+    const bel = oBel(objekt.name, mk);
+    const ueber = Math.round((bel - kap) * 10) / 10;
+
+    // Alle MA die auf dieses Objekt gebucht sind – ALLE (auch ausgeschiedene)
+    const buchungen = [];
+    ma.forEach(m => {
+      const abrMod = m.abrechnungsmodell || 'arbeitstage';
+      (m.objekte || []).forEach(o => {
+        if (o.kunde !== objekt.name) return;
+        const std = maOSollMA(m, o, mk, abrMod);
+        if (std <= 0) return;
+        const istAusgeschieden = m.status === 'Ausgeschieden' || !!m.austrittsdatum;
+        buchungen.push({ m, std, istAusgeschieden });
+      });
+    });
+    buchungen.sort((a, b) => b.std - a.std);
+
+    // Duplikat-Check: MA mit mehr als einem Eintrag auf diesem Objekt
+    const dupMA = new Set();
+    ma.forEach(m => {
+      const treffer = (m.objekte||[]).filter(o => o.kunde === objekt.name);
+      if(treffer.length > 1) dupMA.add(m.id);
+    });
+
+    const aktive   = buchungen.filter(b => !b.istAusgeschieden);
+    const versteckt = buchungen.filter(b => b.istAusgeschieden);
+
+    html += `<div style="margin-bottom:18px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+      <!-- Objekt-Header -->
+      <div style="background:var(--s1);padding:10px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="font-weight:700;font-size:14px;flex:1">${objekt.name}</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:12px;color:var(--muted)">Kapazität:</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600">${kap}h</span>
+          <span style="font-size:12px;color:var(--muted)">Belegt:</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--red)">${bel}h</span>
+          <span style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px">+${ueber}h</span>
+        </div>
+      </div>
+
+      <!-- Aktive MA auf diesem Objekt -->
+      ${aktive.length ? `
+      <div style="padding:0 14px 0 14px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 0 4px">✅ Aktive MA (${aktive.length})</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          ${aktive.map(b => {
+            const ol = b.m.objektleiter || '?';
+            return `<tr onclick="closeKapOverModal();openMAM('${b.m.id}')" style="cursor:pointer">
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border)"><span class="olb ol-${ol}" style="font-size:10px">${ol}</span></td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border)">
+                <strong>${b.m.nachname||'–'}</strong> <span style="color:var(--muted)">${b.m.vorname||''}</span>
+                ${dupMA.has(b.m.id)?'<span style="background:#fef3c7;border:1px solid #fcd34d;color:#92400e;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:5px">⚠ DOPPELT</span>':''}
+              </td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border);color:var(--muted);font-size:11px"><code>${b.m.persnr||'–'}</code></td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border);text-align:right;font-size:12px">
+                ${(()=>{
+                  // Revier-Stunden (Kunden-Seite) für diesen MA
+                  const _kObj = gObj(objekt.name);
+                  const _rev = (_kObj && _kObj.reviere||[]).find(r=>r.maId===b.m.id);
+                  const _revStd = _rev ? Math.round(calcWochentagStunden(_rev.wochentage||{}, mk)*10)/10 : null;
+                  const _maStd = b.std;
+                  if(_revStd !== null && Math.abs(_revStd - _maStd) >= 0.5){
+                    return '<span style="font-family:monospace;font-weight:700;color:var(--red)" title="MA-Stunden weichen von Revier-Stunden ab!">'
+                      + _maStd + 'h</span>'
+                      + '<br><span style="font-size:10px;color:var(--muted)">Revier: ' + _revStd + 'h</span>'
+                      + '<span style="font-size:10px;background:#fee2e2;color:var(--red);border-radius:8px;padding:1px 5px;margin-left:3px">⚠ Abweichung!</span>';
+                  }
+                  return '<span style="font-family:monospace;font-weight:700;color:var(--text2)">' + _maStd + 'h</span>';
+                })()}
+              </td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border)"><button class="btn btn-o btn-sm" style="font-size:10px;padding:2px 7px" onclick="event.stopPropagation();closeKapOverModal();openMAM('${b.m.id}')">✏️</button></td>
+            </tr>`;
+          }).join('')}
+          <tr style="background:var(--s1)">
+            <td colspan="3" style="padding:5px 6px;font-size:11px;color:var(--muted);font-weight:600">Summe aktiv (oBel)</td>
+            <td style="padding:5px 6px;text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:700">${Math.round(aktive.reduce((s,b)=>s+b.std,0)*10)/10}h</td>
+            <td></td>
+          </tr>
+          ${(()=>{
+            // Prüfe ob MA-Seite und Revier-Seite abweichen
+            const _kObj2 = gObj(objekt.name);
+            const _revSumme = (_kObj2 && _kObj2.reviere||[]).reduce((s,r)=>{
+              return s + Math.round(calcWochentagStunden(r.wochentage||{}, mk)*10)/10;
+            }, 0);
+            const _maSumme = Math.round(aktive.reduce((s,b)=>s+b.std,0)*10)/10;
+            if(Math.abs(_revSumme - _maSumme) >= 0.5){
+              return '<tr><td colspan="5" style="padding:6px 10px;background:#fee2e2;font-size:11px;color:var(--red)">'
+                + '🔴 <strong>Ursache gefunden:</strong> MA-Seite ergibt <strong>' + _maSumme + 'h</strong>, '
+                + 'Kunden-Reviere ergeben <strong>' + Math.round(_revSumme*10)/10 + 'h</strong> (= oKapM-Basis). '
+                + 'Die Abweichung kommt von MA mit roter Stunden-Anzeige oben. '
+                + '→ MA öffnen und Stunden korrigieren, oder Kunden-Reviere aktualisieren.'
+                + '</td></tr>';
+            }
+            return '';
+          })()}
+          ${dupMA.size > 0 ? '<tr><td colspan="5" style="padding:5px 6px;background:#fffbeb;font-size:11px;color:#92400e">⚠ <strong>DOPPELTE OBJEKT-EINTRÄGE</strong> gefunden! MA mit Badge haben denselben Kunden mehrfach – oBel() zählt nur einmal (Fix aktiv). MA öffnen → doppelten Eintrag entfernen → speichern.</td></tr>' : ''}
+        </table>
+      </div>` : ''}
+
+      <!-- Versteckte / ausgeschiedene MA -->
+      ${versteckt.length ? `
+      <div style="padding:0 14px 10px 14px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--red);padding:8px 0 4px">⚠️ Versteckte MA – Ausgeschieden / mit Austrittsdatum (${versteckt.length})</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          ${versteckt.map(b => {
+            const ol = b.m.objektleiter || '?';
+            const aus = b.m.austrittsdatum ? new Date(b.m.austrittsdatum).toLocaleDateString('de-DE') : (b.m.status === 'Ausgeschieden' ? 'Ausgesch.' : '?');
+            return `<tr onclick="closeKapOverModal();openMAM('${b.m.id}')" style="cursor:pointer;background:var(--rbg)">
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border)"><span class="olb ol-${ol}" style="font-size:10px">${ol}</span></td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border)"><strong style="color:var(--red)">${b.m.nachname||'–'}</strong> <span style="color:var(--muted)">${b.m.vorname||''}</span></td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border);font-size:11px;color:var(--red)">Austritt: ${aus}</td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border);text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--red)">${b.std}h</td>
+              <td style="padding:5px 6px;border-bottom:1px solid var(--border)"><button class="btn btn-o btn-sm" style="font-size:10px;padding:2px 7px" onclick="event.stopPropagation();closeKapOverModal();openMAM('${b.m.id}')">✏️</button></td>
+            </tr>`;
+          }).join('')}
+        </table>
+        <div style="font-size:11px;color:var(--red);padding:6px 2px">💡 Diese MA sind noch dem Objekt zugeordnet und werden in <strong>oBel()</strong> mitgezählt. Objekt-Zuordnung entfernen um die Überschreitung zu beheben.</div>
+      </div>` : '<div style="padding:6px 14px 10px;font-size:12px;color:var(--muted)">ℹ️ Keine versteckten MA auf diesem Objekt.</div>'}
+    </div>`;
+  });
+
+  body.innerHTML = html;
+  document.getElementById('kap-over-bg').style.display = 'flex';
 }
 function closeKapOverModal(){
   document.getElementById('kap-over-bg').style.display='none';
@@ -7548,39 +7762,109 @@ function exportDatevLohnarten() {
           .filter(e => e.maId === m.id)
           .reduce((s,e) => s + (parseFloat(e.stunden)||0), 0);
       } else if (laKey.startsWith('2003')) {
-        const wtKeys = ['Mo','Di','Mi','Do','Fr','Sa','So'];
-        const ftNachWT = {};
-        wtKeys.forEach(wt => ftNachWT[wt] = 0);
-        feiertage.forEach(ftDate => {
-          const dow = new Date(ftDate).getDay();
-          const wtKey = wtKeys[dow===0 ? 6 : dow-1];
-          ftNachWT[wtKey]++;
-        });
-        wtKeys.forEach(wt => {
-          const stdWT = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
-          std += stdWT * ftNachWT[wt];
+        // 2003 = Feiertagslohn: Stunden an echten Feiertagen
+        // 14-Tage-Fix: Nur Stunden zählen, wenn der Feiertag in einen echten Einsatzblock fällt
+        (m.objekte||[]).forEach(o => {
+          const wt = o.wochentage || {};
+          if (o.modell === '14tage' && o.rhythmus_start) {
+            // Nur Feiertage zählen, die in einen 14-Tage-Einsatzblock fallen
+            const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
+            const einsatzDaten = new Set();
+            const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+            const [_y14,_m14] = monat.split('-').map(Number);
+            ankertage.forEach(anker => {
+              for (let offset = 0; offset < 14; offset++) {
+                const dt = new Date(anker.getTime() + offset * 86400000);
+                if (dt.getMonth() !== _m14 - 1) break;
+                const wtKey = WT_IDX_14[dt.getDay()];
+                if ((parseFloat(wt[wtKey]) || 0) > 0) {
+                  einsatzDaten.add(dt.toISOString().slice(0,10));
+                } else if (offset > 0) break;
+              }
+            });
+            feiertage.forEach(ftDate => {
+              if (einsatzDaten.has(ftDate)) {
+                const dow = new Date(ftDate).getDay();
+                const wtKey = WT_IDX_14[dow];
+                std += parseFloat(wt[wtKey]) || 0;
+              }
+            });
+          } else {
+            // Normaler Rhythmus: alle Feiertage nach Wochentag
+            const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+            feiertage.forEach(ftDate => {
+              const dow = new Date(ftDate).getDay();
+              const wtKey = WT_IDX_N[dow];
+              std += parseFloat(wt[wtKey]) || 0;
+            });
+          }
         });
         std = r2(std);
       } else if (laKey.startsWith('2004')) {
         // 2004 = Feiertagszuschlag: NUR Stunden exportieren (DATEV berechnet Geldbetrag selbst)
-        // Feiertage nach Wochentag aufschlüsseln (analog zu 2003)
-        const wtKeys2004 = ['Mo','Di','Mi','Do','Fr','Sa','So'];
-        const ftNachWT2004 = {};
-        wtKeys2004.forEach(wt => ftNachWT2004[wt] = 0);
-        feiertage.forEach(ftDate => {
-          const dow = new Date(ftDate).getDay();
-          const wtKey = wtKeys2004[dow === 0 ? 6 : dow - 1];
-          ftNachWT2004[wtKey]++;
-        });
-        wtKeys2004.forEach(wt => {
-          const stdWT = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
-          std += stdWT * ftNachWT2004[wt]; // nur Stunden, kein × sl × 0.50
+        // 14-Tage-Fix: Nur Feiertage zählen, die in einen echten 14-Tage-Einsatzblock fallen
+        (m.objekte||[]).forEach(o => {
+          const wt = o.wochentage || {};
+          if (o.modell === '14tage' && o.rhythmus_start) {
+            const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
+            const einsatzDaten = new Set();
+            const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+            const [_y14b,_m14b] = monat.split('-').map(Number);
+            ankertage.forEach(anker => {
+              for (let offset = 0; offset < 14; offset++) {
+                const dt = new Date(anker.getTime() + offset * 86400000);
+                if (dt.getMonth() !== _m14b - 1) break;
+                const wtKey = WT_IDX_14[dt.getDay()];
+                if ((parseFloat(wt[wtKey]) || 0) > 0) {
+                  einsatzDaten.add(dt.toISOString().slice(0,10));
+                } else if (offset > 0) break;
+              }
+            });
+            feiertage.forEach(ftDate => {
+              if (einsatzDaten.has(ftDate)) {
+                const dow = new Date(ftDate).getDay();
+                const wtKey = WT_IDX_14[dow];
+                std += parseFloat(wt[wtKey]) || 0;
+              }
+            });
+          } else {
+            const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+            feiertage.forEach(ftDate => {
+              const dow = new Date(ftDate).getDay();
+              const wtKey = WT_IDX_N[dow];
+              std += parseFloat(wt[wtKey]) || 0;
+            });
+          }
         });
         std = r2(std);
       } else if (laKey.startsWith('2005')) {
         // 2005 = Sonntagszuschlag: NUR Stunden exportieren (DATEV berechnet Geldbetrag selbst)
-        const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
-        std = r2(stdSo * anzSonntage); // nur Stunden, kein × sl × 0.30
+        // 14-Tage-Fix: Nur Sonntage zählen, die in einen echten 14-Tage-Einsatzblock fallen
+        (m.objekte||[]).forEach(o => {
+          const wt = o.wochentage || {};
+          const stdSoWT = parseFloat(wt?.So) || 0;
+          if (stdSoWT <= 0) return;
+          if (o.modell === '14tage' && o.rhythmus_start) {
+            // Nur Sonntage zählen, die tatsächlich Einsatztage sind
+            const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
+            const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+            const [_y14s,_m14s] = monat.split('-').map(Number);
+            ankertage.forEach(anker => {
+              for (let offset = 0; offset < 14; offset++) {
+                const dt = new Date(anker.getTime() + offset * 86400000);
+                if (dt.getMonth() !== _m14s - 1) break;
+                const wtKey = WT_IDX_14[dt.getDay()];
+                const s14 = parseFloat(wt[wtKey]) || 0;
+                if (s14 > 0) {
+                  if (dt.getDay() === 0 && !feiertage.has(dt.toISOString().slice(0,10))) std += s14;
+                } else if (offset > 0) break;
+              }
+            });
+          } else {
+            std += r2(stdSoWT * anzSonntage);
+          }
+        });
+        std = r2(std);
       } else {
         // 2206 + alle anderen = Soll-Monatsstunden über alle Objekte
         std = r2((m.objekte||[]).reduce((s,o) => s + maOSollMA(m, o, monat, m.abrechnungsmodell||'arbeitstage'), 0));
