@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager 2026 v86</title>
+<title>MitarbeiterManager 2026 v87</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>:root{--bg:#f4f6f9;--white:#fff;--s1:#f0f2f5;--s2:#e8ebf0;--border:#dde1e8;--border2:#c8cdd8;--acc:#1a56db;--acc-l:#eef2ff;--acc-h:#1447c0;--green:#057a55;--gbg:#ecfdf5;--gbd:#a7f3d0;--red:#c81e1e;--rbg:#fef2f2;--rbd:#fca5a5;--yellow:#92400e;--ybg:#fffbeb;--blue:#1a56db;--bbg:#eef2ff;--orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;--ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;--text:#111928;--text2:#374151;--muted:#6b7280;--muted2:#9ca3af;--r:8px;--r2:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);--sh2:0 4px 16px rgba(0,0,0,.12);--z-gantt-cell:2;--z-gantt-name:3;--z-gantt-head:5;--z-sticky-head:10;--z-bottom-nav:20;--z-header:30;--z-lock-banner:40;--z-modal-bg:50;--z-modal:60;--z-dropdown:9999;--z-alert:80;--z-login:90}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}header{background:#1e4fc2;border-bottom:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:var(--z-header);gap:12px;height:58px;box-shadow:0 2px 8px rgba(0,0,0,.18)}.logo{display:flex;align-items:center;gap:10px}.logo-mark{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px}.logo-text{font-weight:600;font-size:15px;color:#fff}.logo-sub{font-size:11px;color:rgba(255,255,255,.55)}.hstats{display:flex;gap:4px;flex-wrap:wrap}.hstat{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:5px 12px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.08);font-family:inherit;font-size:inherit;text-align:left}.hstat:hover,.hstat.fa{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}.hv{font-weight:600;font-size:15px;line-height:1;color:#fff}.hl{font-size:11px;color:rgba(255,255,255,.55)}.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.9}.olb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace}.ol-M{background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe}.ol-I{background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc}.tabs{background:var(--white);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;gap:4px;flex-wrap:wrap}.tab{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-radius:var(--r);border:1px solid transparent;transition:all .15s;white-space:nowrap}.tab.active{background:#1e4fc2;color:#fff;border-color:#1e4fc2;font-weight:600}.tab.admin-tab{color:#7c3aed}.tab.admin-tab.active{background:#7c3aed;border-color:#7c3aed;color:#fff}.tab:hover:not(.active){background:var(--s1);border-color:var(--border);color:var(--text)}main{padding:20px 24px;max-width:1800px;margin:0 auto}.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}.sw{position:relative;flex:1;min-width:180px}.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none}.sb{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px 8px 33px;color:var(--text);font-size:13px;font-family:inherit;outline:none;box-shadow:var(--sh)}.sb:focus{border-color:var(--acc)}.sb::placeholder{color:var(--muted2)}select.fsel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;cursor:pointer;box-shadow:var(--sh)}.btn{padding:8px 14px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;white-space:nowrap}.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-h)}.btn-s{background:var(--green);color:#fff}.btn-s:hover{background:#046c4e}.btn-o{background:var(--white);border:1px solid var(--border);color:var(--text2);box-shadow:var(--sh)}.btn-o:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.btn-d{background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;border:none;cursor:pointer}.btn-sm{padding:4px 9px;font-size:12px;border-radius:6px}.btn-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange);padding:4px 9px;font-size:12px;border-radius:6px;cursor:pointer;font-family:inherit}.btn-w:hover{background:#fed7aa}.btn-i{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .15s}.btn-i:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.tw{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}table{width:100%;border-collapse:collapse}thead{background:var(--s1)}th{padding:9px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}th:hover{color:var(--acc)}td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text2)}tr:last-child td{border-bottom:none}tr:hover td{background:#f8f9fc}td strong{color:var(--text)}code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border)}.actions{display:flex;gap:4px;align-items:center}.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.b-aktiv{background:var(--gbg);color:var(--green)}.b-krank{background:var(--ybg);color:var(--yellow)}.b-ausgeschieden{background:var(--s2);color:var(--muted)}.b-urlaub{background:var(--bbg);color:var(--blue)}.chips{display:flex;flex-wrap:wrap;gap:3px}.chip{font-size:11px;padding:2px 7px;border-radius:5px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.chip.m{border-color:#93c5fd;color:var(--blue);background:var(--bbg)}.rev-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;margin-bottom:10px}.rev-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rev-block-nr{font-size:11px;font-weight:700;color:var(--muted);background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:2px 8px;flex-shrink:0}.rev-block-name{flex:1;min-width:140px}.rev-block-ma{min-width:160px}.rev-block-sum{font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}.rev-block-del{margin-left:auto}.rev-wtbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}.rev-wtbl th{background:var(--s2);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border)}.rev-wtbl td{padding:5px 3px;text-align:center;border-right:1px solid var(--border)}.rev-wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:600;color:var(--acc);font-size:12px}.rev-wtbl input{width:52px;padding:4px 3px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none}.rev-wtbl input:focus{border-color:var(--acc)}.rev-empty-hint{text-align:center;color:var(--muted2);padding:20px;font-size:12px;border:1px dashed var(--border2);border-radius:var(--r);background:var(--white)}.rev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:var(--z-modal-bg);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.rev-modal-bg.open{opacity:1;pointer-events:all}.rev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,860px);max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column}.rev-modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}.rev-modal-title{font-weight:700;font-size:16px}.rev-modal-sub{font-size:12px;color:var(--muted);margin-top:2px}.rev-modal-body{padding:18px 22px}.rev-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}.rev-table th{background:var(--s1);padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}.rev-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}.rev-table tr:last-child td{border-bottom:none}.rev-table tr:hover td{background:#f8f9fc}.rev-inp{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;outline:none;background:var(--white);color:var(--text)}.rev-inp:focus{border-color:var(--acc)}.rev-inp.wide{width:100%}.rev-inp.mono{font-family:'IBM Plex Mono',monospace;text-align:center;width:70px}.rev-add-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px dashed var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;margin-top:8px;background:transparent}.rev-add-row:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.rev-kap-bar{height:5px;border-radius:3px;background:var(--s2);overflow:hidden;margin-top:3px}.rev-kap-fill{height:100%;border-radius:3px}.kal-wrap{margin-top:0}.kal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.kal-title{font-weight:600;font-size:13px;color:var(--text)}.kal-nav{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:13px;color:var(--text2);touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1)}.kal-nav:hover{border-color:var(--acc);color:var(--acc)}.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}.kal-wd{text-align:center;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;padding:3px 0}.kal-day{text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .12s;border:1px solid transparent;position:relative}.kal-day:hover:not(.kal-other){background:var(--s1);border-color:var(--border)}.kal-day.kal-other{color:var(--muted2);cursor:default;pointer-events:none}.kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}.kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-day.kal-krank{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}.kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}.kal-leg-item:hover{border-color:var(--acc)}.kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-leg-k.active{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}.kal-leg-clr:hover{border-color:var(--red);color:var(--red)}.kal-dot{width:9px;height:9px;border-radius:50%}.kal-summary{font-size:11px;color:var(--muted);margin-top:6px}.std-i{width:58px;padding:4px 5px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}.std-i:focus{border-color:var(--acc)}.std-i.over{border-color:var(--red);background:var(--rbg)}.std-i.ok{border-color:var(--green);background:var(--gbg)}.kbar{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:3px}.kfill{height:100%;border-radius:2px}.fok{background:var(--green)}.fwarn{background:#d97706}.fover{background:var(--red)}.pager{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;flex-wrap:wrap;gap:8px;background:var(--s1)}.pbtns{display:flex;gap:3px}.pbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit}.pbtn.active{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}.pbtn:hover:not(.active){border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mbg{display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}.mbg>.modal{overflow-y:auto;max-height:calc(100vh - 40px)}.mbg.open{display:flex}.modal{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px;width:100%;max-width:800px;animation:su .2s ease;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}.modal.sm{max-width:480px}.modal.md{max-width:600px}@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.mtitle{font-weight:600;font-size:19px;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px}.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg{display:flex;flex-direction:column;gap:5px}.fg.full{grid-column:1/-1}label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}input,select,textarea{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:all .2s;width:100%}input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.1)}.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;display:flex;align-items:center;gap:8px}.sh::after{content:'';flex:1;height:1px;background:var(--border)}.warn-t{color:var(--red);font-size:11px;margin-top:3px}.wtbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}.wtbl th{background:var(--s2);padding:7px 6px;font-size:11px;font-weight:600;text-align:center;color:var(--text2);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}.wtbl th:last-child{border-right:none;background:var(--acc-l);color:var(--acc)}.wtbl td{padding:5px 4px;text-align:center;border-right:1px solid var(--border);background:var(--white)}.wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace;font-size:14px}.wtbl td input{width:56px;padding:5px 3px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;border-radius:5px}.winfo{display:flex;align-items:center;justify-content:space-between;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:9px 14px;margin-top:8px}.wval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;color:var(--acc)}.wlbl{font-size:11px;color:var(--muted)}.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.ocard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh);transition:border-color .2s}.ocard:hover{border-color:var(--border2)}.ocard.eh{opacity:.72;border-style:dashed}.ocard-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}.ocard-n{font-weight:600;font-size:13px;line-height:1.3}.ocard-s{font-size:11px;color:var(--muted);margin-bottom:8px}.kbar-o{height:7px;border-radius:4px;background:var(--s2);overflow:hidden;margin-bottom:5px}.kbar-o-f{height:100%;border-radius:4px;transition:width .4s}.no-kap{font-size:11px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:6px}.ma-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}.ma-chip{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.eh-tag{font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--border)}.obj-editor{display:flex;flex-direction:column;gap:12px}.obj-row{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.obj-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.obj-nr{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.obj-basic{display:grid;grid-template-columns:2fr 1fr;gap:7px;margin-bottom:8px}.kap-hint{font-size:12px;padding:7px 11px;border-radius:6px;margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.kh-ok{background:var(--gbg);border:1px solid var(--gbd);color:var(--green)}.kh-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange)}.kh-o{background:var(--rbg);border:1px solid var(--rbd);color:var(--red)}.kh-n{background:var(--s1);border:1px solid var(--border);color:var(--muted)}.add-obj-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:var(--r);border:1px dashed var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;width:100%;margin-top:8px}.add-obj-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:2px}.mtab{padding:3px 9px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s;font-weight:500}.mtab.active{background:var(--white);color:var(--acc);font-weight:600;box-shadow:var(--sh)}.mtab.hd{color:var(--blue)}.mpanel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.mfields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}.srow{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px}.sinp{width:84px;padding:7px 9px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none}.sinp:focus{border-color:var(--acc)}.sinp.over{border-color:var(--red);background:var(--rbg)}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px;box-shadow:var(--sh)}.hsec{font-size:14px;font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:10px}.hsec .cnt{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:500;color:var(--muted)}.hemp{background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:26px;text-align:center;color:var(--green);font-size:14px}.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh)}.dcard h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;font-weight:600}.dbig{font-size:30px;font-weight:600;line-height:1}.dsub{font-size:12px;color:var(--muted);margin-top:4px}.kli{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}.kli:last-child{border-bottom:none}.klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}.sec{display:none}.sec.active{display:block}.empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
+<style>:root{--bg:#f4f6f9;--white:#fff;--s1:#f0f2f5;--s2:#e8ebf0;--border:#dde1e8;--border2:#c8cdd8;--acc:#1a56db;--acc-l:#eef2ff;--acc-h:#1447c0;--green:#057a55;--gbg:#ecfdf5;--gbd:#a7f3d0;--red:#c81e1e;--rbg:#fef2f2;--rbd:#fca5a5;--yellow:#92400e;--ybg:#fffbeb;--blue:#1a56db;--bbg:#eef2ff;--orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;--ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;--text:#111928;--text2:#374151;--muted:#6b7280;--muted2:#9ca3af;--r:8px;--r2:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);--sh2:0 4px 16px rgba(0,0,0,.12);--z-gantt-cell:2;--z-gantt-name:3;--z-gantt-head:5;--z-sticky-head:10;--z-bottom-nav:20;--z-header:30;--z-lock-banner:40;--z-modal-bg:50;--z-modal:60;--z-dropdown:9999;--z-alert:80;--z-login:90}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}header{background:#1e4fc2;border-bottom:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:var(--z-header);gap:12px;height:58px;box-shadow:0 2px 8px rgba(0,0,0,.18)}.logo{display:flex;align-items:center;gap:10px}.logo-mark{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px}.logo-text{font-weight:600;font-size:15px;color:#fff}.logo-sub{font-size:11px;color:rgba(255,255,255,.55)}.hstats{display:flex;gap:4px;flex-wrap:wrap}.hstat{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:5px 12px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.08);font-family:inherit;font-size:inherit;text-align:left}.hstat:hover,.hstat.fa{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}.hv{font-weight:600;font-size:15px;line-height:1;color:#fff}.hl{font-size:11px;color:rgba(255,255,255,.55)}.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.9}.olb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace}.ol-M{background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe}.ol-I{background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc}.tabs{background:var(--white);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;gap:4px;flex-wrap:wrap}.tab{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-radius:var(--r);border:1px solid transparent;transition:all .15s;white-space:nowrap}.tab.active{background:#1e4fc2;color:#fff;border-color:#1e4fc2;font-weight:600}.tab.admin-tab{color:#7c3aed}.tab.admin-tab.active{background:#7c3aed;border-color:#7c3aed;color:#fff}.tab:hover:not(.active){background:var(--s1);border-color:var(--border);color:var(--text)}main{padding:20px 24px;max-width:1800px;margin:0 auto}.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}.sw{position:relative;flex:1;min-width:180px}.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none}.sb{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px 8px 33px;color:var(--text);font-size:13px;font-family:inherit;outline:none;box-shadow:var(--sh)}.sb:focus{border-color:var(--acc)}.sb::placeholder{color:var(--muted2)}select.fsel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;cursor:pointer;box-shadow:var(--sh)}.btn{padding:8px 14px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;white-space:nowrap}.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-h)}.btn-s{background:var(--green);color:#fff}.btn-s:hover{background:#046c4e}.btn-o{background:var(--white);border:1px solid var(--border);color:var(--text2);box-shadow:var(--sh)}.btn-o:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.btn-d{background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;border:none;cursor:pointer}.btn-sm{padding:4px 9px;font-size:12px;border-radius:6px}.btn-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange);padding:4px 9px;font-size:12px;border-radius:6px;cursor:pointer;font-family:inherit}.btn-w:hover{background:#fed7aa}.btn-i{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .15s}.btn-i:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.tw{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}table{width:100%;border-collapse:collapse}thead{background:var(--s1)}th{padding:9px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}th:hover{color:var(--acc)}td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text2)}tr:last-child td{border-bottom:none}tr:hover td{background:#f8f9fc}td strong{color:var(--text)}code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border)}.actions{display:flex;gap:4px;align-items:center}.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.b-aktiv{background:var(--gbg);color:var(--green)}.b-krank{background:var(--ybg);color:var(--yellow)}.b-ausgeschieden{background:var(--s2);color:var(--muted)}.b-urlaub{background:var(--bbg);color:var(--blue)}.chips{display:flex;flex-wrap:wrap;gap:3px}.chip{font-size:11px;padding:2px 7px;border-radius:5px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.chip.m{border-color:#93c5fd;color:var(--blue);background:var(--bbg)}.rev-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;margin-bottom:10px}.rev-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rev-block-nr{font-size:11px;font-weight:700;color:var(--muted);background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:2px 8px;flex-shrink:0}.rev-block-name{flex:1;min-width:140px}.rev-block-ma{min-width:160px}.rev-block-sum{font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}.rev-block-del{margin-left:auto}.rev-wtbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}.rev-wtbl th{background:var(--s2);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border)}.rev-wtbl td{padding:5px 3px;text-align:center;border-right:1px solid var(--border)}.rev-wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:600;color:var(--acc);font-size:12px}.rev-wtbl input{width:52px;padding:4px 3px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none}.rev-wtbl input:focus{border-color:var(--acc)}.rev-empty-hint{text-align:center;color:var(--muted2);padding:20px;font-size:12px;border:1px dashed var(--border2);border-radius:var(--r);background:var(--white)}.rev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:var(--z-modal-bg);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.rev-modal-bg.open{opacity:1;pointer-events:all}.rev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,860px);max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column}.rev-modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}.rev-modal-title{font-weight:700;font-size:16px}.rev-modal-sub{font-size:12px;color:var(--muted);margin-top:2px}.rev-modal-body{padding:18px 22px}.rev-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}.rev-table th{background:var(--s1);padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}.rev-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}.rev-table tr:last-child td{border-bottom:none}.rev-table tr:hover td{background:#f8f9fc}.rev-inp{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;outline:none;background:var(--white);color:var(--text)}.rev-inp:focus{border-color:var(--acc)}.rev-inp.wide{width:100%}.rev-inp.mono{font-family:'IBM Plex Mono',monospace;text-align:center;width:70px}.rev-add-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px dashed var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;margin-top:8px;background:transparent}.rev-add-row:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.rev-kap-bar{height:5px;border-radius:3px;background:var(--s2);overflow:hidden;margin-top:3px}.rev-kap-fill{height:100%;border-radius:3px}.kal-wrap{margin-top:0}.kal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.kal-title{font-weight:600;font-size:13px;color:var(--text)}.kal-nav{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:13px;color:var(--text2);touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1)}.kal-nav:hover{border-color:var(--acc);color:var(--acc)}.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}.kal-wd{text-align:center;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;padding:3px 0}.kal-day{text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .12s;border:1px solid transparent;position:relative}.kal-day:hover:not(.kal-other){background:var(--s1);border-color:var(--border)}.kal-day.kal-other{color:var(--muted2);cursor:default;pointer-events:none}.kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}.kal-day.kal-feiertag{background:var(--ybg);border-color:var(--obd)}.kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-day.kal-krank{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}.kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}.kal-leg-item:hover{border-color:var(--acc)}.kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-leg-k.active{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}.kal-leg-clr:hover{border-color:var(--red);color:var(--red)}.kal-dot{width:9px;height:9px;border-radius:50%}.kal-summary{font-size:11px;color:var(--muted);margin-top:6px}.std-i{width:58px;padding:4px 5px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}.std-i:focus{border-color:var(--acc)}.std-i.over{border-color:var(--red);background:var(--rbg)}.std-i.ok{border-color:var(--green);background:var(--gbg)}.kbar{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:3px}.kfill{height:100%;border-radius:2px}.fok{background:var(--green)}.fwarn{background:#d97706}.fover{background:var(--red)}.pager{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;flex-wrap:wrap;gap:8px;background:var(--s1)}.pbtns{display:flex;gap:3px}.pbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit}.pbtn.active{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}.pbtn:hover:not(.active){border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mbg{display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}.mbg>.modal{overflow-y:auto;max-height:calc(100vh - 40px)}.mbg.open{display:flex}.modal{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px;width:100%;max-width:800px;animation:su .2s ease;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}.modal.sm{max-width:480px}.modal.md{max-width:600px}@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.mtitle{font-weight:600;font-size:19px;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px}.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg{display:flex;flex-direction:column;gap:5px}.fg.full{grid-column:1/-1}label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}input,select,textarea{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:all .2s;width:100%}input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.1)}.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;display:flex;align-items:center;gap:8px}.sh::after{content:'';flex:1;height:1px;background:var(--border)}.warn-t{color:var(--red);font-size:11px;margin-top:3px}.wtbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}.wtbl th{background:var(--s2);padding:7px 6px;font-size:11px;font-weight:600;text-align:center;color:var(--text2);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}.wtbl th:last-child{border-right:none;background:var(--acc-l);color:var(--acc)}.wtbl td{padding:5px 4px;text-align:center;border-right:1px solid var(--border);background:var(--white)}.wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace;font-size:14px}.wtbl td input{width:56px;padding:5px 3px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;border-radius:5px}.winfo{display:flex;align-items:center;justify-content:space-between;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:9px 14px;margin-top:8px}.wval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;color:var(--acc)}.wlbl{font-size:11px;color:var(--muted)}.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.ocard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh);transition:border-color .2s}.ocard:hover{border-color:var(--border2)}.ocard.eh{opacity:.72;border-style:dashed}.ocard-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}.ocard-n{font-weight:600;font-size:13px;line-height:1.3}.ocard-s{font-size:11px;color:var(--muted);margin-bottom:8px}.kbar-o{height:7px;border-radius:4px;background:var(--s2);overflow:hidden;margin-bottom:5px}.kbar-o-f{height:100%;border-radius:4px;transition:width .4s}.no-kap{font-size:11px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:6px}.ma-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}.ma-chip{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.eh-tag{font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--border)}.obj-editor{display:flex;flex-direction:column;gap:12px}.obj-row{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.obj-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.obj-nr{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.obj-basic{display:grid;grid-template-columns:2fr 1fr;gap:7px;margin-bottom:8px}.kap-hint{font-size:12px;padding:7px 11px;border-radius:6px;margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.kh-ok{background:var(--gbg);border:1px solid var(--gbd);color:var(--green)}.kh-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange)}.kh-o{background:var(--rbg);border:1px solid var(--rbd);color:var(--red)}.kh-n{background:var(--s1);border:1px solid var(--border);color:var(--muted)}.add-obj-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:var(--r);border:1px dashed var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;width:100%;margin-top:8px}.add-obj-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:2px}.mtab{padding:3px 9px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s;font-weight:500}.mtab.active{background:var(--white);color:var(--acc);font-weight:600;box-shadow:var(--sh)}.mtab.hd{color:var(--blue)}.mpanel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.mfields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}.srow{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px}.sinp{width:84px;padding:7px 9px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none}.sinp:focus{border-color:var(--acc)}.sinp.over{border-color:var(--red);background:var(--rbg)}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px;box-shadow:var(--sh)}.hsec{font-size:14px;font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:10px}.hsec .cnt{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:500;color:var(--muted)}.hemp{background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:26px;text-align:center;color:var(--green);font-size:14px}.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh)}.dcard h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;font-weight:600}.dbig{font-size:30px;font-weight:600;line-height:1}.dsub{font-size:12px;color:var(--muted);margin-top:4px}.kli{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}.kli:last-child{border-bottom:none}.klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}.sec{display:none}.sec.active{display:block}.empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
 .hstat:focus-visible,.kd-card-head:focus-visible,.kal-day:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .tabs .tab:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
@@ -1181,10 +1181,14 @@ function calcVerstLohn(wochenstunden, stundenlohn) {
   return Math.round(wochenstunden * stundenlohn / 5 * 261 / 12 * 100) / 100;
 }
 const ARBEITSTAGE = {
-  // Reine Mo–Fr Werktage 2026 (ohne Feiertagsabzug – Feiertage werden bezahlt)
+  // Reine Mo–Fr Werktage (ohne Feiertagsabzug – Feiertage werden bezahlt)
+  // LOHN-2: 2026 + 2027 damit ARBEITSTAGE[mk]||21 Fallback nicht nötig
   '2026-01':22,'2026-02':20,'2026-03':22,'2026-04':22,
   '2026-05':21,'2026-06':22,'2026-07':23,'2026-08':21,
-  '2026-09':22,'2026-10':22,'2026-11':21,'2026-12':23
+  '2026-09':22,'2026-10':22,'2026-11':21,'2026-12':23,
+  '2027-01':21,'2027-02':20,'2027-03':23,'2027-04':22,
+  '2027-05':19,'2027-06':22,'2027-07':22,'2027-08':22,
+  '2027-09':22,'2027-10':21,'2027-11':22,'2027-12':23
 };
 
 // Zählt Stunden pro Monat anhand tatsächlicher Wochentag-Vorkommen
@@ -1291,6 +1295,10 @@ async function supaLoad(table) {
 
 async function supaSave(table, items) {
   if (!items || !items.length) return;
+  // Netzwerk-Check: verhindert stille Datenverluste bei Offline-Zustand
+  if (!navigator.onLine) {
+    throw new Error('Kein Internet – Daten wurden NICHT gespeichert. Bitte Verbindung prüfen und erneut speichern.');
+  }
   const now = new Date().toISOString();
   const rows = items.map(item => {
     item._updated_at = now;
@@ -1298,6 +1306,17 @@ async function supaSave(table, items) {
     return { id: item.id, data: item };
   });
   await supaFetch(table, 'POST', rows);
+}
+
+// ── SICHERER SAVE-WRAPPER ─────────────────────────────────
+// Alle saveAll()-Aufrufe ohne await nutzen diesen Wrapper,
+// damit Fehler (Netzwerk, Supabase) immer sichtbar werden.
+function safeSaveAll(label) {
+  saveAll().catch(e => {
+    const wo = label ? ' (' + label + ')' : '';
+    showAlert('⚠️ Speichern fehlgeschlagen' + wo + ': ' + e.message, '#c81e1e');
+    setSyncState('error', 'Speicherfehler!');
+  });
 }
 
 async function supaDelete(table, id) {
@@ -1369,6 +1388,26 @@ function calcZeitjahr(m) {
 }
 
 // Prüft Minijob-Status für einen MA über alle Monate des Zeitjahres
+function calcMonatLohn(m, mk) {
+  // MJ-3: zentrale Lohnberechnung für einen Monat (vermeidet Duplikation in calcMinijobStatus/calcMinijobMonatCheck)
+  const sl = parseFloat(m.stundenlohn_tarif) || TARIFLOHN[m.lohngruppe||'']?.lohn || 15;
+  const md = (m.monats_daten||{})[mk] || {};
+  const _abrMod = m.abrechnungsmodell || 'arbeitstage';
+  const regelLohn = (m.objekte||[]).reduce((s,o) => {
+    if (o.lohn_fest) return s + parseFloat(o.lohn_fest);
+    if (m.verstetigt) { const ws = wSum(o.wochentage||{}); return s + (ws && o.stundenlohn ? calcVerstLohn(ws, +o.stundenlohn) : 0); }
+    const std = maOSollMA(m, o, mk, _abrMod);
+    return s + (std && o.stundenlohn ? std * (+o.stundenlohn) : 0);
+  }, 0);
+  const sonderLohn = (md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId)
+    .reduce((s,e) => s + (parseFloat(e.stunden)||0) * sl, 0);
+  const vtGutLohn = (md.vertretungs_gutschrift||[]).reduce((s,g) => {
+    const std = (g.manuelleAnpassung !== null && g.manuelleAnpassung !== undefined) ? g.manuelleAnpassung : g.stunden;
+    return s + (parseFloat(std)||0) * sl;
+  }, 0);
+  return { lohn: Math.round((regelLohn + sonderLohn + vtGutLohn) * 100) / 100, sl };
+}
+
 function calcMinijobStatus(m) {
   const sl = parseFloat(m.stundenlohn_tarif) || TARIFLOHN[m.lohngruppe||'']?.lohn || 15;
   let jahresLohn = 0;
@@ -1389,28 +1428,8 @@ function calcMinijobStatus(m) {
   });
 
   monateZuPruefen.forEach((mk, idx) => {
-    const md = (m.monats_daten||{})[mk] || {};
-    // Regelstunden-Lohn
-    const _abrMod = m.abrechnungsmodell||'arbeitstage';
-    const regelLohn = (m.objekte||[]).reduce((s,o) => {
-      if(o.lohn_fest) return s + parseFloat(o.lohn_fest);
-      if(m.verstetigt) {
-        const ws = wSum(o.wochentage||{});
-        return s + (ws && o.stundenlohn ? calcVerstLohn(ws, +o.stundenlohn) : 0);
-      }
-      const std = maOSollMA(m, o, mk, _abrMod);
-      return s + (std && o.stundenlohn ? std * (+o.stundenlohn) : 0);
-    }, 0);
-    // Sondereinsätze
-    const sonderLohn = (md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId)
-      .reduce((s,e)=>s+(parseFloat(e.stunden)||0)*sl, 0);
-    // Vertretungs-Gutschrift
-    const vtGutLohn = (md.vertretungs_gutschrift||[]).reduce((s,g)=>{
-      const std = (g.manuelleAnpassung !== null && g.manuelleAnpassung !== undefined) ? g.manuelleAnpassung : g.stunden;
-      return s + (parseFloat(std)||0) * sl;
-    }, 0);
-
-    const monatLohn = Math.round((regelLohn + sonderLohn + vtGutLohn) * 100) / 100;
+    // MJ-3: Lohnberechnung über gemeinsame Hilfsfunktion
+    const { lohn: monatLohn } = calcMonatLohn(m, mk);
     jahresLohn += monatLohn;
 
     if (monatLohn <= 0) return;
@@ -1431,7 +1450,8 @@ function calcMinijobStatus(m) {
   });
 
   jahresLohn = Math.round(jahresLohn * 100) / 100;
-  const jahresGrenze = ausnahmeMonateCount > 0 ? MINIJOB_MAX_JAHR_AUSNAHME : MINIJOB_MAX_JAHR;
+  // FIX: Jahresgrenze proportional zu genutzten Ausnahme-Monaten (nicht pauschal +2×603)
+  const jahresGrenze = MINIJOB_MAX_JAHR + (ausnahmeMonateCount * MINIJOB_MAX_MONAT);
   const jahresOk = jahresLohn <= jahresGrenze;
   const monatOk = monatProbleme.filter(p=>!p.isAusnahme).length === 0;
 
@@ -1470,9 +1490,7 @@ function _isKrankheitsvertretungMonat(m, mk) {
     if (!g.quelleMAid) return false;
     const quelleMA = ma.find(x => x.id === g.quelleMAid);
     if (!quelleMA) return false;
-    // Methode 2a: quelleMA hat grund in seinen vertretungen gespeichert
-    const quelleVts = (quelleMA.monats_daten||{})[mk]?.vertretungen || [];
-    // Methode 2b: Abwesenheitstyp des quelleMA im Monat prüfen (dominanter Typ)
+    // Abwesenheitstyp des quelleMA im Monat prüfen (dominanter Typ)
     const prefix = mk + '-';
     let hatKrank = false;
     Object.entries(quelleMA.abwesenheiten||{}).forEach(([d,t]) => {
@@ -1484,25 +1502,8 @@ function _isKrankheitsvertretungMonat(m, mk) {
 
 // Minijob-Prüfung für aktuellen Monat (für Vertretungsblock)
 function calcMinijobMonatCheck(m, mk) {
-  const sl = parseFloat(m.stundenlohn_tarif) || TARIFLOHN[m.lohngruppe||'']?.lohn || 15;
-  const md = (m.monats_daten||{})[mk] || {};
-  const _abrMod = m.abrechnungsmodell||'arbeitstage';
-  const regelLohn = (m.objekte||[]).reduce((s,o) => {
-    if(o.lohn_fest) return s + parseFloat(o.lohn_fest);
-    if(m.verstetigt) {
-      const ws = wSum(o.wochentage||{});
-      return s + (ws && o.stundenlohn ? calcVerstLohn(ws, +o.stundenlohn) : 0);
-    }
-    const std = maOSollMA(m, o, mk, _abrMod);
-    return s + (std && o.stundenlohn ? std * (+o.stundenlohn) : 0);
-  }, 0);
-  const vtGutLohn = (md.vertretungs_gutschrift||[]).reduce((s,g)=>{
-    const std = (g.manuelleAnpassung !== null && g.manuelleAnpassung !== undefined) ? g.manuelleAnpassung : g.stunden;
-    return s + (parseFloat(std)||0) * sl;
-  }, 0);
-  const sonderLohn = (md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId)
-    .reduce((s,e)=>s+(parseFloat(e.stunden)||0)*sl, 0);
-  const monatLohn = Math.round((regelLohn + vtGutLohn + sonderLohn)*100)/100;
+  // MJ-3: Lohnberechnung über gemeinsame Hilfsfunktion
+  const { lohn: monatLohn, sl } = calcMonatLohn(m, mk);
   const isKrankVt = _isKrankheitsvertretungMonat(m, mk);
 
   // Wie viele Ausnahme-Monate schon genutzt (exkl. aktuellem Monat)?
@@ -1515,17 +1516,7 @@ function calcMinijobMonatCheck(m, mk) {
     return true;
   }).forEach(m2 => {
     const md2 = (m.monats_daten||{})[m2] || {};
-    const regel2 = (m.objekte||[]).reduce((s,o)=>{
-      if(o.lohn_fest) return s+parseFloat(o.lohn_fest);
-      if(m.verstetigt){const ws=wSum(o.wochentage||{});return s+(ws&&o.stundenlohn?calcVerstLohn(ws,+o.stundenlohn):0);}
-      return s+maOSollMA(m,o,m2,m.abrechnungsmodell||'arbeitstage')*(+o.stundenlohn||0);
-    },0);
-    const vtGut2 = (md2.vertretungs_gutschrift||[]).reduce((s,g)=>{
-      const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;
-      return s+(parseFloat(std)||0)*sl;
-    },0);
-    const sonder2 = (md2.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId).reduce((s,e)=>s+(parseFloat(e.stunden)||0)*sl,0);
-    const lohn2 = Math.round((regel2+vtGut2+sonder2)*100)/100;
+    const { lohn: lohn2 } = calcMonatLohn(m, m2); // MJ-3
     if (lohn2 > MINIJOB_MAX_MONAT && _isKrankheitsvertretungMonat(m, m2) && lohn2 <= MINIJOB_MAX_MONAT_AUSNAHME)
       ausnahmeGenutzt++;
   });
@@ -1578,7 +1569,7 @@ function applyLohnUpdate() {
       updated++;
     }
   });
-  saveAll(); render(); closeLohnUpdate();
+  safeSaveAll("Tariflohn-Update"); render(); closeLohnUpdate();
   showAlert('✅ ' + updated + ' Mitarbeiter aktualisiert – Tariflöhne angepasst', '#057a55');
 }
 
@@ -2196,7 +2187,9 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
         const cur = new Date(vonDatum.getTime());
         while (cur <= monatEnde) {
           const dow = cur.getDay();
-          if (dow >= 1 && dow <= 5) kkTage++;
+          // FIX LOHN-1: auch Samstag als Arbeitstag zählen (Mo-Sa), nicht nur Mo-Fr
+          // Viele MA arbeiten samstags (z.B. Reinigungskräfte in Parkhäusern etc.)
+          if (dow >= 1 && dow <= 6) kkTage++;
           cur.setDate(cur.getDate() + 1);
         }
         unbezahltTage += kkTage;
@@ -2382,7 +2375,14 @@ const ol=document.getElementById('f-ol').value;
 const ku=document.getElementById('f-kunde').value;
 // Heutiges Datum für Krank/Urlaub-Abgleich aus abwesenheiten[]
 const _hk=(()=>{const n=new Date();const p=v=>String(v).padStart(2,'0');return `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}`;})();
-return getVisibleMA().map(m=>{m._sg=maSG(m);m._lg=maLG(m);m._objekte=maKu(m).join(', ');return m;})
+// FIX PERF-1: Hilfsfelder auf Objekt-Cache schreiben, nicht direkt auf MA-Objekt mutieren
+// Damit landen _sg/_lg/_objekte nicht in Supabase beim nächsten save
+return getVisibleMA().map(m=>{
+  const _sg=maSG(m), _lg=maLG(m), _objekte=maKu(m).join(', ');
+  // DASH-1: MJ-Status vorberechnen (vermeidet Neuberechnung bei jedem render())
+  const _mjs = m.minijob ? calcMinijobStatus(m) : null;
+  return {...m, _sg, _lg, _objekte, _mjs}; // shallow copy – Hilfsfelder nicht auf Original
+})
 .filter(m=>{
 const txt=`${m.nachname||''} ${m.vorname||''} ${m.persnr||''} ${maKu(m).join(' ')}`.toLowerCase();
 const istEhemaliger = m.status==='Ausgeschieden' || !!m.austrittsdatum;
@@ -2757,65 +2757,7 @@ o.reviere.splice(i, 1);
 renderRevModal(eRevOid);
 }
 // ── BIDIREKTIONALER SYNC: Reviere ↔ MA-Objekte ──────────────────────────
-function importRevStunden() {
-  const DATA = [{"persnr": "1310", "kunde": "HPSI", "wochentage": {"Mo": 2.5, "Di": 2.5, "Mi": 3.0, "Do": 2.5, "Fr": 2.5, "Sa": 8.0, "So": 0.0}}, {"persnr": "1326", "kunde": "BSS", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 0.0, "Sa": 8.0, "So": 0.0}}, {"persnr": "153", "kunde": "ACS", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1339", "kunde": "Apotheke Babenhausen", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 2.0, "Do": 2.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1265", "kunde": "Arminia", "wochentage": {"Mo": 0.0, "Di": 4.0, "Mi": 0.0, "Do": 0.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "528", "kunde": "Ärztehaus Treppe", "wochentage": {"Mo": 2.5, "Di": 0.0, "Mi": 2.5, "Do": 0.0, "Fr": 2.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "76", "kunde": "Aumovio Tagesmann", "wochentage": {"Mo": 8.0, "Di": 8.0, "Mi": 8.0, "Do": 8.0, "Fr": 8.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "604", "kunde": "Aumovio Tageskraft Morgens", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "379", "kunde": "Aumovio Verwaltung 2 OG.", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 0.0, "Do": 2.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "129", "kunde": "Aumovio Verwaltung 3.OG und 1.OG", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "141", "kunde": "Aumovio Tagesmann 2", "wochentage": {"Mo": 7.0, "Di": 7.0, "Mi": 7.0, "Do": 7.0, "Fr": 7.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "", "kunde": "Aumovio Verwaltung 2.OG", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 2.0, "Do": 2.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "222", "kunde": "Außenanlage toom", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 1.25, "So": 0.0}}, {"persnr": "202", "kunde": "Außenanlagen", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1278", "kunde": "Avanti", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 2.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1173", "kunde": "Avus", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1287", "kunde": "BeHaGe", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 4.0, "So": 0.0}}, {"persnr": "147", "kunde": "Best Secret", "wochentage": {"Mo": 8.0, "Di": 8.0, "Mi": 8.0, "Do": 8.0, "Fr": 8.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1325", "kunde": "Best Secret", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 8.0, "So": 0.0}}, {"persnr": "150", "kunde": "Best Secret", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 4.0, "So": 0.0}}, {"persnr": "149", "kunde": "Best Secret", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 4.0, "So": 0.0}}, {"persnr": "1296", "kunde": "BGG", "wochentage": {"Mo": 4.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1089", "kunde": "Bock", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1332", "kunde": "BSS", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 8.0, "So": 0.0}}, {"persnr": "1308", "kunde": "BSS", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "T-002", "kunde": "Bürokomplex Nord", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "", "kunde": "Bürokomplex Nord", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 2.0, "Fr": 0.0, "Sa": 8.0, "So": 0.0}}, {"persnr": "1194", "kunde": "Caritas Alzenau", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 2.0, "So": 0.0}}, {"persnr": "1230", "kunde": "Club Med", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "213", "kunde": "Conti/", "wochentage": {"Mo": 1.5, "Di": 0.0, "Mi": 1.5, "Do": 0.0, "Fr": 1.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "", "kunde": "Dammer Tor", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 2.0, "Do": 2.0, "Fr": 2.0, "Sa": 2.0, "So": 0.0}}, {"persnr": "1253", "kunde": "DCO", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1272", "kunde": "DCO", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1254", "kunde": "DCO", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1255", "kunde": "DCO", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1273", "kunde": "DCO", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "912", "kunde": "Debeka", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 0.0, "Sa": 3.0, "So": 0.0}}, {"persnr": "1218", "kunde": "Deutscher Volleyball Verband", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 5.0, "So": 0.0}}, {"persnr": "895", "kunde": "Dialyse", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1267", "kunde": "Dialyse", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "900", "kunde": "Dialyse", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 0.75, "So": 0.0}}, {"persnr": "1143", "kunde": "Dialyse", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 1.25, "So": 0.0}}, {"persnr": "998", "kunde": "Dialyse", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 1.25, "So": 0.0}}, {"persnr": "1140", "kunde": "Dialyse", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 3.5, "So": 0.0}}, {"persnr": "1335", "kunde": "Diringer&Scheidel Springer", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "", "kunde": "Diringer&Scheidel Springer", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "", "kunde": "Diringer&Scheidel Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "658", "kunde": "Dölger Alzenau", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 2.0, "So": 1.5}}, {"persnr": "681", "kunde": "Dölger Alzenau", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1240", "kunde": "Dölger Alzenau Mühlgärten", "wochentage": {"Mo": 1.0, "Di": 1.0, "Mi": 1.0, "Do": 1.0, "Fr": 1.0, "Sa": 1.0, "So": 1.0}}, {"persnr": "1177", "kunde": "Dölger Elsenfeld", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 2.0, "Do": 2.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1344", "kunde": "Dölger Elsenfeld", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 2.0, "Sa": 2.0, "So": 1.5}}, {"persnr": "897", "kunde": "Dölger Haibach", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 2.0, "Sa": 2.0, "So": 1.5}}, {"persnr": "1213", "kunde": "Dölger Haibach", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 2.0, "Do": 2.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "966", "kunde": "DRK", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 2.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1139", "kunde": "DRK Vertretung", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1202", "kunde": "Eiopa", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "148", "kunde": "Eiopa", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1236", "kunde": "Eiopa", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1198", "kunde": "Eiopa", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1205", "kunde": "Eiopa", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "109", "kunde": "Eiopa", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1189", "kunde": "Eiopa / Tata", "wochentage": {"Mo": 3.0, "Di": 3.0, "Mi": 3.0, "Do": 3.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1270", "kunde": "Eiopa Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1262", "kunde": "Elektro Lutz", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 1.75, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1318", "kunde": "Excelitas", "wochentage": {"Mo": 4.5, "Di": 4.5, "Mi": 4.5, "Do": 4.5, "Fr": 4.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "120", "kunde": "Excelitas", "wochentage": {"Mo": 4.5, "Di": 4.5, "Mi": 4.5, "Do": 4.5, "Fr": 4.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "1286", "kunde": "Ford Kahl", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1288", "kunde": "Gemeinde Geiselbach", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "474", "kunde": "Gemeindewerke Kahl", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "454", "kunde": "Hapsi", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 3.0, "Do": 2.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1211", "kunde": "Hartje / Sohoco", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 3.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "1329", "kunde": "Helitrans", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1330", "kunde": "Helitrans", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1341", "kunde": "HET Altenstadt", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 8.0, "So": 0.0}}, {"persnr": "1147", "kunde": "Hofbibliothek", "wochentage": {"Mo": 2.5, "Di": 0.0, "Mi": 2.5, "Do": 0.0, "Fr": 2.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "917", "kunde": "Hörnig", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "956", "kunde": "Hörnig", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "1246", "kunde": "Hörnig", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1247", "kunde": "Hörnig", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1075", "kunde": "Hörnig Allgemeinflächen", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 2.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "1101", "kunde": "Hörnig Allgemeinflächen", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 2.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "886", "kunde": "Hörnig Bauhof", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 4.0, "Do": 0.0, "Fr": 0.0, "Sa": 4.0, "So": 0.0}}, {"persnr": "1009", "kunde": "Hörnig EG 1.OG und 5.OG", "wochentage": {"Mo": 4.0, "Di": 4.0, "Mi": 4.0, "Do": 4.0, "Fr": 4.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1241", "kunde": "HPSI", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 8.75, "So": 0.0}}, {"persnr": "1301", "kunde": "Image-Druck", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 6.0, "So": 0.0}}, {"persnr": "1079", "kunde": "Infranor", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 2.5, "So": 0.0}}, {"persnr": "834", "kunde": "Isuzu", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 1.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "833", "kunde": "Isuzu / MCE", "wochentage": {"Mo": 2.0, "Di": 2.0, "Mi": 2.0, "Do": 2.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1314", "kunde": "Isuzu Vertretung", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "772", "kunde": "Kaiserstraße", "wochentage": {"Mo": 2.0, "Di": 1.0, "Mi": 2.0, "Do": 1.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "T-006", "kunde": "Klinik Westend", "wochentage": {"Mo": 1.0, "Di": 1.0, "Mi": 1.0, "Do": 1.0, "Fr": 1.0, "Sa": 1.0, "So": 1.0}}, {"persnr": "T-005", "kunde": "Klinik Westend", "wochentage": {"Mo": 1.0, "Di": 1.0, "Mi": 1.0, "Do": 1.0, "Fr": 1.0, "Sa": 1.0, "So": 1.0}}, {"persnr": "1322", "kunde": "Knichelmann Seligenstadt", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "685", "kunde": "Konsulat", "wochentage": {"Mo": 0.0, "Di": 2.0, "Mi": 0.0, "Do": 0.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1066", "kunde": "Krick", "wochentage": {"Mo": 3.25, "Di": 0.0, "Mi": 3.25, "Do": 0.0, "Fr": 3.25, "Sa": 0.0, "So": 0.0}}, {"persnr": "1345", "kunde": "Kunzmann Kleinostheim", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.5, "Do": 0.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "T-009", "kunde": "Logistikzentrum Ost", "wochentage": {"Mo": 0.0, "Di": 2.0, "Mi": 0.0, "Do": 2.0, "Fr": 0.0, "Sa": 3.0, "So": 0.0}}, {"persnr": "706", "kunde": "Materion", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "869", "kunde": "Materion", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1023", "kunde": "MCE", "wochentage": {"Mo": 1.0, "Di": 1.0, "Mi": 1.0, "Do": 1.0, "Fr": 1.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "851", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1154", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1002", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "841", "kunde": "MCE", "wochentage": {"Mo": 3.5, "Di": 3.5, "Mi": 3.5, "Do": 3.5, "Fr": 3.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "847", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1052", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "898", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "852", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "843", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "853", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "842", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "888", "kunde": "MCE", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "850", "kunde": "MCE + Polygon", "wochentage": {"Mo": 3.0, "Di": 3.0, "Mi": 3.0, "Do": 3.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "844", "kunde": "MCE Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1280", "kunde": "MCE Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "968", "kunde": "MCE Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "994", "kunde": "MCE Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1168", "kunde": "MCE Springer", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1309", "kunde": "MCE Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1227", "kunde": "MCE Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1030", "kunde": "Moster", "wochentage": {"Mo": 0.0, "Di": 3.0, "Mi": 0.0, "Do": 5.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1010", "kunde": "Müllers", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 6.0, "So": 0.0}}, {"persnr": "1252", "kunde": "NCH", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1212", "kunde": "Parkhaus Börse", "wochentage": {"Mo": 2.0, "Di": 1.0, "Mi": 2.0, "Do": 1.0, "Fr": 2.0, "Sa": 1.0, "So": 0.0}}, {"persnr": "1275", "kunde": "Parkhaus Höchst", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1225", "kunde": "Parkhaus Höchst", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1224", "kunde": "Parkhaus Höchst Billtalstraße", "wochentage": {"Mo": 3.0, "Di": 0.0, "Mi": 1.0, "Do": 3.0, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1248", "kunde": "Parkhaus Römer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1276", "kunde": "Parkhaus Sachsenhausen", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 1.5, "So": 0.0}}, {"persnr": "1294", "kunde": "Parkhaus Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "804", "kunde": "Parkhaus Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1269", "kunde": "Parkhaus Vertretung", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "151", "kunde": "Parkscheinautomaten, div. Parkhäuser", "wochentage": {"Mo": 8.0, "Di": 8.0, "Mi": 8.0, "Do": 8.0, "Fr": 8.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1085", "kunde": "PH Borsigallee", "wochentage": {"Mo": 0.0, "Di": 4.5, "Mi": 0.0, "Do": 4.25, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1239", "kunde": "PH Junghofstr.", "wochentage": {"Mo": 3.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 2.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "116", "kunde": "PH Konrad-Adenauer / Schiller", "wochentage": {"Mo": 6.0, "Di": 6.0, "Mi": 6.0, "Do": 6.0, "Fr": 6.0, "Sa": 6.0, "So": 0.0}}, {"persnr": "135", "kunde": "PH Konrad-Adenauer/Basler Platz/ Alt Sachsenh.", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1208", "kunde": "PH Konstabler / Gericht / Theater", "wochentage": {"Mo": 8.0, "Di": 5.0, "Mi": 8.0, "Do": 5.0, "Fr": 8.0, "Sa": 5.0, "So": 0.0}}, {"persnr": "107", "kunde": "PH Konstabler+ Gericht + Kaiserstr. TH", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "821", "kunde": "PH Theater", "wochentage": {"Mo": 3.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 2.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "152", "kunde": "PKD Praxis", "wochentage": {"Mo": 3.0, "Di": 3.0, "Mi": 3.0, "Do": 3.0, "Fr": 3.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1290", "kunde": "Pneumax", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 4.0, "Do": 0.0, "Fr": 4.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "114", "kunde": "Polygon", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "907", "kunde": "Polygon", "wochentage": {"Mo": 1.5, "Di": 1.5, "Mi": 1.5, "Do": 1.5, "Fr": 1.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "813", "kunde": "PRM Frankfurt / Herzstiftung", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1327", "kunde": "Quel", "wochentage": {"Mo": 3.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 2.5, "Sa": 0.0, "So": 0.0}}, {"persnr": "992", "kunde": "Ramser+P. Herzstiftung", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "756", "kunde": "Rettungswache", "wochentage": {"Mo": 3.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 2.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1315", "kunde": "Rettungswache Vertretung", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1291", "kunde": "Reuter Schöllkrippen", "wochentage": {"Mo": 0.0, "Di": 3.0, "Mi": 0.0, "Do": 3.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1304", "kunde": "Reuter Schöllkrippen", "wochentage": {"Mo": 0.0, "Di": 3.0, "Mi": 0.0, "Do": 3.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "701", "kunde": "Schule Stockstadt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1112", "kunde": "Schule Stockstadt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "687", "kunde": "Schule Stockstadt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1297", "kunde": "Schule Stockstadt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1337", "kunde": "Schule Stockstadt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1333", "kunde": "Schule Stockstadt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1298", "kunde": "Schule Stockstadt Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1284", "kunde": "Schü-prod", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1207", "kunde": "Singapore", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "817", "kunde": "Singapore Airline", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1144", "kunde": "Singapore Airline Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "205", "kunde": "Sohoco / Impulse", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1342", "kunde": "Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1039", "kunde": "Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1338", "kunde": "Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1274", "kunde": "Springer", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1216", "kunde": "SQG", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 3.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1282", "kunde": "Steuerberater Stegmann", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 2.5, "So": 0.0}}, {"persnr": "1206", "kunde": "TeamProjekt", "wochentage": {"Mo": 0.0, "Di": 2.0, "Mi": 0.0, "Do": 2.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "T-01", "kunde": "TestKunde GmbH", "wochentage": {"Mo": 2.0, "Di": 0.0, "Mi": 2.0, "Do": 0.0, "Fr": 2.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "1331", "kunde": "Thermsys", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 6.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "977", "kunde": "Treu GmbH", "wochentage": {"Mo": 0.0, "Di": 4.0, "Mi": 0.0, "Do": 4.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "708", "kunde": "TÜV Frankfurt", "wochentage": {"Mo": 1.75, "Di": 1.75, "Mi": 1.75, "Do": 1.75, "Fr": 1.75, "Sa": 0.0, "So": 0.0}}, {"persnr": "1196", "kunde": "Vertretung Dialyse", "wochentage": {"Mo": 0.0, "Di": 0.0, "Mi": 0.0, "Do": 0.0, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}, {"persnr": "704", "kunde": "Ziegelwerk Hainburg", "wochentage": {"Mo": 0.0, "Di": 4.0, "Mi": 0.0, "Do": 4.75, "Fr": 0.0, "Sa": 0.0, "So": 0.0}}];
-  if (!confirm('📥 Revier-Stunden aus Excel importieren?\n\n177 Zeilen werden verarbeitet.\nBestehende Revier-Einträge bleiben erhalten – nur neue werden ergänzt.\n\nFortfahren?')) return;
-
-  let ok = 0, kNichtGef = [], maNichtGef = [];
-
-  DATA.forEach(row => {
-    const persnr = String(row.persnr||'').trim();
-    const kundeName = String(row.kunde||'').trim();
-    const wt = row.wochentage || {};
-    if (!kundeName) return;
-
-    // MA per Pers-Nr suchen
-    const m = persnr ? ma.find(x => String(x.persnr||'').trim() === persnr) : null;
-
-    // Kunden-Objekt suchen (exakt oder enthält)
-    let o = obj.find(x => x.name === kundeName);
-    if (!o) o = obj.find(x => x.name && x.name.toLowerCase().includes(kundeName.toLowerCase()));
-    if (!o) o = obj.find(x => kundeName && kundeName.toLowerCase().includes((x.name||'').toLowerCase()) && (x.name||'').length > 3);
-
-    if (!o) { if (!kNichtGef.includes(kundeName)) kNichtGef.push(kundeName); return; }
-    if (persnr && !m) { maNichtGef.push(persnr); return; }
-
-    // Revier-Eintrag suchen oder neu anlegen
-    o.reviere = o.reviere || [];
-    let rev = m ? o.reviere.find(r => r.maId === m.id) : null;
-    if (!rev) {
-      rev = {name: '', stunden: '', maId: m ? m.id : '', wochentage: {}};
-      o.reviere.push(rev);
-    }
-    // Wochenstunden übernehmen
-    rev.wochentage = {};
-    ['Mo','Di','Mi','Do','Fr','Sa','So'].forEach(t => { rev.wochentage[t] = wt[t] || 0; });
-    const ws = ['Mo','Di','Mi','Do','Fr','Sa','So'].reduce((s,t) => s + (wt[t]||0), 0);
-    rev.stunden = Math.round(calcWochentagStunden(rev.wochentage, getAM()) * 10) / 10;
-
-    // MA-seitig auch eintragen wenn nicht vorhanden
-    if (m) {
-      m.objekte = m.objekte || [];
-      const hatObj = m.objekte.find(ob => ob.kunde === o.name);
-      if (!hatObj) {
-        const sl = TARIFLOHN[m.lohngruppe||'']?.lohn || 15;
-        m.objekte.push({kunde: o.name, modell:'arbeitstage', std_monat: rev.stunden, std_tag:'',
-          stundenlohn: sl, lohn_fest:'', wochentage: Object.assign({}, wt), arbtage_monat:{}});
-      } else {
-        // Wochenstunden im MA-Objekt aktualisieren
-        hatObj.wochentage = Object.assign({}, wt);
-        hatObj.std_monat = rev.stunden;
-      }
-    }
-    ok++;
-  });
-
-  saveAll(); render();
-  let msg = `✅ ${ok} Einträge importiert.`;
-  if (kNichtGef.length) msg += `\n\n⚠ ${kNichtGef.length} Kunden nicht gefunden:\n` + kNichtGef.join(', ');
-  if (maNichtGef.length) msg += `\n\n⚠ MA-Nrn. nicht gefunden: ${maNichtGef.join(', ')}`;
-  alert(msg);
-}
+// REV-3: importRevStunden() entfernt – Migration abgeschlossen (war 35 KB Altdaten)
 
 function syncAlleMAzuKunden() {
   if (!confirm('🔄 Alle MA-Objekte mit Kunden-Revieren synchronisieren?\n\nJeder MA der einen Kunden in seiner Objektliste hat, wird automatisch im Kunden-Modal eingetragen – und umgekehrt.\n\nFortfahren?')) return;
@@ -2830,7 +2772,10 @@ function syncAlleMAzuKunden() {
       o.reviere = o.reviere || [];
       const inRev = o.reviere.find(r => r.maId === m.id);
       if (!inRev) {
-        o.reviere.push({name: '', stunden: '', maId: m.id, wochentage: WT0()});
+        // FIX REV-2: Wochenstunden direkt aus MA-Objekt übernehmen statt WT0() (überall 0)
+        const _maOb = (m.objekte||[]).find(ob => ob.kunde === o.name);
+        const _wt = _maOb?.wochentage ? JSON.parse(JSON.stringify(_maOb.wochentage)) : WT0();
+        o.reviere.push({name: '', stunden: '', maId: m.id, wochentage: _wt});
         maZuKunden++;
       }
     });
@@ -2850,7 +2795,7 @@ function syncAlleMAzuKunden() {
       }
     });
   });
-  saveAll();
+  safeSaveAll();
   render();
   showAlert(`✅ Sync abgeschlossen: ${maZuKunden} Kunden-Einträge ergänzt, ${kundenZuMA} MA-Objekte ergänzt`);
 }
@@ -2908,7 +2853,7 @@ function syncMARevierenZuKunden() {
       }
     });
   });
-  saveAll();
+  safeSaveAll();
   render();
   showAlert(aktualisiert + ' Reviere aktualisiert', '#057a55');
 }
@@ -2956,7 +2901,7 @@ function syncMAToRev(m) {
     }
   });
   // Objekte die der MA nicht mehr hat → maId aus Revieren entfernen
-  ma.filter(()=>true); // kein Filter nötig, wir gehen über alle obj
+  // FIX REV-1: ma.filter(()=>true) war toter Code (entfernt)
   obj.forEach(o => {
     if (!o.reviere) return;
     const maHatKunde = (m.objekte||[]).find(ob => ob.kunde === o.name);
@@ -2969,10 +2914,10 @@ function syncMAToRev(m) {
 
 function saveRevData() {
 const o = obj.find(x => x.id === eRevOid);
-if (!o) { saveAll(); showAlert('Gespeichert ✓'); return; }
+if (!o) { safeSaveAll(); showAlert('Gespeichert ✓'); return; }
 // Bidirektionaler Sync: Revier-Zuweisungen → MA-Objekte
 syncRevToMA(o.name);
-saveAll();
+safeSaveAll();
 showAlert('Reviere gespeichert ✓');
 renderRevModal(eRevOid);
 }
@@ -3005,7 +2950,7 @@ if(zuEh){
   if(kd){kd.status='aktiv';kd.aktiv=true;}
   showAlert(`"${name}" reaktiviert ✓`);
 }
-saveAll();renderObj();renderDash();
+safeSaveAll("Objekt"); renderObj(); renderDash();
 }
 const WT_ALL = ['Mo','Di','Mi','Do','Fr','Sa','So'];
 function buildOWT(wt,prefix,cb){
@@ -3468,8 +3413,9 @@ function calcUrlaubTage(m) {
   if (!m || !m.eintrittsdatum) return 28;
   const eintritt = new Date(m.eintrittsdatum);
   if (isNaN(eintritt.getTime())) return 28;
-  // Stichtag: 1. Januar des App-Jahres 2026 – unabhängig vom echten heutigen Datum
-  const stichtag = new Date(2026, 0, 1);
+  // Stichtag: 1. Januar des aktiven App-Jahres (dynamisch, nicht hartcodiert)
+  const _appJahr = parseInt(getAM().slice(0,4));
+  const stichtag = new Date(_appJahr, 0, 1);
   let jahre = stichtag.getFullYear() - eintritt.getFullYear();
   // Noch nicht Jahrestag zum Stichtag erreicht?
   const jahrestag = new Date(stichtag.getFullYear(), eintritt.getMonth(), eintritt.getDate());
@@ -3540,7 +3486,8 @@ function calcUrlaubAnspruch() {
       const rohMonate = 12 - startMonat + 1;
       // Ferienanteil anteilig auf die tatsächlichen Beschäftigungsmonate begrenzen
       const ferienAnteil = ferienMonate * (rohMonate / 12);
-      const eintrittMonate = Math.max(0, Math.min(rohMonate - ferienAnteil, sollMonate));
+      // URL-2: Mindestens 1 Monat wenn rohMonate > 0 (verhindert 0 bei Eintritt+Schulferien-Grenzfall)
+      const eintrittMonate = rohMonate > 0 ? Math.max(1, Math.min(rohMonate - ferienAnteil, sollMonate)) : 0;
       proRata = teilzeit / 12 * eintrittMonate;
       proRataText = `Pro-Rata Eintritt: ${Math.round(eintrittMonate*10)/10} Mon.`;
     }
@@ -3557,7 +3504,7 @@ function calcUrlaubAnspruch() {
 
   // Genommene Urlaubstage aus abwesenheiten[] zählen (tagesgenau, konsistent mit Statistik-Tab)
   const _mUrl = eMAid ? ma.find(x => x.id === eMAid) : null;
-  const _urlYear = 2026;
+  const _urlYear = parseInt(getAM().slice(0,4)); // dynamisch, nicht hartcodiert
   const genommen = _mUrl ? Object.entries(_mUrl.abwesenheiten || {}).filter(([d, t]) => d.startsWith(_urlYear + '-') && t === 'urlaub').length : 0;
   const rest = ergebnis - genommen;
   const genommenEl = document.getElementById('urlaub-genommen');
@@ -3624,7 +3571,7 @@ setTimeout(renderKal,50);
 const initMd=(m.monats_daten||{})[getAM()]||{};
 renderZettel(!!initMd.zettel_ok);
 _vtData=JSON.parse(JSON.stringify(initMd.vertretungen||[]));
-renderVtBlock(m, initMd);
+renderVtBlock(m, initMd, getAM()); // KAL-2
 // Urlaubsanspruch berechnen – sofort (kein veralteter Wert) + nach Render-Tick
 calcUrlaubAnspruch();
 setTimeout(calcUrlaubAnspruch, 50);
@@ -4220,7 +4167,7 @@ const gp=(md.grund_mehrarbeit||'').split(': ');
 const _gdEl=document.getElementById('md-grund');if(_gdEl)_gdEl.value=gp[0]||'';
 const _gdEl2=document.getElementById('md-gdet');if(_gdEl2)_gdEl2.value=gp.slice(1).join(': ')||'';
 renderZettel(!!md.zettel_ok);
-renderVtBlock(m, md);
+renderVtBlock(m, md, MK[ami]); // KAL-2
 renderVtGutschrift(m, k);
 renderSSBlock(m, md);
 // Soll-Info im Panel anzeigen
@@ -4354,7 +4301,7 @@ function updArbTageMonat(maId, kunde, mk, val){
 }
 function chkUeber(){}
 function chkGrund(){}
-let kalYear=2026, kalMonth=0, kalMode='urlaub';
+let kalYear=parseInt(getAM()?.slice(0,4)||new Date().getFullYear()), kalMonth=0, kalMode='urlaub'; // FIX KAL-1: dynamisch statt hartcodiert 2026
 const KAL_WD=['Mo','Di','Mi','Do','Fr','Sa','So'];
 const KAL_MN=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
 function kalNav(d){
@@ -4441,18 +4388,24 @@ for(let i=startWD-1;i>=0;i--){
 html+=`<div class="kal-day kal-other">${daysInPrev-i}</div>`;
 }
 let u=0,k=0;
+// KAL-3: Feiertage ermitteln und markieren
+const _kalFT = new Set(getBayernFeiertage(kalYear));
 for(let d=1;d<=daysInMonth;d++){
 const key=kalDayKey(kalYear,kalMonth,d);
 const typ=ab[key]||'';
 if(typ==='urlaub')u++;
 if(typ==='krank')k++;
 const isToday=today.getFullYear()===kalYear&&today.getMonth()===kalMonth&&today.getDate()===d;
+const isFeiertag=_kalFT.has(key);
 let cls='kal-day';
 if(typ==='urlaub')cls+=' kal-urlaub';
 else if(typ==='krank')cls+=' kal-krank';
 else if(isToday)cls+=' kal-today';
-const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:d;
-html+=`<div class="${cls}" onclick="kalClick(${kalYear},${kalMonth},${d})">${label}</div>`;
+if(isFeiertag)cls+=' kal-feiertag';
+const ftTitle=isFeiertag?` title="Feiertag"`:''
+const ftMark=isFeiertag?`<span style="font-size:7px;color:var(--orange);display:block">★</span>`:'';
+const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:`${d}${ftMark}`;
+html+=`<div class="${cls}"${ftTitle} onclick="kalClick(${kalYear},${kalMonth},${d})">${label}</div>`;
 }
 const total=startWD+daysInMonth;
 const rem=total%7===0?0:7-(total%7);
@@ -4500,7 +4453,7 @@ if(neuerStatus==='Ausgeschieden'&&eMAid){
     }
   }
 }
-let m=eMAid?JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid))):{id:Date.now().toString(),monats_daten:{}};
+let m=eMAid?JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid))):{id:(typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():Date.now().toString()),monats_daten:{}}; // VT-3
 saveMT(m,ami);
 m.persnr=pnr;m.nachname=nn;m.vorname=document.getElementById('f-vn').value.trim();
 m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();
@@ -4619,7 +4572,7 @@ const m=ma.find(x=>x.id===id);if(!m||!inp)return;
 if(!m.monats_daten)m.monats_daten={};
 if(!m.monats_daten[getAM()])m.monats_daten[getAM()]={};
 m.monats_daten[getAM()][inp.dataset.field]=inp.value;
-saveAll();render();showAlert('Gespeichert ✓');
+safeSaveAll(); render(); showAlert('Gespeichert ✓');
 }
 function openSM(id){
 eSid=id;const m=ma.find(x=>x.id===id);if(!m)return;
@@ -4648,7 +4601,7 @@ const m=ma.find(x=>x.id===eSid);if(!m)return;
 if(!m.monats_daten)m.monats_daten={};
 if(!m.monats_daten[getAM()])m.monats_daten[getAM()]={urlaub:0,krank:0,notiz:''};
 m.monats_daten[getAM()].notiz=document.getElementById('snotiz').value;
-saveAll();render();closeSM();showAlert('Notiz gespeichert ✓');
+safeSaveAll(); render(); closeSM(); showAlert('Notiz gespeichert ✓');
 }
 function closeSM(){document.getElementById('sbg').classList.remove('open');}
 ['ombg','mambg','sbg'].forEach(id=>{
@@ -5091,7 +5044,7 @@ function closeArchPopup(){
 // ══════════════════════════════════════════════════════════
 // URLAUBSPLAN – GANTT JAHRESÜBERSICHT
 // ══════════════════════════════════════════════════════════
-let _ganttYear = new Date().getFullYear();
+let _ganttYear = parseInt(getAM().slice(0,4)); // GANTT-2: App-Jahr statt Systemjahr
 // OL-User sehen nur eigene MA – _ganttOL wird beim ersten renderUrlaub gesetzt
 let _ganttZoom = 5; // 1=micro … 10=normal
 function applyGanttZoom(z) {
@@ -5177,9 +5130,8 @@ function renderUrlaub() {
     </div>
     ${!isOL()?`<select class="fsel" onchange="_ganttOL=this.value;renderUrlaub()">
       <option value="" ${aktiverOLFilter===''?'selected':''}>Alle OL</option>
-      <option value="M" ${aktiverOLFilter==='M'?'selected':''}>M – Fr. Grippo</option>
-      <option value="I" ${aktiverOLFilter==='I'?'selected':''}>I – Hr. Incecik</option>
-    </select>`:''}
+      ${Object.entries(USERS).filter(([,u])=>u.rolle==='ol').map(([name,u])=>`<option value="${u.kuerzel||name}" ${aktiverOLFilter===(u.kuerzel||name)?'selected':''}>${u.kuerzel||name} – ${name}</option>`).join('')}
+    </select>`:''}  <!-- FIX GANTT-1: OL-Namen dynamisch aus USERS -->
     <select class="fsel" onchange="_ganttStatus=this.value;renderUrlaub()">
       <option value="aktiv" ${_ganttStatus==='aktiv'?'selected':''}>Aktive MA</option>
       <option value="alle" ${_ganttStatus==='alle'?'selected':''}>Alle inkl. Ausgeschiedene</option>
@@ -5347,7 +5299,7 @@ document.getElementById('dash-c').innerHTML=`
 <div class="dcard" style="cursor:pointer" onclick="showTab('liste')" title="Zur Mitarbeiterliste"><h3>👥 Mitarbeiter</h3><div class="dbig">${_visMA.length}</div><div class="dsub">${_visMA.filter(m=>m.status==='Aktiv').length} aktiv · ${ehMA.length} ehemalig</div></div>
 <div class="dcard" style="cursor:pointer" onclick="showTab('objekte')" title="Zur Kundenliste"><h3>🏢 Kunden</h3><div class="dbig">${_visObj.length}</div><div class="dsub">${_visObj.filter(o=>!isEh(o)).length} aktiv · ${_visObj.filter(o=>isEh(o)).length} ehemalig</div></div>
 <div class="dcard"><h3>⚠ Kapazität überschritten</h3><div class="dbig" style="color:${ov>0?'var(--red)':'var(--green)'}">${ov}</div><div class="dsub">Objekte über Kapazität</div></div>
-<div class="dcard"><h3>👤 Grippo / Incecik</h3><div class="dbig" style="font-size:22px"><span style="color:var(--ol-m)">${ma.filter(m=>m.objektleiter==='M').length}</span> / <span style="color:var(--ol-i)">${ma.filter(m=>m.objektleiter==='I').length}</span></div></div>
+<div class="dcard"><h3>👤 Grippo / Incecik</h3><div class="dbig" style="font-size:22px"><span style="color:var(--ol-m)">${_visMA.filter(m=>m.objektleiter==='M').length}</span> / <span style="color:var(--ol-i)">${_visMA.filter(m=>m.objektleiter==='I').length}</span></div></div><!-- FIX DASH-2: _visMA statt ma -->
 <div class="dcard"><h3>💶 Lohn/Monat (geschätzt)</h3><div class="dbig" style="font-size:22px">€ ${lohn.toLocaleString('de-DE',{maximumFractionDigits:0})}</div></div>
 <div class="dcard" style="cursor:pointer" onclick="fSt('Krank')" title="Kranke MA anzeigen"><h3>🤒 Krank (${getAMShort()})</h3><div class="dbig" style="font-size:30px;color:var(--yellow)">${krank}</div><div class="dsub">Tage · Klicken zum Filtern</div></div>
 <div class="dcard" style="cursor:pointer" onclick="fSt('Urlaub')" title="MA im Urlaub anzeigen"><h3>🏖 Urlaub (${getAMShort()})</h3><div class="dbig" style="font-size:30px;color:var(--blue)">${url}</div><div class="dsub">Tage · Klicken zum Filtern</div></div>
@@ -5357,7 +5309,7 @@ document.getElementById('dash-c').innerHTML=`
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
   <h3 style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-    📅 Monatsübersicht – ${getAMShort()} ${new Date().getFullYear()}
+    📅 Monatsübersicht – ${getAMShort()} ${parseInt(getAM().slice(0,4))}
     <div style="display:flex;gap:6px;align-items:center">
       <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d">🤒 Krank</span>
       <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 Urlaub</span>
@@ -5370,7 +5322,7 @@ document.getElementById('dash-c').innerHTML=`
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
   <h3 style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-    📊 Krank & Urlaub – Jahresstatistik ${new Date().getFullYear()}
+    📊 Krank & Urlaub – Jahresstatistik ${parseInt(getAM().slice(0,4))}
     <div style="display:flex;gap:6px">
       <button type="button" onclick="statSort('krank')" id="stat-btn-krank" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='krank'?'#fcd34d':'var(--border)'};background:var(--ybg);color:var(--yellow);cursor:pointer;font-family:inherit;font-weight:${_statSort==='krank'?700:500}">🤒 nach Krank</button>
       <button type="button" onclick="statSort('urlaub')" id="stat-btn-urlaub" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='urlaub'?'#93c5fd':'var(--border)'};background:var(--bbg);color:var(--blue);cursor:pointer;font-family:inherit;font-weight:${_statSort==='urlaub'?700:500}">🏖 nach Urlaub</button>
@@ -5382,7 +5334,7 @@ document.getElementById('dash-c').innerHTML=`
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
   <h3 style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-    🔄 Vertretungsstatistik – ${getAMShort()} (Krank & Urlaub)
+    🔄 Vertretungsstatistik – ${getAMShort()} ${parseInt(getAM().slice(0,4))} (Krank & Urlaub)
     <div style="display:flex;gap:6px">
       <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d">🤒 Krank-Vt.</span>
       <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 Urlaub-Vt.</span>
@@ -5622,6 +5574,7 @@ function genNachweispdf(maId, mk) {
   </body></html>`;
 
   const w = window.open('', '_blank');
+  if (!w) { showAlert('⚠️ Popup blockiert! Bitte Popup-Blocker für diese Seite deaktivieren.', '#c81e1e'); return; } // FIX PDF-1
   w.document.write(pdfHtml);
   w.document.close();
   setTimeout(() => w.print(), 500);
@@ -5696,7 +5649,7 @@ function deleteTestData(){
   const gel_obj = vorher_obj - obj.length;
   const gel_kd = vorher_kd - kunden.length;
   if(gel_ma === 0 && gel_obj === 0 && gel_kd === 0 && removed.length === 0) return;
-  if(_token) saveAll();
+  if(_token) safeSaveAll();
   render();
   console.log(`Testdaten bereinigt: ${gel_ma} MA, ${gel_obj} Obj, ${gel_kd} Kunden`);
 }
@@ -5791,7 +5744,7 @@ r.onload=ev=>{try{
 const d=JSON.parse(ev.target.result);
 if(d.ma&&d.obj){if(!confirm(`${d.ma.length} MA + ${d.obj.length} Objekte + ${(d.kunden||[]).length} Kunden importieren?`))return;ma=d.ma;obj=d.obj;kunden=d.kunden||[];}
 else if(Array.isArray(d)){let a=0,u=0;d.forEach(m=>{const i=ma.findIndex(x=>x.id===m.id);if(i>=0){ma[i]=m;u++;}else{ma.push(m);a++;}});showAlert(`${a} neu, ${u} aktualisiert`);}
-saveAll();render();showAlert('Import erfolgreich ✓');
+safeSaveAll("Import"); render(); showAlert('Import erfolgreich ✓');
 }catch{showAlert('Ungültige Datei!','#c81e1e');}};
 r.readAsText(f);e.target.value='';
 }
@@ -5845,7 +5798,7 @@ function closeAdminDrop(){
 }
 
 function manuellSpeichern(){
-saveAll();
+safeSaveAll();
 }
 function markDirty(){
 _dirty=true;
@@ -6093,7 +6046,7 @@ function csvDoImport() {
     }
   });
 
-  saveAll();
+  safeSaveAll();
   renderObj();
   closeImpModal();
   const parts = [];
@@ -6357,7 +6310,7 @@ async function xlsxDoImport() {
 
   render();
   showAlert('👥 Speichere…', '#1a56db');
-  await saveAll();
+  await safeSaveAll();
   closeImpModal();
   const parts = [];
   if (added)   parts.push(added   + ' neu');
@@ -6514,6 +6467,8 @@ function doImport() {
   // ── Mitarbeiter importieren ──
   if (_impMA) {
     if (mode === 'replace') {
+      // IMP-1: automatisches Backup vor Replace
+      exportJSON();
       ma = _impMA;
       maAdded = _impMA.length;
     } else {
@@ -6532,14 +6487,19 @@ function doImport() {
               merged_monate[mk] = behaltene_monate[mk];
             } else {
               // Stundenzettel, Vertretungen und Sonderstunden erhalten falls schon eingetragen
-              ['zettel_ok','vertretungen','sonderstunden'].forEach(f => {
+              ['zettel_ok','vertretungen','sonderstunden','urlaub_jahres','urlaub_anspruch'].forEach(f => { // IMP-2
                 if (behaltene_monate[mk][f] !== undefined && behaltene_monate[mk][f] !== '' && behaltene_monate[mk][f] !== false) {
                   merged_monate[mk][f] = behaltene_monate[mk][f];
                 }
               });
             }
           });
-          ma[idx] = { ...neu, monats_daten: merged_monate, abwesenheiten: alt.abwesenheiten || {} };
+          // IMP-2: urlaub_jahres/urlaub_anspruch auf MA-Ebene behalten falls vorhanden
+          const keepTop = {};
+          ['urlaub_jahres','urlaub_anspruch'].forEach(f => {
+            if (alt[f] !== undefined && alt[f] !== '' && alt[f] !== null) keepTop[f] = alt[f];
+          });
+          ma[idx] = { ...neu, ...keepTop, monats_daten: merged_monate, abwesenheiten: alt.abwesenheiten || {} };
           maUpdated++;
         } else {
           ma.push(neu);
@@ -6599,7 +6559,7 @@ function doImport() {
   kunden.sort((a,b)=>(a.kurzname||a.vollname||a.name||'').localeCompare(b.kurzname||b.vollname||b.name||'','de'));
   obj.sort((a,b)=>(a.name||'').localeCompare(b.name||'','de'));
 
-  saveAll();
+  safeSaveAll();
   render();
   closeImpModal();
 
@@ -6676,11 +6636,11 @@ let _vtData = []; // [{maId, maName, objekt, stunden}]
 // Wird aufgerufen wenn Modal öffnet (openMAM) oder Monat wechselt (renderMP)
 let _vtAbsTyp = 'krank'; // dominanter Abwesenheitstyp des abwesenden MA im aktuellen Monat
 
-function renderVtBlock(m, md) {
+function renderVtBlock(m, md, _vtMk) {
   _vtData = JSON.parse(JSON.stringify(md.vertretungen || []));
 
-  // Dominanten Abwesenheitstyp ermitteln (krank schlägt urlaub)
-  const mk = MK[ami];
+  // KAL-2: mk aus Parameter nutzen (nicht immer MK[ami]) damit andere Monate korrekt gerendert werden
+  const mk = _vtMk || MK[ami];
   const prefix = mk + '-';
   let hatKrank = false, hatUrlaub = false;
   Object.entries(m.abwesenheiten||{}).forEach(([d,t]) => {
@@ -6795,7 +6755,7 @@ function vtRemove(i){_vtData.splice(i,1);_renderVtTable();_vtUpdateHint();_vtAut
 
 // ── DATEV-Gutschrift: Vertretungsstunden beim Vertreter buchen ────────────────
 function vtSyncToMAB(mitCleanup){
-  const monatKey=MK[ami];
+  const monatKey=getAM(); // FIX VT-1: getAM() statt MK[ami] (konsistent mit restlichem Code)
   _vtData.forEach(vt=>{
     if(!vt.maId||!vt.stunden)return;
     const maB=ma.find(x=>x.id===vt.maId);
@@ -6843,10 +6803,11 @@ function renderVtGutschrift(m,monatKey){
   container.style.display='block';
   let html='<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);margin-bottom:8px">⬆ Gutgeschriebene Vertretungen (DATEV Zulage)</div>';
   let total=0;
+  const _vtSl = parseFloat(m.stundenlohn_tarif) || TARIFLOHN[m.lohngruppe||'']?.lohn || 15; // FIX VT-2: echter Stundenlohn statt hartcodiert 15
   gutschriften.forEach((g,i)=>{
     const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;
     total+=parseFloat(std)||0;
-    const lohn=Math.round((parseFloat(std)||0)*15*100)/100;
+    const lohn=Math.round((parseFloat(std)||0)*_vtSl*100)/100;
     const warn=g.geaendertWarnung?'<span style="color:var(--yellow);font-size:10px;margin-left:4px">⚠ Quelle geändert</span>':'';
     html+=`<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;flex-wrap:wrap">
       <span style="flex:1;color:var(--text2)">Vertr. für <strong>${g.quelleName||'?'}</strong>${g.objekt?' – '+g.objekt:''}</span>
@@ -6854,7 +6815,7 @@ function renderVtGutschrift(m,monatKey){
       <span style="font-size:11px;color:var(--muted)">h × 15€ = <strong>€ ${lohn}</strong></span>${warn}
     </div>`;
   });
-  html+=`<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:12px"><span style="color:var(--blue)">Vertretungszulage gesamt</span><span style="color:var(--blue);font-family:'IBM Plex Mono',monospace">€ ${Math.round(total*15*100)/100}</span></div>`;
+  html+=`<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:12px"><span style="color:var(--blue)">Vertretungszulage gesamt</span><span style="color:var(--blue);font-family:'IBM Plex Mono',monospace">€ ${Math.round(total*_vtSl*100)/100}</span></div>`;
 
   // Minijob-Ausnahme-Warnung
   if (m.minijob) {
@@ -7171,7 +7132,7 @@ function openDatevCheck() {
     const istAbwesend = url > 0 || krank > 0;
     const vtFehlend = istAbwesend && vts.length === 0;
     const vtUnvollst = istAbwesend && vts.some(v => !v.maId || !v.stunden);
-    const keinIst = !verstetigt && ist === 0 && soll > 0;
+    // keinIst: entfernt (ist=soll per Design – Ist-Stunden werden nicht separat geführt)
     const keinZettel = !zettelOk && soll > 0;
     const ueberSoll = !verstetigt && ist > soll && soll > 0 && !md.grund_mehrarbeit;
 
@@ -7181,7 +7142,7 @@ function openDatevCheck() {
 
     if (keinZettel) { problems.push('Stundenzettel fehlt'); status = 'warn'; }
     if (!m.datev_lohnarten || !m.datev_lohnarten.length) { problems.push('Keine DATEV-Lohnart hinterlegt'); if(status==='ok') status='warn'; }
-    if (keinIst && !verstetigt) { problems.push('Keine Stunden eingetragen'); status = 'err'; }
+    // keinIst-Prüfung entfernt (war toter Code: ist === soll per Design)
     if (ueberSoll) { problems.push('Über Soll – kein Grund'); status = 'err'; }
     if (vtFehlend) { problems.push('Abwesend – keine Vertretung eingetragen'); status = 'err'; }
     if (vtUnvollst) { problems.push('Vertretung unvollständig'); status = 'warn'; }
@@ -7193,8 +7154,8 @@ function openDatevCheck() {
         const monate = mjStatus.ausnahmeMonateNamen.join(', ');
         problems.push(`Krankheits-Ausnahme ${mjStatus.ausnahmeMonateCount}/2 (${monate})`);
         if (status === 'ok') status = 'warn';
-        if (mjStatus.ausnahmeMonateCount >= 2 && mjStatus.jahresLohn > MINIJOB_MAX_JAHR_AUSNAHME) {
-          problems.push('Jahresgrenze 8.442 € überschritten!');
+        if (mjStatus.jahresLohn > mjStatus.jahresGrenze) { // FIX IMP-3: mjStatus.jahresGrenze statt MINIJOB_MAX_JAHR_AUSNAHME
+          problems.push(`Jahresgrenze ${mjStatus.jahresGrenze.toLocaleString('de-DE')} € überschritten!`);
           status = 'err';
         }
       } else if (!mjStatus.ok) {
@@ -7353,7 +7314,7 @@ function saveLohnArtenImport() {
     const m = ma.find(x => String(x.persnr||'').trim() === pnr);
     if (m) { m.datev_lohnarten = las; saved++; }
   });
-  saveAll();
+  safeSaveAll();
   closeLohnArtenImport();
   showAlert(`${saved} Mitarbeiter mit Lohnarten gespeichert ✓`);
 }
@@ -7430,10 +7391,22 @@ function exportDatevLohnarten() {
     const las = m.datev_lohnarten || [];
     if (!las.length) { ohneLA.push(m.nachname+(m.vorname?' '+m.vorname:'')); return; }
 
-    const sl = parseFloat((m.objekte||[]).find(o => parseFloat(o.stundenlohn) > 0)?.stundenlohn) || 0;
+    // DATEV-2: gewichteter Stundenlohn über alle Objekte (statt erstem Objekt mit Lohn)
+    const _slObjekte = (m.objekte||[]).filter(o => parseFloat(o.stundenlohn) > 0);
+    const _slGesStd = _slObjekte.reduce((s,o) => {
+      const std = maOSollMA(m, o, monat, m.abrechnungsmodell||'arbeitstage');
+      return s + (std || 0);
+    }, 0);
+    const sl = _slGesStd > 0
+      ? _slObjekte.reduce((s,o) => {
+          const std = maOSollMA(m, o, monat, m.abrechnungsmodell||'arbeitstage');
+          return s + (std || 0) * parseFloat(o.stundenlohn);
+        }, 0) / _slGesStd
+      : (parseFloat(_slObjekte[0]?.stundenlohn) || 0);
 
     // KST: erste Kostenstelle aus Kunden-Stammdaten des MA
-    const ersteKunde = obj.find(x => x.name === (m.objekte||[])[0]?.kunde || x.id === (m.objekte||[])[0]?.kundeId);
+    // DATEV-3: Klammern für eindeutige Operator-Reihenfolge
+    const ersteKunde = obj.find(x => (x.name === (m.objekte||[])[0]?.kunde) || (x.id === (m.objekte||[])[0]?.kundeId));
     const kst = ersteKunde?.kostenstelle || '00';
 
     las.forEach(la => {
@@ -7459,7 +7432,7 @@ function exportDatevLohnarten() {
         });
         std = r2(std);
       } else if (laKey.startsWith('2004')) {
-        // 2004 = Feiertagszuschlag: Stunden an Feiertagen × Stundenlohn × 50%
+        // 2004 = Feiertagszuschlag: NUR Stunden exportieren (DATEV berechnet Geldbetrag selbst)
         // Feiertage nach Wochentag aufschlüsseln (analog zu 2003)
         const wtKeys2004 = ['Mo','Di','Mi','Do','Fr','Sa','So'];
         const ftNachWT2004 = {};
@@ -7471,13 +7444,13 @@ function exportDatevLohnarten() {
         });
         wtKeys2004.forEach(wt => {
           const stdWT = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.[wt])||0), 0);
-          std += stdWT * ftNachWT2004[wt] * sl * 0.50;
+          std += stdWT * ftNachWT2004[wt]; // nur Stunden, kein × sl × 0.50
         });
         std = r2(std);
       } else if (laKey.startsWith('2005')) {
-        // 2005 = Sonntagszuschlag: Lohnwert (Stunden × Stundenlohn × 30%)
+        // 2005 = Sonntagszuschlag: NUR Stunden exportieren (DATEV berechnet Geldbetrag selbst)
         const stdSo = (m.objekte||[]).reduce((s,o) => s + (parseFloat(o.wochentage?.So)||0), 0);
-        std = r2(stdSo * anzSonntage * sl * 0.30);
+        std = r2(stdSo * anzSonntage); // nur Stunden, kein × sl × 0.30
       } else {
         // 2206 + alle anderen = Soll-Monatsstunden über alle Objekte
         std = r2((m.objekte||[]).reduce((s,o) => s + maOSollMA(m, o, monat, m.abrechnungsmodell||'arbeitstage'), 0));
@@ -7688,7 +7661,7 @@ function buildVtStatKachel() {
 function buildStatTable(sortBy) {
   // Jahr aus aktivem Monat (getAM) statt new Date() – bleibt korrekt auch nach 2026
   const year = parseInt(getAM().split('-')[0]);
-  const aktiv = ma.filter(m => m.status !== 'Ausgeschieden');
+  const aktiv = getVisibleMA().filter(m => m.status !== 'Ausgeschieden'); // FIX DASH-3: getVisibleMA() statt ma – OL sieht nur eigene MA
 
   const rows = aktiv.map(m => {
     let krankTage = 0, urlaubGenommen = 0;
@@ -7795,7 +7768,7 @@ function lvUpload(input) {
     obj[idx].lv_pdf   = base64;
     obj[idx].lv_datum = new Date().toISOString();
     obj[idx].lv_name  = file.name;
-    saveAll();
+    safeSaveAll();
     lvRenderModal(obj[idx]);
     showAlert('LV hochgeladen ✓', '#057a55');
   };
@@ -7811,7 +7784,7 @@ function lvLoeschen() {
   delete obj[idx].lv_pdf;
   delete obj[idx].lv_datum;
   delete obj[idx].lv_name;
-  saveAll();
+  safeSaveAll();
   lvRenderModal(obj[idx]);
   showAlert('LV gelöscht ✓', '#374151');
 }
