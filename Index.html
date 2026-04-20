@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager 2026 v93</title>
+<title>MitarbeiterManager 2026 v101</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>:root{--bg:#f4f6f9;--white:#fff;--s1:#f0f2f5;--s2:#e8ebf0;--border:#dde1e8;--border2:#c8cdd8;--acc:#1a56db;--acc-l:#eef2ff;--acc-h:#1447c0;--green:#057a55;--gbg:#ecfdf5;--gbd:#a7f3d0;--red:#c81e1e;--rbg:#fef2f2;--rbd:#fca5a5;--yellow:#92400e;--ybg:#fffbeb;--blue:#1a56db;--bbg:#eef2ff;--orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;--ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;--text:#111928;--text2:#374151;--muted:#6b7280;--muted2:#9ca3af;--r:8px;--r2:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);--sh2:0 4px 16px rgba(0,0,0,.12);--z-gantt-cell:2;--z-gantt-name:3;--z-gantt-head:5;--z-sticky-head:10;--z-bottom-nav:20;--z-header:30;--z-lock-banner:40;--z-modal-bg:50;--z-modal:60;--z-dropdown:9999;--z-alert:80;--z-login:90}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}header{background:#1e4fc2;border-bottom:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:var(--z-header);gap:12px;height:58px;box-shadow:0 2px 8px rgba(0,0,0,.18)}.logo{display:flex;align-items:center;gap:10px}.logo-mark{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px}.logo-text{font-weight:600;font-size:15px;color:#fff}.logo-sub{font-size:11px;color:rgba(255,255,255,.55)}.hstats{display:flex;gap:4px;flex-wrap:wrap}.hstat{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:5px 12px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.08);font-family:inherit;font-size:inherit;text-align:left}.hstat:hover,.hstat.fa{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}.hv{font-weight:600;font-size:15px;line-height:1;color:#fff}.hl{font-size:11px;color:rgba(255,255,255,.55)}.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.9}.olb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace}.ol-M{background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe}.ol-I{background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc}.tabs{background:var(--white);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;gap:4px;flex-wrap:wrap}.tab{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-radius:var(--r);border:1px solid transparent;transition:all .15s;white-space:nowrap}.tab.active{background:#1e4fc2;color:#fff;border-color:#1e4fc2;font-weight:600}.tab.admin-tab{color:#7c3aed}.tab.admin-tab.active{background:#7c3aed;border-color:#7c3aed;color:#fff}.tab:hover:not(.active){background:var(--s1);border-color:var(--border);color:var(--text)}main{padding:20px 24px;max-width:1800px;margin:0 auto}.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}.sw{position:relative;flex:1;min-width:180px}.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none}.sb{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px 8px 33px;color:var(--text);font-size:13px;font-family:inherit;outline:none;box-shadow:var(--sh)}.sb:focus{border-color:var(--acc)}.sb::placeholder{color:var(--muted2)}select.fsel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;cursor:pointer;box-shadow:var(--sh)}.btn{padding:8px 14px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;white-space:nowrap}.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-h)}.btn-s{background:var(--green);color:#fff}.btn-s:hover{background:#046c4e}.btn-o{background:var(--white);border:1px solid var(--border);color:var(--text2);box-shadow:var(--sh)}.btn-o:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.btn-d{background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;border:none;cursor:pointer}.btn-sm{padding:4px 9px;font-size:12px;border-radius:6px}.btn-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange);padding:4px 9px;font-size:12px;border-radius:6px;cursor:pointer;font-family:inherit}.btn-w:hover{background:#fed7aa}.btn-i{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .15s}.btn-i:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.tw{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}table{width:100%;border-collapse:collapse}thead{background:var(--s1)}th{padding:9px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}th:hover{color:var(--acc)}td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text2)}tr:last-child td{border-bottom:none}tr:hover td{background:#f8f9fc}td strong{color:var(--text)}code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border)}.actions{display:flex;gap:4px;align-items:center}.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.b-aktiv{background:var(--gbg);color:var(--green)}.b-krank{background:var(--ybg);color:var(--yellow)}.b-ausgeschieden{background:var(--s2);color:var(--muted)}.b-urlaub{background:var(--bbg);color:var(--blue)}.chips{display:flex;flex-wrap:wrap;gap:3px}.chip{font-size:11px;padding:2px 7px;border-radius:5px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.chip.m{border-color:#93c5fd;color:var(--blue);background:var(--bbg)}.rev-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;margin-bottom:10px}.rev-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rev-block-nr{font-size:11px;font-weight:700;color:var(--muted);background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:2px 8px;flex-shrink:0}.rev-block-name{flex:1;min-width:140px}.rev-block-ma{min-width:160px}.rev-block-sum{font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}.rev-block-del{margin-left:auto}.rev-wtbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}.rev-wtbl th{background:var(--s2);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border)}.rev-wtbl td{padding:5px 3px;text-align:center;border-right:1px solid var(--border)}.rev-wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:600;color:var(--acc);font-size:12px}.rev-wtbl input{width:52px;padding:4px 3px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none}.rev-wtbl input:focus{border-color:var(--acc)}.rev-empty-hint{text-align:center;color:var(--muted2);padding:20px;font-size:12px;border:1px dashed var(--border2);border-radius:var(--r);background:var(--white)}.rev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:var(--z-modal-bg);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.rev-modal-bg.open{opacity:1;pointer-events:all}.rev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,860px);max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column}.rev-modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}.rev-modal-title{font-weight:700;font-size:16px}.rev-modal-sub{font-size:12px;color:var(--muted);margin-top:2px}.rev-modal-body{padding:18px 22px}.rev-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}.rev-table th{background:var(--s1);padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}.rev-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}.rev-table tr:last-child td{border-bottom:none}.rev-table tr:hover td{background:#f8f9fc}.rev-inp{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;outline:none;background:var(--white);color:var(--text)}.rev-inp:focus{border-color:var(--acc)}.rev-inp.wide{width:100%}.rev-inp.mono{font-family:'IBM Plex Mono',monospace;text-align:center;width:70px}.rev-add-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px dashed var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;margin-top:8px;background:transparent}.rev-add-row:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.rev-kap-bar{height:5px;border-radius:3px;background:var(--s2);overflow:hidden;margin-top:3px}.rev-kap-fill{height:100%;border-radius:3px}.kal-wrap{margin-top:0}.kal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.kal-title{font-weight:600;font-size:13px;color:var(--text)}.kal-nav{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:13px;color:var(--text2);touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1)}.kal-nav:hover{border-color:var(--acc);color:var(--acc)}.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}.kal-wd{text-align:center;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;padding:3px 0}.kal-day{text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .12s;border:1px solid transparent;position:relative}.kal-day:hover:not(.kal-other){background:var(--s1);border-color:var(--border)}.kal-day.kal-other{color:var(--muted2);cursor:default;pointer-events:none}.kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}.kal-day.kal-feiertag{background:var(--rbg);border-color:var(--rbd);color:var(--red);font-weight:600}.kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-day.kal-krank{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}.kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}.kal-leg-item:hover{border-color:var(--acc)}.kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-leg-k.active{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}.kal-leg-clr:hover{border-color:var(--red);color:var(--red)}.kal-dot{width:9px;height:9px;border-radius:50%}.kal-summary{font-size:11px;color:var(--muted);margin-top:6px}.std-i{width:58px;padding:4px 5px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}.std-i:focus{border-color:var(--acc)}.std-i.over{border-color:var(--red);background:var(--rbg)}.std-i.ok{border-color:var(--green);background:var(--gbg)}.kbar{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:3px}.kfill{height:100%;border-radius:2px}.fok{background:var(--green)}.fwarn{background:#d97706}.fover{background:var(--red)}.pager{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;flex-wrap:wrap;gap:8px;background:var(--s1)}.pbtns{display:flex;gap:3px}.pbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit}.pbtn.active{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}.pbtn:hover:not(.active){border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mbg{display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}.mbg>.modal{overflow-y:auto;max-height:calc(100vh - 40px)}.mbg.open{display:flex}.modal{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px;width:100%;max-width:800px;animation:su .2s ease;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}.modal.sm{max-width:480px}.modal.md{max-width:600px}@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.mtitle{font-weight:600;font-size:19px;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px}.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg{display:flex;flex-direction:column;gap:5px}.fg.full{grid-column:1/-1}label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}input,select,textarea{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:all .2s;width:100%}input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.1)}.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;display:flex;align-items:center;gap:8px}.sh::after{content:'';flex:1;height:1px;background:var(--border)}.warn-t{color:var(--red);font-size:11px;margin-top:3px}.wtbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}.wtbl th{background:var(--s2);padding:7px 6px;font-size:11px;font-weight:600;text-align:center;color:var(--text2);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}.wtbl th:last-child{border-right:none;background:var(--acc-l);color:var(--acc)}.wtbl td{padding:5px 4px;text-align:center;border-right:1px solid var(--border);background:var(--white)}.wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace;font-size:14px}.wtbl td input{width:56px;padding:5px 3px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;border-radius:5px}.winfo{display:flex;align-items:center;justify-content:space-between;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:9px 14px;margin-top:8px}.wval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;color:var(--acc)}.wlbl{font-size:11px;color:var(--muted)}.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.ocard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh);transition:border-color .2s}.ocard:hover{border-color:var(--border2)}.ocard.eh{opacity:.72;border-style:dashed}.ocard-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}.ocard-n{font-weight:600;font-size:13px;line-height:1.3}.ocard-s{font-size:11px;color:var(--muted);margin-bottom:8px}.kbar-o{height:7px;border-radius:4px;background:var(--s2);overflow:hidden;margin-bottom:5px}.kbar-o-f{height:100%;border-radius:4px;transition:width .4s}.no-kap{font-size:11px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:6px}.ma-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}.ma-chip{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.eh-tag{font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--border)}.obj-editor{display:flex;flex-direction:column;gap:12px}.obj-row{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.obj-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.obj-nr{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.obj-basic{display:grid;grid-template-columns:2fr 1fr;gap:7px;margin-bottom:8px}.kap-hint{font-size:12px;padding:7px 11px;border-radius:6px;margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.kh-ok{background:var(--gbg);border:1px solid var(--gbd);color:var(--green)}.kh-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange)}.kh-o{background:var(--rbg);border:1px solid var(--rbd);color:var(--red)}.kh-n{background:var(--s1);border:1px solid var(--border);color:var(--muted)}.add-obj-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:var(--r);border:1px dashed var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;width:100%;margin-top:8px}.add-obj-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:2px}.mtab{padding:3px 9px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s;font-weight:500}.mtab.active{background:var(--white);color:var(--acc);font-weight:600;box-shadow:var(--sh)}.mtab.hd{color:var(--blue)}.mpanel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.mfields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}.srow{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px}.sinp{width:84px;padding:7px 9px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none}.sinp:focus{border-color:var(--acc)}.sinp.over{border-color:var(--red);background:var(--rbg)}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px;box-shadow:var(--sh)}.hsec{font-size:14px;font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:10px}.hsec .cnt{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:500;color:var(--muted)}.hemp{background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:26px;text-align:center;color:var(--green);font-size:14px}.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh)}.dcard h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;font-weight:600}.dbig{font-size:30px;font-weight:600;line-height:1}.dsub{font-size:12px;color:var(--muted);margin-top:4px}.kli{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}.kli:last-child{border-bottom:none}.klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}.sec{display:none}.sec.active{display:block}.empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
 .hstat:focus-visible,.kd-card-head:focus-visible,.kal-day:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
@@ -704,7 +704,7 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
 
@@ -712,7 +712,7 @@ main{padding:14px 16px}
 <div class="sec" id="tab-urlaub"><div id="urlaub-c"></div></div>
 <div class="sec" id="tab-dashboard"><div class="dgrid" id="dash-c"></div></div>
 <div class="sec" id="tab-minijob"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px"><div style="font-size:17px;font-weight:700;color:var(--text)">💼 Minijob-Übersicht</div><div style="font-size:12px;color:var(--muted)">Zeitjahr ab Eintrittsdatum · Krankheitsvertretungs-Ausnahme</div></div><div id="minijob-list"></div></div>
-<div class="sec" id="tab-admin"><div style="padding:24px"><div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div></div></div></div>
+<div class="sec" id="tab-admin"><div style="padding:24px"><div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -730,7 +730,7 @@ main{padding:14px 16px}
       <div id="datev-check-list"></div>
       <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">
         <button class="btn btn-o" onclick="closeDatevCheck()">Abbrechen</button>
-        <button class="btn btn-s" id="datev-export-btn" onclick="doDatevExport()">⬇ DATEV exportieren</button>
+        <button class="btn btn-o" id="datev-control-btn" onclick="exportDatevControlExcel()" title="Kontroll-Liste (Excel/CSV) für Menschen">📊 Kontroll-Liste</button><button class="btn btn-s" id="datev-export-btn" onclick="doDatevExport()">⬇ DATEV exportieren</button>
       </div>
     </div>
   </div>
@@ -7160,11 +7160,67 @@ function exportDatevLohnarten() {
     return true;
   };
 
-  // DATEV Monatserfassung – laut offizieller Schnittstellenbeschreibung (Dok. st9007223006235275):
-  // Felder: PersNr;Kalendertag;Ausfallschlüssel;Lohnart;Stundenanzahl;Tagesanzahl;Wert;AbwFaktor;AbwLV;KST;Kostenträger;Bemerkung
-  // Monatserfassung: Kalendertag+Ausfallschlüssel leer, Wert (Feld 7) gefüllt
+  // DATEV Monatserfassung - an die LOKALE ACS-Formatbeschreibung angepasst.
+  //
+  // FIX v99: Format auf 12 Felder erweitert mit Std/EUR-Unterscheidung.
+  // Grund: DATEV ACS-Formatbeschreibung wurde vom Anwender erweitert,
+  // sie enthaelt jetzt BEIDE Felder - Stundenanzahl (Spalte 5) UND Wert (Spalte 7).
+  //
+  // Belegung laut ACS-Formatbeschreibung (bestaetigt 20.04.2026):
+  //   Spalte 1  = Personalnummer
+  //   Spalte 2  = Kalendertag
+  //   Spalte 3  = Ausfallschluessel
+  //   Spalte 4  = Lohnartennummer
+  //   Spalte 5  = Stundenanzahl       <- fuer Std-Lohnarten
+  //   Spalte 6  = Tagesanzahl
+  //   Spalte 7  = Wert                <- fuer EUR-Lohnarten
+  //   Spalte 8  = abweichender Faktor
+  //   Spalte 9  = abweichende Lohnveraenderung
+  //   Spalte 10 = Kostenstellennummer
+  //   Spalte 11 = Kostentraeger
+  //   Spalte 12 = Bemerkung
+  //
+  // Lohnart-Typen (aus MM-Lohnarten-Liste + DATEV-Stammdaten):
+  //   Std (Wert in Spalte 5): 1000, 1102, 1650, 1651, 2003, 2004, 2199
+  //   EUR (Wert in Spalte 7): 1001, 2000, 2001, 2005, 2020, 2203, 2410, 2420,
+  //                           2956, 3300, 4061
+  //   Skip: 2206 (Verstetigter Aushilfslohn, Festbetrag in DATEV-Stammdaten)
+  //
+  // Beispielzeilen:
+  //   Std:  658;;;2199;15,50;;;;;30;;
+  //   EUR:  658;;;2005;;;112,50;;;30;;
+  // Header bleibt unveraendert: 0082851;00012;04/2026
+  //
+  // FIX v101: ALLE Werte (Std UND EUR) in Spalte 7 "Wert", Spalte 5 bleibt leer.
+  //
+  // Grund: DATEV interpretiert Spalte 5 "Stundenanzahl" als TAGESSTUNDEN
+  // (Kalendererfassung, max 24h pro Tag). Bei Monatserfassung (leerer Kalendertag)
+  // gehoert der Wert IMMER in Spalte 7 "Wert" - DATEV bestimmt anhand des
+  // Lohnart-Stammdatums selbst, ob Std oder EUR.
+  //
+  // Test-Verifikation (20.04.2026):
+  //   Fehler #LN01473 bei Werten > 24 in Spalte 5: "Tagesstunden zwischen 0 und 24".
+  //   Nach Verschiebung in Spalte 7: fehlerfreier Import.
+  //
+  // Beispiele:
+  //   Std: 107;;;1000;;;95,50;;;2;;    (Stunden -> Spalte 7)
+  //   EUR: 658;;;2005;;;112,50;;;30;;  (EUR-Betrag -> Spalte 7)
   function datevZeile(persnr, lohnart, wert, kst) {
-    return [persnr, '', '', lohnart, '', '', wert, '', kst].join(';');
+    // 12 Felder exakt nach lokaler ACS-Formatbeschreibung
+    return [
+      persnr,   //  1: Personalnummer
+      '',       //  2: Kalendertag (leer = Monatserfassung)
+      '',       //  3: Ausfallschluessel
+      lohnart,  //  4: Lohnartennummer
+      '',       //  5: Stundenanzahl (leer bei Monatserfassung)
+      '',       //  6: Tagesanzahl
+      wert,     //  7: Wert (IMMER hier - DATEV erkennt Std/EUR via Lohnart-Stammdatum)
+      '',       //  8: abweichender Faktor
+      '',       //  9: abweichende Lohnveraenderung
+      kst,      // 10: Kostenstellennummer
+      '',       // 11: Kostentraeger
+      ''        // 12: Bemerkung
+    ].join(';');
   }
 
   // Zeile 1: DATEV-Header – drei separate Felder: Beraternr;Mandantennr;MM/JJJJ
@@ -7182,28 +7238,57 @@ function exportDatevLohnarten() {
     // aber nie im Export verwendet). DATEV berechnet Geldbeträge selbst aus den
     // gelieferten Stundenzahlen, der Stundenlohn steht in DATEV-Stammdaten.
 
-    // KST: erste Kostenstelle aus Kunden-Stammdaten des MA
-    // DATEV-3: Klammern für eindeutige Operator-Reihenfolge
-    const ersteKunde = obj.find(x => (x.name === (m.objekte||[])[0]?.kunde) || (x.id === (m.objekte||[])[0]?.kundeId));
-    const kst = ersteKunde?.kostenstelle || '00';
+    // FIX v94: Kostenstelle PRO OBJEKT/KUNDE ermitteln (vorher: nur erste KST fuer alles)
+    // Pro (Lohnart, KST) wird eine eigene Export-Zeile erzeugt.
+    const _kstFuerObjekt = (o) => {
+      if (!o) return '00';
+      const k = obj.find(x => (x.id === o.kundeId) || (x.name === o.kunde));
+      return (k && k.kostenstelle) ? k.kostenstelle : '00';
+    };
+    const _kstFuerKundenRef = (ref) => {
+      if (!ref) return '00';
+      const k = obj.find(x => (x.id === ref) || (x.name === ref));
+      return (k && k.kostenstelle) ? k.kostenstelle : '00';
+    };
+    // Fallback-KST = erste Objekt-KST des MA (fuer Eintraege ohne Kunden-Bezug)
+    const _fallbackKst = _kstFuerObjekt((m.objekte||[])[0]) || '00';
+
+    // FIX v94: Verstetigungs-Flag (festes Monatsgehalt)
+    const istVerstetigt = !!m.verstetigt;
 
     las.forEach(la => {
       const laKey = la.trim();
-      let std = 0;
+      // FIX v96: Lohnart 2206 (Verstetigter Aushilfslohn) NIEMALS per Bewegungsdaten exportieren.
+      // DATEV hat den Monatsbetrag als Festbetrag in den Stammdaten hinterlegt.
+      // Zuvor: Stunden landeten im EUR-Feld -> "Wert nicht erfasst" Fehler im DATEV-Protokoll.
+      if (laKey === '2206') return;
+      // Map<kst, stunden> – spaeter pro Eintrag eine Zeile
+      const kstMap = new Map();
+      const add = (kst, h) => {
+        if (!(h > 0)) return;
+        const key = kst || '00';
+        kstMap.set(key, (kstMap.get(key) || 0) + h);
+      };
 
       if (laKey === '2199') {
-        // FIX v90: Filter konsistent zu calcMonatLohn/maLG – auch ohne maId-Zuordnung
-        std = (md.sonderstunden||[])
+        // FIX v94: Sonderstunden pro Kunden-KST gruppieren (vorher: alles auf 1. KST)
+        // Filter konsistent zu calcMonatLohn/maLG – auch ohne maId-Zuordnung zaehlen
+        (md.sonderstunden||[])
           .filter(e => e.maId === m.id || !e.maId)
-          .reduce((s,e) => s + (parseFloat(e.stunden)||0), 0);
-        std = r2(std);
+          .forEach(e => {
+            const h = parseFloat(e.stunden) || 0;
+            if (h <= 0) return;
+            const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
+            add(kst, h);
+          });
       } else if (laKey.startsWith('2003')) {
-        // 2003 = Feiertagslohn: Stunden an echten Feiertagen
-        // 14-Tage-Fix: Nur Stunden zählen, wenn der Feiertag in einen echten Einsatzblock fällt
+        // 2003 = Feiertagslohn: Stunden an echten Feiertagen, pro Objekt-KST getrennt
+        // 14-Tage-Fix: Nur Stunden zaehlen, wenn Feiertag in echten Einsatzblock faellt
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
+          const kstO = _kstFuerObjekt(o);
+          let hO = 0;
           if (o.modell === '14tage' && o.rhythmus_start) {
-            // Nur Feiertage zählen, die in einen 14-Tage-Einsatzblock fallen
             const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
             const einsatzDaten = new Set();
             const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
@@ -7222,27 +7307,27 @@ function exportDatevLohnarten() {
               if (einsatzDaten.has(ftDate)) {
                 const dow = new Date(ftDate).getDay();
                 const wtKey = WT_IDX_14[dow];
-                std += parseFloat(wt[wtKey]) || 0;
+                hO += parseFloat(wt[wtKey]) || 0;
               }
             });
           } else {
-            // Normaler Rhythmus: alle Feiertage nach Wochentag
-            // FIX v90: nur wenn MA an dem Tag anwesend war (nicht Urlaub/krank/vor Eintritt/nach Austritt)
+            // Normaler Rhythmus: Feiertage nach Wochentag, nur wenn MA anwesend
             const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
             feiertage.forEach(ftDate => {
               if (!_maAnwesendAm(m, ftDate)) return;
               const dow = new Date(ftDate).getDay();
               const wtKey = WT_IDX_N[dow];
-              std += parseFloat(wt[wtKey]) || 0;
+              hO += parseFloat(wt[wtKey]) || 0;
             });
           }
+          add(kstO, hO);
         });
-        std = r2(std);
       } else if (laKey.startsWith('2004')) {
-        // 2004 = Feiertagszuschlag: NUR Stunden exportieren (DATEV berechnet Geldbetrag selbst)
-        // 14-Tage-Fix: Nur Feiertage zählen, die in einen echten 14-Tage-Einsatzblock fallen
+        // 2004 = Feiertagszuschlag: NUR Stunden exportieren, pro Objekt-KST getrennt
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
+          const kstO = _kstFuerObjekt(o);
+          let hO = 0;
           if (o.modell === '14tage' && o.rhythmus_start) {
             const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
             const einsatzDaten = new Set();
@@ -7262,30 +7347,29 @@ function exportDatevLohnarten() {
               if (einsatzDaten.has(ftDate)) {
                 const dow = new Date(ftDate).getDay();
                 const wtKey = WT_IDX_14[dow];
-                std += parseFloat(wt[wtKey]) || 0;
+                hO += parseFloat(wt[wtKey]) || 0;
               }
             });
           } else {
-            // FIX v90: Anwesenheit prüfen
             const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
             feiertage.forEach(ftDate => {
               if (!_maAnwesendAm(m, ftDate)) return;
               const dow = new Date(ftDate).getDay();
               const wtKey = WT_IDX_N[dow];
-              std += parseFloat(wt[wtKey]) || 0;
+              hO += parseFloat(wt[wtKey]) || 0;
             });
           }
+          add(kstO, hO);
         });
-        std = r2(std);
       } else if (laKey.startsWith('2005')) {
-        // 2005 = Sonntagszuschlag: NUR Stunden exportieren (DATEV berechnet Geldbetrag selbst)
-        // 14-Tage-Fix: Nur Sonntage zählen, die in einen echten 14-Tage-Einsatzblock fallen
+        // 2005 = Sonntagszuschlag: NUR Stunden, pro Objekt-KST getrennt
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
           const stdSoWT = parseFloat(wt?.So) || 0;
           if (stdSoWT <= 0) return;
+          const kstO = _kstFuerObjekt(o);
+          let hO = 0;
           if (o.modell === '14tage' && o.rhythmus_start) {
-            // Nur Sonntage zählen, die tatsächlich Einsatztage sind
             const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
             const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
             const [_y14s,_m14s] = monat.split('-').map(Number);
@@ -7296,27 +7380,37 @@ function exportDatevLohnarten() {
                 const wtKey = WT_IDX_14[dt.getDay()];
                 const s14 = parseFloat(wt[wtKey]) || 0;
                 if (s14 > 0) {
-                  if (dt.getDay() === 0 && !feiertage.has(dt.toISOString().slice(0,10))) std += s14;
+                  if (dt.getDay() === 0 && !feiertage.has(dt.toISOString().slice(0,10))) hO += s14;
                 } else if (offset > 0) break;
               }
             });
           } else {
-            // FIX v90: pro Sonntag prüfen, ob MA anwesend war (vorher pauschal stdSoWT * anzSonntage)
             sonntageOhneFT.forEach(soDate => {
-              if (_maAnwesendAm(m, soDate)) std += stdSoWT;
+              if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
             });
           }
+          add(kstO, hO);
         });
-        std = r2(std);
       } else {
-        // 2206 + alle anderen = Soll-Monatsstunden über alle Objekte
-        std = r2((m.objekte||[]).reduce((s,o) => s + maOSollMA(m, o, monat, m.abrechnungsmodell||'arbeitstage'), 0));
+        // 2206 + alle anderen = Soll-Monatsstunden pro Objekt-KST
+        // FIX v94: Bei Verstetigten KEINE Soll-Stunden exportieren (sind im Festgehalt enthalten).
+        // Extras (SS 2199 / Zuschlaege 2003-2005) werden weiterhin exportiert.
+        if (istVerstetigt) return; // naechste Lohnart
+        const abr = m.abrechnungsmodell || 'arbeitstage';
+        (m.objekte||[]).forEach(o => {
+          const hO = maOSollMA(m, o, monat, abr);
+          if (hO > 0) add(_kstFuerObjekt(o), hO);
+        });
       }
 
-      if (std <= 0) return;
-
-      // FIX v90: Stundenangabe immer mit 2 Nachkommastellen (DATEV-Konvention)
-      rows.push(datevZeile(m.persnr||'', laKey, std.toFixed(2).replace('.',','), kst));
+      // FIX v94: Pro (Lohnart, KST) eine eigene Zeile – sortiert fuer reproduzierbare Ausgabe
+      const kstKeys = Array.from(kstMap.keys()).sort();
+      kstKeys.forEach(kst => {
+        const std = r2(kstMap.get(kst) || 0);
+        if (std <= 0) return;
+        // Stundenangabe immer mit 2 Nachkommastellen (DATEV-Konvention, FIX v90)
+        rows.push(datevZeile(m.persnr||'', laKey, std.toFixed(2).replace('.',','), kst));
+      });
     });
   });
 
@@ -7324,6 +7418,342 @@ function exportDatevLohnarten() {
   let msg = (rows.length-1) + ' Buchungszeilen exportiert \u2713';
   if (ohneLA.length) msg += '\n\n\u26a0 ' + ohneLA.length + ' MA ohne Lohnart (nicht exportiert):\n' + ohneLA.slice(0,10).join(', ') + (ohneLA.length>10?'\u2026':'');
   showAlert(msg);
+}
+
+// ── FIX v95: DATEV-KONTROLL-EXPORT (Excel/CSV fuer Mensch) ─────────────────
+// Laeuft parallel zur DATEV-Logik (exportDatevLohnarten), nutzt dieselben
+// Regeln (Verstetigt ohne 2206, SS in 2199, pro Kostenstelle gruppiert),
+// schreibt aber eine fuer Menschen lesbare Tabelle mit Klartext-Namen.
+// Klartext-Mapping fuer die in MM verwendeten Lohnarten.
+const _LA_LABELS = {
+  '2003': 'Feiertagslohn',
+  '2004': 'Feiertagszuschlag',
+  '2005': 'Sonntagszuschlag',
+  '2006': 'Nachtzuschlag',
+  '2199': 'Sonderstunden / Mehrarbeit',
+  '2200': 'Mehrarbeitsstunden',
+  '2206': 'Monatslohn (Soll-Stunden)',
+  '2207': 'Monatslohn (Fix)',
+};
+function _laLabel(code) {
+  const c = String(code||'').trim();
+  if (_LA_LABELS[c]) return _LA_LABELS[c];
+  // Prefix-Match (falls z.B. '2003A' genutzt wird)
+  const pref = c.slice(0,4);
+  return _LA_LABELS[pref] || '(unbekannt)';
+}
+
+function _buildDatevControlRows() {
+  // Liefert die flache Zeilen-Liste identisch zur DATEV-Export-Logik,
+  // aber mit Klartext-Feldern fuer Kontrolle.
+  const monat = getAM();
+  const feiertage = new Set(getFeiertageImMonat(monat));
+  const alleSonntage = getWochentageImMonat(monat, 'So');
+  const sonntageOhneFT = alleSonntage.filter(d => !feiertage.has(d));
+  const r2 = v => Math.round(v*100)/100;
+  const _maAnwesendAm = (m, isoDatum) => {
+    if (m.eintrittsdatum && isoDatum < m.eintrittsdatum) return false;
+    if (m.austrittsdatum && isoDatum > m.austrittsdatum) return false;
+    const abw = (m.abwesenheiten||{})[isoDatum];
+    if (abw === 'urlaub' || abw === 'krank' || abw === 'unbezahlt') return false;
+    return true;
+  };
+
+  const out = []; // {persnr, name, verstetigt, kst, kundeName, laCode, laLabel, stunden, stundenlohn, betrag, notiz}
+  const data = ma.filter(m => m.status !== 'Ausgeschieden');
+
+  data.forEach(m => {
+    const md = (m.monats_daten||{})[monat]||{};
+    const las = m.datev_lohnarten || [];
+    if (!las.length) return;
+
+    const _kstFuerObjekt = (o) => {
+      if (!o) return '00';
+      const k = obj.find(x => (x.id === o.kundeId) || (x.name === o.kunde));
+      return (k && k.kostenstelle) ? k.kostenstelle : '00';
+    };
+    const _kundeFuerObjekt = (o) => {
+      if (!o) return '';
+      const k = obj.find(x => (x.id === o.kundeId) || (x.name === o.kunde));
+      return k ? (k.name || '') : (o.kunde || '');
+    };
+    const _kstFuerKundenRef = (ref) => {
+      if (!ref) return '00';
+      const k = obj.find(x => (x.id === ref) || (x.name === ref));
+      return (k && k.kostenstelle) ? k.kostenstelle : '00';
+    };
+    const _kundeNameFuerRef = (ref) => {
+      if (!ref) return '';
+      const k = obj.find(x => (x.id === ref) || (x.name === ref));
+      return k ? (k.name || '') : String(ref);
+    };
+    const _fallbackKst = _kstFuerObjekt((m.objekte||[])[0]) || '00';
+    const _fallbackKunde = _kundeFuerObjekt((m.objekte||[])[0]) || '';
+    const istVerstetigt = !!m.verstetigt;
+
+    // Stundenlohn fuer Betrags-Schaetzung (identisch zu calcMonatLohn-Basis)
+    const slDefault = parseFloat(m.stundenlohn_tarif)
+      || (window.TARIFLOHN && TARIFLOHN[m.lohngruppe||'']?.lohn)
+      || 0;
+
+    // Pro Objekt: Stundenlohn (falls objekt-spezifisch)
+    const _slFuerObjekt = (o) => {
+      if (!o) return slDefault;
+      return parseFloat(o.stundenlohn) || slDefault;
+    };
+
+    las.forEach(la => {
+      const laCode = la.trim();
+      // Map<kst, {stunden, kundeName, kunden:Set, slSum, slCount, notizen:Set}>
+      const bucket = new Map();
+      const addBucket = (kst, kundeName, h, sl, notiz) => {
+        if (!(h > 0)) return;
+        const key = kst || '00';
+        if (!bucket.has(key)) {
+          bucket.set(key, { stunden:0, kunden:new Set(), slSum:0, slCount:0, notizen:new Set() });
+        }
+        const b = bucket.get(key);
+        b.stunden += h;
+        if (kundeName) b.kunden.add(kundeName);
+        if (sl > 0) { b.slSum += sl * h; b.slCount += h; } // gewichteter Stundenlohn
+        if (notiz) b.notizen.add(notiz);
+      };
+
+      if (laCode === '2199') {
+        (md.sonderstunden||[])
+          .filter(e => e.maId === m.id || !e.maId)
+          .forEach(e => {
+            const h = parseFloat(e.stunden) || 0;
+            if (h <= 0) return;
+            const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
+            const kn  = e.kunde ? _kundeNameFuerRef(e.kunde) : _fallbackKunde;
+            addBucket(kst, kn, h, slDefault, e.notiz||'');
+          });
+      } else if (laCode.startsWith('2003') || laCode.startsWith('2004') || laCode.startsWith('2005')) {
+        (m.objekte||[]).forEach(o => {
+          const wt = o.wochentage || {};
+          const kstO = _kstFuerObjekt(o);
+          const knO  = _kundeFuerObjekt(o);
+          const slO  = _slFuerObjekt(o);
+          let hO = 0;
+
+          if (laCode.startsWith('2005')) {
+            const stdSoWT = parseFloat(wt?.So) || 0;
+            if (stdSoWT <= 0) return;
+            if (o.modell === '14tage' && o.rhythmus_start) {
+              const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
+              const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+              const [_y,_mo] = monat.split('-').map(Number);
+              ankertage.forEach(anker => {
+                for (let offset = 0; offset < 14; offset++) {
+                  const dt = new Date(anker.getTime() + offset * 86400000);
+                  if (dt.getMonth() !== _mo - 1) break;
+                  const wtKey = WT_IDX_14[dt.getDay()];
+                  const s14 = parseFloat(wt[wtKey]) || 0;
+                  if (s14 > 0) {
+                    if (dt.getDay() === 0 && !feiertage.has(dt.toISOString().slice(0,10))) hO += s14;
+                  } else if (offset > 0) break;
+                }
+              });
+            } else {
+              sonntageOhneFT.forEach(soDate => {
+                if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
+              });
+            }
+          } else {
+            // 2003 / 2004: Feiertagsstunden
+            if (o.modell === '14tage' && o.rhythmus_start) {
+              const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
+              const einsatzDaten = new Set();
+              const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+              const [_y,_mo] = monat.split('-').map(Number);
+              ankertage.forEach(anker => {
+                for (let offset = 0; offset < 14; offset++) {
+                  const dt = new Date(anker.getTime() + offset * 86400000);
+                  if (dt.getMonth() !== _mo - 1) break;
+                  const wtKey = WT_IDX_14[dt.getDay()];
+                  if ((parseFloat(wt[wtKey]) || 0) > 0) {
+                    einsatzDaten.add(dt.toISOString().slice(0,10));
+                  } else if (offset > 0) break;
+                }
+              });
+              feiertage.forEach(ftDate => {
+                if (einsatzDaten.has(ftDate)) {
+                  const dow = new Date(ftDate).getDay();
+                  const wtKey = WT_IDX_14[dow];
+                  hO += parseFloat(wt[wtKey]) || 0;
+                }
+              });
+            } else {
+              const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+              feiertage.forEach(ftDate => {
+                if (!_maAnwesendAm(m, ftDate)) return;
+                const dow = new Date(ftDate).getDay();
+                const wtKey = WT_IDX_N[dow];
+                hO += parseFloat(wt[wtKey]) || 0;
+              });
+            }
+          }
+          if (hO > 0) addBucket(kstO, knO, hO, slO, '');
+        });
+      } else {
+        // 2206 + alle anderen = Soll-Stunden
+        if (istVerstetigt) return;
+        const abr = m.abrechnungsmodell || 'arbeitstage';
+        (m.objekte||[]).forEach(o => {
+          const hO = maOSollMA(m, o, monat, abr);
+          if (hO > 0) addBucket(_kstFuerObjekt(o), _kundeFuerObjekt(o), hO, _slFuerObjekt(o), '');
+        });
+      }
+
+      // Bucket -> Zeilen
+      const kstKeys = Array.from(bucket.keys()).sort();
+      kstKeys.forEach(kst => {
+        const b = bucket.get(kst);
+        const stunden = r2(b.stunden);
+        if (stunden <= 0) return;
+        const slAvg = b.slCount > 0 ? r2(b.slSum / b.slCount) : 0;
+        // Betrag nur bei reinen Lohn-Arten (2199, 2206) – Zuschlaege (2003-2005)
+        // werden in DATEV auf Basis des Tarifs berechnet, kein einfacher h*sl-Wert.
+        const istZuschlag = laCode.startsWith('2003') || laCode.startsWith('2004') || laCode.startsWith('2005');
+        const betrag = istZuschlag ? 0 : r2(stunden * slAvg);
+
+        out.push({
+          persnr: m.persnr || '',
+          nachname: m.nachname || '',
+          vorname: m.vorname || '',
+          verstetigt: istVerstetigt,
+          kst: kst,
+          kunde: Array.from(b.kunden).join(' / '),
+          laCode: laCode,
+          laLabel: _laLabel(laCode),
+          stunden: stunden,
+          stundenlohn: slAvg,
+          betrag: betrag,
+          notiz: Array.from(b.notizen).join(' | ')
+        });
+      });
+    });
+  });
+  return out;
+}
+
+function exportDatevControlExcel() {
+  const monat = getAM();
+  const monatLabel = (typeof getAMLabel === 'function') ? getAMLabel() : monat;
+  const fileBase = 'DATEV_Kontrolle_' + monat;
+
+  const ctrlRows = _buildDatevControlRows();
+  if (!ctrlRows.length) {
+    showAlert('Keine Daten fuer Kontroll-Liste vorhanden.', '#f59e0b');
+    return;
+  }
+
+  // Header-Zeilen fuer Excel
+  const header = [
+    'Pers-Nr', 'Mitarbeiter', 'Verstetigt?',
+    'Kostenstelle', 'Kunde', 'Lohnart-Code', 'Lohnart',
+    'Stunden', 'Stundenlohn (EUR)', 'Betrag (EUR)', 'Notiz'
+  ];
+
+  // Zwischensummen pro MA + Gesamtsumme
+  const aoa = [];
+  aoa.push(['DATEV Kontroll-Liste – ' + monatLabel]);
+  aoa.push(['Erzeugt am: ' + new Date().toLocaleString('de-DE')]);
+  aoa.push([]);
+  aoa.push(header);
+
+  let gesStd = 0, gesBetrag = 0;
+  let curPersnr = null, maStd = 0, maBetrag = 0, maName = '';
+
+  const flushMA = () => {
+    if (curPersnr !== null) {
+      aoa.push([
+        '', 'Σ ' + maName, '', '', '', '', 'Zwischensumme',
+        Math.round(maStd*100)/100, '', Math.round(maBetrag*100)/100, ''
+      ]);
+      aoa.push([]); // Trennzeile
+    }
+    maStd = 0; maBetrag = 0;
+  };
+
+  ctrlRows.forEach(r => {
+    const name = (r.nachname + (r.vorname?', '+r.vorname:'')).trim();
+    if (curPersnr !== null && r.persnr !== curPersnr) flushMA();
+    curPersnr = r.persnr;
+    maName = name || ('Pers.Nr. ' + r.persnr);
+    aoa.push([
+      r.persnr,
+      name,
+      r.verstetigt ? 'Ja' : 'Nein',
+      r.kst,
+      r.kunde,
+      r.laCode,
+      r.laLabel,
+      r.stunden,
+      r.stundenlohn || '',
+      r.betrag || '',
+      r.notiz || ''
+    ]);
+    maStd += r.stunden;
+    maBetrag += r.betrag;
+    gesStd += r.stunden;
+    gesBetrag += r.betrag;
+  });
+  flushMA();
+
+  aoa.push([
+    '', '', '', '', '', '', 'GESAMT',
+    Math.round(gesStd*100)/100, '', Math.round(gesBetrag*100)/100, ''
+  ]);
+
+  // Erst XLSX probieren, bei Fehler/Timeout CSV-Fallback
+  let done = false;
+  const csvFallback = (reason) => {
+    if (done) return; done = true;
+    const sep = ';';
+    const esc = v => {
+      if (v === null || v === undefined) return '';
+      const s = String(v).replace(/"/g,'""');
+      return /[;"\r\n]/.test(s) ? '"' + s + '"' : s;
+    };
+    const csv = aoa.map(row => row.map(esc).join(sep)).join('\r\n');
+    dl('\uFEFF' + csv, fileBase + '.csv', 'text/csv;charset=utf-8');
+    showAlert('Kontroll-Liste als CSV exportiert \u2713' + (reason ? ' ('+reason+')' : ''));
+  };
+
+  // Timeout 5s – falls SheetJS nicht laedt
+  const tm = setTimeout(() => csvFallback('SheetJS Timeout'), 5000);
+
+  try {
+    _loadSheetJS(() => {
+      clearTimeout(tm);
+      if (done) return;
+      try {
+        const ws = XLSX.utils.aoa_to_sheet(aoa);
+        ws['!cols'] = [
+          {wch:10}, {wch:26}, {wch:10},
+          {wch:12}, {wch:22}, {wch:11}, {wch:26},
+          {wch:10}, {wch:14}, {wch:14}, {wch:30}
+        ];
+        // Titel-Zeile (A1) verschmelzen ueber alle Spalten
+        ws['!merges'] = [
+          { s:{r:0,c:0}, e:{r:0,c:10} },
+          { s:{r:1,c:0}, e:{r:1,c:10} }
+        ];
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Kontrolle');
+        XLSX.writeFile(wb, fileBase + '.xlsx');
+        done = true;
+        showAlert('Kontroll-Liste als Excel exportiert \u2713');
+      } catch(err) {
+        csvFallback(err.message);
+      }
+    });
+  } catch(err) {
+    clearTimeout(tm);
+    csvFallback(err.message);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
