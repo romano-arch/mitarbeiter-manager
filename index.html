@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager 2026 v101</title>
+<title>MitarbeiterManager 2026 v106</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>:root{--bg:#f4f6f9;--white:#fff;--s1:#f0f2f5;--s2:#e8ebf0;--border:#dde1e8;--border2:#c8cdd8;--acc:#1a56db;--acc-l:#eef2ff;--acc-h:#1447c0;--green:#057a55;--gbg:#ecfdf5;--gbd:#a7f3d0;--red:#c81e1e;--rbg:#fef2f2;--rbd:#fca5a5;--yellow:#92400e;--ybg:#fffbeb;--blue:#1a56db;--bbg:#eef2ff;--orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;--ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;--text:#111928;--text2:#374151;--muted:#6b7280;--muted2:#9ca3af;--r:8px;--r2:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);--sh2:0 4px 16px rgba(0,0,0,.12);--z-gantt-cell:2;--z-gantt-name:3;--z-gantt-head:5;--z-sticky-head:10;--z-bottom-nav:20;--z-header:30;--z-lock-banner:40;--z-modal-bg:50;--z-modal:60;--z-dropdown:9999;--z-alert:80;--z-login:90}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}header{background:#1e4fc2;border-bottom:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:var(--z-header);gap:12px;height:58px;box-shadow:0 2px 8px rgba(0,0,0,.18)}.logo{display:flex;align-items:center;gap:10px}.logo-mark{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px}.logo-text{font-weight:600;font-size:15px;color:#fff}.logo-sub{font-size:11px;color:rgba(255,255,255,.55)}.hstats{display:flex;gap:4px;flex-wrap:wrap}.hstat{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:5px 12px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.08);font-family:inherit;font-size:inherit;text-align:left}.hstat:hover,.hstat.fa{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}.hv{font-weight:600;font-size:15px;line-height:1;color:#fff}.hl{font-size:11px;color:rgba(255,255,255,.55)}.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.9}.olb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace}.ol-M{background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe}.ol-I{background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc}.tabs{background:var(--white);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;gap:4px;flex-wrap:wrap}.tab{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-radius:var(--r);border:1px solid transparent;transition:all .15s;white-space:nowrap}.tab.active{background:#1e4fc2;color:#fff;border-color:#1e4fc2;font-weight:600}.tab.admin-tab{color:#7c3aed}.tab.admin-tab.active{background:#7c3aed;border-color:#7c3aed;color:#fff}.tab:hover:not(.active){background:var(--s1);border-color:var(--border);color:var(--text)}main{padding:20px 24px;max-width:1800px;margin:0 auto}.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}.sw{position:relative;flex:1;min-width:180px}.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none}.sb{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px 8px 33px;color:var(--text);font-size:13px;font-family:inherit;outline:none;box-shadow:var(--sh)}.sb:focus{border-color:var(--acc)}.sb::placeholder{color:var(--muted2)}select.fsel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;cursor:pointer;box-shadow:var(--sh)}.btn{padding:8px 14px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;white-space:nowrap}.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-h)}.btn-s{background:var(--green);color:#fff}.btn-s:hover{background:#046c4e}.btn-o{background:var(--white);border:1px solid var(--border);color:var(--text2);box-shadow:var(--sh)}.btn-o:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.btn-d{background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;border:none;cursor:pointer}.btn-sm{padding:4px 9px;font-size:12px;border-radius:6px}.btn-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange);padding:4px 9px;font-size:12px;border-radius:6px;cursor:pointer;font-family:inherit}.btn-w:hover{background:#fed7aa}.btn-i{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .15s}.btn-i:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.tw{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}table{width:100%;border-collapse:collapse}thead{background:var(--s1)}th{padding:9px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}th:hover{color:var(--acc)}td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text2)}tr:last-child td{border-bottom:none}tr:hover td{background:#f8f9fc}td strong{color:var(--text)}code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border)}.actions{display:flex;gap:4px;align-items:center}.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.b-aktiv{background:var(--gbg);color:var(--green)}.b-krank{background:var(--ybg);color:var(--yellow)}.b-ausgeschieden{background:var(--s2);color:var(--muted)}.b-urlaub{background:var(--bbg);color:var(--blue)}.chips{display:flex;flex-wrap:wrap;gap:3px}.chip{font-size:11px;padding:2px 7px;border-radius:5px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.chip.m{border-color:#93c5fd;color:var(--blue);background:var(--bbg)}.rev-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;margin-bottom:10px}.rev-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rev-block-nr{font-size:11px;font-weight:700;color:var(--muted);background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:2px 8px;flex-shrink:0}.rev-block-name{flex:1;min-width:140px}.rev-block-ma{min-width:160px}.rev-block-sum{font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}.rev-block-del{margin-left:auto}.rev-wtbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}.rev-wtbl th{background:var(--s2);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border)}.rev-wtbl td{padding:5px 3px;text-align:center;border-right:1px solid var(--border)}.rev-wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:600;color:var(--acc);font-size:12px}.rev-wtbl input{width:52px;padding:4px 3px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none}.rev-wtbl input:focus{border-color:var(--acc)}.rev-empty-hint{text-align:center;color:var(--muted2);padding:20px;font-size:12px;border:1px dashed var(--border2);border-radius:var(--r);background:var(--white)}.rev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:var(--z-modal-bg);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.rev-modal-bg.open{opacity:1;pointer-events:all}.rev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,860px);max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column}.rev-modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}.rev-modal-title{font-weight:700;font-size:16px}.rev-modal-sub{font-size:12px;color:var(--muted);margin-top:2px}.rev-modal-body{padding:18px 22px}.rev-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}.rev-table th{background:var(--s1);padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}.rev-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}.rev-table tr:last-child td{border-bottom:none}.rev-table tr:hover td{background:#f8f9fc}.rev-inp{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;outline:none;background:var(--white);color:var(--text)}.rev-inp:focus{border-color:var(--acc)}.rev-inp.wide{width:100%}.rev-inp.mono{font-family:'IBM Plex Mono',monospace;text-align:center;width:70px}.rev-add-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px dashed var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;margin-top:8px;background:transparent}.rev-add-row:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.rev-kap-bar{height:5px;border-radius:3px;background:var(--s2);overflow:hidden;margin-top:3px}.rev-kap-fill{height:100%;border-radius:3px}.kal-wrap{margin-top:0}.kal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.kal-title{font-weight:600;font-size:13px;color:var(--text)}.kal-nav{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:13px;color:var(--text2);touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1)}.kal-nav:hover{border-color:var(--acc);color:var(--acc)}.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}.kal-wd{text-align:center;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;padding:3px 0}.kal-day{text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .12s;border:1px solid transparent;position:relative}.kal-day:hover:not(.kal-other){background:var(--s1);border-color:var(--border)}.kal-day.kal-other{color:var(--muted2);cursor:default;pointer-events:none}.kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}.kal-day.kal-feiertag{background:var(--rbg);border-color:var(--rbd);color:var(--red);font-weight:600}.kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-day.kal-krank{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}.kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}.kal-leg-item:hover{border-color:var(--acc)}.kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-leg-k.active{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}.kal-leg-clr:hover{border-color:var(--red);color:var(--red)}.kal-dot{width:9px;height:9px;border-radius:50%}.kal-summary{font-size:11px;color:var(--muted);margin-top:6px}.std-i{width:58px;padding:4px 5px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}.std-i:focus{border-color:var(--acc)}.std-i.over{border-color:var(--red);background:var(--rbg)}.std-i.ok{border-color:var(--green);background:var(--gbg)}.kbar{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:3px}.kfill{height:100%;border-radius:2px}.fok{background:var(--green)}.fwarn{background:#d97706}.fover{background:var(--red)}.pager{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;flex-wrap:wrap;gap:8px;background:var(--s1)}.pbtns{display:flex;gap:3px}.pbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit}.pbtn.active{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}.pbtn:hover:not(.active){border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mbg{display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}.mbg>.modal{overflow-y:auto;max-height:calc(100vh - 40px)}.mbg.open{display:flex}.modal{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px;width:100%;max-width:800px;animation:su .2s ease;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}.modal.sm{max-width:480px}.modal.md{max-width:600px}@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.mtitle{font-weight:600;font-size:19px;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px}.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg{display:flex;flex-direction:column;gap:5px}.fg.full{grid-column:1/-1}label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}input,select,textarea{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:all .2s;width:100%}input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.1)}.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;display:flex;align-items:center;gap:8px}.sh::after{content:'';flex:1;height:1px;background:var(--border)}.warn-t{color:var(--red);font-size:11px;margin-top:3px}.wtbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}.wtbl th{background:var(--s2);padding:7px 6px;font-size:11px;font-weight:600;text-align:center;color:var(--text2);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}.wtbl th:last-child{border-right:none;background:var(--acc-l);color:var(--acc)}.wtbl td{padding:5px 4px;text-align:center;border-right:1px solid var(--border);background:var(--white)}.wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace;font-size:14px}.wtbl td input{width:56px;padding:5px 3px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;border-radius:5px}.winfo{display:flex;align-items:center;justify-content:space-between;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:9px 14px;margin-top:8px}.wval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;color:var(--acc)}.wlbl{font-size:11px;color:var(--muted)}.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.ocard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh);transition:border-color .2s}.ocard:hover{border-color:var(--border2)}.ocard.eh{opacity:.72;border-style:dashed}.ocard-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}.ocard-n{font-weight:600;font-size:13px;line-height:1.3}.ocard-s{font-size:11px;color:var(--muted);margin-bottom:8px}.kbar-o{height:7px;border-radius:4px;background:var(--s2);overflow:hidden;margin-bottom:5px}.kbar-o-f{height:100%;border-radius:4px;transition:width .4s}.no-kap{font-size:11px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:6px}.ma-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}.ma-chip{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.eh-tag{font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--border)}.obj-editor{display:flex;flex-direction:column;gap:12px}.obj-row{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.obj-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.obj-nr{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.obj-basic{display:grid;grid-template-columns:2fr 1fr;gap:7px;margin-bottom:8px}.kap-hint{font-size:12px;padding:7px 11px;border-radius:6px;margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.kh-ok{background:var(--gbg);border:1px solid var(--gbd);color:var(--green)}.kh-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange)}.kh-o{background:var(--rbg);border:1px solid var(--rbd);color:var(--red)}.kh-n{background:var(--s1);border:1px solid var(--border);color:var(--muted)}.add-obj-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:var(--r);border:1px dashed var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;width:100%;margin-top:8px}.add-obj-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:2px}.mtab{padding:3px 9px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s;font-weight:500}.mtab.active{background:var(--white);color:var(--acc);font-weight:600;box-shadow:var(--sh)}.mtab.hd{color:var(--blue)}.mpanel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.mfields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}.srow{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px}.sinp{width:84px;padding:7px 9px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none}.sinp:focus{border-color:var(--acc)}.sinp.over{border-color:var(--red);background:var(--rbg)}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px;box-shadow:var(--sh)}.hsec{font-size:14px;font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:10px}.hsec .cnt{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:500;color:var(--muted)}.hemp{background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:26px;text-align:center;color:var(--green);font-size:14px}.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh)}.dcard h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;font-weight:600}.dbig{font-size:30px;font-weight:600;line-height:1}.dsub{font-size:12px;color:var(--muted);margin-top:4px}.kli{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}.kli:last-child{border-bottom:none}.klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}.sec{display:none}.sec.active{display:block}.empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
 .hstat:focus-visible,.kd-card-head:focus-visible,.kal-day:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
@@ -991,6 +991,8 @@ main{padding:14px 16px}
       ✓ Als DATEV-Posten beim Vertreter (15 €/Std.).
     </div>
     <div id="vt-gutschrift-block" style="display:none;margin-top:8px;background:var(--bbg);border:1px solid #93c5fd;border-radius:var(--r);padding:10px 12px"></div>
+    <!-- FIX v106: Read-only Info-Block "Wurde vertreten von" (wenn dieser MA abwesend war und vertreten wurde) -->
+    <div id="vt-wurde-vertreten-block" style="display:none;margin-top:8px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:var(--r);padding:10px 12px"></div>
   </div>
 
   <!-- Sonderstunden (autosave) -->
@@ -3558,6 +3560,26 @@ function calcUrlaubAnspruch() {
   window._urlaubAnspruchAktuell = ergebnis;
 }
 
+// FIX v104: Bereinigt Gutschriften, deren Monat nicht zum Speicherplatz passt.
+// Beispiel: g.monat='2026-03' aber liegt in monats_daten['2026-04'] -> geloescht.
+// Passiert einmalig beim Oeffnen des Modals.
+function _bereinigeAltLastenGutschriften(m) {
+  if (!m || !m.monats_daten) return 0;
+  let removed = 0;
+  Object.keys(m.monats_daten).forEach(mk => {
+    const md = m.monats_daten[mk];
+    if (!md || !Array.isArray(md.vertretungs_gutschrift)) return;
+    const vorher = md.vertretungs_gutschrift.length;
+    md.vertretungs_gutschrift = md.vertretungs_gutschrift.filter(g => {
+      // Eintrag ist ok, wenn g.monat fehlt (alte Daten ohne Feld) ODER zum Key passt
+      if (!g.monat) return true;
+      return g.monat === mk;
+    });
+    removed += (vorher - md.vertretungs_gutschrift.length);
+  });
+  return removed;
+}
+
 async function openMAM(id=null){
 const mambg=document.getElementById('mambg');
 if(!mambg._fromOM){ mambg.style.zIndex='200'; }
@@ -3574,6 +3596,11 @@ if (id) {
   } catch(e) { /* bei Netzwerkfehler: lokalen Stand weiterverwenden */ }
 }
 const m=id?(ma.find(x=>x.id===id)||{}):{};
+// FIX v104: Altlasten bereinigen (Gutschriften mit falschem Monat)
+if (id && m) {
+  const _rm = _bereinigeAltLastenGutschriften(m);
+  if (_rm > 0) console.log('[v104] '+_rm+' verwaiste Gutschriften bei '+(m.nachname||'?')+' bereinigt');
+}
 document.getElementById('mamtitle').textContent=id?m.nachname+' bearbeiten':'Neuer Mitarbeiter';
 document.getElementById('f-pnr').value=m.persnr||'';
 document.getElementById('f-st').value=m.status||'Aktiv';
@@ -4277,6 +4304,8 @@ const ssRows = (_ssData||[]).filter(e=>e.maId&&parseFloat(e.stunden)>0);
 // Immer schreiben (auch wenn leer) – sonst bleiben gelöschte Daten stehen
 const unbezahlt = parseFloat(document.getElementById('md-unbezahlt')?.value) || 0;
 const kkAbDatum = document.getElementById('md-kk-ab')?.value || '';
+// FIX v104: Bestehende Zusatzfelder (vertretungs_gutschrift, grund_mehrarbeit) erhalten
+const prevMd = m.monats_daten[k] || {};
 m.monats_daten[k]={
   urlaub:url?+url:0,
   krank:krank?+krank:0,
@@ -4285,7 +4314,10 @@ m.monats_daten[k]={
   notiz,
   zettel_ok:zettelConfirmed,
   vertretungen:vtRows,
-  sonderstunden:ssRows
+  sonderstunden:ssRows,
+  // FIX v104: Zusatzfelder bewahren, die nicht direkt vom Modal kommen
+  vertretungs_gutschrift: prevMd.vertretungs_gutschrift || [],
+  grund_mehrarbeit: prevMd.grund_mehrarbeit || ''
 };
 }
 function renderMP(m,i){
@@ -4306,6 +4338,7 @@ const _gdEl2=document.getElementById('md-gdet');if(_gdEl2)_gdEl2.value=gp.slice(
 renderZettel(!!md.zettel_ok);
 renderVtBlock(m, md, MK[ami]); // KAL-2
 renderVtGutschrift(m, k);
+renderWurdeVertretenVon(m, k); // FIX v106
 renderSSBlock(m, md);
 // Soll-Info im Panel anzeigen
 renderSollInfo(m, k);
@@ -4669,9 +4702,12 @@ if(eMAid){const i=ma.findIndex(x=>x.id===eMAid);ma[i]=m;}else ma.push(m);
 // FIX v89: Vorher-Zustand der Objekte merken, damit wir nur veränderte speichern
 const _objAlt = JSON.parse(JSON.stringify(obj));
 syncMAToRev(m);
+window._vtCleanupBetroffene = new Set(); // FIX v106: Reset vor Cleanup
 vtSyncToMAB(true);
 // Alle durch vtSyncToMAB betroffenen MAs (Vertreter-Gutschriften) sammeln und mitspeichern
 const _vtBetroffeneIds = new Set((_vtData||[]).filter(v=>v.maId&&v.stunden).map(v=>v.maId));
+// FIX v106: Auch MAs, bei denen Gutschriften durch Cleanup entfernt wurden (Kaskaden-Loeschung)
+(window._vtCleanupBetroffene||new Set()).forEach(id => _vtBetroffeneIds.add(id));
 const _vtBetroffene = ma.filter(x=>x.id!==m.id&&_vtBetroffeneIds.has(x.id));
 // FIX v89: Durch syncMAToRev geänderte Objekte (Reviere) ermitteln und mitspeichern
 const _objGeaendert = obj.filter(o => {
@@ -6414,11 +6450,15 @@ let _vtData = []; // [{maId, maName, objekt, stunden}]
 // Wird aufgerufen wenn Modal öffnet (openMAM) oder Monat wechselt (renderMP)
 let _vtAbsTyp = 'krank'; // dominanter Abwesenheitstyp des abwesenden MA im aktuellen Monat
 
+// FIX v104: Globaler Monat-Bezug fuer vtSyncToMAB - wird beim renderVtBlock gesetzt
+let _vtSyncMonat = null;
+
 function renderVtBlock(m, md, _vtMk) {
   _vtData = JSON.parse(JSON.stringify(md.vertretungen || []));
 
   // KAL-2: mk aus Parameter nutzen (nicht immer MK[ami]) damit andere Monate korrekt gerendert werden
   const mk = _vtMk || MK[ami];
+  _vtSyncMonat = mk; // FIX v104: Sync-Monat festhalten
   const prefix = mk + '-';
   let hatKrank = false, hatUrlaub = false;
   Object.entries(m.abwesenheiten||{}).forEach(([d,t]) => {
@@ -6556,12 +6596,19 @@ function vtSyncToMAB(mitCleanup){
   // geladen ist, würde sonst die Gutschrift beim Vertreter (z.B. PersNr 1262) fälschlicherweise gelöscht.
   if(!mitCleanup)return;
   const aktive=_vtData.filter(v=>v.maId&&v.stunden).reduce((s,v)=>{s[v.maId+'|'+(v.objekt||'')]=true;return s;},{});
+  // FIX v106: MAs sammeln, bei denen eine Gutschrift entfernt wurde,
+  // damit saveMA sie in die Supabase-Speicherliste aufnimmt.
+  window._vtCleanupBetroffene = window._vtCleanupBetroffene || new Set();
   ma.forEach(maB=>{
     if(!maB.monats_daten?.[monatKey]?.vertretungs_gutschrift)return;
+    const vorher = maB.monats_daten[monatKey].vertretungs_gutschrift.length;
     maB.monats_daten[monatKey].vertretungs_gutschrift=maB.monats_daten[monatKey].vertretungs_gutschrift.filter(g=>{
       if(g.quelleMAid!==(eMAid||'neu'))return true;
       return aktive[maB.id+'|'+(g.objekt||'')]===true;
     });
+    if (maB.monats_daten[monatKey].vertretungs_gutschrift.length < vorher) {
+      window._vtCleanupBetroffene.add(maB.id);
+    }
   });
 }
 
@@ -6571,6 +6618,76 @@ function vtGutschriftEdit(maId,monatKey,idx,val){
   mObj.monats_daten[monatKey].vertretungs_gutschrift[idx].manuelleAnpassung=parseFloat(val)||0;
   mObj.monats_daten[monatKey].vertretungs_gutschrift[idx].geaendertWarnung=false;
   supaSave('mitarbeiter',[mObj]).catch(e=>showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e'));
+}
+
+// FIX v106: Zeigt readonly an, von wem der aktuelle MA in diesem Monat vertreten wurde.
+// Quelle: alle anderen MA durchlaufen, in deren monats_daten[monatKey].vertretungen
+// Eintraege mit maId === m.id suchen.
+function renderWurdeVertretenVon(m, monatKey) {
+  const container = document.getElementById('vt-wurde-vertreten-block');
+  if (!container) return;
+  if (!m || !m.id) { container.style.display='none'; return; }
+  const eintraege = [];
+  (ma||[]).forEach(vertreter => {
+    if (vertreter.id === m.id) return;
+    const vts = vertreter.monats_daten?.[monatKey]?.vertretungen || [];
+    vts.forEach(vt => {
+      if (vt.maId === m.id && parseFloat(vt.stunden) > 0) {
+        eintraege.push({
+          vertreterName: (vertreter.nachname||'?') + (vertreter.vorname ? ', ' + vertreter.vorname : ''),
+          stunden: parseFloat(vt.stunden) || 0,
+          grund: vt.grund || '',
+          objekt: vt.objekt || ''
+        });
+      }
+    });
+  });
+  if (!eintraege.length) { container.style.display='none'; return; }
+  container.style.display='block';
+  let h = '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px">\ud83d\udd04 Wurde vertreten von</div>';
+  let summe = 0;
+  eintraege.forEach(e => {
+    summe += e.stunden;
+    const grundTxt = e.grund === 'krank' ? '\ud83e\udd12 Krank' : (e.grund === 'urlaub' ? '\ud83c\udfd6 Urlaub' : '');
+    h += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;flex-wrap:wrap">' +
+      '<span style="flex:1;color:var(--text2)"><strong>' + e.vertreterName + '</strong>' +
+      (e.objekt ? ' \u2013 ' + e.objekt : '') +
+      (grundTxt ? ' <span style="font-size:10px;color:var(--muted);margin-left:4px">' + grundTxt + '</span>' : '') +
+      '</span>' +
+      '<span style="font-size:12px;color:var(--text);font-family:\'IBM Plex Mono\',monospace"><strong>' + e.stunden + ' h</strong></span>' +
+      '</div>';
+  });
+  h += '<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:12px"><span style="color:var(--muted)">Vertretung erhalten gesamt</span><span style="color:var(--text);font-family:\'IBM Plex Mono\',monospace">' + summe + ' h</span></div>';
+  container.innerHTML = h;
+}
+
+// FIX v106: Prueft ob eine Gutschrift "verwaist" ist (Quelle hat keine entsprechende Vertretung mehr)
+function _gutschriftIstVerwaist(g, monatKey) {
+  if (!g.quelleMAid || g.quelleMAid === 'neu') return false; // unbekannte Quelle = nicht verwaist
+  const quelleMa = (ma||[]).find(x => x.id === g.quelleMAid);
+  if (!quelleMa) return true; // Quelle geloescht -> verwaist
+  const vts = quelleMa.monats_daten?.[monatKey]?.vertretungen || [];
+  // Match: gleicher Vertreter-MA (m.id steht nicht direkt zur Verfuegung hier, wird vom Aufrufer uebergeben)
+  // Wir vergleichen ueber quelleMAid, Objekt und Monat. Quelle muss eine Vertretung haben.
+  const match = vts.some(vt => vt.maId && parseFloat(vt.stunden) > 0 && (vt.objekt||'') === (g.objekt||''));
+  return !match;
+}
+
+// FIX v106: Loescht eine verwaiste Gutschrift manuell (mit Bestaetigung)
+function vtGutschriftDelete(maId, monatKey, idx) {
+  const mObj = ma.find(x => x.id === maId);
+  if (!mObj?.monats_daten?.[monatKey]?.vertretungs_gutschrift) return;
+  const g = mObj.monats_daten[monatKey].vertretungs_gutschrift[idx];
+  if (!g) return;
+  const text = 'Gutschrift loeschen?\n\nVertr. f\u00fcr: ' + (g.quelleName||'?') +
+               '\nStunden: ' + g.stunden +
+               (g.objekt ? '\nObjekt: ' + g.objekt : '\nObjekt: (leer)') +
+               '\nMonat: ' + (g.monat||monatKey);
+  if (!confirm(text)) return;
+  mObj.monats_daten[monatKey].vertretungs_gutschrift.splice(idx, 1);
+  supaSave('mitarbeiter',[mObj])
+    .then(()=>{ renderVtGutschrift(mObj, monatKey); showAlert('Gutschrift geloescht \u2713', 'var(--green)'); })
+    .catch(e=>showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e'));
 }
 
 function renderVtGutschrift(m,monatKey){
@@ -6586,12 +6703,26 @@ function renderVtGutschrift(m,monatKey){
     const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;
     total+=parseFloat(std)||0;
     const lohn=Math.round((parseFloat(std)||0)*_vtSl*100)/100;
-    const warn=g.geaendertWarnung?'<span style="color:var(--yellow);font-size:10px;margin-left:4px">⚠ Quelle geändert</span>':'';
-    html+=`<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;flex-wrap:wrap">
-      <span style="flex:1;color:var(--text2)">Vertr. für <strong>${g.quelleName||'?'}</strong>${g.objekt?' – '+g.objekt:''}</span>
-      <input type="number" step="0.5" min="0" value="${std||''}" style="width:64px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none" oninput="vtGutschriftEdit('${m.id}','${monatKey}',${i},this.value)">
-      <span style="font-size:11px;color:var(--muted)">h × 15€ = <strong>€ ${lohn}</strong></span>${warn}
-    </div>`;
+    // FIX v106: Warnungen fuer verwaiste und unvollstaendige Gutschriften
+    const istVerwaist = _gutschriftIstVerwaist(g, monatKey);
+    const objektFehlt = !g.objekt;
+    const monatFalsch = g.monat && g.monat !== monatKey;
+    let warnParts = [];
+    if (g.geaendertWarnung) warnParts.push('<span style="color:var(--yellow);font-size:10px">\u26a0 Quelle ge\u00e4ndert</span>');
+    if (istVerwaist) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Verwaist - Quelle nicht mehr vorhanden</span>');
+    if (objektFehlt) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Objekt fehlt</span>');
+    if (monatFalsch) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Monat ' + g.monat + ' passt nicht</span>');
+    const warn = warnParts.length ? '<div style="margin-top:2px;display:flex;gap:8px;flex-wrap:wrap">' + warnParts.join('') + '</div>' : '';
+    const problemZeile = (istVerwaist || objektFehlt || monatFalsch);
+    const rowBg = problemZeile ? 'background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;margin:3px 0;padding:6px 8px' : 'padding:5px 0;border-bottom:1px solid var(--border)';
+    html+='<div style="' + rowBg + ';font-size:12px">' +
+      '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
+      '<span style="flex:1;color:var(--text2)">Vertr. f\u00fcr <strong>' + (g.quelleName||'?') + '</strong>' + (g.objekt?' \u2013 ' + g.objekt : '') + '</span>' +
+      '<input type="number" step="0.5" min="0" value="' + (std||'') + '" style="width:64px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:\'IBM Plex Mono\',monospace;text-align:center;background:var(--white);outline:none" oninput="vtGutschriftEdit(\'' + m.id + '\',\'' + monatKey + '\',' + i + ',this.value)">' +
+      '<span style="font-size:11px;color:var(--muted)">h \u00d7 15\u20ac = <strong>\u20ac ' + lohn + '</strong></span>' +
+      (problemZeile ? '<button onclick="vtGutschriftDelete(\'' + m.id + '\',\'' + monatKey + '\',' + i + ')" style="background:var(--white);border:1px solid var(--rbd);color:var(--red);border-radius:5px;padding:2px 6px;font-size:11px;cursor:pointer" title="Verwaiste Gutschrift l\u00f6schen">\u2715 L\u00f6schen</button>' : '') +
+      '</div>' + warn +
+      '</div>';
   });
   html+=`<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:12px"><span style="color:var(--blue)">Vertretungszulage gesamt</span><span style="color:var(--blue);font-family:'IBM Plex Mono',monospace">€ ${Math.round(total*_vtSl*100)/100}</span></div>`;
 
@@ -7229,6 +7360,7 @@ function exportDatevLohnarten() {
   const rows = [BERATER_NR + ';' + MANDANT_NR + ';' + monatDATEV];
 
   let ohneLA = [];
+  const grundLaFehler = []; // FIX v103: Fehler bei Objekt->Lohnart-Zuordnung
   data.forEach(m => {
     const md = (m.monats_daten||{})[monat]||{};
     const las = m.datev_lohnarten || [];
@@ -7256,23 +7388,45 @@ function exportDatevLohnarten() {
     // FIX v94: Verstetigungs-Flag (festes Monatsgehalt)
     const istVerstetigt = !!m.verstetigt;
 
-    las.forEach(la => {
+    // FIX v103: Objekt->Lohnart Map fuer Grundlohnarten (mehrere Saetze moeglich)
+    let objLAMap;
+    try {
+      objLAMap = _mapObjektToLohnart(m);
+    } catch(err) {
+      grundLaFehler.push(err.message);
+      return; // MA ueberspringen
+    }
+
+    // FIX v103: Minijobber (nicht verstetigt) bekommen IMPLIZIT 2199 als Grundlohn,
+    // auch wenn 2199 nicht in datev_lohnarten eingetragen ist.
+    // Liste der zu verarbeitenden Lohnarten zusammenstellen:
+    const lasToProcess = las.map(x => x.trim());
+    const istMinijobNichtVerst = !!m.minijob && !m.verstetigt;
+    if (istMinijobNichtVerst && !lasToProcess.includes('2199')) {
+      lasToProcess.push('2199');
+    }
+
+    lasToProcess.forEach(la => {
       const laKey = la.trim();
       // FIX v96: Lohnart 2206 (Verstetigter Aushilfslohn) NIEMALS per Bewegungsdaten exportieren.
-      // DATEV hat den Monatsbetrag als Festbetrag in den Stammdaten hinterlegt.
-      // Zuvor: Stunden landeten im EUR-Feld -> "Wert nicht erfasst" Fehler im DATEV-Protokoll.
       if (laKey === '2206') return;
       // Map<kst, stunden> – spaeter pro Eintrag eine Zeile
       const kstMap = new Map();
+      // FIX v103: Fuer EUR-Lohnarten brauchen wir den Betrag pro KST (nicht Stunden)
+      const kstEurMap = new Map();
       const add = (kst, h) => {
         if (!(h > 0)) return;
         const key = kst || '00';
         kstMap.set(key, (kstMap.get(key) || 0) + h);
       };
+      const addEur = (kst, eur) => {
+        if (!(eur > 0)) return;
+        const key = kst || '00';
+        kstEurMap.set(key, (kstEurMap.get(key) || 0) + eur);
+      };
 
       if (laKey === '2199') {
-        // FIX v94: Sonderstunden pro Kunden-KST gruppieren (vorher: alles auf 1. KST)
-        // Filter konsistent zu calcMonatLohn/maLG – auch ohne maId-Zuordnung zaehlen
+        // FIX v94: Sonderstunden pro Kunden-KST gruppieren
         (md.sonderstunden||[])
           .filter(e => e.maId === m.id || !e.maId)
           .forEach(e => {
@@ -7281,9 +7435,21 @@ function exportDatevLohnarten() {
             const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
             add(kst, h);
           });
+        // FIX v103: Bei Minijobbern (nicht verstetigt) zusaetzlich die Soll-Stunden
+        // auf Lohnart 2199 buchen (Aushilflohn statt Festlohn).
+        // Die objLAMap ist hier nicht relevant - bei Minijobbern gelten Soll-Std immer via 2199.
+        if (istMinijobNichtVerst) {
+          const abr = m.abrechnungsmodell || 'arbeitstage';
+          (m.objekte||[]).forEach(o => {
+            const hO = maOSollMA(m, o, monat, abr);
+            if (hO > 0) add(_kstFuerObjekt(o), hO);
+          });
+        }
       } else if (laKey.startsWith('2003')) {
         // 2003 = Feiertagslohn: Stunden an echten Feiertagen, pro Objekt-KST getrennt
         // 14-Tage-Fix: Nur Stunden zaehlen, wenn Feiertag in echten Einsatzblock faellt
+        // FIX v106: Feiertage, die auf einen Sonntag fallen, werden NICHT als 2003 gezaehlt
+        //           (dort greifen stattdessen 2004 + 2005 als Sonntagszuschlaege).
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
           const kstO = _kstFuerObjekt(o);
@@ -7306,6 +7472,7 @@ function exportDatevLohnarten() {
             feiertage.forEach(ftDate => {
               if (einsatzDaten.has(ftDate)) {
                 const dow = new Date(ftDate).getDay();
+                if (dow === 0) return; // v106: Sonntags-Feiertag nicht als 2003
                 const wtKey = WT_IDX_14[dow];
                 hO += parseFloat(wt[wtKey]) || 0;
               }
@@ -7316,6 +7483,7 @@ function exportDatevLohnarten() {
             feiertage.forEach(ftDate => {
               if (!_maAnwesendAm(m, ftDate)) return;
               const dow = new Date(ftDate).getDay();
+              if (dow === 0) return; // v106: Sonntags-Feiertag nicht als 2003
               const wtKey = WT_IDX_N[dow];
               hO += parseFloat(wt[wtKey]) || 0;
             });
@@ -7323,14 +7491,17 @@ function exportDatevLohnarten() {
           add(kstO, hO);
         });
       } else if (laKey.startsWith('2004')) {
-        // 2004 = Feiertagszuschlag: NUR Stunden exportieren, pro Objekt-KST getrennt
+        // FIX v106: 2004 = Sonntagszuschlag 50% steuerfrei.
+        // Export als STUNDEN (Sonntagsstunden aus Wochentage-Tabelle * Anzahl Sonntage).
+        // Analog zu 2005, aber als Stunden statt EUR.
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
+          const stdSoWT = parseFloat(wt?.So) || 0;
+          if (stdSoWT <= 0) return;
           const kstO = _kstFuerObjekt(o);
           let hO = 0;
           if (o.modell === '14tage' && o.rhythmus_start) {
             const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
-            const einsatzDaten = new Set();
             const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
             const [_y14b,_m14b] = monat.split('-').map(Number);
             ankertage.forEach(anker => {
@@ -7338,36 +7509,33 @@ function exportDatevLohnarten() {
                 const dt = new Date(anker.getTime() + offset * 86400000);
                 if (dt.getMonth() !== _m14b - 1) break;
                 const wtKey = WT_IDX_14[dt.getDay()];
-                if ((parseFloat(wt[wtKey]) || 0) > 0) {
-                  einsatzDaten.add(dt.toISOString().slice(0,10));
+                const s14 = parseFloat(wt[wtKey]) || 0;
+                if (s14 > 0) {
+                  // Sonntag zaehlt auch wenn Feiertag: 2004 greift immer am Sonntag
+                  if (dt.getDay() === 0) hO += s14;
                 } else if (offset > 0) break;
               }
             });
-            feiertage.forEach(ftDate => {
-              if (einsatzDaten.has(ftDate)) {
-                const dow = new Date(ftDate).getDay();
-                const wtKey = WT_IDX_14[dow];
-                hO += parseFloat(wt[wtKey]) || 0;
-              }
-            });
           } else {
-            const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
-            feiertage.forEach(ftDate => {
-              if (!_maAnwesendAm(m, ftDate)) return;
-              const dow = new Date(ftDate).getDay();
-              const wtKey = WT_IDX_N[dow];
-              hO += parseFloat(wt[wtKey]) || 0;
+            // Normaler Rhythmus: alle Sonntage im Monat, falls MA anwesend
+            const alleSo = getWochentageImMonat(monat, 'So');
+            alleSo.forEach(soDate => {
+              if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
             });
           }
           add(kstO, hO);
         });
       } else if (laKey.startsWith('2005')) {
-        // 2005 = Sonntagszuschlag: NUR Stunden, pro Objekt-KST getrennt
+        // FIX v103: 2005 = Sonntagszuschlag 30% pflichtig
+        // Export als EUR-BETRAG (Stunden * Objekt-Stundenlohn), nicht als Stunden.
+        // Grund: In DATEV ist 2005 als EUR-Lohnart angelegt, der 30%-Satz wird
+        // dort als Aufschlag berechnet. Romano uebergibt den Grundbetrag.
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
           const stdSoWT = parseFloat(wt?.So) || 0;
           if (stdSoWT <= 0) return;
           const kstO = _kstFuerObjekt(o);
+          const slO = parseFloat(o.stundenlohn) || 0;
           let hO = 0;
           if (o.modell === '14tage' && o.rhythmus_start) {
             const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
@@ -7389,15 +7557,24 @@ function exportDatevLohnarten() {
               if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
             });
           }
-          add(kstO, hO);
+          if (hO > 0 && slO > 0) {
+            addEur(kstO, hO * slO);
+          }
         });
       } else {
-        // 2206 + alle anderen = Soll-Monatsstunden pro Objekt-KST
-        // FIX v94: Bei Verstetigten KEINE Soll-Stunden exportieren (sind im Festgehalt enthalten).
-        // Extras (SS 2199 / Zuschlaege 2003-2005) werden weiterhin exportiert.
-        if (istVerstetigt) return; // naechste Lohnart
+        // Grundlohnarten (1000, 1102, ...) - nur Objekte, die per objLAMap
+        // dieser Lohnart zugeordnet sind.
+        // FIX v94: Bei Verstetigten KEINE Soll-Stunden exportieren (Festbetrag in DATEV-Stammdaten).
+        if (istVerstetigt) return;
+        // FIX v103: Minijobber haben Soll-Stunden bereits in 2199-Zweig abgehandelt.
+        if (istMinijobNichtVerst) return;
         const abr = m.abrechnungsmodell || 'arbeitstage';
         (m.objekte||[]).forEach(o => {
+          // FIX v103 Balta-Fix: Objekt nur verarbeiten, wenn es dieser Lohnart zugeordnet ist.
+          const objKey = o.id || o.kunde;
+          const zugeordneteLA = objLAMap.get(objKey);
+          if (zugeordneteLA && zugeordneteLA !== laKey) return;
+          // Wenn objLAMap leer ist (keine Grundlohnarten) oder genau diese LA passt -> exportieren
           const hO = maOSollMA(m, o, monat, abr);
           if (hO > 0) add(_kstFuerObjekt(o), hO);
         });
@@ -7411,13 +7588,129 @@ function exportDatevLohnarten() {
         // Stundenangabe immer mit 2 Nachkommastellen (DATEV-Konvention, FIX v90)
         rows.push(datevZeile(m.persnr||'', laKey, std.toFixed(2).replace('.',','), kst));
       });
+      // FIX v103: EUR-Werte (aktuell nur 2005) separat ausgeben
+      const kstEurKeys = Array.from(kstEurMap.keys()).sort();
+      kstEurKeys.forEach(kst => {
+        const eur = r2(kstEurMap.get(kst) || 0);
+        if (eur <= 0) return;
+        rows.push(datevZeile(m.persnr||'', laKey, eur.toFixed(2).replace('.',','), kst));
+      });
     });
   });
+
+  // ── FIX v102: Vertretungs-Gutschriften exportieren ────────────────────────
+  // Pro Vertreter werden die Gutschriften (md.vertretungs_gutschrift) zusaetzlich
+  // in DATEV gebucht. Lohnart haengt vom Beschaeftigungsstatus ab:
+  //   Minijob (m.minijob === true)  -> 2199 (Mehrarbeit Aushilfe)
+  //   SV-pflichtig (m.minijob=false)-> 1000 (normale Stunden)
+  // KST muss aus gutschrift.objekt ableitbar sein - sonst Fehler.
+  const vtGutFehler = [];
+  data.forEach(m => {
+    const md = (m.monats_daten||{})[monat]||{};
+    // FIX v104: Nur Gutschriften, die tatsaechlich zum aktuellen Monat gehoeren.
+    // Defensive gegen Altlasten (g.monat != monat).
+    const guts = (md.vertretungs_gutschrift || []).filter(g => !g.monat || g.monat === monat);
+    if (!guts.length) return;
+    const laVt = m.minijob ? '2199' : '1000';
+    // Pro KST akkumulieren (falls mehrere Gutschriften auf gleichem Objekt)
+    const kstMapVt = new Map();
+    guts.forEach(g => {
+      const std = (g.manuelleAnpassung!==null && g.manuelleAnpassung!==undefined)
+                  ? g.manuelleAnpassung : g.stunden;
+      const h = parseFloat(std) || 0;
+      if (h <= 0) return;
+      // KST-Lookup via Objektname - PFLICHT, kein Fallback
+      const objName = (g.objekt||'').trim();
+      if (!objName) {
+        vtGutFehler.push((m.nachname||'?') + ' (Nr. ' + (m.persnr||'-') + '): Gutschrift ohne Objekt');
+        return;
+      }
+      const kObj = obj.find(x => x.name === objName);
+      if (!kObj || !kObj.kostenstelle) {
+        vtGutFehler.push((m.nachname||'?') + ' (Nr. ' + (m.persnr||'-') + '): Objekt "' + objName + '" ohne Kostenstelle');
+        return;
+      }
+      const kst = kObj.kostenstelle;
+      kstMapVt.set(kst, (kstMapVt.get(kst) || 0) + h);
+    });
+    const kstKeys = Array.from(kstMapVt.keys()).sort();
+    kstKeys.forEach(kst => {
+      const std = r2(kstMapVt.get(kst) || 0);
+      if (std <= 0) return;
+      rows.push(datevZeile(m.persnr||'', laVt, std.toFixed(2).replace('.',','), kst));
+    });
+  });
+  if (vtGutFehler.length) {
+    showAlert('\u26a0 DATEV-Export abgebrochen: Fehler bei Vertretungs-Gutschriften:\n\n' + vtGutFehler.slice(0,10).join('\n') + (vtGutFehler.length>10?'\n\u2026':'') + '\n\nBitte Objekt bei allen Vertretungs-Gutschriften hinterlegen.', '#ef4444');
+    return;
+  }
+  // FIX v103: Fehler bei Objekt->Lohnart-Zuordnung (mehrere Grundlohnarten + Anzahl-Mismatch)
+  if (grundLaFehler.length) {
+    showAlert('\u26a0 DATEV-Export abgebrochen: Zuordnungs-Fehler bei MA mit mehreren Lohnarten:\n\n' + grundLaFehler.slice(0,10).join('\n') + (grundLaFehler.length>10?'\n\u2026':'') + '\n\nPro Objekt muss eine passende Lohnart vorhanden sein.', '#ef4444');
+    return;
+  }
 
   dl(rows.join('\r\n'), 'DATEV_LohnGehalt_'+monatDATEV.replace('/','-')+'.csv', 'text/plain');
   let msg = (rows.length-1) + ' Buchungszeilen exportiert \u2713';
   if (ohneLA.length) msg += '\n\n\u26a0 ' + ohneLA.length + ' MA ohne Lohnart (nicht exportiert):\n' + ohneLA.slice(0,10).join(', ') + (ohneLA.length>10?'\u2026':'');
   showAlert(msg);
+}
+
+// ── FIX v103: Objekt -> Lohnart Zuordnung ─────────────────────────────────
+// MA kann mehrere DATEV-Lohnarten haben (z.B. Balta: 1000 + 1102),
+// wenn er auf mehreren Objekten mit unterschiedlichem Stundenlohn arbeitet.
+// Regel: Objekte aufsteigend nach Stundenlohn, Lohnarten aufsteigend nach
+// Nummer, dann 1:1 zuordnen. Bei Anzahl-Mismatch -> Fehler.
+//
+// Spezialfall: Nur EINE Grundlohn-Lohnart (z.B. nur 1000) -> gilt fuer alle
+// Objekte (haeufigster Fall).
+//
+// Zuschlags-Lohnarten (2003/2004/2005/2199) werden von dieser Zuordnung
+// NICHT beruehrt - sie gelten immer fuer alle Objekte des MA.
+function _isGrundLohnart(code) {
+  const c = String(code||'').trim();
+  // Zuschlaege und Aushilflohn sind KEINE Grundlohnarten
+  if (c.startsWith('2003')) return false;
+  if (c.startsWith('2004')) return false;
+  if (c.startsWith('2005')) return false;
+  if (c.startsWith('2006')) return false;
+  if (c === '2199') return false;
+  if (c === '2206') return false; // Verstetigt: Festbetrag in DATEV-Stammdaten
+  return true;
+}
+// Liefert Map<objektId, lohnart> fuer Grundlohn-Zuordnung.
+// Bei Fehler: wirft Exception mit Beschreibung.
+function _mapObjektToLohnart(m) {
+  const grundLAs = (m.datev_lohnarten||[]).filter(_isGrundLohnart)
+    .map(x => String(x).trim()).sort();
+  const objekte = (m.objekte||[]).slice();
+  // Objekte nach Stundenlohn aufsteigend sortieren (stabiler: bei Gleichstand Name)
+  objekte.sort((a,b) => {
+    const la = parseFloat(a.stundenlohn)||0;
+    const lb = parseFloat(b.stundenlohn)||0;
+    if (la !== lb) return la - lb;
+    return (a.kunde||'').localeCompare(b.kunde||'');
+  });
+  const map = new Map();
+  if (grundLAs.length === 0) {
+    // Kein Grundlohn -> Map bleibt leer, kein Export von Soll-Stunden
+    return map;
+  }
+  if (grundLAs.length === 1) {
+    // Nur eine Grundlohnart -> gilt fuer alle Objekte
+    objekte.forEach(o => map.set(o.id || o.kunde, grundLAs[0]));
+    return map;
+  }
+  // Mehrere Grundlohnarten -> 1:1 Zuordnung nach Anzahl
+  if (grundLAs.length !== objekte.length) {
+    throw new Error(
+      (m.nachname||'?') + ' (Nr. ' + (m.persnr||'-') + '): ' +
+      grundLAs.length + ' Grundlohnarten (' + grundLAs.join(',') + ') ' +
+      'aber ' + objekte.length + ' Objekte. Anzahl muss uebereinstimmen.'
+    );
+  }
+  objekte.forEach((o, i) => map.set(o.id || o.kunde, grundLAs[i]));
+  return map;
 }
 
 // ── FIX v95: DATEV-KONTROLL-EXPORT (Excel/CSV fuer Mensch) ─────────────────
@@ -7426,13 +7719,16 @@ function exportDatevLohnarten() {
 // schreibt aber eine fuer Menschen lesbare Tabelle mit Klartext-Namen.
 // Klartext-Mapping fuer die in MM verwendeten Lohnarten.
 const _LA_LABELS = {
-  '2003': 'Feiertagslohn',
-  '2004': 'Feiertagszuschlag',
-  '2005': 'Sonntagszuschlag',
+  '1000': 'Lohn SV-pflichtig',
+  '1001': 'Lohn Festbetrag',
+  '1102': 'Lohn SV-pflichtig (2. Satz)',
+  '2003': 'Feiertagszuschlag 80% frei',
+  '2004': 'Sonntagszuschlag 50% frei',
+  '2005': 'Sonntagszuschlag 30% pflichtig',
   '2006': 'Nachtzuschlag',
-  '2199': 'Sonderstunden / Mehrarbeit',
+  '2199': 'Aushilflohn / Mehrarbeit',
   '2200': 'Mehrarbeitsstunden',
-  '2206': 'Monatslohn (Soll-Stunden)',
+  '2206': 'Verstetigter Aushilfslohn',
   '2207': 'Monatslohn (Fix)',
 };
 function _laLabel(code) {
@@ -7490,6 +7786,7 @@ function _buildDatevControlRows() {
     const _fallbackKst = _kstFuerObjekt((m.objekte||[])[0]) || '00';
     const _fallbackKunde = _kundeFuerObjekt((m.objekte||[])[0]) || '';
     const istVerstetigt = !!m.verstetigt;
+    const istMinijobNichtVerst = !!m.minijob && !istVerstetigt;
 
     // Stundenlohn fuer Betrags-Schaetzung (identisch zu calcMonatLohn-Basis)
     const slDefault = parseFloat(m.stundenlohn_tarif)
@@ -7502,7 +7799,36 @@ function _buildDatevControlRows() {
       return parseFloat(o.stundenlohn) || slDefault;
     };
 
-    las.forEach(la => {
+    // FIX v103: Objekt->Lohnart Map (Balta-Fix)
+    let objLAMap;
+    try {
+      objLAMap = _mapObjektToLohnart(m);
+    } catch(err) {
+      // Fehler als eigene Zeile in der Kontroll-Liste zeigen
+      out.push({
+        persnr: m.persnr || '',
+        nachname: m.nachname || '',
+        vorname: m.vorname || '',
+        verstetigt: istVerstetigt,
+        kst: '',
+        kunde: '',
+        laCode: '',
+        laLabel: 'FEHLER ZUORDNUNG',
+        stunden: 0,
+        stundenlohn: 0,
+        betrag: 0,
+        notiz: err.message
+      });
+      return;
+    }
+
+    // FIX v103: Minijob-nicht-verstetigt bekommt implizit 2199
+    const lasToProcess = las.map(x => String(x).trim());
+    if (istMinijobNichtVerst && !lasToProcess.includes('2199')) {
+      lasToProcess.push('2199');
+    }
+
+    lasToProcess.forEach(la => {
       const laCode = la.trim();
       // Map<kst, {stunden, kundeName, kunden:Set, slSum, slCount, notizen:Set}>
       const bucket = new Map();
@@ -7529,6 +7855,14 @@ function _buildDatevControlRows() {
             const kn  = e.kunde ? _kundeNameFuerRef(e.kunde) : _fallbackKunde;
             addBucket(kst, kn, h, slDefault, e.notiz||'');
           });
+        // FIX v103: Bei Minijob-nicht-verstetigt: Soll-Stunden auch auf 2199 buchen
+        if (istMinijobNichtVerst) {
+          const abr = m.abrechnungsmodell || 'arbeitstage';
+          (m.objekte||[]).forEach(o => {
+            const hO = maOSollMA(m, o, monat, abr);
+            if (hO > 0) addBucket(_kstFuerObjekt(o), _kundeFuerObjekt(o), hO, _slFuerObjekt(o), '');
+          });
+        }
       } else if (laCode.startsWith('2003') || laCode.startsWith('2004') || laCode.startsWith('2005')) {
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
@@ -7560,8 +7894,33 @@ function _buildDatevControlRows() {
                 if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
               });
             }
+          } else if (laCode.startsWith('2004')) {
+            // FIX v106: 2004 = Sonntagsstunden (analog 2005 aber als Stunden)
+            const stdSoWT = parseFloat(wt?.So) || 0;
+            if (stdSoWT <= 0) return;
+            if (o.modell === '14tage' && o.rhythmus_start) {
+              const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
+              const WT_IDX_14 = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
+              const [_y,_mo] = monat.split('-').map(Number);
+              ankertage.forEach(anker => {
+                for (let offset = 0; offset < 14; offset++) {
+                  const dt = new Date(anker.getTime() + offset * 86400000);
+                  if (dt.getMonth() !== _mo - 1) break;
+                  const wtKey = WT_IDX_14[dt.getDay()];
+                  const s14 = parseFloat(wt[wtKey]) || 0;
+                  if (s14 > 0) {
+                    if (dt.getDay() === 0) hO += s14;
+                  } else if (offset > 0) break;
+                }
+              });
+            } else {
+              const alleSo = getWochentageImMonat(monat, 'So');
+              alleSo.forEach(soDate => {
+                if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
+              });
+            }
           } else {
-            // 2003 / 2004: Feiertagsstunden
+            // 2003: Feiertagsstunden (Sonntags-Feiertag ausgeschlossen - v106)
             if (o.modell === '14tage' && o.rhythmus_start) {
               const ankertage = _get14TageAnkertage(o.rhythmus_start, monat);
               const einsatzDaten = new Set();
@@ -7580,6 +7939,7 @@ function _buildDatevControlRows() {
               feiertage.forEach(ftDate => {
                 if (einsatzDaten.has(ftDate)) {
                   const dow = new Date(ftDate).getDay();
+                  if (dow === 0) return; // v106: Sonntags-FT nicht als 2003
                   const wtKey = WT_IDX_14[dow];
                   hO += parseFloat(wt[wtKey]) || 0;
                 }
@@ -7589,6 +7949,7 @@ function _buildDatevControlRows() {
               feiertage.forEach(ftDate => {
                 if (!_maAnwesendAm(m, ftDate)) return;
                 const dow = new Date(ftDate).getDay();
+                if (dow === 0) return; // v106: Sonntags-FT nicht als 2003
                 const wtKey = WT_IDX_N[dow];
                 hO += parseFloat(wt[wtKey]) || 0;
               });
@@ -7597,10 +7958,14 @@ function _buildDatevControlRows() {
           if (hO > 0) addBucket(kstO, knO, hO, slO, '');
         });
       } else {
-        // 2206 + alle anderen = Soll-Stunden
+        // Grundlohnarten: nur Objekte verarbeiten, die per objLAMap dieser LA zugeordnet sind
         if (istVerstetigt) return;
+        if (istMinijobNichtVerst) return; // Minijob-Soll laeuft ueber 2199
         const abr = m.abrechnungsmodell || 'arbeitstage';
         (m.objekte||[]).forEach(o => {
+          const objKey = o.id || o.kunde;
+          const zugeordneteLA = objLAMap.get(objKey);
+          if (zugeordneteLA && zugeordneteLA !== laCode) return;
           const hO = maOSollMA(m, o, monat, abr);
           if (hO > 0) addBucket(_kstFuerObjekt(o), _kundeFuerObjekt(o), hO, _slFuerObjekt(o), '');
         });
@@ -7613,10 +7978,13 @@ function _buildDatevControlRows() {
         const stunden = r2(b.stunden);
         if (stunden <= 0) return;
         const slAvg = b.slCount > 0 ? r2(b.slSum / b.slCount) : 0;
-        // Betrag nur bei reinen Lohn-Arten (2199, 2206) – Zuschlaege (2003-2005)
-        // werden in DATEV auf Basis des Tarifs berechnet, kein einfacher h*sl-Wert.
-        const istZuschlag = laCode.startsWith('2003') || laCode.startsWith('2004') || laCode.startsWith('2005');
-        const betrag = istZuschlag ? 0 : r2(stunden * slAvg);
+        // FIX v103: Betrags-Anzeige pro Lohnart differenziert:
+        //  - 2003 (Feiertag 80% frei) / 2004 (Sonntag 50% frei): steuerfrei, DATEV rechnet -> kein Betrag anzeigen
+        //  - 2005 (Sonntag 30% pflichtig): Betrag = stunden*slAvg (EUR-Lohnart im Export)
+        //  - 1000/1102/2199/2206 und andere: stunden*slAvg anzeigen
+        const ist2003 = laCode.startsWith('2003');
+        const ist2004 = laCode.startsWith('2004');
+        const betrag = (ist2003 || ist2004) ? 0 : r2(stunden * slAvg);
 
         out.push({
           persnr: m.persnr || '',
@@ -7634,6 +8002,67 @@ function _buildDatevControlRows() {
         });
       });
     });
+
+    // FIX v102: Vertretungs-Gutschriften pro MA in die Kontroll-Liste aufnehmen.
+    // Lohnart nach Beschaeftigungsstatus (Minijob=2199, SV=1000).
+    // KST kommt PFLICHTWEISE aus gutschrift.objekt. Wenn Objekt fehlt oder nicht
+    // in obj[] gefunden wird -> Fehler im Notiz-Feld, damit Romano es sieht.
+    // FIX v104: Nur Eintraege fuer den aktuellen Monat (Altlasten-Schutz).
+    const gutsCtrl = (md.vertretungs_gutschrift || []).filter(g => !g.monat || g.monat === monat);
+    if (gutsCtrl.length) {
+      const laVtCtrl = m.minijob ? '2199' : '1000';
+      const kstMapVt = new Map(); // kst -> {stunden, kunden:Set, notizen:Set}
+      gutsCtrl.forEach(g => {
+        const stdRaw = (g.manuelleAnpassung!==null && g.manuelleAnpassung!==undefined)
+                       ? g.manuelleAnpassung : g.stunden;
+        const h = parseFloat(stdRaw) || 0;
+        if (h <= 0) return;
+        const objName = (g.objekt||'').trim();
+        let kst = null, kundeName = '', fehler = '';
+        if (!objName) {
+          fehler = 'FEHLER: Gutschrift ohne Objekt';
+        } else {
+          const kObj = obj.find(x => x.name === objName);
+          if (!kObj || !kObj.kostenstelle) {
+            fehler = 'FEHLER: Objekt "' + objName + '" ohne Kostenstelle';
+          } else {
+            kst = kObj.kostenstelle;
+            kundeName = kObj.name || objName;
+          }
+        }
+        const bucketKey = kst || ('__FEHLER__' + (objName||'?'));
+        if (!kstMapVt.has(bucketKey)) {
+          kstMapVt.set(bucketKey, { stunden:0, kunden:new Set(), notizen:new Set(), kst, kundeName, fehler });
+        }
+        const bv = kstMapVt.get(bucketKey);
+        bv.stunden += h;
+        if (kundeName) bv.kunden.add(kundeName);
+        const vtNotiz = 'Vertretung f\u00fcr ' + (g.quelleName||'?') + (objName?' @ '+objName:'');
+        bv.notizen.add(vtNotiz + (fehler ? ' | ' + fehler : ''));
+      });
+      const sortedKeys = Array.from(kstMapVt.keys()).sort();
+      sortedKeys.forEach(k => {
+        const bv = kstMapVt.get(k);
+        const stunden = r2(bv.stunden);
+        if (stunden <= 0) return;
+        const sl = slDefault;
+        const betrag = r2(stunden * sl);
+        out.push({
+          persnr: m.persnr || '',
+          nachname: m.nachname || '',
+          vorname: m.vorname || '',
+          verstetigt: istVerstetigt,
+          kst: bv.kst || '',
+          kunde: Array.from(bv.kunden).join(' / ') || (bv.fehler?'(kein Objekt)':''),
+          laCode: laVtCtrl,
+          laLabel: _laLabel(laVtCtrl) + ' (Vertretung)',
+          stunden: stunden,
+          stundenlohn: sl,
+          betrag: betrag,
+          notiz: Array.from(bv.notizen).join(' | ')
+        });
+      });
+    }
   });
   return out;
 }
