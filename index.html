@@ -1797,7 +1797,15 @@ function hhmm(h){
 function calcUebergabeSplit(wochentage, datum, monatKey, altInklusive=false, modell='arbeitstage', rhythmus_start=null) {
   if (!datum || !wochentage || !monatKey) return null;
   const [y, m] = monatKey.split('-').map(Number);
-  const splitDate = new Date(datum);
+  // FIX v94: Zeitzonen-sicherer Datums-Vergleich.
+  // Bisher: new Date('2026-04-01') ergibt in DE (UTC+1/+2) eine andere Uhrzeit
+  //         als new Date(2026, 3, 1) - der Starttag fiel in die falsche Gruppe.
+  // Neu:    Beide Daten werden als reine YYYY-MM-DD-Strings verglichen.
+  // Regel (Business): Das eingegebene Datum gilt IMMER als Arbeitstag.
+  //   - einsatz_ab = 01.04. -> 01.04. ist der erste Arbeitstag (gehoert zu "neu")
+  //   - einsatz_bis = 25.04. -> 25.04. ist der letzte Arbeitstag (gehoert zu "alt")
+  const splitKey = String(datum).slice(0,10); // 'YYYY-MM-DD'
+  const toKey = (yy, mm, dd) => yy + '-' + String(mm).padStart(2,'0') + '-' + String(dd).padStart(2,'0');
   const daysInMonth = new Date(y, m, 0).getDate();
   const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
   let altTage=0, neuTage=0, altStd=0, neuStd=0;
@@ -1811,7 +1819,10 @@ function calcUebergabeSplit(wochentage, datum, monatKey, altInklusive=false, mod
         const wtKey = WT_IDX[dt.getDay()];
         const std = parseFloat(wochentage[wtKey]) || 0;
         if (std > 0) {
-          const isAlt = altInklusive ? (dt <= splitDate) : (dt < splitDate);
+          const dtKey = toKey(dt.getFullYear(), dt.getMonth()+1, dt.getDate());
+          // altInklusive=true:  einsatz_bis -> Split-Tag gehoert zu "alt" (bis einschl.)
+          // altInklusive=false: einsatz_ab  -> Split-Tag gehoert zu "neu" (ab einschl.)
+          const isAlt = altInklusive ? (dtKey <= splitKey) : (dtKey < splitKey);
           if (isAlt) { altTage++; altStd += std; }
           else       { neuTage++; neuStd += std; }
         } else if (offset > 0) break;
@@ -1823,7 +1834,8 @@ function calcUebergabeSplit(wochentage, datum, monatKey, altInklusive=false, mod
       const wtKey = WT_IDX[dt.getDay()];
       const std = parseFloat(wochentage[wtKey]) || 0;
       if (std <= 0) continue;
-      const isAlt = altInklusive ? (dt <= splitDate) : (dt < splitDate);
+      const dtKey = toKey(y, m, d);
+      const isAlt = altInklusive ? (dtKey <= splitKey) : (dtKey < splitKey);
       if (isAlt) { altTage++; altStd+=std; }
       else       { neuTage++; neuStd+=std; }
     }
@@ -1960,7 +1972,8 @@ function oKapM(name, monatKey){
 }
 function oBel(name, monatKey){
 let t=0;
-ma.filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum).forEach(m=>{
+const _mk = monatKey || getAM();
+ma.filter(m=>!_maAusgeschiedenImMonat(m,_mk)).forEach(m=>{
 const abrMod=m.abrechnungsmodell||'arbeitstage';
 // FIX DUP-1: Pro MA nur den ERSTEN Eintrag pro Kunde zählen – Duplikate ignorieren
 let gezaehlt=false;
@@ -2153,10 +2166,17 @@ function _maMonatAktivFaktor(m, monatKey) {
 
 function maOSollMA(m, o, monatKey, maAbrModell) {
   const histO = _getHistoryObjekt(m, o.kunde, monatKey);
-  const basis = maOSoll(histO || o, monatKey, maAbrModell);
+  const effektivO = histO || o;
+  const basis = maOSoll(effektivO, monatKey, maAbrModell);
   if (!basis || basis <= 0) return basis;
-  // FIX v90: Ein-/Austrittsfaktor VOR Fehlzeitabzug anwenden
-  const aktivFaktor = _maMonatAktivFaktor(m, monatKey);
+  // FIX v94: Doppelten Abzug vermeiden.
+  // Wenn das Objekt bereits einen einsatz_ab/einsatz_bis hat, hat maOSoll
+  // den Teilmonat schon exakt ueber calcUebergabeSplit berechnet.
+  // Der MA-Aktiv-Faktor (basierend auf m.eintritts-/austrittsdatum) wuerde
+  // dann ein zweites Mal kuerzen -> frueher 12.25h -> 6.68h.
+  // Daher: aktivFaktor NUR anwenden, wenn kein Objekt-Zeitraum gesetzt ist.
+  const hatObjZeitraum = !!(effektivO && (effektivO.einsatz_ab || effektivO.einsatz_bis));
+  const aktivFaktor = hatObjZeitraum ? 1 : _maMonatAktivFaktor(m, monatKey);
   if (aktivFaktor <= 0) return 0;
   const faktor = _fehlzeitAbzugFaktor(m, monatKey);
   const gesamtFaktor = aktivFaktor * faktor;
@@ -2354,7 +2374,7 @@ function maKu(m){return(m.objekte||[]).map(o=>o.kunde).filter(Boolean);}
 function isEh(o){return o.aktiv===false||o.status==='ehemalig';}
 function updStats(){
 // Gesamt = nur aktive MA (nicht Ausgeschiedene / mit Austrittsdatum) – OL sieht nur eigene
-const aktiveMA = getVisibleMA().filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum);
+const aktiveMA = getVisibleMA().filter(m=>!_maAusgeschiedenImMonat(m,getAM()));
 document.getElementById('st-total').textContent=aktiveMA.length;
 // Krank/Urlaub: heutiger Tag aus abwesenheiten[] (wie Heute-Ansicht), nicht m.status
 const heuteKey=(()=>{const n=new Date();const p=v=>String(v).padStart(2,'0');return `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}`;})();
@@ -2363,7 +2383,7 @@ const urlaubHeute = aktiveMA.filter(m=>m.abwesenheiten?.[heuteKey]==='urlaub').l
 document.getElementById('st-krank').textContent = krankHeute;
 document.getElementById('st-urlaub').textContent = urlaubHeute;
 document.getElementById('st-aktiv').textContent = aktiveMA.filter(m=>m.status==='Aktiv').length;
-document.getElementById('st-ausgeschieden').textContent = ma.filter(m=>m.status==='Ausgeschieden'||!!m.austrittsdatum).length;
+document.getElementById('st-ausgeschieden').textContent = ma.filter(m=>_maAusgeschiedenImMonat(m,getAM())).length;
 // OL-Zähler ebenfalls nur aktive
 document.getElementById('st-m').textContent=aktiveMA.filter(m=>m.objektleiter==='M').length;
 document.getElementById('st-i').textContent=aktiveMA.filter(m=>m.objektleiter==='I').length;
@@ -2403,7 +2423,7 @@ return getVisibleMA().map(m=>{
 })
 .filter(m=>{
 const txt=`${m.nachname||''} ${m.vorname||''} ${m.persnr||''} ${maKu(m).join(' ')}`.toLowerCase();
-const istEhemaliger = m.status==='Ausgeschieden' || !!m.austrittsdatum;
+const istEhemaliger = _maAusgeschiedenImMonat(m,getAM());
 if(istEhemaliger && st!=='Ausgeschieden') return false;
 // Krank/Urlaub: Abwesenheit heute aus abwesenheiten[], nicht m.status
 const abwHeute = m.abwesenheiten?.[_hk] || '';
@@ -2594,7 +2614,7 @@ kdGrid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minm
 kdGrid.innerHTML = kdList.map(k=>{
   const standorte = k.standorte || [];
   const maList = [...new Set(standorte.flatMap(s=>
-    ma.filter(m=>m.status!=='Ausgeschieden'&&!m.austrittsdatum&&maKu(m).includes(s))
+    ma.filter(m=>!_maAusgeschiedenImMonat(m,getAM())&&maKu(m).includes(s))
   ).map(m=>m.id))].map(id=>ma.find(m=>m.id===id)).filter(Boolean);
   const eh = k.status==='ehemalig';
   const maChips = maList.slice(0,8).map(m=>{
@@ -3657,7 +3677,7 @@ function maoTaOpen(i, inp) {
 function renderMAO(){
 const opts=obj.filter(o=>!isEh(o)).map(o=>`<option value="${o.name}">${o.name}${o.vollname&&o.vollname!==o.name?' – '+o.vollname:''}</option>`).join('');
 const mk=MK[ami];
-const _maAusgeschieden = eMAid && (()=>{ const _m=ma.find(x=>x.id===eMAid); return _m&&(_m.status==='Ausgeschieden'||!!_m.austrittsdatum); })();
+const _maAusgeschieden = eMAid && (()=>{ const _m=ma.find(x=>x.id===eMAid); return _m&&_maAusgeschiedenImMonat(_m,mk); })();
 if(_maAusgeschieden){
   document.getElementById('ma-objs').innerHTML=`<div style="background:var(--rbg);border:1px solid var(--rbd);border-radius:var(--r);padding:14px;color:var(--red);font-size:13px">⚠ Mitarbeiter ist ausgeschieden – keine Stunden/Lohn-Berechnung.</div>`;
   return;
