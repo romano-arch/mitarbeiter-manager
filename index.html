@@ -9,9 +9,243 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager 2026 v106</title>
+<title>MitarbeiterManager 2026 v112</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>:root{--bg:#f4f6f9;--white:#fff;--s1:#f0f2f5;--s2:#e8ebf0;--border:#dde1e8;--border2:#c8cdd8;--acc:#1a56db;--acc-l:#eef2ff;--acc-h:#1447c0;--green:#057a55;--gbg:#ecfdf5;--gbd:#a7f3d0;--red:#c81e1e;--rbg:#fef2f2;--rbd:#fca5a5;--yellow:#92400e;--ybg:#fffbeb;--blue:#1a56db;--bbg:#eef2ff;--orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;--ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;--text:#111928;--text2:#374151;--muted:#6b7280;--muted2:#9ca3af;--r:8px;--r2:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);--sh2:0 4px 16px rgba(0,0,0,.12);--z-gantt-cell:2;--z-gantt-name:3;--z-gantt-head:5;--z-sticky-head:10;--z-bottom-nav:20;--z-header:30;--z-lock-banner:40;--z-modal-bg:50;--z-modal:60;--z-dropdown:9999;--z-alert:80;--z-login:90}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}header{background:#1e4fc2;border-bottom:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:var(--z-header);gap:12px;height:58px;box-shadow:0 2px 8px rgba(0,0,0,.18)}.logo{display:flex;align-items:center;gap:10px}.logo-mark{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px}.logo-text{font-weight:600;font-size:15px;color:#fff}.logo-sub{font-size:11px;color:rgba(255,255,255,.55)}.hstats{display:flex;gap:4px;flex-wrap:wrap}.hstat{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:5px 12px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.08);font-family:inherit;font-size:inherit;text-align:left}.hstat:hover,.hstat.fa{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}.hv{font-weight:600;font-size:15px;line-height:1;color:#fff}.hl{font-size:11px;color:rgba(255,255,255,.55)}.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.9}.olb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace}.ol-M{background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe}.ol-I{background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc}.tabs{background:var(--white);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;gap:4px;flex-wrap:wrap}.tab{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-radius:var(--r);border:1px solid transparent;transition:all .15s;white-space:nowrap}.tab.active{background:#1e4fc2;color:#fff;border-color:#1e4fc2;font-weight:600}.tab.admin-tab{color:#7c3aed}.tab.admin-tab.active{background:#7c3aed;border-color:#7c3aed;color:#fff}.tab:hover:not(.active){background:var(--s1);border-color:var(--border);color:var(--text)}main{padding:20px 24px;max-width:1800px;margin:0 auto}.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}.sw{position:relative;flex:1;min-width:180px}.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none}.sb{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px 8px 33px;color:var(--text);font-size:13px;font-family:inherit;outline:none;box-shadow:var(--sh)}.sb:focus{border-color:var(--acc)}.sb::placeholder{color:var(--muted2)}select.fsel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;cursor:pointer;box-shadow:var(--sh)}.btn{padding:8px 14px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;white-space:nowrap}.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-h)}.btn-s{background:var(--green);color:#fff}.btn-s:hover{background:#046c4e}.btn-o{background:var(--white);border:1px solid var(--border);color:var(--text2);box-shadow:var(--sh)}.btn-o:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.btn-d{background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;border:none;cursor:pointer}.btn-sm{padding:4px 9px;font-size:12px;border-radius:6px}.btn-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange);padding:4px 9px;font-size:12px;border-radius:6px;cursor:pointer;font-family:inherit}.btn-w:hover{background:#fed7aa}.btn-i{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .15s}.btn-i:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.tw{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}table{width:100%;border-collapse:collapse}thead{background:var(--s1)}th{padding:9px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}th:hover{color:var(--acc)}td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text2)}tr:last-child td{border-bottom:none}tr:hover td{background:#f8f9fc}td strong{color:var(--text)}code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border)}.actions{display:flex;gap:4px;align-items:center}.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}.b-aktiv{background:var(--gbg);color:var(--green)}.b-krank{background:var(--ybg);color:var(--yellow)}.b-ausgeschieden{background:var(--s2);color:var(--muted)}.b-urlaub{background:var(--bbg);color:var(--blue)}.chips{display:flex;flex-wrap:wrap;gap:3px}.chip{font-size:11px;padding:2px 7px;border-radius:5px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.chip.m{border-color:#93c5fd;color:var(--blue);background:var(--bbg)}.rev-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;margin-bottom:10px}.rev-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rev-block-nr{font-size:11px;font-weight:700;color:var(--muted);background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:2px 8px;flex-shrink:0}.rev-block-name{flex:1;min-width:140px}.rev-block-ma{min-width:160px}.rev-block-sum{font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}.rev-block-del{margin-left:auto}.rev-wtbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}.rev-wtbl th{background:var(--s2);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border)}.rev-wtbl td{padding:5px 3px;text-align:center;border-right:1px solid var(--border)}.rev-wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:600;color:var(--acc);font-size:12px}.rev-wtbl input{width:52px;padding:4px 3px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none}.rev-wtbl input:focus{border-color:var(--acc)}.rev-empty-hint{text-align:center;color:var(--muted2);padding:20px;font-size:12px;border:1px dashed var(--border2);border-radius:var(--r);background:var(--white)}.rev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:var(--z-modal-bg);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.rev-modal-bg.open{opacity:1;pointer-events:all}.rev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,860px);max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column}.rev-modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}.rev-modal-title{font-weight:700;font-size:16px}.rev-modal-sub{font-size:12px;color:var(--muted);margin-top:2px}.rev-modal-body{padding:18px 22px}.rev-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}.rev-table th{background:var(--s1);padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}.rev-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}.rev-table tr:last-child td{border-bottom:none}.rev-table tr:hover td{background:#f8f9fc}.rev-inp{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;outline:none;background:var(--white);color:var(--text)}.rev-inp:focus{border-color:var(--acc)}.rev-inp.wide{width:100%}.rev-inp.mono{font-family:'IBM Plex Mono',monospace;text-align:center;width:70px}.rev-add-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px dashed var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;margin-top:8px;background:transparent}.rev-add-row:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.rev-kap-bar{height:5px;border-radius:3px;background:var(--s2);overflow:hidden;margin-top:3px}.rev-kap-fill{height:100%;border-radius:3px}.kal-wrap{margin-top:0}.kal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.kal-title{font-weight:600;font-size:13px;color:var(--text)}.kal-nav{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:13px;color:var(--text2);touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1)}.kal-nav:hover{border-color:var(--acc);color:var(--acc)}.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}.kal-wd{text-align:center;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;padding:3px 0}.kal-day{text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .12s;border:1px solid transparent;position:relative}.kal-day:hover:not(.kal-other){background:var(--s1);border-color:var(--border)}.kal-day.kal-other{color:var(--muted2);cursor:default;pointer-events:none}.kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}.kal-day.kal-feiertag{background:var(--rbg);border-color:var(--rbd);color:var(--red);font-weight:600}.kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-day.kal-krank{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}.kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}.kal-leg-item:hover{border-color:var(--acc)}.kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}.kal-leg-k.active{background:var(--ybg);border-color:#fcd34d;color:var(--yellow);font-weight:600}.kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}.kal-leg-clr:hover{border-color:var(--red);color:var(--red)}.kal-dot{width:9px;height:9px;border-radius:50%}.kal-summary{font-size:11px;color:var(--muted);margin-top:6px}.std-i{width:58px;padding:4px 5px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}.std-i:focus{border-color:var(--acc)}.std-i.over{border-color:var(--red);background:var(--rbg)}.std-i.ok{border-color:var(--green);background:var(--gbg)}.kbar{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:3px}.kfill{height:100%;border-radius:2px}.fok{background:var(--green)}.fwarn{background:#d97706}.fover{background:var(--red)}.pager{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;flex-wrap:wrap;gap:8px;background:var(--s1)}.pbtns{display:flex;gap:3px}.pbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit}.pbtn.active{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}.pbtn:hover:not(.active){border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mbg{display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}.mbg>.modal{overflow-y:auto;max-height:calc(100vh - 40px)}.mbg.open{display:flex}.modal{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px;width:100%;max-width:800px;animation:su .2s ease;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}.modal.sm{max-width:480px}.modal.md{max-width:600px}@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.mtitle{font-weight:600;font-size:19px;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px}.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg{display:flex;flex-direction:column;gap:5px}.fg.full{grid-column:1/-1}label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}input,select,textarea{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:all .2s;width:100%}input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.1)}.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;display:flex;align-items:center;gap:8px}.sh::after{content:'';flex:1;height:1px;background:var(--border)}.warn-t{color:var(--red);font-size:11px;margin-top:3px}.wtbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}.wtbl th{background:var(--s2);padding:7px 6px;font-size:11px;font-weight:600;text-align:center;color:var(--text2);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}.wtbl th:last-child{border-right:none;background:var(--acc-l);color:var(--acc)}.wtbl td{padding:5px 4px;text-align:center;border-right:1px solid var(--border);background:var(--white)}.wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace;font-size:14px}.wtbl td input{width:56px;padding:5px 3px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;border-radius:5px}.winfo{display:flex;align-items:center;justify-content:space-between;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:9px 14px;margin-top:8px}.wval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;color:var(--acc)}.wlbl{font-size:11px;color:var(--muted)}.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.ocard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh);transition:border-color .2s}.ocard:hover{border-color:var(--border2)}.ocard.eh{opacity:.72;border-style:dashed}.ocard-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}.ocard-n{font-weight:600;font-size:13px;line-height:1.3}.ocard-s{font-size:11px;color:var(--muted);margin-bottom:8px}.kbar-o{height:7px;border-radius:4px;background:var(--s2);overflow:hidden;margin-bottom:5px}.kbar-o-f{height:100%;border-radius:4px;transition:width .4s}.no-kap{font-size:11px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:6px}.ma-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}.ma-chip{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--s1);border:1px solid var(--border);color:var(--text2)}.eh-tag{font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--border)}.obj-editor{display:flex;flex-direction:column;gap:12px}.obj-row{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.obj-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.obj-nr{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.obj-basic{display:grid;grid-template-columns:2fr 1fr;gap:7px;margin-bottom:8px}.kap-hint{font-size:12px;padding:7px 11px;border-radius:6px;margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.kh-ok{background:var(--gbg);border:1px solid var(--gbd);color:var(--green)}.kh-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange)}.kh-o{background:var(--rbg);border:1px solid var(--rbd);color:var(--red)}.kh-n{background:var(--s1);border:1px solid var(--border);color:var(--muted)}.add-obj-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:var(--r);border:1px dashed var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;width:100%;margin-top:8px}.add-obj-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:2px}.mtab{padding:3px 9px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s;font-weight:500}.mtab.active{background:var(--white);color:var(--acc);font-weight:600;box-shadow:var(--sh)}.mtab.hd{color:var(--blue)}.mpanel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:10px}.mfields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}.srow{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px}.sinp{width:84px;padding:7px 9px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none}.sinp:focus{border-color:var(--acc)}.sinp.over{border-color:var(--red);background:var(--rbg)}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px;box-shadow:var(--sh)}.hsec{font-size:14px;font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:10px}.hsec .cnt{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:500;color:var(--muted)}.hemp{background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:26px;text-align:center;color:var(--green);font-size:14px}.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh)}.dcard h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;font-weight:600}.dbig{font-size:30px;font-weight:600;line-height:1}.dsub{font-size:12px;color:var(--muted);margin-top:4px}.kli{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}.kli:last-child{border-bottom:none}.klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}.sec{display:none}.sec.active{display:block}.empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
+<style>
+:root{
+--bg:#f8fafc;--white:#fff;--s1:#f1f5f9;--s2:#e8edf4;
+--border:#e2e8f0;--border2:#cbd5e1;
+--acc:#1a56db;--acc-l:#eff6ff;--acc-h:#1447c0;
+--green:#057a55;--gbg:#ecfdf5;--gbd:#a7f3d0;
+--red:#c81e1e;--rbg:#fef2f2;--rbd:#fca5a5;
+--yellow:#92400e;--ybg:#fffbeb;
+--blue:#1a56db;--bbg:#eff6ff;
+--orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;
+--ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;
+--text:#0f172a;--text2:#334155;--muted:#64748b;--muted2:#94a3b8;
+--r:8px;--r2:10px;
+--sh:0 1px 2px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+--sh2:0 4px 20px rgba(0,0,0,.10);
+--z-gantt-cell:2;--z-gantt-name:3;--z-gantt-head:5;--z-sticky-head:10;
+--z-bottom-nav:20;--z-header:30;--z-lock-banner:40;
+--z-modal-bg:50;--z-modal:60;--z-dropdown:9999;--z-alert:80;--z-login:90
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:var(--z-header);gap:12px;height:56px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:32px;height:32px;border-radius:9px;background:#1a56db;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.logo-text{font-weight:700;font-size:15px;color:var(--text)}
+.logo-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.hstats{display:flex;gap:6px;flex-wrap:nowrap;align-items:center;margin-left:auto}
+.hstat{display:flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;transition:all .15s;background:var(--white);font-family:inherit;font-size:inherit;text-align:left}
+.hstat:hover,.hstat.fa{background:var(--acc-l);border-color:#bfdbfe}
+.hv{font-weight:700;font-size:12px;line-height:1;color:var(--text)}
+.hl{font-size:10px;color:var(--muted);line-height:1.2}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;opacity:.9}
+.olb{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px;font-size:10px;font-weight:700;font-family:'IBM Plex Mono',monospace}
+.ol-M{background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe}
+.ol-I{background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc}
+.tabs{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%}
+.tabs::-webkit-scrollbar{display:none}
+.tab{display:inline-flex;align-items:center;gap:5px;padding:11px 16px;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-radius:0;border:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;flex-shrink:0;background:transparent}
+.tab.active{color:var(--acc);border-bottom:2px solid var(--acc);font-weight:600}
+.tab.admin-tab{color:var(--ol-m)}
+.tab.admin-tab.active{color:var(--ol-m);border-bottom:2px solid var(--ol-m)}
+.tab:hover:not(.active){color:var(--text2);background:var(--s1)}
+main{padding:22px 26px;max-width:1800px;margin:0 auto}
+.toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.sw{position:relative;flex:1;min-width:180px}
+.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none}
+.sb{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px 8px 33px;color:var(--text);font-size:13px;font-family:inherit;outline:none;box-shadow:var(--sh)}
+.sb:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.08)}
+.sb::placeholder{color:var(--muted2)}
+select.fsel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;cursor:pointer;box-shadow:var(--sh)}
+.btn{padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;white-space:nowrap}
+.btn-p{background:var(--acc);color:#fff}
+.btn-p:hover{background:var(--acc-h)}
+.btn-s{background:var(--green);color:#fff}
+.btn-s:hover{background:#046c4e}
+.btn-o{background:var(--white);border:1px solid var(--border);color:var(--text2);box-shadow:var(--sh)}
+.btn-o:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
+.btn-d{background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;border:none;cursor:pointer}
+.btn-sm{padding:4px 9px;font-size:12px;border-radius:6px}
+.btn-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange);padding:4px 9px;font-size:12px;border-radius:6px;cursor:pointer;font-family:inherit}
+.btn-w:hover{background:#fed7aa}
+.btn-i{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .15s}
+.btn-i:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
+.tw{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--s1)}
+th{padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}
+th:hover{color:var(--acc)}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text2)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8fbff}
+td strong{color:var(--text);font-weight:600}
+code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border)}
+.actions{display:flex;gap:4px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500}
+.b-aktiv{background:var(--gbg);color:var(--green)}
+.b-krank{background:var(--ybg);color:var(--yellow)}
+.b-ausgeschieden{background:var(--s2);color:var(--muted)}
+.b-urlaub{background:var(--bbg);color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:3px}
+.chip{font-size:11px;padding:2px 7px;border-radius:5px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;background:var(--s1);border:1px solid var(--border);color:var(--text2)}
+.chip.m{border-color:#93c5fd;color:var(--blue);background:var(--bbg)}
+.rev-block{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;margin-bottom:10px;box-shadow:var(--sh)}
+.rev-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.rev-block-nr{font-size:11px;font-weight:700;color:var(--muted);background:var(--s1);border:1px solid var(--border);border-radius:5px;padding:2px 8px;flex-shrink:0}
+.rev-block-name{flex:1;min-width:140px}
+.rev-block-ma{min-width:160px}
+.rev-block-sum{font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}
+.rev-block-del{margin-left:auto}
+.rev-wtbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.rev-wtbl th{background:var(--s1);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border)}
+.rev-wtbl td{padding:5px 3px;text-align:center;border-right:1px solid var(--border)}
+.rev-wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:600;color:var(--acc);font-size:12px}
+.rev-wtbl input{width:52px;padding:4px 3px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);outline:none}
+.rev-wtbl input:focus{border-color:var(--acc)}
+.rev-empty-hint{text-align:center;color:var(--muted2);padding:20px;font-size:12px;border:1px dashed var(--border2);border-radius:var(--r);background:var(--white)}
+.rev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:var(--z-modal-bg);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.rev-modal-bg.open{opacity:1;pointer-events:all}
+.rev-modal{background:var(--white);border-radius:12px;width:min(96vw,860px);max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.rev-modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}
+.rev-modal-title{font-weight:700;font-size:16px}
+.rev-modal-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.rev-modal-body{padding:18px 22px}
+.rev-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}
+.rev-table th{background:var(--s1);padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+.rev-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.rev-table tr:last-child td{border-bottom:none}
+.rev-table tr:hover td{background:#f8fbff}
+.rev-inp{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;outline:none;background:var(--white);color:var(--text)}
+.rev-inp:focus{border-color:var(--acc)}
+.rev-inp.wide{width:100%}
+.rev-inp.mono{font-family:'IBM Plex Mono',monospace;text-align:center;width:70px}
+.rev-add-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px dashed var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;margin-top:8px;background:transparent}
+.rev-add-row:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
+.rev-kap-bar{height:5px;border-radius:3px;background:var(--s2);overflow:hidden;margin-top:3px}
+.rev-kap-fill{height:100%;border-radius:3px}
+.kal-wrap{margin-top:0}
+.kal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.kal-title{font-weight:600;font-size:13px;color:var(--text)}
+.kal-nav{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:13px;color:var(--text2);touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1)}
+.kal-nav:hover{border-color:var(--acc);color:var(--acc)}
+.kal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.kal-wd{text-align:center;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;padding:3px 0}
+.kal-day{text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .12s;border:1px solid transparent;position:relative}
+.kal-day:hover:not(.kal-other){background:var(--s1);border-color:var(--border)}
+.kal-day.kal-other{color:var(--muted2);cursor:default;pointer-events:none}
+.kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}
+.kal-wd-so{color:#DC2626!important;font-weight:700}
+.kal-day.kal-feiertag{background:var(--white);border-color:#DC2626;color:#DC2626;font-weight:700}
+.kal-day.kal-sonntag{background:var(--white);border-color:#DC2626;color:#DC2626;font-weight:700}
+.kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}
+.kal-day.kal-krank{background:#DC2626;border-color:#991b1b;color:#fff;font-weight:700}
+.kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}
+.kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}
+.kal-leg-item:hover{border-color:var(--acc)}
+.kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}
+.kal-leg-k.active{background:#DC2626;border-color:#991b1b;color:#fff;font-weight:600}
+.kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}
+.kal-leg-clr:hover{border-color:var(--red);color:var(--red)}
+.kal-dot{width:9px;height:9px;border-radius:50%}
+.kal-summary{font-size:11px;color:var(--muted);margin-top:6px}
+.std-i{width:58px;padding:4px 5px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}
+.std-i:focus{border-color:var(--acc)}
+.std-i.over{border-color:var(--red);background:var(--rbg)}
+.std-i.ok{border-color:var(--green);background:var(--gbg)}
+.kbar{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:3px}
+.kfill{height:100%;border-radius:2px}
+.fok{background:var(--green)}
+.fwarn{background:#d97706}
+.fover{background:var(--red)}
+.pager{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;flex-wrap:wrap;gap:8px;background:var(--s1)}
+.pbtns{display:flex;gap:3px}
+.pbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit}
+.pbtn.active{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+.pbtn:hover:not(.active){border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
+.mbg{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}
+.mbg>.modal{overflow-y:auto;max-height:calc(100vh - 40px)}
+.mbg.open{display:flex}
+.modal{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:28px;width:100%;max-width:800px;animation:su .2s ease;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.modal.sm{max-width:480px}
+.modal.md{max-width:600px}
+@keyframes su{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.mtitle{font-weight:700;font-size:18px;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px;color:var(--text)}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:all .2s;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,86,219,.1)}
+.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+.sh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;display:flex;align-items:center;gap:8px}
+.sh::after{content:'';flex:1;height:1px;background:var(--border)}
+.warn-t{color:var(--red);font-size:11px;margin-top:3px}
+.wtbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.wtbl th{background:var(--s1);padding:7px 6px;font-size:11px;font-weight:600;text-align:center;color:var(--text2);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+.wtbl th:last-child{border-right:none;background:var(--acc-l);color:var(--acc)}
+.wtbl td{padding:5px 4px;text-align:center;border-right:1px solid var(--border);background:var(--white)}
+.wtbl td:last-child{border-right:none;background:var(--acc-l);font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace;font-size:14px}
+.wtbl td input{width:56px;padding:5px 3px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;border-radius:5px}
+.winfo{display:flex;align-items:center;justify-content:space-between;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:9px 14px;margin-top:8px}
+.wval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;color:var(--acc)}
+.wlbl{font-size:11px;color:var(--muted)}
+.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.ocard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh);transition:all .2s}
+.ocard:hover{border-color:var(--border2);box-shadow:var(--sh2);transform:translateY(-1px)}
+.ocard.eh{opacity:.72;border-style:dashed}
+.ocard-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.ocard-n{font-weight:600;font-size:13px;line-height:1.3}
+.ocard-s{font-size:11px;color:var(--muted);margin-bottom:8px}
+.kbar-o{height:6px;border-radius:4px;background:var(--s2);overflow:hidden;margin-bottom:5px}
+.kbar-o-f{height:100%;border-radius:4px;transition:width .4s}
+.no-kap{font-size:11px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:6px}
+.ma-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}
+.ma-chip{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--s1);border:1px solid var(--border);color:var(--text2)}
+.eh-tag{font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--border)}
+.obj-editor{display:flex;flex-direction:column;gap:12px}
+.obj-row{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px}
+.obj-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.obj-nr{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.obj-basic{display:grid;grid-template-columns:2fr 1fr;gap:7px;margin-bottom:8px}
+.kap-hint{font-size:12px;padding:7px 11px;border-radius:6px;margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.kh-ok{background:var(--gbg);border:1px solid var(--gbd);color:var(--green)}
+.kh-w{background:var(--obg);border:1px solid var(--obd);color:var(--orange)}
+.kh-o{background:var(--rbg);border:1px solid var(--rbd);color:var(--red)}
+.kh-n{background:var(--s1);border:1px solid var(--border);color:var(--muted)}
+.add-obj-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:var(--r);border:1px dashed var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;width:100%;margin-top:8px}
+.add-obj-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
+.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:2px}
+.mtab{padding:4px 10px;border-radius:6px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s;font-weight:500}
+.mtab.active{background:var(--white);color:var(--acc);font-weight:600;box-shadow:var(--sh)}
+.mtab.hd{color:var(--blue)}
+.mpanel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:12px}
+.mfields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.srow{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px}
+.sinp{width:84px;padding:7px 9px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none}
+.sinp:focus{border-color:var(--acc)}
+.sinp.over{border-color:var(--red);background:var(--rbg)}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:12px}
+.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh)}
+.hsec{font-size:15px;font-weight:700;margin:22px 0 10px;display:flex;align-items:center;gap:10px;color:var(--text)}
+.hsec .cnt{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:500;color:var(--muted)}
+.hemp{background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:26px;text-align:center;color:var(--green);font-size:14px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:20px;box-shadow:var(--sh)}
+.dcard h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px;font-weight:600}
+.dbig{font-size:32px;font-weight:700;line-height:1;color:var(--text)}
+.dsub{font-size:12px;color:var(--muted);margin-top:5px}
+.kli{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
+.kli:last-child{border-bottom:none}
+.klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}
+#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}
+.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}
+.sec{display:none}
+.sec.active{display:block}
+.empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
 .hstat:focus-visible,.kd-card-head:focus-visible,.kal-day:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .tabs .tab:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
@@ -35,50 +269,46 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .datev-check-row.err{background:var(--rbg)}
 .datev-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:var(--z-modal);display:none;align-items:center;justify-content:center;padding:20px}
 .datev-modal-bg.open{display:flex}
-.datev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,820px);max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.2);display:flex;flex-direction:column}
+.datev-modal{background:var(--white);border-radius:var(--r2);width:min(96vw,820px);max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.15);display:flex;flex-direction:column}
 .datev-modal-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:var(--z-sticky-head)}
-
 .modell-switch{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
 .modell-btn{flex:1;padding:7px 10px;border:none;background:var(--s1);color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;font-weight:500;transition:all .15s;text-align:center;border-right:1px solid var(--border)}
 .modell-btn:last-child{border-right:none}
-/* m433/abr433-CSS entfernt v92 (4,33-Faktor abgeschafft) */
 .modell-btn.active.marb{background:var(--green);color:#fff}
 .abr-switch{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:6px}
 .abr-btn{flex:1;padding:8px 10px;border:none;background:var(--s1);color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;font-weight:500;transition:all .15s;text-align:center;border-right:1px solid var(--border)}
 .abr-btn:last-child{border-right:none}
-
 .abr-btn.active.abrarb{background:var(--green);color:#fff}
 .soll-box{display:flex;align-items:center;justify-content:space-between;border-radius:var(--r);padding:10px 14px;margin-top:8px}
-
 .soll-box.marb{background:var(--gbg);border:1px solid var(--gbd)}
 .soll-val{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:20px}
-
 .soll-val.marb{color:var(--green)}
 .soll-formel{font-size:11px;color:var(--muted);margin-top:2px}
 .arb-tage-inp{width:72px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none;font-weight:600}
 .arb-tage-inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(5,122,85,.1)}
 .admin-drop-btn{display:block;width:100%;text-align:left;background:none;border:none;border-radius:7px;padding:8px 12px;font-size:13px;font-family:inherit;color:var(--text2);cursor:pointer;transition:background .1s}
 .admin-drop-btn:hover{background:var(--s1);color:var(--text)}
-.admin-kachel{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:20px 18px;cursor:pointer;transition:all .18s;font-size:24px;box-shadow:0 2px 8px rgba(0,0,0,.07),0 1px 3px rgba(0,0,0,.05);line-height:1}
-.admin-kachel:hover{border-color:#93c5fd;box-shadow:0 6px 20px rgba(30,79,194,.13),0 2px 6px rgba(0,0,0,.07);transform:translateY(-2px)}
+.admin-kachel{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:20px 18px;cursor:pointer;transition:all .18s;font-size:24px;box-shadow:var(--sh);line-height:1}
+.admin-kachel:hover{border-color:#93c5fd;box-shadow:0 6px 20px rgba(26,86,219,.12);transform:translateY(-2px)}
 .admin-kachel .ak-title{font-size:14px;font-weight:600;color:var(--text);margin-top:12px;margin-bottom:3px}
 .admin-kachel .ak-desc{font-size:12px;color:var(--muted)}
 .wt-locked input{background:var(--s1)!important;color:var(--muted)!important;pointer-events:none}
-/* ── URLAUBSPLAN GANTT ───────────────────────────────────── */
 .gantt-wrap{overflow-x:auto;overflow-y:auto;max-height:calc(100vh - 180px);padding-bottom:12px}
 .gantt-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
 .gantt-table{border-collapse:collapse;font-size:11px;min-width:100%}
 .gantt-table th,.gantt-table td{padding:0;margin:0}
 .gantt-name{position:sticky;left:0;z-index:var(--z-gantt-name);background:var(--white);border-right:2px solid var(--border2);white-space:nowrap;padding:var(--gz-py,6px) 12px;font-size:var(--gz-fs,13px);font-weight:600;color:var(--text);min-width:170px;max-width:200px;overflow:hidden;text-overflow:ellipsis}
 .gantt-name-head{position:sticky;left:0;top:0;z-index:var(--z-gantt-head);background:var(--s1);border-right:2px solid var(--border2);padding:6px 12px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.gantt-month-head{position:sticky;top:0;background:#1e4fc2;color:#fff;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-right:1px solid rgba(255,255,255,.2);padding:5px 2px;white-space:nowrap;z-index:var(--z-sticky-head)}
+.gantt-month-head{position:sticky;top:0;background:#1a56db;color:#fff;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-right:1px solid rgba(255,255,255,.2);padding:5px 2px;white-space:nowrap;z-index:var(--z-sticky-head)}
 .gantt-day-head{position:sticky;top:22px;background:var(--s2);text-align:center;font-size:9px;color:var(--muted2);padding:2px 0;width:var(--gz-w,14px);min-width:var(--gz-w,14px);max-width:var(--gz-w,14px);border-right:1px solid transparent;z-index:var(--z-sticky-head)}
 .gantt-day-head.mo{border-left:1px solid var(--border)}
 .gantt-day-head.today{background:var(--acc);color:#fff;font-weight:700}
 .gantt-cell{width:var(--gz-w,14px);min-width:var(--gz-w,14px);max-width:var(--gz-w,14px);height:var(--gz-h,30px);border-right:1px solid transparent;cursor:default;position:relative}
 .gantt-cell.mo{border-left:1px solid var(--border)}
-.gantt-cell.weekend{background:var(--s1)}.gantt-cell.feiertag{background:repeating-linear-gradient(45deg,#fecaca,#fecaca 3px,var(--rbg) 3px,var(--rbg) 6px)}.gantt-cell.nicht-angestellt{background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 3px,#f3f4f6 3px,#f3f4f6 6px);opacity:.6}
-.gantt-cell.today-col{background:#eef2ff!important;border-left:1px solid var(--acc)!important;border-right:1px solid var(--acc)!important}
+.gantt-cell.weekend{background:var(--s1)}
+.gantt-cell.feiertag{background:repeating-linear-gradient(45deg,#fecaca,#fecaca 3px,var(--rbg) 3px,var(--rbg) 6px)}
+.gantt-cell.nicht-angestellt{background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 3px,#f3f4f6 3px,#f3f4f6 6px);opacity:.6}
+.gantt-cell.today-col{background:#eff6ff!important;border-left:1px solid var(--acc)!important;border-right:1px solid var(--acc)!important}
 .gantt-cell.urlaub{background:#3b82f6;border-radius:0}
 .gantt-cell.krank{background:#f59e0b;border-radius:0}
 .gantt-cell.urlaub-start{border-radius:4px 0 0 4px}
@@ -87,8 +317,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .gantt-cell.krank-end{border-radius:0 4px 4px 0}
 .gantt-cell.urlaub-solo{border-radius:4px}
 .gantt-cell.krank-solo{border-radius:4px}
-.gantt-row:hover .gantt-cell:not(.urlaub):not(.krank){background:#eef3ff}
-.gantt-row:hover .gantt-name{background:#eef3ff;color:#1e4fc2}
+.gantt-row:hover .gantt-cell:not(.urlaub):not(.krank){background:#eff6ff}
+.gantt-row:hover .gantt-name{background:#eff6ff;color:#1a56db}
 .gantt-row td{border-bottom:1px solid var(--border)}
 .gantt-row{content-visibility:auto;contain-intrinsic-size:0 30px}
 .gantt-legend{display:flex;gap:14px;align-items:center;font-size:12px;flex-wrap:wrap}
@@ -97,24 +327,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .gantt-summary{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace}
 .gantt-ol-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px;font-size:10px;font-weight:700;margin-right:5px;flex-shrink:0}
 .gantt-empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
-
-
-
-
-
-
-
-
-
 .imp-stat{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)}
 .imp-stat:last-child{border-bottom:none}
-
-
-
-
-
-
-
 .konf-row{display:grid;grid-template-columns:auto 1fr 1fr 80px;gap:8px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--border);font-size:12px}
 .konf-row:last-child{border-bottom:none}
 .konf-row.konf-keep{background:var(--gbg)}
@@ -124,7 +338,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .konf-toggle{display:flex;border:1px solid var(--border);border-radius:5px;overflow:hidden;font-size:11px}
 .konf-toggle button{padding:2px 7px;border:none;cursor:pointer;font-size:11px;font-family:inherit;background:var(--s1);color:var(--muted)}
 .konf-toggle button.active{background:var(--acc);color:#fff;font-weight:600}
-.kd-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);box-shadow:var(--sh);margin-bottom:16px;overflow:hidden}
+.kd-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
 .kd-card-head{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 16px;cursor:pointer;gap:10px;transition:background .15s}
 .kd-card-head:hover{background:var(--s1)}
 .kd-card-head.open{background:var(--acc-l);border-bottom:1px solid var(--border)}
@@ -138,10 +352,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .kd-st-name{font-weight:600;color:var(--text);margin-bottom:4px;font-size:13px}
 .kd-no-st{color:var(--muted);font-size:12px;padding:10px 0;font-style:italic}
 .kd-actions{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
-/* ── LOGIN OVERLAY ── */
-#login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#1a1f2e 0%,#1e3a5f 100%);z-index:var(--z-login);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Sans',sans-serif}
+#login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);z-index:var(--z-login);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Sans',sans-serif}
 #login-overlay.hidden{display:none}
-.login-box{background:#fff;border-radius:16px;padding:36px 40px;width:min(94vw,400px);box-shadow:0 24px 60px rgba(0,0,0,.35);text-align:center}
+.login-box{background:#fff;border-radius:16px;padding:36px 40px;width:min(94vw,400px);box-shadow:0 24px 60px rgba(0,0,0,.3);text-align:center}
 .login-logo{width:52px;height:52px;background:var(--acc);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px}
 .login-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
 .login-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
@@ -159,12 +372,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .sync-dot.error{background:var(--red)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 /* ── LOCK BANNER ── */
-#lock-banner{position:fixed;top:102px;left:0;right:0;z-index:var(--z-lock-banner);background:#fff7ed;border-bottom:2px solid #fed7aa;padding:10px 24px;font-size:13px;color:var(--orange);display:none;align-items:center;gap:10px}
+#lock-banner{position:fixed;top:87px;left:0;right:0;z-index:var(--z-lock-banner);background:#fff7ed;border-bottom:2px solid #fed7aa;padding:10px 24px;font-size:13px;color:var(--orange);display:none;align-items:center;gap:10px}
 #lock-banner.visible{display:flex}
 body.lock-active main{margin-top:46px}
 /* ── USER BADGE in Header ── */
-.user-badge{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.25);border-radius:var(--r);padding:5px 12px;font-size:12px;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;transition:all .15s}
-.user-badge:hover{border-color:rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.22)}
+.user-badge{display:flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:var(--r);padding:5px 12px;font-size:12px;background:var(--white);color:var(--text2);cursor:pointer;transition:all .15s}
+.user-badge:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
 .user-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
 
 /* ══════════════════════════════════════════════════════════
@@ -524,6 +737,17 @@ body.lock-active main{margin-top:46px}
   .mfields{grid-template-columns:1fr}
   .dgrid{grid-template-columns:1fr}
 }
+
+/* ── Filter-Dropdown ── */
+.filter-wrap{position:relative;display:inline-block}
+.filter-btn{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--r);border:1px solid var(--border);background:var(--white);color:var(--text2);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;box-shadow:var(--sh);transition:all .15s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.fp-open{border-color:var(--acc);color:var(--acc);background:var(--acc-l)}
+.filter-badge{display:none;align-items:center;justify-content:center;background:var(--acc);color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:1px 6px;margin-left:2px}
+.filter-badge.vis{display:inline-flex}
+.filter-panel{display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-dropdown);min-width:220px;padding:10px 12px;flex-direction:column;gap:6px}
+.filter-panel.open{display:flex}
+.fp-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fp-reset{font-size:11px;color:var(--red);cursor:pointer;background:none;border:none;font-family:inherit;padding:4px 0 0;text-decoration:underline;text-align:left}
 /* ── TYPEAHEAD ── */
 .ta-wrap{position:relative;width:100%}
 .ta-inp{width:100%;padding:4px 6px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;background:var(--white);outline:none;color:var(--text)}
@@ -612,7 +836,7 @@ main{padding:14px 16px}
 
 /* ── Tab Icon/Label Struktur ── */
 .tab{display:inline-flex;align-items:center;gap:6px}
-.tab-icon{font-size:14px;flex-shrink:0}
+.tab-icon{font-size:13px;flex-shrink:0}
 .tab-lbl{white-space:nowrap}
 
 
@@ -682,7 +906,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager 2026 <span style="font-size:10px;opacity:.55;font-weight:400">v93</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></button></div><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></button></div><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></button></div><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></button></div><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></button></div><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></button></div><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></div></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager 2026 <span style="font-size:10px;opacity:.55;font-weight:400">v111</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></button></div><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></button></div><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></button></div><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></button></div><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></button></div><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></button></div><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></div></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -698,8 +922,8 @@ main{padding:14px 16px}
 <button class="tab" data-tab="minijob" onclick="showTab('minijob')" type="button"><span class="tab-icon">💼</span><span class="tab-lbl">Minijob</span></button>
 <button class="tab" data-tab="dashboard" onclick="showTab('dashboard')" type="button"><span class="tab-icon">📈</span><span class="tab-lbl">Übersicht</span></button>
 <button class="tab" data-tab="objekte" onclick="showTab('objekte')" type="button"><span class="tab-icon">🏢</span><span class="tab-lbl">Kunden</span></button>
-<button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button>
-</nav><main role="main"><div class="sec active" id="tab-liste"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Name, Nr., Kunde..." id="search" oninput="renderDebounced()" aria-label="Mitarbeiter suchen" autocomplete="off"></div><select class="fsel" id="f-status" onchange="render()"><option value="">Alle Status</option><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select><select class="fsel" id="f-ol" onchange="render()"><option value="">Alle OL</option><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select><select class="fsel" id="f-kunde" onchange="render()"><option value="">Alle Kunden</option></select><div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);padding:3px 6px;box-shadow:var(--sh)">
+<button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button><div style="flex:1"></div>
+</nav><main role="main"><div class="sec active" id="tab-liste"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Name, Nr., Kunde..." id="search" oninput="renderDebounced()" aria-label="Mitarbeiter suchen" autocomplete="off"></div><div class="filter-wrap"><button class="filter-btn" id="fp-btn" onclick="toggleFP()" type="button">▾ Filter <span class="filter-badge" id="fp-badge">0</span></button><div class="filter-panel" id="fp-panel"><span class="fp-label">Status</span><select class="fsel" id="f-status" onchange="render();updateFP()" style="width:100%"><option value="">Alle Status</option><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select><span class="fp-label">Objektleiter</span><select class="fsel" id="f-ol" onchange="render();updateFP()" style="width:100%"><option value="">Alle OL</option><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select><span class="fp-label">Kunde</span><select class="fsel" id="f-kunde" onchange="render();updateFP()" style="width:100%"><option value="">Alle Kunden</option></select><button class="fp-reset" onclick="resetFP()">↺ Zurücksetzen</button></div></div><div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);padding:3px 6px;box-shadow:var(--sh)">
   <button onclick="amNav(-1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Vorheriger Monat">◀</button>
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
@@ -712,7 +936,51 @@ main{padding:14px 16px}
 <div class="sec" id="tab-urlaub"><div id="urlaub-c"></div></div>
 <div class="sec" id="tab-dashboard"><div class="dgrid" id="dash-c"></div></div>
 <div class="sec" id="tab-minijob"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px"><div style="font-size:17px;font-weight:700;color:var(--text)">💼 Minijob-Übersicht</div><div style="font-size:12px;color:var(--muted)">Zeitjahr ab Eintrittsdatum · Krankheitsvertretungs-Ausnahme</div></div><div id="minijob-list"></div></div>
-<div class="sec" id="tab-admin"><div style="padding:24px"><div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div></div></div></div>
+<div class="sec" id="tab-admin"><div style="padding:24px">
+
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">📋 Änderungsprotokoll</div>
+<div style="font-size:13px;color:var(--muted);margin-bottom:14px">Wer hat wann welche Fehlzeiten eingetragen</div>
+
+<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
+  <div style="position:relative;flex:1;min-width:180px">
+    <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted2);pointer-events:none" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="sb" placeholder="MA-Name suchen..." id="proto-search" oninput="renderProtokoll()" style="padding-left:33px" autocomplete="off">
+  </div>
+  <select class="fsel" id="proto-user" onchange="renderProtokoll()">
+    <option value="">Alle Benutzer</option>
+    <option>Romano</option>
+    <option>Adler</option>
+    <option>Richter</option>
+    <option>Incecik</option>
+    <option>Grippo</option>
+  </select>
+  <select class="fsel" id="proto-typ" onchange="renderProtokoll()">
+    <option value="">Alle Typen</option>
+    <option value="urlaub">Urlaub</option>
+    <option value="krank">Krank</option>
+    <option value="gelöscht">Gelöscht</option>
+  </select>
+  <button class="btn btn-o" onclick="if(confirm('Protokoll wirklich löschen?')){localStorage.removeItem('mm_aenderungslog');renderProtokoll();}">🗑 Protokoll leeren</button>
+</div>
+
+<div class="tw" style="margin-bottom:28px">
+  <table>
+    <thead>
+      <tr>
+        <th>Benutzer</th>
+        <th>Datum/Uhrzeit</th>
+        <th>Mitarbeiter</th>
+        <th>Tag</th>
+        <th>Aktion</th>
+        <th>Typ</th>
+      </tr>
+    </thead>
+    <tbody id="proto-tbody"></tbody>
+  </table>
+  <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
+</div>
+
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -794,51 +1062,46 @@ main{padding:14px 16px}
 <div class="mtitle" id="mamtitle">Mitarbeiter</div>
 
 <!-- BLOCK 1: Personaldaten -->
-<div style="border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:10px">
-  <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px">
-    <span style="background:var(--acc-l);color:var(--acc);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">1</span>
-    Personaldaten
-  </div>
-  <div class="fg2" style="margin-bottom:8px">
-    <div class="fg"><label>Personal-Nr.</label><input id="f-pnr" maxlength="20"><div class="warn-t" id="w-pnr"></div></div>
-    <div class="fg"><label>Status</label><select id="f-st"><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select></div>
-    <div class="fg"><label>Vorname</label><input id="f-vn" maxlength="50"></div>
-    <div class="fg"><label>Nachname *</label><input id="f-nn" maxlength="50"></div>
-  </div>
-  <div class="fg2" style="margin-bottom:8px">
-    <div class="fg"><label>Telefon</label><input id="f-tel" maxlength="30"></div>
-    <div class="fg"><label>Objektleiter *</label><select id="mam-f-ol"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select></div>
-    <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein" oninput="calcUrlaubAnspruch()"></div>
-    <div class="fg"><label>Austrittsdatum</label><input type="date" id="f-aus"></div>
-  </div>
-  <div class="fg2">
-    <div class="fg"><label>Jahresurlaub (Tage)</label><input type="number" id="f-urltage" placeholder="28–30"></div>
-  </div>
-  <div class="fg full" style="margin-top:8px">
-    <label style="display:flex;align-items:center;gap:6px">
-      DATEV-Lohnarten
-      <span style="font-size:10px;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(aus Buchhaltung, z.B. 1000, 2199, 2003 Feiertagszuschlag…)</span>
-    </label>
-    <div id="f-lohnarten-chips" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;min-height:24px"></div>
-    <input id="f-lohnarten-inp" placeholder="Lohnart eingeben + Enter" style="width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:13px;box-sizing:border-box" onkeydown="if(event.key==='Enter'){event.preventDefault();addLohnartChip();}">
-  </div>
-</div>
-
-<!-- BLOCK 1b: Weitere Daten (ausklappbar) -->
-<div style="border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden">
-  <button onclick="toggleWeitere()" id="weitere-toggle-btn"
-    style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--s1);border:none;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s"
-    onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
-    <div style="display:flex;align-items:center;gap:6px">
-      <span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">📋 Weitere Personaldaten</span>
-      <span style="font-size:10px;color:var(--muted2)">(optional)</span>
+<div style="border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px">
+  <!-- Immer sichtbar: Nr, Status, Vorname, Nachname -->
+  <div style="padding:8px 14px 6px">
+    <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;display:flex;align-items:center;gap:6px">
+      <span style="background:var(--acc-l);color:var(--acc);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">1</span>
+      Personaldaten
     </div>
+    <div class="fg2" style="margin-bottom:5px">
+      <div class="fg"><label>Personal-Nr.</label><input id="f-pnr" maxlength="20"><div class="warn-t" id="w-pnr"></div></div>
+      <div class="fg"><label>Status</label><select id="f-st"><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select></div>
+    </div>
+    <div class="fg2" style="margin-bottom:0">
+      <div class="fg"><label>Vorname</label><input id="f-vn" maxlength="50"></div>
+      <div class="fg"><label>Nachname *</label><input id="f-nn" maxlength="50"></div>
+    </div>
+  </div>
+  <!-- Aufklappbar: Rest -->
+  <button onclick="toggleWeitere()" id="weitere-toggle-btn"
+    style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:6px 14px;background:var(--s1);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:inherit;text-align:left;transition:background .15s"
+    onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+    <span style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Weitere Felder (OL, Einritt, Urlaub, Lohnarten…)</span>
     <span id="weitere-arrow" style="font-size:12px;color:var(--muted);transition:transform .2s">▸</span>
   </button>
-  <div id="weitere-panel" style="display:none;padding:12px 14px;border-top:1px solid var(--border)">
-    <div style="font-size:11px;color:var(--muted);margin-bottom:12px;padding:8px 10px;background:var(--s1);border-radius:6px;border-left:3px solid var(--acc)">
-      💡 Dieser Bereich ist für zukünftige Felder reserviert (z.B. Adresse, Geburtsdatum, Bankverbindung). 
-      Felder werden ergänzt sobald das Programm vollständig stabil ist.
+  <div id="weitere-panel" style="display:none;padding:10px 14px;border-top:1px solid var(--border)">
+    <div class="fg2" style="margin-bottom:8px">
+      <div class="fg"><label>Telefon</label><input id="f-tel" maxlength="30"></div>
+      <div class="fg"><label>Objektleiter *</label><select id="mam-f-ol"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select></div>
+      <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein" oninput="calcUrlaubAnspruch()"></div>
+      <div class="fg"><label>Austrittsdatum</label><input type="date" id="f-aus"></div>
+    </div>
+    <div class="fg2" style="margin-bottom:8px">
+      <div class="fg"><label>Jahresurlaub (Tage)</label><input type="number" id="f-urltage" placeholder="28–30"></div>
+    </div>
+    <div class="fg full" style="margin-bottom:8px">
+      <label style="display:flex;align-items:center;gap:6px">
+        DATEV-Lohnarten
+        <span style="font-size:10px;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(z.B. 1000, 2199, 2003…)</span>
+      </label>
+      <div id="f-lohnarten-chips" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;min-height:24px"></div>
+      <input id="f-lohnarten-inp" placeholder="Lohnart eingeben + Enter" style="width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:13px;box-sizing:border-box" onkeydown="if(event.key==='Enter'){event.preventDefault();addLohnartChip();}">
     </div>
     <div class="fg2">
       <div class="fg">
@@ -850,30 +1113,30 @@ main{padding:14px 16px}
 </div>
 
 <!-- BLOCK 2: Mitarbeiter-Typ -->
-<div style="border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:10px;background:var(--s1)">
-  <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+<div style="border:1px solid var(--border);border-radius:var(--r);padding:8px 14px;margin-bottom:10px;background:var(--s1)">
+  <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;display:flex;align-items:center;gap:6px">
     <span style="background:var(--acc-l);color:var(--acc);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">2</span>
     Mitarbeiter-Typ
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px">
+  <div style="display:flex;gap:6px;position:relative">
     <button id="mtyp-btn-mini" onclick="setMATyp('mini')"
-      style="border:2px solid var(--border);border-radius:var(--r);padding:10px 12px;cursor:pointer;background:var(--white);text-align:left;font-family:inherit;transition:all .15s">
-      <div style="font-size:13px;font-weight:600;color:var(--text)">💼 Minijobber</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:3px">max. 603 €/Mon · 7.236 €/Jahr</div>
+      style="flex:1;border:2px solid var(--border);border-radius:var(--r);padding:7px 8px;cursor:pointer;background:var(--white);text-align:left;font-family:inherit;transition:all .15s;min-width:0;overflow:hidden">
+      <div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">💼 Minijobber</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap">max. 603 €/Mon</div>
     </button>
     <button id="mtyp-btn-fest" onclick="setMATyp('fest')"
-      style="border:2px solid var(--border);border-radius:var(--r);padding:10px 12px;cursor:pointer;background:var(--white);text-align:left;font-family:inherit;transition:all .15s">
-      <div style="font-size:13px;font-weight:600;color:var(--text)">👔 Festangestellt</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:3px">Lohnsteuer · Arbeitstage-Abrechnung</div>
+      style="flex:1;border:2px solid var(--border);border-radius:var(--r);padding:7px 8px;cursor:pointer;background:var(--white);text-align:left;font-family:inherit;transition:all .15s;min-width:0;overflow:hidden">
+      <div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">👔 Festangestellt</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap">Arbeitstage-Abr.</div>
     </button>
-  </div>
-  <!-- Verstetigt: nur bei Minijob -->
-  <div id="mtyp-vers-row" style="display:none;margin-top:6px;display:none">
-    <div style="display:flex;align-items:center;gap:10px;background:var(--ybg);border:1px solid #fcd34d;border-radius:var(--r);padding:10px 14px;cursor:pointer" onclick="toggleVerstetigt()">
-      <input type="checkbox" id="f-verstetigt" style="width:18px;height:18px;cursor:pointer;pointer-events:none">
-      <div>
-        <label for="f-verstetigt" style="text-transform:none;font-size:13px;font-weight:500;color:var(--yellow);cursor:pointer;letter-spacing:0">🔒 Verstetigt</label>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">Feste Monatsstunden · Formel: Wochenstd / 5 × 261 / 12</div>
+    <!-- Verstetigt: nur bei Minijob – nimmt flex:1 Platz wenn sichtbar -->
+    <div id="mtyp-vers-row" style="display:none;flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:5px;background:rgba(34,197,94,.08);border:2px solid rgba(34,197,94,.4);border-radius:var(--r);padding:7px 8px;cursor:pointer;box-sizing:border-box;overflow:hidden;width:100%;height:100%" onclick="toggleVerstetigt()">
+        <input type="checkbox" id="f-verstetigt" style="width:14px;height:14px;flex-shrink:0;cursor:pointer;pointer-events:none;accent-color:var(--green)">
+        <div style="min-width:0">
+          <div style="font-size:12px;font-weight:600;color:var(--green);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">🔒 Verstetigt</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap">Fixstunden/Mon</div>
+        </div>
       </div>
     </div>
   </div>
@@ -883,29 +1146,31 @@ main{padding:14px 16px}
 </div>
 
 <!-- BLOCK 3: Lohngruppe -->
-<div id="mtyp-lg-block" style="display:none;border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:10px">
-  <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+<div id="mtyp-lg-block" style="display:none;border:1px solid var(--border);border-radius:var(--r);padding:8px 14px;margin-bottom:10px">
+  <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;display:flex;align-items:center;gap:6px">
     <span style="background:var(--acc-l);color:var(--acc);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">3</span>
     Lohngruppe
   </div>
-  <div class="fg">
-    <label>Lohngruppe (Tarif)</label>
-    <select id="f-lohngruppe" onchange="updLohngruppeInfo()">
-      <option value="">– keine Lohngruppe –</option>
-      <option value="1">LG 1 – Unterhaltsreinigung (15,00 €/h)</option>
-      <option value="2">LG 2 – Erfahrene Kraft (15,46 €/h)</option>
-      <option value="3">LG 3 – Maschinelle Reinigung (15,95 €/h)</option>
-      <option value="4">LG 4 – Spezialreinigung z.B. Klinik (16,66 €/h)</option>
-      <option value="5">LG 5 – Vorarbeiter/in (17,57 €/h)</option>
-      <option value="6">LG 6 – Glas- &amp; Fassade Fachkraft (18,40 €/h)</option>
-      <option value="7">LG 7 – Objektleiter/in (20,00 €/h)</option>
-      <option value="8">LG 8 – Objektleiter/in erfahren (21,50 €/h)</option>
-      <option value="9">LG 9 – Bereichsleiter/in (23,00 €/h)</option>
-    </select>
+  <!-- Zeile: Dropdown + Stundensatz-Info + Minijob-Limits -->
+  <div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:2;min-width:160px">
+      <select id="f-lohngruppe" onchange="updLohngruppeInfo()" style="width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:13px;background:var(--white);color:var(--text);outline:none">
+        <option value="">– keine Lohngruppe –</option>
+        <option value="1">LG 1 – Unterhaltsreinigung (15,00 €/h)</option>
+        <option value="2">LG 2 – Erfahrene Kraft (15,46 €/h)</option>
+        <option value="3">LG 3 – Maschinelle Reinigung (15,95 €/h)</option>
+        <option value="4">LG 4 – Spezialreinigung z.B. Klinik (16,66 €/h)</option>
+        <option value="5">LG 5 – Vorarbeiter/in (17,57 €/h)</option>
+        <option value="6">LG 6 – Glas- &amp; Fassade Fachkraft (18,40 €/h)</option>
+        <option value="7">LG 7 – Objektleiter/in (20,00 €/h)</option>
+        <option value="8">LG 8 – Objektleiter/in erfahren (21,50 €/h)</option>
+        <option value="9">LG 9 – Bereichsleiter/in (23,00 €/h)</option>
+      </select>
+    </div>
+    <div class="fg full" id="lg-info-box" style="display:none;flex:1 1 auto;min-width:0"></div>
   </div>
-  <div class="fg full" id="lg-info-box" style="display:none;margin-top:6px"></div>
   <!-- Abrechnungsmodell: nur bei Festangestellt sichtbar -->
-  <div id="mtyp-abr-block" style="display:none;margin-top:10px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px">
+  <div id="mtyp-abr-block" style="display:none;margin-top:8px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:8px 14px">
     <label style="text-transform:none;font-size:13px;font-weight:600;color:var(--text);letter-spacing:0;display:block;margin-bottom:4px">🧮 Abrechnungsmodell</label>
     <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Wie werden die Monatsstunden berechnet?</div>
     <div class="abr-switch">
@@ -956,13 +1221,13 @@ main{padding:14px 16px}
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--acc);margin-bottom:8px">🏖 Resturlaub</div>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)">
-          <span id="urlaub-result" style="font-size:22px;font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace">–</span>
+          <span id="urlaub-result" style="font-size:15px;font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace">–</span>
           <span style="color:var(--muted)">Anspruch</span>
           <span style="color:var(--muted)">−</span>
-          <span id="urlaub-genommen" style="font-size:22px;font-weight:700;color:var(--blue);font-family:'IBM Plex Mono',monospace">0</span>
+          <span id="urlaub-genommen" style="font-size:15px;font-weight:700;color:var(--blue);font-family:'IBM Plex Mono',monospace">0</span>
           <span style="color:var(--muted)">genommen</span>
           <span style="color:var(--muted)">=</span>
-          <span id="urlaub-rest" style="font-size:22px;font-weight:700;color:var(--green);font-family:'IBM Plex Mono',monospace">–</span>
+          <span id="urlaub-rest" style="font-size:15px;font-weight:700;color:var(--green);font-family:'IBM Plex Mono',monospace">–</span>
           <span style="color:var(--muted)">Rest</span>
         </div>
       </div>
@@ -1126,6 +1391,7 @@ function amNav(dir) {
   if (document.getElementById('tab-heute').classList.contains('active')) renderHeute();
   if (document.getElementById('tab-urlaub').classList.contains('active')) renderUrlaub();
   if (document.getElementById('tab-dashboard').classList.contains('active')) renderDash();
+  if (document.getElementById('tab-admin').classList.contains('active')) renderProtokoll();
 }
 
 function updAMLabels() {
@@ -2187,6 +2453,7 @@ function maOSollMA(m, o, monatKey, maAbrModell) {
 // Berechnet den Anteil der bezahlten Tage im Monat (0.0 - 1.0).
 // Beruecksichtigt: unbezahlte Tage (z.B. unbez. Urlaub) und KK-Zahlung ab Datum
 // (Langzeitkrank > 6 Wochen). Beide Felder kommen aus m.monats_daten[mk].
+// v110: Zusaetzlich unbezahlt_tage_liste aus m.objekte[].unbezahlt_tage_liste (Kalender-Tage).
 function _fehlzeitAbzugFaktor(m, monatKey) {
   const mk = monatKey || getAM();
   const md = (m.monats_daten || {})[mk] || {};
@@ -2200,7 +2467,22 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
   const unbezTage = parseFloat(md.unbezahlt_tage) || 0;
   if (unbezTage > 0) unbezahltTage += unbezTage;
 
-  // 2) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
+  // 2) v110: Tage aus Kalender-Liste der Objekte (unbezahlt_tage_liste = ['YYYY-MM-DD',...])
+  // Alle Objekte des MA zusammenführen, nur Tage im aktuellen Monat zählen, dedupliziert.
+  const mkPrefix = mk.slice(0, 7); // 'YYYY-MM'
+  const kalTageSet = new Set();
+  (m.objekte || []).forEach(o => {
+    (o.unbezahlt_tage_liste || []).forEach(iso => {
+      if (iso && iso.slice(0, 7) === mkPrefix) kalTageSet.add(iso);
+    });
+  });
+  // Nur echte Arbeitstage zählen (Mo-Sa, da viele SA auch samstags arbeiten)
+  kalTageSet.forEach(iso => {
+    const dow = new Date(iso).getDay();
+    if (dow >= 1 && dow <= 6) unbezahltTage++;
+  });
+
+  // 3) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
   if (md.kk_ab_datum) {
     const kkAb = new Date(md.kk_ab_datum);
     if (!isNaN(kkAb.getTime())) {
@@ -2238,6 +2520,7 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
   return Math.round(faktor * 10000) / 10000;
 }
 
+
 function maOSoll(o, monatKey, maAbrModell){
   // ── History-Override: Falls es für diesen Monat einen historischen Eintrag gibt,
   //    diesen statt des aktuellen Objekts verwenden.
@@ -2245,96 +2528,48 @@ function maOSoll(o, monatKey, maAbrModell){
   //    wir gehen über den MA direkt. Hier reicht es, wenn der Aufrufer einen
   //    bereits aufgelösten o-Eintrag (ggf. aus History) übergibt – das passiert
   //    durch maOSollForMonth() weiter unten.
-  // Schulferien: Arbeitsverhältnis ruht → 0h
-  let _schulFerienStd = 0;
-  if (o.schulferien && o.ferien_von && o.ferien_bis) {
-    const mk = monatKey || getAM();
-    const [y, m] = mk.split('-').map(Number);
-    const monatStart = new Date(y, m - 1, 1);
-    const monatEnde  = new Date(y, m, 0); // letzter Tag des Monats
-    const ferienVon  = new Date(o.ferien_von);
-    const ferienBis  = new Date(o.ferien_bis);
-    if (!isNaN(ferienVon) && !isNaN(ferienBis)) {
-      // Vollständig in Ferien → 0
-      if (ferienVon <= monatStart && ferienBis >= monatEnde) return 0;
-      // Teilweise in Ferien → tatsächliche Arbeitsstunden der Ferientage abziehen
-      if (ferienBis >= monatStart && ferienVon <= monatEnde) {
-        const overlapStart = ferienVon > monatStart ? ferienVon : monatStart;
-        const overlapEnde  = ferienBis < monatEnde  ? ferienBis  : monatEnde;
-        const WT_IDX = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
-        let ferienStd = 0;
-        if (o.modell === '14tage' && o.rhythmus_start) {
-          // Nur echte 14-Tage-Einsatztage in der Ferienzeit zählen
-          const ankertage = _get14TageAnkertage(o.rhythmus_start, mk);
-          for (const anker of ankertage) {
-            for (let offset = 0; offset < 14; offset++) {
-              const dt = new Date(anker.getTime() + offset * 86400000);
-              if (dt.getMonth() !== m - 1) break;
-              if (dt < overlapStart || dt > overlapEnde) { if (offset > 0) break; continue; }
-              const wtKey = WT_IDX[dt.getDay()];
-              const std = parseFloat((o.wochentage||{})[wtKey]) || 0;
-              if (std > 0) ferienStd += std;
-              else if (offset > 0) break;
-            }
-          }
-        } else {
-          for (let d = new Date(overlapStart); d <= overlapEnde; d.setDate(d.getDate() + 1)) {
-            const wtKey = WT_IDX[d.getDay()];
-            ferienStd += parseFloat((o.wochentage||{})[wtKey]) || 0;
-          }
-        }
-        _schulFerienStd = Math.round(ferienStd * 100) / 100;
-      }
-    }
-  }
+  // v110: Schulferien-Stundenabzug entfernt. Sollstunden bleiben immer unverändert.
+  // Lohnkürzung erfolgt ausschließlich über _fehlzeitAbzugFaktor (unbezahlt_tage_liste).
   // einsatz_ab / einsatz_bis: anteilige Stunden
   if (o.einsatz_ab || o.einsatz_bis) {
     const mk = monatKey || getAM();
-    // FIX v90: Rundung auf 2 Dezimalstellen (konsistent zum Rest)
-    const _applyFerienAbzugEarly = (std) => Math.round(Math.max(0, std - _schulFerienStd) * 100) / 100;
     const _splitModell = o.modell === '14tage' ? '14tage' : 'arbeitstage';
     if (o.einsatz_ab) {
       const split = calcUebergabeSplit(o.wochentage||{}, o.einsatz_ab, mk, false, _splitModell, o.rhythmus_start||null);
-      return split ? _applyFerienAbzugEarly(split.neuStd) : 0;
+      return split ? Math.round(Math.max(0, split.neuStd) * 100) / 100 : 0;
     }
     if (o.einsatz_bis) {
       const split = calcUebergabeSplit(o.wochentage||{}, o.einsatz_bis, mk, true, _splitModell, o.rhythmus_start||null);
-      return split ? _applyFerienAbzugEarly(split.altStd) : 0;
+      return split ? Math.round(Math.max(0, split.altStd) * 100) / 100 : 0;
     }
   }
   const mk = monatKey || getAM();
-  // Schulferien-Abzug anwenden (tatsächliche Arbeitsstunden der Ferientage)
-  const _sfAbzug = _schulFerienStd;
-  // FIX v90: Rundung auf 2 Dezimalstellen
-  const _applyFerienAbzug = (std) => Math.round(Math.max(0, std - _sfAbzug) * 100) / 100;
   // MA-Abrechnungsmodell 'arbeitstage' übersteuert Objekt-Modell
   const effModell = (maAbrModell === 'arbeitstage' && o.modell !== 'monatlich' && o.modell !== '14tage') ? 'arbeitstage' : (o.modell || 'arbeitstage');
   if(effModell==='arbeitstage'){
     // Wochentage eingetragen → tatsächliche Vorkommen im Monat zählen
     const ws = wSum(o.wochentage||{});
-    if(ws > 0) return _applyFerienAbzug(calcWochentagStunden(o.wochentage||{}, mk));
+    if(ws > 0) return Math.round(calcWochentagStunden(o.wochentage||{}, mk) * 100) / 100;
     // Fallback: std_tag × AT
     const stdTag = parseFloat(o.std_tag) || 0;
     const arbT = parseInt(o.arbtage_monat?.[mk]) || ARBEITSTAGE[mk] || 21;
-    // FIX v90: 2 Dezimalstellen
-    if(stdTag>0) return _applyFerienAbzug(Math.round(stdTag*arbT*100)/100);
-    return _applyFerienAbzug(parseFloat(o.std_monat)||0);
+    if(stdTag>0) return Math.round(stdTag*arbT*100)/100;
+    return parseFloat(o.std_monat)||0;
   }
   // Modell 14-Tage: exakte Einsätze ab festem Startdatum
   if(effModell==='14tage'){
     if(o.rhythmus_start){
       const std14 = calc14TageStunden(o.wochentage||{}, o.rhythmus_start, mk);
-      if(std14>0) return _applyFerienAbzug(std14);
+      if(std14>0) return Math.round(std14*100)/100;
     }
-    // Fallback ohne Startdatum: kein rhythmus_start = kein 14-Tage-Einsatz
-    return _applyFerienAbzug(parseFloat(o.std_monat)||0);
+    return parseFloat(o.std_monat)||0;
   }
   // Modell monatlich: feste Monatsstunden
   if(effModell==='monatlich'){
-    return _applyFerienAbzug(parseFloat(o.std_monat)||0);
+    return parseFloat(o.std_monat)||0;
   }
   // Fallback: Monatsstunden direkt
-  return _applyFerienAbzug(parseFloat(o.std_monat)||0);
+  return parseFloat(o.std_monat)||0;
 }
 function _maAusgeschiedenImMonat(m,mk){
   // MA gilt als ausgeschieden wenn Status='Ausgeschieden' ODER austrittsdatum vor dem Monat liegt
@@ -2398,14 +2633,42 @@ document.getElementById('f-status').value=st;document.getElementById('f-ol').val
 document.querySelectorAll('.hstat').forEach(el=>el.classList.remove('fa'));
 const map={Aktiv:'hs-aktiv',Krank:'hs-krank',Urlaub:'hs-urlaub',Ausgeschieden:'hs-ausgeschieden','':"hs-alle"};
 if(map[st])document.getElementById(map[st]).classList.add('fa');
-showTab('liste');render();
+showTab('liste');render();updateFP();
 }
 function fOL(ol){
 document.getElementById('f-ol').value=ol;document.getElementById('f-status').value='';
 document.querySelectorAll('.hstat').forEach(el=>el.classList.remove('fa'));
 document.getElementById('hs-'+ol.toLowerCase()).classList.add('fa');
-showTab('liste');render();
+showTab('liste');render();updateFP();
 }
+function toggleFP(){
+  const p=document.getElementById('fp-panel');
+  const b=document.getElementById('fp-btn');
+  const open=p.classList.toggle('open');
+  b.classList.toggle('fp-open',open);
+}
+function closeFP(){
+  document.getElementById('fp-panel')?.classList.remove('open');
+  document.getElementById('fp-btn')?.classList.remove('fp-open');
+}
+function updateFP(){
+  const n=[document.getElementById('f-status').value,
+           document.getElementById('f-ol').value,
+           document.getElementById('f-kunde').value].filter(Boolean).length;
+  const b=document.getElementById('fp-badge');
+  if(b){b.textContent=n;b.classList.toggle('vis',n>0);}
+}
+function resetFP(){
+  document.getElementById('f-status').value='';
+  document.getElementById('f-ol').value='';
+  document.getElementById('f-kunde').value='';
+  updateFP();render();closeFP();
+}
+document.addEventListener('click',function(e){
+  const p=document.getElementById('fp-panel');
+  const b=document.getElementById('fp-btn');
+  if(p&&b&&!p.contains(e.target)&&!b.contains(e.target))closeFP();
+});
 function filtered(){
 const q=document.getElementById('search').value.toLowerCase();
 const st=document.getElementById('f-status').value;
@@ -3719,11 +3982,12 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
     ? `<div style="margin-top:6px"><span onclick="openOMfromMAM('${o.kunde.replace(/'/g,"\\'")}') " title="Kunden-Modal öffnen" style="display:inline-flex;align-items:center;gap:5px;background:var(--acc-l);border:1.5px solid #93c5fd;border-radius:20px;padding:3px 11px 3px 8px;font-size:12px;font-weight:600;color:var(--acc);cursor:pointer;white-space:nowrap">🏢 ${o.kunde} <span style="font-size:10px;opacity:.7">↗</span></span></div>`
     : '';
   return `<div class="obj-row">
-<div class="obj-row-head">
+<div class="obj-row-head" style="margin-bottom:6px">
   <span class="obj-nr">Objekt ${i+1}</span>
   ${i>0?`<button class="btn-d btn-sm" onclick="rmObj(${i})" style="margin-left:auto;font-size:11px;padding:2px 8px">✕ entfernen</button>`:''}
 </div>
-<div class="obj-basic">
+<!-- Zeile 1: Kunde + €/Std + Modell -->
+<div style="display:grid;grid-template-columns:minmax(0,2.5fr) minmax(0,1fr) minmax(0,1.6fr);gap:7px;margin-bottom:6px;align-items:end">
   <div class="fg">
     <label>Kunde / Objekt *</label>
     <input value="${o.kunde||''}" id="mao-k-${i}"
@@ -3733,7 +3997,6 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
       onblur="taClose('ta-global-drop')"
       placeholder="Tippen oder aus Liste wählen..."
       autocomplete="off">
-    ${kundeChip}
   </div>
   <div class="fg">
     <label>€ / Stunde</label>
@@ -3741,63 +4004,87 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
       placeholder="${TARIFLOHN[document.getElementById('f-lohngruppe')?.value]?.lohn||'15.00'}"
       oninput="mao[${i}].stundenlohn=+this.value||''">
   </div>
-  <div class="fg full" style="margin-top:4px">
-    <label>🗂 Revier / Bereich</label>
-    <input type="text" value="${o.revier||''}" placeholder="z.B. Revier 3, EG West, Halle A..."
-      oninput="mao[${i}].revier=this.value">
+  <div class="fg">
+    <label>Objekt-Modell</label>
+    <select style="font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--white);color:var(--text);font-family:inherit;outline:none;width:100%"
+      onchange="setModell(${i},this.value)">
+      <option value="arbeitstage" ${(o.modell||'arbeitstage')==='arbeitstage'?'selected':''}>📅 Arbeitstage</option>
+      <option value="14tage" ${o.modell==='14tage'?'selected':''}>📅 14-Tage-Rhythmus</option>
+      <option value="monatlich" ${o.modell==='monatlich'?'selected':''}>📆 Monatlich (fix)</option>
+    </select>
   </div>
 </div>
-<div style="margin:10px 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-  <span style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Objekt-Modell</span>
-  <select style="font-size:12px;padding:3px 8px;border:1px solid var(--border);border-radius:6px;background:var(--white);color:var(--text);font-family:inherit;outline:none"
-    onchange="setModell(${i},this.value)">
-    <option value="arbeitstage" ${(o.modell||'arbeitstage')==='arbeitstage'?'selected':''}>📅 Arbeitstage</option>
-    <option value="14tage" ${o.modell==='14tage'?'selected':''}>📅 14-Tage-Rhythmus</option>
-    <option value="monatlich" ${o.modell==='monatlich'?'selected':''}>📆 Monatlich (Fixstunden)</option>
-  </select>
-  ${o.modell==='14tage'?`<span style="font-size:11px;color:var(--muted)">Startdatum:</span>
+<!-- Zeile 2: Revier + Kunden-Chip + Kapazität -->
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;margin-bottom:6px;align-items:end">
+  <div class="fg">
+    <label>🗂 Revier / Bereich</label>
+    <input type="text" value="${o.revier||''}" placeholder="z.B. Revier 3, EG West..."
+      oninput="mao[${i}].revier=this.value">
+  </div>
+  <div style="display:flex;flex-direction:column;gap:4px;justify-content:flex-end">
+    ${kundeChip}
+    ${o.kunde?`<div class="kap-hint ${hc}" style="margin:0">${kap>0?`📊 Kap: <strong>${kap}h</strong> · mit MA: <strong>${belNeu}h (${pct}%)</strong>${pct>100?' ⚠':' ✓'}`:`ℹ keine Kapazität. <button class="btn-i btn-sm" onclick="openOMfromMAM('${o.kunde}')">Eintragen</button>`}</div>`:''}
+  </div>
+</div>
+<!-- 14-Tage Startdatum (nur wenn Modell=14tage) -->
+${o.modell==='14tage'?`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:11px">
+  <span style="color:var(--muted)">Startdatum:</span>
   <input type="date" value="${o.rhythmus_start||''}"
     title="Erster Reinigungstag – alle 14 Tage ab diesem Datum"
     style="font-size:12px;padding:3px 8px;border:1px solid #93c5fd;border-radius:6px;background:var(--acc-l);font-family:inherit;color:var(--text);outline:none"
     onchange="mao[${i}].rhythmus_start=this.value;renderMAO()">
-  ${o.rhythmus_start?`<span style="font-size:11px;color:var(--acc);background:var(--acc-l);border:1px solid #93c5fd;border-radius:6px;padding:2px 8px">
-    ${calc14TageEinsaetze(o.wochentage||{},o.rhythmus_start,mk)}× Einsatz im ${getAMShort()}
-    · <strong>${calc14TageStunden(o.wochentage||{},o.rhythmus_start,mk)}h</strong>
-  </span>`:'<span style="font-size:11px;color:var(--orange)">⚠ Bitte Startdatum eintragen</span>'}`:'' }
-</div>
-<div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px">
-  ${o.modell==='14tage'?'Stunden pro Reinigungstag (Einsatz)':o.modell==='monatlich'?'Fixe Monatsstunden':'Stunden pro Wochentag'} ${locked?'<span style="color:var(--orange);margin-left:6px">🔒 Verstetigt</span>':''}
-</div>
-${o.modell==='monatlich'?`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-  <input type="number" step="0.5" min="0" value="${o.std_monat||''}" placeholder="z.B. 86.5"
-    style="width:100px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none"
-    oninput="mao[${i}].std_monat=+this.value||'';renderMAO()">
-  <span style="font-size:13px;color:var(--muted)">Stunden / Monat (fest)</span>
+  ${o.rhythmus_start?`<span style="color:var(--acc);background:var(--acc-l);border:1px solid #93c5fd;border-radius:6px;padding:2px 8px">
+    ${calc14TageEinsaetze(o.wochentage||{},o.rhythmus_start,mk)}× Einsatz · <strong>${calc14TageStunden(o.wochentage||{},o.rhythmus_start,mk)}h</strong>
+  </span>`:'<span style="color:var(--orange)">⚠ Bitte Startdatum eintragen</span>'}
 </div>`:''}
-<table class="wtbl ${locked||o.modell==='monatlich'?'wt-locked':''}" ${o.modell==='monatlich'?'style="opacity:.35;pointer-events:none"':''}>
-  <thead><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th><th>∑ Woche</th></tr></thead>
-  <tbody><tr>${wtZeile}<td id="mawt-s-${i}">${wsG>0?Math.round(wsG*100)/100:0}</td></tr></tbody>
-</table>
-<div class="soll-box ${_maAbrMod==='arbeitstage'?'marb':'m433'}" style="margin-top:8px">
-  <div>
+<!-- Monatlich Fixstunden -->
+${o.modell==='monatlich'?`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+  <input type="number" step="0.5" min="0" value="${o.std_monat||''}" placeholder="z.B. 86.5"
+    style="width:90px;padding:6px 8px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none"
+    oninput="mao[${i}].std_monat=+this.value||'';renderMAO()">
+  <span style="font-size:12px;color:var(--muted)">Stunden / Monat (fest)</span>
+</div>`:''}
+<!-- Wochentage kompakt -->
+<div style="margin-bottom:6px">
+  <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">
+    ${o.modell==='14tage'?'Std. pro Einsatz':o.modell==='monatlich'?'Wochentage (gesperrt)':'Std. pro Wochentag'} ${locked?'<span style="color:var(--orange)">🔒 Verstetigt</span>':''}
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:3px" class="${locked||o.modell==='monatlich'?'wt-locked':''}">
+    ${WT.map(t=>`<div style="text-align:center">
+      <div style="font-size:9px;color:var(--muted);margin-bottom:2px;font-weight:600">${t}</div>
+      <input type="text" inputmode="decimal" value="${wt[t]||''}" placeholder="0" id="mawt-${i}-${t}"
+        oninput="(function(el){el.value=el.value.replace(',','.');updMAWT(${i});})(this)"
+        onblur="updMAWTonBlur(${i})"
+        onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"
+        ${locked?'readonly style="background:var(--s2);color:var(--muted2);cursor:not-allowed;text-align:center;padding:4px 2px;font-family:IBM Plex Mono,monospace;font-size:12px"':'style="text-align:center;padding:4px 2px;font-family:IBM Plex Mono,monospace;font-size:12px"'}
+        ${o.modell==='monatlich'?'readonly style="background:var(--s2);color:var(--muted2);cursor:not-allowed;text-align:center;padding:4px 2px;font-family:IBM Plex Mono,monospace;font-size:12px"':''}>
+    </div>`).join('')}
+    <div style="text-align:center">
+      <div style="font-size:9px;color:var(--acc);margin-bottom:2px;font-weight:600">∑ Wo</div>
+      <div id="mawt-s-${i}" style="text-align:center;padding:4px 2px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--acc);background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r)">${wsG>0?Math.round(wsG*100)/100:0}</div>
+    </div>
+  </div>
+</div>
+<!-- Soll + Lohn nebeneinander -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:6px">
+  <div class="soll-box ${_maAbrMod==='arbeitstage'?'marb':'m433'}" style="margin:0;flex-direction:column;align-items:flex-start;gap:2px">
     <div class="soll-val ${_maAbrMod==='arbeitstage'?'marb':'m433'}">${hhmm(sollM)}</div>
     <div class="soll-formel">${locked
-      ? `🔒 ${Math.round(wsG*100)/100}h/Wo / 5 × 261 / 12 = <strong>${hhmm(sollM)}</strong> Verstetigt`
+      ? `🔒 ${Math.round(wsG*100)/100}h/Wo / 5 × 261 / 12`
       : o.modell==='14tage'
-        ? `📅 ${calc14TageEinsaetze(o.wochentage||{},o.rhythmus_start,mk)}× Einsatz × ${calc14TageStdProBlock(o.wochentage||{})}h = <strong>${hhmm(sollM)}</strong>`
+        ? `📅 ${calc14TageEinsaetze(o.wochentage||{},o.rhythmus_start,mk)}× × ${calc14TageStdProBlock(o.wochentage||{})}h`
         : o.modell==='monatlich'
-        ? `📆 Fixe Monatsstunden: <strong>${hhmm(sollM)}</strong>`
-        : `📅 ${Math.round(wsG*100)/100}h/Wo × ${getAMShort()} = <strong>${hhmm(sollM)}</strong>`
+        ? `📆 Fixe Monatsstunden`
+        : `📅 ${Math.round(wsG*100)/100}h/Wo × ${getAMShort()}`
     }</div>
   </div>
-  <div style="text-align:right">
-    <div style="font-size:11px;color:var(--muted)">Lohn/Monat</div>
+  <div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:10px;color:var(--muted)">Lohn / Monat</div>
     <div style="font-weight:700;font-size:15px;color:var(--text)">${lohnMonat}</div>
   </div>
 </div>
-${o.kunde?`<div class="kap-hint ${hc}" style="margin-top:8px">${kap>0?`📊 Kap: <strong>${kap}h/Mon</strong> · mit MA: <strong>${belNeu}h (${pct}%)</strong>${pct>100?' — ⚠ ÜBERSCHREITUNG!':' ✓ OK'}`:`ℹ <strong>"${o.kunde}"</strong> – keine Kapazität hinterlegt. <button class="btn-i btn-sm" onclick="openOMfromMAM('${o.kunde}')">Jetzt eintragen</button>`}</div>`:''}
 ${renderEinsatzAbBlock(o, i, mk)}
-${renderSchulferienBlock(o, i)}
+${renderUnbezahltBlock(o, i)}
 ${renderObjektHistory(o, eMAid ? ma.find(x=>x.id===eMAid) : null)}
 </div>`;
 }).join('');
@@ -3902,41 +4189,73 @@ function einsatzBisClear(i) {
   delete mao[i].einsatz_bis;
   renderMAO();
 }
-function renderSchulferienBlock(o, i) {
+// ── v110: Unbezahlte Abwesenheit – Akkordeon-Kalender pro Objekt ──────────────
+// Ersetzt den alten Schulferien-Block (schulferien/ferien_von/ferien_bis).
+// Daten: o.unbezahlt_tage_liste = ['2025-05-12','2025-05-13',...], o.unbezahlt_grund = '...'
+// Lohnkürzung: _fehlzeitAbzugFaktor liest unbezahlt_tage_liste (neu) ODER md.unbezahlt_tage (alt).
+// Sollstunden bleiben unverändert – kein maOSoll-Abzug mehr.
+function renderUnbezahltBlock(o, i) {
   if (!o.kunde) return '';
-  const aktiv = !!o.schulferien;
-  const von = o.ferien_von || '';
-  const bis = o.ferien_bis || '';
-  let infoHTML = '';
-  if (aktiv && von && bis) {
-    const vonD = new Date(von);
-    const bisD = new Date(bis);
-    if (!isNaN(vonD) && !isNaN(bisD) && bisD >= vonD) {
-      const diffMs = bisD - vonD;
-      const diffMon = Math.round(diffMs / (1000*60*60*24*30.44) * 10) / 10;
-      const vonStr = vonD.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
-      const bisStr = bisD.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
-      infoHTML = `<div style="font-size:11px;color:var(--orange);margin-top:4px">🏫 Ferien: ${vonStr} – ${bisStr} (≈ ${diffMon} Mon.) · Sollstunden = 0 in Ferienzeit</div>`;
-    }
+  const liste = o.unbezahlt_tage_liste || [];
+  const grund = o.unbezahlt_grund || '';
+  const anzahl = liste.length;
+  const badgeHTML = anzahl > 0
+    ? `<span style="font-size:10px;background:var(--rbg);border:1px solid var(--rbd);color:var(--red);border-radius:4px;padding:1px 6px;font-weight:600;margin-left:4px">${anzahl} Tag${anzahl===1?'':'e'}</span>`
+    : `<span style="font-size:10px;background:var(--s2);border:1px solid var(--border);color:var(--muted2);border-radius:4px;padding:1px 6px;margin-left:4px">leer</span>`;
+  // Aktuellen Monat aus globalem Kontext (getAM) als Startwert für den Kalender
+  const mkDefault = typeof getAM === 'function' ? getAM() : '';
+  const mkParts = mkDefault ? mkDefault.split('-').map(Number) : [new Date().getFullYear(), new Date().getMonth()+1];
+  const startY = mkParts[0] || new Date().getFullYear();
+  const startM = (mkParts[1] || new Date().getMonth()+1) - 1; // 0-basiert
+  return `<div style="margin-top:8px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--white)">
+  <div id="ubz-hdr-${i}" onclick="ubzToggle(${i})" style="display:flex;align-items:center;justify-content:space-between;padding:8px 11px;cursor:pointer;background:var(--white);transition:background .15s" onmouseenter="this.style.background='var(--s1)'" onmouseleave="this.style.background='var(--white)'">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="font-size:13px">🚫</span>
+      <span style="font-size:12px;font-weight:600;color:var(--text2)">Unbezahlte Abwesenheit – kein Lohn</span>
+      ${badgeHTML}
+    </div>
+    <span id="ubz-chev-${i}" style="font-size:11px;color:var(--muted2);transition:transform .2s;display:inline-block">▾</span>
+  </div>
+  <div id="ubz-body-${i}" style="display:none;border-top:1px solid var(--border);padding:10px 11px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+      <button onclick="ubzPrevMonth(${i})" style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:2px 8px;cursor:pointer;font-size:12px;color:var(--text2);font-family:inherit">◀</button>
+      <span id="ubz-mlabel-${i}" style="font-size:12px;font-weight:600;color:var(--text)"></span>
+      <button onclick="ubzNextMonth(${i})" style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:2px 8px;cursor:pointer;font-size:12px;color:var(--text2);font-family:inherit">▶</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:3px">
+      ${['Mo','Di','Mi','Do','Fr','Sa','So'].map((t,ti)=>`<div style="text-align:center;font-size:9px;font-weight:600;color:${ti>=5?'#DC2626':'var(--muted)'};padding:2px 0;text-transform:uppercase">${t}</div>`).join('')}
+    </div>
+    <div id="ubz-kal-${i}" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px"></div>
+    <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)"><div style="width:9px;height:9px;border-radius:3px;background:var(--bbg);border:1px solid #93c5fd"></div> angeklickt = kein Lohn</div>
+      <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)"><div style="width:9px;height:9px;border-radius:3px;background:var(--white);border:1px solid var(--rbd)"></div> Feiertag (gesperrt)</div>
+    </div>
+    <div style="margin-top:8px">
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:3px">Grund</div>
+      <input type="text" id="ubz-grund-${i}" value="${grund.replace(/"/g,'&quot;')}"
+        placeholder="z.B. unbez. Urlaub · Schulferien · ruhendes AV ..."
+        oninput="ubzSetGrund(${i},this.value)"
+        style="width:100%;padding:6px 9px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:inherit;color:var(--text);background:var(--white);outline:none">
+    </div>
+    <div style="margin-top:7px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px">
+      <span style="font-size:11px;color:var(--muted)">
+        <strong id="ubz-cnt-${i}" style="color:var(--acc)">${anzahl}</strong> Tage → Lohnkürzung anteilig
+      </span>
+      <span style="font-size:10px;color:var(--muted2);background:var(--s1);border-radius:4px;padding:2px 6px">Sollstunden bleiben unverändert</span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const IDX=${i};
+  if(!window._ubzState) window._ubzState={};
+  if(!window._ubzState[IDX]){
+    window._ubzState[IDX]={jahr:${startY},monat:${startM},open:false};
   }
-  return `<div style="margin-top:8px;background:${aktiv?'var(--obg)':'var(--s1)'};border:1px solid ${aktiv?'var(--obd)':'var(--border)'};border-radius:var(--r);padding:9px 12px;">
-  <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;font-weight:600;color:${aktiv?'var(--orange)':'var(--muted)'};text-transform:none;letter-spacing:0">
-    <input type="checkbox" ${aktiv?'checked':''} style="width:14px;height:14px;cursor:pointer" onchange="schulferienToggle(${i}, this.checked)">
-    🏫 Schulferien (Arbeitsverhältnis ruht – kein Lohn)
-  </label>
-  ${aktiv ? `<div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
-    <div style="flex:1;min-width:140px">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Ferien <strong>von</strong></div>
-      <input type="date" value="${von}" oninput="schulferienSet(${i},'von',this.value)"
-        style="font-size:12px;padding:4px 8px;border:1px solid var(--obd);border-radius:6px;background:#fffbeb;font-family:inherit;color:var(--text);outline:none;width:100%">
-    </div>
-    <div style="flex:1;min-width:140px">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Ferien <strong>bis</strong></div>
-      <input type="date" value="${bis}" oninput="schulferienSet(${i},'bis',this.value)"
-        style="font-size:12px;padding:4px 8px;border:1px solid var(--obd);border-radius:6px;background:#fffbeb;font-family:inherit;color:var(--text);outline:none;width:100%">
-    </div>
-  </div>${infoHTML}` : ''}
-</div>`;
+  // Direkt nach dem Render den Kalender initialisieren (Monatslabel setzen)
+  _ubzRenderKal(IDX);
+})();
+<\/script>`;
 }
 // ── History-Anzeige pro Objekt-Zeile im MA-Modal ──────────────────
 function renderObjektHistory(o, m) {
@@ -3998,6 +4317,60 @@ function renderObjektHistory(o, m) {
 }
 
 // ── History-Diagnose: alle MAs mit abweichender History prüfen ────
+// ── v111: Änderungsprotokoll ────────────────────────────────────────────────
+function renderProtokoll() {
+  const tbody = document.getElementById('proto-tbody');
+  const empty = document.getElementById('proto-empty');
+  if (!tbody) return;
+  const search = (document.getElementById('proto-search')?.value || '').toLowerCase().trim();
+  const userFilter = document.getElementById('proto-user')?.value || '';
+  const typFilter = document.getElementById('proto-typ')?.value || '';
+  let log = [];
+  try { log = JSON.parse(localStorage.getItem('mm_aenderungslog') || '[]'); } catch(e) {}
+  let filtered = log;
+  if (search) filtered = filtered.filter(e => (e.maName||'').toLowerCase().includes(search));
+  if (userFilter) filtered = filtered.filter(e => e.user === userFilter);
+  if (typFilter) {
+    if (typFilter === 'gelöscht') filtered = filtered.filter(e => e.aktion === 'gelöscht');
+    else filtered = filtered.filter(e => e.typ === typFilter && e.aktion !== 'gelöscht');
+  }
+  if (!filtered.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  const typBadge = (typ, aktion) => {
+    if (aktion === 'gelöscht') return '<span style="background:var(--rbg);color:var(--red);border:1px solid var(--rbd);border-radius:4px;padding:2px 7px;font-size:11px">Gelöscht</span>';
+    if (typ === 'urlaub') return '<span style="background:var(--bbg);color:var(--blue);border:1px solid #93c5fd;border-radius:4px;padding:2px 7px;font-size:11px">Urlaub</span>';
+    if (typ === 'krank') return '<span style="background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d;border-radius:4px;padding:2px 7px;font-size:11px">Krank</span>';
+    return '<span style="background:var(--s1);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:11px">'+typ+'</span>';
+  };
+  const userBadge = (user) => {
+    const colors = { Romano:'#1a56db', Adler:'#7c3aed', Richter:'#0891b2', Incecik:'#057a55', Grippo:'#c05621' };
+    const bgs = { Romano:'var(--bbg)', Adler:'var(--olm-bg)', Richter:'var(--oli-bg)', Incecik:'var(--gbg)', Grippo:'var(--obg)' };
+    const c = colors[user] || 'var(--muted)';
+    const b = bgs[user] || 'var(--s1)';
+    const init = (user||'?').substring(0,2).toUpperCase();
+    return `<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:${b};color:${c};font-size:10px;font-weight:700;margin-right:6px">${init}</span><span style="font-size:12px;font-weight:500">${user||'?'}</span>`;
+  };
+  const fmtTs = (iso) => {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) + ' ' + d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+    } catch(e) { return iso; }
+  };
+  tbody.innerHTML = filtered.map(e => `
+    <tr>
+      <td style="white-space:nowrap">${userBadge(e.user)}</td>
+      <td style="font-size:12px;color:var(--muted);white-space:nowrap">${fmtTs(e.ts)}</td>
+      <td style="font-size:13px;font-weight:500">${e.maName||'?'}</td>
+      <td style="font-family:'IBM Plex Mono',monospace;font-size:12px">${e.datum||''}</td>
+      <td style="font-size:12px;color:var(--muted)">${e.aktion||''}</td>
+      <td>${typBadge(e.typ, e.aktion)}</td>
+    </tr>`).join('');
+}
+
 function diagnoseHistoryProbleme() {
   const mk = getAM();
   const problems = [];
@@ -4196,18 +4569,141 @@ Trotzdem speichern?`)) return;
   });
 }
 
-function schulferienToggle(i, aktiv) {
-  mao[i].schulferien = aktiv;
-  if (!aktiv) { delete mao[i].ferien_von; delete mao[i].ferien_bis; }
-  renderMAO();
-  calcUrlaubAnspruch();
+// ── v110: Unbezahlte Abwesenheit – Akkordeon-Kalender Funktionen ──────────────
+const _UBZ_MONATE = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+
+function _ubzGetFeiertage(y) {
+  // Feste Feiertage Bayern + bewegliche (Ostern)
+  const f = new Set([
+    `${y}-01-01`,`${y}-01-06`,`${y}-05-01`,`${y}-08-15`,
+    `${y}-10-03`,`${y}-11-01`,`${y}-12-25`,`${y}-12-26`
+  ]);
+  // Ostern (Gauss-Algorithmus)
+  const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4;
+  const f2=Math.floor((b+8)/25),g=Math.floor((b-f2+1)/3),h=(19*a+b-d-g+15)%30;
+  const i2=Math.floor(c/4),k=c%4,l=(32+2*e+2*i2-h-k)%7;
+  const m2=Math.floor((a+11*h+22*l)/451);
+  const mo=Math.floor((h+l-7*m2+114)/31),day=(h+l-7*m2+114)%31+1;
+  const os = new Date(y,mo-1,day);
+  const pad=(n)=>String(n).padStart(2,'0');
+  const isoOff=(d2)=>{const t=new Date(os.getTime()+d2*86400000);return `${t.getFullYear()}-${pad(t.getMonth()+1)}-${pad(t.getDate())}`};
+  ['-2',0,1,39,49,50,60].forEach(d2=>f.add(isoOff(Number(d2))));
+  return f;
 }
-function schulferienSet(i, field, val) {
-  if (field === 'von') mao[i].ferien_von = val;
-  else mao[i].ferien_bis = val;
-  renderMAO();
-  calcUrlaubAnspruch();
+
+function _ubzRenderKal(i) {
+  if (!window._ubzState) return;
+  const st = window._ubzState[i];
+  if (!st) return;
+  const {jahr:y, monat:m} = st;
+  const lbl = document.getElementById('ubz-mlabel-'+i);
+  if (lbl) lbl.textContent = _UBZ_MONATE[m] + ' ' + y;
+  const container = document.getElementById('ubz-kal-'+i);
+  if (!container) return;
+  container.innerHTML = '';
+  const liste = new Set(mao[i]?.unbezahlt_tage_liste || []);
+  const feiertage = _ubzGetFeiertage(y);
+  const erster = new Date(y, m, 1).getDay();
+  const letzter = new Date(y, m+1, 0).getDate();
+  const offset = erster === 0 ? 6 : erster - 1;
+  const pad = (n) => String(n).padStart(2,'0');
+  for (let k=0;k<offset;k++) {
+    const el=document.createElement('div');
+    el.style.cssText='text-align:center;padding:4px 2px;border-radius:5px;border:1px solid transparent;font-size:11px';
+    container.appendChild(el);
+  }
+  for (let d=1;d<=letzter;d++) {
+    const iso=`${y}-${pad(m+1)}-${pad(d)}`;
+    const dow=new Date(y,m,d).getDay();
+    const istSo=dow===0||dow===6;
+    const istFT=feiertage.has(iso);
+    const istAus=liste.has(iso);
+    const el=document.createElement('button');
+    el.textContent=d;
+    el.type='button';
+    let base='text-align:center;padding:4px 2px;border-radius:5px;font-size:11px;width:100%;font-family:inherit;cursor:pointer;border:1px solid transparent;transition:all .1s;';
+    if(istFT){
+      el.style.cssText=base+'background:var(--white);border-color:var(--rbd);color:var(--red);font-weight:700;cursor:default';
+    } else if(istAus){
+      el.style.cssText=base+'background:var(--bbg);border-color:#93c5fd;color:var(--acc);font-weight:700';
+      el.onclick=()=>ubzToggleTag(i,iso);
+    } else if(istSo){
+      el.style.cssText=base+'background:transparent;color:var(--muted2)';
+      el.onclick=()=>ubzToggleTag(i,iso);
+    } else {
+      el.style.cssText=base+'background:transparent;color:var(--text2)';
+      el.onmouseenter=()=>{if(!liste.has(iso))el.style.background='var(--s1)'};
+      el.onmouseleave=()=>{if(!liste.has(iso))el.style.background='transparent'};
+      el.onclick=()=>ubzToggleTag(i,iso);
+    }
+    container.appendChild(el);
+  }
 }
+
+function ubzToggle(i) {
+  if (!window._ubzState) window._ubzState={};
+  if (!window._ubzState[i]) window._ubzState[i]={jahr:new Date().getFullYear(),monat:new Date().getMonth(),open:false};
+  const st=window._ubzState[i];
+  st.open=!st.open;
+  const body=document.getElementById('ubz-body-'+i);
+  const chev=document.getElementById('ubz-chev-'+i);
+  if(body) body.style.display=st.open?'block':'none';
+  if(chev) chev.style.transform=st.open?'rotate(180deg)':'rotate(0deg)';
+  if(st.open) _ubzRenderKal(i);
+}
+
+function ubzPrevMonth(i) {
+  if(!window._ubzState?.[i]) return;
+  const st=window._ubzState[i];
+  st.monat--;
+  if(st.monat<0){st.monat=11;st.jahr--;}
+  _ubzRenderKal(i);
+}
+
+function ubzNextMonth(i) {
+  if(!window._ubzState?.[i]) return;
+  const st=window._ubzState[i];
+  st.monat++;
+  if(st.monat>11){st.monat=0;st.jahr++;}
+  _ubzRenderKal(i);
+}
+
+function ubzToggleTag(i, iso) {
+  if(!mao[i]) return;
+  if(!mao[i].unbezahlt_tage_liste) mao[i].unbezahlt_tage_liste=[];
+  const idx=mao[i].unbezahlt_tage_liste.indexOf(iso);
+  if(idx>=0) mao[i].unbezahlt_tage_liste.splice(idx,1);
+  else mao[i].unbezahlt_tage_liste.push(iso);
+  mao[i].unbezahlt_tage_liste.sort();
+  // Badge + Zähler live aktualisieren ohne renderMAO()
+  const n=mao[i].unbezahlt_tage_liste.length;
+  const cntEl=document.getElementById('ubz-cnt-'+i);
+  if(cntEl) cntEl.textContent=n;
+  const hdr=document.getElementById('ubz-hdr-'+i);
+  if(hdr){
+    const spans=hdr.querySelectorAll('span[style*="border-radius:4px"]');
+    if(spans.length){
+      const badge=spans[spans.length-1];
+      if(n>0){
+        badge.textContent=n+' Tag'+(n===1?'':'e');
+        badge.style.cssText='font-size:10px;background:var(--rbg);border:1px solid var(--rbd);color:var(--red);border-radius:4px;padding:1px 6px;font-weight:600;margin-left:4px';
+      } else {
+        badge.textContent='leer';
+        badge.style.cssText='font-size:10px;background:var(--s2);border:1px solid var(--border);color:var(--muted2);border-radius:4px;padding:1px 6px;margin-left:4px';
+      }
+    }
+  }
+  _ubzRenderKal(i);
+}
+
+function ubzSetGrund(i, val) {
+  if(!mao[i]) return;
+  mao[i].unbezahlt_grund = val;
+}
+
+// Alte Schulferien-Funktionen (Kompatibilität – keine Wirkung mehr)
+function schulferienToggle(i, aktiv) {}
+function schulferienSet(i, field, val) {}
 
 function toggleVerstetigt(){
   const cb = document.getElementById('f-verstetigt');
@@ -4221,7 +4717,7 @@ function setMATyp(typ){
   if(cbMini){ cbMini.checked = isMini; }
   // Verstetigt-Zeile: nur bei Minijob
   const versRow = document.getElementById('mtyp-vers-row');
-  if(versRow) versRow.style.display = isMini ? 'block' : 'none';
+  if(versRow){ versRow.style.display = isMini ? 'flex' : 'none'; versRow.style.flex = isMini ? '1' : '0 0 0px'; }
   // Abrechnungsmodell-Block: nur bei Festangestellt
   const abrBlock = document.getElementById('mtyp-abr-block');
   if(abrBlock) abrBlock.style.display = isMini ? 'none' : 'block';
@@ -4301,6 +4797,12 @@ return `<button class="mtab${i===ami?' active':''}${has?' hd':''}" onclick="swMo
 }
 function swMon(i){
   const m=eMAid?ma.find(x=>x.id===eMAid):{};
+  // FIX v112: _vtData/_ssData vor saveMT auf den aktuellen Monat einfrieren,
+  // damit beim Speichern nur echte Einträge des alten Monats übernommen werden
+  // und der neue Monat immer leer startet.
+  const _saveMd = (m.monats_daten||{})[MK[ami]] || {};
+  _vtData = JSON.parse(JSON.stringify(_saveMd.vertretungen || []));
+  _ssData = JSON.parse(JSON.stringify(_saveMd.sonderstunden || []));
   saveMT(m,ami);
   // Aktuelle mao-Änderungen in ma[] sichern bevor der Monat wechselt –
   // sonst würden ungespeicherte Stunden-/Wochentag-Änderungen verloren gehen.
@@ -4515,17 +5017,50 @@ return m.abwesenheiten;
 function kalDayKey(y,mo,d){
 return `${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 }
+function _protokollLog(maName, datum, aktion, typ) {
+  // v111: Änderungsprotokoll für Kalender-Einträge
+  try {
+    const LOG_KEY = 'mm_aenderungslog';
+    const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
+    log.unshift({
+      ts: new Date().toISOString(),
+      user: _currentUser || '?',
+      maName: maName,
+      datum: datum,
+      aktion: aktion,
+      typ: typ
+    });
+    // Max 500 Einträge behalten
+    if (log.length > 500) log.splice(500);
+    localStorage.setItem(LOG_KEY, JSON.stringify(log));
+  } catch(e) { /* silent */ }
+}
+
 function kalClick(y,mo,day){
 if(!eMAid)return;
 const m=ma.find(x=>x.id===eMAid);if(!m)return;
 if(!m.abwesenheiten)m.abwesenheiten={};
 const k=kalDayKey(y,mo,day);
+const maName = (m.vorname||'') + ' ' + (m.nachname||'');
+let logAktion, logTyp;
 if(kalMode==='clear'){
-delete m.abwesenheiten[k];
+  const altTyp = m.abwesenheiten[k];
+  logAktion = 'gelöscht';
+  logTyp = altTyp || 'unbekannt';
+  delete m.abwesenheiten[k];
 } else {
-if(m.abwesenheiten[k]===kalMode) delete m.abwesenheiten[k];
-else m.abwesenheiten[k]=kalMode;
+  if(m.abwesenheiten[k]===kalMode){
+    logAktion = 'gelöscht';
+    logTyp = kalMode;
+    delete m.abwesenheiten[k];
+  } else {
+    logAktion = 'eingetragen';
+    logTyp = kalMode;
+    m.abwesenheiten[k]=kalMode;
+  }
 }
+// v111: Protokoll-Eintrag
+_protokollLog(maName, k, logAktion, logTyp);
 kalSyncMonthFields(m, kalYear, kalMonth);
 // Nur diesen einen MA speichern (kein kompletter Array-Überschreib)
 supaSave('mitarbeiter',[m]).then(()=>{
@@ -4572,7 +5107,7 @@ const firstDay=new Date(kalYear,kalMonth,1);
 let startWD=firstDay.getDay()-1; if(startWD<0)startWD=6;
 const daysInMonth=new Date(kalYear,kalMonth+1,0).getDate();
 const daysInPrev=new Date(kalYear,kalMonth,0).getDate();
-let html=KAL_WD.map(w=>`<div class="kal-wd">${w}</div>`).join('');
+let html=KAL_WD.map((w,i)=>`<div class="kal-wd${i===6?' kal-wd-so':''}">${w}</div>`).join('');
 for(let i=startWD-1;i>=0;i--){
 html+=`<div class="kal-day kal-other">${daysInPrev-i}</div>`;
 }
@@ -4586,14 +5121,16 @@ if(typ==='urlaub')u++;
 if(typ==='krank')k++;
 const isToday=today.getFullYear()===kalYear&&today.getMonth()===kalMonth&&today.getDate()===d;
 const isFeiertag=_kalFT.has(key);
+const dayOfWeek=new Date(kalYear,kalMonth,d).getDay();
+const isSonntag=dayOfWeek===0;
 let cls='kal-day';
 if(typ==='urlaub')cls+=' kal-urlaub';
 else if(typ==='krank')cls+=' kal-krank';
 else if(isToday)cls+=' kal-today';
 if(isFeiertag)cls+=' kal-feiertag';
-const ftTitle=isFeiertag?` title="Feiertag"`:''
-const ftMark=isFeiertag?`<span style="font-size:7px;color:var(--red);display:block">★</span>`:'';
-const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:`${d}${ftMark}`;
+else if(isSonntag)cls+=' kal-sonntag';
+const ftTitle=isFeiertag?` title="Feiertag"`:isSonntag?` title="Sonntag"`:'';
+const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:`${d}`;
 html+=`<div class="${cls}"${ftTitle} onclick="kalClick(${kalYear},${kalMonth},${d})">${label}</div>`;
 }
 const total=startWD+daysInMonth;
@@ -7598,6 +8135,24 @@ function exportDatevLohnarten() {
           const hO = maOSollMA(m, o, monat, abr);
           if (hO > 0) add(_kstFuerObjekt(o), hO);
         });
+        // FIX v108: Sondereinsatz-Stunden auf Grundlohnart des MA addieren.
+        // Bisher wurden Sonderstunden nur bei Lohnart 2199 (Minijob) exportiert.
+        // SV-pflichtige MA haben Lohnart 1000 o.ae. – ihre Sonderstunden landeten
+        // im else-Zweig gar nicht. Loesung: Sonderstunden per Kunden-KST auf die
+        // erste (oder per objLAMap zugeordnete) Grundlohnart buchen.
+        // Bei Balta-MA (mehrere Grundlohnarten): Sondereinsatz-KST bestimmt die LA.
+        (md.sonderstunden||[])
+          .filter(e => e.maId === m.id || !e.maId)
+          .forEach(e => {
+            const h = parseFloat(e.stunden) || 0;
+            if (h <= 0) return;
+            const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
+            // Balta-Fix: pruefen ob diese KST eine spezifische LA hat
+            const ssObjKey = e.kunde;
+            const ssZugeordneteLA = ssObjKey ? objLAMap.get(ssObjKey) : null;
+            if (ssZugeordneteLA && ssZugeordneteLA !== laKey) return; // gehoert anderer LA
+            add(kst, h);
+          });
       }
 
       // FIX v94: Pro (Lohnart, KST) eine eigene Zeile – sortiert fuer reproduzierbare Ausgabe
@@ -7989,6 +8544,19 @@ function _buildDatevControlRows() {
           const hO = maOSollMA(m, o, monat, abr);
           if (hO > 0) addBucket(_kstFuerObjekt(o), _kundeFuerObjekt(o), hO, _slFuerObjekt(o), '');
         });
+        // FIX v108: Sondereinsatz-Stunden auf Grundlohnart buchen (Kontroll-Liste)
+        (md.sonderstunden||[])
+          .filter(e => e.maId === m.id || !e.maId)
+          .forEach(e => {
+            const h = parseFloat(e.stunden) || 0;
+            if (h <= 0) return;
+            const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
+            const kn  = e.kunde ? _kundeNameFuerRef(e.kunde) : _fallbackKunde;
+            const ssObjKey = e.kunde;
+            const ssZugeordneteLA = ssObjKey ? objLAMap.get(ssObjKey) : null;
+            if (ssZugeordneteLA && ssZugeordneteLA !== laCode) return;
+            addBucket(kst, kn, h, slDefault, e.notiz||'');
+          });
       }
 
       // Bucket -> Zeilen
