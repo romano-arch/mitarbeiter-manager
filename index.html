@@ -956,11 +956,13 @@ main{padding:14px 16px}
   </select>
   <select class="fsel" id="proto-typ" onchange="renderProtokoll()">
     <option value="">Alle Typen</option>
+    <option value="ma">MA gespeichert</option>
     <option value="urlaub">Urlaub</option>
     <option value="krank">Krank</option>
     <option value="gelöscht">Gelöscht</option>
   </select>
-  <button class="btn btn-o" onclick="if(confirm('Protokoll wirklich löschen?')){localStorage.removeItem('mm_aenderungslog');renderProtokoll();}">🗑 Protokoll leeren</button>
+  <button class="btn btn-o" onclick="renderProtokoll()">🔄 Aktualisieren</button>
+  <button class="btn btn-o" onclick="if(confirm('Protokoll wirklich löschen?')){localStorage.removeItem('mm_aenderungslog');renderProtokoll();}">🗑 Lokal leeren</button>
 </div>
 
 <div class="tw" style="margin-bottom:28px">
@@ -970,8 +972,9 @@ main{padding:14px 16px}
         <th>Benutzer</th>
         <th>Datum/Uhrzeit</th>
         <th>Mitarbeiter</th>
-        <th>Tag</th>
+        <th>Monat/Tag</th>
         <th>Aktion</th>
+        <th>Details</th>
         <th>Typ</th>
       </tr>
     </thead>
@@ -3974,7 +3977,10 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
   const altSoll=_altSollBase?maOSoll(_altSollBase,mk,(_existMA?.abrechnungsmodell)||'arbeitstage'):0;
   const belNeu=Math.round((bel-altSoll+sollM)*10)/10;
   const pct=kap>0?Math.round(belNeu/kap*100):0;
-  const hc=kap>0&&pct>100?'kh-o':kap>0?'kh-ok':'kh-n';
+  // Verstetigt-Toleranz: wsG/5 × (261/12 - AT) – kein Alarm wenn Überschuss nur durch Verstetigung entsteht
+  const _kapAT = ARBEITSTAGE[MK[ami]]||21;
+  const _kapPuffer = isVerstetigt && wsG>0 ? Math.round(wsG/5*(261/12-_kapAT)*10)/10 : 0;
+  const hc=kap>0&&belNeu>kap+_kapPuffer?'kh-o':kap>0?'kh-ok':'kh-n';
   const locked=isVerstetigt;
   const wtZeile=WT.map(t=>`<td><input type="text" inputmode="decimal" value="${wt[t]||''}" placeholder="0" id="mawt-${i}-${t}" oninput="(function(el){el.value=el.value.replace(',','.');updMAWT(${i});})(this)" onblur="updMAWTonBlur(${i})" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}" ${locked?'readonly style="background:var(--s2);color:var(--muted2);cursor:not-allowed"':''}></td>`).join('');
   const lohnMonat=o.stundenlohn?'€ '+Math.round(sollM*parseFloat(o.stundenlohn)*100)/100:'–';
@@ -4318,21 +4324,31 @@ function renderObjektHistory(o, m) {
 
 // ── History-Diagnose: alle MAs mit abweichender History prüfen ────
 // ── v111: Änderungsprotokoll ────────────────────────────────────────────────
-function renderProtokoll() {
+async function renderProtokoll() {
   const tbody = document.getElementById('proto-tbody');
   const empty = document.getElementById('proto-empty');
   if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);font-size:13px">⏳ Lade…</td></tr>';
+  empty.style.display = 'none';
   const search = (document.getElementById('proto-search')?.value || '').toLowerCase().trim();
   const userFilter = document.getElementById('proto-user')?.value || '';
   const typFilter = document.getElementById('proto-typ')?.value || '';
+  // Supabase laden (neueste 500 Einträge)
   let log = [];
-  try { log = JSON.parse(localStorage.getItem('mm_aenderungslog') || '[]'); } catch(e) {}
+  try {
+    const rows = await supaFetch('changelog','GET',null,'select=data&order=id.desc&limit=500');
+    log = rows.map(r=>r.data).filter(Boolean);
+  } catch(e) {
+    // Fallback: localStorage
+    try { log = JSON.parse(localStorage.getItem('mm_aenderungslog') || '[]'); } catch(e2) {}
+  }
   let filtered = log;
-  if (search) filtered = filtered.filter(e => (e.maName||'').toLowerCase().includes(search));
+  if (search) filtered = filtered.filter(e => (e.maName||'').toLowerCase().includes(search) || (e.details||'').toLowerCase().includes(search));
   if (userFilter) filtered = filtered.filter(e => e.user === userFilter);
   if (typFilter) {
     if (typFilter === 'gelöscht') filtered = filtered.filter(e => e.aktion === 'gelöscht');
-    else filtered = filtered.filter(e => e.typ === typFilter && e.aktion !== 'gelöscht');
+    else if (typFilter === 'ma') filtered = filtered.filter(e => e.typ === 'ma');
+    else filtered = filtered.filter(e => e.typ === typFilter && e.typ !== 'ma');
   }
   if (!filtered.length) {
     tbody.innerHTML = '';
@@ -4344,7 +4360,8 @@ function renderProtokoll() {
     if (aktion === 'gelöscht') return '<span style="background:var(--rbg);color:var(--red);border:1px solid var(--rbd);border-radius:4px;padding:2px 7px;font-size:11px">Gelöscht</span>';
     if (typ === 'urlaub') return '<span style="background:var(--bbg);color:var(--blue);border:1px solid #93c5fd;border-radius:4px;padding:2px 7px;font-size:11px">Urlaub</span>';
     if (typ === 'krank') return '<span style="background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d;border-radius:4px;padding:2px 7px;font-size:11px">Krank</span>';
-    return '<span style="background:var(--s1);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:11px">'+typ+'</span>';
+    if (typ === 'ma') return '<span style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd);border-radius:4px;padding:2px 7px;font-size:11px">MA</span>';
+    return '<span style="background:var(--s1);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:11px">'+(typ||'?')+'</span>';
   };
   const userBadge = (user) => {
     const colors = { Romano:'#1a56db', Adler:'#7c3aed', Richter:'#0891b2', Incecik:'#057a55', Grippo:'#c05621' };
@@ -4357,7 +4374,7 @@ function renderProtokoll() {
   const fmtTs = (iso) => {
     try {
       const d = new Date(iso);
-      return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) + ' ' + d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+      return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'2-digit'}) + ' ' + d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
     } catch(e) { return iso; }
   };
   tbody.innerHTML = filtered.map(e => `
@@ -4365,8 +4382,9 @@ function renderProtokoll() {
       <td style="white-space:nowrap">${userBadge(e.user)}</td>
       <td style="font-size:12px;color:var(--muted);white-space:nowrap">${fmtTs(e.ts)}</td>
       <td style="font-size:13px;font-weight:500">${e.maName||'?'}</td>
-      <td style="font-family:'IBM Plex Mono',monospace;font-size:12px">${e.datum||''}</td>
-      <td style="font-size:12px;color:var(--muted)">${e.aktion||''}</td>
+      <td style="font-family:'IBM Plex Mono',monospace;font-size:12px;white-space:nowrap">${e.datum||''}</td>
+      <td style="font-size:12px;color:var(--muted);white-space:nowrap">${e.aktion||''}</td>
+      <td style="font-size:11px;color:var(--text2);max-width:260px;word-break:break-word">${e.details||''}</td>
       <td>${typBadge(e.typ, e.aktion)}</td>
     </tr>`).join('');
 }
@@ -5017,23 +5035,69 @@ return m.abwesenheiten;
 function kalDayKey(y,mo,d){
 return `${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 }
-function _protokollLog(maName, datum, aktion, typ) {
-  // v111: Änderungsprotokoll für Kalender-Einträge
+function _protokollLog(maName, datum, aktion, typ, details) {
+  // v113: Änderungsprotokoll – Supabase + localStorage (Fallback)
+  const entry = {
+    id: (typeof crypto!=='undefined'&&crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2)),
+    ts: new Date().toISOString(),
+    user: _currentUser || '?',
+    maName: maName,
+    datum: datum || '',
+    aktion: aktion,
+    typ: typ,
+    details: details || ''
+  };
+  // localStorage (sofort, Fallback)
   try {
     const LOG_KEY = 'mm_aenderungslog';
     const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
-    log.unshift({
-      ts: new Date().toISOString(),
-      user: _currentUser || '?',
-      maName: maName,
-      datum: datum,
-      aktion: aktion,
-      typ: typ
-    });
-    // Max 500 Einträge behalten
-    if (log.length > 500) log.splice(500);
+    log.unshift(entry);
+    if (log.length > 1000) log.splice(1000);
     localStorage.setItem(LOG_KEY, JSON.stringify(log));
-  } catch(e) { /* silent */ }
+  } catch(e) {}
+  // Supabase (async, geräteübergreifend)
+  try {
+    supaFetch('changelog','POST',[{id:entry.id, data:entry}]).catch(()=>{});
+  } catch(e) {}
+}
+
+function _logMASave(mAlt, mNeu) {
+  // v113: Beim Speichern eines MA die Änderungen protokollieren
+  const maName = (mNeu.vorname||'') + ' ' + (mNeu.nachname||'');
+  const changes = [];
+  // Objekte / Stunden vergleichen
+  const objAlt = mAlt ? (mAlt.objekte||[]) : [];
+  const objNeu = mNeu.objekte||[];
+  objNeu.forEach(oNeu => {
+    if (!oNeu.kunde) return;
+    const oAlt = objAlt.find(x=>x.kunde===oNeu.kunde);
+    const stNeu = Math.round(wSum(oNeu.wochentage||{})*100)/100;
+    const stAlt = oAlt ? Math.round(wSum(oAlt.wochentage||{})*100)/100 : null;
+    if (stAlt === null) {
+      changes.push('Neues Objekt: ' + oNeu.kunde + ' (' + stNeu + 'h/Wo)');
+    } else if (stAlt !== stNeu) {
+      changes.push(oNeu.kunde + ': ' + stAlt + '→' + stNeu + 'h/Wo');
+    }
+    // Einsatz_ab / Einsatz_bis
+    const abNeu = oNeu.einsatz_ab||'', abAlt = oAlt?.einsatz_ab||'';
+    const bisNeu = oNeu.einsatz_bis||'', bisAlt = oAlt?.einsatz_bis||'';
+    if (abNeu !== abAlt && abNeu) changes.push(oNeu.kunde + ': Einsatz ab ' + abNeu);
+    if (bisNeu !== bisAlt && bisNeu) changes.push(oNeu.kunde + ': Einsatz bis ' + bisNeu);
+  });
+  // Entfernte Objekte
+  objAlt.forEach(oAlt => {
+    if (!oAlt.kunde) return;
+    if (!objNeu.find(x=>x.kunde===oAlt.kunde)) changes.push('Objekt entfernt: '+oAlt.kunde);
+  });
+  // Stammdaten
+  if (mAlt) {
+    if ((mAlt.status||'')!==(mNeu.status||'')) changes.push('Status: '+mAlt.status+'→'+mNeu.status);
+    if ((mAlt.lohngruppe||'')!==(mNeu.lohngruppe||'')) changes.push('LG: '+mAlt.lohngruppe+'→'+mNeu.lohngruppe);
+    if (!!mAlt.verstetigt !== !!mNeu.verstetigt) changes.push(mNeu.verstetigt?'Verstetigt gesetzt':'Verstetigt entfernt');
+  }
+  const mk = getAM();
+  const details = changes.length ? changes.join(' | ') : (mAlt ? 'Gespeichert (keine Stundenänderung)' : 'Neu angelegt');
+  _protokollLog(maName, mk, mAlt ? 'MA gespeichert' : 'MA neu angelegt', 'ma', details);
 }
 
 function kalClick(y,mo,day){
@@ -5253,6 +5317,10 @@ if(_maoDups.length > 0){
 }
 // History automatisch sichern bevor m.objekte überschrieben wird
 if(eMAid) _archiveObjekteHistory(m, mao);
+// v113: Änderungslog – Vorher/Nachher vergleichen
+const _mAltFuerLog = eMAid ? JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid)||{})) : null;
+const _mNeuFuerLog = Object.assign({}, m, {objekte: JSON.parse(JSON.stringify(mao))});
+_logMASave(_mAltFuerLog, _mNeuFuerLog);
 m.objekte=JSON.parse(JSON.stringify(mao));
 if(eMAid){const i=ma.findIndex(x=>x.id===eMAid);ma[i]=m;}else ma.push(m);
 // Bidirektionaler Sync: MA-Objekte → Reviere
