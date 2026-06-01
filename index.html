@@ -922,7 +922,7 @@ main{padding:14px 16px}
 <button class="tab" data-tab="minijob" onclick="showTab('minijob')" type="button"><span class="tab-icon">💼</span><span class="tab-lbl">Minijob</span></button>
 <button class="tab" data-tab="dashboard" onclick="showTab('dashboard')" type="button"><span class="tab-icon">📈</span><span class="tab-lbl">Übersicht</span></button>
 <button class="tab" data-tab="objekte" onclick="showTab('objekte')" type="button"><span class="tab-icon">🏢</span><span class="tab-lbl">Kunden</span></button>
-<button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button><div style="flex:1"></div>
+<button class="tab" data-tab="statistik" onclick="showTab('statistik')" type="button"><span class="tab-icon">📊</span><span class="tab-lbl">Statistik</span></button><button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button><div style="flex:1"></div>
 </nav><main role="main"><div class="sec active" id="tab-liste"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Name, Nr., Kunde..." id="search" oninput="renderDebounced()" aria-label="Mitarbeiter suchen" autocomplete="off"></div><div class="filter-wrap"><button class="filter-btn" id="fp-btn" onclick="toggleFP()" type="button">▾ Filter <span class="filter-badge" id="fp-badge">0</span></button><div class="filter-panel" id="fp-panel"><span class="fp-label">Status</span><select class="fsel" id="f-status" onchange="render();updateFP()" style="width:100%"><option value="">Alle Status</option><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select><span class="fp-label">Objektleiter</span><select class="fsel" id="f-ol" onchange="render();updateFP()" style="width:100%"><option value="">Alle OL</option><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select><span class="fp-label">Kunde</span><select class="fsel" id="f-kunde" onchange="render();updateFP()" style="width:100%"><option value="">Alle Kunden</option></select><button class="fp-reset" onclick="resetFP()">↺ Zurücksetzen</button></div></div><div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);padding:3px 6px;box-shadow:var(--sh)">
   <button onclick="amNav(-1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Vorheriger Monat">◀</button>
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
@@ -936,6 +936,7 @@ main{padding:14px 16px}
 <div class="sec" id="tab-urlaub"><div id="urlaub-c"></div></div>
 <div class="sec" id="tab-dashboard"><div class="dgrid" id="dash-c"></div></div>
 <div class="sec" id="tab-minijob"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px"><div style="font-size:17px;font-weight:700;color:var(--text)">💼 Minijob-Übersicht</div><div style="font-size:12px;color:var(--muted)">Zeitjahr ab Eintrittsdatum · Krankheitsvertretungs-Ausnahme</div></div><div id="minijob-list"></div></div>
+<div class="sec" id="tab-statistik"><div id="statistik-c" style="padding:4px 0"></div></div>
 <div class="sec" id="tab-admin"><div style="padding:24px">
 
 <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">📋 Änderungsprotokoll</div>
@@ -2244,12 +2245,13 @@ let t=0;
 const _mk = monatKey || getAM();
 ma.filter(m=>!_maAusgeschiedenImMonat(m,_mk)).forEach(m=>{
 const abrMod=m.abrechnungsmodell||'arbeitstage';
-// FIX DUP-1: Pro MA nur den ERSTEN Eintrag pro Kunde zählen – Duplikate ignorieren
-let gezaehlt=false;
+// FIX DUP-1 v113: Pro MA nur echte Duplikate (gleicher Kunde UND gleiches Revier) überspringen
+const _gezaehlt=new Set();
 (m.objekte||[]).forEach(o=>{
   if(o.kunde!==name)return;
-  if(gezaehlt)return; // doppelter Eintrag → überspringen
-  gezaehlt=true;
+  const _k=o.kunde+'||'+(o.revier||'');
+  if(_gezaehlt.has(_k))return; // echtes Duplikat → überspringen
+  _gezaehlt.add(_k);
   t+=maOSollMA(m,o,monatKey,abrMod);
 });
 });
@@ -5303,16 +5305,17 @@ if(m.abrechnungsmodell==='arbeitstage'){
   });
 }
 // FIX DUP-2: Duplikate in mao erkennen und warnen bevor gespeichert wird
-const _maoKunden = mao.map(o=>o.kunde).filter(Boolean);
-const _maoDups = _maoKunden.filter((k,i)=>_maoKunden.indexOf(k)!==i);
+// FIX v113: Schlüssel = kunde + revier (nicht nur kunde), damit mehrere Reviere desselben Kunden erlaubt sind
+const _maoKeys = mao.map(o=>o.kunde ? (o.kunde + '||' + (o.revier||'')) : null).filter(Boolean);
+const _maoDups = _maoKeys.filter((k,i)=>_maoKeys.indexOf(k)!==i);
 if(_maoDups.length > 0){
-  const dupListe = [...new Set(_maoDups)].join(', ');
+  const dupListe = [...new Set(_maoDups)].map(k=>k.replace('||',k.includes('||')?' / Revier: ':'')).join(', ');
   if(!confirm('⚠ Doppelte Objekt-Einträge gefunden:\n\n' + dupListe + '\n\nNur der ERSTE Eintrag wird gespeichert, der Rest wird entfernt.\n\nFortfahren?')){
     if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}return;
   }
-  // Duplikate entfernen – ersten Treffer behalten
+  // Duplikate entfernen – ersten Treffer behalten (Schlüssel = kunde + revier)
   const _seen=new Set();
-  mao=mao.filter(o=>{if(!o.kunde)return true;if(_seen.has(o.kunde))return false;_seen.add(o.kunde);return true;});
+  mao=mao.filter(o=>{if(!o.kunde)return true;const _k=o.kunde+'||'+(o.revier||'');if(_seen.has(_k))return false;_seen.add(_k);return true;});
   renderMAO();
 }
 // History automatisch sichern bevor m.objekte überschrieben wird
@@ -6471,6 +6474,7 @@ if(t==='heute')renderHeute();
 if(t==='urlaub')renderUrlaub();
 if(t==='dashboard')renderDash();
 if(t==='minijob')renderMinijob();
+if(t==='statistik')renderStatistik();
 }
 function renderMinijob() {
   const container = document.getElementById('minijob-list');
@@ -9242,6 +9246,154 @@ window.addEventListener('unload', ()=>{
     if(manifestLink) manifestLink.href = manifestURL;
   } catch(e) { console.warn('PWA init:', e); }
 })();
+
+// STATISTIK-TAB
+function renderStatistik() {
+  const c = document.getElementById('statistik-c');
+  if (!c) return;
+  const MONATE = ['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const MONATEFULL = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const JAHR = new Date().getFullYear();
+  const alleMA = ma.filter(m => m.status !== 'Ausgeschieden' || (m.austritt && m.austritt.slice(0,4) >= String(JAHR)));
+
+  // MA-ID lookup für Klick
+  function maIdByName(nachname, vorname) {
+    const found = alleMA.find(m => m.nachname === nachname && m.vorname === vorname);
+    return found ? found.id : null;
+  }
+  function maLink(name, id) {
+    if (!id) return '<span>'+name+'</span>';
+    return '<span style="color:var(--acc);cursor:pointer;text-decoration:underline;text-decoration-style:dotted" onclick="showTab(\'liste\');setTimeout(()=>openMAM(\''+id+'\'),60)">'+name+'</span>';
+  }
+
+  // Daten sammeln
+  const monatStats = MONATE.map((lbl, mi) => {
+    const mk = JAHR + '-' + String(mi+1).padStart(2,'0');
+    const prefix = mk + '-';
+    let krank=0, urlaub=0;
+    const krankMA=[], urlaubMA=[];
+    alleMA.forEach(m => {
+      let mK=0, mU=0;
+      Object.entries(m.abwesenheiten||{}).forEach(([d,t]) => {
+        if(!d.startsWith(prefix))return;
+        if(t==='krank'){krank++;mK++;}
+        if(t==='urlaub'){urlaub++;mU++;}
+      });
+      if(mK>0)krankMA.push({name:m.nachname+', '+m.vorname,id:m.id,tage:mK});
+      if(mU>0)urlaubMA.push({name:m.nachname+', '+m.vorname,id:m.id,tage:mU});
+    });
+    return {lbl,mk,mi,krank,urlaub,krankMA,urlaubMA};
+  });
+
+  // Jahres-MA-Statistik
+  const maJahrArr = alleMA.map(m => {
+    let k=0, u=0;
+    Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{
+      if(!d.startsWith(JAHR+'-'))return;
+      if(t==='krank')k++;
+      if(t==='urlaub')u++;
+    });
+    return {name:m.nachname+', '+m.vorname, id:m.id, k, u};
+  }).filter(x=>x.k>0||x.u>0);
+
+  const allKrank = maJahrArr.filter(x=>x.k>0).sort((a,b)=>b.k-a.k);
+  const allUrlaub = maJahrArr.filter(x=>x.u>0).sort((a,b)=>b.u-a.u);
+  const maxTopK = Math.max(...allKrank.map(x=>x.k),1);
+  const maxTopU = Math.max(...allUrlaub.map(x=>x.u),1);
+  const maxK = Math.max(...monatStats.map(s=>s.krank),1);
+  const maxU = Math.max(...monatStats.map(s=>s.urlaub),1);
+
+  function bar(val,max,color){
+    const pct=Math.round(val/max*100);
+    return '<div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--s2);border-radius:3px;height:8px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+color+';border-radius:3px"></div></div><span style="font-size:11px;font-weight:600;color:var(--text2);min-width:22px;text-align:right">'+val+'</span></div>';
+  }
+  function hbar(item, val, max, color) {
+    const pct=Math.round(val/max*100);
+    return '<div style="display:grid;grid-template-columns:160px 1fr 30px;align-items:center;gap:8px;margin-bottom:5px">'
+      +'<div style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+maLink(item.name,item.id)+'</div>'
+      +'<div style="background:var(--s2);border-radius:3px;height:10px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+color+';border-radius:3px"></div></div>'
+      +'<span style="font-size:12px;font-weight:700;color:var(--text);text-align:right">'+val+'</span>'
+      +'</div>';
+  }
+  function rankingBlock(id, title, color, items, max) {
+    if(!items.length) return '<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh)"><div style="font-weight:600;font-size:13px;margin-bottom:12px;color:'+color+'">'+title+'</div><div style="color:var(--muted);font-size:12px">Keine Daten</div></div>';
+    const top = items.slice(0,8);
+    const rest = items.slice(8);
+    const rid = 'stat-rest-'+id;
+    let html = '<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:16px;box-shadow:var(--sh)">'
+      +'<div style="font-weight:600;font-size:13px;margin-bottom:12px;color:'+color+'">'+title+'</div>'
+      +top.map(x=>hbar(x, id==='k'?x.k:x.u, max, color)).join('');
+    if(rest.length) {
+      html += '<div id="'+rid+'" style="display:none">'
+        +rest.map(x=>hbar(x, id==='k'?x.k:x.u, max, color)).join('')
+        +'</div>'
+        +'<button onclick="var el=document.getElementById(\''+rid+'\');var btn=this;if(el.style.display===\'none\'){el.style.display=\'block\';btn.textContent=\'▲ Weniger anzeigen\';}else{el.style.display=\'none\';btn.textContent=\'▼ Weitere '+rest.length+' anzeigen\';}" '
+        +'style="margin-top:8px;background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;color:var(--muted);width:100%">&#9660; Weitere '+rest.length+' anzeigen</button>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  // Monatsdetails mit anklickbaren MA-Namen
+  const tableRows = monatStats.map((s,i) => {
+    const isFuture=(i+1)>new Date().getMonth()+1;
+    const opacity=isFuture?'opacity:.4':'';
+    const did='stat-d-'+i;
+    const hasData=s.krank>0||s.urlaub>0;
+    let det='';
+    if(s.krankMA.length){
+      det+='<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--red);margin-bottom:4px">Krank</div>';
+      det+=s.krankMA.sort((a,b)=>b.tage-a.tage).map(x=>'<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border)">'+maLink(x.name,x.id)+'<span style="font-weight:600;margin-left:8px;flex-shrink:0">'+x.tage+' T</span></div>').join('');
+      det+='</div>';
+    }
+    if(s.urlaubMA.length){
+      det+='<div><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:4px">Urlaub</div>';
+      det+=s.urlaubMA.sort((a,b)=>b.tage-a.tage).map(x=>'<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border)">'+maLink(x.name,x.id)+'<span style="font-weight:600;margin-left:8px;flex-shrink:0">'+x.tage+' T</span></div>').join('');
+      det+='</div>';
+    }
+    return '<tr style="'+opacity+';cursor:'+(hasData?'pointer':'default')+'" onclick="'+(hasData?'var el=document.getElementById(\''+did+'\');el.style.display=el.style.display===\'none\'?\'table-row\':\'none\'':'')+'">'
+      +'<td><strong>'+s.lbl+'</strong></td>'
+      +'<td><div style="min-width:110px">'+bar(s.krank,maxK,'var(--red)')+'</div></td>'
+      +'<td><div style="min-width:110px">'+bar(s.urlaub,maxU,'var(--blue)')+'</div></td>'
+      +'<td style="color:var(--muted);font-size:11px">'+(hasData?'&#9654; Details':'')+'</td>'
+      +'</tr>'
+      +'<tr id="'+did+'" style="display:none;background:var(--s1)"><td colspan="4" style="padding:12px 16px">'+(det||'<span style="color:var(--muted);font-size:12px">Keine Eintr&#228;ge</span>')+'</td></tr>';
+  });
+
+  const sumK=monatStats.reduce((s,m)=>s+m.krank,0);
+  const sumU=monatStats.reduce((s,m)=>s+m.urlaub,0);
+
+  c.innerHTML=''
+    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px">'
+    +'<div style="font-size:17px;font-weight:700;color:var(--text)">&#128202; Fehlzeiten-Statistik '+JAHR+'</div>'
+    +'<div style="font-size:12px;color:var(--muted)">Alle aktiven MA &middot; Klick auf Monat = Details &middot; Namen anklickbar</div>'
+    +'</div>'
+    // KPI
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px">'
+    +'<div style="background:var(--rbg);border:1px solid var(--rbd);border-radius:var(--r2);padding:14px 16px"><div style="font-size:22px;font-weight:700;color:var(--red)">'+sumK+'</div><div style="font-size:11px;color:var(--red);font-weight:600">Krank-Tage '+JAHR+'</div></div>'
+    +'<div style="background:var(--bbg);border:1px solid #bfdbfe;border-radius:var(--r2);padding:14px 16px"><div style="font-size:22px;font-weight:700;color:var(--blue)">'+sumU+'</div><div style="font-size:11px;color:var(--blue);font-weight:600">Urlaub-Tage '+JAHR+'</div></div>'
+    +'<div style="background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:14px 16px"><div style="font-size:22px;font-weight:700;color:var(--green)">'+alleMA.length+'</div><div style="font-size:11px;color:var(--green);font-weight:600">Ausgewertete MA</div></div>'
+    +'</div>'
+    // Monatstabelle
+    +'<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh);margin-bottom:20px">'
+    +'<div style="padding:12px 16px;border-bottom:1px solid var(--border);font-weight:600;font-size:13px">Monatsvergleich '+JAHR+'</div>'
+    +'<table style="width:100%;border-collapse:collapse"><thead style="background:var(--s1)"><tr>'
+    +'<th style="padding:8px 14px;text-align:left;font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:600;width:55px">Monat</th>'
+    +'<th style="padding:8px 14px;text-align:left;font-size:11px;text-transform:uppercase;color:var(--red);font-weight:600">Krank-Tage</th>'
+    +'<th style="padding:8px 14px;text-align:left;font-size:11px;text-transform:uppercase;color:var(--blue);font-weight:600">Urlaub-Tage</th>'
+    +'<th style="padding:8px 14px;width:80px"></th>'
+    +'</tr></thead><tbody>'+tableRows.join('')+'</tbody>'
+    +'<tfoot><tr style="background:var(--s1);font-weight:700">'
+    +'<td style="padding:8px 14px;font-size:12px">Gesamt</td>'
+    +'<td style="padding:8px 14px;font-size:12px;color:var(--red)">'+sumK+' T</td>'
+    +'<td style="padding:8px 14px;font-size:12px;color:var(--blue)">'+sumU+' T</td>'
+    +'<td></td></tr></tfoot></table></div>'
+    // Rankings
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">'
+    +rankingBlock('k','Meiste Krank-Tage','var(--red)',allKrank,maxTopK)
+    +rankingBlock('u','Meiste Urlaub-Tage','var(--blue)',allUrlaub,maxTopU)
+    +'</div>';
+}
 </script>
 <!-- ── LOHNARTEN IMPORT MODAL ─────────────────────────────── -->
 <div class="datev-modal-bg" id="la-import-bg" onclick="if(event.target.id==='la-import-bg')closeLohnArtenImport()">
