@@ -2380,10 +2380,9 @@ function _getHistoryObjekt(m, kundeKey, monatKey, revierKey) {
   if (!m || !m.objekte_history) return null;
   const mk = monatKey || getAM();
   // Suche History-Eintrag: gueltig_ab <= mk <= gueltig_bis
-  // FIX v112: auch revier als Unterscheidungsmerkmal verwenden wenn vorhanden
+  // FIX v114: revier als Unterscheidungsmerkmal bei gleichen Kunden
   const treffer = m.objekte_history.filter(h => {
     if (h.kunde !== kundeKey) return false;
-    // Wenn revierKey übergeben und History-Eintrag hat Revier → muss übereinstimmen
     if (revierKey !== undefined && h.revier !== undefined && h.revier !== revierKey) return false;
     const ab  = h.gueltig_ab  || '2000-01';
     const bis = h.gueltig_bis || '2099-12';
@@ -2558,11 +2557,11 @@ function maOSoll(o, monatKey, maAbrModell){
     // Wochentage eingetragen → tatsächliche Vorkommen im Monat zählen
     const ws = wSum(o.wochentage||{});
     if(ws > 0) return Math.round(calcWochentagStunden(o.wochentage||{}, mk) * 100) / 100;
-    // Fallback: std_tag × AT
+    // Fallback: std_tag × AT (std_monat wird NICHT verwendet - kann veraltete Werte enthalten)
     const stdTag = parseFloat(o.std_tag) || 0;
-    const arbT = parseInt(o.arbtage_monat?.[mk]) || ARBEITSTAGE[mk] || 21;
+    const arbT = ARBEITSTAGE[mk] || 21;
     if(stdTag>0) return Math.round(stdTag*arbT*100)/100;
-    return parseFloat(o.std_monat)||0;
+    return 0;
   }
   // Modell 14-Tage: exakte Einsätze ab festem Startdatum
   if(effModell==='14tage'){
@@ -3921,7 +3920,7 @@ updLohngruppeInfo();
 mao=JSON.parse(JSON.stringify(m.objekte||[{kunde:'',std_monat:'',stundenlohn:'',lohn_fest:'',wochentage:WT0()}]));
 // Original-Stand beim Öffnen sichern – für History-Vergleich in saveMA
 window._maoOriginal = id ? JSON.parse(JSON.stringify(m.objekte||[])) : [];
-renderMAO();ami=_amIdx;renderMTabs(m);renderMP(m,ami);
+ami=_amIdx;renderMAO();renderMTabs(m);renderMP(m,ami);
 kalYear=2026;kalMonth=_amIdx;kalMode='urlaub';
 document.getElementById('mambg').classList.add('open');
 if(id) acquireLock(); // Lock setzen beim Bearbeiten
@@ -4907,24 +4906,21 @@ function renderSollInfo(m, mk){
     const arbT = (o.arbtage_monat&&o.arbtage_monat[mk]) ? parseInt(o.arbtage_monat[mk]) : ARBEITSTAGE[mk]||21;
     const ws = wSum(o.wochentage||{});
     const _14eins = o.modell==='14tage' ? calc14TageEinsaetze(o.wochentage||{}, o.rhythmus_start, mk) : 0;
-    // Formelanzeige: Objekt-Modell hat Vorrang vor MA-Abrechnungsmodell
+    // Formelanzeige: konsistent mit maOSoll-Logik
     let formel;
     if(o.modell==='14tage'){
       formel = `📅 ${_14eins}× Einsatz × ${Math.round(ws*100)/100}h = <strong>${soll}h</strong>`;
     } else if(o.modell==='verstetigt'){
       formel = `${Math.round(ws*100)/100}h/Wo × 261/12/5 = <strong>${soll}h</strong>`;
     } else if(effMod==='arbeitstage'){
-      {
-        // Einheitliche Std/Tag? Nur dann Formel anzeigen
-        const _wtVals = Object.values(o.wochentage||{}).map(v=>parseFloat(v)||0).filter(v=>v>0);
-        const _einheitlich = _wtVals.length>0 && _wtVals.every(v=>v===_wtVals[0]);
-        const _stdAnz = stdTag>0 ? stdTag : (_einheitlich ? _wtVals[0] : null);
-        formel = _stdAnz
-          ? `${_stdAnz}h/Tag × <input type="number" min="1" max="31" value="${arbT}"
+      if(ws > 0){
+        // Wochentage → calcWochentagStunden (exakt wie maOSoll)
+        formel = `${stdTag||Math.round(ws/5*100)/100}h/Tag × ${arbT} AT = <strong>${soll}h</strong>`;
+      } else {
+        formel = `${stdTag}h/Tag × <input type="number" min="1" max="31" value="${arbT}"
             style="width:48px;padding:2px 4px;border:1px solid var(--border);border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:center;background:var(--white);outline:none"
             title="Arbeitstage ${mk} anpassen"
-            onchange="updArbTageMonat('${m.id||''}','${o.kunde}','${mk}',this.value)"> AT = <strong>${soll}h</strong>`
-          : `<strong>${soll}h</strong>`;
+            onchange="updArbTageMonat('${m.id||''}','${o.kunde}','${mk}',this.value)"> AT = <strong>${soll}h</strong>`;
       }
     } else {
       formel = `${stdTag}h/Tag × ${arbT} AT = <strong>${soll}h</strong>`;
