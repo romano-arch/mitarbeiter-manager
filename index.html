@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager 2026 v112</title>
+<title>MitarbeiterManager 2026 v119</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -140,7 +140,7 @@ code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;bord
 .kal-day.kal-today{border-color:var(--acc);color:var(--acc);font-weight:600}
 .kal-wd-so{color:#DC2626!important;font-weight:700}
 .kal-day.kal-feiertag{background:var(--white);border-color:#DC2626;color:#DC2626;font-weight:700}
-.kal-day.kal-sonntag{background:var(--white);border-color:#DC2626;color:#DC2626;font-weight:700}
+.kal-day.kal-sonntag{background:#DC2626;border-color:#DC2626;color:#fff;font-weight:700}
 .kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}
 .kal-day.kal-krank{background:#DC2626;border-color:#991b1b;color:#fff;font-weight:700}
 .kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}
@@ -888,6 +888,8 @@ main{padding:14px 16px}
 
 }
 </style>
+<!-- Supabase Auth Client (echte Anmeldung) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body><!-- ── LOGIN OVERLAY ── -->
 <div id="login-overlay" role="dialog" aria-modal="true" aria-label="Anmeldung">
@@ -895,18 +897,18 @@ main{padding:14px 16px}
     <div class="login-logo">👥</div>
     <div class="login-title">MitarbeiterManager</div>
     <div class="login-sub">Bitte melde dich an um fortzufahren</div>
-    <div class="login-fg"><label>Name</label>
-      <input class="login-inp" id="li-name" placeholder="z.B. Grippo" autocomplete="username" onkeydown="if(event.key==='Enter')document.getElementById('li-pin').focus()">
+    <div class="login-fg"><label>E-Mail</label>
+      <input class="login-inp" id="li-email" type="email" placeholder="name@acs-alzenau.de" autocomplete="username" onkeydown="if(event.key==='Enter')document.getElementById('li-pw').focus()">
     </div>
-    <div class="login-fg"><label>PIN</label>
-      <input class="login-inp" id="li-pin" type="password" placeholder="••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLoginUI()">
+    <div class="login-fg"><label>Passwort</label>
+      <input class="login-inp" id="li-pw" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLoginUI()">
     </div>
     <button class="login-btn" onclick="doLoginUI()">Anmelden →</button>
     <div class="login-err" id="li-err"></div>
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager 2026 <span style="font-size:10px;opacity:.55;font-weight:400">v111</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></button></div><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></button></div><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></button></div><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></button></div><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></button></div><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></button></div><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></div></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager 2026 <span style="font-size:10px;opacity:.55;font-weight:400">v119</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></button></div><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></button></div><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></button></div><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></button></div><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></button></div><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></button></div><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></div></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1419,29 +1421,70 @@ const WT = ['Mo','Di','Mi','Do','Fr','Sa','So'];
 // ══════════════════════════════════════════════════════════
 const SUPA_URL = 'https://hdcvzfljwhjepeceigfk.supabase.co';
 const SUPA_KEY = 'sb_publishable_BWyqcnc30a6ZpO3WpWCbNQ_QxzAdPdb';
-const SUPA_HEADERS = {
-  'Content-Type': 'application/json',
-  'apikey': SUPA_KEY,
-  'Authorization': 'Bearer ' + SUPA_KEY,
-  'Prefer': 'resolution=merge-duplicates'
-};
+// ── Supabase Auth Client (E-Mail + Passwort, echte Anmeldung) ──
+// Hinweis: SDK-Global heisst 'supabase'; Client heisst 'supaClient'
+// (NICHT 'sb' nennen – 'sb' ist bereits die Sortier-Funktion!).
+const supaClient = window.supabase.createClient(SUPA_URL, SUPA_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: false,
+    storage: window.sessionStorage,
+    storageKey: 'mm_auth'
+  }
+});
+
+// ── AUTH STATE (global) ──
+let _token = null;          // JWT der aktuellen Sitzung
+let _currentUser = null;    // Anzeigename aus user_profiles.name
+let _currentRolle = null;   // 'superadmin' | 'admin' | 'ol'
+let _currentKuerzel = null; // nur OL: 'I' (Incecik) / 'M' (Grippo)
+
+// Token bei jeder Auth-Aenderung (Login, Auto-Refresh, Logout) aktuell halten
+supaClient.auth.onAuthStateChange((_event, session) => {
+  _token = session ? (session.access_token || null) : null;
+});
+
+// OL-Stammdaten (kein Geheimnis – nur Anzeige/Filter in der Urlaubs-Uebersicht)
+const OL_INFO = [
+  { name: 'Incecik', kuerzel: 'I' },
+  { name: 'Grippo',  kuerzel: 'M' }
+];
+
+// HTTP-Header inkl. aktuellem JWT – ersetzt das alte statische SUPA_HEADERS
+function getSupaHeaders(extra) {
+  const h = {
+    'Content-Type': 'application/json',
+    'apikey': SUPA_KEY,
+    'Authorization': 'Bearer ' + (_token || SUPA_KEY),
+    'Prefer': 'resolution=merge-duplicates'
+  };
+  return Object.assign(h, extra || {});
+}
 
 // ══════════════════════════════════════════════════════════
 // BENUTZER & PINs – hier anpassen!
 // ══════════════════════════════════════════════════════════
-const USERS = {
-  'Romano':  { pin: '5478', rolle: 'admin' },
-  'Adler':   { pin: '3265', rolle: 'admin' },
-  'Richter': { pin: '6556', rolle: 'admin' },
-  'Incecik': { pin: '4471', rolle: 'ol', kuerzel: 'I' },
-  'Grippo':  { pin: '7823', rolle: 'ol', kuerzel: 'M' }
-};
+// SICHERHEIT v119: Benutzer + PINs ENTFERNT.
+// Anmeldung laeuft jetzt ueber Supabase Auth (E-Mail + Passwort).
+// Rolle/Name/Kuerzel kommen aus der Tabelle user_profiles.
 
 async function supaFetch(table, method='GET', body=null, query='') {
   const url = SUPA_URL + '/rest/v1/' + table + (query ? '?' + query : '');
-  const opts = { method, headers: SUPA_HEADERS };
-  if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(url, opts);
+  const doFetch = () => {
+    const opts = { method, headers: getSupaHeaders() };
+    if (body) opts.body = JSON.stringify(body);
+    return fetch(url, opts);
+  };
+  let res = await doFetch();
+  // Sitzung evtl. abgelaufen -> einmal Token auffrischen und erneut versuchen
+  if (res.status === 401) {
+    try {
+      const { data } = await supaClient.auth.getSession();
+      if (data && data.session && data.session.access_token) _token = data.session.access_token;
+    } catch(e) {}
+    res = await doFetch();
+  }
   if (!res.ok) {
     const err = await res.text();
     throw new Error(table + ' ' + method + ': ' + err);
@@ -1812,15 +1855,28 @@ let sKey='nachname', sDir=1, pg=1;
 const PER=25;
 const WT0 = ()=>({Mo:0,Di:0,Mi:0,Do:0,Fr:0,Sa:0,So:0});
 
-// ── AUTH STATE ────────────────────────────────────────────
-let _token = sessionStorage.getItem('mm_token') || null;
-let _currentUser = sessionStorage.getItem('mm_user') || null;
-let _currentRolle = sessionStorage.getItem('mm_rolle') || 'admin';
+// ── ROLLEN / RECHTE (3-Stufen: superadmin / admin / ol) ──
+// (_token/_currentUser/_currentRolle/_currentKuerzel werden oben global gesetzt)
+function isSuperAdmin(){ return _currentRolle === 'superadmin'; }
+function isAdmin(){ return _currentRolle === 'admin' || isSuperAdmin(); }
 function isOL(){ return _currentRolle === 'ol'; }
+
+// Zentrale Rechte-Matrix – ersetzt verstreute isOL()/isAdmin()-Abfragen
+const CAN = {
+  deleteMA:       () => isAdmin(),
+  exportDatev:    () => isAdmin(),
+  changeLohn:     () => isAdmin(),
+  editStammdaten: () => isAdmin(),
+  editStunden:    () => true,
+  editAbwesen:    () => true,
+  seeProtokoll:   () => isAdmin(),
+  seeAdminTab:    () => isSuperAdmin(),
+  manageKunden:   () => isAdmin(),
+};
+
 function getVisibleMA() {
   if (!isOL()) return ma;
-  // OL-Kürzel aus USERS-Konfiguration lesen (nicht hardcoded)
-  const olKuerzel = USERS[_currentUser]?.kuerzel || '';
+  const olKuerzel = _currentKuerzel || '';
   return ma.filter(m => m.objektleiter === olKuerzel);
 }
 function getVisibleKunden() {
@@ -1830,41 +1886,59 @@ function getVisibleKunden() {
   visMA.forEach(m => maKu(m).forEach(k => kundenSet.add(k)));
   return obj.filter(o => kundenSet.has(o.name));
 }
-function isAdmin(){ return !isOL(); }
 let _lockPingInterval = null;
 let _autoSaveTimeout = null;
 
 // ── LOGIN UI ──────────────────────────────────────────────
 async function doLoginUI() {
-  const name = document.getElementById('li-name').value.trim();
-  const pin  = document.getElementById('li-pin').value.trim();
+  const email = document.getElementById('li-email').value.trim();
+  const pw    = document.getElementById('li-pw').value;
   const errEl = document.getElementById('li-err');
   errEl.style.display = 'none';
-  if (!name || !pin) { showLoginErr('Bitte Name und PIN eingeben.'); return; }
+  if (!email || !pw) { showLoginErr('Bitte E-Mail und Passwort eingeben.'); return; }
   const btn = document.querySelector('.login-btn');
   btn.textContent = 'Wird geprüft…'; btn.disabled = true;
   try {
-    // Lokale Benutzerprüfung – kein Server nötig
-    const user = USERS[name];
-    if (!user || user.pin !== pin) {
-      showLoginErr('Falscher Name oder PIN.');
+    // 1) Echte Anmeldung gegen Supabase Auth
+    const { data, error } = await supaClient.auth.signInWithPassword({ email, password: pw });
+    if (error || !data || !data.session) {
+      showLoginErr('E-Mail oder Passwort falsch.');
       btn.textContent = 'Anmelden →'; btn.disabled = false;
       return;
     }
-    _token = 'local_' + Date.now();
-    _currentUser = name;
-    _currentRolle = user.rolle;
-    sessionStorage.setItem('mm_token', _token);
-    sessionStorage.setItem('mm_user', _currentUser);
-    sessionStorage.setItem('mm_rolle', _currentRolle);
-    sessionStorage.setItem('mm_pin', pin);
+    _token = data.session.access_token;
+    // 2) Rolle + Anzeigename aus user_profiles laden
+    const ok = await loadProfile(data.user.id);
+    if (!ok) {
+      await supaClient.auth.signOut();
+      showLoginErr('Kein Benutzerprofil hinterlegt. Bitte Administrator kontaktieren.');
+      btn.textContent = 'Anmelden →'; btn.disabled = false;
+      return;
+    }
     document.getElementById('login-overlay').classList.add('hidden');
     document.getElementById('user-name-badge').textContent = _currentUser;
+    document.getElementById('li-pw').value = '';
     await initApp();
   } catch(e) {
-    showLoginErr('Fehler beim Anmelden: ' + e.message);
+    showLoginErr('Fehler beim Anmelden: ' + (e.message || e));
   }
   btn.textContent = 'Anmelden →'; btn.disabled = false;
+}
+
+// Profil (Rolle, Name, Kuerzel) aus user_profiles laden – mit gueltigem JWT
+async function loadProfile(uid) {
+  try {
+    const rows = await supaFetch('user_profiles', 'GET', null,
+      'id=eq.' + encodeURIComponent(uid) + '&select=name,rolle,kuerzel');
+    if (!rows || !rows.length) return false;
+    const p = rows[0];
+    _currentUser    = p.name || '';
+    _currentRolle   = p.rolle || null;
+    _currentKuerzel = p.kuerzel || null;
+    return !!_currentRolle;
+  } catch(e) {
+    return false;
+  }
 }
 
 function showLoginErr(msg) {
@@ -1872,12 +1946,14 @@ function showLoginErr(msg) {
   el.textContent = msg; el.style.display = 'block';
 }
 
-function doLogout() {
+async function doLogout() {
   if (!confirm('Wirklich abmelden?')) return;
-  sessionStorage.removeItem('mm_token');
-  sessionStorage.removeItem('mm_user');
-  sessionStorage.removeItem('mm_rolle');
-  sessionStorage.removeItem('mm_pin');
+  try { await supaClient.auth.signOut(); } catch(e) {}
+  _token = null; _currentUser = null; _currentRolle = null; _currentKuerzel = null;
+  // Priorität 3: alle Sitzungsdaten leeren (Auth-Session liegt in sessionStorage).
+  // Hinweis: das Änderungsprotokoll ('mm_aenderungslog') bleibt absichtlich erhalten
+  // (Audit-Trail; liegt ohnehin auch in Supabase).
+  try { sessionStorage.clear(); } catch(e) {}
   location.reload();
 }
 
@@ -1893,7 +1969,7 @@ async function initApp() {
     // Testdaten automatisch bereinigt
     startLockPing();
     setSyncState('ok', 'Verbunden · ' + _currentUser);
-    if(_currentRolle==='admin'){const b=document.getElementById('btn-del-test');if(b)b.style.display='';}
+    if(isAdmin()){const b=document.getElementById('btn-del-test');if(b)b.style.display='';}
     applyRoles();
     updAMLabels();
   } catch(e) {
@@ -2031,17 +2107,22 @@ function confirmConflict(name) {
 
 // ── AUTO-LOGIN wenn Token noch vorhanden ──────────────────
 document.addEventListener('DOMContentLoaded', async function autoLogin() {
-  if (!_token || !_currentUser) return; // kein Token → Login-Screen bleibt sichtbar
-  // Benutzer noch gültig prüfen
-  const user = USERS[_currentUser];
-  const savedPin = sessionStorage.getItem('mm_pin');
-  if (!user || !savedPin || user.pin !== savedPin) {
-    sessionStorage.clear();
-    _token = null; _currentUser = null;
+  let session = null;
+  try {
+    const { data } = await supaClient.auth.getSession();
+    session = (data && data.session) ? data.session : null;
+  } catch(e) {}
+  if (!session) {
     document.getElementById('login-overlay').classList.remove('hidden');
     return;
   }
-  _currentRolle = user.rolle;
+  _token = session.access_token;
+  const ok = await loadProfile(session.user.id);
+  if (!ok) {
+    try { await supaClient.auth.signOut(); } catch(e) {}
+    document.getElementById('login-overlay').classList.remove('hidden');
+    return;
+  }
   document.getElementById('login-overlay').classList.add('hidden');
   document.getElementById('user-name-badge').textContent = _currentUser;
   setSyncState('syncing', 'Verbinde…');
@@ -2049,7 +2130,7 @@ document.addEventListener('DOMContentLoaded', async function autoLogin() {
     await initApp();
   } catch(e) {
     setSyncState('error', 'Verbindungsfehler');
-    showAlert('Laden fehlgeschlagen: ' + e.message, '#c81e1e');
+    showAlert('Laden fehlgeschlagen: ' + (e.message||e), '#c81e1e');
   }
 });
 function gObj(name){return obj.find(o=>o.name===name)||null;}
@@ -2289,13 +2370,21 @@ function _migrateHistoryBis() {
     let dirty = false;
     m.objekte_history.forEach(h => {
       if (!h.gueltig_bis) return;
-      // Prüfen: Hat m.objekte für denselben Kunden einen Eintrag?
-      // Wenn ja: der History-Eintrag darf NICHT denselben Monat wie m.objekte abdecken
-      // wenn gueltig_bis == aktueller Monat UND m.objekte[kunde] existiert → Bug
-      const hatAktuellenEintrag = (m.objekte||[]).some(o => o.kunde === h.kunde);
-      if (!hatAktuellenEintrag) return; // kein aktueller Eintrag → ok
-      // Prüfe ob gueltig_bis >= aktueller Stand (d.h. History überlappt mit aktuellem Eintrag)
-      // Fix: gueltig_bis um einen Monat zurücksetzen
+      // FIX N6: Migration auch wenn MA den Kunden verlassen hat (kein aktueller Eintrag).
+      // Prüfprinzip: Wenn ein späterer History-Eintrag für denselben Kunden existiert,
+      // darf dieser nicht mit h.gueltig_bis überlappen. Alternativ: wenn m.objekte
+      // den Kunden noch enthält, darf h.gueltig_bis nicht auf den gleichen oder späteren
+      // Monat zeigen als der Eintrag begonnen hat.
+      const hatAktuellenEintrag = (m.objekte||[]).some(o => o.kunde === h.kunde && (o.revier||'') === (h.revier||''));
+      // Spätere History-Einträge für denselben Kunden
+      const spaeterHistEintrag = m.objekte_history.some(h2 =>
+        h2 !== h &&
+        h2.kunde === h.kunde &&
+        (h2.revier||'') === (h.revier||'') &&
+        (h2.gueltig_ab||'2000-01') <= h.gueltig_bis
+      );
+      if (!hatAktuellenEintrag && !spaeterHistEintrag) return; // kein Überlapp möglich → ok
+      // Prüfe ob gueltig_bis zu groß ist → um einen Monat zurücksetzen
       const [y, mo] = h.gueltig_bis.split('-').map(Number);
       if (!y || !mo) return;
       const vormonat = mo <= 1 ? `${y-1}-12` : `${y}-${String(mo-1).padStart(2,'0')}`;
@@ -2311,7 +2400,7 @@ function _migrateHistoryBis() {
     if (dirty) {
       const seen = new Set();
       m.objekte_history = m.objekte_history.filter(h => {
-        const k = h.kunde + '|' + (h.gueltig_ab||'') + '|' + (h.gueltig_bis||'');
+        const k = h.kunde + '|' + (h.revier||'') + '|' + (h.gueltig_ab||'') + '|' + (h.gueltig_bis||'');
         if (seen.has(k)) return false;
         seen.add(k);
         return true;
@@ -2349,7 +2438,7 @@ function _archiveObjekteHistory(m, neueObjekte) {
     // Prüfen ob bereits ein History-Eintrag für diesen Kunden + Vormonat existiert
     // (verhindert Duplikate bei mehrfachem Speichern im selben Monat)
     const bereitsArchiviert = m.objekte_history.some(h =>
-      h.kunde === alt.kunde && h.gueltig_bis === vormonatKey
+      h.kunde === alt.kunde && h.gueltig_bis === vormonatKey && (h.revier||'')===(alt.revier||'')
     );
     if (bereitsArchiviert) return;
 
@@ -2520,7 +2609,7 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
     const _lastDay = new Date(y, mo, 0).getDate();
     for (let _d = 1; _d <= _lastDay; _d++) {
       const _dow = new Date(y, mo-1, _d).getDay();
-      if (_dow >= 1 && _dow <= 5) arbT++;
+      if (_dow >= 1 && _dow <= 6) arbT++; // FIX #4: Mo-Sa wie Zähler
     }
   }
   const faktor = Math.max(0, (arbT - unbezahltTage) / arbT);
@@ -3205,7 +3294,8 @@ function syncMAToRev(m) {
     o.reviere = o.reviere || [];
     const inRev = o.reviere.find(r => r.maId === m.id);
     if (!inRev) {
-      o.reviere.push({name: '', stunden: '', maId: m.id, wochentage: WT0()});
+      const _wt = ob.wochentage ? JSON.parse(JSON.stringify(ob.wochentage)) : WT0();
+      o.reviere.push({name: ob.revier||'', stunden: '', maId: m.id, wochentage: _wt});
     }
   });
   // Objekte die der MA nicht mehr hat → maId aus Revieren entfernen
@@ -3337,13 +3427,24 @@ function delObj(){
   if(!confirm(msg)) return;
   const _delId = eOid;
   obj = obj.filter(x=>x.id!==_delId);
-  // Kunden-Eintrag ebenfalls entfernen
-  kunden = kunden.filter(k=>!(k.standorte&&k.standorte.includes(o.name)&&k.standorte.length===1));
+  // FIX N8: Kunden-Eintrag mit echter ID löschen (nicht konstruierte 'kd_'+id).
+  // Kunden mit mehreren Standorten: nur den Standort-Eintrag entfernen, nicht den ganzen Kunden.
+  const _kundenZuLoeschen = [];
+  kunden = kunden.filter(k => {
+    if (!k.standorte) return true;
+    if (!k.standorte.includes(o.name)) return true;
+    if (k.standorte.length === 1) {
+      _kundenZuLoeschen.push(k.id); // ganzen Kunden löschen
+      return false;
+    }
+    // Mehrere Standorte: nur diesen Standort entfernen
+    k.standorte = k.standorte.filter(s => s !== o.name);
+    return true;
+  });
   setSyncState('syncing','Löscht…');
-  Promise.all([
-    supaDelete('objekte', _delId),
-    supaDelete('kunden', 'kd_'+_delId)
-  ]).then(()=>{
+  const _delTasks = [supaDelete('objekte', _delId)];
+  _kundenZuLoeschen.forEach(kid => _delTasks.push(supaDelete('kunden', kid)));
+  Promise.all(_delTasks).then(()=>{
     setSyncState('ok','Gelöscht · '+new Date().toLocaleTimeString('de-DE'));
   }).catch(e=>{
     setSyncState('error','Löschen fehlgeschlagen!');
@@ -3882,8 +3983,14 @@ if (id) {
       const fresh = rows[0].data;
       const idx = ma.findIndex(x => x.id === id);
       if (idx !== -1) ma[idx] = fresh;
+      window._maoLoadedAt = fresh._updated_at || null; // FIX N5: Zeitstempel beim Öffnen merken
     }
-  } catch(e) { /* bei Netzwerkfehler: lokalen Stand weiterverwenden */ }
+  } catch(e) {
+    window._maoLoadedAt = null;
+    /* bei Netzwerkfehler: lokalen Stand weiterverwenden */
+  }
+} else {
+  window._maoLoadedAt = null;
 }
 const m=id?(ma.find(x=>x.id===id)||{}):{};
 // FIX v104: Altlasten bereinigen (Gutschriften mit falschem Monat)
@@ -3921,7 +4028,7 @@ mao=JSON.parse(JSON.stringify(m.objekte||[{kunde:'',std_monat:'',stundenlohn:'',
 // Original-Stand beim Öffnen sichern – für History-Vergleich in saveMA
 window._maoOriginal = id ? JSON.parse(JSON.stringify(m.objekte||[])) : [];
 ami=_amIdx;renderMAO();renderMTabs(m);renderMP(m,ami);
-kalYear=2026;kalMonth=_amIdx;kalMode='urlaub';
+kalYear=parseInt(getAM().split('-')[0]);kalMonth=_amIdx;kalMode='urlaub'; // FIX N4: App-Jahr statt 2026
 document.getElementById('mambg').classList.add('open');
 if(id) acquireLock(); // Lock setzen beim Bearbeiten
 document.querySelector('#mambg .modal').scrollTop=0;
@@ -3934,6 +4041,7 @@ renderVtBlock(m, initMd, getAM()); // KAL-2
 // Urlaubsanspruch berechnen – sofort (kein veralteter Wert) + nach Render-Tick
 calcUrlaubAnspruch();
 setTimeout(calcUrlaubAnspruch, 50);
+applyModalPermissions();
 }
 function maoTaOpen(i, inp) {
   const list = obj.filter(o=>!isEh(o)).map(o=>({id:o.name, label:o.name+(o.vollname&&o.vollname!==o.name?' – '+o.vollname:'')}));
@@ -4304,7 +4412,13 @@ function renderObjektHistory(o, m) {
     const vonBis = h.gueltig_ab
       ? `${fmtMk(h.gueltig_ab)} – ${fmtMk(h.gueltig_bis)}`
       : `bis ${fmtMk(h.gueltig_bis)}`;
-    const hIdx = (m.objekte_history||[]).indexOf(h);
+    // FIX N7: Index über stabilen Schlüssel suchen (nicht indexOf – bei gleichen Objektreferenzen unsicher)
+    const hIdx = (m.objekte_history||[]).findIndex(x =>
+      x.kunde === h.kunde &&
+      (x.revier||'') === (h.revier||'') &&
+      (x.gueltig_ab||'') === (h.gueltig_ab||'') &&
+      (x.gueltig_bis||'') === (h.gueltig_bis||'')
+    );
     return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--border);font-size:11px;flex-wrap:wrap">
       <span style="color:var(--muted);min-width:110px">${vonBis}</span>
       <span style="color:var(--text);font-family:'IBM Plex Mono',monospace;flex:1">${stdInfo}</span>
@@ -4329,6 +4443,7 @@ function renderObjektHistory(o, m) {
 // ── History-Diagnose: alle MAs mit abweichender History prüfen ────
 // ── v111: Änderungsprotokoll ────────────────────────────────────────────────
 async function renderProtokoll() {
+  if(!CAN.seeProtokoll()) return;
   const tbody = document.getElementById('proto-tbody');
   const empty = document.getElementById('proto-empty');
   if (!tbody) return;
@@ -4813,7 +4928,10 @@ function rmObj(i){if(mao.length===1)return;mao.splice(i,1);renderMAO();}
 function renderMTabs(m){
 const md=m.monats_daten||{};
 document.getElementById('mtabs').innerHTML=MONATE.map((mn,i)=>{
-const k=MK[i];const has=md[k]&&(md[k].urlaub||md[k].krank||md[k].notiz||md[k].zettel_ok||md[k].unbezahlt_tage||md[k].kk_ab_datum);
+const k=MK[i];
+  const _abPfx=k+'-';
+  const _hasAb=Object.keys(m.abwesenheiten||{}).some(d=>d.startsWith(_abPfx));
+  const has=_hasAb||(md[k]&&(md[k].notiz||md[k].zettel_ok||md[k].unbezahlt_tage||md[k].kk_ab_datum)); // FIX H: abwesenheiten statt md.urlaub/krank
 return `<button class="mtab${i===ami?' active':''}${has?' hd':''}" onclick="swMon(${i})">${mn}</button>`;
 }).join('');
 }
@@ -5079,7 +5197,7 @@ function _logMASave(mAlt, mNeu) {
   const objNeu = mNeu.objekte||[];
   objNeu.forEach(oNeu => {
     if (!oNeu.kunde) return;
-    const oAlt = objAlt.find(x=>x.kunde===oNeu.kunde);
+    const oAlt = objAlt.find(x=>x.kunde===oNeu.kunde && (x.revier||'')===(oNeu.revier||''));
     const stNeu = Math.round(wSum(oNeu.wochentage||{})*100)/100;
     const stAlt = oAlt ? Math.round(wSum(oAlt.wochentage||{})*100)/100 : null;
     if (stAlt === null) {
@@ -5096,7 +5214,7 @@ function _logMASave(mAlt, mNeu) {
   // Entfernte Objekte
   objAlt.forEach(oAlt => {
     if (!oAlt.kunde) return;
-    if (!objNeu.find(x=>x.kunde===oAlt.kunde)) changes.push('Objekt entfernt: '+oAlt.kunde);
+    if (!objNeu.find(x=>x.kunde===oAlt.kunde&&(x.revier||'')===(oAlt.revier||''))) changes.push('Objekt entfernt: '+oAlt.kunde+(oAlt.revier?'/'+oAlt.revier:''));
   });
   // Stammdaten
   if (mAlt) {
@@ -5229,6 +5347,8 @@ function closeMAM(){
   // FIX v89: Tabelle neu rendern – falls openMAM frischen Supabase-Stand geladen hat,
   // ist der Tabellenview sonst bis zur nächsten Aktion stale.
   render();
+  // FIX B: Dashboard-Kacheln (md.krank/urlaub) aktualisieren falls Tab offen
+  if (document.getElementById('tab-dashboard').classList.contains('active')) renderDash();
 }
 function saveMA(){
 // Doppelklick-Schutz
@@ -5355,7 +5475,7 @@ const _zuSpeichern = [m, ..._vtBetroffene];
 // Conflict-Check: wurde der MA seit unserem Laden verändert?
 (async () => {
   if (eMAid) {
-    const conflict = await checkConflict('mitarbeiter', eMAid, m._updated_at);
+    const conflict = await checkConflict('mitarbeiter', eMAid, window._maoLoadedAt); // FIX N5: Zeitstempel beim Öffnen, nicht beim Speichern
     if (conflict) {
       const name = (m.nachname || '') + (m.vorname ? ' ' + m.vorname : '');
       if (!confirmConflict(name)) {
@@ -5378,6 +5498,7 @@ const _zuSpeichern = [m, ..._vtBetroffene];
 })();
 }
 function delMA(id){
+if(!CAN.deleteMA()){ showAlert('Keine Berechtigung zum Löschen.','#c81e1e'); return; }
 const m=ma.find(x=>x.id===id);
 if(!m) return;
 // FIX v89: Vor dem Löschen zeigen, wo der MA noch verknüpft ist
@@ -5428,29 +5549,42 @@ closeMAM();updStats();updFilters();render();renderObj();showAlert('Gelöscht','#
 // ROLLENBASIERTE ZUGANGSKONTROLLE
 // ============================================================
 function applyRoles(){
-  const ol = isOL();
-  const hide = (id) => { const el=document.getElementById(id); if(el) el.style.display=ol?'none':''; };
-  hide('btn-datev');
-  hide('btn-neuer-kunde');
-  // Admin-Tab: nur für Admin sichtbar
-  const adminTabBtn = document.getElementById('tab-admin-btn');
-  if(adminTabBtn) adminTabBtn.style.display = ol ? 'none' : '';
-  const adminWrap = document.getElementById('admin-tools-wrap');
-  if(adminWrap) adminWrap.style.display = 'none';
-  const adminBtn = document.getElementById('btn-admin-tools');
-  if(adminBtn) adminBtn.style.display = 'none';
-  // OL-Filter: Incecik sieht nur I, Grippo nur M
-  if(ol){
-    const olVal = _currentUser==='Incecik'?'I':_currentUser==='Grippo'?'M':'';
-    if(olVal){
-      const sel=document.getElementById('f-ol');
-      if(sel){ sel.value=olVal; sel.disabled=true; }
-    }
-  } else {
-    const sel=document.getElementById('f-ol');
-    if(sel) sel.disabled=false;
+  const setDisp = (id, show) => { const el=document.getElementById(id); if(el) el.style.display = show ? '' : 'none'; };
+  // DATEV-Export + Kunde-anlegen: nur Admin/Superadmin
+  setDisp('btn-datev', CAN.exportDatev());
+  setDisp('btn-neuer-kunde', CAN.manageKunden());
+  // Admin-Tab (Änderungsprotokoll + Admin-Werkzeuge): Admin + Superadmin
+  // (gesteuert ueber seeProtokoll, damit Adler/Richter den Zugriff behalten;
+  //  eine evtl. spaetere Nutzerverwaltung waere superadmin-only via CAN.seeAdminTab())
+  setDisp('tab-admin-btn', CAN.seeProtokoll());
+  // Header-Admin-Tools-Dropdown bleibt ausgeblendet (Werkzeuge liegen im Admin-Tab)
+  setDisp('admin-tools-wrap', false);
+  setDisp('btn-admin-tools', false);
+  // OL-Filter: OL sieht nur eigenes Kuerzel und kann es nicht aendern
+  const sel=document.getElementById('f-ol');
+  if(isOL()){
+    const olVal = _currentKuerzel || '';
+    if(olVal && sel){ sel.value=olVal; sel.disabled=true; }
+  } else if(sel){
+    sel.disabled=false;
   }
   render();
+}
+
+// Stammdaten im MA-Modal fuer OL sperren; Stunden/Abwesenheiten (rechtes Panel) offen lassen.
+function applyModalPermissions(){
+  const ol = isOL();
+  const leftPanel = document.querySelector('#mam-panels > .modal');
+  if(!leftPanel) return;
+  leftPanel.querySelectorAll('input, select, textarea, button').forEach(el => {
+    // Speichern + Abbrechen NICHT sperren (OL darf Stunden/Abwesenheiten speichern)
+    if(el.id === 'btn-save-ma') return;
+    const oc = el.getAttribute('onclick') || '';
+    if(oc.indexOf('closeMAM') !== -1) return;
+    el.disabled = ol;
+  });
+  const addBtn = leftPanel.querySelector('.add-obj-btn');
+  if(addBtn) addBtn.style.display = ol ? 'none' : '';
 }
 
 function canEditKunden(){
@@ -5467,7 +5601,8 @@ const m=ma.find(x=>x.id===id);if(!m||!inp)return;
 if(!m.monats_daten)m.monats_daten={};
 if(!m.monats_daten[getAM()])m.monats_daten[getAM()]={};
 m.monats_daten[getAM()][inp.dataset.field]=inp.value;
-safeSaveAll(); render(); showAlert('Gespeichert ✓');
+supaSave('mitarbeiter',[m]).then(()=>setSyncState('ok','Gespeichert · '+_currentUser)).catch(e=>setSyncState('error','Speicherfehler!'));
+render(); showAlert('Gespeichert ✓');
 }
 function openSM(id){
 eSid=id;const m=ma.find(x=>x.id===id);if(!m)return;
@@ -6002,14 +6137,14 @@ function renderUrlaub() {
   if (!_ganttOLInit) {
     _ganttOLInit = true;
     if (isOL()) {
-      _ganttOL = USERS[_currentUser]?.kuerzel || '';
+      _ganttOL = _currentKuerzel || '';
     }
   }
 
   // MA filtern
   let maList = getVisibleMA().filter(m => _ganttStatus==='alle' ? true : m.status !== 'Ausgeschieden');
   // OL sieht immer nur eigene MA (kein Override möglich)
-  const olZwang = isOL() ? (USERS[_currentUser]?.kuerzel || '') : '';
+  const olZwang = isOL() ? (_currentKuerzel || '') : '';
   const aktiverOLFilter = olZwang || _ganttOL;
   if (aktiverOLFilter) maList = maList.filter(m => m.objektleiter === aktiverOLFilter);
   maList = maList.sort((a,b) => (a.nachname||'').localeCompare(b.nachname||'','de'));
@@ -6044,8 +6179,8 @@ function renderUrlaub() {
     </div>
     ${!isOL()?`<select class="fsel" onchange="_ganttOL=this.value;renderUrlaub()">
       <option value="" ${aktiverOLFilter===''?'selected':''}>Alle OL</option>
-      ${Object.entries(USERS).filter(([,u])=>u.rolle==='ol').map(([name,u])=>`<option value="${u.kuerzel||name}" ${aktiverOLFilter===(u.kuerzel||name)?'selected':''}>${u.kuerzel||name} – ${name}</option>`).join('')}
-    </select>`:''}  <!-- FIX GANTT-1: OL-Namen dynamisch aus USERS -->
+      ${OL_INFO.map(u=>`<option value="${u.kuerzel}" ${aktiverOLFilter===u.kuerzel?'selected':''}>${u.kuerzel} – ${u.name}</option>`).join('')}
+    </select>`:''}  <!-- v119: OL-Liste aus OL_INFO (keine PINs mehr) -->
     <select class="fsel" onchange="_ganttStatus=this.value;renderUrlaub()">
       <option value="aktiv" ${_ganttStatus==='aktiv'?'selected':''}>Aktive MA</option>
       <option value="alle" ${_ganttStatus==='alle'?'selected':''}>Alle inkl. Ausgeschiedene</option>
@@ -6204,8 +6339,9 @@ const _visObj = getVisibleKunden();
 const ku={};_visMA.forEach(m=>maKu(m).forEach(k=>{ku[k]=(ku[k]||0)+1;}));
 const ks=Object.entries(ku).sort((a,b)=>b[1]-a[1]);
 const lohn=_visMA.reduce((s,m)=>s+maLG(m),0);
-const krank=_visMA.reduce((s,m)=>s+(m.monats_daten?.[getAM()]?.krank||0),0);
-const url=_visMA.reduce((s,m)=>s+(m.monats_daten?.[getAM()]?.urlaub||0),0);
+const _dashMk=getAM();const _dashPfx=_dashMk+'-';
+const krank=_visMA.reduce((s,m)=>{let k=0;Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_dashPfx)&&t==='krank')k++;});return s+k;},0);
+const url=_visMA.reduce((s,m)=>{let u=0;Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_dashPfx)&&t==='urlaub')u++;});return s+u;},0);
 const ov=_visObj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);return k>0&&b>k+0.5;}).length;
 const vGesamt=_visMA.filter(m=>m.verstetigt).length;
 const vBestaetigt=_visMA.filter(m=>m.verstetigt&&m.monats_daten?.[getAM()]?.zettel_ok).length;
@@ -6249,16 +6385,16 @@ document.getElementById('dash-c').innerHTML=`
 </div>
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
-  <div onclick="toggleDashSection('stat-body')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
+  <div onclick="toggleDashSection('stat-table-wrap')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
     <h3 style="margin:0;pointer-events:none">📊 Krank & Urlaub – Jahresstatistik ${parseInt(getAM().slice(0,4))}</h3>
     <div style="display:flex;gap:6px;align-items:center">
       <button type="button" onclick="event.stopPropagation();statSort('krank')" id="stat-btn-krank" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='krank'?'#fcd34d':'var(--border)'};background:var(--ybg);color:var(--yellow);cursor:pointer;font-family:inherit;font-weight:${_statSort==='krank'?700:500}">🤒 nach Krank</button>
       <button type="button" onclick="event.stopPropagation();statSort('urlaub')" id="stat-btn-urlaub" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='urlaub'?'#93c5fd':'var(--border)'};background:var(--bbg);color:var(--blue);cursor:pointer;font-family:inherit;font-weight:${_statSort==='urlaub'?700:500}">🏖 nach Urlaub</button>
       <button type="button" onclick="event.stopPropagation();statSort('name')" id="stat-btn-name" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='name'?'var(--border2)':'var(--border)'};background:var(--s1);color:var(--muted);cursor:pointer;font-family:inherit;font-weight:${_statSort==='name'?700:500}">A–Z</button>
-      <span id="stat-body-arrow" style="font-size:16px;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(-90deg)">▼</span>
+      <span id="stat-table-wrap-arrow" style="font-size:16px;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(-90deg)">▼</span>
     </div>
   </div>
-  <div id="stat-body" style="display:none;margin-top:12px;overflow-x:auto" id="stat-table-wrap">${buildStatTable(_statSort)}</div>
+  <div id="stat-table-wrap" style="display:none;margin-top:12px;overflow-x:auto">${buildStatTable(_statSort)}</div>
 </div>
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
@@ -6880,6 +7016,7 @@ r.onload=ev=>{
     e.target.value=''; return;
   }
   if (importDone) {
+    _migrateHistoryBis(); // FIX J: History-Migration nach Import
     safeSaveAll('Import');
     render();
     showAlert('Import: '+importInfo+' ✓');
@@ -7154,7 +7291,7 @@ function _vtUpdateHint() {
 function _vtAutoFlush() {
   const m = eMAid ? ma.find(x => x.id === eMAid) : null;
   if (!m) return;
-  const k = MK[ami];
+  const k = _vtSyncMonat || MK[ami]; // FIX N2: Sync-Monat bevorzugen
   if (!m.monats_daten) m.monats_daten = {};
   if (!m.monats_daten[k]) m.monats_daten[k] = {urlaub:0, krank:0, notiz:'', zettel_ok:false, vertretungen:[], sonderstunden:[]};
   // Alle Zeilen mit MA-Name speichern (auch ohne Stunden – werden beim finalen Save gefiltert)
@@ -7209,7 +7346,7 @@ function vtRemove(i){_vtData.splice(i,1);_renderVtTable();_vtUpdateHint();_vtAut
 
 // ── DATEV-Gutschrift: Vertretungsstunden beim Vertreter buchen ────────────────
 function vtSyncToMAB(mitCleanup){
-  const monatKey=getAM(); // FIX VT-1: getAM() statt MK[ami] (konsistent mit restlichem Code)
+  const monatKey=_vtSyncMonat||getAM(); // FIX VT-A: _vtSyncMonat bevorzugen (Monat des geöffneten MA-Modals)
   _vtData.forEach(vt=>{
     if(!vt.maId||!vt.stunden)return;
     const maB=ma.find(x=>x.id===vt.maId);
@@ -7355,7 +7492,7 @@ function renderVtGutschrift(m,monatKey){
       '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
       '<span style="flex:1;color:var(--text2)">Vertr. f\u00fcr <strong>' + (g.quelleName||'?') + '</strong>' + (g.objekt?' \u2013 ' + g.objekt : '') + '</span>' +
       '<input type="number" step="0.5" min="0" value="' + (std||'') + '" style="width:64px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:\'IBM Plex Mono\',monospace;text-align:center;background:var(--white);outline:none" oninput="vtGutschriftEdit(\'' + m.id + '\',\'' + monatKey + '\',' + i + ',this.value)">' +
-      '<span style="font-size:11px;color:var(--muted)">h \u00d7 15\u20ac = <strong>\u20ac ' + lohn + '</strong></span>' +
+      '<span style="font-size:11px;color:var(--muted)">h \u00d7 ' + _vtSl.toFixed(2) + '\u20ac = <strong>\u20ac ' + lohn + '</strong></span>' +
       (problemZeile ? '<button onclick="vtGutschriftDelete(\'' + m.id + '\',\'' + monatKey + '\',' + i + ')" style="background:var(--white);border:1px solid var(--rbd);color:var(--red);border-radius:5px;padding:2px 6px;font-size:11px;cursor:pointer" title="Verwaiste Gutschrift l\u00f6schen">\u2715 L\u00f6schen</button>' : '') +
       '</div>' + warn +
       '</div>';
@@ -7472,7 +7609,7 @@ function ssUpdate(i, field, val) {
 function _ssAutoFlush(){
   const m=eMAid?ma.find(x=>x.id===eMAid):null;
   if(!m)return;
-  const k=MK[ami];
+  const k=_vtSyncMonat||MK[ami]; // FIX N3: Sync-Monat bevorzugen
   if(!m.monats_daten)m.monats_daten={};
   if(!m.monats_daten[k])m.monats_daten[k]={urlaub:0,krank:0,notiz:'',zettel_ok:false,vertretungen:[],sonderstunden:[]};
   m.monats_daten[k].sonderstunden=(_ssData||[]).filter(e=>e.maId&&parseFloat(e.stunden)>0);
@@ -7657,6 +7794,7 @@ const _origKalSyncMonthFields = kalSyncMonthFields;
 // DATEV-PRÜFLISTE
 // ══════════════════════════════════════════════════════════
 function openDatevCheck() {
+  if(!CAN.exportDatev()){ showAlert('Keine Berechtigung für DATEV-Export.','#c81e1e'); return; }
   const monat = getAMLabel();
   document.getElementById('datev-check-title').textContent = `📋 DATEV-Prüfliste – ${monat}`;
   const aktiveMA = ma.filter(m => m.status !== 'Ausgeschieden');
@@ -7909,6 +8047,7 @@ function getFeiertageImMonat(monatKey) {
 
 // ── DATEV-EXPORT MIT LOHNARTEN ────────────────────────────
 function exportDatevLohnarten() {
+  if(!CAN.exportDatev()){ showAlert('Keine Berechtigung für DATEV-Export.','#c81e1e'); return; }
   const data = ma.filter(m => m.status !== 'Ausgeschieden');
   const monat = getAM();
   const monatDATEV = monat.slice(5,7) + '/' + monat.slice(0,4); // MM/YYYY für DATEV
@@ -8735,6 +8874,7 @@ function _buildDatevControlRows() {
 }
 
 function exportDatevControlExcel() {
+  if(!CAN.exportDatev()){ showAlert('Keine Berechtigung für DATEV-Export.','#c81e1e'); return; }
   const monat = getAM();
   const monatLabel = (typeof getAMLabel === 'function') ? getAMLabel() : monat;
   const fileBase = 'DATEV_Kontrolle_' + monat;
@@ -8978,7 +9118,7 @@ function buildMonatsUebersicht() {
       html += `<div style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:6px;background:var(--obg);border:1px solid var(--obd);font-size:12px">
         <span style="font-weight:600;color:var(--orange)">⚡</span>
         <span><strong style="cursor:pointer" onclick="openMAM('${m.id}')">${m.nachname}${m.vorname?' '+m.vorname[0]+'.':''}</strong></span>
-        ${s.objekt ? `<span style="color:var(--muted)">· ${s.objekt}</span>` : ''}
+        ${s.kunde ? `<span style="color:var(--muted)">· ${s.kunde}</span>` : ''} <!-- FIX N9: s.kunde statt s.objekt -->
         <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--orange)">+${s.stunden}h</span>
       </div>`;
     });
@@ -9054,7 +9194,7 @@ function buildStatTable(sortBy) {
       if (typ === 'krank')  krankTage++;
       if (typ === 'urlaub') urlaubGenommen++;
     });
-    const urlaubAnspruch = parseInt(m.urlaub_jahres) || 28;
+    const urlaubAnspruch = parseInt(m.urlaub_anspruch) || parseInt(m.urlaub_jahres) || 28; // FIX #6: pro-rata Anspruch bevorzugen
     const urlaubRest = urlaubAnspruch - urlaubGenommen;
     const ol = m.objektleiter || '?';
     return { m, krankTage, urlaubGenommen, urlaubAnspruch, urlaubRest, ol };
@@ -9152,7 +9292,7 @@ function lvUpload(input) {
     obj[idx].lv_pdf   = base64;
     obj[idx].lv_datum = new Date().toISOString();
     obj[idx].lv_name  = file.name;
-    safeSaveAll();
+    supaSave('objekte', [obj[idx]]).then(() => setSyncState('ok', 'LV gespeichert · ' + _currentUser)).catch(e => setSyncState('error', 'Speicherfehler!'));
     lvRenderModal(obj[idx]);
     showAlert('LV hochgeladen ✓', '#057a55');
   };
@@ -9168,7 +9308,7 @@ function lvLoeschen() {
   delete obj[idx].lv_pdf;
   delete obj[idx].lv_datum;
   delete obj[idx].lv_name;
-  safeSaveAll();
+  supaSave('objekte', [obj[idx]]).then(() => setSyncState('ok', 'LV gelöscht · ' + _currentUser)).catch(e => setSyncState('error', 'Speicherfehler!'));
   lvRenderModal(obj[idx]);
   showAlert('LV gelöscht ✓', '#374151');
 }
@@ -9178,6 +9318,7 @@ function lvAnzeigen() {
   const o = obj.find(x => x.id === eOid);
   if (!o || !o.lv_pdf) return;
   const win = window.open('', '_blank');
+  if (!win) { showAlert('Popup geblockt – bitte Popup-Blocker deaktivieren', '#c81e1e'); return; }
   win.document.write(`<!DOCTYPE html><html><head><title>${o.lv_name||'LV'}</title></head>
   <body style="margin:0"><embed src="${o.lv_pdf}" type="application/pdf" width="100%" height="100%" style="position:fixed;inset:0"></body></html>`);
 }
@@ -9258,10 +9399,10 @@ window.addEventListener('unload', ()=>{
 function renderStatistik() {
   const c = document.getElementById('statistik-c');
   if (!c) return;
-  const MONATE = ['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const MONATE = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
   const MONATEFULL = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-  const JAHR = new Date().getFullYear();
-  const alleMA = ma.filter(m => m.status !== 'Ausgeschieden' || (m.austritt && m.austritt.slice(0,4) >= String(JAHR)));
+  const JAHR = parseInt(getAM().split('-')[0]); // FIX N1: App-Jahr statt Systemjahr
+  const alleMA = ma.filter(m => m.status !== 'Ausgeschieden' || (m.austrittsdatum && m.austrittsdatum.slice(0,4) >= String(JAHR)));
 
   // MA-ID lookup für Klick
   function maIdByName(nachname, vorname) {
@@ -9343,7 +9484,8 @@ function renderStatistik() {
 
   // Monatsdetails mit anklickbaren MA-Namen
   const tableRows = monatStats.map((s,i) => {
-    const isFuture=(i+1)>new Date().getMonth()+1;
+    const nowY=new Date().getFullYear(),nowM=new Date().getMonth()+1;
+    const isFuture=JAHR>nowY||(JAHR===nowY&&(i+1)>nowM); // FIX G: Jahr einbeziehen
     const opacity=isFuture?'opacity:.4':'';
     const did='stat-d-'+i;
     const hasData=s.krank>0||s.urlaub>0;
