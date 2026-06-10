@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager 2026 v119</title>
+<title>MitarbeiterManager v127</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -389,7 +389,6 @@ body.lock-active main{margin-top:46px}
   .logo-sub{display:none}
   .logo-text{font-size:13px}
   .hstats{display:none}
-  #save-btn{padding:6px 10px;font-size:12px}
   #sync-label{display:none}
   .sync-dot{margin-right:0}
 
@@ -908,7 +907,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager 2026 <span style="font-size:10px;opacity:.55;font-weight:400">v119</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></button></div><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></button></div><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></button></div><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></button></div><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></button></div><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></button></div><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></div></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v127</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1247,6 +1246,7 @@ main{padding:14px 16px}
       🔄 Vertretungen
       <span style="font-size:10px;font-weight:400;color:var(--green);text-transform:none;letter-spacing:0">✓ autosave</span>
     </div>
+    <div id="vt-budget-info" style="display:none;margin-bottom:8px"></div>
     <table style="width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:12px">
       <thead><tr style="background:var(--s2)">
         <th style="padding:5px 6px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Mitarbeiter</th>
@@ -1287,7 +1287,7 @@ main{padding:14px 16px}
 
   <!-- Monatsdaten -->
   <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 15px;box-shadow:0 1px 3px rgba(0,0,0,.08);flex:1">
-    <div class="sh">Monatsdaten 2026</div><div class="mtabs" id="mtabs"></div>
+    <div class="sh" id="mtabs-jahr-label">Monatsdaten 2026</div><div class="mtabs" id="mtabs"></div>
 <div class="mpanel">
   <!-- STUNDENZETTEL-BOX – temporär ausgeblendet (aktivieren wenn Programm stabil) -->
   <div class="zettel-box" id="zettel-box" onclick="toggleZettel()">
@@ -1337,22 +1337,40 @@ main{padding:14px 16px}
 </div>
 </div><div id="alert" role="status" aria-live="polite" aria-atomic="true"></div>
 <input type="file" id="ifile" accept=".json" style="display:none" onchange="handleImport(event)"><script>const MONATE = ["Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
-const MK = Array.from({length:12},(_,i)=>`2026-${String(i+1).padStart(2,'0')}`);
+const MK_START_JAHR = 2026;
+const MK_END_JAHR = Math.max(2027, new Date().getFullYear() + 1);
+const MK = (() => { const a=[]; for(let y=MK_START_JAHR;y<=MK_END_JAHR;y++){for(let m=1;m<=12;m++){a.push(`${y}-${String(m).padStart(2,'0')}`);}} return a; })();
 const WPM = 4.33;
 // Verstetigter Monatslohn: Wochenstunden × Stundenlohn / 5 × 261 / 12
 function calcVerstLohn(wochenstunden, stundenlohn) {
   return Math.round(wochenstunden * stundenlohn / 5 * 261 / 12 * 100) / 100;
 }
-const ARBEITSTAGE = {
+const _ARBEITSTAGE_RAW = {
   // Reine Mo–Fr Werktage (ohne Feiertagsabzug – Feiertage werden bezahlt)
-  // LOHN-2: 2026 + 2027 damit ARBEITSTAGE[mk]||21 Fallback nicht nötig
+  // LOHN-2 / v127: 2026+2027 fest hinterlegt; ab 2028 berechnet der Proxy unten
+  //                automatisch dieselbe Mo–Fr-Zählung (verifiziert gegen 2026/2027).
   '2026-01':22,'2026-02':20,'2026-03':22,'2026-04':22,
   '2026-05':21,'2026-06':22,'2026-07':23,'2026-08':21,
   '2026-09':22,'2026-10':22,'2026-11':21,'2026-12':23,
   '2027-01':21,'2027-02':20,'2027-03':23,'2027-04':22,
-  '2027-05':19,'2027-06':22,'2027-07':22,'2027-08':22,
+  '2027-05':21,'2027-06':22,'2027-07':22,'2027-08':22,
   '2027-09':22,'2027-10':21,'2027-11':22,'2027-12':23
 };
+// Reine Mo–Fr-Werktage eines Monats (keine Feiertage – ACS bezahlt Feiertage)
+function _mofrWerktage(mk){
+  const [y,m] = String(mk).split('-').map(Number);
+  if(!y || !m) return 21;
+  let n=0; const d=new Date(y, m-1, 1);
+  while(d.getMonth() === m-1){ const wd=d.getDay(); if(wd>=1 && wd<=5) n++; d.setDate(d.getDate()+1); }
+  return n;
+}
+// Lookup für JEDES Jahr: bekannte Werte aus RAW, sonst berechnet
+const ARBEITSTAGE = new Proxy(_ARBEITSTAGE_RAW, {
+  get(t, k){
+    if (typeof k === 'string' && /^\d{4}-\d{2}$/.test(k)) return (k in t) ? t[k] : _mofrWerktage(k);
+    return t[k];
+  }
+});
 
 // Zählt Stunden pro Monat anhand tatsächlicher Wochentag-Vorkommen
 // wochentage: {mo:4.5, di:4.5, ...}, monatKey: '2026-03'
@@ -1370,27 +1388,40 @@ function calcWochentagStunden(wochentage, monatKey) {
   return Math.round(keys.reduce((s,k,i) => s + (parseFloat(wochentage[k])||0)*counts[i], 0)*100)/100;
 }
 
+// FIX v122: Lokales ISO-Datum (YYYY-MM-DD) OHNE Zeitzonen-Verschiebung.
+// toISOString() rechnet auf UTC um -> in DE (UTC+1/+2) faellt Mitternacht auf den Vortag.
+function isoLocal(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+// FIX v122: War das Objekt an diesem Datum aktiv (Einsatz ab/bis beruecksichtigen)?
+function _objAktivAm(o, isoDatum){
+  if(!o || !isoDatum) return true;
+  if(o.einsatz_ab  && isoDatum < String(o.einsatz_ab).slice(0,10))  return false;
+  if(o.einsatz_bis && isoDatum > String(o.einsatz_bis).slice(0,10)) return false;
+  return true;
+}
+
 // ── AKTIVER MONAT – dynamisch, umschaltbar ────────────────
 function _heuteAM() {
   const n = new Date();
-  // Nur 2026 unterstützt; außerhalb → nächstliegenden MK-Monat wählen
-  const y = n.getFullYear(), mo = n.getMonth();
-  if (y === 2026) return `2026-${String(mo+1).padStart(2,'0')}`;
-  if (y < 2026) return MK[0];
-  return MK[11];
+  const mk = `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`;
+  if (MK.includes(mk)) return mk;          // aktueller Monat ist wählbar
+  if (mk < MK[0]) return MK[0];            // vor 2026 -> Januar 2026
+  return MK[MK.length-1];                  // nach Bereichsende -> letzter Monat
 }
 let _amIdx = MK.indexOf(_heuteAM());
-if (_amIdx < 0) _amIdx = new Date().getMonth(); // Fallback
+if (_amIdx < 0) _amIdx = 0; // Fallback: erster wählbarer Monat (Jan 2026)
 function getAM() { return MK[_amIdx]; }
 function getAMLabel() {
   const mn = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-  return mn[_amIdx] + ' 2026';
+  const [y, mo] = getAM().split('-').map(Number);
+  return mn[mo-1] + ' ' + y;
 }
-function getAMShort() { return MONATE[_amIdx] + ' 2026'; }
+function getAMShort() { const [y, mo] = getAM().split('-').map(Number); return MONATE[mo-1] + ' ' + y; }
 
 // ── MONATSUMSCHALTER ──────────────────────────────────────
 function amNav(dir) {
-  _amIdx = Math.max(0, Math.min(11, _amIdx + dir));
+  _amIdx = Math.max(0, Math.min(MK.length-1, _amIdx + dir));
   updAMLabels();
   render();
   // Heute + Urlaubsplan + Dashboard neu rendern falls aktiv
@@ -1424,6 +1455,14 @@ const SUPA_KEY = 'sb_publishable_BWyqcnc30a6ZpO3WpWCbNQ_QxzAdPdb';
 // ── Supabase Auth Client (E-Mail + Passwort, echte Anmeldung) ──
 // Hinweis: SDK-Global heisst 'supabase'; Client heisst 'supaClient'
 // (NICHT 'sb' nennen – 'sb' ist bereits die Sortier-Funktion!).
+if (!window.supabase || !window.supabase.createClient) {
+  document.documentElement.innerHTML = '<div style="font-family:system-ui,sans-serif;max-width:520px;margin:80px auto;padding:28px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;color:#1f2937;line-height:1.5">'
+    + '<h2 style="margin:0 0 10px;font-size:18px">\u26a0\ufe0f Verbindung nicht m\u00f6glich</h2>'
+    + '<p style="margin:0 0 10px">Die Supabase-Bibliothek konnte nicht geladen werden (CDN blockiert oder offline).</p>'
+    + '<p style="margin:0;color:#6b7280;font-size:13px">Bitte Internetverbindung pr\u00fcfen und die Seite neu laden. Falls das Problem bestehen bleibt, ist evtl. ein Werbe-/Skriptblocker aktiv.</p>'
+    + '</div>';
+  throw new Error('Supabase SDK nicht geladen (CDN).');
+}
 const supaClient = window.supabase.createClient(SUPA_URL, SUPA_KEY, {
   auth: {
     persistSession: true,
@@ -1522,6 +1561,13 @@ function safeSaveAll(label) {
     showAlert('⚠️ Speichern fehlgeschlagen' + wo + ': ' + e.message, '#c81e1e');
     setSyncState('error', 'Speicherfehler!');
   });
+}
+
+function _saveFehler(e, kontext){
+  const wo = kontext ? ' ('+kontext+')' : '';
+  const msg = (e && e.message) ? e.message : String(e);
+  setSyncState('error', '\u26a0 NICHT gespeichert');
+  showAlert('\u26a0\ufe0f NICHT gespeichert'+wo+': '+msg, '#c81e1e');
 }
 
 async function supaDelete(table, id) {
@@ -1969,7 +2015,6 @@ async function initApp() {
     // Testdaten automatisch bereinigt
     startLockPing();
     setSyncState('ok', 'Verbunden · ' + _currentUser);
-    if(isAdmin()){const b=document.getElementById('btn-del-test');if(b)b.style.display='';}
     applyRoles();
     updAMLabels();
   } catch(e) {
@@ -2019,8 +2064,6 @@ async function saveAll() {
     ]);
     setSyncState('ok', 'Gespeichert um ' + new Date().toLocaleTimeString('de-DE') + ' · ' + _currentUser);
     _dirty = false;
-    const btn = document.getElementById('save-btn');
-    if (btn) { btn.style.background=''; btn.style.color=''; btn.textContent='💾 Speichern'; }
   } catch(e) {
     setSyncState('error', 'Speicherfehler!');
     showAlert('Speichern fehlgeschlagen: ' + e.message, '#c81e1e');
@@ -2572,11 +2615,8 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
       if (iso && iso.slice(0, 7) === mkPrefix) kalTageSet.add(iso);
     });
   });
-  // Nur echte Arbeitstage zählen (Mo-Sa, da viele SA auch samstags arbeiten)
-  kalTageSet.forEach(iso => {
-    const dow = new Date(iso).getDay();
-    if (dow >= 1 && dow <= 6) unbezahltTage++;
-  });
+  // FIX #4: alle Kalendertage zählen (Mo-So), passend zum Nenner
+  kalTageSet.forEach(() => { unbezahltTage++; });
 
   // 3) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
   if (md.kk_ab_datum) {
@@ -2589,10 +2629,8 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
         let kkTage = 0;
         const cur = new Date(vonDatum.getTime());
         while (cur <= monatEnde) {
-          const dow = cur.getDay();
-          // FIX LOHN-1: auch Samstag als Arbeitstag zählen (Mo-Sa), nicht nur Mo-Fr
-          // Viele MA arbeiten samstags (z.B. Reinigungskräfte in Parkhäusern etc.)
-          if (dow >= 1 && dow <= 6) kkTage++;
+          // FIX #4: alle Kalendertage zählen (Mo-So), passend zum Nenner
+          kkTage++;
           cur.setDate(cur.getDate() + 1);
         }
         unbezahltTage += kkTage;
@@ -2602,16 +2640,9 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
 
   if (unbezahltTage <= 0) return 1;
 
-  // FIX v90: Unbekannte Monate nicht mit 21 raten, sondern Mo-Fr korrekt zaehlen
-  let arbT = ARBEITSTAGE[mk];
-  if (!arbT) {
-    arbT = 0;
-    const _lastDay = new Date(y, mo, 0).getDate();
-    for (let _d = 1; _d <= _lastDay; _d++) {
-      const _dow = new Date(y, mo-1, _d).getDay();
-      if (_dow >= 1 && _dow <= 6) arbT++; // FIX #4: Mo-Sa wie Zähler
-    }
-  }
+  // FIX #4: Nenner = alle Kalendertage des Monats (Mo-So), passend zum Zähler.
+  // ARBEITSTAGE[mk] (reine Mo-Fr) wird hier bewusst NICHT verwendet, sonst Mismatch.
+  const arbT = new Date(y, mo, 0).getDate();
   const faktor = Math.max(0, (arbT - unbezahltTage) / arbT);
   return Math.round(faktor * 10000) / 10000;
 }
@@ -4028,7 +4059,7 @@ mao=JSON.parse(JSON.stringify(m.objekte||[{kunde:'',std_monat:'',stundenlohn:'',
 // Original-Stand beim Öffnen sichern – für History-Vergleich in saveMA
 window._maoOriginal = id ? JSON.parse(JSON.stringify(m.objekte||[])) : [];
 ami=_amIdx;renderMAO();renderMTabs(m);renderMP(m,ami);
-kalYear=parseInt(getAM().split('-')[0]);kalMonth=_amIdx;kalMode='urlaub'; // FIX N4: App-Jahr statt 2026
+kalYear=parseInt(getAM().split('-')[0]);kalMonth=parseInt(getAM().split('-')[1])-1;kalMode='urlaub'; // FIX N4 + v127: echter Monat (MK-Index ≠ Monat bei Mehrjahr)
 document.getElementById('mambg').classList.add('open');
 if(id) acquireLock(); // Lock setzen beim Bearbeiten
 document.querySelector('#mambg .modal').scrollTop=0;
@@ -4094,7 +4125,6 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
   const _kapPuffer = isVerstetigt && wsG>0 ? Math.round(wsG/5*(261/12-_kapAT)*10)/10 : 0;
   const hc=kap>0&&belNeu>kap+_kapPuffer?'kh-o':kap>0?'kh-ok':'kh-n';
   const locked=isVerstetigt;
-  const wtZeile=WT.map(t=>`<td><input type="text" inputmode="decimal" value="${wt[t]||''}" placeholder="0" id="mawt-${i}-${t}" oninput="(function(el){el.value=el.value.replace(',','.');updMAWT(${i});})(this)" onblur="updMAWTonBlur(${i})" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}" ${locked?'readonly style="background:var(--s2);color:var(--muted2);cursor:not-allowed"':''}></td>`).join('');
   const lohnMonat=o.stundenlohn?'€ '+Math.round(sollM*parseFloat(o.stundenlohn)*100)/100:'–';
   const kundeChip = o.kunde
     ? `<div style="margin-top:6px"><span onclick="openOMfromMAM('${o.kunde.replace(/'/g,"\\'")}') " title="Kunden-Modal öffnen" style="display:inline-flex;align-items:center;gap:5px;background:var(--acc-l);border:1.5px solid #93c5fd;border-radius:20px;padding:3px 11px 3px 8px;font-size:12px;font-weight:600;color:var(--acc);cursor:pointer;white-space:nowrap">🏢 ${o.kunde} <span style="font-size:10px;opacity:.7">↗</span></span></div>`
@@ -4927,12 +4957,15 @@ function addObj(){mao.push({kunde:'',modell:'arbeitstage',std_monat:'',std_tag:'
 function rmObj(i){if(mao.length===1)return;mao.splice(i,1);renderMAO();}
 function renderMTabs(m){
 const md=m.monats_daten||{};
+const _jOff=Math.floor(ami/12)*12; // v127: Offset auf das aktive Jahr
+const _jl=document.getElementById('mtabs-jahr-label'); if(_jl&&MK[_jOff]) _jl.textContent='Monatsdaten '+MK[_jOff].slice(0,4);
 document.getElementById('mtabs').innerHTML=MONATE.map((mn,i)=>{
-const k=MK[i];
+const _gi=_jOff+i;            // globaler MK-Index dieses Tabs
+const k=MK[_gi];
   const _abPfx=k+'-';
   const _hasAb=Object.keys(m.abwesenheiten||{}).some(d=>d.startsWith(_abPfx));
   const has=_hasAb||(md[k]&&(md[k].notiz||md[k].zettel_ok||md[k].unbezahlt_tage||md[k].kk_ab_datum)); // FIX H: abwesenheiten statt md.urlaub/krank
-return `<button class="mtab${i===ami?' active':''}${has?' hd':''}" onclick="swMon(${i})">${mn}</button>`;
+return `<button class="mtab${_gi===ami?' active':''}${has?' hd':''}" onclick="swMon(${_gi})">${mn}</button>`;
 }).join('');
 }
 function swMon(i){
@@ -5071,7 +5104,7 @@ function renderSollInfo(m, mk){
     gesamtSoll += vtStd;
   }
   html += `<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:13px">
-    <span>Gesamt Soll ${mk.replace('2026-','').replace(/^0/,'')}/${mk.slice(0,4)}</span>
+    <span>Gesamt Soll ${parseInt(mk.slice(5,7))}/${mk.slice(0,4)}</span>
     <span style="color:var(--acc);font-family:'IBM Plex Mono',monospace">${hhmm(gesamtSoll)}</span>
   </div>`;
   // Fehlzeit-Abzug anzeigen (unbezahlte Tage / KK-Zahlung)
@@ -5601,7 +5634,7 @@ const m=ma.find(x=>x.id===id);if(!m||!inp)return;
 if(!m.monats_daten)m.monats_daten={};
 if(!m.monats_daten[getAM()])m.monats_daten[getAM()]={};
 m.monats_daten[getAM()][inp.dataset.field]=inp.value;
-supaSave('mitarbeiter',[m]).then(()=>setSyncState('ok','Gespeichert · '+_currentUser)).catch(e=>setSyncState('error','Speicherfehler!'));
+supaSave('mitarbeiter',[m]).then(()=>setSyncState('ok','Gespeichert · '+_currentUser)).catch(e=>_saveFehler(e,'Bearbeitung'));
 render(); showAlert('Gespeichert ✓');
 }
 function openSM(id){
@@ -5631,7 +5664,8 @@ const m=ma.find(x=>x.id===eSid);if(!m)return;
 if(!m.monats_daten)m.monats_daten={};
 if(!m.monats_daten[getAM()])m.monats_daten[getAM()]={urlaub:0,krank:0,notiz:''};
 m.monats_daten[getAM()].notiz=document.getElementById('snotiz').value;
-safeSaveAll(); render(); closeSM(); showAlert('Notiz gespeichert ✓');
+supaSave('mitarbeiter',[m]).then(()=>setSyncState('ok','Gespeichert · '+_currentUser)).catch(e=>_saveFehler(e,'Bearbeitung'));
+render(); closeSM(); showAlert('Notiz gespeichert ✓');
 }
 function closeSM(){document.getElementById('sbg').classList.remove('open');}
 ['ombg','mambg','sbg'].forEach(id=>{
@@ -5765,7 +5799,7 @@ function renderHeute(){
   if(sonderListe.length){
     h += `<div style="margin-bottom:14px">
       <div class="heute-karte" style="border-color:#ddd6fe">
-        <div class="heute-karte-title">⚡ Sondereinsätze ${heuteMk.replace('2026-','')+'/2026'} <span class="hk-cnt">${sonderListe.length}</span></div>
+        <div class="heute-karte-title">⚡ Sondereinsätze ${parseInt(heuteMk.slice(5,7))+'/'+heuteMk.slice(0,4)} <span class="hk-cnt">${sonderListe.length}</span></div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0">${ssCard}</div>
       </div>
     </div>`;
@@ -5815,7 +5849,7 @@ function renderHeute(){
   if(vtStatHtml){
     h += `<div style="margin-bottom:14px">
       <div class="heute-karte" style="border-color:#a5b4fc">
-        <div class="heute-karte-title">📊 Vertretungsstunden ${heuteMk.replace('2026-','')}/2026 – nach Objektleiter</div>
+        <div class="heute-karte-title">📊 Vertretungsstunden ${parseInt(heuteMk.slice(5,7))}/${heuteMk.slice(0,4)} – nach Objektleiter</div>
         <div style="padding:4px 0">${vtStatHtml}</div>
       </div>
     </div>`;
@@ -7070,7 +7104,7 @@ function showAlert(msg, color='#057a55') {
     _showNextAlert();
   }
 }
-function td(){return new Date().toISOString().split('T')[0];}
+function td(){return isoLocal(new Date());}
 function dl(c,fn,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=fn;a.click();}
 // Lock beim Öffnen von Mitarbeiter-Modal erwerben
 const _origSaveMA = window.saveMA;
@@ -7123,8 +7157,6 @@ safeSaveAll();
 }
 function markDirty(){
 _dirty=true;
-const btn=document.getElementById('save-btn');
-if(btn){btn.style.background='#d97706';btn.style.color='#fff';btn.textContent='💾 Speichern *';}
 }
 ['f-pnr','f-st','f-vn','f-nn','f-tel','f-ol','f-ein','f-aus','f-urltage',
 'of-n','of-vn','of-nr','of-s','of-adr','of-tel','of-em','of-info',
@@ -7254,6 +7286,7 @@ function _renderVtTable() {
   if (!tbody) return;
   if (_vtData.length === 0) {
     tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted2);padding:12px;font-size:12px">Noch keine Vertretung eingetragen.</td></tr>';
+    _renderVtBudgetInfo();
     return;
   }
   tbody.innerHTML = _vtData.map((ss, i) => {
@@ -7272,8 +7305,8 @@ function _renderVtTable() {
       + ' onfocus="taFilter(\x27vt-obj-inp-' + i + '\x27,this.value,_vtObjList(),function(v){vtPickObj(' + i + ',v)})"'
       + ' onblur="taClose()" onkeydown="taKey(event,\x27vt-obj-inp-' + i + '\x27)"></div></td>'
       + '<td style="padding:5px 6px;text-align:center">'
-      + '<input type="text" inputmode="decimal" placeholder="0" value="' + (ss.stunden||'') + '" oninput="vtUpdate(' + i + ',\x27stunden\x27,this.value)" onkeydown="if(event.key===\x27Enter\x27){event.preventDefault();this.blur();}" style="width:64px;padding:4px 5px;border:1px solid var(--border);border-radius:5px;font-size:13px;text-align:center;background:var(--white);outline:none">'
-      + '<span style="font-size:11px;color:var(--muted);margin-left:2px">h</span></td>'
+      + '<input type="text" inputmode="decimal" data-vt-std="' + i + '" placeholder="0" value="' + (ss.stunden||'') + '" oninput="vtUpdate(' + i + ',\x27stunden\x27,this.value)" onkeydown="if(event.key===\x27Enter\x27){event.preventDefault();this.blur();}" style="width:64px;padding:4px 5px;border:1px solid var(--border);border-radius:5px;font-size:13px;text-align:center;background:var(--white);outline:none">'
+      + '<span style="font-size:11px;color:var(--muted);margin-left:2px">h</span><div data-vt-mh="' + i + '" style="font-size:10px;color:var(--muted);margin-top:2px">' + (ss.objekt?('max '+_vtRemaining(ss.objekt,i)+' h'):'') + '</div></td>'
       + '<td style="padding:5px 6px;text-align:center">'
       + '<select onchange="vtUpdate(' + i + ',\x27grund\x27,this.value)" style="font-size:11px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-family:inherit;cursor:pointer;' + grundBg + '">'
       + '<option value="krank"' + (isKrank?' selected':'') + '>🤒 Krank</option>'
@@ -7282,6 +7315,7 @@ function _renderVtTable() {
       + '<td style="padding:5px 4px;text-align:center"><button class="btn-d btn-sm" onclick="vtRemove(' + i + ')" title="Entfernen">&#x2715;</button></td>'
       + '</tr>';
   }).join('');
+  _renderVtBudgetInfo();
 }
 function _vtUpdateHint() {
   const hint = document.getElementById('vt-gutschrift-hint');
@@ -7305,7 +7339,7 @@ function _vtAutoFlush() {
     (_vtData||[]).forEach(vt => {
       if (vt.maId) { const vma = ma.find(x => x.id === vt.maId); if (vma && !betroffene.includes(vma)) betroffene.push(vma); }
     });
-    supaSave('mitarbeiter', betroffene).catch(e => showAlert('Autosave fehlgeschlagen: ' + e.message, '#c81e1e'));
+    supaSave('mitarbeiter', betroffene).catch(e => _saveFehler(e, 'Vertretung-Autosave'));
   }, 800);
 }
 
@@ -7333,35 +7367,156 @@ function _vtMAList() {
       };
     });
 }
+const _WT_KEYS_VT = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+function _vtMarkierteFehltage(m, mk) {
+  const prefix = mk + '-';
+  const tage = [];
+  Object.entries(m.abwesenheiten || {}).forEach(([d, t]) => {
+    if (d.startsWith(prefix) && (t === 'krank' || t === 'urlaub')) tage.push(d);
+  });
+  return tage;
+}
+function _vt14AktivSet(o, mk) {
+  const set = new Set();
+  if (!(o.modell === '14tage' && o.rhythmus_start)) return set;
+  const ankertage = _get14TageAnkertage(o.rhythmus_start, mk);
+  const moNum = parseInt(mk.split('-')[1], 10);
+  ankertage.forEach(anker => {
+    for (let off = 0; off < 14; off++) {
+      const dt = new Date(anker.getFullYear(), anker.getMonth(), anker.getDate() + off);
+      if (dt.getMonth() !== moNum - 1) break;
+      const std = parseFloat((o.wochentage || {})[_WT_KEYS_VT[dt.getDay()]]) || 0;
+      if (std > 0) set.add(isoLocal(dt));
+      else if (off > 0) break;
+    }
+  });
+  return set;
+}
+function _vtTagStdEntry(o, iso, aktivSet) {
+  if (o.modell === '14tage' && o.rhythmus_start) {
+    if (!aktivSet || !aktivSet.has(iso)) return 0;
+  }
+  const wd = new Date(iso + 'T00:00:00').getDay();
+  return parseFloat((o.wochentage || {})[_WT_KEYS_VT[wd]]) || 0;
+}
+function _vtBudgetMap(m, mk) {
+  const out = {};
+  if (!m) return out;
+  const fehltage = _vtMarkierteFehltage(m, mk);
+  if (!fehltage.length) return out;
+  (m.objekte || []).forEach(o => {
+    const k = o.kunde || '';
+    if (!k) return;
+    const aktivSet = _vt14AktivSet(o, mk);
+    let sum = 0;
+    fehltage.forEach(iso => { sum += _vtTagStdEntry(o, iso, aktivSet); });
+    out[k] = Math.round(((out[k] || 0) + sum) * 100) / 100;
+  });
+  return out;
+}
+function _vtRemaining(kunde, exceptIdx) {
+  const m = eMAid ? ma.find(x => x.id === eMAid) : null;
+  if (!m || !kunde) return 0;
+  const mk = _vtSyncMonat || getAM();
+  const budget = _vtBudgetMap(m, mk)[kunde] || 0;
+  let assigned = 0;
+  (_vtData || []).forEach((v, i) => {
+    if (i !== exceptIdx && (v.objekt || '') === kunde) assigned += parseFloat(v.stunden) || 0;
+  });
+  return Math.round((budget - assigned) * 100) / 100;
+}
+function _vtFlashStd(i) {
+  const inp = document.querySelector('[data-vt-std="' + i + '"]');
+  if (!inp) return;
+  inp.style.boxShadow = '0 0 0 2px #ef4444';
+  setTimeout(() => { inp.style.boxShadow = 'none'; }, 450);
+}
+function _vtRefreshMaxHints() {
+  (_vtData || []).forEach((v, i) => {
+    const mh = document.querySelector('[data-vt-mh="' + i + '"]');
+    if (mh) mh.textContent = v.objekt ? ('max ' + _vtRemaining(v.objekt, i) + ' h') : '';
+  });
+}
+function _renderVtBudgetInfo() {
+  const box = document.getElementById('vt-budget-info');
+  if (!box) return;
+  const m = eMAid ? ma.find(x => x.id === eMAid) : null;
+  const mk = _vtSyncMonat || getAM();
+  const budget = m ? _vtBudgetMap(m, mk) : {};
+  const keys = Object.keys(budget).filter(k => budget[k] > 0);
+  if (!keys.length) { box.style.display = 'none'; box.innerHTML = ''; return; }
+  let h = '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Zu vertreten je Revier</div><div style="display:flex;flex-wrap:wrap;gap:6px">';
+  keys.forEach(k => {
+    let assigned = 0;
+    (_vtData || []).forEach(v => { if ((v.objekt || '') === k) assigned += parseFloat(v.stunden) || 0; });
+    assigned = Math.round(assigned * 100) / 100;
+    const rem = Math.round((budget[k] - assigned) * 100) / 100;
+    const full = rem <= 0;
+    const col = full ? 'var(--green)' : 'var(--text2)';
+    const bg = full ? 'var(--gbg)' : 'var(--s2)';
+    const bd = full ? 'var(--gbd)' : 'var(--border)';
+    h += '<div style="background:' + bg + ';border:1px solid ' + bd + ';border-radius:8px;padding:6px 10px;min-width:118px">'
+      + '<div style="font-size:11px;color:var(--muted)">' + k + '</div>'
+      + '<div style="font-size:14px;font-weight:700;color:var(--text);font-family:\'IBM Plex Mono\',monospace">' + assigned + ' / ' + budget[k] + ' h</div>'
+      + '<div style="font-size:10px;color:' + col + '">' + (full ? 'voll vergeben' : ('noch ' + rem + ' h frei')) + '</div>'
+      + '</div>';
+  });
+  h += '</div>';
+  box.innerHTML = h;
+  box.style.display = 'block';
+}
 function _vtObjList() {
-  return obj.filter(o => !isEh(o)).map(o => ({id: o.name, label: o.name}));
+  const m = eMAid ? ma.find(x => x.id === eMAid) : null;
+  if (!m) return [];
+  const mk = _vtSyncMonat || getAM();
+  const budget = _vtBudgetMap(m, mk);
+  const seen = {};
+  const out = [];
+  (m.objekte || []).forEach(o => {
+    const k = o.kunde || '';
+    if (!k || seen[k]) return;
+    seen[k] = true;
+    const b = budget[k] || 0;
+    out.push({ id: k, label: k + '  \u00b7  ' + b + ' h' });
+  });
+  return out;
 }
 
 // Alte Funktionen als Stubs (falls irgendwo noch referenziert)
 function renderVtRows() { _renderVtTable(); }
 function vtPickMA(i,v){_vtData[i].maId=v.id;_vtData[i].maName=v.label;var inp=document.getElementById('vt-ma-inp-'+i);if(inp){inp.value=v.label;inp.className='ta-inp ta-ok';}if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_vtUpdateHint();_vtAutoFlush();}
-function vtPickObj(i,v){_vtData[i].objekt=v.id;var inp=document.getElementById('vt-obj-inp-'+i);if(inp){inp.value=v.label;inp.className='ta-inp ta-ok';}if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_vtAutoFlush();}
-function vtUpdate(i,field,val){_vtData[i][field]=field==='stunden'?(parseFloat((val+'').replace(',','.'))||''):val;_vtUpdateHint();_vtAutoFlush();}
+function vtPickObj(i,v){_vtData[i].objekt=v.id;var _rem=_vtRemaining(v.id,i);_vtData[i].stunden=_rem>0?_rem:0;if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_renderVtTable();_vtAutoFlush();}
+function vtUpdate(i,field,val){if(field==='stunden'){var _n=parseFloat((val+'').replace(',','.'));if(isNaN(_n)){_vtData[i].stunden='';}else{if(_n<0)_n=0;var _rem=(_vtData[i].objekt)?_vtRemaining(_vtData[i].objekt,i):null;if(_rem!==null&&_n>_rem){_n=_rem>0?_rem:0;_vtFlashStd(i);var _inp=document.querySelector('[data-vt-std="'+i+'"]');if(_inp)_inp.value=_n;}_vtData[i].stunden=Math.round(_n*100)/100;}_renderVtBudgetInfo();_vtRefreshMaxHints();}else{_vtData[i][field]=val;}_vtUpdateHint();_vtAutoFlush();}
 function vtRemove(i){_vtData.splice(i,1);_renderVtTable();_vtUpdateHint();_vtAutoFlush();}
 
 // ── DATEV-Gutschrift: Vertretungsstunden beim Vertreter buchen ────────────────
 function vtSyncToMAB(mitCleanup){
   const monatKey=_vtSyncMonat||getAM(); // FIX VT-A: _vtSyncMonat bevorzugen (Monat des geöffneten MA-Modals)
+  // FIX v122: Mehrere Zeilen mit gleichem Vertreter+Objekt vorher summieren
+  // (sonst ueberschrieb die letzte Zeile die vorherige statt zu addieren).
+  const _vtAgg = new Map();
   _vtData.forEach(vt=>{
     if(!vt.maId||!vt.stunden)return;
-    const maB=ma.find(x=>x.id===vt.maId);
+    const objekt = vt.objekt||'';
+    const key = vt.maId + '\u0000' + objekt;
+    const cur = _vtAgg.get(key) || {maId:vt.maId, objekt:objekt, stunden:0};
+    cur.stunden += parseFloat(vt.stunden)||0;
+    _vtAgg.set(key, cur);
+  });
+  _vtAgg.forEach(({maId, objekt, stunden})=>{
+    const maB=ma.find(x=>x.id===maId);
     if(!maB)return;
     if(!maB.monats_daten)maB.monats_daten={};
     if(!maB.monats_daten[monatKey])maB.monats_daten[monatKey]={};
     const md=maB.monats_daten[monatKey];
     if(!md.vertretungs_gutschrift)md.vertretungs_gutschrift=[];
     const quelle=eMAid||'neu';
-    const existing=md.vertretungs_gutschrift.find(g=>g.quelleMAid===quelle&&g.objekt===(vt.objekt||''));
+    const existing=md.vertretungs_gutschrift.find(g=>g.quelleMAid===quelle&&g.objekt===objekt);
     if(existing){
       if(existing.manuelleAnpassung!==null&&existing.manuelleAnpassung!==existing.stunden)existing.geaendertWarnung=true;
-      existing.stunden=parseFloat(vt.stunden)||0;
+      existing.stunden=stunden;
     }else{
-      md.vertretungs_gutschrift.push({quelleMAid:quelle,quelleName:(ma.find(x=>x.id===eMAid)?.nachname||'?'),monat:monatKey,objekt:vt.objekt||'',stunden:parseFloat(vt.stunden)||0,manuelleAnpassung:null,geaendertWarnung:false});
+      md.vertretungs_gutschrift.push({quelleMAid:quelle,quelleName:(ma.find(x=>x.id===eMAid)?.nachname||'?'),monat:monatKey,objekt:objekt,stunden:stunden,manuelleAnpassung:null,geaendertWarnung:false});
     }
   });
   // Cleanup (verwaiste Gutschriften entfernen) NUR beim finalen Speichern, nicht beim AutoFlush.
@@ -7390,7 +7545,7 @@ function vtGutschriftEdit(maId,monatKey,idx,val){
   if(!mObj?.monats_daten?.[monatKey]?.vertretungs_gutschrift)return;
   mObj.monats_daten[monatKey].vertretungs_gutschrift[idx].manuelleAnpassung=parseFloat(val)||0;
   mObj.monats_daten[monatKey].vertretungs_gutschrift[idx].geaendertWarnung=false;
-  supaSave('mitarbeiter',[mObj]).catch(e=>showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e'));
+  supaSave('mitarbeiter',[mObj]).catch(e=>_saveFehler(e,'Gutschrift'));
 }
 
 // FIX v106: Zeigt readonly an, von wem der aktuelle MA in diesem Monat vertreten wurde.
@@ -7460,7 +7615,7 @@ function vtGutschriftDelete(maId, monatKey, idx) {
   mObj.monats_daten[monatKey].vertretungs_gutschrift.splice(idx, 1);
   supaSave('mitarbeiter',[mObj])
     .then(()=>{ renderVtGutschrift(mObj, monatKey); showAlert('Gutschrift geloescht \u2713', 'var(--green)'); })
-    .catch(e=>showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e'));
+    .catch(e=>_saveFehler(e,'Gutschrift'));
 }
 
 function renderVtGutschrift(m,monatKey){
@@ -7614,7 +7769,7 @@ function _ssAutoFlush(){
   if(!m.monats_daten[k])m.monats_daten[k]={urlaub:0,krank:0,notiz:'',zettel_ok:false,vertretungen:[],sonderstunden:[]};
   m.monats_daten[k].sonderstunden=(_ssData||[]).filter(e=>e.maId&&parseFloat(e.stunden)>0);
   if(_autoSaveTimeout)clearTimeout(_autoSaveTimeout);
-  _autoSaveTimeout=setTimeout(()=>supaSave('mitarbeiter',[m]).catch(e=>showAlert('Autosave fehlgeschlagen: '+e.message,'#c81e1e')),800);
+  _autoSaveTimeout=setTimeout(()=>supaSave('mitarbeiter',[m]).catch(e=>_saveFehler(e,'Sonderstunden-Autosave')),800);
 }
 
 // ── TYPEAHEAD ENGINE (geteilt von VT + SS) ───────────────
@@ -8034,7 +8189,7 @@ function getWochentageImMonat(monatKey, wt) {
   const result = [];
   for (let d=1; d<=days; d++) {
     const date = new Date(y, m-1, d);
-    if (date.getDay() === target) result.push(date.toISOString().slice(0,10));
+    if (date.getDay() === target) result.push(isoLocal(date));
   }
   return result;
 }
@@ -8240,7 +8395,7 @@ function exportDatevLohnarten() {
                 if (dt.getMonth() !== _m14 - 1) break;
                 const wtKey = WT_IDX_14[dt.getDay()];
                 if ((parseFloat(wt[wtKey]) || 0) > 0) {
-                  einsatzDaten.add(dt.toISOString().slice(0,10));
+                  einsatzDaten.add(isoLocal(dt));
                 } else if (offset > 0) break;
               }
             });
@@ -8257,6 +8412,7 @@ function exportDatevLohnarten() {
             const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
             feiertage.forEach(ftDate => {
               if (!_maAnwesendAm(m, ftDate)) return;
+              if (!_objAktivAm(o, ftDate)) return; // FIX v125: Feiertag nur wenn Objekt an dem Tag aktiv (analog 2004/2005)
               const dow = new Date(ftDate).getDay();
               if (dow === 0) return; // v106: Sonntags-Feiertag nicht als 2003
               const wtKey = WT_IDX_N[dow];
@@ -8295,7 +8451,7 @@ function exportDatevLohnarten() {
             // Normaler Rhythmus: alle Sonntage im Monat, falls MA anwesend
             const alleSo = getWochentageImMonat(monat, 'So');
             alleSo.forEach(soDate => {
-              if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
+              if (_maAnwesendAm(m, soDate) && _objAktivAm(o, soDate)) hO += stdSoWT;
             });
           }
           add(kstO, hO);
@@ -8323,13 +8479,13 @@ function exportDatevLohnarten() {
                 const wtKey = WT_IDX_14[dt.getDay()];
                 const s14 = parseFloat(wt[wtKey]) || 0;
                 if (s14 > 0) {
-                  if (dt.getDay() === 0 && !feiertage.has(dt.toISOString().slice(0,10))) hO += s14;
+                  if (dt.getDay() === 0 && !feiertage.has(isoLocal(dt))) hO += s14;
                 } else if (offset > 0) break;
               }
             });
           } else {
             sonntageOhneFT.forEach(soDate => {
-              if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
+              if (_maAnwesendAm(m, soDate) && _objAktivAm(o, soDate)) hO += stdSoWT;
             });
           }
           if (hO > 0 && slO > 0) {
@@ -8678,13 +8834,13 @@ function _buildDatevControlRows() {
                   const wtKey = WT_IDX_14[dt.getDay()];
                   const s14 = parseFloat(wt[wtKey]) || 0;
                   if (s14 > 0) {
-                    if (dt.getDay() === 0 && !feiertage.has(dt.toISOString().slice(0,10))) hO += s14;
+                    if (dt.getDay() === 0 && !feiertage.has(isoLocal(dt))) hO += s14;
                   } else if (offset > 0) break;
                 }
               });
             } else {
               sonntageOhneFT.forEach(soDate => {
-                if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
+                if (_maAnwesendAm(m, soDate) && _objAktivAm(o, soDate)) hO += stdSoWT;
               });
             }
           } else if (laCode.startsWith('2004')) {
@@ -8709,7 +8865,7 @@ function _buildDatevControlRows() {
             } else {
               const alleSo = getWochentageImMonat(monat, 'So');
               alleSo.forEach(soDate => {
-                if (_maAnwesendAm(m, soDate)) hO += stdSoWT;
+                if (_maAnwesendAm(m, soDate) && _objAktivAm(o, soDate)) hO += stdSoWT;
               });
             }
           } else {
@@ -8725,7 +8881,7 @@ function _buildDatevControlRows() {
                   if (dt.getMonth() !== _mo - 1) break;
                   const wtKey = WT_IDX_14[dt.getDay()];
                   if ((parseFloat(wt[wtKey]) || 0) > 0) {
-                    einsatzDaten.add(dt.toISOString().slice(0,10));
+                    einsatzDaten.add(isoLocal(dt));
                   } else if (offset > 0) break;
                 }
               });
@@ -8741,6 +8897,7 @@ function _buildDatevControlRows() {
               const WT_IDX_N = {1:'Mo',2:'Di',3:'Mi',4:'Do',5:'Fr',6:'Sa',0:'So'};
               feiertage.forEach(ftDate => {
                 if (!_maAnwesendAm(m, ftDate)) return;
+                if (!_objAktivAm(o, ftDate)) return; // FIX v125: Feiertag nur wenn Objekt an dem Tag aktiv (analog 2004/2005)
                 const dow = new Date(ftDate).getDay();
                 if (dow === 0) return; // v106: Sonntags-FT nicht als 2003
                 const wtKey = WT_IDX_N[dow];
@@ -9292,7 +9449,7 @@ function lvUpload(input) {
     obj[idx].lv_pdf   = base64;
     obj[idx].lv_datum = new Date().toISOString();
     obj[idx].lv_name  = file.name;
-    supaSave('objekte', [obj[idx]]).then(() => setSyncState('ok', 'LV gespeichert · ' + _currentUser)).catch(e => setSyncState('error', 'Speicherfehler!'));
+    supaSave('objekte', [obj[idx]]).then(() => setSyncState('ok', 'LV gespeichert · ' + _currentUser)).catch(e => _saveFehler(e, 'LV'));
     lvRenderModal(obj[idx]);
     showAlert('LV hochgeladen ✓', '#057a55');
   };
@@ -9308,7 +9465,7 @@ function lvLoeschen() {
   delete obj[idx].lv_pdf;
   delete obj[idx].lv_datum;
   delete obj[idx].lv_name;
-  supaSave('objekte', [obj[idx]]).then(() => setSyncState('ok', 'LV gelöscht · ' + _currentUser)).catch(e => setSyncState('error', 'Speicherfehler!'));
+  supaSave('objekte', [obj[idx]]).then(() => setSyncState('ok', 'LV gelöscht · ' + _currentUser)).catch(e => _saveFehler(e, 'LV'));
   lvRenderModal(obj[idx]);
   showAlert('LV gelöscht ✓', '#374151');
 }
