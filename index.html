@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v127</title>
+<title>MitarbeiterManager v128</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -907,7 +907,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v127</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v128</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -935,7 +935,14 @@ main{padding:14px 16px}
 
 <div class="sec" id="tab-heute"><div id="heute-c"></div></div>
 <div class="sec" id="tab-urlaub"><div id="urlaub-c"></div></div>
-<div class="sec" id="tab-dashboard"><div class="dgrid" id="dash-c"></div></div>
+<div class="sec" id="tab-dashboard">
+<div id="dash-subtabs" style="display:flex;gap:8px;border-bottom:1px solid var(--border);margin-bottom:14px">
+  <button type="button" id="dsub-dashboard" onclick="dashSetSub('dashboard')" style="background:none;border:none;border-bottom:2px solid var(--acc);color:var(--text);font-weight:700;font-size:14px;padding:8px 6px;cursor:pointer;font-family:inherit">📊 Dashboard</button>
+  <button type="button" id="dsub-abrechnung" onclick="dashSetSub('abrechnung')" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-weight:500;font-size:14px;padding:8px 6px;cursor:pointer;font-family:inherit">⚡ Sondereinsätze abrechnen <span id="dsub-abr-badge" style="display:none;font-size:11px;font-weight:600;background:#f5f3ff;color:#7c3aed;border-radius:10px;padding:1px 7px;margin-left:2px"></span></button>
+</div>
+<div class="dgrid" id="dash-c"></div>
+<div id="dash-abr-c" style="display:none"></div>
+</div>
 <div class="sec" id="tab-minijob"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px"><div style="font-size:17px;font-weight:700;color:var(--text)">💼 Minijob-Übersicht</div><div style="font-size:12px;color:var(--muted)">Zeitjahr ab Eintrittsdatum · Krankheitsvertretungs-Ausnahme</div></div><div id="minijob-list"></div></div>
 <div class="sec" id="tab-statistik"><div id="statistik-c" style="padding:4px 0"></div></div>
 <div class="sec" id="tab-admin"><div style="padding:24px">
@@ -1918,6 +1925,7 @@ const CAN = {
   seeProtokoll:   () => isAdmin(),
   seeAdminTab:    () => isSuperAdmin(),
   manageKunden:   () => isAdmin(),
+  billSonder:     () => isAdmin(),
 };
 
 function getVisibleMA() {
@@ -6367,6 +6375,172 @@ function renderUrlaub() {
   });
 }
 
+// ── SONDEREINSATZ-ABRECHNUNG (Übersicht-Reiter) ───────────
+// Reine Zusatz-Ebene: greift NICHT in Soll/DATEV/Kontrollliste ein.
+let _dashSub='dashboard';
+let _abrMk=null;
+let _abrFilter='offen';
+
+function dashSetSub(sub){
+  _dashSub=sub;
+  const dc=document.getElementById('dash-c');
+  const ac=document.getElementById('dash-abr-c');
+  const bd=document.getElementById('dsub-dashboard');
+  const ba=document.getElementById('dsub-abrechnung');
+  if(bd){ bd.style.borderBottom=sub==='dashboard'?'2px solid var(--acc)':'2px solid transparent'; bd.style.color=sub==='dashboard'?'var(--text)':'var(--muted)'; bd.style.fontWeight=sub==='dashboard'?'700':'500'; }
+  if(ba){ ba.style.borderBottom=sub==='abrechnung'?'2px solid #7c3aed':'2px solid transparent'; ba.style.color=sub==='abrechnung'?'#7c3aed':'var(--muted)'; ba.style.fontWeight=sub==='abrechnung'?'700':'500'; }
+  if(sub==='abrechnung'){ if(dc)dc.style.display='none'; if(ac)ac.style.display='block'; renderAbrechnung(); }
+  else { if(ac)ac.style.display='none'; if(dc)dc.style.display=''; renderDash(); }
+}
+
+function _abrMkGet(){ return _abrMk||getAM(); }
+function _abrShiftMonth(delta){
+  const idx=MK.indexOf(_abrMkGet());
+  const ni=Math.min(MK.length-1,Math.max(0,idx+delta));
+  _abrMk=MK[ni];
+  renderAbrechnung();
+}
+function abrSetFilter(f){ _abrFilter=f; renderAbrechnung(); }
+
+function _abrCollect(mk){
+  const out=[];
+  getVisibleMA().forEach(m=>{
+    const arr=(m.monats_daten||{})[mk]?.sonderstunden||[];
+    arr.forEach((ss,ai)=>{
+      const abr=ss.abrechnung||'kulanz';
+      if(abr==='kulanz') return;
+      if(!ss.maId||!(parseFloat(ss.stunden)>0)) return;
+      const maObj=ma.find(x=>x.id===ss.maId)||m;
+      out.push({
+        maId:m.id, ai:ai, mk:mk,
+        name:(maObj.nachname||'')+(maObj.vorname?' '+maObj.vorname:''),
+        kunde:ss.kunde||'?', stunden:parseFloat(ss.stunden)||0,
+        ld:ss.leistungsdatum||'', lt:ss.leistungstext||ss.notiz||'',
+        abr:abr, rg:ss.rg_nr||''
+      });
+    });
+  });
+  return out;
+}
+
+function _abrOffenCount(mk){ return _abrCollect(mk).filter(e=>e.abr==='offen').length; }
+
+function _abrUpdBadge(){
+  const b=document.getElementById('dsub-abr-badge');
+  if(!b) return;
+  const n=_abrOffenCount(_abrMkGet());
+  if(n>0){ b.style.display='inline-block'; b.textContent=n+' offen'; }
+  else { b.style.display='none'; }
+}
+
+function _abrEsc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderAbrechnung(){
+  const host=document.getElementById('dash-abr-c');
+  if(!host) return;
+  const mk=_abrMkGet();
+  const all=_abrCollect(mk);
+  const offen=all.filter(e=>e.abr==='offen');
+  const berech=all.filter(e=>e.abr==='berechnet');
+  const list = _abrFilter==='offen'?offen : _abrFilter==='berechnet'?berech : all;
+  const _r1=x=>Math.round(x*10)/10;
+  const offenStd=offen.reduce((s,e)=>s+e.stunden,0);
+  const offenKunden=new Set(offen.map(e=>e.kunde)).size;
+  const canBill=CAN.billSonder();
+
+  const mn=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const yy=parseInt(mk.slice(0,4),10), mm=parseInt(mk.slice(5,7),10);
+  const monLabel=mn[mm-1]+' '+yy;
+
+  const grp={};
+  list.forEach(e=>{ (grp[e.kunde]=grp[e.kunde]||[]).push(e); });
+  const kunden=Object.keys(grp).sort((a,b)=>a.localeCompare(b,'de'));
+
+  const pill=(f,txt,active)=>`<span onclick="abrSetFilter('${f}')" style="cursor:pointer;font-size:12px;font-weight:${active?600:400};padding:5px 12px;border-radius:6px;${active?'background:var(--obg);color:var(--orange);border:1px solid var(--obd)':'color:var(--muted);border:1px solid var(--border)'}">${txt}</span>`;
+
+  let h=`
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:8px">
+      <button type="button" onclick="_abrShiftMonth(-1)" style="width:32px;height:32px;border:1px solid var(--border);background:var(--white);border-radius:6px;cursor:pointer;font-size:15px">‹</button>
+      <span style="font-size:15px;font-weight:600;min-width:110px;text-align:center">${monLabel}</span>
+      <button type="button" onclick="_abrShiftMonth(1)" style="width:32px;height:32px;border:1px solid var(--border);background:var(--white);border-radius:6px;cursor:pointer;font-size:15px">›</button>
+    </div>
+    <div style="display:flex;gap:6px">
+      ${pill('offen','Offen',_abrFilter==='offen')}
+      ${pill('berechnet','Berechnet',_abrFilter==='berechnet')}
+      ${pill('alle','Alle',_abrFilter==='alle')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px">
+    <div style="background:var(--s1);border-radius:8px;padding:12px 14px"><div style="font-size:12px;color:var(--muted)">Offen</div><div style="font-size:24px;font-weight:700;color:var(--orange)">${offen.length} Einsätze</div></div>
+    <div style="background:var(--s1);border-radius:8px;padding:12px 14px"><div style="font-size:12px;color:var(--muted)">Stunden offen</div><div style="font-size:24px;font-weight:700">${_r1(offenStd)} h</div></div>
+    <div style="background:var(--s1);border-radius:8px;padding:12px 14px"><div style="font-size:12px;color:var(--muted)">Betroffene Kunden</div><div style="font-size:24px;font-weight:700">${offenKunden}</div></div>
+  </div>`;
+
+  if(!canBill){
+    h+=`<div style="font-size:12px;color:var(--muted);background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:7px 11px;margin-bottom:14px">ℹ Das Markieren als „berechnet" übernimmt die Buchhaltung.</div>`;
+  }
+
+  if(!list.length){
+    h+=`<div style="text-align:center;color:var(--muted2);padding:30px;font-size:13px">Keine ${_abrFilter==='berechnet'?'berechneten':(_abrFilter==='offen'?'offenen':'')} Sondereinsätze in ${monLabel}.</div>`;
+    host.innerHTML=h; _abrUpdBadge(); return;
+  }
+
+  kunden.forEach(k=>{
+    const rows=grp[k];
+    const kStd=rows.reduce((s,e)=>s+e.stunden,0);
+    const kOffen=rows.filter(e=>e.abr==='offen').length;
+    h+=`<div style="margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <span style="font-size:14px;font-weight:600">🏢 ${_abrEsc(k)}</span>
+        <span style="font-size:12px;color:var(--muted)">· ${rows.length} Einsätze · ${_r1(kStd)} h${kOffen?' · '+kOffen+' offen':''}</span>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">`;
+    rows.forEach((e,ri)=>{
+      const dStr=e.ld?e.ld.split('-').reverse().join('.'):'<span style="color:var(--red)">kein Datum</span>';
+      const done=e.abr==='berechnet';
+      h+=`<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;flex-wrap:wrap;${ri<rows.length-1?'border-bottom:1px solid var(--border);':''}${done?'background:var(--s1)':''}">
+        <span style="font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--muted);min-width:82px">📅 ${dStr}</span>
+        <div style="flex:1;min-width:150px">
+          <div style="font-size:14px;font-weight:600">${_abrEsc(e.name)}</div>
+          <div style="font-size:12.5px;color:var(--muted)">${e.lt?_abrEsc(e.lt):'<em>kein Leistungstext</em>'}</div>
+        </div>
+        <span style="font-size:13px;font-weight:600;font-family:'IBM Plex Mono',monospace">${_r1(e.stunden)} h</span>
+        ${done
+          ? `<span style="font-size:12px;font-weight:600;color:var(--green);background:var(--gbg);border:1px solid var(--gbd);border-radius:6px;padding:5px 10px">✓ berechnet${e.rg?' · '+_abrEsc(e.rg):''}</span>${canBill?`<button type="button" onclick="abrMark('${e.maId}','${e.mk}',${e.ai},'offen')" title="Zurücksetzen" style="border:none;background:none;cursor:pointer;color:var(--muted);font-size:14px">↩</button>`:''}`
+          : (canBill
+              ? `<button type="button" onclick="abrMark('${e.maId}','${e.mk}',${e.ai},'berechnet')" style="font-size:12px;font-weight:600;padding:5px 12px;border:1px solid var(--gbd);background:var(--gbg);color:var(--green);border-radius:6px;cursor:pointer;font-family:inherit">✓ Berechnet</button>`
+              : `<span style="font-size:12px;color:var(--orange);background:var(--obg);border:1px solid var(--obd);border-radius:6px;padding:5px 10px">⚡ offen</span>`)
+        }
+      </div>`;
+    });
+    h+=`</div></div>`;
+  });
+
+  host.innerHTML=h;
+  _abrUpdBadge();
+}
+
+async function abrMark(maId, mk, ai, toState){
+  if(!CAN.billSonder()){ alert('Nur die Buchhaltung (Admin) kann Einsätze als berechnet markieren.'); return; }
+  const m=ma.find(x=>x.id===maId); if(!m) return;
+  const arr=m.monats_daten && m.monats_daten[mk] && m.monats_daten[mk].sonderstunden;
+  if(!arr||!arr[ai]) return;
+  if(toState==='berechnet'){
+    const rg=prompt('Rechnungsnummer (optional) – leer lassen, wenn noch keine vorliegt:', arr[ai].rg_nr||'');
+    if(rg===null) return;
+    arr[ai].abrechnung='berechnet';
+    arr[ai].berechnet_am=isoLocal(new Date());
+    arr[ai].rg_nr=(rg||'').trim();
+  } else {
+    arr[ai].abrechnung='offen';
+    arr[ai].berechnet_am='';
+    arr[ai].rg_nr='';
+  }
+  try{ await supaSave('mitarbeiter',[m]); }catch(err){ _saveFehler(err,'Abrechnung-Status'); }
+  renderAbrechnung();
+}
+
 function renderDash(){
 const _visMA = getVisibleMA();
 const _visObj = getVisibleKunden();
@@ -6481,6 +6655,8 @@ document.getElementById('dash-c').innerHTML=`
   </div>
 </div>
 `;
+_abrUpdBadge();
+if(_dashSub==='abrechnung') renderAbrechnung();
 }
 function toggleDashSection(id){
   const body=document.getElementById(id);
@@ -7745,6 +7921,21 @@ function renderSSRows() {
         <input type="text" placeholder="📝 Notiz (optional)" value="${ss.notiz||''}" class="ss-not-inp"
           style="width:100%;padding:4px 8px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;background:var(--white);color:var(--text);box-sizing:border-box"
           oninput="ssUpdate(${i},'notiz',this.value)">
+        <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+          <span style="font-size:11px;color:var(--muted)">Abrechnung:</span>
+          <div style="display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <button type="button" onclick="ssSetAbr(${i},'kulanz')" style="border:none;cursor:pointer;font-family:inherit;font-size:11px;padding:4px 9px;${(ss.abrechnung||'kulanz')==='kulanz'?'background:var(--s2);color:var(--text);font-weight:600':'background:var(--white);color:var(--muted)'}">Kulanz</button>
+            <button type="button" onclick="ssSetAbr(${i},'offen')" style="border:none;border-left:1px solid var(--border);cursor:pointer;font-family:inherit;font-size:11px;padding:4px 9px;${(ss.abrechnung||'kulanz')!=='kulanz'?'background:var(--obg);color:var(--orange);font-weight:600':'background:var(--white);color:var(--muted)'}">⚡ An Kunde berechnen</button>
+          </div>
+          ${(ss.abrechnung||'kulanz')!=='kulanz'?`
+            <input type="date" value="${ss.leistungsdatum||''}" onchange="ssUpdate(${i},'leistungsdatum',this.value)" title="Leistungsdatum (Pflicht)"
+              style="padding:4px 6px;border:1px solid ${ss.leistungsdatum?'var(--border)':'var(--red)'};border-radius:5px;font-size:12px;font-family:inherit;background:var(--white);color:var(--text)">
+            <input type="text" placeholder="Leistungstext für Rechnung" value="${(ss.leistungstext||'').replace(/"/g,'&quot;')}" oninput="ssUpdate(${i},'leistungstext',this.value)"
+              style="flex:1;min-width:150px;padding:4px 8px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;background:var(--white);color:var(--text);box-sizing:border-box">
+          `:''}
+          ${ss.abrechnung==='berechnet'?`<span style="font-size:11px;font-weight:600;color:var(--green);background:var(--gbg);border:1px solid var(--gbd);border-radius:5px;padding:3px 8px">✓ berechnet${ss.rg_nr?' · '+ss.rg_nr:''}</span>`:''}
+          ${((ss.abrechnung||'kulanz')!=='kulanz' && !ss.leistungsdatum)?`<span style="font-size:11px;color:var(--red)">⚠ Leistungsdatum fehlt</span>`:''}
+        </div>
       </td>
     </tr>`).join('');
   _updSSHint();
@@ -7933,13 +8124,20 @@ function taKey(e, dropId) {
 }
 
 function ssAddRow() {
-  _ssData.push({ maId: '', kunde: '', stunden: '', notiz: '' });
+  _ssData.push({ maId: '', kunde: '', stunden: '', notiz: '', abrechnung: 'kulanz' });
   renderSSRows();
 }
 
 function ssRemove(i) {
   _ssData.splice(i, 1);
   renderSSRows();
+}
+function ssSetAbr(i, state){
+  const cur=_ssData[i].abrechnung||'kulanz';
+  if(state==='kulanz'){ _ssData[i].abrechnung='kulanz'; }
+  else { _ssData[i].abrechnung=(cur==='berechnet')?'berechnet':'offen'; }
+  renderSSRows();
+  _ssAutoFlush();
 }
 
 
