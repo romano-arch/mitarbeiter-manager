@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v128</title>
+<title>MitarbeiterManager v129</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -907,7 +907,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v128</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v129</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1016,7 +1016,7 @@ main{padding:14px 16px}
   </div>
 </div>
 </main><div class="mbg" id="ombg" role="dialog" aria-modal="true" aria-label="Kunden-Details" style="z-index:var(--z-modal)">
-<div class="modal md"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px"><div class="mtitle" style="margin:0;border:none;padding:0" id="omtitle">🏢 Kunde / Objekt</div><button onclick="closeOMandReturn()" style="background:var(--s1);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0" title="Schließen">✕</button></div><div class="fg2"><div class="fg full"><label>Kurzname *</label><input id="of-n" placeholder="z.B. Conti, Bock..."></div><div class="fg full"><label>Vollständiger Name</label><input id="of-vn" placeholder="Firma GmbH & Co. KG"></div><div class="fg"><label>Kundennummer</label><input id="of-nr" placeholder="12345"></div><div class="fg"><label>Status</label><select id="of-s"><option value="aktiv">Aktiver Kunde</option><option value="ehemalig">Ehemaliger Kunde</option></select></div><div class="fg full"><label>Adresse</label><input id="of-adr" placeholder="Straße, PLZ Ort"></div><div class="fg"><label>Telefon</label><input id="of-tel" placeholder="06023..."></div><div class="fg"><label>E-Mail</label><input id="of-em" placeholder="info@..."></div><div class="fg full"><label>Kurzinfo / Notiz</label><textarea id="of-info" rows="2" placeholder="z.B. 2× Woche à 1,75h, Ansprechpartner..."></textarea></div><div class="fg"><label>Kostenstelle (DATEV)</label><input id="of-kst" placeholder="z.B. 100, 200..."></div></div><div class="sh">📅 Wöchentliche Reinigungsstunden</div>
+<div class="modal md"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px"><div class="mtitle" style="margin:0;border:none;padding:0" id="omtitle">🏢 Kunde / Objekt</div><button onclick="closeOMandReturn()" style="background:var(--s1);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0" title="Schließen">✕</button></div><div class="fg2"><div class="fg full"><label>Kurzname *</label><input id="of-n" placeholder="z.B. Conti, Bock..."></div><div class="fg full"><label>Vollständiger Name</label><input id="of-vn" placeholder="Firma GmbH & Co. KG"></div><div class="fg"><label>Kundennummer</label><input id="of-nr" placeholder="12345"></div><div class="fg"><label>Status</label><select id="of-s"><option value="aktiv">Aktiver Kunde</option><option value="ehemalig">Ehemaliger Kunde</option></select></div><div class="fg"><label>Objektleiter (Sichtbarkeit)</label><select id="of-ol"><option value="B">Beide (M + I)</option><option value="M">M – Grippo</option><option value="I">I – Incecik</option></select></div><div class="fg full"><label>Adresse</label><input id="of-adr" placeholder="Straße, PLZ Ort"></div><div class="fg"><label>Telefon</label><input id="of-tel" placeholder="06023..."></div><div class="fg"><label>E-Mail</label><input id="of-em" placeholder="info@..."></div><div class="fg full"><label>Kurzinfo / Notiz</label><textarea id="of-info" rows="2" placeholder="z.B. 2× Woche à 1,75h, Ansprechpartner..."></textarea></div><div class="fg"><label>Kostenstelle (DATEV)</label><input id="of-kst" placeholder="z.B. 100, 200..."></div></div><div class="sh">📅 Wöchentliche Reinigungsstunden</div>
 <!-- Versteckte Felder für Rückwärtskompatibilität mit saveObj() -->
 <input type="hidden" id="omgw-revier">
 <input type="hidden" id="omgw-ma-inp">
@@ -1938,7 +1938,9 @@ function getVisibleKunden() {
   const visMA = getVisibleMA();
   const kundenSet = new Set();
   visMA.forEach(m => maKu(m).forEach(k => kundenSet.add(k)));
-  return obj.filter(o => kundenSet.has(o.name));
+  const myK = _currentKuerzel || '';
+  // v129: Objekt sichtbar wenn objektleiter passt ODER 'B' (beide) ODER bereits MA zugeordnet
+  return obj.filter(o => kundenSet.has(o.name) || o.objektleiter === myK || o.objektleiter === 'B');
 }
 let _lockPingInterval = null;
 let _autoSaveTimeout = null;
@@ -3413,6 +3415,7 @@ omGlobalWTUpdate();
 document.getElementById('of-vn').value=o.vollname||'';
 document.getElementById('of-nr').value=o.kundennummer||'';
 document.getElementById('of-s').value=isEh(o)?'ehemalig':'aktiv';
+document.getElementById('of-ol').value=o.objektleiter||'B';
   // Speichern-Button: für OL ausblenden (nur lesend)
   const omSaveBtn = document.querySelector('#ombg .btn-p');
   if(omSaveBtn) omSaveBtn.style.display = isOL() ? 'none' : '';
@@ -3506,7 +3509,7 @@ const wt = firstRev ? {...(firstRev.wochentage||{})} : {};
 const o={id:eOid||'obj_'+Date.now(),name,vollname:document.getElementById('of-vn').value.trim(),
 kundennummer:document.getElementById('of-nr').value.trim(),adresse:document.getElementById('of-adr').value.trim(),
 telefon:document.getElementById('of-tel').value.trim(),email:document.getElementById('of-em').value.trim(),
-kurzinfo:document.getElementById('of-info').value.trim(),kostenstelle:document.getElementById('of-kst').value.trim(),notiz:'',wochentage:wt,aktiv:st==='aktiv',status:st,
+kurzinfo:document.getElementById('of-info').value.trim(),kostenstelle:document.getElementById('of-kst').value.trim(),notiz:'',wochentage:wt,aktiv:st==='aktiv',status:st,objektleiter:(document.getElementById('of-ol')?document.getElementById('of-ol').value:'B')||'B',
 global_revier:firstRev?firstRev.name||'':'',
 global_maId:firstRev?firstRev.maId||'':'',
 global_maName:firstRev?firstRev.maName||'':'',
@@ -7335,7 +7338,7 @@ function markDirty(){
 _dirty=true;
 }
 ['f-pnr','f-st','f-vn','f-nn','f-tel','f-ol','f-ein','f-aus','f-urltage',
-'of-n','of-vn','of-nr','of-s','of-adr','of-tel','of-em','of-info',
+'of-n','of-vn','of-nr','of-s','of-ol','of-adr','of-tel','of-em','of-info',
 'md-url','md-krank','md-unbezahlt','md-kk-ab','md-notiz',
 'search','snotiz'].forEach(id=>{
 const el=document.getElementById(id);
