@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v129</title>
+<title>MitarbeiterManager v130</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -907,7 +907,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v129</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v130</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -7485,7 +7485,7 @@ function _renderVtTable() {
       + ' onblur="taClose()" onkeydown="taKey(event,\x27vt-obj-inp-' + i + '\x27)"></div></td>'
       + '<td style="padding:5px 6px;text-align:center">'
       + '<input type="text" inputmode="decimal" data-vt-std="' + i + '" placeholder="0" value="' + (ss.stunden||'') + '" oninput="vtUpdate(' + i + ',\x27stunden\x27,this.value)" onkeydown="if(event.key===\x27Enter\x27){event.preventDefault();this.blur();}" style="width:64px;padding:4px 5px;border:1px solid var(--border);border-radius:5px;font-size:13px;text-align:center;background:var(--white);outline:none">'
-      + '<span style="font-size:11px;color:var(--muted);margin-left:2px">h</span><div data-vt-mh="' + i + '" style="font-size:10px;color:var(--muted);margin-top:2px">' + (ss.objekt?('max '+_vtRemaining(ss.objekt,i)+' h'):'') + '</div></td>'
+      + '<span style="font-size:11px;color:var(--muted);margin-left:2px">h</span><div data-vt-mh="' + i + '" style="font-size:10px;color:var(--muted);margin-top:2px">' + (ss.objekt?(_vtObjBudget(ss.objekt)>0?('max '+_vtRemaining(ss.objekt,i)+' h'):'frei'):'') + '</div></td>'
       + '<td style="padding:5px 6px;text-align:center">'
       + '<select onchange="vtUpdate(' + i + ',\x27grund\x27,this.value)" style="font-size:11px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-family:inherit;cursor:pointer;' + grundBg + '">'
       + '<option value="krank"' + (isKrank?' selected':'') + '>🤒 Krank</option>'
@@ -7593,6 +7593,13 @@ function _vtBudgetMap(m, mk) {
   });
   return out;
 }
+// v130: berechnetes Budget eines Objekts (0 = kein Soll auf den Fehltagen -> frei eintragbar)
+function _vtObjBudget(kunde) {
+  const m = eMAid ? ma.find(x => x.id === eMAid) : null;
+  if (!m || !kunde) return 0;
+  const mk = _vtSyncMonat || getAM();
+  return _vtBudgetMap(m, mk)[kunde] || 0;
+}
 function _vtRemaining(kunde, exceptIdx) {
   const m = eMAid ? ma.find(x => x.id === eMAid) : null;
   if (!m || !kunde) return 0;
@@ -7613,7 +7620,7 @@ function _vtFlashStd(i) {
 function _vtRefreshMaxHints() {
   (_vtData || []).forEach((v, i) => {
     const mh = document.querySelector('[data-vt-mh="' + i + '"]');
-    if (mh) mh.textContent = v.objekt ? ('max ' + _vtRemaining(v.objekt, i) + ' h') : '';
+    if (mh) mh.textContent = v.objekt ? (_vtObjBudget(v.objekt) > 0 ? ('max ' + _vtRemaining(v.objekt, i) + ' h') : 'frei') : '';
   });
 }
 function _renderVtBudgetInfo() {
@@ -7622,22 +7629,27 @@ function _renderVtBudgetInfo() {
   const m = eMAid ? ma.find(x => x.id === eMAid) : null;
   const mk = _vtSyncMonat || getAM();
   const budget = m ? _vtBudgetMap(m, mk) : {};
-  const keys = Object.keys(budget).filter(k => budget[k] > 0);
+  // v130: ALLE Objekte des MA anzeigen (auch ohne berechnetes Soll = 'frei eintragbar')
+  const keys = Object.keys(budget);
   if (!keys.length) { box.style.display = 'none'; box.innerHTML = ''; return; }
   let h = '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Zu vertreten je Revier</div><div style="display:flex;flex-wrap:wrap;gap:6px">';
   keys.forEach(k => {
     let assigned = 0;
     (_vtData || []).forEach(v => { if ((v.objekt || '') === k) assigned += parseFloat(v.stunden) || 0; });
     assigned = Math.round(assigned * 100) / 100;
-    const rem = Math.round((budget[k] - assigned) * 100) / 100;
-    const full = rem <= 0;
-    const col = full ? 'var(--green)' : 'var(--text2)';
+    const bud = budget[k];
+    const frei = bud <= 0;                         // kein Soll auf den Fehltagen -> frei
+    const rem = Math.round((bud - assigned) * 100) / 100;
+    const full = !frei && rem <= 0;
+    const col = (full || (frei && assigned > 0)) ? 'var(--green)' : 'var(--text2)';
     const bg = full ? 'var(--gbg)' : 'var(--s2)';
     const bd = full ? 'var(--gbd)' : 'var(--border)';
+    const stundText = frei ? (assigned + ' h') : (assigned + ' / ' + bud + ' h');
+    const statusText = frei ? 'frei eintragbar' : (full ? 'voll vergeben' : ('noch ' + rem + ' h frei'));
     h += '<div style="background:' + bg + ';border:1px solid ' + bd + ';border-radius:8px;padding:6px 10px;min-width:118px">'
       + '<div style="font-size:11px;color:var(--muted)">' + k + '</div>'
-      + '<div style="font-size:14px;font-weight:700;color:var(--text);font-family:\'IBM Plex Mono\',monospace">' + assigned + ' / ' + budget[k] + ' h</div>'
-      + '<div style="font-size:10px;color:' + col + '">' + (full ? 'voll vergeben' : ('noch ' + rem + ' h frei')) + '</div>'
+      + '<div style="font-size:14px;font-weight:700;color:var(--text);font-family:\'IBM Plex Mono\',monospace">' + stundText + '</div>'
+      + '<div style="font-size:10px;color:' + col + '">' + statusText + '</div>'
       + '</div>';
   });
   h += '</div>';
@@ -7664,8 +7676,8 @@ function _vtObjList() {
 // Alte Funktionen als Stubs (falls irgendwo noch referenziert)
 function renderVtRows() { _renderVtTable(); }
 function vtPickMA(i,v){_vtData[i].maId=v.id;_vtData[i].maName=v.label;var inp=document.getElementById('vt-ma-inp-'+i);if(inp){inp.value=v.label;inp.className='ta-inp ta-ok';}if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_vtUpdateHint();_vtAutoFlush();}
-function vtPickObj(i,v){_vtData[i].objekt=v.id;var _rem=_vtRemaining(v.id,i);_vtData[i].stunden=_rem>0?_rem:0;if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_renderVtTable();_vtAutoFlush();}
-function vtUpdate(i,field,val){if(field==='stunden'){var _n=parseFloat((val+'').replace(',','.'));if(isNaN(_n)){_vtData[i].stunden='';}else{if(_n<0)_n=0;var _rem=(_vtData[i].objekt)?_vtRemaining(_vtData[i].objekt,i):null;if(_rem!==null&&_n>_rem){_n=_rem>0?_rem:0;_vtFlashStd(i);var _inp=document.querySelector('[data-vt-std="'+i+'"]');if(_inp)_inp.value=_n;}_vtData[i].stunden=Math.round(_n*100)/100;}_renderVtBudgetInfo();_vtRefreshMaxHints();}else{_vtData[i][field]=val;}_vtUpdateHint();_vtAutoFlush();}
+function vtPickObj(i,v){_vtData[i].objekt=v.id;var _bud=_vtObjBudget(v.id);var _rem=_vtRemaining(v.id,i);_vtData[i].stunden=(_bud>0&&_rem>0)?_rem:'';if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_renderVtTable();_vtAutoFlush();}
+function vtUpdate(i,field,val){if(field==='stunden'){var _n=parseFloat((val+'').replace(',','.'));if(isNaN(_n)){_vtData[i].stunden='';}else{if(_n<0)_n=0;var _obj=_vtData[i].objekt;var _bud=_obj?_vtObjBudget(_obj):0;var _rem=_obj?_vtRemaining(_obj,i):null;if(_rem!==null&&_bud>0&&_n>_rem){_n=_rem>0?_rem:0;_vtFlashStd(i);var _inp=document.querySelector('[data-vt-std="'+i+'"]');if(_inp)_inp.value=_n;}_vtData[i].stunden=Math.round(_n*100)/100;}_renderVtBudgetInfo();_vtRefreshMaxHints();}else{_vtData[i][field]=val;}_vtUpdateHint();_vtAutoFlush();}
 function vtRemove(i){_vtData.splice(i,1);_renderVtTable();_vtUpdateHint();_vtAutoFlush();}
 
 // ── DATEV-Gutschrift: Vertretungsstunden beim Vertreter buchen ────────────────
