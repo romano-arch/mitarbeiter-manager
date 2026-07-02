@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v130</title>
+<title>MitarbeiterManager v134</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -906,8 +906,20 @@ main{padding:14px 16px}
     <div class="login-err" id="li-err"></div>
   </div>
 </div>
+<!-- ── MONATSAUSWAHL BEIM START ── -->
+<div id="monat-overlay" role="dialog" aria-modal="true" aria-label="Monatsauswahl" style="position:fixed;inset:0;background:rgba(15,23,42,.75);z-index:var(--z-login);display:none;align-items:center;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
+  <div style="background:#fff;border-radius:14px;padding:32px;max-width:360px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="font-size:32px;margin-bottom:8px">📅</div>
+    <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">Welchen Monat bearbeiten?</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Bitte wählen und mit Enter bestätigen</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button id="mo-btn-vor" class="btn btn-p" style="padding:14px;font-size:15px;width:100%" onclick="_waehleMonat('vor')" type="button"></button>
+      <button id="mo-btn-akt" class="btn btn-s" style="padding:14px;font-size:15px;width:100%" onclick="_waehleMonat('akt')" type="button"></button>
+    </div>
+  </div>
+</div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v130</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v134</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1425,6 +1437,49 @@ function getAMLabel() {
   return mn[mo-1] + ' ' + y;
 }
 function getAMShort() { const [y, mo] = getAM().split('-').map(Number); return MONATE[mo-1] + ' ' + y; }
+
+// ── FIX v132: Monatsauswahl-Dialog beim Programmstart ──────
+// Verhindert dass am Monatsanfang (z.B. 1.7.) versehentlich mit dem
+// bereits gestarteten neuen Monat gearbeitet wird, obwohl der Vormonat
+// noch abgerechnet wird. Bis zum 10. eines Monats wird der Vormonat
+// vorgeschlagen (Löhne dann i.d.R. abgeschlossen).
+let _monatResolve = null;
+function _monatVorschlag() {
+  const n = new Date();
+  const heuteMK = `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`;
+  const vorD = new Date(n.getFullYear(), n.getMonth()-1, 1);
+  const vorMK = `${vorD.getFullYear()}-${String(vorD.getMonth()+1).padStart(2,'0')}`;
+  const empfohlen = n.getDate() <= 10 ? vorMK : heuteMK;
+  return { heuteMK, vorMK, empfohlen };
+}
+function zeigeMonatsAuswahl() {
+  return new Promise(resolve => {
+    const { heuteMK, vorMK, empfohlen } = _monatVorschlag();
+    const lbl = mk => { const [y, mo] = mk.split('-').map(Number); return MONATE[mo-1] + ' ' + y; };
+    const btnVor = document.getElementById('mo-btn-vor');
+    const btnAkt = document.getElementById('mo-btn-akt');
+    const vorVerfuegbar = MK.includes(vorMK);
+    if (vorVerfuegbar) {
+      btnVor.style.display = '';
+      btnVor.textContent = lbl(vorMK) + (vorMK === empfohlen ? ' ✓ empfohlen' : '');
+      btnVor.dataset.mk = vorMK;
+    } else {
+      btnVor.style.display = 'none';
+    }
+    const aktMK = MK.includes(heuteMK) ? heuteMK : MK[MK.length-1];
+    btnAkt.textContent = lbl(aktMK) + (aktMK === empfohlen ? ' ✓ empfohlen' : '');
+    btnAkt.dataset.mk = aktMK;
+    _monatResolve = resolve;
+    document.getElementById('monat-overlay').style.display = 'flex';
+    const focusBtn = (empfohlen === vorMK && vorVerfuegbar) ? btnVor : btnAkt;
+    setTimeout(() => focusBtn.focus(), 50);
+  });
+}
+function _waehleMonat(art) {
+  const mk = art === 'vor' ? document.getElementById('mo-btn-vor').dataset.mk : document.getElementById('mo-btn-akt').dataset.mk;
+  document.getElementById('monat-overlay').style.display = 'none';
+  if (_monatResolve) { _monatResolve(mk); _monatResolve = null; }
+}
 
 // ── MONATSUMSCHALTER ──────────────────────────────────────
 function amNav(dir) {
@@ -2020,6 +2075,16 @@ async function doLogout() {
 async function initApp() {
   setSyncState('syncing', 'Lade Daten…');
   try {
+    // FIX v132: Monatsauswahl beim Start (einmal pro Sitzung)
+    const _gespeicherterMonat = sessionStorage.getItem('mm_monat_sitzung');
+    if (_gespeicherterMonat && MK.includes(_gespeicherterMonat)) {
+      _amIdx = MK.indexOf(_gespeicherterMonat);
+    } else {
+      const _gewaehlt = await zeigeMonatsAuswahl();
+      const _idx = MK.indexOf(_gewaehlt);
+      if (_idx >= 0) _amIdx = _idx;
+      sessionStorage.setItem('mm_monat_sitzung', _gewaehlt);
+    }
     await refreshData();
     deleteTestData();
     // Testdaten automatisch bereinigt
@@ -2595,14 +2660,26 @@ function maOSollMA(m, o, monatKey, maAbrModell) {
   if (aktivFaktor <= 0) return 0;
   const faktor = _fehlzeitAbzugFaktor(m, monatKey);
   const gesamtFaktor = aktivFaktor * faktor;
-  if (gesamtFaktor >= 1) return basis;
-  return Math.round(basis * gesamtFaktor * 100) / 100;
+  let ergebnis = gesamtFaktor >= 1 ? basis : Math.round(basis * gesamtFaktor * 100) / 100;
+  // v131 FIX: exakter Abzug der objektbezogenen unbezahlten Kalendertage
+  // (unbezahlt_tage_liste des Objekt-Kalenders). Wird direkt in Stunden von
+  // GENAU diesem Objekt abgezogen, nicht mehr anteilig vom Gesamt-Soll aller Objekte.
+  const objAbzug = _objUnbezahltStundenAbzug(o, effektivO.wochentage, monatKey);
+  if (objAbzug > 0) ergebnis = Math.max(0, Math.round((ergebnis - objAbzug) * 100) / 100);
+  return ergebnis;
 }
 
 // Berechnet den Anteil der bezahlten Tage im Monat (0.0 - 1.0).
-// Beruecksichtigt: unbezahlte Tage (z.B. unbez. Urlaub) und KK-Zahlung ab Datum
+// Beruecksichtigt: unbezahlte Tage (z.B. unbez. Urlaub, MA-weit) und KK-Zahlung ab Datum
 // (Langzeitkrank > 6 Wochen). Beide Felder kommen aus m.monats_daten[mk].
-// v110: Zusaetzlich unbezahlt_tage_liste aus m.objekte[].unbezahlt_tage_liste (Kalender-Tage).
+// v131 FIX: objektbezogene unbezahlt_tage_liste (einzelne Kalendertage bei einem
+// bestimmten Objekt, z.B. 1 Tag krank/frei bei Objekt X) wird HIER NICHT MEHR
+// eingerechnet. Vorher wurde die Anzahl dieser Tage ueber ALLE Objekte des MA
+// aufsummiert und als Kalendertage-Anteil (z.B. 1/30) auf JEDES Objekt-Soll
+// angewendet -> ein einzelner unbezahlter Tag bei einem 1,5h/Woche-Objekt hat
+// so faelschlich mehrere Stunden vom GESAMTEN Monats-Soll (alle Objekte!) abgezogen.
+// Der exakte Abzug (nur die tatsaechlichen Stunden des betroffenen Wochentags bei
+// GENAU diesem Objekt) erfolgt jetzt separat in _objUnbezahltStundenAbzug().
 function _fehlzeitAbzugFaktor(m, monatKey) {
   const mk = monatKey || getAM();
   const md = (m.monats_daten || {})[mk] || {};
@@ -2612,26 +2689,16 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
 
   let unbezahltTage = 0;
 
-  // 1) Unbezahlte Tage direkt eingetragen (unbezahlter Urlaub / ruhendes Arbeitsverhaeltnis)
+  // 1) Unbezahlte Tage direkt eingetragen (unbezahlter Urlaub / ruhendes Arbeitsverhaeltnis) - MA-weit, alle Objekte
   const unbezTage = parseFloat(md.unbezahlt_tage) || 0;
   if (unbezTage > 0) unbezahltTage += unbezTage;
 
-  // 2) v110: Tage aus Kalender-Liste der Objekte (unbezahlt_tage_liste = ['YYYY-MM-DD',...])
-  // Alle Objekte des MA zusammenführen, nur Tage im aktuellen Monat zählen, dedupliziert.
-  const mkPrefix = mk.slice(0, 7); // 'YYYY-MM'
-  const kalTageSet = new Set();
-  (m.objekte || []).forEach(o => {
-    (o.unbezahlt_tage_liste || []).forEach(iso => {
-      if (iso && iso.slice(0, 7) === mkPrefix) kalTageSet.add(iso);
-    });
-  });
-  // FIX #4: alle Kalendertage zählen (Mo-So), passend zum Nenner
-  kalTageSet.forEach(() => { unbezahltTage++; });
-
-  // 3) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
+  // 2) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
   if (md.kk_ab_datum) {
-    const kkAb = new Date(md.kk_ab_datum);
-    if (!isNaN(kkAb.getTime())) {
+    // FIX v134: lokal parsen statt new Date('YYYY-MM-DD') (UTC-Shift verlor den letzten Monatstag)
+    const _kkP = String(md.kk_ab_datum).slice(0,10).split('-').map(Number);
+    const kkAb = new Date(_kkP[0], (_kkP[1]||1)-1, _kkP[2]||1);
+    if (_kkP[0] && _kkP[1] && _kkP[2] && !isNaN(kkAb.getTime())) {
       const monatStart = new Date(y, mo - 1, 1);
       const monatEnde  = new Date(y, mo, 0);
       const vonDatum = kkAb < monatStart ? monatStart : kkAb;
@@ -2657,6 +2724,34 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
   return Math.round(faktor * 10000) / 10000;
 }
 
+// v131 NEU: Exakter Stunden-Abzug für objektbezogene unbezahlte Kalendertage
+// (o.unbezahlt_tage_liste = ['YYYY-MM-DD',...], am Objekt-Kalender eingetragen).
+// Statt eines pauschalen Kalendertage-Anteils (der auf ALLE Objekte des MA wirkte)
+// wird für jeden eingetragenen Tag GENAU die Soll-Stunden-Zahl des jeweiligen
+// Wochentags bei DIESEM Objekt abgezogen (z.B. Mi 1,5h/Woche -> genau 1,5h Abzug
+// für einen unbezahlten Mittwoch, nicht 1/30 des kompletten Monats-Solls).
+// wochentage: die effektiven Std-pro-Wochentag-Werte des Objekts (History-Override
+// beachten, falls vorhanden – daher als Parameter statt aus o selbst gelesen).
+function _objUnbezahltStundenAbzug(o, wochentage, monatKey) {
+  const liste = o.unbezahlt_tage_liste || [];
+  if (!liste.length) return 0;
+  const mk = monatKey || getAM();
+  const mkPrefix = mk.slice(0, 7); // 'YYYY-MM'
+  const keys = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']; // JS getDay(): 0=So..6=Sa
+  const wt = wochentage || o.wochentage || {};
+  let abzug = 0;
+  liste.forEach(iso => {
+    if (!iso || iso.slice(0, 7) !== mkPrefix) return;
+    const p = iso.split('-').map(Number);
+    if (!p[0] || !p[1] || !p[2]) return;
+    // Lokales Datum (kein UTC-Shift, siehe isoLocal-Fix v122)
+    const d = new Date(p[0], p[1] - 1, p[2]);
+    const key = keys[d.getDay()];
+    abzug += parseFloat(wt[key]) || 0;
+  });
+  return Math.round(abzug * 100) / 100;
+}
+
 
 function maOSoll(o, monatKey, maAbrModell){
   // ── History-Override: Falls es für diesen Monat einen historischen Eintrag gibt,
@@ -2666,7 +2761,8 @@ function maOSoll(o, monatKey, maAbrModell){
   //    bereits aufgelösten o-Eintrag (ggf. aus History) übergibt – das passiert
   //    durch maOSollForMonth() weiter unten.
   // v110: Schulferien-Stundenabzug entfernt. Sollstunden bleiben immer unverändert.
-  // Lohnkürzung erfolgt ausschließlich über _fehlzeitAbzugFaktor (unbezahlt_tage_liste).
+  // v131: Lohnkürzung erfolgt über _fehlzeitAbzugFaktor (MA-weite unbez. Tage/KK) UND
+  // _objUnbezahltStundenAbzug (objektbezogene unbezahlt_tage_liste, exakte Stunden) – beide in maOSollMA().
   // einsatz_ab / einsatz_bis: anteilige Stunden
   if (o.einsatz_ab || o.einsatz_bis) {
     const mk = monatKey || getAM();
@@ -5057,10 +5153,17 @@ function renderSollInfo(m, mk){
   const objekte = m.objekte||[];
   if(!objekte.length){ container.style.display='none'; return; }
   let html = '';
-  let gesamtSoll = 0;
+  let gesamtSollRoh = 0; // vor Fehlzeit-Abzug (nur Ein-/Austritt/Objektzeitraum beruecksichtigt)
+  let gesamtSoll = 0;    // NACH allen Abzuegen = tatsaechliches Soll (v131: nur noch EINMAL abgezogen)
   const maAbrMod = m.abrechnungsmodell||'arbeitstage';
   objekte.forEach(o=>{
-    const soll = maOSollMA(m, o, mk, maAbrMod);
+    const histO = _getHistoryObjekt(m, o.kunde, mk, o.revier) || o;
+    const basisRoh = maOSoll(histO, mk, maAbrMod);
+    const hatObjZeitraum = !!(histO && (histO.einsatz_ab || histO.einsatz_bis));
+    const aktivFaktor = hatObjZeitraum ? 1 : _maMonatAktivFaktor(m, mk);
+    const roh = Math.round(Math.max(0,basisRoh) * Math.max(0,aktivFaktor) * 100) / 100;
+    const soll = maOSollMA(m, o, mk, maAbrMod); // final, inkl. aller Fehlzeit-Abzuege
+    gesamtSollRoh += roh;
     gesamtSoll += soll;
     // Effektives Modell: MA-Ebene hat Vorrang
     const effMod = maAbrMod;
@@ -5100,6 +5203,7 @@ function renderSollInfo(m, mk){
       <span style="color:var(--text2)">⚡ Sondereinsätze</span>
       <span style="color:var(--orange);font-family:'IBM Plex Mono',monospace;font-weight:600">+${hhmm(sonderStd)}</span>
     </div>`;
+    gesamtSollRoh += sonderStd;
     gesamtSoll += sonderStd;
   }
   // Vertretungsgutschriften addieren
@@ -5112,27 +5216,34 @@ function renderSollInfo(m, mk){
       <span style="color:var(--text2)">⬆ Vertretungsgutschriften</span>
       <span style="color:var(--blue);font-family:'IBM Plex Mono',monospace;font-weight:600">+${hhmm(vtStd)}</span>
     </div>`;
+    gesamtSollRoh += vtStd;
     gesamtSoll += vtStd;
   }
   html += `<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:13px">
     <span>Gesamt Soll ${parseInt(mk.slice(5,7))}/${mk.slice(0,4)}</span>
-    <span style="color:var(--acc);font-family:'IBM Plex Mono',monospace">${hhmm(gesamtSoll)}</span>
+    <span style="color:var(--acc);font-family:'IBM Plex Mono',monospace">${hhmm(gesamtSollRoh)}</span>
   </div>`;
-  // Fehlzeit-Abzug anzeigen (unbezahlte Tage / KK-Zahlung)
-  const _fzFaktor = _fehlzeitAbzugFaktor(m, mk);
-  if (_fzFaktor < 1) {
+  // v131 FIX: Fehlzeit-Abzug wurde vorher HIER nochmal auf gesamtSoll angewendet,
+  // obwohl maOSollMA() (und damit gesamtSoll oben) den Abzug schon pro Objekt enthaelt
+  // -> doppelter Abzug. Jetzt nur noch Anzeige der Differenz (roh - netto), kein erneutes Abziehen.
+  const fehlzeitAbzug = Math.round((gesamtSollRoh - gesamtSoll) * 100) / 100;
+  if (fehlzeitAbzug > 0.01) {
     const md2 = (m.monats_daten||{})[mk]||{};
-    const arbT2 = ARBEITSTAGE[mk]||21;
-    const abgezogeneTage = Math.round((1 - _fzFaktor) * arbT2 * 10) / 10;
-    const gesamtNachAbzug = Math.round(gesamtSoll * _fzFaktor * 100) / 100;
     const fzHinweis = [];
     if (md2.unbezahlt_tage > 0) fzHinweis.push(md2.unbezahlt_tage + ' unbezahlte Tage');
     if (md2.kk_ab_datum) { const dp=md2.kk_ab_datum.split('-'); fzHinweis.push('KK ab '+dp[2]+'.'+dp[1]+'.'+dp[0]); }
+    const mkPrefix = mk.slice(0,7);
+    const objTage = new Set();
+    objekte.forEach(o=>(o.unbezahlt_tage_liste||[]).forEach(iso=>{ if(iso && iso.slice(0,7)===mkPrefix) objTage.add(o.kunde+'|'+iso); }));
+    if (objTage.size > 0) fzHinweis.push(objTage.size + ' unbez. Objekttag' + (objTage.size>1?'e':''));
     html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px">'
-      + '<span style="color:var(--red)">' + fzHinweis.join(' · ') + ' (−' + abgezogeneTage + ' AT)</span>'
-      + '<span style="color:var(--red);font-family:\'IBM Plex Mono\',monospace;font-weight:600">−' + hhmm(Math.max(0, gesamtSoll - gesamtNachAbzug)) + '</span>'
+      + '<span style="color:var(--red)">' + (fzHinweis.join(' · ')||'Fehlzeit-Abzug') + '</span>'
+      + '<span style="color:var(--red);font-family:\'IBM Plex Mono\',monospace;font-weight:600">−' + hhmm(fehlzeitAbzug) + '</span>'
+      + '</div>'
+      + '<div style="display:flex;justify-content:space-between;padding:7px 0 0;font-weight:600;font-size:13px">'
+      + '<span>Soll nach Abzug</span>'
+      + '<span style="color:var(--acc);font-family:\'IBM Plex Mono\',monospace">' + hhmm(gesamtSoll) + '</span>'
       + '</div>';
-    gesamtSoll = gesamtNachAbzug;
   }
   container.innerHTML = html;
   container.style.display = 'block';
@@ -6569,17 +6680,174 @@ const ehMA=_visMA.filter(m=>m.status==='Ausgeschieden'||!!m.austrittsdatum)
     return bd.localeCompare(ad); // neueste zuerst
   });
 
-document.getElementById('dash-c').innerHTML=`
-<div class="dcard" style="cursor:pointer" onclick="showTab('liste')" title="Zur Mitarbeiterliste"><h3>👥 Mitarbeiter</h3><div class="dbig">${_visMA.length}</div><div class="dsub">${_visMA.filter(m=>m.status==='Aktiv').length} aktiv · ${ehMA.length} ehemalig</div></div>
-<div class="dcard" style="cursor:pointer" onclick="showTab('objekte')" title="Zur Kundenliste"><h3>🏢 Kunden</h3><div class="dbig">${_visObj.length}</div><div class="dsub">${_visObj.filter(o=>!isEh(o)).length} aktiv · ${_visObj.filter(o=>isEh(o)).length} ehemalig</div></div>
-<div class="dcard" style="cursor:pointer" onclick="showKapOverModal()" title="Betroffene Mitarbeiter anzeigen"><h3>⚠ Kapazität überschritten</h3><div class="dbig" style="color:${ov>0?'var(--red)':'var(--green)'}">${ov}</div><div class="dsub">Objekte über Kapazität · Klicken für MA-Liste</div></div>
-<div class="dcard"><h3>👤 Grippo / Incecik</h3><div class="dbig" style="font-size:22px"><span style="color:var(--ol-m)">${_visMA.filter(m=>m.objektleiter==='M').length}</span> / <span style="color:var(--ol-i)">${_visMA.filter(m=>m.objektleiter==='I').length}</span></div></div><!-- FIX DASH-2: _visMA statt ma -->
-<div class="dcard"><h3>💶 Lohn/Monat (geschätzt)</h3><div class="dbig" style="font-size:22px">€ ${lohn.toLocaleString('de-DE',{maximumFractionDigits:0})}</div></div>
-<div class="dcard" style="cursor:pointer" onclick="fSt('Krank')" title="Kranke MA anzeigen"><h3>🤒 Krank (${getAMShort()})</h3><div class="dbig" style="font-size:30px;color:var(--yellow)">${krank}</div><div class="dsub">Tage · Klicken zum Filtern</div></div>
-<div class="dcard" style="cursor:pointer" onclick="fSt('Urlaub')" title="MA im Urlaub anzeigen"><h3>🏖 Urlaub (${getAMShort()})</h3><div class="dbig" style="font-size:30px;color:var(--blue)">${url}</div><div class="dsub">Tage · Klicken zum Filtern</div></div>
-<div class="dcard" style="cursor:pointer" onclick="showTab('minijob')" title="Verstetigt-Übersicht im Minijob-Tab anzeigen"><h3>🔒 Verstetigt</h3><div class="dbig" style="font-size:26px"><span style="color:var(--green)">${vBestaetigt}</span> / <span style="color:var(--muted)">${vGesamt}</span></div><div class="dsub">bestätigt / gesamt · Klicken zum Filtern</div></div>
-<div class="dcard" style="cursor:pointer" onclick="showTab('minijob')" title="DATEV-Freigabe im Minijob-Tab verwalten"><h3>📤 DATEV-Freigabe ${getAMShort()}</h3><div class="dbig" style="font-size:26px"><span style="color:${datevFreigabe===maAktiv?'var(--green)':'var(--orange)'}">${datevFreigabe}</span> / <span style="color:var(--muted)">${maAktiv}</span></div><div class="dsub">freigegeben (🟢) / aktive MA · Klicken zum Öffnen</div></div>
+// ── FIX v133: Neue Chef-Übersicht "auf einen Blick" ─────────────────
+const _heuteDate = new Date();
+const _heuteKey = `${_heuteDate.getFullYear()}-${String(_heuteDate.getMonth()+1).padStart(2,'0')}-${String(_heuteDate.getDate()).padStart(2,'0')}`;
+const _stunde = _heuteDate.getHours();
+const _gruss = _stunde<11?'Guten Morgen':(_stunde<18?'Guten Tag':'Guten Abend');
+const krankHeuteListe = _visMA.filter(m=>m.abwesenheiten?.[_heuteKey]==='krank'&&m.status!=='Ausgeschieden');
+const urlaubHeuteListe = _visMA.filter(m=>m.abwesenheiten?.[_heuteKey]==='urlaub'&&m.status!=='Ausgeschieden');
+const objUeberKap = _visObj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);return k>0&&b>k+0.5;})
+  .map(o=>({name:o.name, kap:oKapM(o.name), bel:oBel(o.name)}));
+const verstetigtOffen = Math.max(0, vGesamt - vBestaetigt);
+const datevOffen = Math.max(0, maAktiv - datevFreigabe);
+const olM = _visMA.filter(m=>m.objektleiter==='M').length;
+const olI = _visMA.filter(m=>m.objektleiter==='I').length;
+const olGesamt = (olM+olI) || 1;
+const _donutM = Math.round((olM/olGesamt)*264*100)/100;
+const _donutI = Math.round((olI/olGesamt)*264*100)/100;
 
+// Trend Krank/Urlaub letzte 6 Monate
+const _trendMk = MK.slice(Math.max(0,_amIdx-5), _amIdx+1);
+const _trendDaten = _trendMk.map(mk=>{
+  const pfx = mk+'-';
+  const k = _visMA.reduce((s,m)=>{let c=0;Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(pfx)&&t==='krank')c++;});return s+c;},0);
+  const u = _visMA.reduce((s,m)=>{let c=0;Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(pfx)&&t==='urlaub')c++;});return s+c;},0);
+  return {mk,k,u};
+});
+const _trendMax = Math.max(1, ..._trendDaten.map(d=>Math.max(d.k,d.u)));
+const _monatKurz2 = {'01':'Jan','02':'Feb','03':'Mär','04':'Apr','05':'Mai','06':'Jun','07':'Jul','08':'Aug','09':'Sep','10':'Okt','11':'Nov','12':'Dez'};
+function _trendPts(key){
+  return _trendDaten.map((d,i)=>{
+    const x = _trendDaten.length>1 ? (i/(_trendDaten.length-1))*240 : 0;
+    const y = 95 - (d[key]/_trendMax)*85;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+}
+
+// Urlaubskalender für aktiven Monat
+const [_kalJ,_kalM] = getAM().split('-').map(Number);
+const _kalTageImMonat = new Date(_kalJ,_kalM,0).getDate();
+const _kalErsterTag = new Date(_kalJ,_kalM-1,1).getDay();
+const _kalOffset = _kalErsterTag===0?6:_kalErsterTag-1;
+const _kalUrlaubTage = new Set();
+_visMA.forEach(m=>Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(t==='urlaub'&&d.startsWith(getAM()+'-'))_kalUrlaubTage.add(parseInt(d.slice(8,10)));}));
+let _kalHtml = '';
+for(let i=0;i<_kalOffset;i++) _kalHtml += `<span></span>`;
+for(let t=1;t<=_kalTageImMonat;t++){
+  const istUrlaub = _kalUrlaubTage.has(t);
+  _kalHtml += `<span style="text-align:center;font-size:11px;padding:5px 0;border-radius:6px;${istUrlaub?'background:var(--bbg);color:var(--blue);font-weight:700':'color:var(--text2)'}">${t}</span>`;
+}
+
+document.getElementById('dash-c').innerHTML=`
+<div class="dcard" style="grid-column:1/-1;padding:0;background:transparent;border:none;box-shadow:none">
+
+  <div style="margin-bottom:16px">
+    <div style="font-size:19px;font-weight:700">${_gruss}, ${_currentUser||'Chef'} 👋</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:2px">Hier ist, was heute im Unternehmen los ist.</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px">
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showTab('liste')" title="Zur Mitarbeiterliste">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--acc);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">👥</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Mitarbeiter gesamt</div>
+      <div style="font-size:22px;font-weight:700">${_visMA.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">${_visMA.filter(m=>m.status==='Aktiv').length} aktiv · ${ehMA.length} ehemalig</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="fSt('Krank')" title="Kranke MA anzeigen">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--yellow);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🤒</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Krank heute</div>
+      <div style="font-size:22px;font-weight:700">${krankHeuteListe.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">${krank} Tage im ${getAMShort()}</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="fSt('Urlaub')" title="MA im Urlaub anzeigen">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🏖</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Urlaub heute</div>
+      <div style="font-size:22px;font-weight:700">${urlaubHeuteListe.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">${url} Tage im ${getAMShort()}</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showKapOverModal()" title="Betroffene Objekte anzeigen">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">⚠</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Kapazität überschritten</div>
+      <div style="font-size:22px;font-weight:700">${objUeberKap.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Objekte</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showTab('minijob')" title="DATEV-Freigabe im Minijob-Tab">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--ol-m);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">📤</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">DATEV offen</div>
+      <div style="font-size:22px;font-weight:700">${datevOffen}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">von ${maAktiv} aktiven MA</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:12px">
+
+    <div class="dcard" style="padding:16px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:12px">Mitarbeiter nach Objektleiter</div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <svg width="96" height="96" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--s2)" stroke-width="15"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--ol-m)" stroke-width="15" stroke-dasharray="${_donutM} 264" transform="rotate(-90 55 55)"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--ol-i)" stroke-width="15" stroke-dasharray="${_donutI} 264" stroke-dashoffset="${-_donutM}" transform="rotate(-90 55 55)"/>
+          <text x="55" y="51" text-anchor="middle" font-size="17" font-weight="700" fill="var(--text)">${_visMA.length}</text>
+          <text x="55" y="66" text-anchor="middle" font-size="9" fill="var(--muted)">Gesamt</text>
+        </svg>
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:12px">
+          <div><span style="color:var(--ol-m)">●</span> Grippo <strong>${olM}</strong></div>
+          <div><span style="color:var(--ol-i)">●</span> Incecik <strong>${olI}</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dcard" style="padding:16px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:12px">Krank &amp; Urlaub – letzte ${_trendDaten.length} Monate</div>
+      <svg width="100%" height="90" viewBox="0 0 240 100" preserveAspectRatio="none">
+        <polyline points="${_trendPts('k')}" fill="none" stroke="var(--yellow)" stroke-width="2"/>
+        <polyline points="${_trendPts('u')}" fill="none" stroke="var(--blue)" stroke-width="2"/>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted)">
+        ${_trendDaten.map(d=>`<span>${_monatKurz2[d.mk.slice(5,7)]}</span>`).join('')}
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;font-size:11px">
+        <span style="color:var(--yellow)">● Krank</span><span style="color:var(--blue)">● Urlaub</span>
+      </div>
+    </div>
+
+    <div class="dcard" style="padding:16px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:12px">Aufgaben &amp; To-dos</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showTab('minijob')">
+          <span style="font-size:15px">📤</span>
+          <div><div style="font-size:12px;font-weight:600">DATEV-Freigabe fehlt</div><div style="font-size:11px;color:var(--muted)">${datevOffen} Mitarbeiter</div></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showKapOverModal()">
+          <span style="font-size:15px">⚠</span>
+          <div><div style="font-size:12px;font-weight:600">Objekte über Kapazität</div><div style="font-size:11px;color:var(--muted)">${objUeberKap.length} Objekte</div></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showTab('minijob')">
+          <span style="font-size:15px">🔒</span>
+          <div><div style="font-size:12px;font-weight:600">Verstetigt unbestätigt</div><div style="font-size:11px;color:var(--muted)">${verstetigtOffen} Zettel offen</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+
+    <div class="dcard" style="padding:16px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">Krank heute (${krankHeuteListe.length})</div>
+      ${krankHeuteListe.length ? krankHeuteListe.map(m=>`<div class="heute-entry" style="cursor:pointer" onclick="showTab('liste');setTimeout(()=>openMAM('${m.id}'),50)"><div style="flex:1"><div class="heute-entry-name">${m.nachname}${m.vorname?' '+m.vorname:''}</div><div class="heute-entry-sub">${maKu(m).join(' · ')||'Kein Objekt'}</div></div></div>`).join('') : '<div class="heute-empty">✅ Niemand krank gemeldet</div>'}
+    </div>
+
+    <div class="dcard" style="padding:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700">Urlaubsübersicht</div>
+        <div style="font-size:11px;color:var(--muted)">${getAMShort()} ${_kalJ}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:9px;color:var(--muted);text-align:center;margin-bottom:4px">
+        <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px">${_kalHtml}</div>
+    </div>
+
+    <div class="dcard" style="padding:16px;cursor:pointer" onclick="showKapOverModal()" title="Betroffene Mitarbeiter anzeigen">
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">Objekte über Kapazität (${objUeberKap.length})</div>
+      ${objUeberKap.length ? objUeberKap.map(o=>`<div class="heute-entry"><div style="flex:1"><div class="heute-entry-name">${o.name}</div></div><span class="heute-entry-badge" style="background:var(--rbg);color:var(--red)">${o.bel} / ${o.kap} Std.</span></div>`).join('') : '<div class="heute-empty">✅ Keine Überschreitung</div>'}
+    </div>
+  </div>
+
+  ${datevOffen>0 ? `<div style="background:var(--acc-l);border-radius:var(--r2);padding:12px 16px;display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;color:var(--acc-h)">ℹ️ <strong>${datevOffen}</strong> DATEV-Freigaben für ${getAMShort()} stehen noch aus.</div>` : ''}
+</div>
 
 <div class="dcard" style="grid-column:1/-1;margin-top:8px">
   <div onclick="toggleDashSection('monat-body')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
@@ -7047,9 +7315,10 @@ showAlert(`${data.length} Mitarbeiter exportiert ✓`);
 }
 function deleteTestData(){
   const vorher_ma = ma.length, vorher_obj = obj.length, vorher_kd = kunden.length;
-  const isTestMA = m => m.id === 'ma_test_001' || String(m.persnr||'').match(/^T-/i) || String(m.nachname||'').startsWith('Testmann');
-  const isTestObj = o => o.id === 'obj_test_001' || String(o.kundennummer||'').match(/^T-/i) || String(o.name||'').includes('TestKunde');
-  const isTestKD = k => String(k.kundennummer||'').match(/^T-/i) || String(k.name||'').includes('TestKunde');
+  // FIX v134: nur noch exakte Test-IDs/-Namen – Persnr/Kd-Nr "T-…" traf potenziell echte Daten
+  const isTestMA = m => m.id === 'ma_test_001' || String(m.nachname||'').startsWith('Testmann');
+  const isTestObj = o => o.id === 'obj_test_001' || String(o.name||'').includes('TestKunde');
+  const isTestKD = k => String(k.name||'').includes('TestKunde');
   ma = ma.filter(m => !isTestMA(m));
   obj = obj.filter(o => !isTestObj(o));
   kunden = kunden.filter(k => !isTestKD(k));
@@ -7095,9 +7364,9 @@ function deleteTestData(){
   const gel_obj = vorher_obj - obj.length;
   const gel_kd = vorher_kd - kunden.length;
   if(gel_ma === 0 && gel_obj === 0 && gel_kd === 0 && removed.length === 0) return;
-  if(_token) safeSaveAll();
+  // FIX v134: kein safeSaveAll mehr beim Start – Bereinigung nur lokal/Anzeige.
   render();
-  console.log(`Testdaten bereinigt: ${gel_ma} MA, ${gel_obj} Obj, ${gel_kd} Kunden`);
+  console.log(`Testdaten bereinigt (nur lokal): ${gel_ma} MA, ${gel_obj} Obj, ${gel_kd} Kunden`);
 }
 function exportMAExcel() {
   _loadSheetJS(() => {
