@@ -2695,10 +2695,8 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
 
   // 2) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
   if (md.kk_ab_datum) {
-    // FIX v134: lokal parsen statt new Date('YYYY-MM-DD') (UTC-Shift verlor den letzten Monatstag)
-    const _kkP = String(md.kk_ab_datum).slice(0,10).split('-').map(Number);
-    const kkAb = new Date(_kkP[0], (_kkP[1]||1)-1, _kkP[2]||1);
-    if (_kkP[0] && _kkP[1] && _kkP[2] && !isNaN(kkAb.getTime())) {
+    const kkAb = new Date(md.kk_ab_datum);
+    if (!isNaN(kkAb.getTime())) {
       const monatStart = new Date(y, mo - 1, 1);
       const monatEnde  = new Date(y, mo, 0);
       const vonDatum = kkAb < monatStart ? monatStart : kkAb;
@@ -4281,6 +4279,11 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
     ${o.kunde?`<div class="kap-hint ${hc}" style="margin:0">${kap>0?`📊 Kap: <strong>${kap}h</strong> · mit MA: <strong>${belNeu}h (${pct}%)</strong>${pct>100?' ⚠':' ✓'}`:`ℹ keine Kapazität. <button class="btn-i btn-sm" onclick="openOMfromMAM('${o.kunde}')">Eintragen</button>`}</div>`:''}
   </div>
 </div>
+<!-- FIX v134: Nachtarbeit-Flag fuer Nachtzuschlag 1500/1502 -->
+<label style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);margin-bottom:6px;cursor:pointer;user-select:none">
+  <input type="checkbox" ${o.nachtarbeit?'checked':''} onchange="mao[${i}].nachtarbeit=this.checked" style="width:15px;height:15px;accent-color:var(--acc);cursor:pointer">
+  🌙 Nachtarbeit (20–6 Uhr) <span style="color:var(--muted)">– Stunden zählen für Nachtzuschlag (LA 1500/1502)</span>
+</label>
 <!-- 14-Tage Startdatum (nur wenn Modell=14tage) -->
 ${o.modell==='14tage'?`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:11px">
   <span style="color:var(--muted)">Startdatum:</span>
@@ -7315,10 +7318,9 @@ showAlert(`${data.length} Mitarbeiter exportiert ✓`);
 }
 function deleteTestData(){
   const vorher_ma = ma.length, vorher_obj = obj.length, vorher_kd = kunden.length;
-  // FIX v134: nur noch exakte Test-IDs/-Namen – Persnr/Kd-Nr "T-…" traf potenziell echte Daten
-  const isTestMA = m => m.id === 'ma_test_001' || String(m.nachname||'').startsWith('Testmann');
-  const isTestObj = o => o.id === 'obj_test_001' || String(o.name||'').includes('TestKunde');
-  const isTestKD = k => String(k.name||'').includes('TestKunde');
+  const isTestMA = m => m.id === 'ma_test_001' || String(m.persnr||'').match(/^T-/i) || String(m.nachname||'').startsWith('Testmann');
+  const isTestObj = o => o.id === 'obj_test_001' || String(o.kundennummer||'').match(/^T-/i) || String(o.name||'').includes('TestKunde');
+  const isTestKD = k => String(k.kundennummer||'').match(/^T-/i) || String(k.name||'').includes('TestKunde');
   ma = ma.filter(m => !isTestMA(m));
   obj = obj.filter(o => !isTestObj(o));
   kunden = kunden.filter(k => !isTestKD(k));
@@ -7364,9 +7366,9 @@ function deleteTestData(){
   const gel_obj = vorher_obj - obj.length;
   const gel_kd = vorher_kd - kunden.length;
   if(gel_ma === 0 && gel_obj === 0 && gel_kd === 0 && removed.length === 0) return;
-  // FIX v134: kein safeSaveAll mehr beim Start – Bereinigung nur lokal/Anzeige.
+  if(_token) safeSaveAll();
   render();
-  console.log(`Testdaten bereinigt (nur lokal): ${gel_ma} MA, ${gel_obj} Obj, ${gel_kd} Kunden`);
+  console.log(`Testdaten bereinigt: ${gel_ma} MA, ${gel_obj} Obj, ${gel_kd} Kunden`);
 }
 function exportMAExcel() {
   _loadSheetJS(() => {
@@ -8820,6 +8822,7 @@ function exportDatevLohnarten() {
 
     lasToProcess.forEach(la => {
       const laKey = la.trim();
+      const laLogik = _laLogikKey(laKey); // FIX v134: 1510/1511/2009 -> 2004/2005/2003
       // FIX v96: Lohnart 2206 (Verstetigter Aushilfslohn) NIEMALS per Bewegungsdaten exportieren.
       if (laKey === '2206') return;
       // Map<kst, stunden> – spaeter pro Eintrag eine Zeile
@@ -8857,8 +8860,8 @@ function exportDatevLohnarten() {
             if (hO > 0) add(_kstFuerObjekt(o), hO);
           });
         }
-      } else if (laKey.startsWith('2003')) {
-        // 2003 = Feiertagslohn: Stunden an echten Feiertagen, pro Objekt-KST getrennt
+      } else if (laLogik.startsWith('2003')) {
+        // 2003/2009 = Feiertagszuschlag 80% frei: Stunden an echten Feiertagen, pro Objekt-KST getrennt
         // 14-Tage-Fix: Nur Stunden zaehlen, wenn Feiertag in echten Einsatzblock faellt
         // FIX v106: Feiertage, die auf einen Sonntag fallen, werden NICHT als 2003 gezaehlt
         //           (dort greifen stattdessen 2004 + 2005 als Sonntagszuschlaege).
@@ -8903,8 +8906,8 @@ function exportDatevLohnarten() {
           }
           add(kstO, hO);
         });
-      } else if (laKey.startsWith('2004')) {
-        // FIX v106: 2004 = Sonntagszuschlag 50% steuerfrei.
+      } else if (laLogik.startsWith('2004')) {
+        // FIX v106: 2004/1510 = Sonntagszuschlag 50% steuerfrei.
         // Export als STUNDEN (Sonntagsstunden aus Wochentage-Tabelle * Anzahl Sonntage).
         // Analog zu 2005, aber als Stunden statt EUR.
         (m.objekte||[]).forEach(o => {
@@ -8938,8 +8941,8 @@ function exportDatevLohnarten() {
           }
           add(kstO, hO);
         });
-      } else if (laKey.startsWith('2005')) {
-        // FIX v103: 2005 = Sonntagszuschlag 30% pflichtig
+      } else if (laLogik.startsWith('2005')) {
+        // FIX v103: 2005/1511 = Sonntagszuschlag 30% pflichtig
         // Export als EUR-BETRAG (Stunden * Objekt-Stundenlohn), nicht als Stunden.
         // Grund: In DATEV ist 2005 als EUR-Lohnart angelegt, der 30%-Satz wird
         // dort als Aufschlag berechnet. Romano uebergibt den Grundbetrag.
@@ -8972,6 +8975,25 @@ function exportDatevLohnarten() {
           }
           if (hO > 0 && slO > 0) {
             addEur(kstO, hO * slO);
+          }
+        });
+      } else if (laLogik.startsWith('1500') || laLogik.startsWith('1502')) {
+        // FIX v134: Nachtzuschlag – Stunden aller Objekte mit Nachtarbeit-Flag.
+        // 1500 = 25% frei -> Export als Std (DATEV rechnet den Zuschlag).
+        // 1502 = 5% pflichtig -> Export als EUR-Grundbetrag (Std x Objekt-Lohn),
+        //        analog 2005/1511: DATEV berechnet den Prozentsatz aus dem Grundbetrag.
+        // Nachtstunden = ALLE Soll-Stunden des Objekts (Flag "nachtarbeit" im MA-Formular).
+        const abrN = m.abrechnungsmodell || 'arbeitstage';
+        (m.objekte||[]).forEach(o => {
+          if (!o.nachtarbeit) return;
+          const hO = maOSollMA(m, o, monat, abrN);
+          if (hO <= 0) return;
+          const kstO = _kstFuerObjekt(o);
+          if (laLogik.startsWith('1502')) {
+            const slO = parseFloat(o.stundenlohn) || 0;
+            if (slO > 0) addEur(kstO, hO * slO);
+          } else {
+            add(kstO, hO);
           }
         });
       } else {
@@ -9098,6 +9120,21 @@ function exportDatevLohnarten() {
 //
 // Zuschlags-Lohnarten (2003/2004/2005/2199) werden von dieser Zuordnung
 // NICHT beruehrt - sie gelten immer fuer alle Objekte des MA.
+// ── FIX v134: Lohnart-Aliase Festangestellte ──────────────────────────────
+// Zuschlags-Lohnarten fuer SV-pflichtige MA (Konto 6010) nutzen dieselbe
+// Berechnungslogik wie die Aushilfen-Pendants (Konto 6035):
+//   1510 -> 2004 (Sonntagszuschlag 50% frei, Export als Std)
+//   1511 -> 2005 (Sonntagszuschlag 30% pflichtig, Export als EUR-Grundbetrag)
+//   2009 -> 2003 (Feiertagszuschlag 80% frei, Export als Std)
+// Exportiert wird IMMER die Original-Nummer (Spalte 4), nur die Logik teilt sich.
+// NEU v134: Nachtzuschlag (Objekt-Flag "nachtarbeit" im MA-Formular noetig):
+//   1500 = Nachtzuschlag 25% frei (Export als Std)
+//   1502 = Nachtzuschlag 5% pflichtig (Export als EUR-Grundbetrag)
+const _LA_ALIAS = { '1510':'2004', '1511':'2005', '2009':'2003' };
+function _laLogikKey(code){
+  const c = String(code||'').trim();
+  return _LA_ALIAS[c.slice(0,4)] || c;
+}
 function _isGrundLohnart(code) {
   const c = String(code||'').trim();
   // Zuschlaege und Aushilflohn sind KEINE Grundlohnarten
@@ -9105,6 +9142,12 @@ function _isGrundLohnart(code) {
   if (c.startsWith('2004')) return false;
   if (c.startsWith('2005')) return false;
   if (c.startsWith('2006')) return false;
+  // FIX v134: Zuschlags-Lohnarten Festangestellte + Nachtzuschlag
+  if (c.startsWith('1500')) return false;
+  if (c.startsWith('1502')) return false;
+  if (c.startsWith('1510')) return false;
+  if (c.startsWith('1511')) return false;
+  if (c.startsWith('2009')) return false;
   if (c === '2199') return false;
   if (c === '2206') return false; // Verstetigt: Festbetrag in DATEV-Stammdaten
   return true;
@@ -9153,6 +9196,11 @@ const _LA_LABELS = {
   '1000': 'Lohn SV-pflichtig',
   '1001': 'Lohn Festbetrag',
   '1102': 'Lohn SV-pflichtig (2. Satz)',
+  '1500': 'Nachtzuschlag 25% frei',
+  '1502': 'Nachtzuschlag 5% pflichtig',
+  '1510': 'Sonntagszuschlag 50% frei (fest)',
+  '1511': 'Sonntagszuschlag 30% pflichtig (fest)',
+  '2009': 'Feiertagszuschlag 80% frei (fest)',
   '2003': 'Feiertagszuschlag 80% frei',
   '2004': 'Sonntagszuschlag 50% frei',
   '2005': 'Sonntagszuschlag 30% pflichtig',
@@ -9261,6 +9309,7 @@ function _buildDatevControlRows() {
 
     lasToProcess.forEach(la => {
       const laCode = la.trim();
+      const laLogikC = _laLogikKey(laCode); // FIX v134
       // Map<kst, {stunden, kundeName, kunden:Set, slSum, slCount, notizen:Set}>
       const bucket = new Map();
       const addBucket = (kst, kundeName, h, sl, notiz) => {
@@ -9294,7 +9343,15 @@ function _buildDatevControlRows() {
             if (hO > 0) addBucket(_kstFuerObjekt(o), _kundeFuerObjekt(o), hO, _slFuerObjekt(o), '');
           });
         }
-      } else if (laCode.startsWith('2003') || laCode.startsWith('2004') || laCode.startsWith('2005')) {
+      } else if (laLogikC.startsWith('1500') || laLogikC.startsWith('1502')) {
+        // FIX v134: Nachtzuschlag in Kontroll-Liste (analog Export-Logik)
+        const abrN = m.abrechnungsmodell || 'arbeitstage';
+        (m.objekte||[]).forEach(o => {
+          if (!o.nachtarbeit) return;
+          const hO = maOSollMA(m, o, monat, abrN);
+          if (hO > 0) addBucket(_kstFuerObjekt(o), _kundeFuerObjekt(o), hO, _slFuerObjekt(o), 'Nachtarbeit');
+        });
+      } else if (laLogikC.startsWith('2003') || laLogikC.startsWith('2004') || laLogikC.startsWith('2005')) {
         (m.objekte||[]).forEach(o => {
           const wt = o.wochentage || {};
           const kstO = _kstFuerObjekt(o);
@@ -9302,7 +9359,7 @@ function _buildDatevControlRows() {
           const slO  = _slFuerObjekt(o);
           let hO = 0;
 
-          if (laCode.startsWith('2005')) {
+          if (laLogikC.startsWith('2005')) {
             const stdSoWT = parseFloat(wt?.So) || 0;
             if (stdSoWT <= 0) return;
             if (o.modell === '14tage' && o.rhythmus_start) {
@@ -9325,7 +9382,7 @@ function _buildDatevControlRows() {
                 if (_maAnwesendAm(m, soDate) && _objAktivAm(o, soDate)) hO += stdSoWT;
               });
             }
-          } else if (laCode.startsWith('2004')) {
+          } else if (laLogikC.startsWith('2004')) {
             // FIX v106: 2004 = Sonntagsstunden (analog 2005 aber als Stunden)
             const stdSoWT = parseFloat(wt?.So) || 0;
             if (stdSoWT <= 0) return;
@@ -9427,9 +9484,12 @@ function _buildDatevControlRows() {
         //  - 2003 (Feiertag 80% frei) / 2004 (Sonntag 50% frei): steuerfrei, DATEV rechnet -> kein Betrag anzeigen
         //  - 2005 (Sonntag 30% pflichtig): Betrag = stunden*slAvg (EUR-Lohnart im Export)
         //  - 1000/1102/2199/2206 und andere: stunden*slAvg anzeigen
-        const ist2003 = laCode.startsWith('2003');
-        const ist2004 = laCode.startsWith('2004');
-        const betrag = (ist2003 || ist2004) ? 0 : r2(stunden * slAvg);
+        // FIX v134: via Logik-Key, damit 2009/1510 wie 2003/2004 behandelt werden.
+        // Steuerfreie Std-Zuschlaege (2003/2009, 2004/1510, 1500): DATEV rechnet -> kein Betrag.
+        // EUR-Basis-Zuschlaege (2005/1511, 1502): Betrag = Grundbetrag (Std x Lohn).
+        const _lg = _laLogikKey(laCode);
+        const istStdFrei = _lg.startsWith('2003') || _lg.startsWith('2004') || _lg.startsWith('1500');
+        const betrag = istStdFrei ? 0 : r2(stunden * slAvg);
 
         out.push({
           persnr: m.persnr || '',
