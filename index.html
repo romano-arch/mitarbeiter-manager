@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v134</title>
+<title>MitarbeiterManager v140</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -143,11 +143,13 @@ code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;bord
 .kal-day.kal-sonntag{background:#DC2626;border-color:#DC2626;color:#fff;font-weight:700}
 .kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}
 .kal-day.kal-krank{background:#DC2626;border-color:#991b1b;color:#fff;font-weight:700}
+.kal-day.kal-unbezahlt{background:#e5e7eb;border-color:#9ca3af;color:#374151;font-weight:600}
 .kal-legend{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}
 .kal-leg-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:3px 9px;border-radius:5px;border:2px solid var(--border);transition:all .12s;background:var(--white);font-size:11px}
 .kal-leg-item:hover{border-color:var(--acc)}
 .kal-leg-u.active{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}
 .kal-leg-k.active{background:#DC2626;border-color:#991b1b;color:#fff;font-weight:600}
+.kal-leg-ub.active{background:#e5e7eb;border-color:#6b7280;color:#374151;font-weight:600}
 .kal-leg-clr{background:var(--s1);border-color:var(--border);color:var(--muted)}
 .kal-leg-clr:hover{border-color:var(--red);color:var(--red)}
 .kal-dot{width:9px;height:9px;border-radius:50%}
@@ -772,6 +774,58 @@ body.lock-active main{margin-top:46px}
 .heb-offen{background:var(--rbg);color:var(--red);border:1px solid var(--rbd)}
 .heb-ss{background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe}
 .heute-empty{color:var(--muted2);font-size:12px;padding:12px 0;text-align:center}
+/* ── v140: Urlaub – Ebene 1 Jahres-Heatmap ── */
+.uhm-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;box-shadow:var(--sh);overflow:auto}
+.uhm-grid{display:grid;grid-template-columns:230px minmax(430px,1fr) 168px;font-size:12px;min-width:840px}
+.uhm-head{position:sticky;top:0;z-index:2;background:var(--s1);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;padding:7px 10px;border-bottom:1px solid var(--border)}
+.uhm-mon{display:grid;grid-template-columns:repeat(12,1fr);padding:0}
+.uhm-mon>div{padding:7px 0;text-align:center;border-left:1px solid var(--border)}
+.uhm-olrow{grid-column:1/-1;padding:6px 10px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.uhm-row{display:contents;cursor:pointer}
+.uhm-row:hover>div{background-color:var(--acc-l)}
+.uhm-name{padding:0 10px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--s2);height:32px;white-space:nowrap;overflow:hidden;cursor:pointer}
+.uhm-name strong{font-weight:600;font-size:12px}
+.uhm-strip{position:relative;border-bottom:1px solid var(--s2);height:32px;cursor:pointer;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/12 - 1px),var(--s2) calc(100%/12 - 1px),var(--s2) calc(100%/12))}
+.uhm-seg{position:absolute;top:9px;height:14px;border-radius:3px;min-width:3px}
+.uhm-seg.u{background:#3b82f6}
+.uhm-seg.k{background:#f59e0b}
+.uhm-seg.ub{background:#64748b}
+.uhm-seg.na{top:5px;height:22px;border-radius:0;background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 3px,#f3f4f6 3px,#f3f4f6 6px);opacity:.75;min-width:0}
+.uhm-heute{position:absolute;top:0;bottom:0;width:2px;background:var(--red);opacity:.55;z-index:1}
+.uhm-sum{padding:0 8px;display:flex;align-items:center;gap:5px;border-bottom:1px solid var(--s2);height:32px;cursor:pointer}
+.uhm-b{border-radius:4px;padding:1px 6px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;white-space:nowrap}
+.uhm-bu{background:var(--bbg);color:var(--blue)}
+.uhm-bk{background:var(--ybg);color:#b45309}
+.uhm-br{background:var(--gbg);color:var(--green)}
+.uhm-br.neg{background:var(--rbg);color:var(--red)}
+/* ── v140: Urlaub – Ebene 2 Einzel-MA Jahresansicht ── */
+.uhm-mongrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:10px}
+.mkal{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:10px 12px;box-shadow:var(--sh)}
+.mkal h4{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:7px;display:flex;justify-content:space-between}
+.mkal h4 span{color:var(--muted);font-weight:400;font-family:'IBM Plex Mono',monospace;font-size:10px}
+.mk-t{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px}
+.mk-t .wd{color:var(--muted2);text-align:center;font-size:8px;text-transform:uppercase}
+.mk-d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:4px;font-family:'IBM Plex Mono',monospace;color:var(--text2);cursor:pointer}
+.mk-d:hover{outline:1px solid var(--acc)}
+.mk-d.we{color:var(--muted2);background:var(--s1)}
+.mk-d.ft{background:var(--rbg);color:var(--red)}
+.mk-d.u{background:#3b82f6;color:#fff;font-weight:700}
+.mk-d.k{background:#f59e0b;color:#fff;font-weight:700}
+.mk-d.ub{background:#64748b;color:#fff;font-weight:700}
+.mk-d.na{background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 2px,#f3f4f6 2px,#f3f4f6 4px);color:var(--muted2)}
+.mk-d.heute{outline:2px solid var(--red);outline-offset:-2px}
+.det-kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:6px 13px;text-align:center;box-shadow:var(--sh)}
+.det-kpi .v{font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace}
+.det-kpi .l{font-size:10px;color:var(--muted)}
+/* ── v140: Minijob-Monitor (Modal-Tabelle) ── */
+.mjt{width:100%;border-collapse:collapse;font-size:13px}
+.mjt th{padding:7px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);background:var(--s1);white-space:nowrap}
+.mjt td{padding:8px 10px;border-bottom:1px solid var(--s2);vertical-align:middle}
+.mjt tr.mj-klick:hover td{background:var(--acc-l);cursor:pointer}
+.mj-ampel{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+.mj-bar{position:relative;height:8px;background:var(--s2);border-radius:5px;min-width:130px}
+.mj-bar>i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--green)}
+.mj-bar>b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--muted2);left:85%}
 .kal-arch{margin-top:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:18px;box-shadow:var(--sh)}
 .kal-arch-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .kal-arch-title{font-size:15px;font-weight:700;color:var(--text)}
@@ -919,7 +973,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v134</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v140</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -932,10 +986,9 @@ main{padding:14px 16px}
 <button class="tab" data-tab="heute" onclick="showTab('heute')" type="button"><span class="tab-icon">🔴</span><span class="tab-lbl">Heute</span></button>
 <button class="tab active" data-tab="liste" onclick="showTab('liste')" type="button"><span class="tab-icon">📋</span><span class="tab-lbl">Mitarbeiter</span></button>
 <button class="tab" data-tab="urlaub" onclick="showTab('urlaub')" type="button"><span class="tab-icon">🏖</span><span class="tab-lbl">Urlaub</span></button>
-<button class="tab" data-tab="minijob" onclick="showTab('minijob')" type="button"><span class="tab-icon">💼</span><span class="tab-lbl">Minijob</span></button>
 <button class="tab" data-tab="dashboard" onclick="showTab('dashboard')" type="button"><span class="tab-icon">📈</span><span class="tab-lbl">Übersicht</span></button>
 <button class="tab" data-tab="objekte" onclick="showTab('objekte')" type="button"><span class="tab-icon">🏢</span><span class="tab-lbl">Kunden</span></button>
-<button class="tab" data-tab="statistik" onclick="showTab('statistik')" type="button"><span class="tab-icon">📊</span><span class="tab-lbl">Statistik</span></button><button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button><div style="flex:1"></div>
+<button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button><div style="flex:1"></div>
 </nav><main role="main"><div class="sec active" id="tab-liste"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Name, Nr., Kunde..." id="search" oninput="renderDebounced()" aria-label="Mitarbeiter suchen" autocomplete="off"></div><div class="filter-wrap"><button class="filter-btn" id="fp-btn" onclick="toggleFP()" type="button">▾ Filter <span class="filter-badge" id="fp-badge">0</span></button><div class="filter-panel" id="fp-panel"><span class="fp-label">Status</span><select class="fsel" id="f-status" onchange="render();updateFP()" style="width:100%"><option value="">Alle Status</option><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select><span class="fp-label">Objektleiter</span><select class="fsel" id="f-ol" onchange="render();updateFP()" style="width:100%"><option value="">Alle OL</option><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select><span class="fp-label">Kunde</span><select class="fsel" id="f-kunde" onchange="render();updateFP()" style="width:100%"><option value="">Alle Kunden</option></select><button class="fp-reset" onclick="resetFP()">↺ Zurücksetzen</button></div></div><div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);padding:3px 6px;box-shadow:var(--sh)">
   <button onclick="amNav(-1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Vorheriger Monat">◀</button>
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
@@ -948,15 +1001,8 @@ main{padding:14px 16px}
 <div class="sec" id="tab-heute"><div id="heute-c"></div></div>
 <div class="sec" id="tab-urlaub"><div id="urlaub-c"></div></div>
 <div class="sec" id="tab-dashboard">
-<div id="dash-subtabs" style="display:flex;gap:8px;border-bottom:1px solid var(--border);margin-bottom:14px">
-  <button type="button" id="dsub-dashboard" onclick="dashSetSub('dashboard')" style="background:none;border:none;border-bottom:2px solid var(--acc);color:var(--text);font-weight:700;font-size:14px;padding:8px 6px;cursor:pointer;font-family:inherit">📊 Dashboard</button>
-  <button type="button" id="dsub-abrechnung" onclick="dashSetSub('abrechnung')" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-weight:500;font-size:14px;padding:8px 6px;cursor:pointer;font-family:inherit">⚡ Sondereinsätze abrechnen <span id="dsub-abr-badge" style="display:none;font-size:11px;font-weight:600;background:#f5f3ff;color:#7c3aed;border-radius:10px;padding:1px 7px;margin-left:2px"></span></button>
-</div>
 <div class="dgrid" id="dash-c"></div>
-<div id="dash-abr-c" style="display:none"></div>
 </div>
-<div class="sec" id="tab-minijob"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px"><div style="font-size:17px;font-weight:700;color:var(--text)">💼 Minijob-Übersicht</div><div style="font-size:12px;color:var(--muted)">Zeitjahr ab Eintrittsdatum · Krankheitsvertretungs-Ausnahme</div></div><div id="minijob-list"></div></div>
-<div class="sec" id="tab-statistik"><div id="statistik-c" style="padding:4px 0"></div></div>
 <div class="sec" id="tab-admin"><div style="padding:24px">
 
 <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">📋 Änderungsprotokoll</div>
@@ -1235,6 +1281,7 @@ main{padding:14px 16px}
         <span style="font-size:11px;color:var(--muted)">Modus:</span>
         <div class="kal-leg-item kal-leg-u active" id="kal-mode-u" onclick="kalSetMode('urlaub')">🏖 Urlaub</div>
         <div class="kal-leg-item kal-leg-k" id="kal-mode-k" onclick="kalSetMode('krank')">🤒 Krank</div>
+        <div class="kal-leg-item kal-leg-ub" id="kal-mode-ub" onclick="kalSetMode('unbezahlt')">🚫 Unbezahlt</div>
         <div class="kal-leg-item kal-leg-clr" onclick="kalSetMode('clear')">✕</div>
       </div>
       <div class="kal-grid" id="kal-grid"></div>
@@ -1242,19 +1289,8 @@ main{padding:14px 16px}
     </div>
     <!-- URLAUBSANSPRUCH-BOX -->
     <div id="urlaub-anspruch-box" style="margin-top:12px;background:var(--acc-l);border:1px solid #bfdbfe;border-radius:var(--r);padding:11px 14px;">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--acc);margin-bottom:8px">🏖 Resturlaub</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)">
-          <span id="urlaub-result" style="font-size:15px;font-weight:700;color:var(--acc);font-family:'IBM Plex Mono',monospace">–</span>
-          <span style="color:var(--muted)">Anspruch</span>
-          <span style="color:var(--muted)">−</span>
-          <span id="urlaub-genommen" style="font-size:15px;font-weight:700;color:var(--blue);font-family:'IBM Plex Mono',monospace">0</span>
-          <span style="color:var(--muted)">genommen</span>
-          <span style="color:var(--muted)">=</span>
-          <span id="urlaub-rest" style="font-size:15px;font-weight:700;color:var(--green);font-family:'IBM Plex Mono',monospace">–</span>
-          <span style="color:var(--muted)">Rest</span>
-        </div>
-      </div>
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--acc);margin-bottom:8px">🏖 Resturlaub <span id="urlaub-box-jahr"></span></div>
+      <div id="urlaub-box-rows"></div>
       <div id="urlaub-formel" style="display:none"></div>
     </div>
   </div>
@@ -1540,6 +1576,7 @@ let _token = null;          // JWT der aktuellen Sitzung
 let _currentUser = null;    // Anzeigename aus user_profiles.name
 let _currentRolle = null;   // 'superadmin' | 'admin' | 'ol'
 let _currentKuerzel = null; // nur OL: 'I' (Incecik) / 'M' (Grippo)
+let _currentEmail = null;   // FIX v135: Login-E-Mail (Sichtbarkeit Urlaubs-Uebertrag)
 
 // Token bei jeder Auth-Aenderung (Login, Auto-Refresh, Logout) aktuell halten
 supaClient.auth.onAuthStateChange((_event, session) => {
@@ -2018,6 +2055,7 @@ async function doLoginUI() {
       return;
     }
     _token = data.session.access_token;
+    _currentEmail = ((data.user && data.user.email) || '').toLowerCase(); // FIX v135
     // 2) Rolle + Anzeigename aus user_profiles laden
     const ok = await loadProfile(data.user.id);
     if (!ok) {
@@ -2060,7 +2098,7 @@ function showLoginErr(msg) {
 async function doLogout() {
   if (!confirm('Wirklich abmelden?')) return;
   try { await supaClient.auth.signOut(); } catch(e) {}
-  _token = null; _currentUser = null; _currentRolle = null; _currentKuerzel = null;
+  _token = null; _currentUser = null; _currentRolle = null; _currentKuerzel = null; _currentEmail = null;
   // Priorität 3: alle Sitzungsdaten leeren (Auth-Session liegt in sessionStorage).
   // Hinweis: das Änderungsprotokoll ('mm_aenderungslog') bleibt absichtlich erhalten
   // (Audit-Trail; liegt ohnehin auch in Supabase).
@@ -2235,6 +2273,7 @@ document.addEventListener('DOMContentLoaded', async function autoLogin() {
     return;
   }
   _token = session.access_token;
+  _currentEmail = ((session.user && session.user.email) || '').toLowerCase(); // FIX v135
   const ok = await loadProfile(session.user.id);
   if (!ok) {
     try { await supaClient.auth.signOut(); } catch(e) {}
@@ -3001,7 +3040,7 @@ if(m.minijob){
   else if(mjs.jahresLohn>MINIJOB_MAX_JAHR*0.85){bBg='var(--ybg)';bBd='#fcd34d';bCol='var(--yellow)';bTxt='💼 ~'+Math.round(mjs.jahresLohn/mjs.jahresGrenze*100)+'%';}
   else{bBg='var(--gbg)';bBd='var(--gbd)';bCol='var(--green)';bTxt='💼 ✅';}
   const title=`Minijob – ${mjs.jahresLohn.toFixed(0)}€ / ${mjs.jahresGrenze}€ Zeitjahr`;
-  feb.push(`<span title="${title}" style="font-size:11px;padding:2px 6px;border-radius:10px;font-weight:600;background:${bBg};border:1px solid ${bBd};color:${bCol};cursor:pointer" onclick="event.stopPropagation();showTab('minijob')">${bTxt}</span>`);
+  feb.push(`<span title="${title}" style="font-size:11px;padding:2px 6px;border-radius:10px;font-weight:600;background:${bBg};border:1px solid ${bBd};color:${bCol};cursor:pointer" onclick="event.stopPropagation();showMinijobModal()">${bTxt}</span>`);
 }
 // Arbeitstage-Badge
 if(m.abrechnungsmodell==='arbeitstage'){
@@ -3969,6 +4008,63 @@ function calcUrlaubTage(m) {
   return Math.min(28 + jahre, 30);
 }
 
+// ── FIX v135: Volle Beschaeftigungsmonate (jahrestagsgenau, §4/§5 BUrlG) ──
+// Eintritt 13.07. -> Monate laufen 13.07.-12.08., 13.08.-12.09. usw.
+// Eintritt 01.07. -> Monate = Kalendermonate (01.-31.07. usw.)
+function _addMonateClamped(d, n) {
+  const day = d.getDate();
+  const t = new Date(d.getFullYear(), d.getMonth() + n, 1);
+  const last = new Date(t.getFullYear(), t.getMonth() + 1, 0).getDate();
+  t.setDate(Math.min(day, last));
+  return t;
+}
+function _volleMonate(S, E) {
+  if (!(S instanceof Date) || !(E instanceof Date) || isNaN(S.getTime()) || isNaN(E.getTime()) || E < S) return 0;
+  let n = 0;
+  while (n < 12) {
+    const ende = new Date(_addMonateClamped(S, n + 1).getTime() - 86400000);
+    if (ende <= E) n++; else break;
+  }
+  return n;
+}
+
+// FIX v135: Urlaubs-Uebertrag aus dem Vorjahr (§7 Abs. 3 BUrlG, Stichtag 31.03.)
+// Rueckgabe null wenn kein Uebertrag existiert. Verfall wird NUR markiert,
+// nicht automatisch abgezogen (EuGH: Verfall setzt Hinweis des AG voraus).
+function _urlaubUebertrag(m, jahr, teilzeit, sollMonate, ferienMonate, heuteISO) {
+  // FIX v137: MM-Erfassung beginnt 2026 – Urlaube davor sind nicht erfasst,
+  // daher erster gueltiger Uebertrag 2026 → 2027 (Anzeige ab Jahr 2027)
+  if (jahr <= 2026) return null;
+  const prev = jahr - 1;
+  let s = new Date(prev, 0, 1), e = new Date(prev, 11, 31);
+  const ein = m.eintrittsdatum ? new Date(m.eintrittsdatum) : null;
+  const aus = m.austrittsdatum ? new Date(m.austrittsdatum) : null;
+  if (ein && !isNaN(ein.getTime()) && ein > s) s = ein;
+  if (aus && !isNaN(aus.getTime()) && aus < e) e = aus;
+  const rohM = _volleMonate(s, e);
+  if (rohM <= 0) return null; // im Vorjahr nicht (voll) beschaeftigt
+  let anspruchRoh;
+  if (rohM < 12) {
+    const fa = ferienMonate * (rohM / 12);
+    const bm = Math.max(1, Math.min(rohM - fa, sollMonate));
+    anspruchRoh = teilzeit / 12 * bm;
+  } else {
+    anspruchRoh = teilzeit / 12 * sollMonate;
+  }
+  const dz = anspruchRoh - Math.floor(anspruchRoh);
+  const anspruchPrev = dz >= 0.5 ? Math.ceil(anspruchRoh) : Math.floor(anspruchRoh);
+  const genPrev = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => d.startsWith(prev + '-') && t === 'urlaub').length;
+  const uebertrag = Math.max(0, anspruchPrev - genPrev);
+  if (uebertrag <= 0) return null;
+  // Verbrauchsreihenfolge: Urlaub Jan-Maerz zaehlt zuerst gegen den Uebertrag
+  const stichtag = jahr + '-03-31';
+  const verbrJanMrz = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => t === 'urlaub' && d >= jahr + '-01-01' && d <= stichtag).length;
+  const verbraucht = Math.min(uebertrag, verbrJanMrz);
+  const rest = uebertrag - verbraucht;
+  const verfallen = (heuteISO > stichtag) ? rest : 0;
+  return { anspruchPrev, genPrev, uebertrag, verbraucht, rest, verfallen };
+}
+
 function calcUrlaubAnspruch() {
   // Arbeitstage/Woche aus mao[] ableiten: welche Wochentage haben Stunden > 0?
   const aktiveTage = new Set();
@@ -4027,62 +4123,121 @@ function calcUrlaubAnspruch() {
     schulText = `Schulferien: −${Math.round(ferienMonate*10)/10} Mon. → ${Math.round(aktiveMonate*10)/10} aktive Monate`;
   }
 
-  // FIX v91: Pro-Rata fuer Eintritt UND Austritt – und dynamisches Jahr
-  // (vorher nur Eintritt 2026 beruecksichtigt, Austritt ignoriert)
+  // FIX v135: Pro-Rata mit VOLLEN Beschaeftigungsmonaten (§4/§5 BUrlG)
+  // Eintritt nach dem 1. -> Eintrittsmonat zaehlt nicht mit; Monate laufen
+  // jahrestagsgenau. Eintritt 13.07. => Aug-Anteil erst am 12.08. erdient.
   const _jahr = parseInt(getAM().slice(0,4));
   const _ausStr = document.getElementById('f-aus')?.value || '';
-  // Beschaeftigungszeitraum im aktuellen Jahr bestimmen
-  let _startMon = 1; // 1 = Jan
-  let _endeMon  = 12; // 12 = Dez
-  if (einStr) {
-    const _ein = new Date(einStr);
-    if (!isNaN(_ein.getTime()) && _ein.getFullYear() === _jahr) _startMon = _ein.getMonth() + 1;
-    else if (!isNaN(_ein.getTime()) && _ein.getFullYear() > _jahr) _startMon = 13; // Eintritt nach Jahresende
+  // Fallback: kein Eintrittsdatum eingetragen -> fruehestes "Einsatz ab" aus den Objekten
+  let _einEff = einStr;
+  if (!_einEff) {
+    let _minAb = '';
+    mao.forEach(o => {
+      const ab = (o.einsatz_ab || '').slice(0, 10);
+      if (ab && (!_minAb || ab < _minAb)) _minAb = ab;
+    });
+    _einEff = _minAb;
+  }
+  // Beschaeftigungszeitraum innerhalb des Jahres [S..E]
+  let S = new Date(_jahr, 0, 1), E = new Date(_jahr, 11, 31);
+  if (_einEff) {
+    const _ein = new Date(_einEff);
+    if (!isNaN(_ein.getTime()) && _ein > S) S = _ein;
   }
   if (_ausStr) {
     const _aus = new Date(_ausStr);
-    if (!isNaN(_aus.getTime()) && _aus.getFullYear() === _jahr) _endeMon = _aus.getMonth() + 1;
-    else if (!isNaN(_aus.getTime()) && _aus.getFullYear() < _jahr) _endeMon = 0; // Austritt vor Jahresbeginn
+    if (!isNaN(_aus.getTime()) && _aus < E) E = _aus;
   }
+  const rohMonate = _volleMonate(S, E);
   let proRata = teilzeit;
   let proRataText = '';
-  if (_endeMon < _startMon) {
+  if (rohMonate <= 0) {
     proRata = 0;
-    proRataText = 'Nicht im Jahr beschaeftigt';
+    proRataText = 'Kein voller Beschaeftigungsmonat im Jahr';
+  } else if (rohMonate < 12) {
+    // Ferienanteil anteilig auf die tatsaechlichen Beschaeftigungsmonate begrenzen
+    const ferienAnteil = ferienMonate * (rohMonate / 12);
+    const _beschMonate = Math.max(1, Math.min(rohMonate - ferienAnteil, sollMonate));
+    proRata = teilzeit / 12 * _beschMonate;
+    proRataText = `Pro-Rata: ${Math.round(_beschMonate*10)/10} volle Monate`;
   } else {
-    const rohMonate = _endeMon - _startMon + 1;
-    if (rohMonate < 12) {
-      // Ferienanteil anteilig auf die tatsaechlichen Beschaeftigungsmonate begrenzen
-      const ferienAnteil = ferienMonate * (rohMonate / 12);
-      const _beschMonate = Math.max(1, Math.min(rohMonate - ferienAnteil, sollMonate));
-      proRata = teilzeit / 12 * _beschMonate;
-      const _txtTeile = [];
-      if (_startMon > 1) _txtTeile.push('Eintritt');
-      if (_endeMon < 12) _txtTeile.push('Austritt');
-      proRataText = `Pro-Rata ${_txtTeile.join('+')}: ${Math.round(_beschMonate*10)/10} Mon.`;
-    } else {
-      proRata = teilzeit / 12 * sollMonate; // Voller Zeitraum, Ferienanteil normal
-    }
+    proRata = teilzeit / 12 * sollMonate; // Voller Zeitraum, Ferienanteil normal
   }
 
   // Rundung §5 Abs. 2 BUrlG
   const dezimal = proRata - Math.floor(proRata);
   const ergebnis = dezimal >= 0.5 ? Math.ceil(proRata) : Math.floor(proRata);
 
-  // Anzeige
-  const resultEl = document.getElementById('urlaub-result');
-  const formelEl = document.getElementById('urlaub-formel');
-  if (resultEl) resultEl.textContent = ergebnis;
+  // FIX v135: heutiges Datum lokal (Europe/Berlin-sicher, KEIN toISOString!)
+  const _heute = new Date(); _heute.setHours(0, 0, 0, 0);
+  const _heuteISO = _heute.getFullYear() + '-' + String(_heute.getMonth() + 1).padStart(2, '0') + '-' + String(_heute.getDate()).padStart(2, '0');
 
-  // Genommene Urlaubstage aus abwesenheiten[] zählen (tagesgenau, konsistent mit Statistik-Tab)
+  // FIX v135: Monatlicher Aufbau im Eintrittsjahr – erdiente volle Monate bis heute
+  let erdient = null; // null = kein Aufbau anzeigen (Alt-MA oder anderes Jahr)
+  const _einDat = _einEff ? new Date(_einEff) : null;
+  if (_einDat && !isNaN(_einDat.getTime()) && _einDat.getFullYear() === _jahr && ergebnis > 0) {
+    if (_jahr < _heute.getFullYear()) {
+      erdient = ergebnis; // App-Jahr abgeschlossen -> alles erdient
+    } else if (_heute < S) {
+      erdient = 0; // Eintritt liegt in der Zukunft
+    } else {
+      const _grenzE = _heute < E ? _heute : E;
+      const erdMon = Math.min(_volleMonate(S, _grenzE), rohMonate);
+      const erdRoh = teilzeit / 12 * erdMon;
+      const _dz2 = erdRoh - Math.floor(erdRoh);
+      erdient = Math.min(ergebnis, _dz2 >= 0.5 ? Math.ceil(erdRoh) : Math.floor(erdRoh));
+    }
+  }
+
+  // FIX v135: genommen (bis heute) / geplant (ab morgen) getrennt zaehlen
   const _mUrl = eMAid ? ma.find(x => x.id === eMAid) : null;
-  const _urlYear = parseInt(getAM().slice(0,4)); // dynamisch, nicht hartcodiert
-  const genommen = _mUrl ? Object.entries(_mUrl.abwesenheiten || {}).filter(([d, t]) => d.startsWith(_urlYear + '-') && t === 'urlaub').length : 0;
-  const rest = ergebnis - genommen;
-  const genommenEl = document.getElementById('urlaub-genommen');
-  const restEl = document.getElementById('urlaub-rest');
-  if (genommenEl) genommenEl.textContent = genommen;
-  if (restEl) { restEl.textContent = rest; restEl.style.color = rest < 0 ? 'var(--red)' : 'var(--green)'; }
+  let genommen = 0, geplant = 0;
+  if (_mUrl) Object.entries(_mUrl.abwesenheiten || {}).forEach(([d, t]) => {
+    if (t === 'urlaub' && d.startsWith(_jahr + '-')) {
+      if (d <= _heuteISO) genommen++; else geplant++;
+    }
+  });
+  const rest = ergebnis - genommen - geplant;
+
+  // FIX v135: Uebertrag Vorjahr – NUR sichtbar fuer Romano + Richter
+  const _uebSichtbar = _currentEmail === 'romano@allcleanservice.de' || _currentEmail === 'richter@allcleanservice.de';
+  const ueb = (_uebSichtbar && _mUrl) ? _urlaubUebertrag(_mUrl, _jahr, teilzeit, sollMonate, ferienMonate, _heuteISO) : null;
+
+  // ── Anzeige ──
+  const _titelEl = document.getElementById('urlaub-box-jahr');
+  if (_titelEl) _titelEl.textContent = _jahr;
+  const _rowsEl = document.getElementById('urlaub-box-rows');
+  if (_rowsEl) {
+    const mono = "font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px";
+    let hh = '';
+    if (ueb) {
+      const verfTxt = ueb.verfallen > 0
+        ? ` <span style="color:var(--red);font-weight:700">· ${ueb.verfallen} Tag${ueb.verfallen === 1 ? '' : 'e'} verfallen 31.03.</span>`
+        : (ueb.rest > 0 ? ` · Rest ${ueb.rest} (verfällt 31.03.)` : ' · vollständig verbraucht');
+      hh += `<div style="font-size:12px;color:var(--text2);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed #bfdbfe">Übertrag ${_jahr - 1}: <span style="${mono};font-size:13px;color:var(--acc)">${ueb.uebertrag}</span> · davon ${ueb.verbraucht} verbraucht (Jan–Mär)${verfTxt} <span style="opacity:.5;font-size:10px;margin-left:3px" title="Nur für Romano und Hr. Richter sichtbar">🔒</span></div>`;
+    }
+    hh += `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--text2)">`;
+    hh += `<span><span style="${mono};color:var(--acc)">${ergebnis}</span> Anspruch</span>`;
+    if (erdient !== null && erdient < ergebnis) {
+      hh += `<span style="color:var(--muted)">·</span><span title="Bereits erdiente volle Beschäftigungsmonate"><span style="${mono};color:#d97706">${erdient}</span> erdient</span>`;
+    }
+    hh += `<span style="color:var(--muted)">−</span><span><span style="${mono};color:var(--blue)">${genommen}</span> genommen</span>`;
+    if (geplant > 0) {
+      hh += `<span style="color:var(--muted)">−</span><span title="Urlaub ab morgen (noch stornierbar)"><span style="${mono};color:#7c3aed">${geplant}</span> geplant</span>`;
+    }
+    hh += `<span style="color:var(--muted)">=</span><span><span style="${mono};color:${rest < 0 ? 'var(--red)' : 'var(--green)'}">${rest}</span> Rest</span></div>`;
+    if (erdient !== null && (genommen + geplant) > erdient) {
+      hh += `<div style="margin-top:7px;font-size:11px;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:4px 8px">⚠ ${genommen + geplant - erdient} Tag(e) mehr eingetragen als bisher erdient (${erdient} von ${ergebnis})</div>`;
+    }
+    // FIX v139: Doppel-Kuerzungs-Warnung. Das Feld "Jahresurlaub" erwartet die
+    // 5-Tage-Basis (28-30). Steht dort ein bereits Teilzeit-gekuerzter Wert
+    // (< 20 = gesetzl. Mindesturlaub bei 5-Tage-Woche), kuerzt die App erneut:
+    // z.B. 11 / 5 x 2 Tage = 4 statt 11. Nur Hinweis, kein Auto-Fix.
+    if (_feldUrl && _feldUrl > 0 && _feldUrl < 20) {
+      hh += `<div style="margin-top:7px;font-size:11px;color:#991b1b;background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;padding:5px 8px;line-height:1.5">⚠ <strong>Doppel-Kürzung?</strong> Feld „Jahresurlaub" = ${_feldUrl} – das Feld erwartet die <strong>5-Tage-Basis (28–30)</strong>. Die App kürzt selbst auf ${arbTagePW} Arbeitstag${arbTagePW===1?'':'e'}/Woche: ${_feldUrl} ÷ 5 × ${arbTagePW} = <strong>${ergebnis}</strong>. Vermutlich gehört hier <strong>28</strong> ins Feld → Anspruch wäre ${(x=>{const d=x-Math.floor(x);return d>=0.5?Math.ceil(x):Math.floor(x);})(28/5*arbTagePW)} Tage (volles Jahr).</div>`;
+    }
+    _rowsEl.innerHTML = hh;
+  }
 
   window._urlaubAnspruchAktuell = ergebnis;
 }
@@ -4107,7 +4262,7 @@ function _bereinigeAltLastenGutschriften(m) {
   return removed;
 }
 
-async function openMAM(id=null){
+async function openMAM(id=null, kalHeute=false){
 const mambg=document.getElementById('mambg');
 if(!mambg._fromOM){ mambg.style.zIndex='200'; }
 eMAid=id;
@@ -4165,6 +4320,7 @@ mao=JSON.parse(JSON.stringify(m.objekte||[{kunde:'',std_monat:'',stundenlohn:'',
 window._maoOriginal = id ? JSON.parse(JSON.stringify(m.objekte||[])) : [];
 ami=_amIdx;renderMAO();renderMTabs(m);renderMP(m,ami);
 kalYear=parseInt(getAM().split('-')[0]);kalMonth=parseInt(getAM().split('-')[1])-1;kalMode='urlaub'; // FIX N4 + v127: echter Monat (MK-Index ≠ Monat bei Mehrjahr)
+if(kalHeute){const _n=new Date();kalYear=_n.getFullYear();kalMonth=_n.getMonth();} // FIX v138: aus 'Krank/Urlaub heute' -> Kalender auf heutigen Monat
 document.getElementById('mambg').classList.add('open');
 if(id) acquireLock(); // Lock setzen beim Bearbeiten
 document.querySelector('#mambg .modal').scrollTop=0;
@@ -4172,8 +4328,11 @@ setTimeout(renderKal,50);
 // Zettel-Status initial setzen (aktuell gewählter Monat)
 const initMd=(m.monats_daten||{})[getAM()]||{};
 renderZettel(!!initMd.zettel_ok);
-_vtData=JSON.parse(JSON.stringify(initMd.vertretungen||[]));
-renderVtBlock(m, initMd, getAM()); // KAL-2
+// FIX v138: Vertretungsblock folgt dem Kalendermonat (bei kalHeute ggf. != getAM)
+const _vtMk0=`${kalYear}-${String(kalMonth+1).padStart(2,'0')}`;
+const _vtMd0=(m.monats_daten||{})[_vtMk0]||{};
+_vtData=JSON.parse(JSON.stringify(_vtMd0.vertretungen||[]));
+renderVtBlock(m, _vtMd0, _vtMk0); // KAL-2
 // Urlaubsanspruch berechnen – sofort (kein veralteter Wert) + nach Render-Tick
 calcUrlaubAnspruch();
 setTimeout(calcUrlaubAnspruch, 50);
@@ -5129,12 +5288,12 @@ function renderMP(m,i){
 const k=MK[i];const md=(m.monats_daten||{})[k]||{};
 // Urlaub/Krank immer live aus abwesenheiten zählen (Kalender ist die Wahrheit)
 const _abPrefix=k+'-';
-let _abU=0,_abK=0;
-Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_abPrefix)){if(t==='urlaub')_abU++;else if(t==='krank')_abK++;}});
+let _abU=0,_abK=0,_abUb=0;
+Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_abPrefix)){if(t==='urlaub')_abU++;else if(t==='krank')_abK++;else if(t==='unbezahlt')_abUb++;}});
 document.getElementById('md-url').value=_abU||'';
 document.getElementById('md-krank').value=_abK||'';
 document.getElementById('md-notiz').value=md.notiz||'';
-const _unbEl=document.getElementById('md-unbezahlt');if(_unbEl)_unbEl.value=md.unbezahlt_tage||'';
+const _unbEl=document.getElementById('md-unbezahlt');if(_unbEl)_unbEl.value=_abUb>0?_abUb:(md.unbezahlt_tage||'');
 const _kkEl=document.getElementById('md-kk-ab');if(_kkEl)_kkEl.value=md.kk_ab_datum||'';
 _renderFehlzeitHinweis(m, k);
 const gp=(md.grund_mehrarbeit||'').split(': ');
@@ -5303,11 +5462,13 @@ kalMonth+=d;
 if(kalMonth>11){kalMonth=0;kalYear++;}
 if(kalMonth<0){kalMonth=11;kalYear--;}
 renderKal();
+_kalSyncVtBlocks(); // FIX v138: Vertretungsblock folgt dem Kalendermonat
 }
 function kalSetMode(m){
 kalMode=m;
-['urlaub','krank'].forEach(t=>{
-const el=document.getElementById('kal-mode-'+t[0]);
+const _ids={urlaub:'u',krank:'k',unbezahlt:'ub'};
+Object.entries(_ids).forEach(([t,suf])=>{
+const el=document.getElementById('kal-mode-'+suf);
 if(el)el.classList.toggle('active',t===m);
 });
 }
@@ -5423,11 +5584,12 @@ renderKal();
 function kalSyncMonthFields(m, y, mo){
 const ab=m.abwesenheiten||{};
 const prefix=`${y}-${String(mo+1).padStart(2,'0')}-`;
-let u=0,k=0;
+let u=0,k=0,ubz=0;
 Object.entries(ab).forEach(([key,val])=>{
 if(key.startsWith(prefix)){
 if(val==='urlaub')u++;
 else if(val==='krank')k++;
+else if(val==='unbezahlt')ubz++;
 }
 });
 // Direkt in monats_daten schreiben (nicht nur DOM)
@@ -5436,6 +5598,10 @@ if(!m.monats_daten)m.monats_daten={};
 if(!m.monats_daten[mk])m.monats_daten[mk]={urlaub:0,krank:0,notiz:'',zettel_ok:false,vertretungen:[],sonderstunden:[]};
 m.monats_daten[mk].urlaub=u;
 m.monats_daten[mk].krank=k;
+// FIX v138: Unbezahlt-Tage aus Kalender -> Lohnkürzung (nur automatisch verwalten,
+// manuelle Werte ohne Kalendereinträge nicht ungefragt überschreiben)
+if(ubz>0){ m.monats_daten[mk].unbezahlt_tage=ubz; m.monats_daten[mk]._ub_auto=true; }
+else if(m.monats_daten[mk]._ub_auto){ m.monats_daten[mk].unbezahlt_tage=0; m.monats_daten[mk]._ub_auto=false; }
 const curMonthIdx=ami;
 const curYear=parseInt(getAM().split('-')[0]);
 if(mo===curMonthIdx && y===curYear){
@@ -5443,9 +5609,21 @@ const urlEl=document.getElementById('md-url');
 const krEl=document.getElementById('md-krank');
 if(urlEl)urlEl.value=u>0?u:'';
 if(krEl)krEl.value=k>0?k:'';
-// Vertretungsblock aktualisieren
-if(eMAid){const mObj=ma.find(x=>x.id===eMAid);if(mObj){const mdObj=(mObj.monats_daten||{})[getAM()]||{};renderVtBlock(mObj,mdObj);}}
+const ubEl=document.getElementById('md-unbezahlt');
+if(ubEl)ubEl.value=ubz>0?ubz:(m.monats_daten[mk].unbezahlt_tage||'');
 }
+// FIX v138: Vertretungsblock immer mit dem Kalendermonat rendern
+_kalSyncVtBlocks();
+}
+function _kalSyncVtBlocks(){
+  if(!eMAid)return;
+  const m=ma.find(x=>x.id===eMAid); if(!m)return;
+  const kmk=`${kalYear}-${String(kalMonth+1).padStart(2,'0')}`;
+  const md=(m.monats_daten||{})[kmk]||{};
+  _vtData=JSON.parse(JSON.stringify(md.vertretungen||[]));
+  renderVtBlock(m, md, kmk);
+  if(typeof renderVtGutschrift==='function')renderVtGutschrift(m, kmk);
+  if(typeof renderWurdeVertretenVon==='function')renderWurdeVertretenVon(m, kmk);
 }
 function renderKal(){
 const ab=kalGetAb();
@@ -5460,7 +5638,7 @@ let html=KAL_WD.map((w,i)=>`<div class="kal-wd${i===6?' kal-wd-so':''}">${w}</di
 for(let i=startWD-1;i>=0;i--){
 html+=`<div class="kal-day kal-other">${daysInPrev-i}</div>`;
 }
-let u=0,k=0;
+let u=0,k=0,ub=0;
 // KAL-3: Feiertage ermitteln und markieren
 const _kalFT = new Set(getBayernFeiertage(kalYear));
 for(let d=1;d<=daysInMonth;d++){
@@ -5468,6 +5646,7 @@ const key=kalDayKey(kalYear,kalMonth,d);
 const typ=ab[key]||'';
 if(typ==='urlaub')u++;
 if(typ==='krank')k++;
+if(typ==='unbezahlt')ub++;
 const isToday=today.getFullYear()===kalYear&&today.getMonth()===kalMonth&&today.getDate()===d;
 const isFeiertag=_kalFT.has(key);
 const dayOfWeek=new Date(kalYear,kalMonth,d).getDay();
@@ -5475,11 +5654,12 @@ const isSonntag=dayOfWeek===0;
 let cls='kal-day';
 if(typ==='urlaub')cls+=' kal-urlaub';
 else if(typ==='krank')cls+=' kal-krank';
+else if(typ==='unbezahlt')cls+=' kal-unbezahlt';
 else if(isToday)cls+=' kal-today';
 if(isFeiertag)cls+=' kal-feiertag';
 else if(isSonntag)cls+=' kal-sonntag';
 const ftTitle=isFeiertag?` title="Feiertag"`:isSonntag?` title="Sonntag"`:'';
-const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:`${d}`;
+const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:typ==='unbezahlt'?`${d}<br><span style="font-size:8px">UB</span>`:`${d}`;
 html+=`<div class="${cls}"${ftTitle} onclick="kalClick(${kalYear},${kalMonth},${d})">${label}</div>`;
 }
 const total=startWD+daysInMonth;
@@ -5489,6 +5669,7 @@ document.getElementById('kal-grid').innerHTML=html;
 const parts=[];
 if(u)parts.push(`🏖 ${u} Urlaubstag${u!==1?'e':''}`);
 if(k)parts.push(`🤒 ${k} Kranktag${k!==1?'e':''}`);
+if(ub)parts.push(`🚫 ${ub} unbezahlt`);
 document.getElementById('kal-summary').textContent=parts.length?parts.join(' · '):'Keine Abwesenheiten eingetragen.';
 }
 function closeMAM(){
@@ -5904,7 +6085,37 @@ function renderHeute(){
     krankCard = `<div class="heute-empty">✅ Niemand krank gemeldet</div>`;
   }
 
-  let h = `<div style="font-size:12px;color:var(--muted);margin-bottom:14px;padding:8px 12px;background:var(--s1);border-radius:var(--r);border:1px solid var(--border);display:inline-block">📅 Heute: <strong>${datumStr}</strong></div>`;
+  // v140: Kopf + KPI-Karten im Uebersicht-Stil
+  let h = `<div style="margin-bottom:16px">
+    <div style="font-size:19px;font-weight:700">Heute im Einsatz 🔴</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:2px">${datumStr}</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px">
+    <div class="dcard" style="padding:16px">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🏖</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Urlaub heute</div>
+      <div style="font-size:22px;font-weight:700">${urlauber.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">${urlauber.filter(m=>!_vtFuerMA(m,heuteMk).length).length} ohne Vertretung</div>
+    </div>
+    <div class="dcard" style="padding:16px">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🔄</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Vertretungen</div>
+      <div style="font-size:22px;font-weight:700">${vertreter.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">im ${parseInt(heuteMk.slice(5,7))+'/'+heuteMk.slice(0,4)}</div>
+    </div>
+    <div class="dcard" style="padding:16px">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--yellow);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🤒</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Krank heute</div>
+      <div style="font-size:22px;font-weight:700">${krank.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">${krank.length?'Vertretung prüfen':'alles besetzt'}</div>
+    </div>
+    <div class="dcard" style="padding:16px">
+      <div style="width:34px;height:34px;border-radius:10px;background:#7c3aed;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">⚡</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Sondereinsätze</div>
+      <div style="font-size:22px;font-weight:700">${sonderListe.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">im ${parseInt(heuteMk.slice(5,7))+'/'+heuteMk.slice(0,4)}</div>
+    </div>
+  </div>`;
 
   h += `<div class="heute-top">
     <div class="heute-karte" style="border-color:#93c5fd">
@@ -6139,6 +6350,24 @@ window.openArchDay = openArchDay;
 window.closeArchPopup = closeArchPopup;
 window.statSort = statSort;
 window.showTab = showTab;
+window.openDashModal = openDashModal;
+window.closeDashModal = closeDashModal;
+window._dashMAOpen = _dashMAOpen;
+window.showDashMAListModal = showDashMAListModal;
+window.showKrankHeuteModal = showKrankHeuteModal;
+window.showUrlaubHeuteModal = showUrlaubHeuteModal;
+window.showDatevOffenModal = showDatevOffenModal;
+window.showAbwTagModal = showAbwTagModal;
+window.showAbrechnungModal = showAbrechnungModal;
+window._kalSyncVtBlocks = _kalSyncVtBlocks;
+window.showVtListeModal = showVtListeModal;
+window.showSonderListeModal = showSonderListeModal;
+window.showJahresstatModal = showJahresstatModal;
+window.showVtModal = showVtModal;
+window.showStatistikModal = showStatistikModal;
+window.showEhemaligeModal = showEhemaligeModal;
+window.showUrlaubsCheckModal = showUrlaubsCheckModal;
+window.showMinijobModal = showMinijobModal;
 window.openMAM = openMAM;
 window.openOMbyName = openOMbyName;
 
@@ -6261,108 +6490,108 @@ let _ganttOL   = '';   // '' | 'M' | 'I'
 let _ganttStatus = 'aktiv'; // 'aktiv' | 'alle'
 let _ganttOLInit = false;
 
+let _ganttSuche = '';
+let _ganttSucheFokus = false;
+let _ganttDetailId = null;
+
+// v140: Feiertage eines Jahres als Set (fuer beide Ebenen)
+function _uhmFeiertage(jahr){
+  const s = new Set();
+  for (let mo = 0; mo < 12; mo++) {
+    const mk = `${jahr}-${String(mo+1).padStart(2,'0')}`;
+    try { (getFeiertageImMonat(mk) || []).forEach(d => s.add(d)); } catch(e) {}
+  }
+  return s;
+}
+
+// ── v140: Ebene 1 – Jahres-Heatmap aller MA ─────────────────
 function renderUrlaub() {
   const c = document.getElementById('urlaub-c');
   if (!c) return;
+  if (_ganttDetailId) { renderUrlaubMA(_ganttDetailId); return; }
 
-  const MONATE_KURZ = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const ft = _uhmFeiertage(_ganttYear);
   const today = new Date();
   const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
 
-  // FIX v91: Feiertage des Jahres sammeln fuer Gantt-Darstellung
-  const _feiertageSet = new Set();
-  for (let _mo = 0; _mo < 12; _mo++) {
-    const _mk = `${_ganttYear}-${String(_mo+1).padStart(2,'0')}`;
-    try {
-      (getFeiertageImMonat(_mk) || []).forEach(d => _feiertageSet.add(d));
-    } catch(e) { /* Funktion evtl. nicht verfuegbar */ }
-  }
-  // Alle Tage des Jahres vorberechnen
+  // Tage des Jahres + Index-Map
   const days = [];
+  const dayIdx = {};
   for (let mo = 0; mo < 12; mo++) {
     const dim = new Date(_ganttYear, mo+1, 0).getDate();
     for (let d = 1; d <= dim; d++) {
-      const dt = new Date(_ganttYear, mo, d);
-      const wd = dt.getDay(); // 0=So,1=Mo,...,6=Sa
+      const wd = new Date(_ganttYear, mo, d).getDay();
       const key = `${_ganttYear}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      days.push({ mo, d, wd, key, isWeekend: wd===0||wd===6, isMo: wd===1, isFeiertag: _feiertageSet.has(key) });
+      dayIdx[key] = days.length;
+      days.push({ mo, d, wd, key, isWeekend: wd===0||wd===6, isFeiertag: ft.has(key) });
     }
   }
-
-  // Monats-Spaltenbreiten
-  const monDays = Array.from({length:12}, (_,mo) => new Date(_ganttYear, mo+1, 0).getDate());
+  const total = days.length;
 
   // OL-User: beim ersten Aufruf eigenen Filter setzen + gesperrt halten
-  if (!_ganttOLInit) {
-    _ganttOLInit = true;
-    if (isOL()) {
-      _ganttOL = _currentKuerzel || '';
-    }
-  }
+  if (!_ganttOLInit) { _ganttOLInit = true; if (isOL()) _ganttOL = _currentKuerzel || ''; }
 
-  // MA filtern
+  // MA filtern (OL-Zwang wie bisher, kein Override moeglich)
   let maList = getVisibleMA().filter(m => _ganttStatus==='alle' ? true : m.status !== 'Ausgeschieden');
-  // OL sieht immer nur eigene MA (kein Override möglich)
   const olZwang = isOL() ? (_currentKuerzel || '') : '';
   const aktiverOLFilter = olZwang || _ganttOL;
   if (aktiverOLFilter) maList = maList.filter(m => m.objektleiter === aktiverOLFilter);
-  maList = maList.sort((a,b) => (a.nachname||'').localeCompare(b.nachname||'','de'));
-
-  // FIX v91: Gesamtstatistik konsistent zu Einzelzaehlung – nur Werktage, keine Feiertage
-  // Feiertage-Set fuer Statistik nutzen (wird gleich unten auch fuer Tage gesammelt)
-  const _ftStat = new Set();
-  for (let _mo = 0; _mo < 12; _mo++) {
-    const _mk = `${_ganttYear}-${String(_mo+1).padStart(2,'0')}`;
-    try { (getFeiertageImMonat(_mk) || []).forEach(d => _ftStat.add(d)); } catch(e) {}
+  if (_ganttSuche.trim()) {
+    const q = _ganttSuche.trim().toLowerCase();
+    maList = maList.filter(m => ((m.nachname||'')+' '+(m.vorname||'')).toLowerCase().includes(q));
   }
+
+  // Gesamtstatistik: nur Werktage, keine Feiertage (wie FIX v91)
   let totalUrl = 0, totalKrank = 0;
   maList.forEach(m => {
     Object.entries(m.abwesenheiten||{}).forEach(([k,v]) => {
       if (!k.startsWith(_ganttYear+'-')) return;
-      // Wochenende/Feiertag nicht zaehlen
-      const _dt = new Date(k);
-      const _dow = _dt.getDay();
-      if (_dow === 0 || _dow === 6) return;
-      if (_ftStat.has(k)) return;
+      const dow = new Date(k).getDay();
+      if (dow === 0 || dow === 6) return;
+      if (ft.has(k)) return;
       if (v==='urlaub') totalUrl++;
       if (v==='krank')  totalKrank++;
     });
   });
 
-  // ── Toolbar ──────────────────────────────────────────────
+  // Sortierung: bei Admin + "Alle OL" nach OL gruppiert, sonst Nachname
+  const showOLGroups = !isOL() && !aktiverOLFilter;
+  maList.sort((a,b) => {
+    if (showOLGroups) { const oa=a.objektleiter||'?', ob=b.objektleiter||'?'; if (oa!==ob) return oa.localeCompare(ob); }
+    return (a.nachname||'').localeCompare(b.nachname||'','de');
+  });
+
+  // ── Toolbar ──
   let html = `<div class="gantt-toolbar">
-    <div style="display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:4px 10px;box-shadow:var(--sh)">
-      <button onclick="_ganttYear--;renderUrlaub()" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px">◀</button>
+    <div style="display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:4px 10px;box-shadow:var(--sh)">
+      <button onclick="_ganttYear--;renderUrlaub()" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted);padding:0 3px">◀</button>
       <span style="font-size:14px;font-weight:700;color:var(--acc);min-width:42px;text-align:center">${_ganttYear}</span>
-      <button onclick="_ganttYear++;renderUrlaub()" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px">▶</button>
+      <button onclick="_ganttYear++;renderUrlaub()" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted);padding:0 3px">▶</button>
     </div>
     ${!isOL()?`<select class="fsel" onchange="_ganttOL=this.value;renderUrlaub()">
       <option value="" ${aktiverOLFilter===''?'selected':''}>Alle OL</option>
       ${OL_INFO.map(u=>`<option value="${u.kuerzel}" ${aktiverOLFilter===u.kuerzel?'selected':''}>${u.kuerzel} – ${u.name}</option>`).join('')}
-    </select>`:''}  <!-- v119: OL-Liste aus OL_INFO (keine PINs mehr) -->
+    </select>`:''}
     <select class="fsel" onchange="_ganttStatus=this.value;renderUrlaub()">
       <option value="aktiv" ${_ganttStatus==='aktiv'?'selected':''}>Aktive MA</option>
       <option value="alle" ${_ganttStatus==='alle'?'selected':''}>Alle inkl. Ausgeschiedene</option>
     </select>
+    <div style="display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:4px 12px;box-shadow:var(--sh)">
+      <span style="font-size:11px;color:var(--muted)">🔍</span>
+      <input id="gantt-such" type="text" value="${(_ganttSuche||'').replace(/"/g,'&quot;')}" placeholder="Mitarbeiter suchen…"
+        style="border:none;outline:none;font-family:inherit;font-size:12px;width:150px;background:transparent"
+        oninput="_ganttSuche=this.value;_ganttSucheFokus=true;clearTimeout(window._gsT);window._gsT=setTimeout(renderUrlaub,250)">
+    </div>
     <div class="gantt-legend">
       <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#3b82f6"></div><span>Urlaub</span></div>
       <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#f59e0b"></div><span>Krank</span></div>
-      <div class="gantt-leg"><div class="gantt-leg-dot" style="background:var(--s2);border:1px solid var(--border)"></div><span>Wochenende</span></div>
-      <div class="gantt-leg"><div class="gantt-leg-dot" style="background:repeating-linear-gradient(45deg,#fecaca,#fecaca 2px,#fef2f2 2px,#fef2f2 4px)"></div><span>Feiertag</span></div>
+      <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#64748b"></div><span>Unbezahlt</span></div>
       <div class="gantt-leg"><div class="gantt-leg-dot" style="background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 2px,#f3f4f6 2px,#f3f4f6 4px)"></div><span>Nicht angestellt</span></div>
     </div>
-    <div style="margin-left:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span class="gantt-summary">🏖 ${totalUrl} Urlaubstage</span>
       <span class="gantt-summary">🤒 ${totalKrank} Kranktage</span>
       <span class="gantt-summary">👥 ${maList.length} MA</span>
-      <div style="display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:4px 10px;box-shadow:var(--sh)">
-        <span style="font-size:11px;color:var(--muted)">🔍</span>
-        <input type="range" min="1" max="10" value="${_ganttZoom}"
-          style="width:80px;accent-color:var(--acc);cursor:pointer"
-          oninput="applyGanttZoom(this.value)"
-          title="Zoom">
-        <span id="gantt-zoom-lbl" style="font-size:11px;color:var(--muted);min-width:44px">${_ganttZoom<=2?'Micro':_ganttZoom<=5?'Kompakt':'Normal'}</span>
-      </div>
     </div>
   </div>`;
 
@@ -6372,125 +6601,188 @@ function renderUrlaub() {
     return;
   }
 
-  // ── Tabelle ───────────────────────────────────────────────
-  html += `<div class="gantt-wrap"><table class="gantt-table">`;
+  // ── Heatmap-Raster ──
+  html += `<div class="uhm-wrap"><div class="uhm-grid">
+    <div class="uhm-head">Mitarbeiter</div>
+    <div class="uhm-head uhm-mon">${['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'].map(x=>`<div>${x}</div>`).join('')}</div>
+    <div class="uhm-head">U · K · Rest</div>`;
 
-  // Kopfzeile 1: Monatsnamen
-  html += `<thead><tr>
-    <th class="gantt-name-head">Mitarbeiter</th>`;
-  monDays.forEach((dim, mo) => {
-    html += `<th class="gantt-month-head" colspan="${dim}">${MONATE_KURZ[mo]}</th>`;
-  });
-  html += `</tr>`;
-
-  // Kopfzeile 2: Tagesnummern
-  html += `<tr><th class="gantt-name-head"></th>`;
-  days.forEach(day => {
-    const isToday = day.key === todayKey;
-    let cls = 'gantt-day-head';
-    if (day.isMo) cls += ' mo';
-    if (isToday) cls += ' today';
-    html += `<th class="${cls}">${day.d===1||day.d%5===0?day.d:''}</th>`;
-  });
-  html += `</tr></thead><tbody>`;
-
-  // MA-Zeilen – bei Admin + "Alle OL": nach OL gruppiert mit Trennzeile
-  const ganttColCount = days.length + 1;
-  const showOLGroups = !isOL() && !aktiverOLFilter;
-  if (showOLGroups) {
-    maList = maList.sort((a,b) => {
-      const olA = a.objektleiter||'?', olB = b.objektleiter||'?';
-      if (olA !== olB) return olA.localeCompare(olB);
-      return (a.nachname||'').localeCompare(b.nachname||'','de');
-    });
-  }
-  let _lastOL = null;
+  const pct = i => (i/total*100).toFixed(3);
+  const yS = `${_ganttYear}-01-01`, yE = `${_ganttYear}-12-31`;
+  let lastOL = null;
 
   maList.forEach(m => {
     const ab = m.abwesenheiten || {};
     const ol = m.objektleiter || '?';
 
-    // OL-Gruppentrennzeile (nur bei Admin + Alle OL)
-    if (showOLGroups && ol !== _lastOL) {
-      _lastOL = ol;
-      const olLabel = ol === 'M' ? 'M - Fr. Grippo' : ol === 'I' ? 'I - Hr. Incecik' : ol;
-      const olColor = ol === 'M' ? 'var(--ol-m)' : 'var(--ol-i)';
-      const olBg    = ol === 'M' ? 'var(--olm-bg)' : 'var(--oli-bg)';
-      html += `<tr style="background:${olBg}">
-        <td colspan="${ganttColCount}" style="padding:5px 10px;font-size:11px;font-weight:700;
-          color:${olColor};text-transform:uppercase;letter-spacing:.06em;
-          border-top:2px solid ${olColor};border-bottom:1px solid ${olColor}">
-          Objektleiter ${olLabel}
-        </td>
-      </tr>`;
+    if (showOLGroups && ol !== lastOL) {
+      lastOL = ol;
+      const olLabel = ol==='M'?'Objektleiterin M – Fr. Grippo':ol==='I'?'Objektleiter I – Hr. Incecik':'Objektleiter '+ol;
+      const olColor  = ol==='M'?'var(--ol-m)':'var(--ol-i)';
+      const olBg     = ol==='M'?'var(--olm-bg)':'var(--oli-bg)';
+      const n = maList.filter(x=>(x.objektleiter||'?')===ol).length;
+      html += `<div class="uhm-olrow" style="background:linear-gradient(90deg,${olBg},transparent);color:${olColor}"><span class="olb ol-${ol}">${ol}</span> ${olLabel} · ${n} MA</div>`;
     }
 
-    const olStyle = ol==='M'
-      ? 'background:var(--olm-bg);color:var(--ol-m);border:1px solid #ddd6fe'
-      : 'background:var(--oli-bg);color:var(--ol-i);border:1px solid #a5f3fc';
+    // Nicht-angestellt-Segmente (vor Eintritt / nach Austritt)
+    const einD = (m.eintrittsdatum||'').slice(0,10);
+    const ausD = (m.austrittsdatum||'').slice(0,10);
+    let segs = '';
+    if (einD && einD > yS) {
+      const bis = einD > yE ? total : (dayIdx[einD] !== undefined ? dayIdx[einD] : total);
+      segs += `<div class="uhm-seg na" style="left:0;width:${pct(bis)}%" title="vor Eintritt (${einD})"></div>`;
+    }
+    if (ausD && ausD < yE) {
+      const von = ausD < yS ? 0 : ((dayIdx[ausD] !== undefined ? dayIdx[ausD] : -1) + 1);
+      segs += `<div class="uhm-seg na" style="left:${pct(von)}%;width:${pct(total-von)}%" title="nach Austritt (${ausD})"></div>`;
+    }
 
-    // FIX v91: Urlaubs-/Kranktage nur an Werktagen zaehlen (keine Wochenenden, keine Feiertage)
+    // Urlaub/Krank/Unbezahlt als zusammenhaengende Balken
+    let runTyp = '', runStart = 0;
+    const flush = endIdx => {
+      if (!runTyp) return;
+      const cls = runTyp==='urlaub'?'u':runTyp==='krank'?'k':'ub';
+      segs += `<div class="uhm-seg ${cls}" style="left:${pct(runStart)}%;width:${pct(endIdx-runStart)}%"></div>`;
+      runTyp = '';
+    };
+    days.forEach((day,i) => {
+      const t = ab[day.key]||'';
+      const typ = (t==='urlaub'||t==='krank'||t==='unbezahlt') ? t : '';
+      if (typ !== runTyp) { flush(i); if (typ) { runTyp = typ; runStart = i; } }
+    });
+    flush(total);
+    if (todayKey.startsWith(_ganttYear+'-')) segs += `<div class="uhm-heute" style="left:${pct(dayIdx[todayKey]||0)}%"></div>`;
+
+    // Werktags-Zaehlung + Resturlaub
     let urlJ = 0, krankJ = 0;
     days.forEach(day => {
       if (day.isWeekend || day.isFeiertag) return;
-      if(ab[day.key]==='urlaub') urlJ++;
-      if(ab[day.key]==='krank') krankJ++;
+      if (ab[day.key]==='urlaub') urlJ++;
+      if (ab[day.key]==='krank')  krankJ++;
     });
+    let restTxt = '–', restNeg = false;
+    try { const uc = _urlaubCheckMA(m, _ganttYear); restTxt = uc.rest; restNeg = uc.rest < 0; } catch(e) {}
 
-    const name = `${m.nachname}${m.vorname?' '+m.vorname[0]+'.':''}`;
-    const statBadge = m.status!=='Aktiv'
-      ? `<span style="font-size:9px;background:var(--s2);color:var(--muted);border-radius:3px;padding:1px 4px;margin-left:4px">${m.status}</span>` : '';
+    const statBadge = m.status!=='Aktiv' ? `<span style="font-size:9px;background:var(--s2);color:var(--muted);border-radius:3px;padding:1px 4px">${m.status}</span>` : '';
+    const fmtD = s => s.slice(8,10)+'.'+s.slice(5,7)+'.';
+    let zeitraum = '';
+    if (einD && einD.startsWith(_ganttYear+'-')) zeitraum += 'ab '+fmtD(einD);
+    if (ausD && ausD.startsWith(_ganttYear+'-')) zeitraum += (zeitraum?' ':'')+'bis '+fmtD(ausD);
+    const name = `${m.nachname||''}${m.vorname?' '+m.vorname[0]+'.':''}`;
 
-    html += `<tr class="gantt-row" onclick="openMAM('${m.id}')" style="cursor:pointer" title="${m.nachname} ${m.vorname||''} öffnen">
-      <td class="gantt-name">
-        <span class="gantt-ol-badge" style="${olStyle}">${ol}</span>${name}${statBadge}
-        ${urlJ||krankJ ? `<div style="display:flex;gap:3px;margin-top:3px;flex-wrap:wrap">${urlJ?`<span style="font-size:10px;font-weight:600;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd;border-radius:4px;padding:1px 5px">🏖 ${urlJ}d</span>`:''}${krankJ?`<span style="font-size:10px;font-weight:600;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d;border-radius:4px;padding:1px 5px">🤒 ${krankJ}d</span>`:''}</div>` : ''}
-      </td>`;
-
-    // FIX v91: Eintritts-/Austrittsdatum fuer Gantt-Visualisierung
-    const _einDate = m.eintrittsdatum || '';
-    const _ausDate = m.austrittsdatum || '';
-    days.forEach((day, idx) => {
-      const typ = ab[day.key] || '';
-      const isToday = day.key === todayKey;
-      const prevTyp = idx > 0 ? (ab[days[idx-1].key]||'') : '';
-      const nextTyp = idx < days.length-1 ? (ab[days[idx+1].key]||'') : '';
-      // FIX v91: nicht-angestellt = vor Eintritt oder nach Austritt
-      const _nichtAngestellt = (_einDate && day.key < _einDate) || (_ausDate && day.key > _ausDate);
-
-      let cls = 'gantt-cell';
-      if (day.isMo) cls += ' mo';
-      if (day.isWeekend) cls += ' weekend';
-      if (day.isFeiertag) cls += ' feiertag';
-      if (_nichtAngestellt) cls += ' nicht-angestellt';
-      if (isToday) cls += ' today-col';
-
-      if (typ === 'urlaub') {
-        cls += ' urlaub';
-        if (prevTyp!=='urlaub' && nextTyp!=='urlaub') cls += ' urlaub-solo';
-        else if (prevTyp!=='urlaub') cls += ' urlaub-start';
-        else if (nextTyp!=='urlaub') cls += ' urlaub-end';
-      } else if (typ === 'krank') {
-        cls += ' krank';
-        if (prevTyp!=='krank' && nextTyp!=='krank') cls += ' krank-solo';
-        else if (prevTyp!=='krank') cls += ' krank-start';
-        else if (nextTyp!=='krank') cls += ' krank-end';
-      }
-
-      const title = typ ? `${m.nachname}: ${typ==='urlaub'?'Urlaub':'Krank'} ${day.d}.${day.mo+1}.${_ganttYear}` : '';
-      html += `<td class="${cls}"${title?` title="${title}"`:''} onclick="event.stopPropagation();openMAM('${m.id}')"></td>`;
-    });
-
-    html += `</tr>`;
+    html += `<div class="uhm-row" onclick="_ganttDetailId='${m.id}';renderUrlaub()" title="${(m.nachname||'')} ${(m.vorname||'')} – Jahresansicht öffnen">
+      <div class="uhm-name"><span class="olb ol-${ol}">${ol}</span><strong>${name}</strong>${zeitraum?`<span style="font-size:10px;color:var(--muted)">${zeitraum}</span>`:''}${statBadge}</div>
+      <div class="uhm-strip">${segs}</div>
+      <div class="uhm-sum"><span class="uhm-b uhm-bu">${urlJ} U</span><span class="uhm-b uhm-bk">${krankJ} K</span><span class="uhm-b uhm-br${restNeg?' neg':''}">${restTxt} R</span></div>
+    </div>`;
   });
 
-  html += `</tbody></table></div>`;
-  // Nicht-blockierendes Rendering: DOM-Update per rAF
+  html += `</div></div>
+  <div style="margin-top:10px;font-size:11px;color:var(--muted)">Zeile anklicken → Jahresansicht des Mitarbeiters. Rote Linie = heute. R = Resturlaub (Anspruch − genommen − geplant).</div>`;
+
   requestAnimationFrame(() => {
     c.innerHTML = html;
-    applyGanttZoom(_ganttZoom);
+    if (_ganttSucheFokus) {
+      const si = document.getElementById('gantt-such');
+      if (si) { si.focus(); si.setSelectionRange(si.value.length, si.value.length); }
+    }
   });
 }
+
+// ── v140: Ebene 2 – Einzel-MA, ganzes Jahr (12 Mini-Monatskalender) ──
+function renderUrlaubMA(id) {
+  const c = document.getElementById('urlaub-c');
+  if (!c) return;
+  const m = ma.find(x => x.id === id);
+  if (!m) { _ganttDetailId = null; renderUrlaub(); return; }
+
+  const jahr = _ganttYear;
+  const ft = _uhmFeiertage(jahr);
+  const ab = m.abwesenheiten || {};
+  const today = new Date();
+  const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  const einD = (m.eintrittsdatum||'').slice(0,10);
+  const ausD = (m.austrittsdatum||'').slice(0,10);
+  const ol = m.objektleiter || '?';
+
+  let uc = { anspruch:'–', genommen:0, geplant:0, rest:'–' };
+  try { uc = _urlaubCheckMA(m, jahr); } catch(e) {}
+  let krankJ = 0;
+  Object.entries(ab).forEach(([k,v]) => {
+    if (v==='krank' && k.startsWith(jahr+'-')) {
+      const dw = new Date(k).getDay();
+      if (dw!==0 && dw!==6 && !ft.has(k)) krankJ++;
+    }
+  });
+
+  const MON = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  let mons = '';
+  for (let mo = 0; mo < 12; mo++) {
+    const dim = new Date(jahr, mo+1, 0).getDate();
+    const off = (new Date(jahr, mo, 1).getDay()+6)%7; // Mo=0
+    let uM=0, kM=0, ubM=0, dhtml='';
+    for (let d = 1; d <= dim; d++) {
+      const key = `${jahr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const t = ab[key]||'';
+      const wd = new Date(jahr, mo, d).getDay();
+      let cls = 'mk-d';
+      if (wd===0||wd===6) cls += ' we';
+      if (ft.has(key)) cls += ' ft';
+      if ((einD && key < einD) || (ausD && key > ausD)) cls += ' na';
+      if (t==='urlaub') { cls += ' u'; uM++; }
+      else if (t==='krank') { cls += ' k'; kM++; }
+      else if (t==='unbezahlt') { cls += ' ub'; ubM++; }
+      if (key===todayKey) cls += ' heute';
+      const st = d===1 ? ` style="grid-column:${off+1}"` : '';
+      const tt = t ? ' – ' + (t==='urlaub'?'Urlaub':t==='krank'?'Krank':'Unbezahlt') : '';
+      dhtml += `<div class="${cls}"${st} onclick="_uhmOpenTag('${m.id}',${jahr},${mo})" title="${d}.${mo+1}.${jahr}${tt} – klicken zum Bearbeiten">${d}</div>`;
+    }
+    const cnt = [uM?uM+' U':'', kM?kM+' K':'', ubM?ubM+' ub':''].filter(Boolean).join(' · ') || '–';
+    mons += `<div class="mkal"><h4>${MON[mo]} <span>${cnt}</span></h4><div class="mk-t"><div class="wd">Mo</div><div class="wd">Di</div><div class="wd">Mi</div><div class="wd">Do</div><div class="wd">Fr</div><div class="wd">Sa</div><div class="wd">So</div>${dhtml}</div></div>`;
+  }
+
+  const kunden = maKu(m).join(' · ') || 'Kein Objekt';
+  c.innerHTML = `<div class="gantt-toolbar" style="align-items:center">
+    <button class="btn btn-o" onclick="_ganttDetailId=null;renderUrlaub()" style="padding:5px 13px;border-radius:20px;font-size:12px">← Alle Mitarbeiter</button>
+    <div style="display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:4px 10px;box-shadow:var(--sh)">
+      <button onclick="_ganttYear--;renderUrlaub()" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted);padding:0 3px">◀</button>
+      <span style="font-size:14px;font-weight:700;color:var(--acc);min-width:42px;text-align:center">${jahr}</span>
+      <button onclick="_ganttYear++;renderUrlaub()" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted);padding:0 3px">▶</button>
+    </div>
+    <span class="olb ol-${ol}">${ol}</span>
+    <span style="font-size:16px;font-weight:700">${m.nachname||''}${m.vorname?', '+m.vorname:''}</span>
+    <span style="font-size:12px;color:var(--muted)">${kunden}</span>
+    <button class="btn btn-o" onclick="openMAM('${m.id}')" style="padding:5px 13px;border-radius:20px;font-size:12px">✏ Bearbeiten</button>
+    <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+      <div class="det-kpi"><div class="v" style="color:var(--acc)">${uc.anspruch}</div><div class="l">Anspruch</div></div>
+      <div class="det-kpi"><div class="v" style="color:var(--blue)">${uc.genommen}</div><div class="l">genommen</div></div>
+      ${uc.geplant>0?`<div class="det-kpi"><div class="v" style="color:#7c3aed">${uc.geplant}</div><div class="l">geplant</div></div>`:''}
+      <div class="det-kpi"><div class="v" style="color:#b45309">${krankJ}</div><div class="l">krank</div></div>
+      <div class="det-kpi"><div class="v" style="color:${uc.rest<0?'var(--red)':'var(--green)'}">${uc.rest}</div><div class="l">Rest</div></div>
+    </div>
+  </div>
+  <div class="gantt-legend" style="margin-bottom:12px">
+    <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#3b82f6"></div><span>Urlaub</span></div>
+    <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#f59e0b"></div><span>Krank</span></div>
+    <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#64748b"></div><span>Unbezahlt</span></div>
+    <div class="gantt-leg"><div class="gantt-leg-dot" style="background:var(--rbg);border:1px solid var(--rbd)"></div><span>Feiertag</span></div>
+    <div class="gantt-leg"><div class="gantt-leg-dot" style="background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 2px,#f3f4f6 2px,#f3f4f6 4px)"></div><span>Nicht angestellt</span></div>
+    <span style="font-size:11px;color:var(--muted);margin-left:8px">Tag anklicken → öffnet den Mitarbeiter im richtigen Monat zum Eintragen</span>
+  </div>
+  <div class="uhm-mongrid">${mons}</div>`;
+}
+
+// v140: Tag-Klick in Ebene 2 → MA-Modal im passenden Monat oeffnen
+function _uhmOpenTag(id, jahr, monat) {
+  const p = openMAM(id);
+  if (p && p.then) p.then(() => setTimeout(() => {
+    kalYear = jahr; kalMonth = monat;
+    renderKal();
+    if (typeof _kalSyncVtBlocks === 'function') _kalSyncVtBlocks();
+  }, 130));
+}
+window.renderUrlaubMA = renderUrlaubMA;
+window._uhmOpenTag = _uhmOpenTag;
 
 // ── SONDEREINSATZ-ABRECHNUNG (Übersicht-Reiter) ───────────
 // Reine Zusatz-Ebene: greift NICHT in Soll/DATEV/Kontrollliste ein.
@@ -6694,6 +6986,10 @@ const objUeberKap = _visObj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);retu
   .map(o=>({name:o.name, kap:oKapM(o.name), bel:oBel(o.name)}));
 const verstetigtOffen = Math.max(0, vGesamt - vBestaetigt);
 const datevOffen = Math.max(0, maAktiv - datevFreigabe);
+const maImMonat = _visMA.filter(m=>!_maAusgeschiedenImMonat(m,getAM()));
+const abrOffenList = (typeof _abrCollect==='function') ? _abrCollect(getAM()).filter(e=>e.abr==='offen') : [];
+const abrOffenN = abrOffenList.length;
+const abrOffenStd = Math.round(abrOffenList.reduce((s,e)=>s+(parseFloat(e.stunden)||0),0)*10)/10;
 const olM = _visMA.filter(m=>m.objektleiter==='M').length;
 const olI = _visMA.filter(m=>m.objektleiter==='I').length;
 const olGesamt = (olM+olI) || 1;
@@ -6732,6 +7028,15 @@ for(let t=1;t<=_kalTageImMonat;t++){
   _kalHtml += `<span style="text-align:center;font-size:11px;padding:5px 0;border-radius:6px;${istUrlaub?'background:var(--bbg);color:var(--blue);font-weight:700':'color:var(--text2)'}">${t}</span>`;
 }
 
+// v140: Minijob-KPIs fuer Dashboard-Karte
+let _mjRot = 0, _mjWarn = 0;
+getVisibleMA().filter(x => x.minijob && x.status !== 'Ausgeschieden').forEach(x => {
+  try {
+    const s = calcMinijobStatus(x);
+    if (!s.ok) _mjRot++;
+    else if (s.austrittRisiko || s.ausnahmeGenutzt || s.jahresLohn >= s.jahresGrenze * 0.85) _mjWarn++;
+  } catch(e) {}
+});
 document.getElementById('dash-c').innerHTML=`
 <div class="dcard" style="grid-column:1/-1;padding:0;background:transparent;border:none;box-shadow:none">
 
@@ -6741,19 +7046,25 @@ document.getElementById('dash-c').innerHTML=`
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px">
-    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showTab('liste')" title="Zur Mitarbeiterliste">
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showDashMAListModal()" title="Alle Mitarbeiter anzeigen">
       <div style="width:34px;height:34px;border-radius:10px;background:var(--acc);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">👥</div>
       <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Mitarbeiter gesamt</div>
-      <div style="font-size:22px;font-weight:700">${_visMA.length}</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px">${_visMA.filter(m=>m.status==='Aktiv').length} aktiv · ${ehMA.length} ehemalig</div>
+      <div style="font-size:22px;font-weight:700">${maImMonat.length}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">${maImMonat.filter(m=>m.status==='Aktiv').length} aktiv · ${_visMA.length-maImMonat.length} ausgeschieden</div>
     </div>
-    <div class="dcard" style="cursor:pointer;padding:16px" onclick="fSt('Krank')" title="Kranke MA anzeigen">
+    <div class="dcard" style="cursor:pointer;padding:16px;${abrOffenN>0?'border:2px solid var(--obd);background:var(--obg)':''}" onclick="showAbrechnungModal()" title="Sondereinsätze abrechnen">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🧾</div>
+      <div style="font-size:11px;color:${abrOffenN>0?'var(--orange)':'var(--muted)'};margin-bottom:2px;font-weight:${abrOffenN>0?700:400}">Sondereinsätze abrechnen</div>
+      <div style="font-size:22px;font-weight:700;color:${abrOffenN>0?'var(--orange)':'var(--text)'}">${abrOffenN}</div>
+      <div style="font-size:11px;color:${abrOffenN>0?'var(--orange)':'var(--green)'};margin-top:2px">${abrOffenN>0?abrOffenStd+' h offen – '+getAMShort():'✅ alles abgerechnet'}</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showKrankHeuteModal()" title="Kranke MA anzeigen">
       <div style="width:34px;height:34px;border-radius:10px;background:var(--yellow);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🤒</div>
       <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Krank heute</div>
       <div style="font-size:22px;font-weight:700">${krankHeuteListe.length}</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">${krank} Tage im ${getAMShort()}</div>
     </div>
-    <div class="dcard" style="cursor:pointer;padding:16px" onclick="fSt('Urlaub')" title="MA im Urlaub anzeigen">
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showUrlaubHeuteModal()" title="MA im Urlaub anzeigen">
       <div style="width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">🏖</div>
       <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Urlaub heute</div>
       <div style="font-size:22px;font-weight:700">${urlaubHeuteListe.length}</div>
@@ -6765,51 +7076,26 @@ document.getElementById('dash-c').innerHTML=`
       <div style="font-size:22px;font-weight:700">${objUeberKap.length}</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">Objekte</div>
     </div>
-    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showTab('minijob')" title="DATEV-Freigabe im Minijob-Tab">
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showDatevOffenModal()" title="Fehlende DATEV-Freigaben anzeigen">
       <div style="width:34px;height:34px;border-radius:10px;background:var(--ol-m);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">📤</div>
       <div style="font-size:11px;color:var(--muted);margin-bottom:2px">DATEV offen</div>
       <div style="font-size:22px;font-weight:700">${datevOffen}</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">von ${maAktiv} aktiven MA</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px" onclick="showMinijobModal()" title="Minijob-Monitor öffnen">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">💼</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Minijob-Grenze</div>
+      <div style="font-size:22px;font-weight:700;color:${_mjRot?'var(--red)':'var(--text)'}">${_mjRot}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">überschritten · ${_mjWarn} zu beobachten</div>
     </div>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:12px">
 
     <div class="dcard" style="padding:16px">
-      <div style="font-size:13px;font-weight:700;margin-bottom:12px">Mitarbeiter nach Objektleiter</div>
-      <div style="display:flex;align-items:center;gap:18px">
-        <svg width="96" height="96" viewBox="0 0 110 110">
-          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--s2)" stroke-width="15"/>
-          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--ol-m)" stroke-width="15" stroke-dasharray="${_donutM} 264" transform="rotate(-90 55 55)"/>
-          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--ol-i)" stroke-width="15" stroke-dasharray="${_donutI} 264" stroke-dashoffset="${-_donutM}" transform="rotate(-90 55 55)"/>
-          <text x="55" y="51" text-anchor="middle" font-size="17" font-weight="700" fill="var(--text)">${_visMA.length}</text>
-          <text x="55" y="66" text-anchor="middle" font-size="9" fill="var(--muted)">Gesamt</text>
-        </svg>
-        <div style="display:flex;flex-direction:column;gap:7px;font-size:12px">
-          <div><span style="color:var(--ol-m)">●</span> Grippo <strong>${olM}</strong></div>
-          <div><span style="color:var(--ol-i)">●</span> Incecik <strong>${olI}</strong></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dcard" style="padding:16px">
-      <div style="font-size:13px;font-weight:700;margin-bottom:12px">Krank &amp; Urlaub – letzte ${_trendDaten.length} Monate</div>
-      <svg width="100%" height="90" viewBox="0 0 240 100" preserveAspectRatio="none">
-        <polyline points="${_trendPts('k')}" fill="none" stroke="var(--yellow)" stroke-width="2"/>
-        <polyline points="${_trendPts('u')}" fill="none" stroke="var(--blue)" stroke-width="2"/>
-      </svg>
-      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted)">
-        ${_trendDaten.map(d=>`<span>${_monatKurz2[d.mk.slice(5,7)]}</span>`).join('')}
-      </div>
-      <div style="display:flex;gap:12px;margin-top:8px;font-size:11px">
-        <span style="color:var(--yellow)">● Krank</span><span style="color:var(--blue)">● Urlaub</span>
-      </div>
-    </div>
-
-    <div class="dcard" style="padding:16px">
       <div style="font-size:13px;font-weight:700;margin-bottom:12px">Aufgaben &amp; To-dos</div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showTab('minijob')">
+        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showDatevOffenModal()">
           <span style="font-size:15px">📤</span>
           <div><div style="font-size:12px;font-weight:600">DATEV-Freigabe fehlt</div><div style="font-size:11px;color:var(--muted)">${datevOffen} Mitarbeiter</div></div>
         </div>
@@ -6817,120 +7103,48 @@ document.getElementById('dash-c').innerHTML=`
           <span style="font-size:15px">⚠</span>
           <div><div style="font-size:12px;font-weight:600">Objekte über Kapazität</div><div style="font-size:11px;color:var(--muted)">${objUeberKap.length} Objekte</div></div>
         </div>
-        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showTab('minijob')">
+        <div style="display:flex;gap:8px;align-items:center;cursor:pointer" onclick="showMinijobModal()">
           <span style="font-size:15px">🔒</span>
           <div><div style="font-size:12px;font-weight:600">Verstetigt unbestätigt</div><div style="font-size:11px;color:var(--muted)">${verstetigtOffen} Zettel offen</div></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
-
-    <div class="dcard" style="padding:16px">
-      <div style="font-size:13px;font-weight:700;margin-bottom:10px">Krank heute (${krankHeuteListe.length})</div>
-      ${krankHeuteListe.length ? krankHeuteListe.map(m=>`<div class="heute-entry" style="cursor:pointer" onclick="showTab('liste');setTimeout(()=>openMAM('${m.id}'),50)"><div style="flex:1"><div class="heute-entry-name">${m.nachname}${m.vorname?' '+m.vorname:''}</div><div class="heute-entry-sub">${maKu(m).join(' · ')||'Kein Objekt'}</div></div></div>`).join('') : '<div class="heute-empty">✅ Niemand krank gemeldet</div>'}
-    </div>
-
-    <div class="dcard" style="padding:16px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div style="font-size:13px;font-weight:700">Urlaubsübersicht</div>
-        <div style="font-size:11px;color:var(--muted)">${getAMShort()} ${_kalJ}</div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:9px;color:var(--muted);text-align:center;margin-bottom:4px">
-        <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px">${_kalHtml}</div>
-    </div>
-
-    <div class="dcard" style="padding:16px;cursor:pointer" onclick="showKapOverModal()" title="Betroffene Mitarbeiter anzeigen">
-      <div style="font-size:13px;font-weight:700;margin-bottom:10px">Objekte über Kapazität (${objUeberKap.length})</div>
-      ${objUeberKap.length ? objUeberKap.map(o=>`<div class="heute-entry"><div style="flex:1"><div class="heute-entry-name">${o.name}</div></div><span class="heute-entry-badge" style="background:var(--rbg);color:var(--red)">${o.bel} / ${o.kap} Std.</span></div>`).join('') : '<div class="heute-empty">✅ Keine Überschreitung</div>'}
-    </div>
-  </div>
-
-  ${datevOffen>0 ? `<div style="background:var(--acc-l);border-radius:var(--r2);padding:12px 16px;display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;color:var(--acc-h)">ℹ️ <strong>${datevOffen}</strong> DATEV-Freigaben für ${getAMShort()} stehen noch aus.</div>` : ''}
-</div>
-
-<div class="dcard" style="grid-column:1/-1;margin-top:8px">
-  <div onclick="toggleDashSection('monat-body')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
-    <h3 style="margin:0;pointer-events:none">📅 Monatsübersicht – ${getAMShort()} ${parseInt(getAM().slice(0,4))}</h3>
-    <div style="display:flex;gap:6px;align-items:center">
-      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d">🤒 Krank</span>
-      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 Urlaub</span>
-      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">↔ Vertretung</span>
-      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--obg);color:var(--orange);border:1px solid var(--obd)">⚡ Sonder</span>
-      <span id="monat-body-arrow" style="font-size:16px;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(0deg)">▼</span>
+    <div class="dcard" style="padding:18px 18px 16px;grid-column:span 2">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px">Berichte &amp; Übersichten</div>
+      ${(()=>{
+        // FIX v139: Berichte-Sektion neu gestaltet – 2 Gruppen (Monat / Jahr),
+        // farbige Icon-Kacheln analog KPI-Karten, gleichmaessiges 4er-Raster
+        const rb=(fn,ico,bg,titel,sub)=>`<button type="button" onclick="${fn}" style="display:flex;align-items:center;gap:10px;text-align:left;background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:10px 12px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s,transform .15s;box-shadow:var(--sh)" onmouseover="this.style.borderColor='#bfdbfe';this.style.boxShadow='0 4px 14px rgba(26,86,219,.13)';this.style.transform='translateY(-1px)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='var(--sh)';this.style.transform=''">
+          <span style="width:32px;height:32px;flex-shrink:0;border-radius:9px;background:${bg};display:flex;align-items:center;justify-content:center;font-size:15px">${ico}</span>
+          <span style="min-width:0;overflow:hidden"><span style="display:block;font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${titel}</span><span style="display:block;font-size:11px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${sub}</span></span>
+        </button>`;
+        const lbl=t=>`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);margin-bottom:8px">${t}</div>`;
+        const grid=b=>`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px">${b.join('')}</div>`;
+        const gMonat=[
+          rb('showAbwTagModal()','📅','var(--bbg)','Abwesenheiten nach Tag','Tagesuebersicht'),
+          rb('showVtListeModal()','↔','var(--olm-bg)','Vertretungsliste','wer vertritt wen'),
+          rb('showSonderListeModal()','⚡','var(--obg)','Sondereinsätze','Einsatzliste'),
+          rb('showVtModal()','🔄','var(--oli-bg)','Vertretungsstatistik','Krank &amp; Urlaub')
+        ];
+        const gJahr=[
+          rb('showJahresstatModal()','📊','var(--gbg)','Krank &amp; Urlaub – Jahr','pro MA / Monat'),
+          rb('showStatistikModal()','📈','var(--acc-l)','Statistik','Jahresverlauf &amp; Diagramme'),
+          rb('showUrlaubsCheckModal()','🏖','var(--ybg)','Urlaubs-Check','Anspruch aller MA prüfen'),
+          rb('showMinijobModal()','💼','var(--obg)','Minijob-Monitor','Grenzen &amp; Ausnahmen'),
+          rb('showEhemaligeModal()','🚪','var(--s1)','Ehemalige Mitarbeiter',ehMA.length+' gesamt')
+        ];
+        return lbl('Monat · '+getAMShort())+grid(gMonat)
+          +'<div style="height:14px"></div>'
+          +lbl('Jahr &amp; Verwaltung')+grid(gJahr);
+      })()}
     </div>
   </div>
-  <div id="monat-body" style="margin-top:14px">${buildMonatsUebersicht()}</div>
-</div>
 
-<div class="dcard" style="grid-column:1/-1;margin-top:8px">
-  <div onclick="toggleDashSection('stat-table-wrap')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
-    <h3 style="margin:0;pointer-events:none">📊 Krank & Urlaub – Jahresstatistik ${parseInt(getAM().slice(0,4))}</h3>
-    <div style="display:flex;gap:6px;align-items:center">
-      <button type="button" onclick="event.stopPropagation();statSort('krank')" id="stat-btn-krank" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='krank'?'#fcd34d':'var(--border)'};background:var(--ybg);color:var(--yellow);cursor:pointer;font-family:inherit;font-weight:${_statSort==='krank'?700:500}">🤒 nach Krank</button>
-      <button type="button" onclick="event.stopPropagation();statSort('urlaub')" id="stat-btn-urlaub" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='urlaub'?'#93c5fd':'var(--border)'};background:var(--bbg);color:var(--blue);cursor:pointer;font-family:inherit;font-weight:${_statSort==='urlaub'?700:500}">🏖 nach Urlaub</button>
-      <button type="button" onclick="event.stopPropagation();statSort('name')" id="stat-btn-name" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort==='name'?'var(--border2)':'var(--border)'};background:var(--s1);color:var(--muted);cursor:pointer;font-family:inherit;font-weight:${_statSort==='name'?700:500}">A–Z</button>
-      <span id="stat-table-wrap-arrow" style="font-size:16px;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(-90deg)">▼</span>
-    </div>
-  </div>
-  <div id="stat-table-wrap" style="display:none;margin-top:12px;overflow-x:auto">${buildStatTable(_statSort)}</div>
-</div>
-
-<div class="dcard" style="grid-column:1/-1;margin-top:8px">
-  <div onclick="toggleDashSection('vt-body')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
-    <h3 style="margin:0;pointer-events:none">🔄 Vertretungsstatistik – ${getAMShort()} ${parseInt(getAM().slice(0,4))} (Krank & Urlaub)</h3>
-    <div style="display:flex;gap:6px;align-items:center">
-      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d">🤒 Krank-Vt.</span>
-      <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 Urlaub-Vt.</span>
-      <span id="vt-body-arrow" style="font-size:16px;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(-90deg)">▼</span>
-    </div>
-  </div>
-  <div id="vt-body" style="display:none;margin-top:14px">${buildVtStatKachel()}</div>
-</div>
-
-<div class="dcard" style="grid-column:1/-1;margin-top:8px">
-  <div onclick="toggleDashSection('eh-body')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none">
-    <h3 style="margin:0;pointer-events:none">🚪 Ehemalige Mitarbeiter</h3>
-    <div style="display:flex;gap:6px;align-items:center">
-      <span style="font-size:11px;font-weight:400;color:var(--muted);background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:2px 10px">${ehMA.length} gesamt</span>
-      <span id="eh-body-arrow" style="font-size:16px;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(-90deg)">▼</span>
-    </div>
-  </div>
-  <div id="eh-body" style="display:none;margin-top:12px">
-  ${ehMA.length===0
-    ? `<div style="color:var(--muted);font-size:13px;padding:10px 0">Keine ehemaligen Mitarbeiter.</div>`
-    : `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:10px">
-    <thead><tr style="background:var(--s1)">
-      <th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Nr.</th>
-      <th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">OL</th>
-      <th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Name</th>
-      <th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Zuletzt bei</th>
-      <th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Eintritt</th>
-      <th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Austritt</th>
-    </tr></thead>
-    <tbody>${ehMA.map(m=>{
-      const ol=m.objektleiter||'?';
-      const kunden=maKu(m).join(', ')||'–';
-      const ein=m.eintrittsdatum?new Date(m.eintrittsdatum).toLocaleDateString('de-DE'):'–';
-      const aus=m.austrittsdatum?new Date(m.austrittsdatum).toLocaleDateString('de-DE'):'–';
-      return `<tr onclick="openMAM('${m.id}')" style="cursor:pointer;opacity:.8" title="${m.nachname} öffnen">
-        <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><code>${m.persnr||'–'}</code></td>
-        <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span class="olb ol-${ol}">${ol}</span></td>
-        <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><strong style="color:var(--text2)">${m.nachname||'–'}</strong>${m.vorname?' <span style="color:var(--muted)">' +m.vorname+'</span>':''}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid var(--border);color:var(--muted);font-size:12px">${kunden}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)">${ein}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);font-weight:600">${aus}</td>
-      </tr>`;
-    }).join('')}</tbody></table></div>`
-  }
-  </div>
+  ${datevOffen>0 ? `<div onclick="showDatevOffenModal()" style="cursor:pointer;background:var(--acc-l);border-radius:var(--r2);padding:12px 16px;display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;color:var(--acc-h)">ℹ️ <strong>${datevOffen}</strong> DATEV-Freigaben für ${getAMShort()} stehen noch aus – anklicken für Details.</div>` : ''}
 </div>
 `;
 _abrUpdBadge();
-if(_dashSub==='abrechnung') renderAbrechnung();
 }
 function toggleDashSection(id){
   const body=document.getElementById(id);
@@ -7092,6 +7306,321 @@ function showKapOverModal(){
 function closeKapOverModal(){
   document.getElementById('kap-over-bg').style.display='none';
 }
+
+// ── FIX v136: Dashboard-Modals (KPI-Karten & Berichte-Buttons) ──────
+function openDashModal(title, sub, bodyHtml){
+  document.getElementById('dash-modal-title').innerHTML = title;
+  document.getElementById('dash-modal-sub').textContent = sub || '';
+  document.getElementById('dash-modal-body').innerHTML = bodyHtml;
+  document.getElementById('dash-modal-bg').style.display = 'flex';
+}
+function closeDashModal(){
+  document.getElementById('dash-modal-bg').style.display='none';
+  document.getElementById('dash-modal-body').innerHTML='';
+  // FIX v138: KPI-Karten aktualisieren (z.B. nach Abrechnung im Modal)
+  if(document.getElementById('tab-dashboard')?.classList.contains('active')) renderDash();
+}
+function showAbrechnungModal(){
+  _abrMk=getAM();
+  openDashModal('🧾 Sondereinsätze abrechnen', 'Einsätze prüfen und als berechnet markieren', '<div id="dash-abr-c"></div>');
+  renderAbrechnung();
+}
+function _dashMAOpen(id, kalHeute){ closeDashModal(); showTab('liste'); setTimeout(()=>openMAM(id, !!kalHeute),60); }
+function _dashMARow(m, extra, kalHeute){
+  const ol=m.objektleiter||'?';
+  return `<div class="heute-entry" style="cursor:pointer" onclick="_dashMAOpen('${m.id}'${kalHeute?',1':''})">
+    <div style="flex:1"><div class="heute-entry-name"><span class="olb ol-${ol}">${ol}</span> ${m.nachname||''}${m.vorname?' '+m.vorname:''} <code style="font-size:11px;color:var(--muted)">${m.persnr||''}</code></div>
+    <div class="heute-entry-sub">${maKu(m).join(' · ')||'Kein Objekt'}</div></div>${extra||''}</div>`;
+}
+function _heuteKeyStr(){const n=new Date();const p=v=>String(v).padStart(2,'0');return `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}`;}
+function showDashMAListModal(){
+  const list=getVisibleMA().filter(m=>!_maAusgeschiedenImMonat(m,getAM()))
+    .sort((a,b)=>(a.nachname||'').localeCompare(b.nachname||'','de'));
+  openDashModal('👥 Mitarbeiter gesamt', list.length+' Mitarbeiter – Klick öffnet die Karte',
+    list.map(m=>_dashMARow(m)).join('')||'<div class="heute-empty">Keine Mitarbeiter</div>');
+}
+function showKrankHeuteModal(){
+  const hk=_heuteKeyStr();
+  const list=getVisibleMA().filter(m=>m.abwesenheiten?.[hk]==='krank'&&m.status!=='Ausgeschieden');
+  openDashModal('🤒 Krank heute', list.length+' Mitarbeiter – '+new Date().toLocaleDateString('de-DE'),
+    list.map(m=>_dashMARow(m,'',true)).join('')||'<div class="heute-empty">✅ Niemand krank gemeldet</div>');
+}
+function showUrlaubHeuteModal(){
+  const hk=_heuteKeyStr();
+  const list=getVisibleMA().filter(m=>m.abwesenheiten?.[hk]==='urlaub'&&m.status!=='Ausgeschieden');
+  const [j,mo]=getAM().split('-').map(Number);
+  const tage=new Date(j,mo,0).getDate();
+  const erster=new Date(j,mo-1,1).getDay();
+  const off=erster===0?6:erster-1;
+  const uT=new Set();
+  getVisibleMA().forEach(m=>Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(t==='urlaub'&&d.startsWith(getAM()+'-'))uT.add(parseInt(d.slice(8,10)));}));
+  let kal='';
+  for(let i=0;i<off;i++)kal+='<span></span>';
+  for(let t=1;t<=tage;t++){const u=uT.has(t);kal+=`<span style="text-align:center;font-size:11px;padding:5px 0;border-radius:6px;${u?'background:var(--bbg);color:var(--blue);font-weight:700':'color:var(--text2)'}">${t}</span>`;}
+  const kalHtml=`<div style="margin-top:14px;border-top:1px solid var(--border);padding-top:12px">
+    <div style="font-size:12px;font-weight:700;margin-bottom:6px">Urlaubskalender ${getAMShort()}</div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:9px;color:var(--muted);text-align:center;margin-bottom:4px"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px">${kal}</div></div>`;
+  openDashModal('🏖 Urlaub heute', list.length+' Mitarbeiter – '+new Date().toLocaleDateString('de-DE'),
+    (list.map(m=>_dashMARow(m,'',true)).join('')||'<div class="heute-empty">Heute niemand im Urlaub</div>')+kalHtml);
+}
+function showDatevOffenModal(){
+  const mk=getAM();
+  const list=getVisibleMA().filter(m=>m.status==='Aktiv'&&!(m.monats_daten?.[mk]?.zettel_ok&&maSG(m)>0))
+    .sort((a,b)=>(a.nachname||'').localeCompare(b.nachname||'','de'));
+  openDashModal('📤 DATEV offen', list.length+' Mitarbeiter ohne Freigabe – '+getAMShort(),
+    list.map(m=>{
+      const soll=maSG(m);
+      const zettelOk=!!(m.monats_daten?.[mk]?.zettel_ok);
+      const grund = soll<=0 ? '🔴 Keine Stunden' : (!zettelOk ? '🟡 Zettel fehlt' : '🔴 Offen');
+      const bg = soll<=0 ? 'var(--rbg)' : 'var(--ybg)';
+      const col = soll<=0 ? 'var(--red)' : '#92400e';
+      return _dashMARow(m,`<span class="heute-entry-badge" style="background:${bg};color:${col}">${grund}</span>`);
+    }).join('')||'<div class="heute-empty">✅ Alle Freigaben erteilt</div>');
+}
+function _dashMonLabel(){ return getAMShort(); }
+function showAbwTagModal(){
+  openDashModal('📅 Abwesenheiten nach Tag – '+_dashMonLabel(), '🤒 Krank · 🏖 Urlaub – Klick öffnet die MA-Karte', buildMonatsUebersicht('abw'));
+}
+function showVtListeModal(){
+  openDashModal('↔ Vertretungsliste – '+_dashMonLabel(), 'Wer vertritt wen – mit Gutschrift-Stunden', buildMonatsUebersicht('vt'));
+}
+function showSonderListeModal(){
+  openDashModal('⚡ Sondereinsätze – '+_dashMonLabel(), 'Einsätze im Monat', buildMonatsUebersicht('sonder'));
+}
+function showJahresstatModal(){
+  const j=parseInt(getAM().slice(0,4));
+  const btn=(k,lbl,bg,col,bd)=>`<button type="button" onclick="statSort('${k}')" id="stat-btn-${k}" style="font-size:11px;padding:3px 10px;border-radius:6px;border:2px solid ${_statSort===k?bd:'var(--border)'};background:${bg};color:${col};cursor:pointer;font-family:inherit;font-weight:${_statSort===k?700:500}">${lbl}</button>`;
+  openDashModal('📊 Krank &amp; Urlaub – Jahrestabelle '+j, 'Tage pro Mitarbeiter und Monat',
+    `<div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      ${btn('krank','🤒 nach Krank','var(--ybg)','var(--yellow)','#fcd34d')}
+      ${btn('urlaub','🏖 nach Urlaub','var(--bbg)','var(--blue)','#93c5fd')}
+      ${btn('name','A–Z','var(--s1)','var(--muted)','var(--border2)')}
+    </div>
+    <div id="stat-table-wrap" style="overflow-x:auto">${buildStatTable(_statSort)}</div>`);
+}
+function showVtModal(){
+  openDashModal('🔄 Vertretungsstatistik – '+getAMShort(),
+    'Krank- & Urlaubsvertretungen', buildVtStatKachel());
+}
+function showStatistikModal(){
+  openDashModal('📈 Statistik', 'Krank & Urlaub im Jahresverlauf', '<div id="statistik-c" style="padding:4px 0"></div>');
+  renderStatistik();
+}
+// ── FIX v139: Urlaubs-Check – Anspruchslogik aller MA pruefen ──────────
+// Repliziert calcUrlaubAnspruch() rein datengetrieben (ohne Modal-DOM),
+// damit ein Report ueber ALLE Mitarbeiter laufen kann.
+function _urlaubCheckMA(m, jahr){
+  const objekte = m.objekte || [];
+  // Arbeitstage/Woche aus Wochentagen der Objekte
+  const aktiveTage = new Set();
+  objekte.forEach(o => {
+    const wt = o.wochentage || {};
+    WT.forEach(t => { if ((parseFloat(wt[t]) || 0) > 0) aktiveTage.add(t); });
+  });
+  const tageGesetzt = aktiveTage.size > 0;
+  const arbTagePW = aktiveTage.size || 5;
+  // Basis: Feld urlaub_jahres oder Betriebszugehoerigkeits-Staffel (28-30)
+  const feld = parseFloat(m.urlaub_jahres) || 0;
+  const auto = calcUrlaubTage(m);
+  const basis = (feld > 0 && feld <= 60) ? feld : auto;
+  const teilzeit = basis / 5 * arbTagePW;
+  // Schulferien-Monate (Merge ueberlappender Zeitraeume, wie calcUrlaubAnspruch)
+  const rgs = [];
+  objekte.forEach(o => {
+    if (o.schulferien && o.ferien_von && o.ferien_bis) {
+      const v = new Date(o.ferien_von), b = new Date(o.ferien_bis);
+      if (!isNaN(v) && !isNaN(b) && b >= v) rgs.push([v.getTime(), b.getTime()]);
+    }
+  });
+  rgs.sort((a,b) => a[0]-b[0]);
+  const mrg = [];
+  for (const r of rgs) {
+    if (mrg.length && r[0] <= mrg[mrg.length-1][1]) mrg[mrg.length-1][1] = Math.max(mrg[mrg.length-1][1], r[1]);
+    else mrg.push([...r]);
+  }
+  let ferienMonate = 0;
+  mrg.forEach(([v,b]) => { ferienMonate += (b - v) / (1000*60*60*24*30.44); });
+  const sollMonate = ferienMonate > 0 ? Math.max(0, 12 - ferienMonate) : 12;
+  // Beschaeftigungszeitraum im Jahr (Fallback Eintritt: fruehestes einsatz_ab)
+  let S = new Date(jahr, 0, 1), E = new Date(jahr, 11, 31);
+  let einEff = m.eintrittsdatum || '';
+  if (!einEff) {
+    let minAb = '';
+    objekte.forEach(o => { const ab = (o.einsatz_ab || '').slice(0,10); if (ab && (!minAb || ab < minAb)) minAb = ab; });
+    einEff = minAb;
+  }
+  if (einEff) { const d = new Date(einEff); if (!isNaN(d.getTime()) && d > S) S = d; }
+  if (m.austrittsdatum) { const d = new Date(m.austrittsdatum); if (!isNaN(d.getTime()) && d < E) E = d; }
+  const rohMonate = _volleMonate(S, E);
+  let proRata;
+  if (rohMonate <= 0) proRata = 0;
+  else if (rohMonate < 12) {
+    const fa = ferienMonate * (rohMonate / 12);
+    proRata = teilzeit / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
+  } else proRata = teilzeit / 12 * sollMonate;
+  const dz = proRata - Math.floor(proRata);
+  const anspruch = dz >= 0.5 ? Math.ceil(proRata) : Math.floor(proRata);
+  // genommen / geplant im Jahr
+  const h = new Date(); h.setHours(0,0,0,0);
+  const heuteISO = h.getFullYear() + '-' + String(h.getMonth()+1).padStart(2,'0') + '-' + String(h.getDate()).padStart(2,'0');
+  let genommen = 0, geplant = 0;
+  Object.entries(m.abwesenheiten || {}).forEach(([d, t]) => {
+    if (t === 'urlaub' && d.startsWith(jahr + '-')) { if (d <= heuteISO) genommen++; else geplant++; }
+  });
+  // Flags
+  const flags = [];
+  if (feld > 0 && feld < 20) flags.push({typ:'rot', txt:'Feld ' + feld + ' < 20 → vermutlich bereits Teilzeit-gekürzt → Doppel-Kürzung! Feld erwartet 5-Tage-Basis (28–30).'});
+  if (!tageGesetzt && objekte.some(o => o.kunde)) flags.push({typ:'gelb', txt:'Keine Wochentage hinterlegt → App nimmt 5 Tage/Woche an.'});
+  if (feld >= 20 && feld <= 60 && feld !== auto) flags.push({typ:'info', txt:'Basis manuell ' + feld + ' (Staffel wäre ' + auto + ').'});
+  return { arbTagePW, tageGesetzt, feld, auto, basis, teilzeit, rohMonate, anspruch, genommen, geplant, rest: anspruch - genommen - geplant, flags };
+}
+
+// ── v140: Minijob-Monitor als Modal (ersetzt eigenen Reiter) ──────────
+function showMinijobModal(){
+  const list = getVisibleMA().filter(m => m.minijob && m.status !== 'Ausgeschieden');
+  const rows = list.map(m => {
+    let s = null;
+    try { s = calcMinijobStatus(m); } catch(e) {}
+    return { m, s };
+  }).filter(r => r.s);
+  const pctOf = s => Math.min(100, Math.round(s.jahresLohn / s.jahresGrenze * 100));
+  const prio = r => !r.s.ok ? 0 : (r.s.austrittRisiko ? 1 : (r.s.ausnahmeGenutzt ? 2 : (pctOf(r.s) >= 85 ? 3 : 4)));
+  rows.sort((a,b) => prio(a) - prio(b) || (a.m.nachname||'').localeCompare(b.m.nachname||'','de'));
+  const nRot  = rows.filter(r => prio(r) === 0).length;
+  const nWarn = rows.filter(r => { const p = prio(r); return p >= 1 && p <= 3; }).length;
+
+  const MNK = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const mkLabel = mk => { const i = MK.indexOf(mk); return i >= 0 ? MNK[i % 12] + ' ' + mk.substring(0,4) : mk; };
+
+  let sum = `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;font-size:12px">
+    <span style="background:${nRot?'var(--rbg)':'var(--gbg)'};border:1px solid ${nRot?'var(--rbd)':'var(--gbd)'};border-radius:20px;padding:4px 12px;font-weight:600;color:${nRot?'var(--red)':'var(--green)'}">${nRot?'🛑 '+nRot+' über der Grenze':'✓ Keine Grenzverletzung'}</span>
+    ${nWarn?`<span style="background:var(--ybg);border:1px solid #fcd34d;border-radius:20px;padding:4px 12px;font-weight:600;color:var(--yellow)">⚠ ${nWarn} beobachten</span>`:''}
+    <span style="background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--text2)">${rows.length} aktive Minijobber</span>
+  </div>`;
+
+  const body = sum + (!rows.length ? '<div style="color:var(--muted);font-size:13px;padding:10px 0">Keine aktiven Minijobber gefunden.</div>' :
+  `<div style="overflow-x:auto"><table class="mjt">
+    <thead><tr><th>Status</th><th>Name</th><th>Zeitjahr</th><th style="width:32%">Jahresverdienst</th><th style="text-align:right">€ / Grenze</th></tr></thead>
+    <tbody>${rows.map(r => {
+      const m = r.m, s = r.s;
+      const pct = pctOf(s);
+      let ampCls, ampTxt;
+      if (!s.ok) { ampCls = 'background:var(--rbg);color:var(--red);border:1px solid var(--rbd)'; ampTxt = '🛑 Überschritten'; }
+      else if (s.austrittRisiko) { ampCls = 'background:var(--ybg);color:#92400e;border:1px solid #fcd34d'; ampTxt = '📄 Nachweis ablegen'; }
+      else if (s.ausnahmeGenutzt) { ampCls = 'background:var(--ybg);color:#92400e;border:1px solid #fcd34d'; ampTxt = '⚠ Ausnahme ' + s.ausnahmeMonateCount + '/2'; }
+      else if (pct >= 85) { ampCls = 'background:var(--ybg);color:var(--yellow);border:1px solid #fcd34d'; ampTxt = '🟡 ' + pct + ' %'; }
+      else { ampCls = 'background:var(--gbg);color:var(--green);border:1px solid var(--gbd)'; ampTxt = '✓ Im Rahmen'; }
+      const barCol = pct >= 100 ? 'var(--red)' : pct >= 85 ? '#f59e0b' : 'var(--green)';
+      const fmt = x => x.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      let haupt = `<tr class="mj-klick" onclick="_dashMAOpen('${m.id}')" title="${m.nachname} öffnen">
+        <td><span class="mj-ampel" style="${ampCls}">${ampTxt}</span></td>
+        <td><strong>${m.nachname||''}${m.vorname?', '+m.vorname:''}</strong></td>
+        <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap">${s.zeitjahr.startLabel} – ${s.zeitjahr.endLabel}</td>
+        <td><div class="mj-bar"><i style="width:${pct}%;background:${barCol}"></i><b title="85 %-Warnmarke"></b></div>${s.ausnahmeGenutzt?`<div style="font-size:10px;color:#92400e;margin-top:2px">Grenze erhöht: ${fmt(s.jahresGrenze)} € (${s.ausnahmeMonateCount}× Krankheitsvertretung)</div>`:''}</td>
+        <td style="text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;white-space:nowrap"><b style="color:${pct>=100?'var(--red)':pct>=85?'#b45309':'var(--text)'}">${fmt(s.jahresLohn)}</b> / ${fmt(s.jahresGrenze)}</td>
+      </tr>`;
+
+      // Detailzeile fuer Problem-/Ausnahme-Faelle (Nachweis-Buttons bleiben erhalten)
+      let det = '';
+      const probA = (s.monatProbleme||[]).filter(p => p.isAusnahme);
+      const probR = (s.monatProbleme||[]).filter(p => !p.isAusnahme);
+      if (probA.length || probR.length || s.austrittRisiko) {
+        let dd = '';
+        probA.forEach(p => {
+          dd += `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+            <span style="color:#92400e;font-weight:600;min-width:70px">${mkLabel(p.mk)}</span>
+            <span style="flex:1;color:var(--muted)">🤒 Krankheitsvertretung (Ausnahme, max. 1.206 €)</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-weight:600">${p.lohn.toFixed(2)} €</span>
+            <button class="btn btn-s" style="font-size:10px;padding:2px 8px" onclick="event.stopPropagation();genNachweispdf('${m.id}','${p.mk}')">📄 Nachweis</button>
+          </div>`;
+        });
+        probR.forEach(p => {
+          dd += `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;color:var(--red)">
+            <span style="font-weight:600;min-width:70px">${mkLabel(p.mk)}</span>
+            <span style="flex:1">🚫 Grenze überschritten (${p.isKrankVt ? 'Ausnahme-Kontingent erschöpft' : 'kein Krankheitsfall'})</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-weight:600">${p.lohn.toFixed(2)} €</span>
+          </div>`;
+        });
+        if (s.austrittRisiko) {
+          dd += `<div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:8px 12px;margin-top:6px;font-size:11px;line-height:1.6">
+            <b style="color:#92400e">✅ Vorzeitiger Austritt – Ausnahme bleibt gültig</b> ·
+            Austritt: <b>${m.austrittsdatum}</b> · Zeitjahr bis <b>${s.zeitjahr.endLabel}</b> ·
+            Ausnahme-Monate: <b>${(s.ausnahmeMonateNamen||[]).join(', ')}</b><br>
+            Einstellung war unbefristet – Ausnahmeregel nach § 8 Abs. 1 Nr. 1 SGB IV bleibt gültig. <b>Nachweis ausdrucken und zur Personalakte nehmen.</b>
+          </div>`;
+        }
+        det = `<tr><td colspan="5" style="background:var(--s1);padding:6px 14px">${dd}</td></tr>`;
+      }
+      return haupt + det;
+    }).join('')}</tbody></table></div>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6">Zeitjahr läuft ab Eintrittsdatum · Jahresgrenze 7.236 € (bei Krankheitsvertretungs-Ausnahme erhöht) · graue Marke = 85 %-Warnschwelle · Zeile anklicken öffnet den Mitarbeiter.</div>`);
+
+  openDashModal('💼 Minijob-Monitor', rows.length + ' aktive Minijobber – Zeitjahr & Grenzen', body);
+}
+
+function showUrlaubsCheckModal(){
+  const jahr = parseInt(getAM().slice(0,4));
+  const list = getVisibleMA().filter(m => m.status !== 'Ausgeschieden');
+  const rows = list.map(m => ({ m, c: _urlaubCheckMA(m, jahr) }));
+  // Problemfaelle zuerst (rot > gelb > rest), dann Nachname
+  const prio = r => r.c.flags.some(f => f.typ === 'rot') ? 0 : (r.c.flags.some(f => f.typ === 'gelb') ? 1 : 2);
+  rows.sort((a,b) => prio(a) - prio(b) || (a.m.nachname||'').localeCompare(b.m.nachname||'','de'));
+  const nRot = rows.filter(r => r.c.flags.some(f => f.typ === 'rot')).length;
+  const nGelb = rows.filter(r => prio(r) === 1).length;
+  const th = t => `<th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap">${t}</th>`;
+  const td = 'padding:8px 10px;border-bottom:1px solid var(--border)';
+  const mono = "font-family:'IBM Plex Mono',monospace;font-size:12px";
+  let sum = `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;font-size:12px">`;
+  sum += `<span style="background:${nRot?'var(--rbg)':'var(--gbg)'};border:1px solid ${nRot?'var(--rbd)':'var(--gbd)'};border-radius:20px;padding:4px 12px;font-weight:600;color:${nRot?'var(--red)':'var(--green)'}">${nRot?'⚠ '+nRot+' MA mit vermutl. Doppel-Kürzung':'✓ Keine Doppel-Kürzung erkannt'}</span>`;
+  if (nGelb) sum += `<span style="background:var(--ybg);border:1px solid #fde68a;border-radius:20px;padding:4px 12px;font-weight:600;color:var(--yellow)">${nGelb} MA ohne Wochentage (5-Tage-Annahme)</span>`;
+  sum += `<span style="background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--text2)">${rows.length} aktive MA geprüft</span></div>`;
+  const body = sum + `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
+    <thead><tr style="background:var(--s1)">${th('Nr.')}${th('Name')}${th('Tage/Wo')}${th('Basis (Feld)')}${th('Anspruch')}${th('Gen.+Gepl.')}${th('Rest')}${th('Hinweis')}</tr></thead>
+    <tbody>${rows.map(r => {
+      const c = r.c, m = r.m;
+      const rot = c.flags.some(f => f.typ === 'rot');
+      const hin = c.flags.map(f => `<span style="color:${f.typ==='rot'?'var(--red)':f.typ==='gelb'?'var(--yellow)':'var(--muted)'}">${f.typ==='rot'?'⚠ ':f.typ==='gelb'?'◐ ':''}${f.txt}</span>`).join('<br>') || '<span style="color:var(--green)">✓</span>';
+      return `<tr onclick="_dashMAOpen('${m.id}')" style="cursor:pointer${rot?';background:var(--rbg)':''}" title="${m.nachname} öffnen">
+        <td style="${td}"><code>${m.persnr||'–'}</code></td>
+        <td style="${td}"><strong style="color:var(--text2)">${m.nachname||'–'}</strong>${m.vorname?' <span style="color:var(--muted)">'+m.vorname+'</span>':''}</td>
+        <td style="${td};${mono};text-align:center">${c.arbTagePW}${c.tageGesetzt?'':'*'}</td>
+        <td style="${td};${mono}">${c.feld>0?c.feld:'– ('+c.auto+' auto)'}</td>
+        <td style="${td};${mono};font-weight:700;color:${rot?'var(--red)':'var(--acc)'}">${c.anspruch}</td>
+        <td style="${td};${mono}">${c.genommen}+${c.geplant}</td>
+        <td style="${td};${mono};font-weight:700;color:${c.rest<0?'var(--red)':'var(--green)'}">${c.rest}</td>
+        <td style="${td};font-size:11px;line-height:1.5;max-width:340px">${hin}</td>
+      </tr>`;
+    }).join('')}</tbody></table></div>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6">Formel: Basis (5-Tage-Woche, 28–30) ÷ 5 × Arbeitstage/Woche, danach Pro-Rata nach vollen Beschäftigungsmonaten (§4/§5 BUrlG) und ggf. Schulferien-Kürzung. * = keine Wochentage hinterlegt, 5-Tage-Annahme. Zeile anklicken öffnet den Mitarbeiter.</div>`;
+  openDashModal('🏖 Urlaubs-Check ' + jahr, rows.length + ' aktive MA – Anspruchslogik geprüft', body);
+}
+
+function showEhemaligeModal(){
+  const ehMA=getVisibleMA().filter(m=>m.status==='Ausgeschieden'||!!m.austrittsdatum)
+    .sort((a,b)=>{const ad=a.austrittsdatum||'9999',bd=b.austrittsdatum||'9999';return bd.localeCompare(ad);});
+  const th=t=>`<th style="padding:7px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">${t}</th>`;
+  const body = !ehMA.length
+    ? '<div style="color:var(--muted);font-size:13px;padding:10px 0">Keine ehemaligen Mitarbeiter.</div>'
+    : `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead><tr style="background:var(--s1)">${th('Nr.')}${th('OL')}${th('Name')}${th('Zuletzt bei')}${th('Eintritt')}${th('Austritt')}</tr></thead>
+      <tbody>${ehMA.map(m=>{
+        const ol=m.objektleiter||'?';
+        const kunden=maKu(m).join(', ')||'–';
+        const ein=m.eintrittsdatum?new Date(m.eintrittsdatum).toLocaleDateString('de-DE'):'–';
+        const aus=m.austrittsdatum?new Date(m.austrittsdatum).toLocaleDateString('de-DE'):'–';
+        return `<tr onclick="_dashMAOpen('${m.id}')" style="cursor:pointer;opacity:.85" title="${m.nachname} öffnen">
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><code>${m.persnr||'–'}</code></td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span class="olb ol-${ol}">${ol}</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border)"><strong style="color:var(--text2)">${m.nachname||'–'}</strong>${m.vorname?' <span style="color:var(--muted)">'+m.vorname+'</span>':''}</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);color:var(--muted);font-size:12px">${kunden}</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)">${ein}</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);font-weight:600">${aus}</td>
+        </tr>`;
+      }).join('')}</tbody></table></div>`;
+  openDashModal('🚪 Ehemalige Mitarbeiter', ehMA.length+' gesamt', body);
+}
 function showTab(t){
 document.querySelectorAll('.tab[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===t));
 document.querySelectorAll('.sec').forEach(el=>el.classList.remove('active'));
@@ -7100,8 +7629,6 @@ if(t==='objekte'){document.getElementById('ogrid').style.display='block';renderO
 if(t==='heute')renderHeute();
 if(t==='urlaub')renderUrlaub();
 if(t==='dashboard')renderDash();
-if(t==='minijob')renderMinijob();
-if(t==='statistik')renderStatistik();
 }
 function renderMinijob() {
   const container = document.getElementById('minijob-list');
@@ -7822,7 +8349,7 @@ function _vtMarkierteFehltage(m, mk) {
   const prefix = mk + '-';
   const tage = [];
   Object.entries(m.abwesenheiten || {}).forEach(([d, t]) => {
-    if (d.startsWith(prefix) && (t === 'krank' || t === 'urlaub')) tage.push(d);
+    if (d.startsWith(prefix) && (t === 'krank' || t === 'urlaub' || t === 'unbezahlt')) tage.push(d); // FIX v138: unbezahlt zaehlt fuer Vertretung
   });
   return tage;
 }
@@ -9712,7 +10239,7 @@ function statSort(by) {
   });
 }
 
-function buildMonatsUebersicht() {
+function buildMonatsUebersicht(teil) {
   const mk = getAM(); // z.B. '2026-03'
   const [year, mon] = mk.split('-').map(Number);
   const daysInMonth = new Date(year, mon, 0).getDate();
@@ -9734,10 +10261,11 @@ function buildMonatsUebersicht() {
     const isWE = dow === 0 || dow === 6;
     const krank  = aktiv.filter(m => m.abwesenheiten?.[key] === 'krank');
     const urlaub = aktiv.filter(m => m.abwesenheiten?.[key] === 'urlaub');
+    const unbez  = aktiv.filter(m => m.abwesenheiten?.[key] === 'unbezahlt');
     // Vertretungen: aus monats_daten[mk].vertretungen – MA der an diesem Tag vertritt
     // Einfacher Ansatz: nur Tage mit Ereignissen anzeigen
-    if (krank.length || urlaub.length) {
-      tage.push({ d, key, dow, isWE, krank, urlaub });
+    if (krank.length || urlaub.length || unbez.length) {
+      tage.push({ d, key, dow, isWE, krank, urlaub, unbez });
     }
   }
 
@@ -9762,17 +10290,17 @@ function buildMonatsUebersicht() {
   let html = '';
 
   // ── Krank & Urlaub ──
-  if (tage.length === 0 && sonder.length === 0 && vertr.length === 0) {
+  if (!teil && tage.length === 0 && sonder.length === 0 && vertr.length === 0) {
     html += '<div style="color:var(--muted);font-size:13px;padding:16px 0;text-align:center">Keine Abwesenheiten, Vertretungen oder Sonderstunden im ' + getAMShort() + ' eingetragen.</div>';
     return html;
   }
 
   const WD = ['So','Mo','Di','Mi','Do','Fr','Sa'];
 
-  if (tage.length > 0) {
+  if ((!teil || teil === 'abw') && tage.length > 0) {
     html += '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Abwesenheiten nach Tag</div>';
     html += '<div style="display:flex;flex-direction:column;gap:4px;margin-bottom:16px">';
-    tage.forEach(({ d, key, dow, isWE, krank, urlaub }) => {
+    tage.forEach(({ d, key, dow, isWE, krank, urlaub, unbez }) => {
       const wdLabel = WD[dow];
       const dayLabel = `${wdLabel} ${String(d).padStart(2,'0')}.${String(mon).padStart(2,'0')}.`;
       html += `<div style="display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:6px;background:${isWE?'var(--s2)':'var(--s1)'};border:1px solid var(--border)">
@@ -9784,13 +10312,16 @@ function buildMonatsUebersicht() {
       urlaub.forEach(m => {
         html += `<span onclick="openMAM('${m.id}')" style="cursor:pointer;font-size:12px;padding:2px 8px;border-radius:10px;background:var(--bbg);color:var(--blue);border:1px solid #93c5fd">🏖 ${m.nachname}${m.vorname?' '+m.vorname[0]+'.':''}</span>`;
       });
+      (unbez||[]).forEach(m => {
+        html += `<span onclick="openMAM('${m.id}')" style="cursor:pointer;font-size:12px;padding:2px 8px;border-radius:10px;background:#e5e7eb;color:#374151;border:1px solid #9ca3af">🚫 ${m.nachname}${m.vorname?' '+m.vorname[0]+'.':''}</span>`;
+      });
       html += `</div></div>`;
     });
     html += '</div>';
   }
 
   // ── Vertretungen ──
-  if (vertr.length > 0) {
+  if ((!teil || teil === 'vt') && vertr.length > 0) {
     html += '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Vertretungen</div>';
     html += '<div style="display:flex;flex-direction:column;gap:4px;margin-bottom:16px">';
     vertr.forEach(({ m, v }) => {
@@ -9810,7 +10341,7 @@ function buildMonatsUebersicht() {
   }
 
   // ── Sonderstunden ──
-  if (sonder.length > 0) {
+  if ((!teil || teil === 'sonder') && sonder.length > 0) {
     html += '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Sondereinsätze</div>';
     html += '<div style="display:flex;flex-direction:column;gap:4px">';
     sonder.forEach(({ m, s }) => {
@@ -9824,7 +10355,7 @@ function buildMonatsUebersicht() {
     html += '</div>';
   }
 
-  return html;
+  return html || '<div style="color:var(--muted);font-size:13px;padding:16px 0;text-align:center">Keine Einträge im ' + getAMShort() + ' vorhanden.</div>';
 }
 
 function buildVtStatKachel() {
@@ -10269,6 +10800,18 @@ function renderStatistik() {
   </div>
 </div>
 <!-- ── KAPAZITÄT-ÜBERSCHRITTEN-MODAL ── -->
+<div id="dash-modal-bg" style="display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto" onclick="if(event.target===this)closeDashModal()">
+  <div style="background:var(--white);border-radius:12px;width:min(96vw,920px);max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;margin:auto">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1">
+      <div>
+        <div style="font-weight:700;font-size:15px" id="dash-modal-title"></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px" id="dash-modal-sub"></div>
+      </div>
+      <button type="button" onclick="closeDashModal()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);padding:4px 8px;font-family:inherit" title="Schließen">✕</button>
+    </div>
+    <div style="padding:14px 20px 18px" id="dash-modal-body"></div>
+  </div>
+</div>
 <div id="kap-over-bg" style="display:none;position:fixed;inset:0;background:rgba(17,25,40,.55);z-index:var(--z-modal-bg);align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto" onclick="if(event.target===this)closeKapOverModal()">
   <div style="background:var(--white);border-radius:12px;width:min(96vw,740px);max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;margin:auto">
     <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1">
