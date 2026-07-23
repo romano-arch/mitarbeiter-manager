@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v140</title>
+<title>MitarbeiterManager v144</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -350,6 +350,35 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .kd-standorte{padding:0 16px 12px;display:none}
 .kd-standorte.open{display:block}
 .kd-st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin-top:10px}
+/* ── v144: Kunden-Kacheln ── */
+.kdgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:12px}
+.kdc{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px;position:relative;transition:transform .12s,box-shadow .12s,border-color .12s}
+.kdc.klick{cursor:pointer}
+.kdc.klick:hover{transform:translateY(-2px);box-shadow:var(--sh2);border-color:var(--acc)}
+.kdc.eh{opacity:.66}
+.kdc.eh:hover{opacity:1}
+.kdc-top{display:flex;align-items:flex-start;gap:10px}
+.kdc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--acc-l)}
+.kdc-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kdc-sub{font-size:11px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kdc-badge{font-size:10px;font-weight:500;background:var(--s2);color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:1px 6px;margin-left:5px;vertical-align:1px}
+.kdc-dots{width:26px;height:26px;flex-shrink:0;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.kdc-dots:hover{background:var(--s1);color:var(--text);border-color:var(--border2)}
+.kdc-kap{font-size:11px}
+.kdc-kap-h{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:4px}
+.kdc-bar{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}
+.kdc-bar>i{display:block;height:100%;border-radius:3px}
+.kdc-mas{display:flex;flex-wrap:wrap;gap:4px;min-height:19px;align-items:center}
+.kdc-ma{font-size:10px;padding:1px 6px;border-radius:5px;white-space:nowrap;cursor:pointer}
+.kdc-menu{position:absolute;top:44px;right:12px;min-width:206px;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 26px rgba(15,23,42,.16);padding:4px;z-index:25}
+.kdc-mi{display:flex;align-items:center;gap:9px;padding:7px 10px;font-size:13px;border-radius:7px;cursor:pointer;color:var(--text);white-space:nowrap}
+.kdc-mi:hover{background:var(--s1)}
+.kdc-mi.rot{color:var(--red)}
+.kdc-mi.rot:hover{background:var(--rbg)}
+.kdc-mi.gruen{color:var(--green)}
+.kdc-mi.gruen:hover{background:var(--gbg)}
+.kdc-msep{height:1px;background:var(--border);margin:4px 2px}
+.kdc-mh{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted2);padding:5px 10px 2px}
 .kd-st-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;font-size:12px}
 .kd-st-name{font-weight:600;color:var(--text);margin-bottom:4px;font-size:13px}
 .kd-no-st{color:var(--muted);font-size:12px;padding:10px 0;font-style:italic}
@@ -817,6 +846,82 @@ body.lock-active main{margin-top:46px}
 .det-kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:6px 13px;text-align:center;box-shadow:var(--sh)}
 .det-kpi .v{font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace}
 .det-kpi .l{font-size:10px;color:var(--muted)}
+/* ── v141: Jahresbericht ── */
+/* z-index 1200: das MA-Modal setzt sich beim Oeffnen selbst auf 200 bzw. 700 */
+.jb-bg{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1200;align-items:flex-start;justify-content:center;padding:18px 12px;overflow-y:auto}
+.jb-bg-sub{z-index:1300;background:rgba(15,23,42,.45)}
+.jb-box-sub{max-width:1080px}
+.jb-kpi.klick{cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s;position:relative}
+.jb-kpi.klick:hover{transform:translateY(-2px);box-shadow:var(--sh2);border-color:var(--acc)}
+.jb-kpi.klick:after{content:'\203a';position:absolute;top:3px;right:7px;font-size:12px;color:var(--muted2);line-height:1}
+.jb-kpi.warn{border-color:var(--rbd);background:var(--rbg)}
+.jb-kpi-nav{background:var(--s1)}
+.jb-hinweis{font-size:11px;color:var(--muted);margin:6px 0 2px}
+.jb-fuss{font-size:11px;color:var(--muted);margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
+.jb-zfehlt{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-left:5px;vertical-align:1px}
+body.jb-open{overflow:hidden}
+/* Druck / PDF: nur der Print-Container wird gedruckt */
+#jb-print{display:none}
+@media print{
+  body>*{display:none!important}
+  body{overflow:visible!important;background:#fff!important}
+  #jb-print{display:block!important;position:static!important;padding:0;margin:0;background:#fff;color:#111}
+  .jbp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:2px solid #111;padding-bottom:8px;margin-bottom:12px}
+  .jbp-t{font-size:17px;font-weight:700}
+  .jbp-s{font-size:11px;color:#333;margin-top:3px}
+  .jbp-f{font-size:10px;color:#555;text-align:right;white-space:nowrap}
+  .jb-tab{width:100%;border-collapse:collapse;font-size:10px}
+  .jb-tab th{background:#eee!important;border-bottom:1px solid #999;padding:4px 6px;text-align:left;font-size:9px;text-transform:uppercase;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .jb-tab td{border-bottom:1px solid #ddd;padding:3px 6px}
+  .jb-tab td.n,.jb-tab th.n{text-align:right}
+  .jb-tab tr.jb-sum td{font-weight:700;border-top:1.5px solid #111}
+  .jb-tab tr{page-break-inside:avoid}
+  .jb-sec{font-size:11px;font-weight:700;text-transform:uppercase;margin:12px 0 6px;border-bottom:1px solid #999;padding-bottom:3px}
+  .jb-kpis{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .jb-kpi{border:1px solid #bbb;border-radius:5px;padding:4px 10px;text-align:center;background:#fff}
+  .jb-kpi .v{font-size:13px;font-weight:700}
+  .jb-kpi .l{font-size:8px;color:#555}
+  .jb-kpi.klick:after{content:''}
+  .uhm-mongrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .mkal{border:1px solid #bbb;border-radius:5px;padding:5px 6px;page-break-inside:avoid;box-shadow:none}
+  .mkal h4{font-size:9px;margin-bottom:3px}
+  .mk-d{font-size:8px}
+  .jb-legend{font-size:9px;margin-bottom:8px}
+  .jb-fuss,.jb-leer,.jb-mini{font-size:9px;color:#555}
+  .btn{display:none!important}
+  @page{size:A4 landscape;margin:11mm}
+}
+.jb-box{background:var(--s1);border-radius:14px;width:100%;max-width:1360px;box-shadow:0 18px 50px rgba(0,0,0,.3);overflow:hidden;margin:auto}
+.jb-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 20px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:3}
+.jb-body{padding:16px 20px 22px}
+.jb-kpis{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.jb-kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:7px 14px;text-align:center;box-shadow:var(--sh);min-width:76px}
+.jb-kpi .v{font-size:17px;font-weight:700;font-family:'IBM Plex Mono',monospace}
+.jb-kpi .l{font-size:10px;color:var(--muted)}
+.jb-sec{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.jb-legend{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--text2);margin-bottom:10px}
+.jb-legend i.jb-lg{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.jb-dot{position:absolute;width:4px;height:4px;border-radius:50%;bottom:1px}
+.jb-dot-se{background:#ea580c;right:2px}
+.jb-dot-vt{background:#2563eb;left:2px}
+.mk-d.jb-hasdot{position:relative}
+.jb-tab{width:100%;border-collapse:collapse;font-size:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.jb-tab th{padding:6px 8px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;background:var(--s1);border-bottom:1px solid var(--border);white-space:nowrap}
+.jb-tab td{padding:6px 8px;border-bottom:1px solid var(--s2);white-space:nowrap}
+.jb-tab td.n,.jb-tab th.n{text-align:right;font-family:'IBM Plex Mono',monospace}
+.jb-tab tbody tr:hover td{background:var(--acc-l)}
+.jb-tab tr.jb-sum td{font-weight:700;background:var(--s1);border-top:2px solid var(--border);border-bottom:none}
+.jb-mini{font-size:10px;color:var(--muted)}
+.jb-chron{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.jb-chron-col{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:11px 13px;box-shadow:var(--sh)}
+.jb-chron-col h5{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.jb-ev{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--s2);font-size:12px}
+.jb-ev:last-child{border-bottom:none}
+.jb-ev-t{font-weight:600;white-space:nowrap;font-size:11px}
+.jb-ev-d{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);white-space:nowrap}
+.jb-ev-x{color:var(--muted);flex:1;min-width:150px}
+.jb-leer{font-size:12px;color:var(--muted2);padding:6px 0}
+@media(max-width:900px){.jb-head{padding:11px 13px}.jb-body{padding:12px 13px 18px}}
 /* ── v140: Minijob-Monitor (Modal-Tabelle) ── */
 .mjt{width:100%;border-collapse:collapse;font-size:13px}
 .mjt th{padding:7px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);background:var(--s1);white-space:nowrap}
@@ -973,7 +1078,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v140</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v144</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1274,7 +1379,11 @@ main{padding:14px 16px}
 
   <!-- Kalender -->
   <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 15px;box-shadow:0 1px 3px rgba(0,0,0,.08)">
-    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:9px">📅 Abwesenheitskalender</div>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:9px;display:flex;align-items:center;gap:8px">
+      <span>📅 Abwesenheitskalender</span>
+      <button onclick="if(eMAid)openJahresbericht(eMAid,kalYear)" title="Jahresbericht dieses Mitarbeiters &ouml;ffnen"
+        style="margin-left:auto;background:var(--white);border:1px solid #c7d2fe;color:var(--acc);border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;font-family:inherit">📄 Jahresbericht</button>
+    </div>
     <div id="kal-wrap">
       <div class="kal-header"><button class="kal-nav" onclick="kalNav(-1)">‹</button><span class="kal-title" id="kal-title"></span><button class="kal-nav" onclick="kalNav(1)">›</button></div>
       <div style="display:flex;align-items:center;gap:4px;margin-bottom:7px;flex-wrap:wrap">
@@ -1306,6 +1415,7 @@ main{padding:14px 16px}
       <thead><tr style="background:var(--s2)">
         <th style="padding:5px 6px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Mitarbeiter</th>
         <th style="padding:5px 6px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Objekt</th>
+        <th style="padding:5px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)" title="Optional – nur f&uuml;r den Jahresbericht. Leer = z&auml;hlt f&uuml;r den ganzen Monat.">Datum</th>
         <th style="padding:5px 5px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Std.</th>
         <th style="padding:5px 6px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Grund</th>
         <th style="padding:5px 3px;border-bottom:1px solid var(--border);width:22px"></th>
@@ -1803,7 +1913,16 @@ function calcMinijobStatus(m) {
   // FIX: Jahresgrenze proportional zu genutzten Ausnahme-Monaten (nicht pauschal +2×603)
   const jahresGrenze = MINIJOB_MAX_JAHR + (ausnahmeMonateCount * MINIJOB_MAX_MONAT);
   const jahresOk = jahresLohn <= jahresGrenze;
-  const monatOk = monatProbleme.filter(p=>!p.isAusnahme).length === 0;
+  // v141: SCHWANKUNGS-REGEL (§ 8 SGB IV - Prognose des regelmäßigen Entgelts).
+  // Maßgeblich ist der Jahresdurchschnitt, nicht der Einzelmonat. Ein Monat mit
+  // 23 Arbeitstagen (z.B. Juli) liegt zwangsläufig über 603 EUR, ein Monat mit
+  // 20 AT entsprechend darunter - das gleicht sich aus. Solange die Zeitjahr-Summe
+  // die Jahresgrenze (7.236 EUR) einhält, ist das KEINE Überschreitung.
+  // Solche Monate werden als schwankung:true markiert und zaehlen nicht als Problem.
+  if (jahresLohn <= MINIJOB_MAX_JAHR) {
+    monatProbleme.forEach(p => { if (!p.isAusnahme) p.schwankung = true; });
+  }
+  const monatOk = monatProbleme.filter(p=>!p.isAusnahme && !p.schwankung).length === 0;
 
   // Austritts-Risiko: hat Ausnahme-Monate genutzt und Austritt vor Zeitjahr-Ende?
   const austrittVorZeitjahr = austritt && austritt < zy.end;
@@ -1958,12 +2077,20 @@ function updLohngruppeInfo() {
       if (m) {
         const sl = TARIFLOHN[lg || m.lohngruppe] ? TARIFLOHN[lg || m.lohngruppe].lohn : (parseFloat(m.stundenlohn_tarif) || 15);
         const std = maSG(m);
-        const lohn = Math.round(std * sl * 100) / 100;
+        // v141: Lohn aus der zentralen Monatslohn-Funktion - beruecksichtigt
+        // Verstetigung und lohn_fest. Vorher std*sl -> verstetigte MA falsch rot.
+        const lohn = calcMonatLohn(m, getAM()).lohn;
         const maxStd = minijobMaxStd(sl);
         const jahrLohn = Math.round(lohn * 12 * 100) / 100;
         // Ausnahme-Prüfung: Krankheitsvertretung erlaubt bis 2× 1.206€/Monat
         const mjStatus = calcMinijobStatus(m);
-        if (!mjStatus.ok || lohn > MINIJOB_MAX_MONAT || std > maxStd) {
+        // v141: Stunden-Grenze bei Verstetigung nicht pruefen (festes Monats-Soll)
+        const stdUeber = !m.verstetigt && std > maxStd;
+        // v141: Jahresbetrachtung entscheidet - Einzelmonat darf schwanken
+        const jahrUeber = mjStatus.jahresLohn > mjStatus.jahresGrenze;
+        const nurSchwankung = !jahrUeber && (lohn > MINIJOB_MAX_MONAT || stdUeber)
+                              && !mjStatus.monatProbleme.some(p=>p.isAusnahme && p.mk===getAM());
+        if (!mjStatus.ok || lohn > MINIJOB_MAX_MONAT || stdUeber) {
           const isAusnahme = mjStatus.ausnahmeGenutzt;
           const hatMonatProblem = mjStatus.monatProbleme.some(p=>!p.isAusnahme && p.mk===getAM());
           const hatAusnahmeMk = mjStatus.monatProbleme.some(p=>p.isAusnahme && p.mk===getAM());
@@ -1975,11 +2102,21 @@ function updLohngruppeInfo() {
             if (mjStatus.jahresLohn > MINIJOB_MAX_JAHR) w += '<div style="font-size:12px;margin-top:3px">Jahreslohn: <strong>' + mjStatus.jahresLohn.toFixed(2) + ' €</strong> (Ausnahme-Jahresgrenze: 8.442 €)</div>';
             if (mjStatus.ausnahmeMonateCount >= 2) w += '<div style="font-size:12px;color:var(--red);font-weight:600;margin-top:4px">⛔ Max. 2 Ausnahme-Monate erreicht!</div>';
             w += '</div>';
-          } else if (lohn > MINIJOB_MAX_MONAT || std > maxStd || mjStatus.jahresLohn > mjStatus.jahresGrenze) {
+          } else if (nurSchwankung) {
+            // v141: Monatsschwankung durch unterschiedliche Arbeitstage - kein Verstoss
+            const _at = ARBEITSTAGE[getAM()] || 21;
+            const _rest = Math.round((mjStatus.jahresGrenze - mjStatus.jahresLohn) * 100) / 100;
+            w = '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:var(--r);padding:10px 14px">';
+            w += '<div style="font-weight:600;color:var(--blue);margin-bottom:4px">ℹ Schwankender Monat – Jahresgrenze eingehalten</div>';
+            w += '<div style="font-size:12px">' + getAMShort() + ' hat <strong>' + _at + ' Arbeitstage</strong> → Lohn <strong>' + lohn.toFixed(2) + ' €</strong> (' + std + 'h). Andere Monate liegen entsprechend darunter.</div>';
+            w += '<div style="font-size:12px;margin-top:3px">Zeitjahr: <strong>' + mjStatus.jahresLohn.toFixed(2) + ' €</strong> von ' + mjStatus.jahresGrenze.toLocaleString('de-DE') + ' € – noch <strong>' + _rest.toLocaleString('de-DE') + ' €</strong> frei.</div>';
+            w += '<div style="font-size:11px;color:var(--muted);margin-top:4px">💡 Maßgeblich ist das regelmäßige Jahresentgelt (§ 8 SGB IV), nicht der Einzelmonat.</div>';
+            w += '</div>';
+          } else if (lohn > MINIJOB_MAX_MONAT || stdUeber || mjStatus.jahresLohn > mjStatus.jahresGrenze) {
             w = '<div style="background:var(--rbg);border:1px solid var(--rbd);border-radius:var(--r);padding:10px 14px">';
             w += '<div style="font-weight:600;color:var(--red);margin-bottom:4px">🚫 Minijob-Grenze überschritten!</div>';
             if (lohn > MINIJOB_MAX_MONAT) w += '<div style="font-size:12px">Lohn: <strong>' + lohn.toFixed(2) + ' €</strong> &gt; 603 € (Monatsgrenze)</div>';
-            if (std > maxStd) w += '<div style="font-size:12px">Stunden: <strong>' + std + 'h</strong> &gt; ' + maxStd + 'h</div>';
+            if (stdUeber) w += '<div style="font-size:12px">Stunden: <strong>' + std + 'h</strong> &gt; ' + maxStd + 'h</div>';
             if (mjStatus.jahresLohn > mjStatus.jahresGrenze) w += '<div style="font-size:12px">Jahreslohn: <strong>' + mjStatus.jahresLohn.toFixed(2) + ' €</strong> &gt; ' + mjStatus.jahresGrenze + ' €</div>';
             const krankVtMoeglich = mjStatus.monatProbleme.some(p=>!p.isKrankVt && p.mk===getAM());
             if (!krankVtMoeglich && mjStatus.ausnahmeMonateCount < 2) w += '<div style="font-size:11px;color:var(--muted);margin-top:4px">💡 Ausnahme möglich wenn Krankheitsvertretung (max. 2×/Jahr, max. 1.206 €/Monat)</div>';
@@ -2683,10 +2820,24 @@ function _maMonatAktivFaktor(m, monatKey) {
   return Math.max(0, Math.min(1, aktivTage / arbT));
 }
 
+// v141 NEU: Soll-Basis eines Objekts UNTER Beruecksichtigung der MA-Verstetigung.
+// Ein verstetigter MA hat jeden Monat dasselbe Soll (Wochenstunden/5 x 261/12),
+// unabhaengig davon ob der Monat 20, 21 oder 23 Arbeitstage hat. Vorher las
+// maSG()/maOSollMA() immer das Arbeitstage-Soll -> Juli (23 AT) zeigte 40.25h
+// statt 38.06h und die Minijob-Pruefung meldete faelschlich 603,75 EUR > 603 EUR,
+// obwohl maLG() korrekt den festen Monatslohn 571,50 EUR ausweist.
+function _maOSollBasis(m, effO, monatKey, maAbrModell) {
+  if (m && m.verstetigt && !effO.lohn_fest && !(effO.einsatz_ab || effO.einsatz_bis)) {
+    const ws = wSum(effO.wochentage || {});
+    if (ws > 0) return Math.round(ws / 5 * 261 / 12 * 100) / 100;
+  }
+  return maOSoll(effO, monatKey, maAbrModell);
+}
+
 function maOSollMA(m, o, monatKey, maAbrModell) {
   const histO = _getHistoryObjekt(m, o.kunde, monatKey, o.revier);
   const effektivO = histO || o;
-  const basis = maOSoll(effektivO, monatKey, maAbrModell);
+  const basis = _maOSollBasis(m, effektivO, monatKey, maAbrModell);
   if (!basis || basis <= 0) return basis;
   // FIX v94: Doppelten Abzug vermeiden.
   // Wenn das Objekt bereits einen einsatz_ab/einsatz_bis hat, hat maOSoll
@@ -2743,8 +2894,9 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
         let kkTage = 0;
         const cur = new Date(vonDatum.getTime());
         while (cur <= monatEnde) {
-          // FIX #4: alle Kalendertage zählen (Mo-So), passend zum Nenner
-          kkTage++;
+          // v141: nur Mo-Fr Arbeitstage zaehlen, passend zum Nenner (Arbeitstage)
+          const wd = cur.getDay();
+          if (wd >= 1 && wd <= 5) kkTage++;
           cur.setDate(cur.getDate() + 1);
         }
         unbezahltTage += kkTage;
@@ -2754,9 +2906,11 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
 
   if (unbezahltTage <= 0) return 1;
 
-  // FIX #4: Nenner = alle Kalendertage des Monats (Mo-So), passend zum Zähler.
-  // ARBEITSTAGE[mk] (reine Mo-Fr) wird hier bewusst NICHT verwendet, sonst Mismatch.
-  const arbT = new Date(y, mo, 0).getDate();
+  // v141 FIX: Nenner = Mo-Fr-Arbeitstage (ARBEITSTAGE). Die UB-Tage aus dem
+  // Abwesenheitskalender liegen auf Arbeitstagen - Kalendertage (z.B. 31) als
+  // Nenner machten den Abzug zu klein: 11 UB-Tage bei 1,75h/Tag muessen 19,25h
+  // abziehen, vorher wurden nur 11/31 vom Soll (13:02) abgezogen.
+  const arbT = ARBEITSTAGE[mk] || 21;
   const faktor = Math.max(0, (arbT - unbezahltTage) / arbT);
   return Math.round(faktor * 10000) / 10000;
 }
@@ -3143,28 +3297,46 @@ if(!kdList.length && !ohneKunde.length){
 grid.style.display='block';
 // Grid-Layout: kompakte Kästchen
 const kdGrid = document.createElement('div');
-kdGrid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;';
+kdGrid.className = 'kdgrid';
 kdGrid.innerHTML = kdList.map(k=>{
   const standorte = k.standorte || [];
   const maList = [...new Set(standorte.flatMap(s=>
     ma.filter(m=>!_maAusgeschiedenImMonat(m,getAM())&&maKu(m).includes(s))
   ).map(m=>m.id))].map(id=>ma.find(m=>m.id===id)).filter(Boolean);
   const eh = k.status==='ehemalig';
-  const maChips = maList.slice(0,8).map(m=>{
+  const maChips = maList.slice(0,6).map(m=>{
     const ol=m.objektleiter||'M';
-    return `<span onclick="event.stopPropagation();openMAM('${m.id}')" title="${m.nachname} ${m.vorname||''}" style="cursor:pointer;font-size:10px;padding:1px 6px;background:${ol==='I'?'var(--oli-bg)':'var(--acc-l)'};border:1px solid ${ol==='I'?'#a5f3fc':'#bfdbfe'};border-radius:4px;color:${ol==='I'?'var(--ol-i)':'var(--acc)'};white-space:nowrap">${m.nachname}</span>`;
+    return `<span class="kdc-ma" onclick="event.stopPropagation();openMAM('${m.id}')" title="${_kdEsc(m.nachname+' '+(m.vorname||''))}" style="background:${ol==='I'?'var(--oli-bg)':'var(--acc-l)'};border:1px solid ${ol==='I'?'#a5f3fc':'#bfdbfe'};color:${ol==='I'?'var(--ol-i)':'var(--acc)'}">${_kdEsc(m.nachname)}</span>`;
   }).join('');
-  const extraMA = maList.length > 8 ? `<span style="font-size:10px;color:var(--muted)">+${maList.length-8}</span>` : '';
-  return `<div style="background:var(--white);border:1px solid ${eh?'var(--border2)':'var(--border)'};border-radius:var(--r2);padding:12px;box-shadow:var(--sh);opacity:${eh?'.65':'1'};display:flex;flex-direction:column;gap:6px">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px">
-      <div style="font-weight:600;font-size:13px;color:var(--text);line-height:1.3;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${k.kurzname||k.vollname}">${k.kurzname||k.vollname}${eh?' <span style="font-size:10px;background:var(--s2);color:var(--muted);border-radius:4px;padding:1px 6px;border:1px solid var(--border)">Ehemalig</span>':''}</div>
-      <div style="display:flex;gap:3px;flex-shrink:0">
-        ${!isOL()?`<button class="btn-i btn-sm" onclick="openKdM('${k.id}')" title="Bearbeiten" style="padding:2px 6px">✏️</button>`:''}
-        ${!isOL()?`<button onclick="toggleEh('${k.id}',${!eh})" title="${eh?'Reaktivieren':'Ehemalig markieren'}" style="border:none;cursor:pointer;font-size:11px;padding:2px 7px;border-radius:6px;font-family:inherit;${eh?'background:var(--gbg);color:var(--green);border:1px solid var(--gbd)':'background:var(--rbg);color:var(--red);border:1px solid var(--rbd)'}">${eh?'✅':'🔴'}</button>`:''}
+  const extraMA = maList.length > 6 ? `<span style="font-size:10px;color:var(--muted)">+${maList.length-6}</span>` : '';
+  // v144: Kapazitaet ueber alle Standorte des Kunden summieren
+  let kap = 0, bel = 0;
+  standorte.forEach(s=>{ kap += oKapM(s)||0; bel += oBel(s)||0; });
+  kap = Math.round(kap*10)/10; bel = Math.round(bel*10)/10;
+  const pct = kap > 0 ? Math.round(bel/kap*100) : null;
+  const kapCol = pct===null ? 'var(--muted)' : (pct>100 ? 'var(--red)' : (pct>=90 ? 'var(--orange)' : 'var(--green)'));
+  const kapHtml = eh ? '' : (kap > 0
+    ? `<div class="kdc-kap"><div class="kdc-kap-h"><span>Kapazität</span>
+         <span style="color:${kapCol};font-family:'IBM Plex Mono',monospace">${bel} / ${kap} h · ${pct}%</span></div>
+       <div class="kdc-bar"><i style="width:${Math.min(pct,100)}%;background:${kapCol}"></i></div></div>`
+    : `<div class="kdc-kap" style="color:var(--orange)">⚠ Keine Kapazität hinterlegt</div>`);
+  const nam = k.kurzname||k.vollname||'';
+  const stTxt = standorte.length>1 ? standorte.length+' Standorte' : (standorte.length===1?'1 Standort':'Kein Standort');
+  const adr = k.adresse ? k.adresse.split(',')[0] : '';
+  const sub = [adr, stTxt].filter(Boolean).join(' · ');
+  const klick = !isOL();
+  return `<div class="kdc${klick?' klick':''}${eh?' eh':''}" id="kdc-${k.id}"
+      ${klick?`onclick="openKdM('${k.id}')" title="${_kdEsc(k.vollname||nam)} – öffnen"`:''}>
+    <div class="kdc-top">
+      <div class="kdc-ico" style="${eh?'background:var(--s2)':''}">${eh?'🗄':_kdIcon(nam)}</div>
+      <div style="flex:1;min-width:0">
+        <div class="kdc-name" title="${_kdEsc(k.vollname||nam)}">${_kdEsc(nam)}${eh?'<span class="kdc-badge">Ehemalig</span>':''}</div>
+        ${sub?`<div class="kdc-sub">${_kdEsc(sub)}</div>`:''}
       </div>
+      ${!isOL()?`<button class="kdc-dots" onclick="event.stopPropagation();kdMenu('${k.id}')" title="Aktionen" aria-label="Aktionen">⋯</button>`:''}
     </div>
-    ${k.adresse?`<div style="font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${k.adresse.split(',')[0]}</div>`:''}
-    <div style="display:flex;flex-wrap:wrap;gap:3px;min-height:18px">${maList.length?(maChips+extraMA):'<span style="font-size:11px;color:var(--muted2)">Kein MA zugeordnet</span>'}</div>
+    ${kapHtml}
+    <div class="kdc-mas">${maList.length?(maChips+extraMA):'<span style="font-size:11px;color:var(--muted2)">Kein Mitarbeiter zugeordnet</span>'}</div>
   </div>`;
 }).join('');
 grid.style.display='block';
@@ -3174,15 +3346,74 @@ if(ohneKunde.length){
   const sec=document.createElement('div');
   sec.style.marginTop='20px';
   sec.innerHTML=`<div class="sh">Standorte ohne Kundenzuordnung</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:8px">
-  ${ohneKunde.map(o=>`<div class="kd-st-card"><div class="kd-st-name">📍 ${o.name}</div>
-    <div style="margin-top:4px"><button class="btn-i btn-sm" onclick="openOM('${o.id}','')">✏ Bearbeiten</button></div>
+  <div class="kdgrid" style="margin-top:8px">
+  ${ohneKunde.map(o=>`<div class="kdc klick" onclick="openOM('${o.id}','')" title="${_kdEsc(o.name)} – öffnen">
+    <div class="kdc-top">
+      <div class="kdc-ico" style="background:var(--obg)">📍</div>
+      <div style="flex:1;min-width:0">
+        <div class="kdc-name" title="${_kdEsc(o.name)}">${_kdEsc(o.name)}</div>
+        <div class="kdc-sub">Keinem Kunden zugeordnet</div>
+      </div>
+    </div>
   </div>`).join('')}
   </div>`;
   grid.appendChild(sec);
 }
 return;
 }
+
+// ── v144: Kunden-Kacheln – Icon, Escaping und Aktionsmenue ──
+function _kdEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function _kdIcon(name){
+  const n = String(name||'').toLowerCase();
+  if(/dialyse|klinik|mvz|arzt|ärzt|praxis|reha|zahn|apotheke|hospital|sanit|therapie|pflege|caritas/.test(n)) return '🏥';
+  if(/schule|kita|kinder|gymnasium|universit|hochschul/.test(n)) return '🎓';
+  if(/gemeinde|stadt|rathaus|amt|markt|kreis/.test(n)) return '🏛';
+  if(/hotel|club|restaurant|gastro/.test(n)) return '🏨';
+  if(/parkhaus|garage|tiefgarage/.test(n)) return '🅿';
+  if(/edeka|rewe|aldi|lidl|penny|netto|super/.test(n)) return '🛒';
+  if(/werk|produktion|logistik|technik|elektro|industrie|gmbh & co|fabrik/.test(n)) return '🏭';
+  return '🏢';
+}
+function _kdMenuClose(){
+  document.querySelectorAll('.kdc-menu').forEach(el=>el.remove());
+  document.removeEventListener('click', _kdMenuClose, true);
+}
+function kdMenu(id){
+  const offen = document.querySelector('#kdc-'+id+' .kdc-menu');
+  _kdMenuClose();
+  if(offen) return; // war offen -> nur schliessen
+  const k = kunden.find(x=>x.id===id);
+  const card = document.getElementById('kdc-'+id);
+  if(!k || !card) return;
+  const eh = k.status==='ehemalig';
+  const standorte = k.standorte||[];
+  const objs = standorte.map(s=>obj.find(o=>o.name===s)).filter(Boolean);
+  let h = `<div class="kdc-mi" onclick="event.stopPropagation();_kdMenuClose();openKdM('${id}')">✏️ Kunde bearbeiten</div>`;
+  if(objs.length===1){
+    h += `<div class="kdc-mi" onclick="event.stopPropagation();_kdMenuClose();openRevModal('${objs[0].id}')">⚙️ Reviere · Kapazität</div>`;
+  } else if(objs.length>1){
+    h += '<div class="kdc-mh">Reviere · Kapazität</div>';
+    objs.forEach(o=>{
+      h += `<div class="kdc-mi" onclick="event.stopPropagation();_kdMenuClose();openRevModal('${o.id}')">📍 ${_kdEsc(o.name)}</div>`;
+    });
+  }
+  h += '<div class="kdc-msep"></div>';
+  h += eh
+    ? `<div class="kdc-mi gruen" onclick="event.stopPropagation();_kdMenuClose();toggleEh('${id}',false)">✅ Wieder aktivieren</div>`
+    : `<div class="kdc-mi rot" onclick="event.stopPropagation();_kdMenuClose();toggleEh('${id}',true)">🗄 Als ehemalig ablegen</div>`;
+  const menu = document.createElement('div');
+  menu.className = 'kdc-menu';
+  menu.innerHTML = h;
+  menu.onclick = e => e.stopPropagation();
+  card.appendChild(menu);
+  // Menue am rechten Rand nicht ueber den Bildschirm laufen lassen
+  const r = menu.getBoundingClientRect();
+  if(r.right > window.innerWidth - 8) menu.style.right = (12 + (r.right - window.innerWidth + 8)) + 'px';
+  setTimeout(()=>document.addEventListener('click', _kdMenuClose, true), 0);
+}
+window.kdMenu = kdMenu;
+window._kdMenuClose = _kdMenuClose;
 
 function toggleKdCard(id){
   const st=document.getElementById('kd-st-'+id);
@@ -5320,7 +5551,7 @@ function renderSollInfo(m, mk){
   const maAbrMod = m.abrechnungsmodell||'arbeitstage';
   objekte.forEach(o=>{
     const histO = _getHistoryObjekt(m, o.kunde, mk, o.revier) || o;
-    const basisRoh = maOSoll(histO, mk, maAbrMod);
+    const basisRoh = _maOSollBasis(m, histO, mk, maAbrMod);
     const hatObjZeitraum = !!(histO && (histO.einsatz_ab || histO.einsatz_bis));
     const aktivFaktor = hatObjZeitraum ? 1 : _maMonatAktivFaktor(m, mk);
     const roh = Math.round(Math.max(0,basisRoh) * Math.max(0,aktivFaktor) * 100) / 100;
@@ -5335,22 +5566,25 @@ function renderSollInfo(m, mk){
     const _14eins = o.modell==='14tage' ? calc14TageEinsaetze(o.wochentage||{}, o.rhythmus_start, mk) : 0;
     // Formelanzeige: konsistent mit maOSoll-Logik
     let formel;
-    if(o.modell==='14tage'){
-      formel = `📅 ${_14eins}× Einsatz × ${Math.round(ws*100)/100}h = <strong>${soll}h</strong>`;
+    if(m.verstetigt && !o.lohn_fest && !(o.einsatz_ab||o.einsatz_bis) && ws>0){
+      // v141: verstetigt = festes Monats-Soll, unabhaengig von den Arbeitstagen
+      formel = `🔒 ${Math.round(ws*100)/100}h/Wo × 261/12/5 = <strong>${roh}h</strong>`;
+    } else if(o.modell==='14tage'){
+      formel = `📅 ${_14eins}× Einsatz × ${Math.round(ws*100)/100}h = <strong>${roh}h</strong>`;
     } else if(o.modell==='verstetigt'){
-      formel = `${Math.round(ws*100)/100}h/Wo × 261/12/5 = <strong>${soll}h</strong>`;
+      formel = `${Math.round(ws*100)/100}h/Wo × 261/12/5 = <strong>${roh}h</strong>`;
     } else if(effMod==='arbeitstage'){
       if(ws > 0){
         // Wochentage → calcWochentagStunden (exakt wie maOSoll)
-        formel = `${stdTag||Math.round(ws/5*100)/100}h/Tag × ${arbT} AT = <strong>${soll}h</strong>`;
+        formel = `${stdTag||Math.round(ws/5*100)/100}h/Tag × ${arbT} AT = <strong>${roh}h</strong>`;
       } else {
         formel = `${stdTag}h/Tag × <input type="number" min="1" max="31" value="${arbT}"
             style="width:48px;padding:2px 4px;border:1px solid var(--border);border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:center;background:var(--white);outline:none"
             title="Arbeitstage ${mk} anpassen"
-            onchange="updArbTageMonat('${m.id||''}','${o.kunde}','${mk}',this.value)"> AT = <strong>${soll}h</strong>`;
+            onchange="updArbTageMonat('${m.id||''}','${o.kunde}','${mk}',this.value)"> AT = <strong>${roh}h</strong>`;
       }
     } else {
-      formel = `${stdTag}h/Tag × ${arbT} AT = <strong>${soll}h</strong>`;
+      formel = `${stdTag}h/Tag × ${arbT} AT = <strong>${roh}h</strong>`;
     }
     html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px">
       <span style="color:var(--text2)">${o.kunde||'–'}${o.revier?' <span style="color:var(--muted);font-size:11px">('+o.revier+')</span>':''}</span>
@@ -6753,6 +6987,7 @@ function renderUrlaubMA(id) {
     <span style="font-size:16px;font-weight:700">${m.nachname||''}${m.vorname?', '+m.vorname:''}</span>
     <span style="font-size:12px;color:var(--muted)">${kunden}</span>
     <button class="btn btn-o" onclick="openMAM('${m.id}')" style="padding:5px 13px;border-radius:20px;font-size:12px">✏ Bearbeiten</button>
+    <button class="btn btn-o" onclick="openJahresbericht('${m.id}',${jahr})" style="padding:5px 13px;border-radius:20px;font-size:12px;border-color:#c7d2fe;color:var(--acc)" title="Vollst&auml;ndiger Jahresbericht mit Vertretungen und Sondereins&auml;tzen">📄 Jahresbericht</button>
     <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
       <div class="det-kpi"><div class="v" style="color:var(--acc)">${uc.anspruch}</div><div class="l">Anspruch</div></div>
       <div class="det-kpi"><div class="v" style="color:var(--blue)">${uc.genommen}</div><div class="l">genommen</div></div>
@@ -6767,7 +7002,7 @@ function renderUrlaubMA(id) {
     <div class="gantt-leg"><div class="gantt-leg-dot" style="background:#64748b"></div><span>Unbezahlt</span></div>
     <div class="gantt-leg"><div class="gantt-leg-dot" style="background:var(--rbg);border:1px solid var(--rbd)"></div><span>Feiertag</span></div>
     <div class="gantt-leg"><div class="gantt-leg-dot" style="background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 2px,#f3f4f6 2px,#f3f4f6 4px)"></div><span>Nicht angestellt</span></div>
-    <span style="font-size:11px;color:var(--muted);margin-left:8px">Tag anklicken → öffnet den Mitarbeiter im richtigen Monat zum Eintragen</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:8px">Tag anklicken → öffnet den Mitarbeiter im richtigen Monat zum Eintragen · 📄 Jahresbericht für die Vollansicht</span>
   </div>
   <div class="uhm-mongrid">${mons}</div>`;
 }
@@ -6783,6 +7018,543 @@ function _uhmOpenTag(id, jahr, monat) {
 }
 window.renderUrlaubMA = renderUrlaubMA;
 window._uhmOpenTag = _uhmOpenTag;
+
+
+// ═══════════════════════════════════════════════════════════
+// v143: JAHRESBERICHT (Einzel-MA, ganzes Jahr)
+// Reine Ansichts-Ebene: liest nur, schreibt nichts.
+// Hauptansicht = KPI-Leiste (klickbar) + Jahreskalender.
+// Details oeffnen sich als eigenes Sub-Modal, jedes einzeln druckbar (PDF).
+// ═══════════════════════════════════════════════════════════
+let _jbId = null, _jbJahr = null, _jbSub = null;
+const _JB_MON = ['Januar','Februar','M\u00e4rz','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const _JB_MONK = ['Jan','Feb','M\u00e4r','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+
+function _jbIso(y, mo, d){ return y + '-' + String(mo+1).padStart(2,'0') + '-' + String(d).padStart(2,'0'); }
+function _jbDE(iso){ return iso ? iso.slice(8,10) + '.' + iso.slice(5,7) + '.' + iso.slice(0,4) : ''; }
+function _jbDEk(iso){ return iso ? iso.slice(8,10) + '.' + iso.slice(5,7) + '.' : ''; }
+function _jbEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function _jbStd(h){ const v = parseFloat(h)||0; return v>0 ? (Math.round(v*100)/100).toString().replace('.',',') : '\u2013'; }
+function _jbEur(v){ return (Math.round((parseFloat(v)||0)*100)/100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}) + '\u00a0\u20ac'; }
+function _jbMA(){ return ma.find(x => x.id === _jbId) || null; }
+function _jbDarfEur(){ return (typeof isAdmin === 'function') ? isAdmin() : true; }
+
+// ── Datensammlung: alle Jahresdaten eines MA in EINER Struktur ──
+function _jbSammle(m, jahr){
+  const ft = (typeof _uhmFeiertage === 'function') ? _uhmFeiertage(jahr) : new Set();
+  const ab = m.abwesenheiten || {};
+  const einD = (m.eintrittsdatum||'').slice(0,10);
+  const ausD = (m.austrittsdatum||'').slice(0,10);
+  const sl = parseFloat(m.stundenlohn_tarif) || (TARIFLOHN[m.lohngruppe||'']||{}).lohn || 15;
+
+  const seTage = {}, vtTage = {};
+  const monate = [], chronikSE = [], chronikVT = [], chronikERH = [];
+
+  for (let mo = 0; mo < 12; mo++){
+    const mk = jahr + '-' + String(mo+1).padStart(2,'0');
+    const md = (m.monats_daten||{})[mk] || {};
+    const dim = new Date(jahr, mo+1, 0).getDate();
+
+    let u=0, k=0, ub=0;
+    for (let d=1; d<=dim; d++){
+      const key = _jbIso(jahr, mo, d);
+      const t = ab[key];
+      if (!t) continue;
+      const wd = new Date(jahr, mo, d).getDay();
+      if (wd===0 || wd===6 || ft.has(key)) continue;
+      if (t==='urlaub') u++; else if (t==='krank') k++; else if (t==='unbezahlt') ub++;
+    }
+
+    const gut = (md.vertretungs_gutschrift||[]).map(g => {
+      const std = (g.manuelleAnpassung!==null && g.manuelleAnpassung!==undefined) ? g.manuelleAnpassung : g.stunden;
+      const e = { mk, mo, datum:(g.datum||''), fuer:(g.quelleName||'?'), objekt:(g.objekt||''),
+                  grund:(g.grund||''), std: parseFloat(std)||0 };
+      e.betrag = Math.round(e.std * sl * 100)/100;
+      if (e.datum && e.datum.startsWith(jahr+'-')) (vtTage[e.datum] = vtTage[e.datum]||[]).push(e);
+      chronikVT.push(e);
+      return e;
+    });
+    const gutStd = Math.round(gut.reduce((s,g)=>s+g.std,0)*100)/100;
+
+    const erh = (md.vertretungen||[]).filter(v => v.maId || v.maName).map(v => {
+      const e = { mk, mo, datum:(v.datum||''), von:(v.maName||'?'), objekt:(v.objekt||''),
+                  grund:(v.grund||''), std: parseFloat(v.stunden)||0 };
+      chronikERH.push(e);
+      return e;
+    });
+    const erhStd = Math.round(erh.reduce((s,v)=>s+v.std,0)*100)/100;
+
+    const se = (md.sonderstunden||[]).filter(e => e.maId===m.id || !e.maId).map(ss => {
+      const e = { mk, mo, datum:(ss.leistungsdatum||''), kunde:(ss.kunde||''),
+                  text:(ss.leistungstext||ss.notiz||''), abr:(ss.abrechnung||'kulanz'),
+                  std: parseFloat(ss.stunden)||0 };
+      e.betrag = Math.round(e.std * sl * 100)/100;
+      if (e.datum && e.datum.startsWith(jahr+'-')) (seTage[e.datum] = seTage[e.datum]||[]).push(e);
+      chronikSE.push(e);
+      return e;
+    });
+    const seStd = Math.round(se.reduce((s,e)=>s+e.std,0)*100)/100;
+
+    let soll = 0;
+    try { soll = maSG(m, mk) || 0; } catch(e) {}
+
+    monate.push({ mk, mo, u, k, ub, gut, gutStd, erh, erhStd, se, seStd, soll,
+      zettel: !!md.zettel_ok, notiz: md.notiz||'', unbez: parseFloat(md.unbezahlt_tage)||0,
+      kk: md.kk_ab_datum||'' });
+  }
+
+  // Abwesenheits-Bloecke (zusammenhaengende Laeufe, ueber Monatsgrenzen hinweg)
+  const bloecke = [];
+  let runTyp='', runVon='', runBis='', runTage=0;
+  const flush = () => { if (runTyp) bloecke.push({typ:runTyp, von:runVon, bis:runBis, tage:runTage}); runTyp=''; runTage=0; };
+  for (let mo=0; mo<12; mo++){
+    const dim = new Date(jahr, mo+1, 0).getDate();
+    for (let d=1; d<=dim; d++){
+      const key = _jbIso(jahr, mo, d);
+      const t = ab[key];
+      const typ = (t==='urlaub'||t==='krank'||t==='unbezahlt') ? t : '';
+      if (typ !== runTyp){ flush(); if (typ){ runTyp=typ; runVon=key; runBis=key; runTage=0; } }
+      if (typ){
+        runBis = key;
+        const wd = new Date(jahr, mo, d).getDay();
+        if (wd!==0 && wd!==6 && !ft.has(key)) runTage++;
+      }
+    }
+  }
+  flush();
+
+  const srt = (a,b) => (a.datum||a.mk).localeCompare(b.datum||b.mk);
+  chronikSE.sort(srt); chronikVT.sort(srt); chronikERH.sort(srt);
+
+  const sum = monate.reduce((s,x)=>({
+    u:s.u+x.u, k:s.k+x.k, ub:s.ub+x.ub, gutStd:s.gutStd+x.gutStd, erhStd:s.erhStd+x.erhStd,
+    seStd:s.seStd+x.seStd, soll:s.soll+x.soll,
+    gutN:s.gutN+x.gut.length, seN:s.seN+x.se.length, erhN:s.erhN+x.erh.length,
+    zettel:s.zettel+(x.zettel?1:0), aktivM:s.aktivM+(x.soll>0?1:0)
+  }), {u:0,k:0,ub:0,gutStd:0,erhStd:0,seStd:0,soll:0,gutN:0,seN:0,erhN:0,zettel:0,aktivM:0});
+  ['gutStd','erhStd','seStd','soll'].forEach(kk => sum[kk] = Math.round(sum[kk]*100)/100);
+  sum.gutEur = Math.round(chronikVT.reduce((s,g)=>s+g.betrag,0)*100)/100;
+  sum.seEur  = Math.round(chronikSE.reduce((s,e)=>s+e.betrag,0)*100)/100;
+  sum.zettelFehlt = monate.filter(x => x.soll>0 && !x.zettel).length;
+
+  return { ft, ab, einD, ausD, sl, seTage, vtTage, monate, bloecke, chronikSE, chronikVT, chronikERH, sum };
+}
+
+// ── Overlay-Verwaltung ──
+function openJahresbericht(id, jahr){
+  _jbId = id;
+  _jbJahr = jahr || (typeof _ganttYear !== 'undefined' ? _ganttYear : new Date().getFullYear());
+  let ov = document.getElementById('jb-overlay');
+  if (!ov){
+    ov = document.createElement('div');
+    ov.id = 'jb-overlay'; ov.className = 'jb-bg';
+    ov.onclick = e => { if (e.target === ov) closeJahresbericht(); };
+    document.body.appendChild(ov);
+    const sub = document.createElement('div');
+    sub.id = 'jb-subov'; sub.className = 'jb-bg jb-bg-sub';
+    sub.onclick = e => { if (e.target === sub) closeJbSub(); };
+    document.body.appendChild(sub);
+    if (!document.getElementById('jb-print')){
+      const pr = document.createElement('div');
+      pr.id = 'jb-print';
+      document.body.appendChild(pr);
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (document.getElementById('jb-subov')?.style.display === 'flex') { closeJbSub(); return; }
+      if (document.getElementById('jb-overlay')?.style.display === 'flex') closeJahresbericht();
+    });
+  }
+  ov.style.display = 'flex';
+  document.body.classList.add('jb-open');
+  renderJahresbericht();
+}
+function closeJahresbericht(){
+  closeJbSub();
+  const ov = document.getElementById('jb-overlay');
+  if (ov) ov.style.display = 'none';
+  document.body.classList.remove('jb-open');
+  _jbId = null;
+}
+function closeJbSub(){
+  const s = document.getElementById('jb-subov');
+  if (s){ s.style.display = 'none'; s.innerHTML = ''; }
+  _jbSub = null;
+}
+function _jbYear(delta){ _jbJahr += delta; closeJbSub(); renderJahresbericht(); }
+
+// Monat im MA-Modal oeffnen (z.B. fehlender Stundenzettel)
+function _jbOpenMonat(mo){
+  const id = _jbId, jahr = _jbJahr;
+  closeJahresbericht();
+  if (typeof _uhmOpenTag === 'function') _uhmOpenTag(id, jahr, mo);
+  else if (typeof openMAM === 'function') openMAM(id);
+}
+
+// ── Druck / PDF: Abschnitt in den Print-Container legen und Druckdialog oeffnen ──
+function _jbPrint(titel, inhaltHtml){
+  const m = _jbMA(); if (!m) return;
+  const pr = document.getElementById('jb-print'); if (!pr) return;
+  const heute = new Date();
+  const stand = String(heute.getDate()).padStart(2,'0') + '.' + String(heute.getMonth()+1).padStart(2,'0') + '.' + heute.getFullYear();
+  pr.innerHTML = `<div class="jbp-head">
+      <div>
+        <div class="jbp-t">${_jbEsc(titel)} ${_jbJahr}</div>
+        <div class="jbp-s"><strong>${_jbEsc(m.nachname||'')}${m.vorname?', '+_jbEsc(m.vorname):''}</strong>
+          \u00b7 Personal-Nr. ${_jbEsc(m.persnr||'\u2013')}
+          \u00b7 ${_jbEsc(maKu(m).join(' \u00b7 ') || 'Kein Objekt')}</div>
+      </div>
+      <div class="jbp-f">A.C.S. All Clean Services KG<br>Stand: ${stand}</div>
+    </div>
+    <div class="jbp-body">${inhaltHtml}</div>`;
+  setTimeout(() => { window.print(); }, 60);
+}
+
+// ── Hauptansicht ──
+function renderJahresbericht(){
+  const ov = document.getElementById('jb-overlay');
+  if (!ov) return;
+  const m = _jbMA();
+  if (!m){ closeJahresbericht(); return; }
+  const jahr = _jbJahr;
+  const D = _jbSammle(m, jahr);
+  window._jbD = D;
+  const S = D.sum;
+
+  let uc = { anspruch:'\u2013', genommen:0, geplant:0, rest:'\u2013' };
+  try { uc = _urlaubCheckMA(m, jahr); } catch(e) {}
+
+  // KPI-Karten: klickbar, oeffnen den jeweiligen Abschnitt
+  const kpi = (v, l, col, sec, tip) => `<button class="jb-kpi${sec?' klick':''}"${sec?` onclick="openJbSub('${sec}')"`:''} title="${_jbEsc(tip||'')}">
+      <div class="v" style="color:${col}">${v}</div><div class="l">${l}</div></button>`;
+
+  const zettelOk = S.zettelFehlt === 0;
+  const kpis =
+      kpi(uc.anspruch, 'Anspruch', 'var(--acc)', 'abw', 'Abwesenheiten \u00f6ffnen')
+    + kpi(uc.genommen, 'genommen', 'var(--blue)', 'abw', 'Abwesenheiten \u00f6ffnen')
+    + (uc.geplant>0 ? kpi(uc.geplant, 'geplant', '#7c3aed', 'abw', 'Abwesenheiten \u00f6ffnen') : '')
+    + kpi(uc.rest, 'Resturlaub', (uc.rest<0?'var(--red)':'var(--green)'), 'abw', 'Abwesenheiten \u00f6ffnen')
+    + kpi(S.k, 'Krank-Tage', '#b45309', 'abw', 'Abwesenheiten \u00f6ffnen')
+    + (S.ub>0 ? kpi(S.ub, 'Unbezahlt', '#475569', 'abw', 'Abwesenheiten \u00f6ffnen') : '')
+    + kpi(S.gutN, 'Vertretungen', 'var(--blue)', 'vt', 'Vertretungen \u00f6ffnen')
+    + kpi(S.seN, 'Sondereins.', 'var(--orange)', 'se', 'Sondereins\u00e4tze \u00f6ffnen')
+    + `<button class="jb-kpi klick${zettelOk?'':' warn'}" onclick="openJbSub('zettel')"
+         title="${zettelOk?'Alle Stundenzettel best\u00e4tigt':S.zettelFehlt+' Monat(e) ohne best\u00e4tigten Stundenzettel'}">
+         <div class="v" style="color:${zettelOk?'var(--green)':'var(--red)'}">${S.zettel}/${S.aktivM||0}</div>
+         <div class="l">Zettel ${zettelOk?'vollst.':'fehlen '+S.zettelFehlt}</div></button>`
+    + `<button class="jb-kpi klick jb-kpi-nav" onclick="openJbSub('monat')" title="Monats\u00fcbersicht \u00f6ffnen">
+         <div class="v" style="color:var(--text2);font-size:15px">\ud83d\udcca</div><div class="l">Monats\u00fcbersicht</div></button>`;
+
+  // Jahreskalender mit Zusatzmarkern
+  const todayD = new Date();
+  const todayKey = _jbIso(todayD.getFullYear(), todayD.getMonth(), todayD.getDate());
+  let mons = '';
+  for (let mo=0; mo<12; mo++){
+    const M = D.monate[mo];
+    const dim = new Date(jahr, mo+1, 0).getDate();
+    const off = (new Date(jahr, mo, 1).getDay()+6)%7;
+    let dhtml = '';
+    for (let d=1; d<=dim; d++){
+      const key = _jbIso(jahr, mo, d);
+      const t = D.ab[key]||'';
+      const wd = new Date(jahr, mo, d).getDay();
+      let cls = 'mk-d';
+      if (wd===0||wd===6) cls += ' we';
+      if (D.ft.has(key)) cls += ' ft';
+      if ((D.einD && key < D.einD) || (D.ausD && key > D.ausD)) cls += ' na';
+      if (t==='urlaub') cls += ' u';
+      else if (t==='krank') cls += ' k';
+      else if (t==='unbezahlt') cls += ' ub';
+      if (key===todayKey) cls += ' heute';
+      const seL = D.seTage[key]||[], vtL = D.vtTage[key]||[];
+      let dots = '';
+      if (seL.length) dots += '<i class="jb-dot jb-dot-se"></i>';
+      if (vtL.length) dots += '<i class="jb-dot jb-dot-vt"></i>';
+      if (dots) cls += ' jb-hasdot';
+      const tips = [];
+      if (t) tips.push(t==='urlaub'?'Urlaub':t==='krank'?'Krank':'Unbezahlt');
+      if (D.ft.has(key)) tips.push('Feiertag');
+      seL.forEach(e => tips.push('\u26a1 Sondereinsatz ' + _jbStd(e.std) + ' h' + (e.kunde?' \u2013 '+e.kunde:'')));
+      vtL.forEach(e => tips.push('\ud83d\udd04 Vertretung f\u00fcr ' + e.fuer + ' \u2013 ' + _jbStd(e.std) + ' h'));
+      const tt = _jbEsc(d + '.' + (mo+1) + '.' + jahr + (tips.length?' \u2013 '+tips.join(' | '):''));
+      const st = d===1 ? ` style="grid-column:${off+1}"` : '';
+      dhtml += `<div class="${cls}"${st} title="${tt}">${d}${dots}</div>`;
+    }
+    const cnt = [M.u?M.u+' U':'', M.k?M.k+' K':'', M.ub?M.ub+' ub':'',
+                 M.gut.length?M.gut.length+' V':'', M.se.length?M.se.length+' S':''].filter(Boolean).join(' \u00b7 ') || '\u2013';
+    const zBad = M.soll>0 ? (M.zettel ? '' : '<span class="jb-zfehlt" title="Stundenzettel fehlt">\u25cf</span>') : '';
+    mons += `<div class="mkal"><h4>${_JB_MON[mo]}${zBad} <span>${cnt}</span></h4><div class="mk-t">`
+      + '<div class="wd">Mo</div><div class="wd">Di</div><div class="wd">Mi</div><div class="wd">Do</div><div class="wd">Fr</div><div class="wd">Sa</div><div class="wd">So</div>'
+      + dhtml + '</div></div>';
+  }
+
+  const ol = m.objektleiter || '?';
+  const kunden = maKu(m).join(' \u00b7 ') || 'Kein Objekt';
+  const typBadge = m.verstetigt ? '\ud83d\udd12 Verstetigt' : (m.minijob ? '\ud83d\udcbc Minijob' : '\ud83c\udfe2 Festangestellt');
+
+  ov.innerHTML = `<div class="jb-box" onclick="event.stopPropagation()">
+    <div class="jb-head">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="olb ol-${ol}">${ol}</span>
+        <div>
+          <div style="font-size:17px;font-weight:700">${_jbEsc(m.nachname||'')}${m.vorname?', '+_jbEsc(m.vorname):''}
+            <span style="font-size:11px;color:var(--muted);font-weight:400">\u00b7 Nr. ${_jbEsc(m.persnr||'\u2013')}</span></div>
+          <div style="font-size:11px;color:var(--muted)">${_jbEsc(kunden)} \u00b7 ${typBadge}${m.eintrittsdatum?' \u00b7 seit '+_jbDE(m.eintrittsdatum.slice(0,10)):''}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+        <div style="display:flex;align-items:center;gap:6px;background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:3px 9px">
+          <button onclick="_jbYear(-1)" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted)">\u25c0</button>
+          <span style="font-size:14px;font-weight:700;color:var(--acc);min-width:40px;text-align:center">${jahr}</span>
+          <button onclick="_jbYear(1)" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted)">\u25b6</button>
+        </div>
+        <button class="btn btn-o" onclick="openJbSub('kalender')" style="padding:5px 12px;border-radius:20px;font-size:12px" title="Jahreskalender als PDF">\ud83d\udcc4 PDF</button>
+        <button class="btn btn-o" onclick="closeJahresbericht()" style="padding:5px 13px;border-radius:20px;font-size:12px">\u2715 Schlie\u00dfen</button>
+      </div>
+    </div>
+    <div class="jb-body">
+      <div class="jb-kpis">${kpis}</div>
+      <div class="jb-hinweis">Karte anklicken \u2192 Detail-Ansicht mit PDF-Export.</div>
+
+      <div class="jb-sec">Jahres\u00fcbersicht ${jahr}</div>
+      <div class="jb-legend">
+        <span><i class="jb-lg" style="background:#3b82f6"></i>Urlaub</span>
+        <span><i class="jb-lg" style="background:#f59e0b"></i>Krank</span>
+        <span><i class="jb-lg" style="background:#64748b"></i>Unbezahlt</span>
+        <span><i class="jb-lg" style="background:var(--rbg);border:1px solid var(--rbd)"></i>Feiertag</span>
+        <span><i class="jb-lg" style="background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 2px,#f3f4f6 2px,#f3f4f6 4px)"></i>Nicht angestellt</span>
+        <span><i class="jb-dot jb-dot-se" style="position:static;display:inline-block;margin-right:4px"></i>Sondereinsatz</span>
+        <span><i class="jb-dot jb-dot-vt" style="position:static;display:inline-block;margin-right:4px"></i>Vertretung</span>
+        <span><span class="jb-zfehlt" style="position:static;margin:0 4px 0 0"></span>Stundenzettel fehlt</span>
+      </div>
+      <div class="uhm-mongrid">${mons}</div>
+    </div>
+  </div>`;
+  ov.scrollTop = 0;
+}
+
+// ── Sub-Modale ──
+function openJbSub(sec){
+  const m = _jbMA(); if (!m) return;
+  const D = window._jbD || _jbSammle(m, _jbJahr);
+  const sub = document.getElementById('jb-subov'); if (!sub) return;
+  _jbSub = sec;
+  const B = _jbSubInhalt(sec, m, D);
+  sub.innerHTML = `<div class="jb-box jb-box-sub" onclick="event.stopPropagation()">
+    <div class="jb-head">
+      <div>
+        <div style="font-size:16px;font-weight:700">${B.titel} ${_jbJahr}</div>
+        <div style="font-size:11px;color:var(--muted)">${_jbEsc(m.nachname||'')}${m.vorname?', '+_jbEsc(m.vorname):''} \u00b7 Nr. ${_jbEsc(m.persnr||'\u2013')}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+        <button class="btn btn-p" onclick="_jbPrintSub()" style="padding:5px 14px;border-radius:20px;font-size:12px">\ud83d\udcc4 Als PDF</button>
+        <button class="btn btn-o" onclick="closeJbSub()" style="padding:5px 13px;border-radius:20px;font-size:12px">\u2715</button>
+      </div>
+    </div>
+    <div class="jb-body" id="jb-sub-body">${B.html}</div>
+  </div>`;
+  sub.style.display = 'flex';
+  sub.scrollTop = 0;
+}
+function _jbPrintSub(){
+  const m = _jbMA(); if (!m || !_jbSub) return;
+  const D = window._jbD || _jbSammle(m, _jbJahr);
+  const B = _jbSubInhalt(_jbSub, m, D);
+  _jbPrint(B.titel, B.html);
+}
+
+function _jbSubInhalt(sec, m, D){
+  const darfEur = _jbDarfEur();
+  const S = D.sum, jahr = _jbJahr;
+
+  // ── Monatsuebersicht ──
+  if (sec === 'monat'){
+    let rows = '';
+    D.monate.forEach(M => {
+      const leer = !M.soll && !M.u && !M.k && !M.ub && !M.gut.length && !M.se.length && !M.erh.length;
+      const gutEur = M.gut.reduce((s,g)=>s+g.betrag,0);
+      const seEur  = M.se.reduce((s,e)=>s+e.betrag,0);
+      rows += `<tr${leer?' style="opacity:.4"':''}>
+        <td style="font-weight:600">${_JB_MONK[M.mo]}</td>
+        <td class="n">${M.soll>0?hhmm(M.soll):'\u2013'}</td>
+        <td class="n"${M.u?' style="color:var(--blue);font-weight:600"':''}>${M.u||'\u2013'}</td>
+        <td class="n"${M.k?' style="color:#b45309;font-weight:600"':''}>${M.k||'\u2013'}</td>
+        <td class="n"${M.ub?' style="color:#475569;font-weight:600"':''}>${M.ub||'\u2013'}</td>
+        <td class="n">${M.gutStd>0?_jbStd(M.gutStd)+' h':'\u2013'}${M.gut.length?' <span class="jb-mini">('+M.gut.length+')</span>':''}</td>
+        ${darfEur?`<td class="n">${gutEur>0?_jbEur(gutEur):'\u2013'}</td>`:''}
+        <td class="n">${M.erhStd>0?_jbStd(M.erhStd)+' h':'\u2013'}${M.erh.length?' <span class="jb-mini">('+M.erh.length+')</span>':''}</td>
+        <td class="n">${M.seStd>0?_jbStd(M.seStd)+' h':'\u2013'}${M.se.length?' <span class="jb-mini">('+M.se.length+')</span>':''}</td>
+        ${darfEur?`<td class="n">${seEur>0?_jbEur(seEur):'\u2013'}</td>`:''}
+        <td class="n">${M.soll>0?(M.zettel?'<span style="color:var(--green)">\u2713</span>':'<span style="color:var(--red)">fehlt</span>'):''}</td>
+        <td style="font-size:11px;color:var(--muted);max-width:190px;white-space:normal">${_jbEsc(M.notiz).slice(0,80)}${M.kk?'<span style="color:var(--red)"> \u00b7 KK ab '+_jbDEk(M.kk)+'</span>':''}</td>
+      </tr>`;
+    });
+    const foot = `<tr class="jb-sum">
+      <td>Summe</td><td class="n">${hhmm(S.soll)}</td><td class="n">${S.u||'\u2013'}</td>
+      <td class="n">${S.k||'\u2013'}</td><td class="n">${S.ub||'\u2013'}</td>
+      <td class="n">${S.gutStd>0?_jbStd(S.gutStd)+' h':'\u2013'}</td>
+      ${darfEur?`<td class="n">${S.gutEur>0?_jbEur(S.gutEur):'\u2013'}</td>`:''}
+      <td class="n">${S.erhStd>0?_jbStd(S.erhStd)+' h':'\u2013'}</td>
+      <td class="n">${S.seStd>0?_jbStd(S.seStd)+' h':'\u2013'}</td>
+      ${darfEur?`<td class="n">${S.seEur>0?_jbEur(S.seEur):'\u2013'}</td>`:''}
+      <td class="n">${S.zettel}/${S.aktivM||0}</td><td></td></tr>`;
+    return { titel:'Monats\u00fcbersicht', html:`<div style="overflow-x:auto"><table class="jb-tab">
+      <thead><tr><th>Monat</th><th class="n">Soll</th><th class="n">Url.</th><th class="n">Krank</th><th class="n">Unbez.</th>
+      <th class="n">Vertr. geleistet</th>${darfEur?'<th class="n">\u20ac</th>':''}
+      <th class="n">Vertr. erhalten</th><th class="n">Sondereins.</th>${darfEur?'<th class="n">\u20ac</th>':''}
+      <th class="n">Zettel</th><th>Notiz</th></tr></thead>
+      <tbody>${rows}</tbody><tfoot>${foot}</tfoot></table></div>` };
+  }
+
+  // ── Abwesenheiten ──
+  if (sec === 'abw'){
+    let uc = { anspruch:'\u2013', genommen:0, geplant:0, rest:'\u2013' };
+    try { uc = _urlaubCheckMA(m, jahr); } catch(e) {}
+    const typLbl = { urlaub:['\ud83c\udfd6 Urlaub','var(--blue)'], krank:['\ud83e\udd12 Krank','#b45309'], unbezahlt:['\ud83d\udeab Unbezahlt','#475569'] };
+    let rows = D.bloecke.map(b => {
+      const [lbl,col] = typLbl[b.typ] || ['?','var(--muted)'];
+      const span = b.von===b.bis ? _jbDE(b.von) : _jbDE(b.von) + ' \u2013 ' + _jbDE(b.bis);
+      const kal = Math.round((new Date(b.bis) - new Date(b.von))/86400000) + 1;
+      return `<tr><td style="color:${col};font-weight:600;white-space:nowrap">${lbl}</td>
+        <td style="font-family:'IBM Plex Mono',monospace;white-space:nowrap">${span}</td>
+        <td class="n">${b.tage}</td><td class="n">${kal}</td>
+        <td style="color:var(--muted)">${_JB_MON[new Date(b.von).getMonth()]}</td></tr>`;
+    }).join('');
+    if (!rows) rows = '<tr><td colspan="5" class="jb-leer">Keine Abwesenheiten erfasst.</td></tr>';
+    const box = (v,l,c) => `<div class="jb-kpi" style="cursor:default"><div class="v" style="color:${c}">${v}</div><div class="l">${l}</div></div>`;
+    return { titel:'Abwesenheiten', html:`
+      <div class="jb-kpis" style="margin-bottom:12px">
+        ${box(uc.anspruch,'Anspruch','var(--acc)')}${box(uc.genommen,'genommen','var(--blue)')}
+        ${uc.geplant>0?box(uc.geplant,'geplant','#7c3aed'):''}
+        ${box(uc.rest,'Resturlaub',(uc.rest<0?'var(--red)':'var(--green)'))}
+        ${box(S.u,'Urlaubstage','var(--blue)')}${box(S.k,'Krank-Tage','#b45309')}${box(S.ub,'Unbezahlt','#475569')}
+      </div>
+      <table class="jb-tab"><thead><tr><th>Art</th><th>Zeitraum</th><th class="n">Arbeitstage</th><th class="n">Kalendertage</th><th>Monat</th></tr></thead>
+      <tbody>${rows}</tbody></table>
+      <div class="jb-fuss">Arbeitstage = Mo\u2013Fr ohne Feiertage. Zusammenh\u00e4ngende Tage sind zu einem Block zusammengefasst.</div>` };
+  }
+
+  // ── Vertretungen ──
+  if (sec === 'vt'){
+    let rowsG = D.chronikVT.map(g => `<tr>
+      <td style="font-family:'IBM Plex Mono',monospace;white-space:nowrap">${g.datum?_jbDE(g.datum):'<span class="jb-mini">'+_JB_MONK[g.mo]+' (kein Tag)</span>'}</td>
+      <td><strong>${_jbEsc(g.fuer)}</strong></td>
+      <td>${_jbEsc(g.objekt)||'\u2013'}</td>
+      <td>${g.grund==='krank'?'\ud83e\udd12 krank':g.grund==='urlaub'?'\ud83c\udfd6 urlaub':'\u2013'}</td>
+      <td class="n">${_jbStd(g.std)} h</td>${darfEur?`<td class="n">${_jbEur(g.betrag)}</td>`:''}</tr>`).join('');
+    if (!rowsG) rowsG = `<tr><td colspan="${darfEur?6:5}" class="jb-leer">Keine Vertretungen geleistet.</td></tr>`;
+    let rowsE = D.chronikERH.map(v => `<tr>
+      <td style="font-family:'IBM Plex Mono',monospace;white-space:nowrap">${v.datum?_jbDE(v.datum):'<span class="jb-mini">'+_JB_MONK[v.mo]+' (kein Tag)</span>'}</td>
+      <td><strong>${_jbEsc(v.von)}</strong></td>
+      <td>${_jbEsc(v.objekt)||'\u2013'}</td>
+      <td>${v.grund==='krank'?'\ud83e\udd12 krank':v.grund==='urlaub'?'\ud83c\udfd6 urlaub':'\u2013'}</td>
+      <td class="n">${_jbStd(v.std)} h</td></tr>`).join('');
+    if (!rowsE) rowsE = '<tr><td colspan="5" class="jb-leer">Wurde nicht vertreten.</td></tr>';
+    return { titel:'Vertretungen', html:`
+      <div class="jb-sec" style="margin-top:0">Geleistet \u2013 ${S.gutN} Eintr\u00e4ge \u00b7 ${_jbStd(S.gutStd)} h${darfEur?' \u00b7 '+_jbEur(S.gutEur):''}</div>
+      <table class="jb-tab"><thead><tr><th>Datum</th><th>Vertretung f\u00fcr</th><th>Objekt</th><th>Grund</th><th class="n">Std.</th>${darfEur?'<th class="n">Zulage</th>':''}</tr></thead>
+      <tbody>${rowsG}</tbody></table>
+      <div class="jb-sec">Erhalten \u2013 ${S.erhN} Eintr\u00e4ge \u00b7 ${_jbStd(S.erhStd)} h</div>
+      <table class="jb-tab"><thead><tr><th>Datum</th><th>Vertreten durch</th><th>Objekt</th><th>Grund</th><th class="n">Std.</th></tr></thead>
+      <tbody>${rowsE}</tbody></table>
+      <div class="jb-fuss">Eintr\u00e4ge ohne Tagesdatum erscheinen nur monatsweise und nicht als Punkt im Kalender.</div>` };
+  }
+
+  // ── Sondereinsaetze ──
+  if (sec === 'se'){
+    const abrLbl = { kulanz:['Kulanz','var(--muted)'], offen:['offen','var(--orange)'], berechnet:['berechnet','var(--green)'] };
+    let rows = D.chronikSE.map(e => {
+      const [al,ac] = abrLbl[e.abr] || ['?','var(--muted)'];
+      return `<tr>
+        <td style="font-family:'IBM Plex Mono',monospace;white-space:nowrap">${e.datum?_jbDE(e.datum):'<span class="jb-mini">'+_JB_MONK[e.mo]+' (kein Datum)</span>'}</td>
+        <td><strong>${_jbEsc(e.kunde)||'\u2013'}</strong></td>
+        <td style="white-space:normal;max-width:280px">${_jbEsc(e.text)||'\u2013'}</td>
+        <td class="n">${_jbStd(e.std)} h</td>${darfEur?`<td class="n">${_jbEur(e.betrag)}</td>`:''}
+        <td style="color:${ac};font-weight:600">${al}</td></tr>`;
+    }).join('');
+    if (!rows) rows = `<tr><td colspan="${darfEur?6:5}" class="jb-leer">Keine Sondereins\u00e4tze erfasst.</td></tr>`;
+    const offenStd = D.chronikSE.filter(e=>e.abr==='offen').reduce((s,e)=>s+e.std,0);
+    return { titel:'Sondereins\u00e4tze', html:`
+      <div class="jb-sec" style="margin-top:0">${S.seN} Eintr\u00e4ge \u00b7 ${_jbStd(S.seStd)} h${darfEur?' \u00b7 '+_jbEur(S.seEur):''}${offenStd>0?' \u00b7 <span style="color:var(--orange)">'+_jbStd(offenStd)+' h offen</span>':''}</div>
+      <table class="jb-tab"><thead><tr><th>Datum</th><th>Kunde / Objekt</th><th>Leistung</th><th class="n">Std.</th>${darfEur?'<th class="n">Betrag</th>':''}<th>Abrechnung</th></tr></thead>
+      <tbody>${rows}</tbody></table>` };
+  }
+
+  // ── Stundenzettel ──
+  if (sec === 'zettel'){
+    let rows = D.monate.map(M => {
+      if (M.soll <= 0) return `<tr style="opacity:.4"><td style="font-weight:600">${_JB_MON[M.mo]}</td>
+        <td class="n">\u2013</td><td colspan="2" style="color:var(--muted)">kein Soll in diesem Monat</td></tr>`;
+      return `<tr><td style="font-weight:600">${_JB_MON[M.mo]}</td>
+        <td class="n">${hhmm(M.soll)}</td>
+        <td>${M.zettel?'<span style="color:var(--green);font-weight:600">\u2713 best\u00e4tigt</span>'
+                      :'<span style="color:var(--red);font-weight:600">\u25cf fehlt</span>'}</td>
+        <td>${M.zettel?'':`<button class="btn btn-o" style="padding:2px 10px;border-radius:14px;font-size:11px" onclick="_jbOpenMonat(${M.mo})">\u2192 Monat \u00f6ffnen</button>`}</td></tr>`;
+    }).join('');
+    const ok = S.zettelFehlt === 0;
+    return { titel:'Stundenzettel', html:`
+      <div style="background:${ok?'var(--gbg)':'var(--rbg)'};border:1px solid ${ok?'var(--gbd)':'var(--rbd)'};border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:13px">
+        <strong style="color:${ok?'var(--green)':'var(--red)'}">${ok?'\u2713 Alle Stundenzettel best\u00e4tigt':'\u26a0 '+S.zettelFehlt+' Monat(e) ohne best\u00e4tigten Stundenzettel'}</strong>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px">${S.zettel} von ${S.aktivM||0} Monaten mit Soll-Stunden sind best\u00e4tigt.
+        Best\u00e4tigt = der handschriftliche Zettel liegt vor und wurde im Monat abgehakt.</div>
+      </div>
+      <table class="jb-tab"><thead><tr><th>Monat</th><th class="n">Soll</th><th>Status</th><th></th></tr></thead>
+      <tbody>${rows}</tbody></table>` };
+  }
+
+  // ── Kalender (nur Druck) ──
+  if (sec === 'kalender'){
+    let mons = '';
+    for (let mo=0; mo<12; mo++){
+      const M = D.monate[mo];
+      const dim = new Date(jahr, mo+1, 0).getDate();
+      const off = (new Date(jahr, mo, 1).getDay()+6)%7;
+      let dhtml = '';
+      for (let d=1; d<=dim; d++){
+        const key = _jbIso(jahr, mo, d);
+        const t = D.ab[key]||'';
+        const wd = new Date(jahr, mo, d).getDay();
+        let cls = 'mk-d';
+        if (wd===0||wd===6) cls += ' we';
+        if (D.ft.has(key)) cls += ' ft';
+        if ((D.einD && key < D.einD) || (D.ausD && key > D.ausD)) cls += ' na';
+        if (t==='urlaub') cls += ' u'; else if (t==='krank') cls += ' k'; else if (t==='unbezahlt') cls += ' ub';
+        let dots = '';
+        if ((D.seTage[key]||[]).length) dots += '<i class="jb-dot jb-dot-se"></i>';
+        if ((D.vtTage[key]||[]).length) dots += '<i class="jb-dot jb-dot-vt"></i>';
+        if (dots) cls += ' jb-hasdot';
+        const st = d===1 ? ` style="grid-column:${off+1}"` : '';
+        dhtml += `<div class="${cls}"${st}>${d}${dots}</div>`;
+      }
+      const cnt = [M.u?M.u+' U':'', M.k?M.k+' K':'', M.ub?M.ub+' ub':'',
+                   M.gut.length?M.gut.length+' V':'', M.se.length?M.se.length+' S':''].filter(Boolean).join(' \u00b7 ') || '\u2013';
+      mons += `<div class="mkal"><h4>${_JB_MON[mo]} <span>${cnt}</span></h4><div class="mk-t">`
+        + '<div class="wd">Mo</div><div class="wd">Di</div><div class="wd">Mi</div><div class="wd">Do</div><div class="wd">Fr</div><div class="wd">Sa</div><div class="wd">So</div>'
+        + dhtml + '</div></div>';
+    }
+    return { titel:'Jahreskalender', html:`
+      <div class="jb-legend">
+        <span><i class="jb-lg" style="background:#3b82f6"></i>Urlaub</span>
+        <span><i class="jb-lg" style="background:#f59e0b"></i>Krank</span>
+        <span><i class="jb-lg" style="background:#64748b"></i>Unbezahlt</span>
+        <span><i class="jb-dot jb-dot-se" style="position:static;display:inline-block;margin-right:4px"></i>Sondereinsatz</span>
+        <span><i class="jb-dot jb-dot-vt" style="position:static;display:inline-block;margin-right:4px"></i>Vertretung</span>
+      </div>
+      <div class="uhm-mongrid">${mons}</div>
+      <div class="jb-fuss">U = Urlaub \u00b7 K = Krank \u00b7 ub = Unbezahlt \u00b7 V = Vertretung \u00b7 S = Sondereinsatz</div>` };
+  }
+
+  return { titel:'\u2013', html:'' };
+}
+
+window.openJahresbericht = openJahresbericht;
+window.closeJahresbericht = closeJahresbericht;
+window.renderJahresbericht = renderJahresbericht;
+window.openJbSub = openJbSub;
+window.closeJbSub = closeJbSub;
+window._jbPrintSub = _jbPrintSub;
+window._jbOpenMonat = _jbOpenMonat;
+window._jbYear = _jbYear;
 
 // ── SONDEREINSATZ-ABRECHNUNG (Übersicht-Reiter) ───────────
 // Reine Zusatz-Ebene: greift NICHT in Soll/DATEV/Kontrollliste ein.
@@ -8262,10 +9034,15 @@ function _renderVtTable() {
   const tbody = document.getElementById('vt-rows');
   if (!tbody) return;
   if (_vtData.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted2);padding:12px;font-size:12px">Noch keine Vertretung eingetragen.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted2);padding:12px;font-size:12px">Noch keine Vertretung eingetragen.</td></tr>';
     _renderVtBudgetInfo();
     return;
   }
+  // v141: Min/Max fuer das optionale Datumsfeld = der gerade offene Monat
+  const _vtMkAkt = _vtSyncMonat || MK[ami] || getAM();
+  const _vtMkMin = _vtMkAkt + '-01';
+  const _vtMkP = _vtMkAkt.split('-').map(Number);
+  const _vtMkMax = _vtMkAkt + '-' + String(new Date(_vtMkP[0], _vtMkP[1], 0).getDate()).padStart(2,'0');
   tbody.innerHTML = _vtData.map((ss, i) => {
     const g = ss.grund || _vtAbsTyp;
     const isKrank = g === 'krank';
@@ -8281,6 +9058,10 @@ function _renderVtTable() {
       + ' oninput="taFilter(\x27vt-obj-inp-' + i + '\x27,this.value,_vtObjList(),function(v){vtPickObj(' + i + ',v)})"'
       + ' onfocus="taFilter(\x27vt-obj-inp-' + i + '\x27,this.value,_vtObjList(),function(v){vtPickObj(' + i + ',v)})"'
       + ' onblur="taClose()" onkeydown="taKey(event,\x27vt-obj-inp-' + i + '\x27)"></div></td>'
+      + '<td style="padding:5px 4px;text-align:center">'
+      + '<input type="date" value="' + (ss.datum||'') + '" min="' + _vtMkMin + '" max="' + _vtMkMax + '"'
+      + ' onchange="vtUpdate(' + i + ',\x27datum\x27,this.value)" title="Optional: Tag der Vertretung"'
+      + ' style="width:112px;padding:3px 4px;border:1px solid var(--border);border-radius:5px;font-size:11px;font-family:inherit;background:var(--white);color:' + (ss.datum?'var(--text)':'var(--muted2)') + ';outline:none"></td>'
       + '<td style="padding:5px 6px;text-align:center">'
       + '<input type="text" inputmode="decimal" data-vt-std="' + i + '" placeholder="0" value="' + (ss.stunden||'') + '" oninput="vtUpdate(' + i + ',\x27stunden\x27,this.value)" onkeydown="if(event.key===\x27Enter\x27){event.preventDefault();this.blur();}" style="width:64px;padding:4px 5px;border:1px solid var(--border);border-radius:5px;font-size:13px;text-align:center;background:var(--white);outline:none">'
       + '<span style="font-size:11px;color:var(--muted);margin-left:2px">h</span><div data-vt-mh="' + i + '" style="font-size:10px;color:var(--muted);margin-top:2px">' + (ss.objekt?(_vtObjBudget(ss.objekt)>0?('max '+_vtRemaining(ss.objekt,i)+' h'):'frei'):'') + '</div></td>'
@@ -8321,7 +9102,7 @@ function _vtAutoFlush() {
 }
 
 function vtAddRow() {
-  _vtData.push({maId:'', maName:'', objekt:'', stunden:'', grund: _vtAbsTyp});
+  _vtData.push({maId:'', maName:'', objekt:'', stunden:'', grund: _vtAbsTyp, datum:''});
   _renderVtTable();
   _vtUpdateHint();
   // Focus auf neues MA-Input
@@ -8483,16 +9264,19 @@ function vtSyncToMAB(mitCleanup){
   const monatKey=_vtSyncMonat||getAM(); // FIX VT-A: _vtSyncMonat bevorzugen (Monat des geöffneten MA-Modals)
   // FIX v122: Mehrere Zeilen mit gleichem Vertreter+Objekt vorher summieren
   // (sonst ueberschrieb die letzte Zeile die vorherige statt zu addieren).
+  // v141: datum gehoert mit in den Key, sonst wuerden zwei Vertretungen am
+  // selben Objekt an verschiedenen Tagen zu einer Zeile verschmelzen.
   const _vtAgg = new Map();
   _vtData.forEach(vt=>{
     if(!vt.maId||!vt.stunden)return;
     const objekt = vt.objekt||'';
-    const key = vt.maId + '\u0000' + objekt;
-    const cur = _vtAgg.get(key) || {maId:vt.maId, objekt:objekt, stunden:0};
+    const datum  = vt.datum||'';
+    const key = vt.maId + '\u0000' + objekt + '\u0000' + datum;
+    const cur = _vtAgg.get(key) || {maId:vt.maId, objekt:objekt, datum:datum, grund:vt.grund||'', stunden:0};
     cur.stunden += parseFloat(vt.stunden)||0;
     _vtAgg.set(key, cur);
   });
-  _vtAgg.forEach(({maId, objekt, stunden})=>{
+  _vtAgg.forEach(({maId, objekt, datum, grund, stunden})=>{
     const maB=ma.find(x=>x.id===maId);
     if(!maB)return;
     if(!maB.monats_daten)maB.monats_daten={};
@@ -8500,19 +9284,20 @@ function vtSyncToMAB(mitCleanup){
     const md=maB.monats_daten[monatKey];
     if(!md.vertretungs_gutschrift)md.vertretungs_gutschrift=[];
     const quelle=eMAid||'neu';
-    const existing=md.vertretungs_gutschrift.find(g=>g.quelleMAid===quelle&&g.objekt===objekt);
+    const existing=md.vertretungs_gutschrift.find(g=>g.quelleMAid===quelle&&g.objekt===objekt&&(g.datum||'')===datum);
     if(existing){
       if(existing.manuelleAnpassung!==null&&existing.manuelleAnpassung!==existing.stunden)existing.geaendertWarnung=true;
       existing.stunden=stunden;
+      existing.grund=grund||existing.grund||'';
     }else{
-      md.vertretungs_gutschrift.push({quelleMAid:quelle,quelleName:(ma.find(x=>x.id===eMAid)?.nachname||'?'),monat:monatKey,objekt:objekt,stunden:stunden,manuelleAnpassung:null,geaendertWarnung:false});
+      md.vertretungs_gutschrift.push({quelleMAid:quelle,quelleName:(ma.find(x=>x.id===eMAid)?.nachname||'?'),monat:monatKey,objekt:objekt,datum:datum,grund:grund||'',stunden:stunden,manuelleAnpassung:null,geaendertWarnung:false});
     }
   });
   // Cleanup (verwaiste Gutschriften entfernen) NUR beim finalen Speichern, nicht beim AutoFlush.
   // Grund: AutoFlush wird auch beim Öffnen des Modals ausgeführt – wenn _vtData noch nicht vollständig
   // geladen ist, würde sonst die Gutschrift beim Vertreter (z.B. PersNr 1262) fälschlicherweise gelöscht.
   if(!mitCleanup)return;
-  const aktive=_vtData.filter(v=>v.maId&&v.stunden).reduce((s,v)=>{s[v.maId+'|'+(v.objekt||'')]=true;return s;},{});
+  const aktive=_vtData.filter(v=>v.maId&&v.stunden).reduce((s,v)=>{s[v.maId+'|'+(v.objekt||'')+'|'+(v.datum||'')]=true;return s;},{});
   // FIX v106: MAs sammeln, bei denen eine Gutschrift entfernt wurde,
   // damit saveMA sie in die Supabase-Speicherliste aufnimmt.
   window._vtCleanupBetroffene = window._vtCleanupBetroffene || new Set();
@@ -8521,7 +9306,7 @@ function vtSyncToMAB(mitCleanup){
     const vorher = maB.monats_daten[monatKey].vertretungs_gutschrift.length;
     maB.monats_daten[monatKey].vertretungs_gutschrift=maB.monats_daten[monatKey].vertretungs_gutschrift.filter(g=>{
       if(g.quelleMAid!==(eMAid||'neu'))return true;
-      return aktive[maB.id+'|'+(g.objekt||'')]===true;
+      return aktive[maB.id+'|'+(g.objekt||'')+'|'+(g.datum||'')]===true;
     });
     if (maB.monats_daten[monatKey].vertretungs_gutschrift.length < vorher) {
       window._vtCleanupBetroffene.add(maB.id);
@@ -8634,7 +9419,7 @@ function renderVtGutschrift(m,monatKey){
     const rowBg = problemZeile ? 'background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;margin:3px 0;padding:6px 8px' : 'padding:5px 0;border-bottom:1px solid var(--border)';
     html+='<div style="' + rowBg + ';font-size:12px">' +
       '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
-      '<span style="flex:1;color:var(--text2)">Vertr. f\u00fcr <strong>' + (g.quelleName||'?') + '</strong>' + (g.objekt?' \u2013 ' + g.objekt : '') + '</span>' +
+      '<span style="flex:1;color:var(--text2)">Vertr. f\u00fcr <strong>' + (g.quelleName||'?') + '</strong>' + (g.objekt?' \u2013 ' + g.objekt : '') + (g.datum?' <span style="font-size:10px;color:var(--muted);font-family:\'IBM Plex Mono\',monospace">' + g.datum.slice(8,10) + '.' + g.datum.slice(5,7) + '.</span>':'') + '</span>' +
       '<input type="number" step="0.5" min="0" value="' + (std||'') + '" style="width:64px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:\'IBM Plex Mono\',monospace;text-align:center;background:var(--white);outline:none" oninput="vtGutschriftEdit(\'' + m.id + '\',\'' + monatKey + '\',' + i + ',this.value)">' +
       '<span style="font-size:11px;color:var(--muted)">h \u00d7 ' + _vtSl.toFixed(2) + '\u20ac = <strong>\u20ac ' + lohn + '</strong></span>' +
       (problemZeile ? '<button onclick="vtGutschriftDelete(\'' + m.id + '\',\'' + monatKey + '\',' + i + ')" style="background:var(--white);border:1px solid var(--rbd);color:var(--red);border-radius:5px;padding:2px 6px;font-size:11px;cursor:pointer" title="Verwaiste Gutschrift l\u00f6schen">\u2715 L\u00f6schen</button>' : '') +
@@ -8646,7 +9431,16 @@ function renderVtGutschrift(m,monatKey){
   // Minijob-Ausnahme-Warnung
   if (m.minijob) {
     const chk = calcMinijobMonatCheck(m, monatKey);
-    if (chk.monatLohn > MINIJOB_MAX_MONAT) {
+    // v141: Jahresbetrachtung - reine Monatsschwankung (unterschiedliche Arbeitstage)
+    // ist keine Ueberschreitung, solange die Zeitjahr-Grenze eingehalten wird.
+    const _mjJahr = calcMinijobStatus(m);
+    if (chk.monatLohn > MINIJOB_MAX_MONAT && _mjJahr.jahresLohn <= MINIJOB_MAX_JAHR && !chk.isKrankVt) {
+      html += `<div style="margin-top:8px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:8px 11px;font-size:12px">
+        <div style="font-weight:700;color:var(--blue);margin-bottom:3px">ℹ Schwankender Monat – im Rahmen</div>
+        <div>Monatslohn: <strong>${chk.monatLohn.toFixed(2)} €</strong> (über 603 €, da ${ARBEITSTAGE[monatKey]||21} Arbeitstage)</div>
+        <div style="margin-top:3px;color:var(--muted)">Zeitjahr: <strong>${_mjJahr.jahresLohn.toFixed(2)} €</strong> von 7.236 € – gleicht sich über die Monate aus.</div>
+      </div>`;
+    } else if (chk.monatLohn > MINIJOB_MAX_MONAT) {
       const ausnahmeNochFrei = chk.ausnahmeGenutzt < 2;
       const istKrank = chk.isKrankVt;
       const imRahmen = istKrank && chk.monatLohn <= MINIJOB_MAX_MONAT_AUSNAHME && ausnahmeNochFrei;
