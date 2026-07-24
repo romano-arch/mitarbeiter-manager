@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v149</title>
+<title>MitarbeiterManager v150</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1107,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v149</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v150</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -11917,12 +11917,15 @@ const TM_ORGANIZER = 'romano@allcleanservice.de';
 const TM_FIRMA     = 'A.C.S. All Clean Services KG';
 
 // Interne Empfaenger (Buero + OL). E-Mails wie in MM hinterlegt.
+// v150: 'buero' ist nur eine Kennzeichnung fuer die Anzeige.
+// Sichtbarkeit fuer superadmin/admin regelt ist_buero() in der Datenbank –
+// die Haken hier steuern AUSSCHLIESSLICH den Mailversand.
 const TM_INTERN = [
-  { email:'romano@allcleanservice.de',  name:'Romano',  fix:true  },
-  { email:'adler@allcleanservice.de',   name:'Adler',   fix:true  },
-  { email:'richter@allcleanservice.de', name:'Richter', fix:true  },
-  { email:'incecik@allcleanservice.de', name:'Hr. Incecik', fix:false },
-  { email:'grippo@allcleanservice.de',  name:'Fr. Grippo',  fix:false }
+  { email:'romano@allcleanservice.de',  name:'Romano',      buero:true,  rk:'romano'  },
+  { email:'adler@allcleanservice.de',   name:'Adler',       buero:true,  rk:'adler'   },
+  { email:'richter@allcleanservice.de', name:'Richter',     buero:true,  rk:'richter' },
+  { email:'incecik@allcleanservice.de', name:'Hr. Incecik', buero:false, rk:null      },
+  { email:'grippo@allcleanservice.de',  name:'Fr. Grippo',  buero:false, rk:null      }
 ];
 
 const TM_KATEGORIEN = ['Unterhaltsreinigung','Glasreinigung','Grundreinigung',
@@ -12069,7 +12072,7 @@ function tmListeHtml(liste){
         <div style="font-size:11px;color:var(--muted)">${tmE(t.ort||'')}</div></td>
       <td style="padding:8px 10px;font-size:12px">${nu?tmE(nu.name):'—'}</td>
       <td style="padding:8px 10px;font-size:12px">${tmE(t.rechnung_durch||'—')}</td>
-      <td style="padding:8px 10px;font-size:12px;color:var(--muted)">${emp.length} 👁</td>
+      <td style="padding:8px 10px;font-size:12px;color:var(--muted)">${emp.length} ✉</td>
       <td style="padding:8px 10px"><span style="font-size:11px;padding:2px 8px;border-radius:99px;background:${f.bg};color:${f.fg};border:1px solid ${f.bd}">${tmE(t.status||'offen')}</span></td>
     </tr>`;
   }).join('');
@@ -12078,7 +12081,7 @@ function tmListeHtml(liste){
     <thead><tr style="background:var(--s1);text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase">
       <th style="padding:8px 10px">Datum</th><th style="padding:8px 10px">Betreff</th>
       <th style="padding:8px 10px">Nachunternehmer</th><th style="padding:8px 10px">Rechnung</th>
-      <th style="padding:8px 10px">Sicht</th><th style="padding:8px 10px">Status</th>
+      <th style="padding:8px 10px">Mail</th><th style="padding:8px 10px">Status</th>
     </tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
@@ -12097,9 +12100,9 @@ function tmOpen(id, vorDatum){
   const katOpt=TM_KATEGORIEN.map(k=>`<option ${t&&t.kategorie===k?'selected':''}>${k}</option>`).join('');
 
   const internChk=TM_INTERN.map(p=>{
-    const an = t ? emp.some(e=>(e.email||'').toLowerCase()===p.email) : p.fix;
+    const an = t ? emp.some(e=>(e.email||'').toLowerCase()===p.email) : false;
     return `<label class="tm-chk"><input type="checkbox" class="tm-emp" value="${p.email}" data-name="${tmE(p.name)}" data-typ="intern"
-      ${an?'checked':''} ${p.fix?'disabled':''} ${ro?'disabled':''}>${tmE(p.name)}${p.fix?' <span class="tm-fix">Büro</span>':''}</label>`;
+      data-rk="${p.rk||''}" ${an?'checked':''} ${ro?'disabled':''}>${tmE(p.name)}${p.buero?' <span class="tm-fix">Büro</span>':''}</label>`;
   }).join('');
 
   const extern = emp.filter(e=>e.typ!=='intern' && !TM_INTERN.some(p=>p.email===(e.email||'').toLowerCase()));
@@ -12129,18 +12132,19 @@ function tmOpen(id, vorDatum){
     <div class="tm-sep" style="grid-column:1/-1">Nachunternehmer und Abrechnung</div>
     <div class="tm-row"><label>Nachunternehmer</label><select id="tm-nu" onchange="tmNuWechsel()" ${ro?'disabled':''}>${nuOpt}</select></div>
     <div class="tm-row"><label>Rechnung durch</label>
-      <select id="tm-rech" ${ro?'disabled':''}>
+      <select id="tm-rech" onchange="tmRechMailHaken()" ${ro?'disabled':''}>
         ${['','adler','richter','romano'].map(v=>`<option value="${v}" ${t&&(t.rechnung_durch||'')===v?'selected':''}>${v?v.charAt(0).toUpperCase()+v.slice(1):'—'}</option>`).join('')}
       </select>
       <div class="tm-hint" id="tm-rech-hint"></div>
     </div>
 
-    <div class="tm-sep" style="grid-column:1/-1">Sichtbarkeit — nur diese Personen sehen den Termin</div>
+    <div class="tm-sep" style="grid-column:1/-1">Mail geht an</div>
     <div class="tm-row" style="grid-column:1/-1">
+      <div class="tm-hint" style="margin-top:0;margin-bottom:8px">Das Büro (Romano, Adler, Richter) sieht <b>jeden</b> Termin im Kalender – unabhängig von diesen Haken. Hier legst du nur fest, wer eine <b>Mail</b> bekommt.</div>
       <div class="tm-chks">${internChk}</div>
-      <label style="margin-top:8px">Nachunternehmer und externe E-Mails (Komma-getrennt)</label>
+      <label style="margin-top:10px">Nachunternehmer und externe E-Mails (Komma-getrennt)</label>
       <input id="tm-extern" value="${tmE(extern.map(e=>e.email).join(', '))}" placeholder="name@firma.de" ${ro?'disabled':''}>
-      <div class="tm-hint">Der gewählte Nachunternehmer wird automatisch ergänzt.</div>
+      <div class="tm-hint">Der gewählte Nachunternehmer wird automatisch ergänzt. Nur wer hier steht (oder Büro ist), sieht den Termin.</div>
     </div>
 
     ${t?'':`<div class="tm-sep" style="grid-column:1/-1">Serientermin</div>
@@ -12174,7 +12178,7 @@ function tmOpen(id, vorDatum){
 
   const sub = t
     ? 'angelegt von '+(t.erstellt_von||'?')+(t.geaendert_von?' · zuletzt geändert '+t.geaendert_von:'')
-    : 'Sichtbarkeit pro Termin – Büro sieht immer alles';
+    : 'Büro sieht alles – die Haken steuern nur den Mailversand';
   openDashModal(t?'📅 Termin bearbeiten':'📅 Neuer Termin', sub, body);
   tmNuWechsel(true);
 }
@@ -12223,6 +12227,16 @@ function tmNuWechsel(init){
   } else {
     hint.textContent='Kein Nachunternehmer gewählt.';
   }
+  if(!init) tmRechMailHaken();
+}
+
+// v150: Wer die Rechnung schreibt, bekommt automatisch die Mail.
+function tmRechMailHaken(){
+  const rk=(document.getElementById('tm-rech')||{}).value||'';
+  if(!rk) return;
+  document.querySelectorAll('.tm-emp').forEach(cb=>{
+    if(cb.dataset.rk===rk && !cb.disabled) cb.checked=true;
+  });
 }
 
 // ── SPEICHERN ────────────────────────────────────────────
