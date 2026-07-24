@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v144</title>
+<title>MitarbeiterManager v148</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -21,6 +21,7 @@
 --yellow:#92400e;--ybg:#fffbeb;
 --blue:#1a56db;--bbg:#eff6ff;
 --orange:#c05621;--obg:#fff7ed;--obd:#fed7aa;
+--kapw:#ca8a04;--kapwb:#eab308;
 --ol-m:#7c3aed;--olm-bg:#f5f3ff;--ol-i:#0891b2;--oli-bg:#ecfeff;
 --text:#0f172a;--text2:#334155;--muted:#64748b;--muted2:#94a3b8;
 --r:8px;--r2:10px;
@@ -1078,7 +1079,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v144</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v146</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1415,7 +1416,6 @@ main{padding:14px 16px}
       <thead><tr style="background:var(--s2)">
         <th style="padding:5px 6px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Mitarbeiter</th>
         <th style="padding:5px 6px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Objekt</th>
-        <th style="padding:5px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)" title="Optional – nur f&uuml;r den Jahresbericht. Leer = z&auml;hlt f&uuml;r den ganzen Monat.">Datum</th>
         <th style="padding:5px 5px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Std.</th>
         <th style="padding:5px 6px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)">Grund</th>
         <th style="padding:5px 3px;border-bottom:1px solid var(--border);width:22px"></th>
@@ -2592,6 +2592,57 @@ function oKapW(name){
   // Keine Reviere: obere Tabelle verwenden
   return wSum(o.wochentage);
 }
+// v148: Letzter Kalendertag eines Monats als ISO-String (lokal, ohne UTC-Versatz).
+function _monatsEnde(monatKey){
+  const [y, mo] = (monatKey || getAM()).split('-').map(Number);
+  return isoLocal(new Date(y, mo, 0));
+}
+// v148: Traegt dieses Objekt am Monatsende noch Stunden bei?
+// Variante A: Stand Monatsende zaehlt. Wechselt ein MA zum 15.07. von Kunde A
+// zu Kunde B, ist A ab Juli rot (Ersatz noetig), B ab Juli gruen.
+// Verhindert doppeltes Zaehlen im Uebergabemonat.
+function _objZaehltImMonat(m, o, monatKey){
+  const mk = monatKey || getAM();
+  if (_maAusgeschiedenImMonat(m, mk)) return false;
+  return _objAktivAm(o, _monatsEnde(mk));
+}
+// v147: Wochenstunden-Summe aller MA auf diesem Objekt – Gegenstueck zu oKapW().
+// BEWUSST ohne Verstetigung, ohne Fehlzeit-Faktor, ohne Arbeitstage:
+// vergleicht rein was beim Kunden veranschlagt ist gegen was der MA leistet.
+// Aendert NICHTS an oBel() / maOSollMA() – die bleiben fuer die Abrechnung zustaendig.
+function oBelW(name, monatKey){
+  let t = 0;
+  const _mk = monatKey || getAM();
+  ma.filter(m => !_maAusgeschiedenImMonat(m, _mk)).forEach(m => {
+    const _gezaehlt = new Set();
+    (m.objekte || []).forEach(o => {
+      if (o.kunde !== name) return;
+      // v148: Objekte mit abgelaufenem einsatz_bis / noch nicht begonnenem
+      // einsatz_ab zaehlen nicht mehr mit – sonst bleibt der alte Kunde nach
+      // einem Kundenwechsel faelschlich gruen.
+      if (!_objAktivAm(o, _monatsEnde(_mk))) return;
+      const _k = o.kunde + '||' + (o.revier || '');
+      if (_gezaehlt.has(_k)) return;
+      _gezaehlt.add(_k);
+      t += wSum(o.wochentage || {});
+    });
+  });
+  return Math.round(t * 100) / 100;
+}
+// v147: Auslastung in Prozent auf Wochenbasis. null = keine Kapazitaet hinterlegt.
+function oPctW(name, monatKey){
+  const k = oKapW(name);
+  if (!(k > 0)) return null;
+  return Math.round(oBelW(name, monatKey) / k * 100);
+}
+// v147: Abweichung h/Wo (MA minus Kunde). 0 = passt.
+function oDiffW(name, monatKey){
+  return Math.round((oBelW(name, monatKey) - oKapW(name)) * 100) / 100;
+}
+// v147: true = echte Abweichung, verdient Rot.
+function oAbwW(name, monatKey){
+  return oKapW(name) > 0 && Math.abs(oDiffW(name, monatKey)) >= 0.01;
+}
 function oKapM(name, monatKey){
   // Kapazität = echte Arbeitstage im Monat (wie oBel), NICHT × WPM
   const o=gObj(name);
@@ -3313,12 +3364,19 @@ kdGrid.innerHTML = kdList.map(k=>{
   let kap = 0, bel = 0;
   standorte.forEach(s=>{ kap += oKapM(s)||0; bel += oBel(s)||0; });
   kap = Math.round(kap*10)/10; bel = Math.round(bel*10)/10;
-  const pct = kap > 0 ? Math.round(bel/kap*100) : null;
-  const kapCol = pct===null ? 'var(--muted)' : (pct>100 ? 'var(--red)' : (pct>=90 ? 'var(--orange)' : 'var(--green)'));
-  const kapHtml = eh ? '' : (kap > 0
-    ? `<div class="kdc-kap"><div class="kdc-kap-h"><span>Kapazität</span>
-         <span style="color:${kapCol};font-family:'IBM Plex Mono',monospace">${bel} / ${kap} h · ${pct}%</span></div>
-       <div class="kdc-bar"><i style="width:${Math.min(pct,100)}%;background:${kapCol}"></i></div></div>`
+  // v147: Ampel auf Wochenbasis – Monatswerte nur noch informativ
+  let kapW = 0, belW = 0;
+  standorte.forEach(s=>{ kapW += oKapW(s)||0; belW += oBelW(s)||0; });
+  kapW = Math.round(kapW*100)/100; belW = Math.round(belW*100)/100;
+  const diffW = Math.round((belW - kapW)*100)/100;
+  const pct = kapW > 0 ? Math.round(belW/kapW*100) : null;
+  const _okW = pct!==null && Math.abs(diffW) < 0.01;
+  const kapCol = pct===null ? 'var(--muted)' : (_okW ? 'var(--green)' : 'var(--red)');
+  const kapBar = pct===null ? 'var(--muted)' : (_okW ? 'var(--green)' : 'var(--red)');
+  const kapHtml = eh ? '' : (kapW > 0
+    ? `<div class="kdc-kap"><div class="kdc-kap-h"><span>Kapazität${_okW ? '' : ` <span style="color:var(--red);font-size:10px">${diffW > 0 ? '+' : '−'}${Math.abs(diffW)} h/Wo</span>`}</span>
+         <span style="color:${kapCol};font-family:'IBM Plex Mono',monospace" title="Woche: ${belW} / ${kapW} h · Monat: ${bel} / ${kap} h">${belW} / ${kapW} h/Wo · ${pct}%</span></div>
+       <div class="kdc-bar"><i style="width:${Math.min(pct,100)}%;background:${kapBar}"></i></div></div>`
     : `<div class="kdc-kap" style="color:var(--orange)">⚠ Keine Kapazität hinterlegt</div>`);
   const nam = k.kurzname||k.vollname||'';
   const stTxt = standorte.length>1 ? standorte.length+' Standorte' : (standorte.length===1?'1 Standort':'Kein Standort');
@@ -3464,18 +3522,24 @@ const reviere = getRevData(oid);
 const maList = ma.filter(m => m.status !== 'Ausgeschieden' && maKu(m).includes(o.name));
 const totalKap = oKapM(o.name);
 const totalBel = oBel(o.name);
-const pct = totalKap > 0 ? Math.round(totalBel / totalKap * 100) : 0;
-const fc = pct > 100 ? 'var(--red)' : 'var(--green)';
+// v147: Prozentwert + Farbe kommen jetzt aus dem WOCHEN-Vergleich (Kunde h/Wo <-> MA h/Wo).
+// Monatswerte bleiben als Info stehen, steuern aber nicht mehr die Ampel:
+// verstetigte MA haben ein festes Monats-Soll und erzeugten dort Schein-Ueberschreitungen.
+const kapW = oKapW(o.name);
+const belW = oBelW(o.name);
+const diffW = Math.round((belW - kapW) * 100) / 100;
+const pct = kapW > 0 ? Math.round(belW / kapW * 100) : 0;
+const fc = Math.abs(diffW) < 0.01 ? 'var(--green)' : 'var(--red)';
 let html = '';
 html += `<div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:18px;display:flex;gap:24px;flex-wrap:wrap;align-items:center">
 <div><div style="font-size:11px;color:var(--muted);margin-bottom:2px">MITARBEITER</div><div style="font-size:22px;font-weight:700;color:var(--acc)">${maList.length}</div></div>
 <div><div style="font-size:11px;color:var(--muted);margin-bottom:2px">REVIERE</div><div style="font-size:22px;font-weight:700;color:var(--text)">${reviere.length}</div></div>
-${totalKap > 0 ? `<div style="flex:1;min-width:140px">
+${kapW > 0 ? `<div style="flex:1;min-width:140px">
 <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px">
-<span>Kapazität belegt</span><strong style="color:${fc}">${pct}%</strong>
+<span>Kapazität belegt</span><strong style="color:${fc}" title="Vergleich auf Wochenbasis: Kunde ${kapW} h/Wo gegen Mitarbeiter ${belW} h/Wo">${pct}%${Math.abs(diffW) >= 0.01 ? ` <span style="font-size:10px">(${diffW > 0 ? '+' : '−'}${Math.abs(diffW)} h/Wo)</span>` : ''}</strong>
 </div>
 <div class="rev-kap-bar"><div class="rev-kap-fill" style="width:${Math.min(pct,100)}%;background:${fc}"></div></div>
-<div style="font-size:10px;color:var(--muted);margin-top:3px">${totalBel}h / ${totalKap}h pro Monat</div>
+<div style="font-size:10px;color:var(--muted);margin-top:3px"><strong style="color:var(--text2)">${belW} / ${kapW} h pro Woche</strong> · ${totalBel} / ${totalKap} h pro Monat</div>
 </div>` : `<div style="font-size:12px;color:var(--orange)">⚠ Keine Kapazität eingetragen</div>`}
 </div>`;
 html += `<div style="margin-bottom:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">Reviere / Bereiche</div>`;
@@ -3514,6 +3578,9 @@ html += `<table class="rev-table">
 <th>Mitarbeiter</th>
 <th>OL</th>
 <th>Revier</th>
+<th title="Wochenstunden laut Revier beim Kunden">🏢 Kunde h/Wo</th>
+<th title="Wochenstunden laut Mitarbeiter-Objekt">👤 MA h/Wo</th>
+<th>Δ</th>
 <th>Soll Std/Mon</th>
 <th>Status</th>
 <th></th>
@@ -3523,12 +3590,39 @@ const mObjekt = (m.objekte || []).find(ob => ob.kunde === o.name);
 const soll = mObjekt ? maOSoll(mObjekt, getAM(), m.abrechnungsmodell||'arbeitstage') : '–';
 const zuRev = reviere.find(r => r.maId === m.id);
 const statusCls = `b-${(m.status || 'aktiv').toLowerCase()}`;
+// v148: Zeigt an, ob der MA auf DIESES Objekt am Monatsende ueberhaupt noch Stunden bucht.
+// Vorher stand hier immer m.status – ein MA mit Austrittsdatum oder abgelaufenem
+// einsatz_bis erschien gruen als "Aktiv", trug aber 0 h bei.
+const _mkNow = getAM();
+const _maAusg = _maAusgeschiedenImMonat(m, _mkNow);
+const _objEnde = mObjekt ? _objAktivAm(mObjekt, _monatsEnde(_mkNow)) : true;
+const _traegtBei = !_maAusg && _objEnde;
+const _bisTxt = mObjekt && mObjekt.einsatz_bis
+  ? new Date(mObjekt.einsatz_bis).toLocaleDateString('de-DE')
+  : (m.austrittsdatum ? new Date(m.austrittsdatum).toLocaleDateString('de-DE') : '');
 html += `<tr>
 <td><strong>${m.nachname}</strong>${m.vorname ? ` <span style="color:var(--muted);font-weight:400">${m.vorname}</span>` : ''}</td>
 <td><span class="olb ol-${m.objektleiter || 'M'}">${m.objektleiter || '?'}</span></td>
 <td>${zuRev ? `<span style="font-size:12px;color:var(--acc);font-weight:500">📍 ${zuRev.name || '(kein Name)'}</span>` : `<span style="color:var(--muted2);font-size:12px">–</span>`}</td>
+${(()=>{
+  // v146: direkter Vergleich Kundenseite <-> MA-Seite
+  const _kdW = zuRev ? _wtWoSumme(zuRev.wochentage||{}) : null;
+  const _maW = mObjekt ? _wtWoSumme(mObjekt.wochentage||{}) : null;
+  const _mono = "font-family:'IBM Plex Mono',monospace;font-weight:600";
+  if (_kdW === null && _maW === null) return '<td colspan="3" style="color:var(--muted2);font-size:12px">–</td>';
+  const _d = Math.round(((_maW||0) - (_kdW||0))*100)/100;
+  const _rot = Math.abs(_d) >= 0.01;
+  return `<td style="${_mono};${_rot?'color:var(--red)':'color:var(--text2)'}">${_kdW===null?'–':_kdW}</td>`
+       + `<td style="${_mono};${_rot?'color:var(--red)':'color:var(--text2)'}">${_maW===null?'–':_maW}</td>`
+       + `<td>${_rot
+            ? `<span style="background:var(--rbg);border:1px solid var(--rbd);color:var(--red);font-size:11px;font-weight:700;border-radius:10px;padding:1px 7px">${_d>0?'+':'−'}${Math.abs(_d)}</span>`
+            : `<span style="color:var(--green);font-weight:700">✓</span>`}</td>`;
+})()}
 <td><code>${soll}h</code></td>
-<td><span class="badge ${statusCls}">${m.status || 'Aktiv'}</span></td>
+<td>${_traegtBei
+  ? `<span class="badge ${statusCls}">${m.status || 'Aktiv'}</span>`
+  : `<span class="badge b-ausgeschieden" title="${_maAusg ? 'Austrittsdatum gesetzt – der Mitarbeiter gilt firmenweit als ausgeschieden' : 'Einsatz bei diesem Objekt ist beendet (einsatz_bis)'}">${_maAusg ? 'Ausgeschieden' : 'Einsatz beendet'}${_bisTxt ? ' ' + _bisTxt : ''}</span>
+     <div style="font-size:10px;color:var(--red);margin-top:3px;font-weight:600">trägt 0 h/Wo bei</div>`}</td>
 <td><button class="btn-i btn-sm" onclick="closeRevModal();openMAM('${m.id}')">✏️ Bearbeiten</button></td>
 </tr>`;
 });
@@ -3796,11 +3890,15 @@ const bw=document.getElementById('obel-wrap');
 if(id){
 bw.style.display='block';
 const kap=oKapM(o.name),bel=oBel(o.name);
-const pct=kap>0?Math.round(bel/kap*100):0;
+// v147: Ampel auf Wochenbasis
+const kapW=oKapW(o.name),belW=oBelW(o.name);
+const diffW=Math.round((belW-kapW)*100)/100;
+const pct=kapW>0?Math.round(belW/kapW*100):0;
+const _okW=Math.abs(diffW)<0.01;
 const ml=ma.filter(m=>m.status!=='Ausgeschieden'&&maKu(m).includes(o.name));
 document.getElementById('obel-info').innerHTML=
 `<div style="font-size:13px;margin-bottom:6px"><strong>${ml.length} Mitarbeiter</strong> zugeordnet`+
-(kap>0?` · Belegung: <strong style="color:${pct>100?'var(--red)':'var(--green)'}">${bel}h / ${kap}h (${pct}%)</strong>`:'')+'</div>'+
+(kapW>0?` · Belegung: <strong style="color:${_okW?'var(--green)':'var(--red)'}" title="Monat: ${bel}h / ${kap}h">${belW}h / ${kapW}h pro Woche (${pct}%)</strong>${_okW?'':` <span style="color:var(--red);font-size:12px">⚠ ${diffW>0?'+':'−'}${Math.abs(diffW)} h/Wo</span>`}`:'')+'</div>'+
 (ml.length?`<div style="font-size:12px;margin-top:4px;display:flex;flex-wrap:wrap;gap:4px">${ml.map(m=>`<button onclick="openMAMfromOM('${m.id}')" style="background:var(--acc-l);border:1px solid #bfdbfe;border-radius:6px;padding:3px 9px;font-size:12px;color:var(--acc);cursor:pointer;font-family:inherit">${m.nachname}${m.vorname?' '+m.vorname:''}</button>`).join('')}</div>`:'');
 } else bw.style.display='none';
 // LV-Sektion befüllen
@@ -4296,6 +4394,66 @@ function _urlaubUebertrag(m, jahr, teilzeit, sollMonate, ferienMonate, heuteISO)
   return { anspruchPrev, genPrev, uebertrag, verbraucht, rest, verfallen };
 }
 
+// ── v145: Arbeitstage/Woche MONATSGENAU (zeitabschnittsweise Berechnung) ──
+// Bisher wurde der Urlaubsanspruch aus EINEM Snapshot der Wochentage gerechnet.
+// Wechselt ein MA unterjaehrig (z.B. ab 01.06. von 5 auf 7 Tage/Woche), wurde
+// der neue Wert rueckwirkend aufs ganze Jahr angewendet -> zu hoher Anspruch.
+// Quellen: objekte_history (monatsgenau) + einsatz_ab / einsatz_bis.
+function _arbTagePWMonat(objekteArr, m, monatKey){
+  const tage = new Set();
+  const teile = String(monatKey||'').split('-');
+  const y = parseInt(teile[0]), mo = parseInt(teile[1]);
+  if (!y || !mo) return 0;
+  const ersterTag  = monatKey + '-01';
+  const letzterTag = monatKey + '-' + String(new Date(y, mo, 0).getDate()).padStart(2,'0');
+  (objekteArr || []).forEach(o => {
+    if (!o || !o.kunde) return;
+    // Stand des Objekts IN diesem Monat – History-Snapshot hat Vorrang
+    let eff = o;
+    try {
+      const hh = (m && typeof _getHistoryObjekt === 'function')
+        ? _getHistoryObjekt(m, o.kunde, monatKey, o.revier) : null;
+      if (hh) eff = hh;
+    } catch(e) {}
+    // Einsatzzeitraum monatsgenau: Objekt zaehlt, wenn es im Monat aktiv war
+    const ab  = eff.einsatz_ab  ? String(eff.einsatz_ab).slice(0,10)  : '';
+    const bis = eff.einsatz_bis ? String(eff.einsatz_bis).slice(0,10) : '';
+    if (ab  && ab  > letzterTag) return;
+    if (bis && bis < ersterTag)  return;
+    const wt = eff.wochentage || {};
+    WT.forEach(t => { if ((parseFloat(wt[t]) || 0) > 0) tage.add(t); });
+  });
+  return tage.size;
+}
+
+// Monatsverlauf ueber ein Jahr + zusammengefasste Segmente fuer die Anzeige.
+// fallback = aktueller Snapshot; wird genutzt wenn ein Monat keine Daten liefert
+// (Datenluecke soll NIE zu einer stillen Kuerzung fuehren).
+const _MONK = ['Jan','Feb','M\u00e4r','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+function _arbTagePWJahr(objekteArr, m, jahr, S, E, fallback){
+  const werte = [];
+  for (let i = 1; i <= 12; i++){
+    const mk = jahr + '-' + String(i).padStart(2,'0');
+    const mStart = new Date(jahr, i-1, 1), mEnde = new Date(jahr, i, 0);
+    if (S instanceof Date && !isNaN(S.getTime()) && S > mEnde)  continue;
+    if (E instanceof Date && !isNaN(E.getTime()) && E < mStart) continue;
+    let atw = _arbTagePWMonat(objekteArr, m, mk);
+    if (atw <= 0) atw = fallback;
+    werte.push({ i: i, atw: atw });
+  }
+  if (!werte.length) return { schnitt: fallback, segmente: [], wechsel: false, txt: '' };
+  const schnitt = werte.reduce((s,w) => s + w.atw, 0) / werte.length;
+  const seg = [];
+  werte.forEach(w => {
+    const last = seg[seg.length-1];
+    if (last && last.atw === w.atw && last.bis === w.i - 1) last.bis = w.i;
+    else seg.push({ von: w.i, bis: w.i, atw: w.atw });
+  });
+  const txt = seg.map(s => (s.von === s.bis ? _MONK[s.von-1] : _MONK[s.von-1] + '\u2013' + _MONK[s.bis-1])
+    + ': <strong>' + s.atw + '</strong>').join(' \u00b7 ');
+  return { schnitt: schnitt, segmente: seg, wechsel: seg.length > 1, txt: txt };
+}
+
 function calcUrlaubAnspruch() {
   // Arbeitstage/Woche aus mao[] ableiten: welche Wochentage haben Stunden > 0?
   const aktiveTage = new Set();
@@ -4344,7 +4502,8 @@ function calcUrlaubAnspruch() {
     ? _feldUrl
     : (_mEdit ? calcUrlaubTage(_mEdit) : 28);
   // Teilzeit-Kuerzung nach 5-Tage-Woche-Formel (BUrlG-konform)
-  const teilzeit = basis / 5 * arbTagePW;
+  // v145: wird unten durch den monatsgenau gewichteten Schnitt ersetzt
+  let teilzeit = basis / 5 * arbTagePW;
 
   // Modul B: Schulferien-Kürzung wenn vorhanden
   let sollMonate = 12;
@@ -4380,24 +4539,36 @@ function calcUrlaubAnspruch() {
     if (!isNaN(_aus.getTime()) && _aus < E) E = _aus;
   }
   const rohMonate = _volleMonate(S, E);
-  let proRata = teilzeit;
+
+  // ── v145: Arbeitstage/Woche monatsgenau gewichten ──
+  // Beispiel: Jan–Mai 5 Tage, Jun–Dez 7 Tage -> (5×5 + 7×7)/12 = 6,17 statt 7
+  const _atwJahr = _arbTagePWJahr(mao, _mEdit, _jahr, S, E, arbTagePW);
+  const _teilzeitPausch = teilzeit;                  // alt: ein Snapshot fuers ganze Jahr
+  teilzeit = basis / 5 * _atwJahr.schnitt;           // neu: gewichteter Schnitt
+
+  const _proRataOf = function(tz){
+    if (rohMonate <= 0) return 0;
+    if (rohMonate < 12) {
+      const fa = ferienMonate * (rohMonate / 12);
+      return tz / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
+    }
+    return tz / 12 * sollMonate;
+  };
+  const _rndBUrlG = function(x){ return (x - Math.floor(x)) >= 0.5 ? Math.ceil(x) : Math.floor(x); };
+
+  let proRata = _proRataOf(teilzeit);
   let proRataText = '';
   if (rohMonate <= 0) {
-    proRata = 0;
     proRataText = 'Kein voller Beschaeftigungsmonat im Jahr';
   } else if (rohMonate < 12) {
-    // Ferienanteil anteilig auf die tatsaechlichen Beschaeftigungsmonate begrenzen
-    const ferienAnteil = ferienMonate * (rohMonate / 12);
-    const _beschMonate = Math.max(1, Math.min(rohMonate - ferienAnteil, sollMonate));
-    proRata = teilzeit / 12 * _beschMonate;
+    const _fa = ferienMonate * (rohMonate / 12);
+    const _beschMonate = Math.max(1, Math.min(rohMonate - _fa, sollMonate));
     proRataText = `Pro-Rata: ${Math.round(_beschMonate*10)/10} volle Monate`;
-  } else {
-    proRata = teilzeit / 12 * sollMonate; // Voller Zeitraum, Ferienanteil normal
   }
 
   // Rundung §5 Abs. 2 BUrlG
-  const dezimal = proRata - Math.floor(proRata);
-  const ergebnis = dezimal >= 0.5 ? Math.ceil(proRata) : Math.floor(proRata);
+  const ergebnis = _rndBUrlG(proRata);
+  const _ergebnisPausch = _rndBUrlG(_proRataOf(_teilzeitPausch));
 
   // FIX v135: heutiges Datum lokal (Europe/Berlin-sicher, KEIN toISOString!)
   const _heute = new Date(); _heute.setHours(0, 0, 0, 0);
@@ -4446,6 +4617,13 @@ function calcUrlaubAnspruch() {
         ? ` <span style="color:var(--red);font-weight:700">· ${ueb.verfallen} Tag${ueb.verfallen === 1 ? '' : 'e'} verfallen 31.03.</span>`
         : (ueb.rest > 0 ? ` · Rest ${ueb.rest} (verfällt 31.03.)` : ' · vollständig verbraucht');
       hh += `<div style="font-size:12px;color:var(--text2);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed #bfdbfe">Übertrag ${_jahr - 1}: <span style="${mono};font-size:13px;color:var(--acc)">${ueb.uebertrag}</span> · davon ${ueb.verbraucht} verbraucht (Jan–Mär)${verfTxt} <span style="opacity:.5;font-size:10px;margin-left:3px" title="Nur für Romano und Hr. Richter sichtbar">🔒</span></div>`;
+    }
+    // v145: Hinweis wenn die Arbeitstage/Woche im Jahr wechseln
+    if (_atwJahr.wechsel) {
+      const _abw = _ergebnisPausch !== ergebnis
+        ? ` <span style="color:var(--red);font-weight:700">– pauschal wären es ${_ergebnisPausch}</span>`
+        : '';
+      hh += `<div style="font-size:11.5px;color:var(--text2);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed #bfdbfe;line-height:1.6" title="Wechselt die Zahl der Arbeitstage/Woche unterjährig, wird jeder Zeitabschnitt einzeln bewertet (BAG). Datenquelle: Stunden-Verlauf + Einsatz ab/bis.">📅 <strong>Arbeitstage/Woche im Jahr:</strong> ${_atwJahr.txt} → Ø <strong>${Math.round(_atwJahr.schnitt*100)/100}</strong> · zeitabschnittsweise gerechnet${_abw}</div>`;
     }
     hh += `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--text2)">`;
     hh += `<span><span style="${mono};color:var(--acc)">${ergebnis}</span> Anspruch</span>`;
@@ -4578,6 +4756,95 @@ function maoTaOpen(i, inp) {
     renderMAO();
   });
 }
+// ── v146: Direkter Vergleich – Zeiten beim KUNDEN vs. Zeiten beim MA ──────
+// Quelle Kunde: obj[].reviere[].wochentage   Quelle MA: mao[i].wochentage
+function _wtWoSumme(wtObj){
+  let s = 0; WT.forEach(t => { s += parseFloat((wtObj||{})[t]) || 0; });
+  return Math.round(s*100)/100;
+}
+// Passendes Revier eines Kunden fuer einen MA finden
+function _kdRevierFuerMA(kundeName, maId, revierName){
+  const k = gObj(kundeName);
+  if (!k || !Array.isArray(k.reviere) || !k.reviere.length) return null;
+  let r = maId ? k.reviere.find(x => x.maId && x.maId === maId) : null;
+  if (!r && revierName) r = k.reviere.find(x => (x.name||'') === revierName);
+  if (!r && k.reviere.length === 1) r = k.reviere[0];
+  return r || null;
+}
+// Kundenzeiten fuer diesen MA (Revier, sonst Summe aller Reviere)
+function _kdZeitenFuerMA(kundeName, maId, revierName){
+  const k = gObj(kundeName);
+  if (!k) return null;
+  const reviere = k.reviere || [];
+  const rev = _kdRevierFuerMA(kundeName, maId, revierName);
+  if (rev && rev.wochentage) return { wt: rev.wochentage, label: 'Revier \u201e' + (rev.name || 'ohne Name') + '\u201c', einzel: true, anzahl: reviere.length };
+  if (!reviere.length) return null;
+  const sum = {};
+  WT.forEach(t => { sum[t] = Math.round(reviere.reduce((s,r) => s + (parseFloat((r.wochentage||{})[t])||0), 0)*100)/100; });
+  return { wt: sum, label: 'Summe aller ' + reviere.length + ' Reviere', einzel: false, anzahl: reviere.length };
+}
+// Kompakter 2-Zeilen-Vergleich unter dem Wochentage-Raster im MA-Modal
+function _kdMaVergleich(o, i){
+  if (!o || !o.kunde) return '';
+  const k = gObj(o.kunde);
+  const box = 'margin-bottom:6px;border:1px solid var(--border);border-radius:var(--r);background:var(--s1);padding:7px 9px';
+  if (!k) return '';
+  const q = _kdZeitenFuerMA(o.kunde, eMAid, o.revier);
+  if (!q) {
+    return '<div style="' + box + ';font-size:11px;color:var(--muted)">\u2696\ufe0f Beim Kunden sind noch <strong>keine Revier-Zeiten</strong> hinterlegt \u2013 kein Vergleich m\u00f6glich. '
+      + '<button class="btn-i btn-sm" style="font-size:10px;padding:2px 7px" onclick="openOMfromMAM(\'' + String(o.kunde).replace(/'/g, "\\'") + '\')">Beim Kunden eintragen</button></div>';
+  }
+  const maWt = o.wochentage || {};
+  const sumK = _wtWoSumme(q.wt), sumM = _wtWoSumme(maWt);
+  const diff = Math.round((sumM - sumK)*100)/100;
+  const zell = (v, farbe) => '<div style="text-align:center;padding:3px 2px;font-family:\'IBM Plex Mono\',monospace;font-size:12px;font-weight:600;border-radius:4px;'
+    + (farbe ? 'background:var(--rbg);color:var(--red)' : 'color:var(--text2)') + '">' + (v > 0 ? (Math.round(v*100)/100) : '\u2013') + '</div>';
+  let rowK = '', rowM = '';
+  WT.forEach(t => {
+    const kv = parseFloat(q.wt[t]) || 0;
+    const mv = parseFloat(maWt[t]) || 0;
+    const ab = Math.abs(kv - mv) >= 0.01;
+    rowK += zell(kv, ab); rowM += zell(mv, ab);
+  });
+  const kopf = WT.map(t => '<div style="text-align:center;font-size:9px;color:var(--muted);font-weight:600">' + t + '</div>').join('')
+    + '<div style="text-align:center;font-size:9px;color:var(--acc);font-weight:600">\u2211 Wo</div>';
+  const sumZell = (v, rot) => '<div style="text-align:center;padding:3px 2px;font-family:\'IBM Plex Mono\',monospace;font-size:12px;font-weight:700;border-radius:4px;'
+    + (rot ? 'background:var(--rbg);color:var(--red)' : 'background:var(--acc-l);color:var(--acc)') + '">' + v + '</div>';
+  const rot = Math.abs(diff) >= 0.01;
+  const grid = 'display:grid;grid-template-columns:86px repeat(8,1fr);gap:3px;align-items:center';
+  const lbl = 'font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em';
+  let hh = '<div style="' + box + '">';
+  hh += '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px">'
+     +  '<span style="' + lbl + '">\u2696\ufe0f Vergleich Kunde \u2194 Mitarbeiter</span>'
+     +  '<span style="font-size:10px;color:var(--muted)">Kundenseite: ' + q.label + '</span>';
+  if (rot) hh += '<span style="background:var(--rbg);border:1px solid var(--rbd);color:var(--red);font-size:10px;font-weight:700;border-radius:10px;padding:1px 8px">\u0394 '
+     + (diff > 0 ? '+' : '\u2212') + Math.abs(diff) + ' h/Wo</span>';
+  else hh += '<span style="background:var(--gbg);border:1px solid var(--gbd);color:var(--green);font-size:10px;font-weight:700;border-radius:10px;padding:1px 8px">\u2713 identisch</span>';
+  hh += '</div>';
+  hh += '<div style="' + grid + '"><div></div>' + kopf + '</div>';
+  hh += '<div style="' + grid + ';margin-top:2px"><div style="font-size:10px;color:var(--muted);white-space:nowrap">🏢 Kunde</div>' + rowK + sumZell(sumK, rot) + '</div>';
+  hh += '<div style="' + grid + ';margin-top:2px"><div style="font-size:10px;color:var(--muted);white-space:nowrap">👤 Mitarbeiter</div>' + rowM + sumZell(sumM, rot) + '</div>';
+  if (rot) {
+    hh += '<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">'
+       +  '<button class="btn btn-o btn-sm" style="font-size:10px;padding:3px 8px" onclick="maoWtVonKunde(' + i + ')" title="Die beim Kunden hinterlegten Zeiten in diesen Mitarbeiter \u00fcbernehmen">\u2193 Kundenzeiten \u00fcbernehmen</button>'
+       +  '<button class="btn-i btn-sm" style="font-size:10px;padding:3px 8px" onclick="openOMfromMAM(\'' + String(o.kunde).replace(/'/g, "\\'") + '\')" title="Kunden-Modal \u00f6ffnen und dort die Revier-Zeiten anpassen">\u2197 Beim Kunden anpassen</button>'
+       +  '<span style="font-size:10px;color:var(--muted)">Rote Felder = Abweichung an diesem Wochentag</span></div>';
+  }
+  hh += '</div>';
+  return hh;
+}
+// Kundenzeiten in den MA uebernehmen
+function maoWtVonKunde(i){
+  const o = mao[i];
+  if (!o || !o.kunde) return;
+  const q = _kdZeitenFuerMA(o.kunde, eMAid, o.revier);
+  if (!q) return;
+  if (!confirm('Wochentage dieses Objekts mit den Kundenzeiten \u00fcberschreiben?\n\nQuelle: ' + q.label)) return;
+  o.wochentage = o.wochentage || {};
+  WT.forEach(t => { o.wochentage[t] = parseFloat(q.wt[t]) || 0; });
+  renderMAO();
+}
+
 function renderMAO(){
 const opts=obj.filter(o=>!isEh(o)).map(o=>`<option value="${o.name}">${o.name}${o.vollname&&o.vollname!==o.name?' – '+o.vollname:''}</option>`).join('');
 const mk=MK[ami];
@@ -4606,6 +4873,8 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
     ? (wsG>0 ? Math.round(wsG/5*261/12*10)/10 : parseFloat(o.std_monat)||0)
     : maOSoll(o, mk, _abrModell);
   const kap=oKapM(o.kunde); const bel=oBel(o.kunde);
+  // v147: Vorschau auf Wochenbasis
+  const kapW=oKapW(o.kunde); const belW=oBelW(o.kunde);
   const _existMA=eMAid?ma.find(x=>x.id===eMAid):null;
   // Index-basierte Suche: verhindert falschen altSoll wenn 2 Objekte beim gleichen Kunden
   const _objIdx = mao.indexOf(o);
@@ -4614,11 +4883,13 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
   const _altSollBase = _existObj || null;
   const altSoll=_altSollBase?maOSoll(_altSollBase,mk,(_existMA?.abrechnungsmodell)||'arbeitstage'):0;
   const belNeu=Math.round((bel-altSoll+sollM)*10)/10;
-  const pct=kap>0?Math.round(belNeu/kap*100):0;
-  // Verstetigt-Toleranz: wsG/5 × (261/12 - AT) – kein Alarm wenn Überschuss nur durch Verstetigung entsteht
-  const _kapAT = ARBEITSTAGE[MK[ami]]||21;
-  const _kapPuffer = isVerstetigt && wsG>0 ? Math.round(wsG/5*(261/12-_kapAT)*10)/10 : 0;
-  const hc=kap>0&&belNeu>kap+_kapPuffer?'kh-o':kap>0?'kh-ok':'kh-n';
+  // v147: Auslastung auf Wochenbasis. Die alte Verstetigt-Toleranz entfaellt –
+  // auf Wochenebene entsteht der Verstetigungs-Ueberschuss gar nicht erst.
+  const _altW = _altSollBase ? _wtWoSumme(_altSollBase.wochentage||{}) : 0;
+  const belNeuW = Math.round((belW - _altW + wsG)*100)/100;
+  const diffW = Math.round((belNeuW - kapW)*100)/100;
+  const pct=kapW>0?Math.round(belNeuW/kapW*100):0;
+  const hc=kapW>0&&Math.abs(diffW)>=0.01?'kh-o':kapW>0?'kh-ok':'kh-n';
   const locked=isVerstetigt;
   const lohnMonat=o.stundenlohn?'€ '+Math.round(sollM*parseFloat(o.stundenlohn)*100)/100:'–';
   const kundeChip = o.kunde
@@ -4713,6 +4984,7 @@ ${o.modell==='monatlich'?`<div style="display:flex;align-items:center;gap:10px;m
     </div>
   </div>
 </div>
+${_kdMaVergleich(o, i)}
 <!-- Soll + Lohn nebeneinander -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:6px">
   <div class="soll-box ${_maAbrMod==='arbeitstage'?'marb':'m433'}" style="margin:0;flex-direction:column;align-items:flex-start;gap:2px">
@@ -7731,7 +8003,8 @@ const lohn=_visMA.reduce((s,m)=>s+maLG(m),0);
 const _dashMk=getAM();const _dashPfx=_dashMk+'-';
 const krank=_visMA.reduce((s,m)=>{let k=0;Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_dashPfx)&&t==='krank')k++;});return s+k;},0);
 const url=_visMA.reduce((s,m)=>{let u=0;Object.entries(m.abwesenheiten||{}).forEach(([d,t])=>{if(d.startsWith(_dashPfx)&&t==='urlaub')u++;});return s+u;},0);
-const ov=_visObj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);return k>0&&b>k+0.5;}).length;
+// v147: Abweichung auf Wochenbasis – zaehlt zu viel UND zu wenig zugeordnete Stunden
+const ov=_visObj.filter(o=>oAbwW(o.name)).length;
 const vGesamt=_visMA.filter(m=>m.verstetigt).length;
 const vBestaetigt=_visMA.filter(m=>m.verstetigt&&m.monats_daten?.[getAM()]?.zettel_ok).length;
 const maAktiv=_visMA.filter(m=>m.status==='Aktiv').length;
@@ -7754,8 +8027,8 @@ const _stunde = _heuteDate.getHours();
 const _gruss = _stunde<11?'Guten Morgen':(_stunde<18?'Guten Tag':'Guten Abend');
 const krankHeuteListe = _visMA.filter(m=>m.abwesenheiten?.[_heuteKey]==='krank'&&m.status!=='Ausgeschieden');
 const urlaubHeuteListe = _visMA.filter(m=>m.abwesenheiten?.[_heuteKey]==='urlaub'&&m.status!=='Ausgeschieden');
-const objUeberKap = _visObj.filter(o=>{const k=oKapM(o.name),b=oBel(o.name);return k>0&&b>k+0.5;})
-  .map(o=>({name:o.name, kap:oKapM(o.name), bel:oBel(o.name)}));
+const objUeberKap = _visObj.filter(o=>oAbwW(o.name))
+  .map(o=>({name:o.name, kap:oKapM(o.name), bel:oBel(o.name), kapW:oKapW(o.name), belW:oBelW(o.name), diffW:oDiffW(o.name)}));
 const verstetigtOffen = Math.max(0, vGesamt - vBestaetigt);
 const datevOffen = Math.max(0, maAktiv - datevFreigabe);
 const maImMonat = _visMA.filter(m=>!_maAusgeschiedenImMonat(m,getAM()));
@@ -7932,17 +8205,14 @@ function showKapOverModal(){
   // ── Alle überlasteten Objekte sammeln (alle MA, auch ausgeschiedene) ──
   // Objekte ermitteln die belegt > kapazität sind
   const alleObj = typeof getVisibleKunden === 'function' ? getVisibleKunden() : obj;
-  const overObjekte = alleObj.filter(o => {
-    const k = oKapM(o.name, mk);
-    const b = oBel(o.name, mk);
-    return k > 0 && b > k + 0.5;
-  });
+  // v147: Abweichung auf Wochenbasis statt Monats-Soll-Vergleich
+  const overObjekte = alleObj.filter(o => oAbwW(o.name, mk));
 
-  document.getElementById('kap-over-sub').textContent = overObjekte.length + ' Objekt(e) mit Überschreitung – ' + getAMShort();
+  document.getElementById('kap-over-sub').textContent = overObjekte.length + ' Objekt(e) mit Abweichung h/Wo – ' + getAMShort();
   const body = document.getElementById('kap-over-body');
 
   if (!overObjekte.length) {
-    body.innerHTML = '<div style="color:var(--green);padding:20px;text-align:center;font-size:14px">✅ Keine Kapazitätsüberschreitungen im aktuellen Monat</div>';
+    body.innerHTML = '<div style="color:var(--green);padding:20px;text-align:center;font-size:14px">✅ Alle Objekte stimmen überein – Kunde h/Wo = Mitarbeiter h/Wo</div>';
     document.getElementById('kap-over-bg').style.display = 'flex';
     return;
   }
@@ -7950,9 +8220,9 @@ function showKapOverModal(){
   // Pro Objekt: ALLE MA die darauf buchen aufschlüsseln (inkl. ausgeschiedene)
   let html = '';
   overObjekte.sort((a,b) => (a.name||'').localeCompare(b.name||'','de')).forEach(objekt => {
-    const kap = oKapM(objekt.name, mk);
-    const bel = oBel(objekt.name, mk);
-    const ueber = Math.round((bel - kap) * 10) / 10;
+    const kap = oKapW(objekt.name);
+    const bel = oBelW(objekt.name, mk);
+    const ueber = Math.round((bel - kap) * 100) / 100;
 
     // Alle MA die auf dieses Objekt gebucht sind – ALLE (auch ausgeschiedene)
     const buchungen = [];
@@ -8196,7 +8466,7 @@ function _urlaubCheckMA(m, jahr){
   const feld = parseFloat(m.urlaub_jahres) || 0;
   const auto = calcUrlaubTage(m);
   const basis = (feld > 0 && feld <= 60) ? feld : auto;
-  const teilzeit = basis / 5 * arbTagePW;
+  let teilzeit = basis / 5 * arbTagePW; // v145: wird unten gewichtet
   // Schulferien-Monate (Merge ueberlappender Zeitraeume, wie calcUrlaubAnspruch)
   const rgs = [];
   objekte.forEach(o => {
@@ -8225,14 +8495,22 @@ function _urlaubCheckMA(m, jahr){
   if (einEff) { const d = new Date(einEff); if (!isNaN(d.getTime()) && d > S) S = d; }
   if (m.austrittsdatum) { const d = new Date(m.austrittsdatum); if (!isNaN(d.getTime()) && d < E) E = d; }
   const rohMonate = _volleMonate(S, E);
-  let proRata;
-  if (rohMonate <= 0) proRata = 0;
-  else if (rohMonate < 12) {
-    const fa = ferienMonate * (rohMonate / 12);
-    proRata = teilzeit / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
-  } else proRata = teilzeit / 12 * sollMonate;
-  const dz = proRata - Math.floor(proRata);
-  const anspruch = dz >= 0.5 ? Math.ceil(proRata) : Math.floor(proRata);
+  // v145: identische Gewichtung wie calcUrlaubAnspruch()
+  const atwJahr = _arbTagePWJahr(objekte, m, jahr, S, E, arbTagePW);
+  const teilzeitPausch = teilzeit;
+  teilzeit = basis / 5 * atwJahr.schnitt;
+  const _pr = function(tz){
+    if (rohMonate <= 0) return 0;
+    if (rohMonate < 12) {
+      const fa = ferienMonate * (rohMonate / 12);
+      return tz / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
+    }
+    return tz / 12 * sollMonate;
+  };
+  const _rnd = function(x){ return (x - Math.floor(x)) >= 0.5 ? Math.ceil(x) : Math.floor(x); };
+  const proRata = _pr(teilzeit);
+  const anspruch = _rnd(proRata);
+  const anspruchPausch = _rnd(_pr(teilzeitPausch));
   // genommen / geplant im Jahr
   const h = new Date(); h.setHours(0,0,0,0);
   const heuteISO = h.getFullYear() + '-' + String(h.getMonth()+1).padStart(2,'0') + '-' + String(h.getDate()).padStart(2,'0');
@@ -8245,7 +8523,18 @@ function _urlaubCheckMA(m, jahr){
   if (feld > 0 && feld < 20) flags.push({typ:'rot', txt:'Feld ' + feld + ' < 20 → vermutlich bereits Teilzeit-gekürzt → Doppel-Kürzung! Feld erwartet 5-Tage-Basis (28–30).'});
   if (!tageGesetzt && objekte.some(o => o.kunde)) flags.push({typ:'gelb', txt:'Keine Wochentage hinterlegt → App nimmt 5 Tage/Woche an.'});
   if (feld >= 20 && feld <= 60 && feld !== auto) flags.push({typ:'info', txt:'Basis manuell ' + feld + ' (Staffel wäre ' + auto + ').'});
-  return { arbTagePW, tageGesetzt, feld, auto, basis, teilzeit, rohMonate, anspruch, genommen, geplant, rest: anspruch - genommen - geplant, flags };
+  // v145: unterjaehriger Wechsel der Arbeitstage/Woche
+  if (atwJahr.wechsel) {
+    const _d = anspruchPausch - anspruch;
+    flags.push({
+      typ: _d !== 0 ? 'gelb' : 'info',
+      txt: 'Arbeitstage/Woche wechseln im Jahr: ' + String(atwJahr.txt).replace(/<[^>]+>/g,'')
+         + ' → Ø ' + (Math.round(atwJahr.schnitt*100)/100)
+         + (_d !== 0 ? ' → Anspruch ' + anspruch + ' statt pauschal ' + anspruchPausch + ' (' + (_d>0?'−':'+') + Math.abs(_d) + ')' : '')
+    });
+  }
+  return { arbTagePW, tageGesetzt, feld, auto, basis, teilzeit, rohMonate, anspruch, genommen, geplant, rest: anspruch - genommen - geplant, flags,
+           anspruchPausch, atwSchnitt: atwJahr.schnitt, atwWechsel: atwJahr.wechsel, atwTxt: atwJahr.txt };
 }
 
 // ── v140: Minijob-Monitor als Modal (ersetzt eigenen Reiter) ──────────
@@ -8347,9 +8636,12 @@ function showUrlaubsCheckModal(){
   let sum = `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;font-size:12px">`;
   sum += `<span style="background:${nRot?'var(--rbg)':'var(--gbg)'};border:1px solid ${nRot?'var(--rbd)':'var(--gbd)'};border-radius:20px;padding:4px 12px;font-weight:600;color:${nRot?'var(--red)':'var(--green)'}">${nRot?'⚠ '+nRot+' MA mit vermutl. Doppel-Kürzung':'✓ Keine Doppel-Kürzung erkannt'}</span>`;
   if (nGelb) sum += `<span style="background:var(--ybg);border:1px solid #fde68a;border-radius:20px;padding:4px 12px;font-weight:600;color:var(--yellow)">${nGelb} MA ohne Wochentage (5-Tage-Annahme)</span>`;
+  // v145: MA deren Anspruch sich durch die monatsgenaue Rechnung aendert
+  const nAbw = rows.filter(r => r.c.anspruchPausch !== undefined && r.c.anspruchPausch !== r.c.anspruch).length;
+  if (nAbw) sum += `<span style="background:var(--ybg);border:1px solid #fde68a;border-radius:20px;padding:4px 12px;font-weight:600;color:#92400e" title="Arbeitstage/Woche haben sich unterjährig geändert – Spalte „pauschal“ zeigt den alten Wert">📅 ${nAbw} MA mit unterjährigem Wechsel → anderer Anspruch</span>`;
   sum += `<span style="background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--text2)">${rows.length} aktive MA geprüft</span></div>`;
   const body = sum + `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
-    <thead><tr style="background:var(--s1)">${th('Nr.')}${th('Name')}${th('Tage/Wo')}${th('Basis (Feld)')}${th('Anspruch')}${th('Gen.+Gepl.')}${th('Rest')}${th('Hinweis')}</tr></thead>
+    <thead><tr style="background:var(--s1)">${th('Nr.')}${th('Name')}${th('Tage/Wo')}${th('Basis (Feld)')}${th('Anspruch neu')}${th('pauschal (alt)')}${th('Gen.+Gepl.')}${th('Rest')}${th('Hinweis')}</tr></thead>
     <tbody>${rows.map(r => {
       const c = r.c, m = r.m;
       const rot = c.flags.some(f => f.typ === 'rot');
@@ -8357,15 +8649,16 @@ function showUrlaubsCheckModal(){
       return `<tr onclick="_dashMAOpen('${m.id}')" style="cursor:pointer${rot?';background:var(--rbg)':''}" title="${m.nachname} öffnen">
         <td style="${td}"><code>${m.persnr||'–'}</code></td>
         <td style="${td}"><strong style="color:var(--text2)">${m.nachname||'–'}</strong>${m.vorname?' <span style="color:var(--muted)">'+m.vorname+'</span>':''}</td>
-        <td style="${td};${mono};text-align:center">${c.arbTagePW}${c.tageGesetzt?'':'*'}</td>
+        <td style="${td};${mono};text-align:center">${c.atwWechsel?'<span style="color:#92400e;font-weight:700" title="'+String(c.atwTxt||'').replace(/<[^>]+>/g,'')+'">Ø '+(Math.round(c.atwSchnitt*100)/100)+'</span>':(c.arbTagePW+(c.tageGesetzt?'':'*'))}</td>
         <td style="${td};${mono}">${c.feld>0?c.feld:'– ('+c.auto+' auto)'}</td>
         <td style="${td};${mono};font-weight:700;color:${rot?'var(--red)':'var(--acc)'}">${c.anspruch}</td>
+        <td style="${td};${mono};color:${c.anspruchPausch!==c.anspruch?'var(--red)':'var(--muted2)'}">${c.anspruchPausch!==c.anspruch?c.anspruchPausch+' <span style="font-size:10px">→ '+(c.anspruchPausch>c.anspruch?'−':'+')+Math.abs(c.anspruchPausch-c.anspruch)+'</span>':'–'}</td>
         <td style="${td};${mono}">${c.genommen}+${c.geplant}</td>
         <td style="${td};${mono};font-weight:700;color:${c.rest<0?'var(--red)':'var(--green)'}">${c.rest}</td>
         <td style="${td};font-size:11px;line-height:1.5;max-width:340px">${hin}</td>
       </tr>`;
     }).join('')}</tbody></table></div>
-    <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6">Formel: Basis (5-Tage-Woche, 28–30) ÷ 5 × Arbeitstage/Woche, danach Pro-Rata nach vollen Beschäftigungsmonaten (§4/§5 BUrlG) und ggf. Schulferien-Kürzung. * = keine Wochentage hinterlegt, 5-Tage-Annahme. Zeile anklicken öffnet den Mitarbeiter.</div>`;
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6">Formel: Basis (5-Tage-Woche, 28–30) ÷ 5 × Arbeitstage/Woche, danach Pro-Rata nach vollen Beschäftigungsmonaten (§4/§5 BUrlG) und ggf. Schulferien-Kürzung. * = keine Wochentage hinterlegt, 5-Tage-Annahme.<br><strong>v145:</strong> Die Arbeitstage/Woche werden jetzt <strong>monatsgenau</strong> ermittelt (Stunden-Verlauf + Einsatz ab/bis) und über die Beschäftigungsmonate gemittelt – wechselt ein MA unterjährig z.B. ab 01.06. von 5 auf 7 Tage, gilt nicht mehr rückwirkend das ganze Jahr 7. Spalte „pauschal (alt)“ zeigt den bisherigen Wert. Monate ohne Verlaufsdaten fallen auf den aktuellen Stand zurück (keine stille Kürzung). Zeile anklicken öffnet den Mitarbeiter.</div>`;
   openDashModal('🏖 Urlaubs-Check ' + jahr, rows.length + ' aktive MA – Anspruchslogik geprüft', body);
 }
 
@@ -9034,15 +9327,10 @@ function _renderVtTable() {
   const tbody = document.getElementById('vt-rows');
   if (!tbody) return;
   if (_vtData.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted2);padding:12px;font-size:12px">Noch keine Vertretung eingetragen.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted2);padding:12px;font-size:12px">Noch keine Vertretung eingetragen.</td></tr>';
     _renderVtBudgetInfo();
     return;
   }
-  // v141: Min/Max fuer das optionale Datumsfeld = der gerade offene Monat
-  const _vtMkAkt = _vtSyncMonat || MK[ami] || getAM();
-  const _vtMkMin = _vtMkAkt + '-01';
-  const _vtMkP = _vtMkAkt.split('-').map(Number);
-  const _vtMkMax = _vtMkAkt + '-' + String(new Date(_vtMkP[0], _vtMkP[1], 0).getDate()).padStart(2,'0');
   tbody.innerHTML = _vtData.map((ss, i) => {
     const g = ss.grund || _vtAbsTyp;
     const isKrank = g === 'krank';
@@ -9058,10 +9346,6 @@ function _renderVtTable() {
       + ' oninput="taFilter(\x27vt-obj-inp-' + i + '\x27,this.value,_vtObjList(),function(v){vtPickObj(' + i + ',v)})"'
       + ' onfocus="taFilter(\x27vt-obj-inp-' + i + '\x27,this.value,_vtObjList(),function(v){vtPickObj(' + i + ',v)})"'
       + ' onblur="taClose()" onkeydown="taKey(event,\x27vt-obj-inp-' + i + '\x27)"></div></td>'
-      + '<td style="padding:5px 4px;text-align:center">'
-      + '<input type="date" value="' + (ss.datum||'') + '" min="' + _vtMkMin + '" max="' + _vtMkMax + '"'
-      + ' onchange="vtUpdate(' + i + ',\x27datum\x27,this.value)" title="Optional: Tag der Vertretung"'
-      + ' style="width:112px;padding:3px 4px;border:1px solid var(--border);border-radius:5px;font-size:11px;font-family:inherit;background:var(--white);color:' + (ss.datum?'var(--text)':'var(--muted2)') + ';outline:none"></td>'
       + '<td style="padding:5px 6px;text-align:center">'
       + '<input type="text" inputmode="decimal" data-vt-std="' + i + '" placeholder="0" value="' + (ss.stunden||'') + '" oninput="vtUpdate(' + i + ',\x27stunden\x27,this.value)" onkeydown="if(event.key===\x27Enter\x27){event.preventDefault();this.blur();}" style="width:64px;padding:4px 5px;border:1px solid var(--border);border-radius:5px;font-size:13px;text-align:center;background:var(--white);outline:none">'
       + '<span style="font-size:11px;color:var(--muted);margin-left:2px">h</span><div data-vt-mh="' + i + '" style="font-size:10px;color:var(--muted);margin-top:2px">' + (ss.objekt?(_vtObjBudget(ss.objekt)>0?('max '+_vtRemaining(ss.objekt,i)+' h'):'frei'):'') + '</div></td>'
@@ -9102,7 +9386,7 @@ function _vtAutoFlush() {
 }
 
 function vtAddRow() {
-  _vtData.push({maId:'', maName:'', objekt:'', stunden:'', grund: _vtAbsTyp, datum:''});
+  _vtData.push({maId:'', maName:'', objekt:'', stunden:'', grund: _vtAbsTyp});
   _renderVtTable();
   _vtUpdateHint();
   // Focus auf neues MA-Input
@@ -9151,6 +9435,8 @@ function _vt14AktivSet(o, mk) {
   return set;
 }
 function _vtTagStdEntry(o, iso, aktivSet) {
+  // v146: Objekt an diesem Tag ueberhaupt aktiv? (Einsatz ab / bis)
+  if (typeof _objAktivAm === 'function' && !_objAktivAm(o, iso)) return 0;
   if (o.modell === '14tage' && o.rhythmus_start) {
     if (!aktivSet || !aktivSet.has(iso)) return 0;
   }
@@ -9162,7 +9448,12 @@ function _vtBudgetMap(m, mk) {
   if (!m) return out;
   const fehltage = _vtMarkierteFehltage(m, mk);
   if (!fehltage.length) return out;
-  (m.objekte || []).forEach(o => {
+  // v146 FIX: Solange das MA-Modal offen ist, gilt der BEARBEITETE Stand (mao).
+  // Vorher wurde immer m.objekte gelesen -> frisch geaenderte/neue Objekte
+  // hatten Budget 0 und die Stunden wurden beim Objekt-Klick nicht uebernommen.
+  const _quelle = (eMAid && m.id === eMAid && typeof mao !== 'undefined' && Array.isArray(mao) && mao.length)
+    ? mao : (m.objekte || []);
+  _quelle.forEach(o => {
     const k = o.kunde || '';
     if (!k) return;
     const aktivSet = _vt14AktivSet(o, mk);
@@ -9242,7 +9533,10 @@ function _vtObjList() {
   const budget = _vtBudgetMap(m, mk);
   const seen = {};
   const out = [];
-  (m.objekte || []).forEach(o => {
+  // v146: Modal-Stand bevorzugen, damit neue Objekte sofort waehlbar sind
+  const _q = (eMAid && m.id === eMAid && typeof mao !== 'undefined' && Array.isArray(mao) && mao.length)
+    ? mao : (m.objekte || []);
+  _q.forEach(o => {
     const k = o.kunde || '';
     if (!k || seen[k]) return;
     seen[k] = true;
@@ -9255,7 +9549,11 @@ function _vtObjList() {
 // Alte Funktionen als Stubs (falls irgendwo noch referenziert)
 function renderVtRows() { _renderVtTable(); }
 function vtPickMA(i,v){_vtData[i].maId=v.id;_vtData[i].maName=v.label;var inp=document.getElementById('vt-ma-inp-'+i);if(inp){inp.value=v.label;inp.className='ta-inp ta-ok';}if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_vtUpdateHint();_vtAutoFlush();}
-function vtPickObj(i,v){_vtData[i].objekt=v.id;var _bud=_vtObjBudget(v.id);var _rem=_vtRemaining(v.id,i);_vtData[i].stunden=(_bud>0&&_rem>0)?_rem:'';if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_renderVtTable();_vtAutoFlush();}
+function vtPickObj(i,v){_vtData[i].objekt=v.id;var _bud=_vtObjBudget(v.id);var _rem=_vtRemaining(v.id,i);
+  // v146: Budget > 0 -> Restbudget vorschlagen. Budget 0 (kein Soll auf den
+  // Fehltagen) -> Feld leer lassen, aber nicht mehr stillschweigend: der Hinweis
+  // unter dem Feld zeigt jetzt 'frei' statt gar nichts.
+  _vtData[i].stunden=(_bud>0&&_rem>0)?_rem:'';if(_taCloseTimer){clearTimeout(_taCloseTimer);_taCloseTimer=null;}var drop=document.getElementById('ta-global-drop');if(drop)drop.style.display='none';_taCurrentCb=null;_renderVtTable();_vtAutoFlush();}
 function vtUpdate(i,field,val){if(field==='stunden'){var _n=parseFloat((val+'').replace(',','.'));if(isNaN(_n)){_vtData[i].stunden='';}else{if(_n<0)_n=0;var _obj=_vtData[i].objekt;var _bud=_obj?_vtObjBudget(_obj):0;var _rem=_obj?_vtRemaining(_obj,i):null;if(_rem!==null&&_bud>0&&_n>_rem){_n=_rem>0?_rem:0;_vtFlashStd(i);var _inp=document.querySelector('[data-vt-std="'+i+'"]');if(_inp)_inp.value=_n;}_vtData[i].stunden=Math.round(_n*100)/100;}_renderVtBudgetInfo();_vtRefreshMaxHints();}else{_vtData[i][field]=val;}_vtUpdateHint();_vtAutoFlush();}
 function vtRemove(i){_vtData.splice(i,1);_renderVtTable();_vtUpdateHint();_vtAutoFlush();}
 
