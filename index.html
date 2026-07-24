@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v148</title>
+<title>MitarbeiterManager v149</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -847,6 +847,34 @@ body.lock-active main{margin-top:46px}
 .det-kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:6px 13px;text-align:center;box-shadow:var(--sh)}
 .det-kpi .v{font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace}
 .det-kpi .l{font-size:10px;color:var(--muted)}
+/* ── v149: Termine / Kalender ── */
+.tm-nav{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.tm-mon{font-weight:700;font-size:15px;min-width:150px;text-align:center}
+.tm-leg{font-size:11px;color:var(--muted);display:flex;align-items:center}
+.tm-leg span{display:inline-block;width:10px;height:10px;border-radius:3px;border:1px solid;margin-right:4px}
+.tm-head{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r2) var(--r2) 0 0;overflow:hidden}
+.tm-head>div{background:var(--s1);padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase}
+.tm-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-top:0;border-radius:0 0 var(--r2) var(--r2);overflow:hidden}
+.tm-cell{background:var(--white);min-height:92px;padding:4px 5px}
+.tm-cell.tm-we{background:var(--s1)}
+.tm-cell.tm-off{background:var(--s2)}
+.tm-cell.tm-heute{box-shadow:inset 0 0 0 2px var(--acc)}
+.tm-dnum{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:3px}
+.tm-ev{border:1px solid;border-radius:4px;padding:2px 4px;font-size:11px;line-height:1.3;margin-bottom:2px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tm-ev:hover{filter:brightness(.96)}
+.tm-form{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.tm-row label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.tm-row input,.tm-row select,.tm-row textarea{width:100%;border:1px solid var(--border);border-radius:var(--r);padding:7px 10px;font-family:inherit;font-size:13px;background:var(--white);color:var(--text)}
+.tm-row textarea{resize:vertical;line-height:1.5}
+.tm-row input:disabled,.tm-row select:disabled,.tm-row textarea:disabled{background:var(--s1);color:var(--muted)}
+.tm-sep{font-size:12px;font-weight:700;color:var(--text2);border-top:1px solid var(--border);padding-top:10px;margin-top:2px}
+.tm-chks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 12px}
+.tm-chk{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer}
+.tm-chk input{width:auto}
+.tm-fix{font-size:10px;background:var(--s1);color:var(--muted);padding:1px 6px;border-radius:99px}
+.tm-hint{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
+.tm-vorschau{font-size:12px;background:var(--acc-l);color:var(--acc);border:1px solid #bfdbfe;border-radius:var(--r);padding:7px 10px}
+@media(max-width:760px){.tm-form{grid-template-columns:1fr}.tm-cell{min-height:70px}}
 /* ── v141: Jahresbericht ── */
 /* z-index 1200: das MA-Modal setzt sich beim Oeffnen selbst auf 200 bzw. 700 */
 .jb-bg{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1200;align-items:flex-start;justify-content:center;padding:18px 12px;overflow-y:auto}
@@ -1079,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v146</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v149</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1093,7 +1121,7 @@ main{padding:14px 16px}
 <button class="tab active" data-tab="liste" onclick="showTab('liste')" type="button"><span class="tab-icon">📋</span><span class="tab-lbl">Mitarbeiter</span></button>
 <button class="tab" data-tab="urlaub" onclick="showTab('urlaub')" type="button"><span class="tab-icon">🏖</span><span class="tab-lbl">Urlaub</span></button>
 <button class="tab" data-tab="dashboard" onclick="showTab('dashboard')" type="button"><span class="tab-icon">📈</span><span class="tab-lbl">Übersicht</span></button>
-<button class="tab" data-tab="objekte" onclick="showTab('objekte')" type="button"><span class="tab-icon">🏢</span><span class="tab-lbl">Kunden</span></button>
+<button class="tab" data-tab="objekte" onclick="showTab('objekte')" type="button"><span class="tab-icon">🏢</span><span class="tab-lbl">Kunden</span></button><button class="tab" data-tab="termine" onclick="showTab('termine')" type="button"><span class="tab-icon">📅</span><span class="tab-lbl">Termine</span></button>
 <button class="tab admin-tab" data-tab="admin" id="tab-admin-btn" onclick="showTab('admin')" type="button" style="display:none"><span class="tab-icon">⚙</span><span class="tab-lbl">Admin</span></button><div style="flex:1"></div>
 </nav><main role="main"><div class="sec active" id="tab-liste"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Name, Nr., Kunde..." id="search" oninput="renderDebounced()" aria-label="Mitarbeiter suchen" autocomplete="off"></div><div class="filter-wrap"><button class="filter-btn" id="fp-btn" onclick="toggleFP()" type="button">▾ Filter <span class="filter-badge" id="fp-badge">0</span></button><div class="filter-panel" id="fp-panel"><span class="fp-label">Status</span><select class="fsel" id="f-status" onchange="render();updateFP()" style="width:100%"><option value="">Alle Status</option><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select><span class="fp-label">Objektleiter</span><select class="fsel" id="f-ol" onchange="render();updateFP()" style="width:100%"><option value="">Alle OL</option><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select><span class="fp-label">Kunde</span><select class="fsel" id="f-kunde" onchange="render();updateFP()" style="width:100%"><option value="">Alle Kunden</option></select><button class="fp-reset" onclick="resetFP()">↺ Zurücksetzen</button></div></div><div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);padding:3px 6px;box-shadow:var(--sh)">
   <button onclick="amNav(-1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Vorheriger Monat">◀</button>
@@ -1105,6 +1133,7 @@ main{padding:14px 16px}
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
 
 <div class="sec" id="tab-heute"><div id="heute-c"></div></div>
+<div class="sec" id="tab-termine"><div id="termine-c"></div></div>
 <div class="sec" id="tab-urlaub"><div id="urlaub-c"></div></div>
 <div class="sec" id="tab-dashboard">
 <div class="dgrid" id="dash-c"></div>
@@ -8694,6 +8723,7 @@ if(t==='objekte'){document.getElementById('ogrid').style.display='block';renderO
 if(t==='heute')renderHeute();
 if(t==='urlaub')renderUrlaub();
 if(t==='dashboard')renderDash();
+if(t==='termine')renderTermine();
 }
 function renderMinijob() {
   const container = document.getElementById('minijob-list');
@@ -11865,6 +11895,524 @@ function renderStatistik() {
     +rankingBlock('u','Meiste Urlaub-Tage','var(--blue)',allUrlaub,maxTopU)
     +'</div>';
 }
+
+// ══════════════════════════════════════════════════════════
+// v149 – TERMINE / KALENDER
+// Sichtbarkeit pro Termin, Serientermine, NU-Abrechnung,
+// Mailversand mit Serien-ICS.
+// ══════════════════════════════════════════════════════════
+
+let _tmJahr    = new Date().getFullYear();
+let _tmMonat   = new Date().getMonth();          // 0-11
+let _tmTermine = [];
+let _tmEmpf    = [];
+let _tmNU      = [];
+let _tmSerien  = [];
+let _tmLoaded  = false;
+let _tmAnsicht = 'monat';                        // 'monat' | 'liste'
+let _tmFilterNU = '';
+let _tmSuche    = '';
+
+const TM_ORGANIZER = 'romano@allcleanservice.de';
+const TM_FIRMA     = 'A.C.S. All Clean Services KG';
+
+// Interne Empfaenger (Buero + OL). E-Mails wie in MM hinterlegt.
+const TM_INTERN = [
+  { email:'romano@allcleanservice.de',  name:'Romano',  fix:true  },
+  { email:'adler@allcleanservice.de',   name:'Adler',   fix:true  },
+  { email:'richter@allcleanservice.de', name:'Richter', fix:true  },
+  { email:'incecik@allcleanservice.de', name:'Hr. Incecik', fix:false },
+  { email:'grippo@allcleanservice.de',  name:'Fr. Grippo',  fix:false }
+];
+
+const TM_KATEGORIEN = ['Unterhaltsreinigung','Glasreinigung','Grundreinigung',
+  'Bauendreinigung','Fassade','Begehung/Termin','Sonstiges'];
+
+function tmIstBuero(){ return _currentRolle==='superadmin' || _currentRolle==='admin'; }
+function tmE(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function tmIso(d){ const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+function tmDeDat(iso){ if(!iso) return ''; const t=iso.split('-'); return t[2]+'.'+t[1]+'.'+t[0]; }
+function tmZeit(v){ return v ? String(v).slice(0,5) : ''; }
+
+// ── LADEN ────────────────────────────────────────────────
+async function tmLoad(force){
+  if(_tmLoaded && !force) return;
+  const von = _tmJahr+'-01-01', bis = _tmJahr+'-12-31';
+  const [nu, se, te] = await Promise.all([
+    supaFetch('nachunternehmer','GET',null,'select=*&order=name'),
+    supaFetch('termin_serie','GET',null,'select=*'),
+    supaFetch('termine','GET',null,'select=*&datum=gte.'+von+'&datum=lte.'+bis+'&order=datum,zeit_von')
+  ]);
+  _tmNU=nu||[]; _tmSerien=se||[]; _tmTermine=te||[];
+  const ids=_tmTermine.map(t=>t.id);
+  _tmEmpf = ids.length
+    ? await supaFetch('termin_empfaenger','GET',null,'select=*&termin_id=in.('+ids.join(',')+')')
+    : [];
+  _tmLoaded=true;
+}
+
+function tmEmpfVon(tid){ return _tmEmpf.filter(e=>e.termin_id===tid); }
+function tmNuById(id){ return _tmNU.find(n=>n.id===id) || null; }
+function tmSerieVon(sid){ return _tmSerien.find(s=>s.id===sid) || null; }
+
+// ── RENDER ───────────────────────────────────────────────
+async function renderTermine(){
+  const c=document.getElementById('termine-c'); if(!c) return;
+  c.innerHTML='<div class="empty">Termine werden geladen…</div>';
+  try{ await tmLoad(); }
+  catch(e){ c.innerHTML='<div class="empty">Fehler beim Laden: '+tmE(e.message)+'</div>'; return; }
+
+  const nuOpt=_tmNU.map(n=>`<option value="${n.id}" ${String(_tmFilterNU)===String(n.id)?'selected':''}>${tmE(n.name)}</option>`).join('');
+  let h=`<div class="toolbar">
+    <div class="sw"><input class="sb" placeholder="Betreff, Ort, Auftraggeber…" id="tm-suche" value="${tmE(_tmSuche)}" oninput="_tmSuche=this.value;tmRenderBody()"></div>
+    <select class="fsel" onchange="_tmFilterNU=this.value;tmRenderBody()"><option value="">Alle Nachunternehmer</option>${nuOpt}</select>
+    <div style="display:flex;gap:4px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);padding:3px">
+      <button class="btn ${_tmAnsicht==='monat'?'btn-p':'btn-o'}" style="padding:4px 10px" onclick="_tmAnsicht='monat';tmRenderBody()">Monat</button>
+      <button class="btn ${_tmAnsicht==='liste'?'btn-p':'btn-o'}" style="padding:4px 10px" onclick="_tmAnsicht='liste';tmRenderBody()">Liste</button>
+    </div>
+    ${tmIstBuero()?'<button class="btn btn-p" onclick="tmOpen(null)">+ Neuer Termin</button>':''}
+    <div style="font-size:12px;color:var(--muted);margin-left:auto" id="tm-info"></div>
+  </div>
+  <div id="tm-body"></div>`;
+  c.innerHTML=h;
+  tmRenderBody();
+}
+
+function tmSichtbar(){
+  const me=(_currentEmail||'').toLowerCase();
+  return _tmTermine.filter(t=>{
+    if(!tmIstBuero()){
+      if(!tmEmpfVon(t.id).some(e=>(e.email||'').toLowerCase()===me)) return false;
+    }
+    if(_tmFilterNU && String(t.nu_id)!==String(_tmFilterNU)) return false;
+    if(_tmSuche){
+      const q=_tmSuche.toLowerCase();
+      const hay=((t.betreff||'')+' '+(t.ort||'')+' '+(t.auftraggeber_block||'')+' '+(t.kategorie||'')).toLowerCase();
+      if(hay.indexOf(q)<0) return false;
+    }
+    return true;
+  });
+}
+
+function tmRenderBody(){
+  const b=document.getElementById('tm-body'); if(!b) return;
+  const liste=tmSichtbar();
+  const inf=document.getElementById('tm-info');
+  if(inf) inf.textContent=liste.length+' Termine '+_tmJahr;
+  b.innerHTML = _tmAnsicht==='monat' ? tmMonatHtml(liste) : tmListeHtml(liste);
+}
+
+function tmFarbe(t){
+  if(t.status==='abgesagt')  return {bg:'var(--rbg)', bd:'var(--rbd)', fg:'var(--red)'};
+  if(t.status==='erledigt')  return {bg:'var(--s1)',  bd:'var(--border2)', fg:'var(--muted)'};
+  if(t.nu_id)                return {bg:'var(--gbg)', bd:'var(--gbd)', fg:'var(--green)'};
+  return {bg:'var(--bbg)', bd:'#bfdbfe', fg:'var(--blue)'};
+}
+
+function tmMonatHtml(liste){
+  const MON=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const first=new Date(_tmJahr,_tmMonat,1);
+  let start=first.getDay(); start=(start===0?6:start-1);        // Mo=0
+  const tage=new Date(_tmJahr,_tmMonat+1,0).getDate();
+  const heute=tmIso(new Date());
+
+  let cells='';
+  for(let i=0;i<start;i++) cells+='<div class="tm-cell tm-off"></div>';
+  for(let d=1;d<=tage;d++){
+    const iso=tmIso(new Date(_tmJahr,_tmMonat,d));
+    const dow=new Date(_tmJahr,_tmMonat,d).getDay();
+    const we=(dow===0||dow===6);
+    const tg=liste.filter(t=>t.datum===iso);
+    const ev=tg.map(t=>{
+      const f=tmFarbe(t);
+      const ser=t.serie_id?' ↻':'';
+      return `<div class="tm-ev" style="background:${f.bg};border-color:${f.bd};color:${f.fg}" onclick="tmOpen(${t.id})" title="${tmE(t.betreff)}">
+        ${t.zeit_von?'<b>'+tmZeit(t.zeit_von)+'</b> ':''}${tmE(t.betreff)}${ser}</div>`;
+    }).join('');
+    cells+=`<div class="tm-cell${we?' tm-we':''}${iso===heute?' tm-heute':''}" ondblclick="${tmIstBuero()?`tmOpen(null,'${iso}')`:''}">
+      <div class="tm-dnum">${d}</div>${ev}</div>`;
+  }
+
+  return `<div class="tm-nav">
+      <button class="btn btn-o" onclick="tmMon(-1)">‹</button>
+      <div class="tm-mon">${MON[_tmMonat]} ${_tmJahr}</div>
+      <button class="btn btn-o" onclick="tmMon(1)">›</button>
+      <button class="btn btn-o" onclick="tmHeute()">Heute</button>
+      <div style="flex:1"></div>
+      <div class="tm-leg"><span style="background:var(--bbg);border-color:#bfdbfe"></span>intern
+        <span style="background:var(--gbg);border-color:var(--gbd);margin-left:10px"></span>mit Nachunternehmer
+        <span style="background:var(--s1);border-color:var(--border2);margin-left:10px"></span>erledigt</div>
+    </div>
+    <div class="tm-head">${['Mo','Di','Mi','Do','Fr','Sa','So'].map(x=>'<div>'+x+'</div>').join('')}</div>
+    <div class="tm-grid">${cells}</div>`;
+}
+
+function tmMon(d){
+  _tmMonat+=d;
+  if(_tmMonat<0){_tmMonat=11;_tmJahr--;_tmLoaded=false;}
+  if(_tmMonat>11){_tmMonat=0;_tmJahr++;_tmLoaded=false;}
+  if(!_tmLoaded){ renderTermine(); } else { tmRenderBody(); }
+}
+function tmHeute(){ const n=new Date(); const jw=(n.getFullYear()!==_tmJahr);
+  _tmJahr=n.getFullYear(); _tmMonat=n.getMonth();
+  if(jw){_tmLoaded=false;renderTermine();}else{tmRenderBody();} }
+
+function tmListeHtml(liste){
+  if(!liste.length) return '<div class="empty">Keine Termine gefunden.</div>';
+  const rows=liste.map(t=>{
+    const nu=tmNuById(t.nu_id);
+    const emp=tmEmpfVon(t.id);
+    const f=tmFarbe(t);
+    return `<tr style="cursor:pointer" onclick="tmOpen(${t.id})">
+      <td style="padding:8px 10px;white-space:nowrap"><b>${tmDeDat(t.datum)}</b><div style="font-size:11px;color:var(--muted)">${tmZeit(t.zeit_von)}${t.zeit_bis?'–'+tmZeit(t.zeit_bis):''}</div></td>
+      <td style="padding:8px 10px">${tmE(t.betreff)}${t.serie_id?' <span style="font-size:11px;color:var(--muted)">↻ Serie</span>':''}
+        <div style="font-size:11px;color:var(--muted)">${tmE(t.ort||'')}</div></td>
+      <td style="padding:8px 10px;font-size:12px">${nu?tmE(nu.name):'—'}</td>
+      <td style="padding:8px 10px;font-size:12px">${tmE(t.rechnung_durch||'—')}</td>
+      <td style="padding:8px 10px;font-size:12px;color:var(--muted)">${emp.length} 👁</td>
+      <td style="padding:8px 10px"><span style="font-size:11px;padding:2px 8px;border-radius:99px;background:${f.bg};color:${f.fg};border:1px solid ${f.bd}">${tmE(t.status||'offen')}</span></td>
+    </tr>`;
+  }).join('');
+  return `<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden">
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+    <thead><tr style="background:var(--s1);text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase">
+      <th style="padding:8px 10px">Datum</th><th style="padding:8px 10px">Betreff</th>
+      <th style="padding:8px 10px">Nachunternehmer</th><th style="padding:8px 10px">Rechnung</th>
+      <th style="padding:8px 10px">Sicht</th><th style="padding:8px 10px">Status</th>
+    </tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+// ── DIALOG ───────────────────────────────────────────────
+function tmOpen(id, vorDatum){
+  if(!tmIstBuero() && id===null) return;
+  const t = id ? _tmTermine.find(x=>x.id===id) : null;
+  if(id && !t) return;
+  const ro = !tmIstBuero();
+  const emp = t ? tmEmpfVon(t.id) : [];
+  const serie = t && t.serie_id ? tmSerieVon(t.serie_id) : null;
+  const heute = vorDatum || tmIso(new Date());
+
+  const nuOpt='<option value="">— kein Nachunternehmer —</option>'+_tmNU.map(n=>
+    `<option value="${n.id}" ${t&&String(t.nu_id)===String(n.id)?'selected':''}>${tmE(n.name)}${n.ansprechpartner?' – '+tmE(n.ansprechpartner):''}</option>`).join('');
+  const katOpt=TM_KATEGORIEN.map(k=>`<option ${t&&t.kategorie===k?'selected':''}>${k}</option>`).join('');
+
+  const internChk=TM_INTERN.map(p=>{
+    const an = t ? emp.some(e=>(e.email||'').toLowerCase()===p.email) : p.fix;
+    return `<label class="tm-chk"><input type="checkbox" class="tm-emp" value="${p.email}" data-name="${tmE(p.name)}" data-typ="intern"
+      ${an?'checked':''} ${p.fix?'disabled':''} ${ro?'disabled':''}>${tmE(p.name)}${p.fix?' <span class="tm-fix">Büro</span>':''}</label>`;
+  }).join('');
+
+  const extern = emp.filter(e=>e.typ!=='intern' && !TM_INTERN.some(p=>p.email===(e.email||'').toLowerCase()));
+
+  const body=`
+  <input type="hidden" id="tm-id" value="${t?t.id:''}">
+  <input type="hidden" id="tm-serieid" value="${t&&t.serie_id?t.serie_id:''}">
+  <div class="tm-form">
+    <div class="tm-row" style="grid-column:1/-1">
+      <label>Betreff</label><input id="tm-betreff" value="${t?tmE(t.betreff):''}" ${ro?'disabled':''}>
+    </div>
+    <div class="tm-row"><label>Kategorie</label><select id="tm-kat" ${ro?'disabled':''}>${katOpt}</select></div>
+    <div class="tm-row"><label>Status</label><select id="tm-status" ${ro?'disabled':''}>
+      ${['offen','erledigt','abgesagt'].map(s=>`<option ${t&&t.status===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    <div class="tm-row"><label>Datum</label><input type="date" id="tm-datum" value="${t?t.datum:heute}" ${ro?'disabled':''}></div>
+    <div class="tm-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div><label>Von</label><input type="time" id="tm-von" value="${t?tmZeit(t.zeit_von):'08:00'}" ${ro?'disabled':''}></div>
+      <div><label>Bis</label><input type="time" id="tm-bis" value="${t?tmZeit(t.zeit_bis):'08:30'}" ${ro?'disabled':''}></div>
+    </div>
+    <div class="tm-row" style="grid-column:1/-1"><label>Ort</label><input id="tm-ort" value="${t?tmE(t.ort):''}" ${ro?'disabled':''}></div>
+
+    <div class="tm-row" style="grid-column:1/-1">
+      <label>Auftraggeber und Auftrag <span style="font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0">— ein Block, einfach reinkopieren</span></label>
+      <textarea id="tm-block" rows="7" ${ro?'disabled':''} placeholder="Auftraggeber&#10;Ansprechpartner / Telefon / Mobil&#10;Zusatzinfo: was der Nachunternehmer erledigen soll">${t?tmE(t.auftraggeber_block):''}</textarea>
+    </div>
+
+    <div class="tm-sep" style="grid-column:1/-1">Nachunternehmer und Abrechnung</div>
+    <div class="tm-row"><label>Nachunternehmer</label><select id="tm-nu" onchange="tmNuWechsel()" ${ro?'disabled':''}>${nuOpt}</select></div>
+    <div class="tm-row"><label>Rechnung durch</label>
+      <select id="tm-rech" ${ro?'disabled':''}>
+        ${['','adler','richter','romano'].map(v=>`<option value="${v}" ${t&&(t.rechnung_durch||'')===v?'selected':''}>${v?v.charAt(0).toUpperCase()+v.slice(1):'—'}</option>`).join('')}
+      </select>
+      <div class="tm-hint" id="tm-rech-hint"></div>
+    </div>
+
+    <div class="tm-sep" style="grid-column:1/-1">Sichtbarkeit — nur diese Personen sehen den Termin</div>
+    <div class="tm-row" style="grid-column:1/-1">
+      <div class="tm-chks">${internChk}</div>
+      <label style="margin-top:8px">Nachunternehmer und externe E-Mails (Komma-getrennt)</label>
+      <input id="tm-extern" value="${tmE(extern.map(e=>e.email).join(', '))}" placeholder="name@firma.de" ${ro?'disabled':''}>
+      <div class="tm-hint">Der gewählte Nachunternehmer wird automatisch ergänzt.</div>
+    </div>
+
+    ${t?'':`<div class="tm-sep" style="grid-column:1/-1">Serientermin</div>
+    <div class="tm-row" style="grid-column:1/-1">
+      <label class="tm-chk" style="margin-bottom:8px"><input type="checkbox" id="tm-serie-an" onchange="tmSerieToggle()"> Als Serie anlegen</label>
+      <div id="tm-serie-box" style="display:none;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+        <div><label>Rhythmus</label><select id="tm-rhythmus" onchange="tmSerieVorschau()">
+          <option value="woechentlich">wöchentlich</option>
+          <option value="2woechentlich">alle 2 Wochen</option>
+          <option value="taeglich">täglich (Mo–Fr)</option>
+          <option value="monatlich">monatlich</option></select></div>
+        <div><label>Letzter Termin</label><input type="date" id="tm-serie-ende" onchange="tmSerieVorschau()"></div>
+        <div style="grid-column:1/-1"><div class="tm-vorschau" id="tm-serie-info">Enddatum wählen</div></div>
+      </div>
+    </div>`}
+
+    ${serie?`<div class="tm-row" style="grid-column:1/-1"><div class="tm-vorschau">↻ Teil einer Serie: ${serie.rhythmus}, ${tmDeDat(serie.start_datum)} bis ${tmDeDat(serie.end_datum)}</div></div>`:''}
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:16px;border-top:1px solid var(--border);padding-top:12px;flex-wrap:wrap">
+    <div style="display:flex;gap:6px">
+      ${t?`<button class="btn btn-o" onclick="tmIcsDownload(${t.id})">📅 .ics laden</button>`:''}
+      ${t&&tmIstBuero()?`<button class="btn btn-o" onclick="tmMail(${t.id})">✉ Mail senden</button>`:''}
+      ${t&&tmIstBuero()?`<button class="btn btn-o" style="color:var(--red)" onclick="tmDelete(${t.id})">🗑 Löschen</button>`:''}
+    </div>
+    <div style="display:flex;gap:6px">
+      <button class="btn btn-o" onclick="closeDashModal()">Schließen</button>
+      ${ro?'':`<button class="btn btn-p" id="tm-save-btn" onclick="tmSave()">💾 Speichern${t?'':' und senden'}</button>`}
+    </div>
+  </div>`;
+
+  const sub = t
+    ? 'angelegt von '+(t.erstellt_von||'?')+(t.geaendert_von?' · zuletzt geändert '+t.geaendert_von:'')
+    : 'Sichtbarkeit pro Termin – Büro sieht immer alles';
+  openDashModal(t?'📅 Termin bearbeiten':'📅 Neuer Termin', sub, body);
+  tmNuWechsel(true);
+}
+
+function tmSerieToggle(){
+  const an=document.getElementById('tm-serie-an').checked;
+  document.getElementById('tm-serie-box').style.display=an?'grid':'none';
+  if(an) tmSerieVorschau();
+}
+
+function tmSerieDaten(){
+  const start=document.getElementById('tm-datum').value;
+  const ende=document.getElementById('tm-serie-ende').value;
+  const rh=document.getElementById('tm-rhythmus').value;
+  if(!start||!ende||ende<start) return [];
+  const out=[]; const d=new Date(start+'T12:00:00'); const e=new Date(ende+'T12:00:00');
+  let guard=0;
+  while(d<=e && guard++<400){
+    const dow=d.getDay();
+    if(rh==='taeglich'){ if(dow>=1&&dow<=5) out.push(tmIso(d)); d.setDate(d.getDate()+1); }
+    else if(rh==='woechentlich'){ out.push(tmIso(d)); d.setDate(d.getDate()+7); }
+    else if(rh==='2woechentlich'){ out.push(tmIso(d)); d.setDate(d.getDate()+14); }
+    else { out.push(tmIso(d)); d.setMonth(d.getMonth()+1); }
+  }
+  return out;
+}
+
+function tmSerieVorschau(){
+  const el=document.getElementById('tm-serie-info'); if(!el) return;
+  const d=tmSerieDaten();
+  el.innerHTML = d.length
+    ? `↻ <b>${d.length} Termine</b> werden angelegt · ${tmDeDat(d[0])} bis ${tmDeDat(d[d.length-1])} · <b>eine</b> Mail mit Serien-Kalendereintrag`
+    : 'Enddatum wählen';
+}
+
+function tmNuWechsel(init){
+  const sel=document.getElementById('tm-nu'); if(!sel) return;
+  const nu=tmNuById(Number(sel.value));
+  const hint=document.getElementById('tm-rech-hint');
+  const rech=document.getElementById('tm-rech');
+  if(nu){
+    if(!init && nu.rechnung_durch) rech.value=nu.rechnung_durch;
+    if(init && !rech.value && nu.rechnung_durch) rech.value=nu.rechnung_durch;
+    hint.innerHTML='✨ Aus den Stammdaten: '+tmE(nu.name)+' rechnet über <b>'+tmE(nu.rechnung_durch||'—')+'</b> ab'
+      +(nu.abrechnungsweg==='zahlungssystem'?' (Zahlungssystem)':'')+' — überschreibbar.';
+  } else {
+    hint.textContent='Kein Nachunternehmer gewählt.';
+  }
+}
+
+// ── SPEICHERN ────────────────────────────────────────────
+function tmEmpfSammeln(){
+  const out=[];
+  document.querySelectorAll('.tm-emp').forEach(cb=>{
+    if(cb.checked) out.push({email:cb.value.toLowerCase(), name:cb.dataset.name, typ:'intern'});
+  });
+  const nu=tmNuById(Number(document.getElementById('tm-nu').value));
+  if(nu && nu.email) out.push({email:nu.email.toLowerCase(), name:nu.name, typ:'nu'});
+  (document.getElementById('tm-extern').value||'').split(',').forEach(s=>{
+    const e=s.trim().toLowerCase();
+    if(e && e.indexOf('@')>0 && !out.some(o=>o.email===e)) out.push({email:e, name:'', typ:'extern'});
+  });
+  const seen={}; return out.filter(o=>seen[o.email]?false:(seen[o.email]=1));
+}
+
+async function tmSave(){
+  const btn=document.getElementById('tm-save-btn');
+  const id=document.getElementById('tm-id').value;
+  const betreff=document.getElementById('tm-betreff').value.trim();
+  const datum=document.getElementById('tm-datum').value;
+  if(!betreff){ showAlert('Betreff fehlt.','#c81e1e'); return; }
+  if(!datum){ showAlert('Datum fehlt.','#c81e1e'); return; }
+  if(btn){ btn.disabled=true; btn.textContent='Speichert…'; }
+
+  const nuId=document.getElementById('tm-nu').value;
+  const nu=tmNuById(Number(nuId));
+  const basis={
+    betreff, kategorie:document.getElementById('tm-kat').value,
+    zeit_von:document.getElementById('tm-von').value||null,
+    zeit_bis:document.getElementById('tm-bis').value||null,
+    ort:document.getElementById('tm-ort').value.trim()||null,
+    auftraggeber_block:document.getElementById('tm-block').value||null,
+    nu_id:nuId?Number(nuId):null,
+    rechnung_durch:document.getElementById('tm-rech').value||null,
+    abrechnungsweg:nu?nu.abrechnungsweg:null,
+    status:document.getElementById('tm-status').value
+  };
+  const empf=tmEmpfSammeln();
+
+  try{
+    if(id){
+      basis.geaendert_von=_currentUser||_currentEmail; basis.geaendert_am=new Date().toISOString();
+      basis.datum=datum;
+      await supaFetch('termine','PATCH',basis,'id=eq.'+id);
+      await supaFetch('termin_empfaenger','DELETE',null,'termin_id=eq.'+id);
+      if(empf.length) await tmEmpfInsert(Number(id),empf);
+      await tmLog(Number(id),'geaendert');
+      showAlert('✅ Termin gespeichert. Empfänger werden benachrichtigt.');
+      tmMail(Number(id),true);
+    } else {
+      const serieAn=document.getElementById('tm-serie-an') && document.getElementById('tm-serie-an').checked;
+      let serieId=null, daten=[datum];
+      if(serieAn){
+        daten=tmSerieDaten();
+        if(!daten.length){ throw new Error('Serie: bitte gültiges Enddatum wählen.'); }
+        const rows=await tmInsertReturn('termin_serie',[{
+          rhythmus:document.getElementById('tm-rhythmus').value,
+          wochentag:new Date(datum+'T12:00:00').getDay()||7,
+          start_datum:daten[0], end_datum:daten[daten.length-1],
+          erstellt_von:_currentUser||_currentEmail
+        }]);
+        serieId=rows[0].id;
+      }
+      const neu=daten.map(d=>Object.assign({},basis,{
+        datum:d, serie_id:serieId, erstellt_von:_currentUser||_currentEmail
+      }));
+      const angelegt=await tmInsertReturn('termine',neu);
+      for(const r of angelegt){ if(empf.length) await tmEmpfInsert(r.id,empf); }
+      await tmLog(angelegt[0].id,'angelegt');
+      showAlert('✅ '+angelegt.length+' Termin'+(angelegt.length>1?'e':'')+' angelegt.');
+      tmMail(angelegt[0].id,true);
+    }
+    closeDashModal();
+    _tmLoaded=false; await renderTermine();
+  }catch(e){
+    showAlert('⚠ Nicht gespeichert: '+e.message,'#c81e1e');
+    if(btn){ btn.disabled=false; btn.textContent='💾 Speichern'; }
+  }
+}
+
+async function tmInsertReturn(table, rows){
+  const res=await fetch(SUPA_URL+'/rest/v1/'+table,{
+    method:'POST',
+    headers:Object.assign(getSupaHeaders(),{'Prefer':'return=representation'}),
+    body:JSON.stringify(rows)
+  });
+  if(!res.ok) throw new Error(table+': '+await res.text());
+  return await res.json();
+}
+async function tmEmpfInsert(tid, empf){
+  await supaFetch('termin_empfaenger','POST',empf.map(e=>({
+    termin_id:tid, email:e.email, name:e.name||null, typ:e.typ
+  })));
+}
+async function tmLog(tid, aktion, feld){
+  try{ await supaFetch('termin_log','POST',[{termin_id:tid,aktion,feld:feld||null,benutzer:_currentUser||_currentEmail}]); }catch(e){}
+}
+
+async function tmDelete(id){
+  const t=_tmTermine.find(x=>x.id===id); if(!t) return;
+  let alle=false;
+  if(t.serie_id){
+    const w=prompt('Serientermin löschen:\n\n1 = nur diesen Termin\n2 = alle künftigen Termine der Serie\n\nBitte 1 oder 2 eingeben:','1');
+    if(w===null) return;
+    alle=(w.trim()==='2');
+  } else if(!confirm('Termin "'+t.betreff+'" wirklich löschen?')) return;
+  try{
+    if(alle) await supaFetch('termine','DELETE',null,'serie_id=eq.'+t.serie_id+'&datum=gte.'+t.datum);
+    else     await supaFetch('termine','DELETE',null,'id=eq.'+id);
+    showAlert('🗑 Gelöscht.');
+    closeDashModal(); _tmLoaded=false; await renderTermine();
+  }catch(e){ showAlert('⚠ Löschen fehlgeschlagen: '+e.message,'#c81e1e'); }
+}
+
+// ── ICS ──────────────────────────────────────────────────
+function tmIcsEsc(s){ return String(s==null?'':s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n'); }
+function tmFold(line){
+  if(line.length<=73) return line;
+  let out=line.slice(0,73), rest=line.slice(73);
+  while(rest.length>72){ out+='\r\n '+rest.slice(0,72); rest=rest.slice(72); }
+  return out+'\r\n '+rest;
+}
+function tmStamp(){ return new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z'; }
+function tmDT(datum,zeit){ return datum.replace(/-/g,'')+'T'+(zeit?zeit.replace(':',''):'0000').slice(0,4)+'00'; }
+
+function tmBuildIcs(t){
+  const serie=t.serie_id?tmSerieVon(t.serie_id):null;
+  const empf=tmEmpfVon(t.id);
+  const nu=tmNuById(t.nu_id);
+  const desc=[t.auftraggeber_block||'', nu?('Nachunternehmer: '+nu.name):'',
+              t.rechnung_durch?('Rechnung durch: '+t.rechnung_durch):''].filter(Boolean).join('\n\n');
+  let rrule='';
+  if(serie){
+    const map={taeglich:'FREQ=DAILY;BYDAY=MO,TU,WE,TH,FR',woechentlich:'FREQ=WEEKLY;INTERVAL=1',
+               '2woechentlich':'FREQ=WEEKLY;INTERVAL=2',monatlich:'FREQ=MONTHLY;INTERVAL=1'};
+    rrule='RRULE:'+(map[serie.rhythmus]||'FREQ=WEEKLY')+';UNTIL='+serie.end_datum.replace(/-/g,'')+'T235959Z';
+  }
+  const L=[
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ACS//MitarbeiterManager//DE',
+    'CALSCALE:GREGORIAN','METHOD:REQUEST',
+    'BEGIN:VTIMEZONE','TZID:Europe/Berlin',
+    'BEGIN:STANDARD','DTSTART:19701025T030000','TZOFFSETFROM:+0200','TZOFFSETTO:+0100',
+    'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU','TZNAME:CET','END:STANDARD',
+    'BEGIN:DAYLIGHT','DTSTART:19700329T020000','TZOFFSETFROM:+0100','TZOFFSETTO:+0200',
+    'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU','TZNAME:CEST','END:DAYLIGHT','END:VTIMEZONE',
+    'BEGIN:VEVENT',
+    'UID:mm-'+(serie?('s'+serie.id):t.id)+'@allcleanservice.de',
+    'DTSTAMP:'+tmStamp(),
+    'DTSTART;TZID=Europe/Berlin:'+tmDT(serie?serie.start_datum:t.datum, tmZeit(t.zeit_von)||'08:00'),
+    'DTEND;TZID=Europe/Berlin:'+tmDT(serie?serie.start_datum:t.datum, tmZeit(t.zeit_bis)||tmZeit(t.zeit_von)||'08:30')
+  ];
+  if(rrule) L.push(rrule);
+  L.push('SUMMARY:'+tmIcsEsc(t.betreff));
+  if(t.ort)  L.push('LOCATION:'+tmIcsEsc(t.ort));
+  if(desc)   L.push('DESCRIPTION:'+tmIcsEsc(desc));
+  L.push('ORGANIZER;CN='+tmIcsEsc(TM_FIRMA)+':mailto:'+TM_ORGANIZER);
+  empf.forEach(e=>L.push('ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE'
+    +(e.name?';CN='+tmIcsEsc(e.name):'')+':mailto:'+e.email));
+  L.push('SEQUENCE:0','STATUS:CONFIRMED','TRANSP:OPAQUE','END:VEVENT','END:VCALENDAR');
+  return L.map(tmFold).join('\r\n');
+}
+
+function tmIcsDownload(id){
+  const t=_tmTermine.find(x=>x.id===id); if(!t) return;
+  const blob=new Blob([tmBuildIcs(t)],{type:'text/calendar;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='Termin_'+t.datum+'_'+(t.betreff||'').replace(/[^\wäöüÄÖÜß -]/g,'').slice(0,40)+'.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ── MAILVERSAND (Supabase Edge Function) ─────────────────
+async function tmMail(id, still){
+  const t=_tmTermine.find(x=>x.id===id) || {id};
+  try{
+    const res=await fetch(SUPA_URL+'/functions/v1/termin-mail',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':'Bearer '+(_token||SUPA_KEY)},
+      body:JSON.stringify({termin_id:id})
+    });
+    if(!res.ok) throw new Error(await res.text());
+    const j=await res.json();
+    showAlert('✉ Mail an '+(j.gesendet||0)+' Empfänger verschickt.');
+  }catch(e){
+    if(!still) showAlert('⚠ Mailversand fehlgeschlagen: '+e.message+' – Termin ist gespeichert.','#c05621');
+  }
+}
+
 </script>
 <!-- ── LOHNARTEN IMPORT MODAL ─────────────────────────────── -->
 <div class="datev-modal-bg" id="la-import-bg" onclick="if(event.target.id==='la-import-bg')closeLohnArtenImport()">
