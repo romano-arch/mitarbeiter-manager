@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v150</title>
+<title>MitarbeiterManager v154</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1107,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v150</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v154</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -11974,6 +11974,7 @@ async function renderTermine(){
       <button class="btn ${_tmAnsicht==='liste'?'btn-p':'btn-o'}" style="padding:4px 10px" onclick="_tmAnsicht='liste';tmRenderBody()">Liste</button>
     </div>
     ${tmIstBuero()?'<button class="btn btn-p" onclick="tmOpen(null)">+ Neuer Termin</button>':''}
+    ${tmIstBuero()?'<button class="btn btn-o" onclick="tmImportOpen()" title="Termine aus einem Outlook-CSV-Export einlesen">\ud83d\udce5 Outlook-Import</button>':''}
     <div style="font-size:12px;color:var(--muted);margin-left:auto" id="tm-info"></div>
   </div>
   <div id="tm-body"></div>`;
@@ -12424,6 +12425,319 @@ async function tmMail(id, still){
     showAlert('✉ Mail an '+(j.gesendet||0)+' Empfänger verschickt.');
   }catch(e){
     if(!still) showAlert('⚠ Mailversand fehlgeschlagen: '+e.message+' – Termin ist gespeichert.','#c05621');
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// v151 – OUTLOOK-IMPORT (CSV)
+// Liest den Outlook-CSV-Export und legt Termine an.
+// Erkennt aus der Teilnehmerzeile den Nachunternehmer und
+// leitet daraus "Rechnung durch" ab. Verschickt KEINE Mails.
+// ══════════════════════════════════════════════════════════
+
+let _tmImp = [];
+
+function tmImportOpen(){
+  if(!tmIstBuero()) return;
+  const katOpt=TM_KATEGORIEN.map(k=>`<option>${k}</option>`).join('');
+  openDashModal('📥 Termine aus Outlook importieren','CSV-Export einlesen – es werden keine Mails verschickt',`
+  <div style="font-size:13px;line-height:1.6;background:var(--s1);border-radius:var(--r);padding:12px 14px;margin-bottom:14px">
+    <b>So exportierst du aus Outlook:</b><br>
+    Datei → Öffnen und exportieren → Importieren/Exportieren → <i>In Datei exportieren</i> →
+    <i>Kommagetrennte Werte</i> → Kalender auswählen → Weiter → <b>Filter</b> →
+    Reiter <i>Erweitert</i> → Feld <i>Beginn</i> / <i>am oder nach</i> / <b>heute</b> → OK → Fertig stellen.
+  </div>
+  <div class="tm-form">
+    <div class="tm-row"><label>CSV-Datei</label>
+      <input type="file" id="tm-imp-file" accept=".csv,.txt" onchange="tmImportFile(event)"></div>
+    <div class="tm-row"><label>Kategorie für alle</label><select id="tm-imp-kat">${katOpt}</select></div>
+  </div>
+  <div id="tm-imp-status" style="font-size:13px;color:var(--muted);margin:12px 0"></div>
+  <div id="tm-imp-roh" style="display:none;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Erste Zeilen der Datei</span>
+      <span style="font-size:12px;color:var(--muted)">Trennzeichen:</span>
+      <select id="tm-imp-delim" onchange="tmImportParse(_tmImpTxt, this.value)"
+        style="border:1px solid var(--border);border-radius:var(--r);padding:3px 8px;font-family:inherit;font-size:12px;background:var(--white)">
+        <option value="">automatisch</option><option value=",">Komma ,</option>
+        <option value=";">Semikolon ;</option><option value="\t">Tabulator</option>
+        <option value="|">Pipe |</option>
+      </select>
+    </div>
+    <pre id="tm-imp-rohtext" style="font-family:ui-monospace,Consolas,monospace;font-size:11px;line-height:1.5;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;max-height:120px;overflow:auto;white-space:pre-wrap;word-break:break-all;margin:0"></pre>
+  </div>
+  <div id="tm-imp-map" style="margin-bottom:12px"></div>
+  <div id="tm-imp-status2" style="font-size:13px;color:var(--muted);margin:10px 0"></div>
+  <div id="tm-imp-vorschau"></div>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;border-top:1px solid var(--border);padding-top:12px">
+    <button class="btn btn-o" onclick="closeDashModal()">Abbrechen</button>
+    <button class="btn btn-p" id="tm-imp-btn" style="display:none" onclick="tmImportRun()">📥 Ausgewählte importieren</button>
+  </div>`);
+}
+
+// ── CSV ──────────────────────────────────────────────────
+function tmCsvParse(txt, delim){
+  const rows=[]; let row=[], cur='', q=false;
+  for(let i=0;i<txt.length;i++){
+    const c=txt[i];
+    if(q){
+      if(c==='"'){ if(txt[i+1]==='"'){cur+='"';i++;} else q=false; }
+      else cur+=c;
+    } else if(c==='"'){ q=true; }
+    else if(c===delim){ row.push(cur); cur=''; }
+    else if(c==='\n'){ row.push(cur); cur=''; rows.push(row); row=[]; }
+    else if(c!=='\r'){ cur+=c; }
+  }
+  if(cur!=='' || row.length){ row.push(cur); rows.push(row); }
+  return rows.filter(r=>r.some(x=>String(x).trim()!==''));
+}
+
+function tmNorm(s){ return String(s||'').toLowerCase().replace(/[^a-zäöüß]/g,''); }
+function tmCol(head, keys){
+  for(const k of keys){
+    const i=head.findIndex(h=>tmNorm(h).indexOf(k)>=0);
+    if(i>=0) return i;
+  }
+  return -1;
+}
+function tmPDat(s){
+  s=String(s||'').trim(); if(!s) return null;
+  let m=s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})/);
+  if(m){ let y=+m[3]; if(y<100) y+=2000;
+    return y+'-'+String(+m[2]).padStart(2,'0')+'-'+String(+m[1]).padStart(2,'0'); }
+  m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(m) return m[1]+'-'+String(+m[2]).padStart(2,'0')+'-'+String(+m[3]).padStart(2,'0');
+  m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if(m) return m[3]+'-'+String(+m[1]).padStart(2,'0')+'-'+String(+m[2]).padStart(2,'0');
+  return null;
+}
+function tmPZeit(s){
+  s=String(s||'').trim(); if(!s) return null;
+  const m=s.match(/(\d{1,2}):(\d{2})/); if(!m) return null;
+  let h=+m[1];
+  if(/PM|nachm/i.test(s) && h<12) h+=12;
+  if(/AM|vorm/i.test(s) && h===12) h=0;
+  return String(h).padStart(2,'0')+':'+m[2];
+}
+function tmMails(s){
+  return (String(s||'').match(/[\w.+-]+@[\w.-]+\.\w{2,}/g)||[]).map(x=>x.toLowerCase());
+}
+
+function tmImportFile(ev){
+  const f=ev.target.files && ev.target.files[0]; if(!f) return;
+  const st=document.getElementById('tm-imp-status');
+  st.textContent='Datei wird gelesen…';
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const buf=new Uint8Array(r.result);
+      let txt;
+      if(buf[0]===0xEF && buf[1]===0xBB && buf[2]===0xBF){
+        txt=new TextDecoder('utf-8').decode(buf.slice(3));
+      } else {
+        txt=new TextDecoder('utf-8',{fatal:false}).decode(buf);
+        if(txt.indexOf('\uFFFD')>=0) txt=new TextDecoder('windows-1252').decode(buf);
+      }
+      _tmImpTxt=txt;
+      tmImportParse(txt);
+    }catch(e){ st.textContent='Fehler beim Lesen: '+e.message; }
+  };
+  r.readAsArrayBuffer(f);
+}
+
+const TM_STD_HEAD = ['Betreff','Beginnt am','Beginnt um','Endet am','Endet um',
+  'Ganztägiges Ereignis','Erinnerung ein/aus','Erinnerung am','Erinnerung um',
+  'Besprechungsorganisator','Erforderliche Teilnehmer','Optionale Teilnehmer',
+  'Besprechungsressourcen','Abrechnungsinformationen','Beschreibung','Kategorien',
+  'Ort','Priorität','Privat','Vertraulichkeit','Reisekilometer','Zeit anzeigen als'];
+
+let _tmImpRows=[], _tmImpHead=[], _tmImpMap={}, _tmImpTxt='';
+
+function tmImportParse(txt, festesTrenn){
+  const st=document.getElementById('tm-imp-status');
+
+  // v154: Rohansicht der ersten Zeichen – zeigt sofort, wie die Datei gebaut ist
+  const roh=document.getElementById('tm-imp-roh');
+  if(roh){
+    roh.style.display='';
+    document.getElementById('tm-imp-rohtext').textContent =
+      txt.slice(0,400).replace(/\r/g,'').replace(/\n/g,' ⏎\n');
+  }
+
+  // v153: Trennzeichen nicht raten, sondern alle durchprobieren und das
+  // nehmen, bei dem die Datei am gleichmaessigsten zerfaellt.
+  let best=null;
+  const kandidaten = festesTrenn ? [festesTrenn] : [',',';','\t','|'];
+  for(const d of kandidaten){
+    const r=tmCsvParse(txt,d);
+    if(!r.length) continue;
+    const len=r.map(x=>x.length);
+    const max=Math.max.apply(null,len);
+    if(max<2) continue;
+    const anteil=len.filter(x=>x>=max-1).length/len.length;   // wie viele Zeilen sind vollstaendig
+    const score=max*(anteil>0.5?3:1)+anteil;
+    if(!best||score>best.score) best={d,rows:r,max,anteil,score};
+  }
+  if(!best){ st.innerHTML='<span style="color:var(--red)">Die Datei liess sich nicht als CSV lesen.</span>'; return; }
+  const rows=best.rows, spalten=best.max;
+  const trenn = best.d==='\t' ? 'Tabulator' : best.d;
+
+  const kopf = rows[0].some(h=>['betreff','subject'].indexOf(tmNorm(h))>=0);
+  _tmImpRows = kopf ? rows.slice(1) : rows;
+  _tmImpHead = kopf ? rows[0].slice() : TM_STD_HEAD.slice(0, spalten);
+  while(_tmImpHead.length < spalten) _tmImpHead.push('Spalte '+(_tmImpHead.length+1));
+  if(!_tmImpRows.length){ st.textContent='Die Datei enthält keine Datenzeilen.'; return; }
+
+  const probe=_tmImpRows.slice(0,20);
+  const istDatum=i=>probe.filter(r=>tmPDat(r[i])).length > probe.length/2;
+  const hatMail =i=>probe.some(r=>String(r[i]||'').indexOf('@')>0);
+
+  if(kopf){
+    _tmImpMap={
+      betreff:tmCol(_tmImpHead,['betreff','subject']),
+      datum:  tmCol(_tmImpHead,['beginntam','beginndatum','startdate','beginn']),
+      von:    tmCol(_tmImpHead,['beginntum','beginnzeit','starttime']),
+      bis:    tmCol(_tmImpHead,['endetum','endezeit','endtime']),
+      ort:    tmCol(_tmImpHead,['ort','location']),
+      block:  tmCol(_tmImpHead,['beschreibung','description','notizen']),
+      teil:   tmCol(_tmImpHead,['erforderlicheteilnehmer','benötigteteilnehmer','requiredattendees','teilnehmer']),
+      gt:     tmCol(_tmImpHead,['ganztägigesereignis','ganztägig','allday'])
+    };
+  } else {
+    _tmImpMap={betreff:0,datum:1,von:2,bis:4,ort:16,block:14,teil:10,gt:5};
+  }
+  // Plausibilitaet nachbessern
+  const n=_tmImpHead.length;
+  if(!(_tmImpMap.datum>=0 && _tmImpMap.datum<n && istDatum(_tmImpMap.datum))){
+    for(let i=0;i<n;i++) if(istDatum(i)){ _tmImpMap.datum=i; break; }
+  }
+  if(!(_tmImpMap.teil>=0 && _tmImpMap.teil<n && hatMail(_tmImpMap.teil))){
+    _tmImpMap.teil=-1;
+    for(let i=0;i<n;i++) if(hatMail(i)){ _tmImpMap.teil=i; break; }
+  }
+  ['betreff','von','bis','ort','block','gt'].forEach(k=>{ if(_tmImpMap[k]>=n) _tmImpMap[k]=-1; });
+
+  st.innerHTML = (kopf?'Kopfzeile erkannt. ':'<b>Keine Kopfzeile</b> – Standard-Reihenfolge von Outlook angenommen. ')
+    + _tmImpRows.length+' Zeilen, '+n+' Spalten, Trennzeichen <code>'+tmE(trenn)+'</code>.'
+    + (n<8?' <span style="color:var(--orange)">Das sind auffällig wenige Spalten – bitte die Zuordnung unten prüfen.</span>':'');
+  tmMapUI();
+  tmImportBuild();
+}
+
+function tmMapUI(){
+  const felder=[['betreff','Betreff'],['datum','Datum'],['von','Von'],['bis','Bis'],
+                ['ort','Ort'],['block','Beschreibung'],['teil','Teilnehmer'],['gt','Ganztägig']];
+  const bsp=i=>{ const r=_tmImpRows.find(r=>String(r[i]||'').trim()); return r?String(r[i]).slice(0,28):''; };
+  const opts=k=>'<option value="-1">— keine —</option>'+_tmImpHead.map((h,i)=>
+    `<option value="${i}" ${_tmImpMap[k]===i?'selected':''}>${i+1}: ${tmE(String(h).slice(0,22))}${bsp(i)?' · '+tmE(bsp(i)):''}</option>`).join('');
+  document.getElementById('tm-imp-map').innerHTML=
+    `<div class="tm-sep" style="margin-bottom:8px">Spaltenzuordnung</div>
+     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">`
+    + felder.map(([k,l])=>`<div><label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;margin-bottom:3px">${l}</label>
+        <select style="width:100%;border:1px solid var(--border);border-radius:var(--r);padding:5px 8px;font-family:inherit;font-size:12px;background:var(--white)"
+          onchange="_tmImpMap['${k}']=+this.value;tmImportBuild()">${opts(k)}</select></div>`).join('')
+    + '</div>';
+}
+
+function tmImportBuild(){
+  const st=document.getElementById('tm-imp-status2');
+  const m=_tmImpMap, g=(r,k)=> (m[k]>=0 ? (r[m[k]]||'') : '');
+  const heute=tmIso(new Date());
+  const rkMail={'adler@allcleanservice.de':'adler','richter@allcleanservice.de':'richter','romano@allcleanservice.de':'romano'};
+  _tmImp=[]; let alt=0, dup=0, ohne=0;
+
+  for(const r of _tmImpRows){
+    const betreff=String(g(r,'betreff')).trim();
+    const datum=tmPDat(g(r,'datum'));
+    if(!betreff || !datum){ ohne++; continue; }
+    if(datum<heute){ alt++; continue; }
+
+    const ganz=/wahr|ja|true|ein|^1$/i.test(String(g(r,'gt')).trim());
+    const mails=tmMails(g(r,'teil'));
+    let nu=null, rk='';
+    for(const x of mails){
+      if(rkMail[x]) rk=rkMail[x];
+      const tr=_tmNU.find(n=>(n.email||'').toLowerCase()===x);
+      if(tr) nu=tr;
+    }
+    if(!rk && nu && nu.rechnung_durch) rk=nu.rechnung_durch;
+    const doppelt=_tmTermine.some(t=>t.datum===datum && (t.betreff||'').trim()===betreff);
+    if(doppelt) dup++;
+
+    _tmImp.push({nehmen:!doppelt, betreff, datum,
+      von: ganz?null:tmPZeit(g(r,'von')), bis: ganz?null:tmPZeit(g(r,'bis')),
+      ort:String(g(r,'ort')).trim(), block:String(g(r,'block')).trim(),
+      mails, nu, rk, doppelt});
+  }
+
+  if(st) st.innerHTML=`<b>${_tmImp.length}</b> künftige Termine`
+    + (alt?` · ${alt} in der Vergangenheit übersprungen`:'')
+    + (ohne?` · ${ohne} ohne Betreff oder Datum`:'')
+    + (dup?` · <span style="color:var(--orange)">${dup} mögliche Dubletten, nicht angehakt</span>`:'');
+  tmImportVorschau();
+  const b=document.getElementById('tm-imp-btn'); if(b) b.style.display=_tmImp.length?'':'none';
+}
+
+function tmImportVorschau(){
+  const c=document.getElementById('tm-imp-vorschau');
+  if(!_tmImp.length){ c.innerHTML=''; return; }
+  const rows=_tmImp.map((x,i)=>`<tr style="${x.doppelt?'background:var(--obg)':''}">
+    <td style="padding:5px 8px"><input type="checkbox" ${x.nehmen?'checked':''} onchange="_tmImp[${i}].nehmen=this.checked"></td>
+    <td style="padding:5px 8px;white-space:nowrap">${tmDeDat(x.datum)}<div style="font-size:11px;color:var(--muted)">${x.von||'ganztägig'}</div></td>
+    <td style="padding:5px 8px">${tmE(x.betreff)}<div style="font-size:11px;color:var(--muted)">${tmE(x.ort||'')}</div></td>
+    <td style="padding:5px 8px;font-size:12px">${x.nu?tmE(x.nu.name):'<span style="color:var(--muted2)">—</span>'}</td>
+    <td style="padding:5px 8px;font-size:12px">${x.rk?tmE(x.rk):'<span style="color:var(--muted2)">—</span>'}</td>
+    <td style="padding:5px 8px;font-size:12px;color:var(--muted)">${x.mails.length} ✉</td>
+  </tr>`).join('');
+  c.innerHTML=`<div style="max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r)">
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+    <thead><tr style="background:var(--s1);text-align:left;font-size:11px;color:var(--muted);position:sticky;top:0">
+      <th style="padding:6px 8px"><input type="checkbox" checked onchange="_tmImp.forEach(x=>x.nehmen=this.checked);tmImportVorschau()"></th>
+      <th style="padding:6px 8px">Datum</th><th style="padding:6px 8px">Betreff</th>
+      <th style="padding:6px 8px">Nachunternehmer</th><th style="padding:6px 8px">Rechnung</th>
+      <th style="padding:6px 8px">Sichtbar für</th>
+    </tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="tm-hint">Orange = ein Termin mit gleichem Datum und Betreff existiert bereits.</div>`;
+}
+
+async function tmImportRun(){
+  const btn=document.getElementById('tm-imp-btn');
+  const nehmen=_tmImp.filter(x=>x.nehmen);
+  if(!nehmen.length){ showAlert('Nichts ausgewählt.','#c05621'); return; }
+  if(!confirm(nehmen.length+' Termine importieren?\n\nEs werden KEINE Mails verschickt.')) return;
+  btn.disabled=true; btn.textContent='Importiert…';
+  const kat=document.getElementById('tm-imp-kat').value;
+  let ok=0;
+  try{
+    for(let i=0;i<nehmen.length;i+=50){
+      const teil=nehmen.slice(i,i+50);
+      const neu=teil.map(x=>({
+        betreff:x.betreff, kategorie:kat, datum:x.datum,
+        zeit_von:x.von, zeit_bis:x.bis, ganztags:!x.von,
+        ort:x.ort||null, auftraggeber_block:x.block||null,
+        nu_id:x.nu?x.nu.id:null, rechnung_durch:x.rk||null,
+        abrechnungsweg:x.nu?x.nu.abrechnungsweg:null,
+        status:'offen', erstellt_von:(_currentUser||_currentEmail)+' (Outlook-Import)'
+      }));
+      const angelegt=await tmInsertReturn('termine',neu);
+      const emp=[];
+      angelegt.forEach((row,k)=>{
+        teil[k].mails.forEach(m=>{
+          const int=TM_INTERN.find(p=>p.email===m);
+          emp.push({termin_id:row.id, email:m,
+            name:int?int.name:(teil[k].nu&&(teil[k].nu.email||'').toLowerCase()===m?teil[k].nu.name:null),
+            typ:int?'intern':(teil[k].nu&&(teil[k].nu.email||'').toLowerCase()===m?'nu':'extern')});
+        });
+      });
+      if(emp.length) await supaFetch('termin_empfaenger','POST',emp);
+      ok+=angelegt.length;
+      btn.textContent='Importiert… '+ok+'/'+nehmen.length;
+    }
+    showAlert('✅ '+ok+' Termine importiert.');
+    closeDashModal(); _tmLoaded=false; await renderTermine();
+  }catch(e){
+    showAlert('⚠ Import abgebrochen nach '+ok+' Terminen: '+e.message,'#c81e1e');
+    btn.disabled=false; btn.textContent='📥 Ausgewählte importieren';
   }
 }
 
