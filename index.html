@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v154</title>
+<title>MitarbeiterManager v162</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1107,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v154</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v162</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1219,6 +1219,9 @@ main{padding:14px 16px}
 <div id="omgw-info-box" style="display:none"><div id="omgw-lbl"></div><div id="omgw-wval"></div></div>
 <div id="om-rev-list"></div>
 <div class="rev-add-row" onclick="omRevAdd()">＋ Weiteres Objekt / Revier hinzufügen</div>
+<div style="margin-top:8px;font-size:11px;color:var(--muted);background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:7px 10px">
+  ↻ Beim Speichern gehen diese Stunden automatisch an den zugewiesenen Mitarbeiter. Doppelt eintragen ist nicht mehr nötig.
+</div>
 <div class="winfo" style="margin-top:14px;background:var(--acc-l);border:1px solid #93c5fd;" id="om-gesamt-box">
   <div>
     <div style="font-size:11px;color:var(--acc);font-weight:600;text-transform:uppercase;letter-spacing:.04em">Gesamtkapazität (Tabelle oben + alle Reviere)</div>
@@ -1529,7 +1532,19 @@ main{padding:14px 16px}
 </div><div class="mbg" id="sbg" role="dialog" aria-modal="true" aria-label="Stunden erfassen">
 <div class="modal sm"><div class="mtitle" id="stitle">📋 Monatsinfo</div><div style="font-size:12px;color:var(--muted);margin:-12px 0 14px" id="sm-monat-lbl"></div><div id="sobjs"></div><div class="fg" style="margin-top:10px"><label>Notiz</label><textarea id="snotiz" rows="2" placeholder="Besondere Vorkommnisse..."></textarea></div><div class="mactions"><button class="btn btn-o" onclick="closeSM()">Abbrechen</button><button class="btn btn-p" onclick="saveSM()">Speichern</button></div>
 </div>
-</div><div id="alert" role="status" aria-live="polite" aria-atomic="true"></div>
+</div>
+<div class="mbg" id="uebbg" role="dialog" aria-modal="true" aria-label="Revier-Übergabe" style="z-index:var(--z-alert)">
+  <div class="modal" style="max-width:660px;width:100%">
+    <div style="font-size:17px;font-weight:600;margin-bottom:3px">🔄 Revier-Übergabe</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Damit die Abrechnung stimmt, braucht jeder Wechsel ein Stichdatum.</div>
+    <div id="ueb-body"></div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:18px;border-top:1px solid var(--border);padding-top:12px">
+      <button class="btn btn-o" onclick="uebAbbrechen()">Abbrechen</button>
+      <button class="btn btn-p" onclick="uebUebernehmen()">✓ Übernehmen und speichern</button>
+    </div>
+  </div>
+</div>
+<div id="alert" role="status" aria-live="polite" aria-atomic="true"></div>
 <input type="file" id="ifile" accept=".json" style="display:none" onchange="handleImport(event)"><script>const MONATE = ["Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
 const MK_START_JAHR = 2026;
 const MK_END_JAHR = Math.max(2027, new Date().getFullYear() + 1);
@@ -1716,6 +1731,7 @@ let _currentUser = null;    // Anzeigename aus user_profiles.name
 let _currentRolle = null;   // 'superadmin' | 'admin' | 'ol'
 let _currentKuerzel = null; // nur OL: 'I' (Incecik) / 'M' (Grippo)
 let _currentEmail = null;   // FIX v135: Login-E-Mail (Sichtbarkeit Urlaubs-Uebertrag)
+let _currentUid = null;     // v158: auth.uid() – fuer eigene OL-Termine im Kalender
 
 // Token bei jeder Auth-Aenderung (Login, Auto-Refresh, Logout) aktuell halten
 supaClient.auth.onAuthStateChange((_event, session) => {
@@ -2247,6 +2263,7 @@ async function loadProfile(uid) {
       'id=eq.' + encodeURIComponent(uid) + '&select=name,rolle,kuerzel');
     if (!rows || !rows.length) return false;
     const p = rows[0];
+    _currentUid     = uid;
     _currentUser    = p.name || '';
     _currentRolle   = p.rolle || null;
     _currentKuerzel = p.kuerzel || null;
@@ -2264,7 +2281,7 @@ function showLoginErr(msg) {
 async function doLogout() {
   if (!confirm('Wirklich abmelden?')) return;
   try { await supaClient.auth.signOut(); } catch(e) {}
-  _token = null; _currentUser = null; _currentRolle = null; _currentKuerzel = null; _currentEmail = null;
+  _token = null; _currentUser = null; _currentRolle = null; _currentKuerzel = null; _currentEmail = null; _currentUid = null;
   // Priorität 3: alle Sitzungsdaten leeren (Auth-Session liegt in sessionStorage).
   // Hinweis: das Änderungsprotokoll ('mm_aenderungslog') bleibt absichtlich erhalten
   // (Audit-Trail; liegt ohnehin auch in Supabase).
@@ -3411,7 +3428,7 @@ kdGrid.innerHTML = kdList.map(k=>{
   const stTxt = standorte.length>1 ? standorte.length+' Standorte' : (standorte.length===1?'1 Standort':'Kein Standort');
   const adr = k.adresse ? k.adresse.split(',')[0] : '';
   const sub = [adr, stTxt].filter(Boolean).join(' · ');
-  const klick = !isOL();
+  const klick = true;   // v158: OL darf die Karte oeffnen – das Modal ist fuer OL komplett nur lesend
   return `<div class="kdc${klick?' klick':''}${eh?' eh':''}" id="kdc-${k.id}"
       ${klick?`onclick="openKdM('${k.id}')" title="${_kdEsc(k.vollname||nam)} – öffnen"`:''}>
     <div class="kdc-top">
@@ -3549,6 +3566,17 @@ const o = obj.find(x => x.id === oid);
 if (!o) return;
 const reviere = getRevData(oid);
 const maList = ma.filter(m => m.status !== 'Ausgeschieden' && maKu(m).includes(o.name));
+// v161: beendete Einsaetze nach unten sortieren und getrennt zaehlen
+const _mkListe = getAM();
+const _endeIso = _monatsEnde(_mkListe);
+const _istBeendet = (m) => {
+  const _ob=(m.objekte||[]).find(x=>x.kunde===o.name);
+  return _maAusgeschiedenImMonat(m,_mkListe) || (_ob ? !_objAktivAm(_ob,_endeIso) : false);
+};
+maList.sort((a,b)=>(_istBeendet(a)?1:0)-(_istBeendet(b)?1:0));
+const _aktivAnz = maList.filter(m=>!_istBeendet(m)).length;
+const _beendetAnz = maList.length - _aktivAnz;
+
 const totalKap = oKapM(o.name);
 const totalBel = oBel(o.name);
 // v147: Prozentwert + Farbe kommen jetzt aus dem WOCHEN-Vergleich (Kunde h/Wo <-> MA h/Wo).
@@ -3561,7 +3589,7 @@ const pct = kapW > 0 ? Math.round(belW / kapW * 100) : 0;
 const fc = Math.abs(diffW) < 0.01 ? 'var(--green)' : 'var(--red)';
 let html = '';
 html += `<div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:18px;display:flex;gap:24px;flex-wrap:wrap;align-items:center">
-<div><div style="font-size:11px;color:var(--muted);margin-bottom:2px">MITARBEITER</div><div style="font-size:22px;font-weight:700;color:var(--acc)">${maList.length}</div></div>
+<div><div style="font-size:11px;color:var(--muted);margin-bottom:2px">MITARBEITER</div><div style="font-size:22px;font-weight:700;color:var(--acc)">${_aktivAnz}</div>${_beendetAnz?`<div style="font-size:10px;color:var(--muted2)">+${_beendetAnz} beendet</div>`:''}</div>
 <div><div style="font-size:11px;color:var(--muted);margin-bottom:2px">REVIERE</div><div style="font-size:22px;font-weight:700;color:var(--text)">${reviere.length}</div></div>
 ${kapW > 0 ? `<div style="flex:1;min-width:140px">
 <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px">
@@ -3598,7 +3626,9 @@ html += `<tr>
 }
 html += `</tbody></table>
 <div class="rev-add-row" onclick="revAdd()">＋ Weiteres Revier hinzufügen</div>`;
-html += `<div style="margin-top:22px;margin-bottom:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">Zugewiesene Mitarbeiter (${maList.length})</div>`;
+html += `<div style="margin-top:22px;margin-bottom:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">Zugewiesene Mitarbeiter (${_aktivAnz})`
+  + (_beendetAnz?` <span style="color:var(--muted2);font-weight:400;text-transform:none;letter-spacing:0">· ${_beendetAnz} beendet, unten ausgegraut</span>`:'')
+  + `</div>`;
 if (maList.length === 0) {
 html += `<div style="font-size:12px;color:var(--muted2);padding:10px;background:var(--s1);border-radius:var(--r);border:1px solid var(--border)">Noch kein Mitarbeiter diesem Objekt zugeordnet. Mitarbeiter können im "Mitarbeiter bearbeiten"-Dialog zugewiesen werden.</div>`;
 } else {
@@ -3629,7 +3659,7 @@ const _traegtBei = !_maAusg && _objEnde;
 const _bisTxt = mObjekt && mObjekt.einsatz_bis
   ? new Date(mObjekt.einsatz_bis).toLocaleDateString('de-DE')
   : (m.austrittsdatum ? new Date(m.austrittsdatum).toLocaleDateString('de-DE') : '');
-html += `<tr>
+html += `<tr style="${_traegtBei?'':'opacity:.5'}">
 <td><strong>${m.nachname}</strong>${m.vorname ? ` <span style="color:var(--muted);font-weight:400">${m.vorname}</span>` : ''}</td>
 <td><span class="olb ol-${m.objektleiter || 'M'}">${m.objektleiter || '?'}</span></td>
 <td>${zuRev ? `<span style="font-size:12px;color:var(--acc);font-weight:500">📍 ${zuRev.name || '(kein Name)'}</span>` : `<span style="color:var(--muted2);font-size:12px">–</span>`}</td>
@@ -3638,6 +3668,7 @@ ${(()=>{
   const _kdW = zuRev ? _wtWoSumme(zuRev.wochentage||{}) : null;
   const _maW = mObjekt ? _wtWoSumme(mObjekt.wochentage||{}) : null;
   const _mono = "font-family:'IBM Plex Mono',monospace;font-weight:600";
+  if (!_traegtBei) return '<td colspan="3" style="color:var(--muted2);font-size:12px">kein laufender Einsatz</td>';
   if (_kdW === null && _maW === null) return '<td colspan="3" style="color:var(--muted2);font-size:12px">–</td>';
   const _d = Math.round(((_maW||0) - (_kdW||0))*100)/100;
   const _rot = Math.abs(_d) >= 0.01;
@@ -3675,11 +3706,32 @@ if (!o.reviere) o.reviere = [];
 o.reviere.push({ name: '', stunden: '', maId: '' });
 renderRevModal(eRevOid);
 }
+// v161: Wird ein Revier entfernt, in dem noch ein Mitarbeiter steht, muss
+// dessen Einsatz sauber beendet werden – sonst fehlen die Stunden in der
+// Abrechnung oder der Eintrag taucht beim naechsten Sync wieder auf.
+function _revierAbmelden(o, rev, weiter){
+  if(!rev || !rev.maId) return weiter(false);
+  const m=ma.find(x=>String(x.id)===String(rev.maId));
+  const ob=m?(m.objekte||[]).find(x=>x.kunde===o.name):null;
+  if(!m || !ob) return weiter(false);
+  // Steht der Mitarbeiter noch in einem anderen Revier desselben Kunden?
+  const nochDrin=(o.reviere||[]).some(r=>r!==rev && r.maId && String(r.maId)===String(rev.maId));
+  if(nochDrin || ob.einsatz_bis) return weiter(false);
+  uebOeffnen(o.name, [{
+    revier:(rev.name||'(ohne Name)'), altId:m.id, neuId:'',
+    altName:m.nachname+(m.vorname?', '+m.vorname:''), neuName:'',
+    wtNeu:null, bis:'', ab:''
+  }], (d)=>{ _uebAnwenden(o.name, d); weiter(true); });
+}
 function revRemove(i) {
 const o = obj.find(x => x.id === eRevOid);
 if (!o || !o.reviere) return;
-o.reviere.splice(i, 1);
-renderRevModal(eRevOid);
+const rev = o.reviere[i];
+_revierAbmelden(o, rev, (abgemeldet)=>{
+  o.reviere.splice(i, 1);
+  renderRevModal(eRevOid);
+  if(abgemeldet) showAlert('Einsatz beendet – jetzt noch „Reviere speichern“ drücken.','#c05621');
+});
 }
 // ── BIDIREKTIONALER SYNC: Reviere ↔ MA-Objekte ──────────────────────────
 // REV-3: importRevStunden() entfernt – Migration abgeschlossen (war 35 KB Altdaten)
@@ -3689,9 +3741,11 @@ function syncAlleMAzuKunden() {
   let maZuKunden = 0;
   let kundenZuMA = 0;
   // 1) Alle MA → ihre Kunden-Reviere ergänzen
+  const _heuteIso = _monatsEnde(getAM());
   ma.filter(m => m.status !== 'Ausgeschieden').forEach(m => {
     (m.objekte || []).forEach(ob => {
       if (!ob.kunde) return;
+      if (!_objAktivAm(ob, _heuteIso)) return;   // v161: beendeter Einsatz
       const o = obj.find(x => x.name === ob.kunde);
       if (!o) return;
       o.reviere = o.reviere || [];
@@ -3789,6 +3843,9 @@ function syncRevToMA(oName) {
   const o = obj.find(x => x.name === oName);
   if (!o) return;
   const reviere = o.reviere || [];
+  // v161: Ein Einsatz mit abgelaufenem einsatz_bis ist beendet – dafuer darf
+  // kein Revier mehr angelegt werden, sonst kommt die geloeschte Zeile zurueck.
+  const _heuteIso = _monatsEnde(getAM());
   // Alle maIds die in Revieren stehen
   const revMaIds = reviere.map(r => r.maId).filter(Boolean);
   // 1) Revier→MA: MA die in Revieren stehen, aber kein m.objekte-Eintrag haben → hinzufügen
@@ -3804,7 +3861,7 @@ function syncRevToMA(oName) {
     }
   });
   // 2) MA→Revier: MA die das Objekt in m.objekte haben, aber nicht in Revieren → Revier-Eintrag anlegen
-  ma.filter(m => m.status !== 'Ausgeschieden' && (m.objekte||[]).find(ob => ob.kunde === oName))
+  ma.filter(m => m.status !== 'Ausgeschieden' && (m.objekte||[]).find(ob => ob.kunde === oName && _objAktivAm(ob, _heuteIso)))
     .forEach(m => {
       const inRev = reviere.find(r => r.maId === m.id);
       if (!inRev) {
@@ -3815,8 +3872,10 @@ function syncRevToMA(oName) {
 }
 function syncMAToRev(m) {
   // Für jeden Kunden den der MA hat: Revier-Eintrag sicherstellen
+  const _heuteIso = _monatsEnde(getAM());
   (m.objekte||[]).forEach(ob => {
     if (!ob.kunde) return;
+    if (!_objAktivAm(ob, _heuteIso)) return;   // v161: beendeter Einsatz
     const o = obj.find(x => x.name === ob.kunde);
     if (!o) return;
     o.reviere = o.reviere || [];
@@ -3987,13 +4046,230 @@ function delObj(){
   showAlert(`"${o.name}" gelöscht`, '#374151');
 }
 
-function saveObj(){
+// ══════════════════════════════════════════════════════════════════════
+// v160 – REVIER-ÜBERGABE
+// Wechselt beim Kunden im Revier der zustaendige Mitarbeiter, fragt MM
+// einmal nach den Stichtagen und setzt danach automatisch
+//   alter MA  -> einsatz_bis  (letzter Arbeitstag, zaehlt noch mit)
+//   neuer MA  -> einsatz_ab   (erster Arbeitstag)
+// Zwischen beiden darf eine Luecke liegen – die Tage gehoeren dann keinem.
+// ══════════════════════════════════════════════════════════════════════
+let _uebDaten = null;   // {objId, wechsel:[...]}
+
+// Alte und neue Reviere einander zuordnen: erst ueber rid, dann Name, dann Position
+function _revierPaare(alt, neu){
+  const out=[], benutzt=new Set();
+  const nimm=(a)=>{ const j=alt.indexOf(a); if(j>=0) benutzt.add(j); return a; };
+  neu.forEach((r,i)=>{
+    let a=null;
+    if(r.rid) a=alt.find((x,j)=>!benutzt.has(j) && x.rid && x.rid===r.rid);
+    if(!a && (r.name||'')) a=alt.find((x,j)=>!benutzt.has(j) && (x.name||'')===r.name);
+    if(!a && alt[i] && !benutzt.has(i)) a=alt[i];
+    if(a) nimm(a);
+    out.push({alt:a||null, neu:r});
+  });
+  alt.forEach((x,j)=>{ if(!benutzt.has(j)) out.push({alt:x, neu:null}); });
+  return out;
+}
+
+// Liefert alle Reviere, in denen ein Mitarbeiter das Revier verlaesst
+function _revierWechsel(alt, neu){
+  const raus=[];
+  const nochDrin = {};
+  neu.forEach(r=>{ if(r.maId) nochDrin[r.maId]=true; });
+  _revierPaare(alt, neu).forEach(par=>{
+    const altId=par.alt?(par.alt.maId||''):'';
+    const neuId=par.neu?(par.neu.maId||''):'';
+    if(!altId || altId===neuId) return;
+    // Steht der alte MA noch in einem anderen Revier desselben Kunden,
+    // ist er nicht raus – dann kein Enddatum setzen.
+    if(nochDrin[altId]) return;
+    const mAlt=ma.find(x=>String(x.id)===String(altId));
+    const mNeu=neuId?ma.find(x=>String(x.id)===String(neuId)):null;
+    if(!mAlt) return;
+    raus.push({
+      revier:((par.neu||par.alt).name||'(ohne Name)'),
+      altId, neuId,
+      altName:mAlt.nachname+(mAlt.vorname?', '+mAlt.vorname:''),
+      neuName:mNeu?(mNeu.nachname+(mNeu.vorname?', '+mNeu.vorname:'')):'',
+      wtNeu:(par.neu&&par.neu.wochentage)?par.neu.wochentage:null,
+      bis:'', ab:''
+    });
+  });
+  return raus;
+}
+
+function uebOeffnen(objName, wechsel, weiter){
+  const heute=new Date().toISOString().slice(0,10);
+  wechsel.forEach(w=>{
+    if(!w.bis) w.bis=heute;
+    if(!w.ab && w.neuId) w.ab=_tagPlus(heute,1);
+  });
+  _uebDaten={objName, wechsel, weiter};
+  uebZeichnen();
+  document.getElementById('uebbg').classList.add('open');
+}
+function _tagPlus(iso, n){
+  const d=new Date(iso+'T12:00:00'); d.setDate(d.getDate()+n);
+  return d.toISOString().slice(0,10);
+}
+function uebSet(i, feld, val){
+  const w=_uebDaten.wechsel[i]; if(!w) return;
+  w[feld]=val;
+  // Nahtlos vorschlagen: Folgetag – der Nutzer kann eine Luecke lassen
+  if(feld==='bis' && w.neuId && (!w.ab || w.ab<=val)) w.ab=_tagPlus(val,1);
+  uebZeichnen();
+}
+function _uebSplitInfo(maId, kunde, datum, altInklusive, wtErsatz){
+  if(!datum) return '';
+  const m=ma.find(x=>String(x.id)===String(maId));
+  const ob=m?(m.objekte||[]).find(x=>x.kunde===kunde):null;
+  const wt=(ob&&ob.wochentage)||wtErsatz;
+  if(!wt) return '';
+  const mk=String(datum).slice(0,7);
+  const sp=calcUebergabeSplit(wt, datum, mk, altInklusive,
+            (ob&&ob.modell==='14tage')?'14tage':'arbeitstage', (ob&&ob.rhythmus_start)||null);
+  if(!sp) return '';
+  const tage=altInklusive?sp.altTage:sp.neuTage;
+  const std =altInklusive?sp.altStd :sp.neuStd;
+  return '<div style="font-size:11px;color:var(--muted);margin-top:4px">'
+    + tage+' Arbeitstage · <strong style="color:var(--text2)">'+std+' h</strong> in diesem Monat</div>';
+}
+function uebZeichnen(){
+  if(!_uebDaten) return;
+  const inp='font-size:12px;padding:5px 8px;border:1px solid var(--border);border-radius:6px;background:var(--white);font-family:inherit;width:100%';
+  document.getElementById('ueb-body').innerHTML=_uebDaten.wechsel.map((w,i)=>{
+    const luecke = (w.ab && w.bis && w.ab > _tagPlus(w.bis,1))
+      ? '<div style="font-size:11px;color:var(--orange);margin-top:6px">⚠ Zwischen beiden liegt eine Lücke – diese Tage werden niemandem berechnet.</div>' : '';
+    return `<div style="border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:10px;background:var(--s1)">
+      <div style="font-size:13px;font-weight:600;margin-bottom:10px">📍 ${_kdEsc(w.revier)}
+        <span style="font-weight:400;color:var(--muted)"> — ${_kdEsc(w.altName)}${w.neuName?' → '+_kdEsc(w.neuName):' verlässt das Revier'}</span></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:190px">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Letzter Arbeitstag <strong>${_kdEsc(w.altName)}</strong></div>
+          <input type="date" value="${w.bis||''}" style="${inp}" onchange="uebSet(${i},'bis',this.value)">
+          ${_uebSplitInfo(w.altId, _uebDaten.objName, w.bis, true, null)}
+        </div>
+        ${w.neuId?`<div style="flex:1;min-width:190px">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Erster Arbeitstag <strong>${_kdEsc(w.neuName)}</strong></div>
+          <input type="date" value="${w.ab||''}" style="${inp}" onchange="uebSet(${i},'ab',this.value)">
+          ${_uebSplitInfo(w.neuId, _uebDaten.objName, w.ab, false, w.wtNeu)}
+        </div>`:'<div style="flex:1;min-width:190px;font-size:11px;color:var(--muted);align-self:center">Kein Nachfolger im Revier.</div>'}
+      </div>${luecke}
+    </div>`;
+  }).join('');
+}
+function uebAbbrechen(){
+  document.getElementById('uebbg').classList.remove('open');
+  _uebDaten=null;
+  setSyncState('ok','Speichern abgebrochen');
+}
+function uebUebernehmen(){
+  if(!_uebDaten) return;
+  for(const w of _uebDaten.wechsel){
+    if(!w.bis){ showAlert('Bitte für jeden Wechsel den letzten Arbeitstag angeben.','#c81e1e'); return; }
+    if(w.neuId && !w.ab){ showAlert('Bitte für jeden Nachfolger den ersten Arbeitstag angeben.','#c81e1e'); return; }
+    if(w.neuId && w.ab<=w.bis){ showAlert('Der Nachfolger kann frühestens am Tag nach dem letzten Arbeitstag beginnen.','#c81e1e'); return; }
+  }
+  const daten=_uebDaten.wechsel.slice();
+  document.getElementById('uebbg').classList.remove('open');
+  const weiter=_uebDaten.weiter; _uebDaten=null;
+  weiter(daten);
+}
+
+// Stichtage in die Mitarbeiter schreiben
+function _uebAnwenden(kunde, wechsel){
+  const geaendert=[];
+  wechsel.forEach(w=>{
+    const mAlt=ma.find(x=>String(x.id)===String(w.altId));
+    if(mAlt){
+      const ob=(mAlt.objekte||[]).find(x=>x.kunde===kunde);
+      if(ob){ ob.einsatz_bis=w.bis; if(geaendert.indexOf(mAlt)<0) geaendert.push(mAlt); }
+    }
+    if(w.neuId && w.ab){
+      const mNeu=ma.find(x=>String(x.id)===String(w.neuId));
+      if(mNeu){
+        mNeu.objekte=mNeu.objekte||[];
+        let ob=(mNeu.objekte).find(x=>x.kunde===kunde);
+        if(!ob){
+          const sl=(TARIFLOHN[mNeu.lohngruppe||'']||{}).lohn||15;
+          ob={kunde, modell:'arbeitstage', std_monat:'', std_tag:'', stundenlohn:sl,
+              lohn_fest:'', wochentage:WT0(), arbtage_monat:{}};
+          mNeu.objekte.push(ob);
+        }
+        ob.einsatz_ab=w.ab;
+        delete ob.einsatz_bis;
+        if(geaendert.indexOf(mNeu)<0) geaendert.push(mNeu);
+      }
+    }
+  });
+  return geaendert;
+}
+
+// ── v159: REVIERE BEIM KUNDEN → MITARBEITER SPIEGELN ─────────────────────
+// Eine Eingabe genuegt. Wer in einem Revier als zustaendiger Mitarbeiter
+// steht, bekommt die dort eingetragenen Wochenstunden automatisch in sein
+// Objekt beim Mitarbeiter geschrieben. Mehrere Reviere desselben Kunden
+// werden pro Mitarbeiter addiert. Richtung ist bewusst nur Kunde → MA,
+// damit sich die beiden Seiten nicht gegenseitig ueberschreiben.
+function _revierWtProMA(reviere){
+  const out={};
+  (reviere||[]).forEach(r=>{
+    if(!r.maId) return;
+    if(!out[r.maId]) out[r.maId]=WT0();
+    WT.forEach(t=>{
+      const s=(parseFloat(out[r.maId][t])||0)+(parseFloat((r.wochentage||{})[t])||0);
+      out[r.maId][t]=Math.round(s*100)/100;
+    });
+  });
+  return out;
+}
+function spiegelRevierZuMA(o, alteReviere){
+  const neu=_revierWtProMA(o.reviere);
+  const geaendert=[], angelegt=[], verwaist=[];
+  Object.keys(neu).forEach(maId=>{
+    const m=ma.find(x=>String(x.id)===String(maId));
+    if(!m) return;
+    m.objekte=m.objekte||[];
+    let ob=m.objekte.find(x=>x.kunde===o.name);
+    let isNeu=false;
+    if(!ob){
+      const sl=(TARIFLOHN[m.lohngruppe||'']||{}).lohn||15;
+      ob={kunde:o.name, modell:'arbeitstage', std_monat:'', std_tag:'',
+          stundenlohn:sl, lohn_fest:'', wochentage:WT0(), arbtage_monat:{}};
+      m.objekte.push(ob); isNeu=true;
+    }
+    if(isNeu || JSON.stringify(ob.wochentage||{})!==JSON.stringify(neu[maId])){
+      ob.wochentage=JSON.parse(JSON.stringify(neu[maId]));
+      if(geaendert.indexOf(m)<0) geaendert.push(m);
+      if(isNeu) angelegt.push(m.nachname);
+    }
+  });
+  // Mitarbeiter, die vorher ein Revier hatten und jetzt nicht mehr:
+  // nichts loeschen, nur melden – die Stunden koennen gewollt sein.
+  Object.keys(_revierWtProMA(alteReviere)).forEach(maId=>{
+    if(neu[maId]) return;
+    const m=ma.find(x=>String(x.id)===String(maId));
+    if(m && (m.objekte||[]).some(x=>x.kunde===o.name)) verwaist.push(m.nachname);
+  });
+  return {geaendert, angelegt, verwaist};
+}
+
+function saveObj(_uebergabe){
 if(!canEditKunden())return;
 const name=document.getElementById('of-n').value.trim();
 if(!name){alert('Name ist Pflichtfeld!');return;}
 const st=document.getElementById('of-s').value;
 const existingReviere = omRevCollect();
 const oldObj = eOid ? obj.find(x=>x.id===eOid) : {};
+const _alteReviere = (oldObj && oldObj.reviere) ? JSON.parse(JSON.stringify(oldObj.reviere)) : [];
+// v160: stabile Kennung je Revier, damit Umbenennen keinen Wechsel vortaeuscht
+existingReviere.forEach((r,ri)=>{ if(!r.rid) r.rid=(_alteReviere[ri]&&_alteReviere[ri].rid)||('rev_'+Date.now()+'_'+ri); });
+// v160: verlaesst jemand ein Revier, erst die Stichtage klaeren
+if(!_uebergabe){
+  const _w=_revierWechsel(_alteReviere, existingReviere);
+  if(_w.length){ uebOeffnen(name, _w, (d)=>saveObj(d)); return; }
+}
 // wochentage aus erstem Revier-Block (falls vorhanden), sonst leer
 const firstRev = existingReviere[0];
 const wt = firstRev ? {...(firstRev.wochentage||{})} : {};
@@ -4030,6 +4306,11 @@ if(kdIdx >= 0){
     email:o.email||'',kurzinfo:o.kurzinfo||'',standorte:[o.name],
     status:o.status||'aktiv',aktiv:o.aktiv!==false});
 }
+// v160: erst die Stichtage setzen, dann die Stunden spiegeln
+const _uebMA = _uebergabe ? _uebAnwenden(o.name, _uebergabe) : [];
+// v159: Revier-Stunden in die betroffenen Mitarbeiter uebertragen
+const _spiegel = spiegelRevierZuMA(o, _alteReviere);
+_uebMA.forEach(m=>{ if(_spiegel.geaendert.indexOf(m)<0) _spiegel.geaendert.push(m); });
 // Alphabetisch halten
 kunden.sort((a,b)=>(a.kurzname||a.vollname||a.name||'').localeCompare(b.kurzname||b.vollname||b.name||'','de'));
 obj.sort((a,b)=>(a.name||'').localeCompare(b.name||'','de'));
@@ -4048,11 +4329,21 @@ setSyncState('syncing','Speichert…');
   }
   Promise.all([
     supaSave('objekte',[o]),
-    _kdToSave.length ? supaSave('kunden',_kdToSave) : Promise.resolve()
+    _kdToSave.length ? supaSave('kunden',_kdToSave) : Promise.resolve(),
+    _spiegel.geaendert.length ? supaSave('mitarbeiter',_spiegel.geaendert) : Promise.resolve()
   ]).then(()=>{
     setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
     _dirty=false;
-    renderObj();closeOMandReturn();showAlert(eOid?'Kunde gespeichert ✓':'Neuer Kunde angelegt ✓');
+    renderObj();closeOMandReturn();
+    let _msg = eOid?'Kunde gespeichert ✓':'Neuer Kunde angelegt ✓';
+    if(_spiegel.geaendert.length) _msg += ' · Stunden an '+_spiegel.geaendert.length+' Mitarbeiter übertragen'
+      + (_spiegel.angelegt.length?' ('+_spiegel.angelegt.length+' neu zugeordnet)':'');
+    if(_uebergabe && _uebergabe.length) _msg += ' · '+_uebergabe.length+' Übergabe'
+      +(_uebergabe.length>1?'n':'')+' eingetragen';
+    showAlert(_msg);
+    if(!_uebergabe && _spiegel.verwaist.length) setTimeout(()=>showAlert(
+      '⚠ Ohne Revier, Stunden stehen aber noch beim Mitarbeiter: '+_spiegel.verwaist.join(', ')
+      +' – bitte dort prüfen.','#c05621'), 1400);
   }).catch(e=>{
     setSyncState('error','Speicherfehler!');
     showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e');
@@ -4818,6 +5109,28 @@ function _kdMaVergleich(o, i){
   const k = gObj(o.kunde);
   const box = 'margin-bottom:6px;border:1px solid var(--border);border-radius:var(--r);background:var(--s1);padding:7px 9px';
   if (!k) return '';
+  // v162: Ohne laufenden Einsatz bzw. ohne eigenes Revier ist ein Vergleich
+  // sinnlos – vorher wurde gegen die Summe ALLER Reviere gerechnet und
+  // eine Abweichung von z. B. -50 h/Wo rot angezeigt.
+  const _mkV   = getAM();
+  const _aktiv = _objAktivAm(o, _monatsEnde(_mkV));
+  const _revZu = _kdRevierFuerMA(o.kunde, eMAid, o.revier);
+  if (!_aktiv) {
+    const _bisTxt = o.einsatz_bis ? new Date(o.einsatz_bis).toLocaleDateString('de-DE') : '';
+    const _abTxt  = o.einsatz_ab  ? new Date(o.einsatz_ab).toLocaleDateString('de-DE')  : '';
+    return '<div style="' + box + ';font-size:11px;color:var(--muted)">'
+      + (o.einsatz_bis
+          ? '\u23f9 Einsatz <strong>beendet am ' + _bisTxt + '</strong>'
+          : '\u23f8 Einsatz <strong>beginnt erst am ' + _abTxt + '</strong>')
+      + ' \u2013 dieser Einsatzort z\u00e4hlt in ' + _mkV + ' nicht mit. '
+      + 'Die Stunden bleiben f\u00fcr die Vergangenheit stehen, deshalb kein Vergleich.'
+      + '</div>';
+  }
+  if (!_revZu) {
+    return '<div style="' + box + ';font-size:11px;color:var(--orange)">\u26a0 Dieser Mitarbeiter steht beim Kunden '
+      + '<strong>in keinem Revier</strong> \u2013 kein Vergleich m\u00f6glich. '
+      + '<button class="btn-i btn-sm" style="font-size:10px;padding:2px 7px" onclick="openOMfromMAM(\'' + String(o.kunde).replace(/'/g, "\\'") + '\')">Beim Kunden eintragen</button></div>';
+  }
   const q = _kdZeitenFuerMA(o.kunde, eMAid, o.revier);
   if (!q) {
     return '<div style="' + box + ';font-size:11px;color:var(--muted)">\u2696\ufe0f Beim Kunden sind noch <strong>keine Revier-Zeiten</strong> hinterlegt \u2013 kein Vergleich m\u00f6glich. '
@@ -4927,7 +5240,7 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
   return `<div class="obj-row">
 <div class="obj-row-head" style="margin-bottom:6px">
   <span class="obj-nr">Objekt ${i+1}</span>
-  ${i>0?`<button class="btn-d btn-sm" onclick="rmObj(${i})" style="margin-left:auto;font-size:11px;padding:2px 8px">✕ entfernen</button>`:''}
+  <button class="btn-d btn-sm" onclick="rmObj(${i})" style="margin-left:auto;font-size:11px;padding:2px 8px">✕ entfernen</button>
 </div>
 <!-- Zeile 1: Kunde + €/Std + Modell -->
 <div style="display:grid;grid-template-columns:minmax(0,2.5fr) minmax(0,1fr) minmax(0,1.6fr);gap:7px;margin-bottom:6px;align-items:end">
@@ -5755,7 +6068,23 @@ if(o)openOM(o.id);
 else{const n={id:'obj_'+Date.now(),name,vollname:'',kundennummer:'',adresse:'',telefon:'',email:'',kurzinfo:'',notiz:'',wochentage:WT0(),aktiv:true,status:'aktiv',_isNew:true};obj.push(n);openOM(n.id);/*saveAll nur bei Speichern*/}
 }
 function addObj(){mao.push({kunde:'',modell:'arbeitstage',std_monat:'',std_tag:'',stundenlohn:'',lohn_fest:'',wochentage:WT0(),arbtage_monat:{}});renderMAO();}
-function rmObj(i){if(mao.length===1)return;mao.splice(i,1);renderMAO();}
+// v162: Auch das erste und das letzte Objekt duerfen entfernt werden.
+// Vorher sperrte i>0 im Markup den ersten Eintrag und mao.length===1 den
+// letzten – dadurch blieben Alt-Zuordnungen dauerhaft haengen.
+function rmObj(i){
+  const o = mao[i];
+  if(!o) return;
+  const nam = o.kunde || 'Objekt '+(i+1);
+  const wo  = _wtWoSumme(o.wochentage||{});
+  let msg = 'Einsatzort "'+nam+'" aus diesem Mitarbeiter entfernen?';
+  if(wo > 0) msg += '\n\nAchtung: Hier sind noch '+wo+' h/Wo hinterlegt.';
+  if(o.einsatz_bis) msg += '\n\nDer Einsatz ist bis '+new Date(o.einsatz_bis).toLocaleDateString('de-DE')
+    +' begrenzt. Beim Entfernen gehen diese Stunden auch fuer die Vergangenheit verloren.';
+  else msg += '\n\nBesser: statt entfernen ein "Einsatz bis"-Datum setzen. Dann bleiben die bereits geleisteten Stunden fuer die Abrechnung erhalten.';
+  if(!confirm(msg)) return;
+  mao.splice(i,1);
+  renderMAO();
+}
 function renderMTabs(m){
 const md=m.monats_daten||{};
 const _jOff=Math.floor(ami/12)*12; // v127: Offset auf das aktive Jahr
@@ -8392,8 +8721,17 @@ function closeDashModal(){
   if(document.getElementById('tab-dashboard')?.classList.contains('active')) renderDash();
 }
 function showAbrechnungModal(){
-  _abrMk=getAM();
-  openDashModal('🧾 Sondereinsätze abrechnen', 'Einsätze prüfen und als berechnet markieren', '<div id="dash-abr-c"></div>');
+  _abrMk=getAM(); _nuAbrMk=getAM(); _abrTab='ma';
+  const nuTab = tmIstBuero()
+    ? `<div id="abr-tab-nu" onclick="abrSetTab('nu')" style="cursor:pointer;padding:7px 4px;font-size:13px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent">🏢 Nachunternehmer-Aufträge</div>`
+    : '';
+  openDashModal('🧾 Abrechnung', 'Einsätze prüfen und abschließen',
+    `<div style="display:flex;gap:18px;border-bottom:1px solid var(--border);margin-bottom:14px">
+       <div id="abr-tab-ma" onclick="abrSetTab('ma')" style="cursor:pointer;padding:7px 4px;font-size:13px;font-weight:700;color:var(--orange);border-bottom:2px solid var(--orange)">⚡ Mitarbeiter</div>
+       ${nuTab}
+     </div>
+     <div id="dash-abr-c"></div>
+     <div id="dash-nuabr-c" style="display:none"></div>`);
   renderAbrechnung();
 }
 function _dashMAOpen(id, kalHeute){ closeDashModal(); showTab('liste'); setTimeout(()=>openMAM(id, !!kalHeute),60); }
@@ -11932,6 +12270,9 @@ const TM_KATEGORIEN = ['Unterhaltsreinigung','Glasreinigung','Grundreinigung',
   'Bauendreinigung','Fassade','Begehung/Termin','Sonstiges'];
 
 function tmIstBuero(){ return _currentRolle==='superadmin' || _currentRolle==='admin'; }
+// v158: Ein OL darf ausschliesslich seine eigenen Termine sehen und aendern.
+function tmEigen(t){ return !!(t && _currentUid && t.erstellt_uid && String(t.erstellt_uid)===String(_currentUid)); }
+function tmDarfAendern(t){ return tmIstBuero() || tmEigen(t); }
 function tmE(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function tmIso(d){ const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
 function tmDeDat(iso){ if(!iso) return ''; const t=iso.split('-'); return t[2]+'.'+t[1]+'.'+t[0]; }
@@ -11973,7 +12314,7 @@ async function renderTermine(){
       <button class="btn ${_tmAnsicht==='monat'?'btn-p':'btn-o'}" style="padding:4px 10px" onclick="_tmAnsicht='monat';tmRenderBody()">Monat</button>
       <button class="btn ${_tmAnsicht==='liste'?'btn-p':'btn-o'}" style="padding:4px 10px" onclick="_tmAnsicht='liste';tmRenderBody()">Liste</button>
     </div>
-    ${tmIstBuero()?'<button class="btn btn-p" onclick="tmOpen(null)">+ Neuer Termin</button>':''}
+    <button class="btn btn-p" onclick="tmOpen(null)">+ Neuer Termin</button>
     ${tmIstBuero()?'<button class="btn btn-o" onclick="tmImportOpen()" title="Termine aus einem Outlook-CSV-Export einlesen">\ud83d\udce5 Outlook-Import</button>':''}
     <div style="font-size:12px;color:var(--muted);margin-left:auto" id="tm-info"></div>
   </div>
@@ -11986,7 +12327,8 @@ function tmSichtbar(){
   const me=(_currentEmail||'').toLowerCase();
   return _tmTermine.filter(t=>{
     if(!tmIstBuero()){
-      if(!tmEmpfVon(t.id).some(e=>(e.email||'').toLowerCase()===me)) return false;
+      // v158: eigener Termin ODER als Mail-Empfaenger eingetragen
+      if(!tmEigen(t) && !tmEmpfVon(t.id).some(e=>(e.email||'').toLowerCase()===me)) return false;
     }
     if(_tmFilterNU && String(t.nu_id)!==String(_tmFilterNU)) return false;
     if(_tmSuche){
@@ -12033,7 +12375,7 @@ function tmMonatHtml(liste){
       return `<div class="tm-ev" style="background:${f.bg};border-color:${f.bd};color:${f.fg}" onclick="tmOpen(${t.id})" title="${tmE(t.betreff)}">
         ${t.zeit_von?'<b>'+tmZeit(t.zeit_von)+'</b> ':''}${tmE(t.betreff)}${ser}</div>`;
     }).join('');
-    cells+=`<div class="tm-cell${we?' tm-we':''}${iso===heute?' tm-heute':''}" ondblclick="${tmIstBuero()?`tmOpen(null,'${iso}')`:''}">
+    cells+=`<div class="tm-cell${we?' tm-we':''}${iso===heute?' tm-heute':''}" ondblclick="tmOpen(null,'${iso}')">
       <div class="tm-dnum">${d}</div>${ev}</div>`;
   }
 
@@ -12088,10 +12430,11 @@ function tmListeHtml(liste){
 
 // ── DIALOG ───────────────────────────────────────────────
 function tmOpen(id, vorDatum){
-  if(!tmIstBuero() && id===null) return;
   const t = id ? _tmTermine.find(x=>x.id===id) : null;
   if(id && !t) return;
-  const ro = !tmIstBuero();
+  // v158: Buero darf alles. Ein OL darf neue Termine anlegen und seine eigenen aendern.
+  const buero = tmIstBuero();
+  const ro = !buero && !(t ? tmEigen(t) : true);
   const emp = t ? tmEmpfVon(t.id) : [];
   const serie = t && t.serie_id ? tmSerieVon(t.serie_id) : null;
   const heute = vorDatum || tmIso(new Date());
@@ -12130,6 +12473,7 @@ function tmOpen(id, vorDatum){
       <textarea id="tm-block" rows="7" ${ro?'disabled':''} placeholder="Auftraggeber&#10;Ansprechpartner / Telefon / Mobil&#10;Zusatzinfo: was der Nachunternehmer erledigen soll">${t?tmE(t.auftraggeber_block):''}</textarea>
     </div>
 
+    <div id="tm-buero-teil" style="${buero?'display:contents':'display:none'}">
     <div class="tm-sep" style="grid-column:1/-1">Nachunternehmer und Abrechnung</div>
     <div class="tm-row"><label>Nachunternehmer</label><select id="tm-nu" onchange="tmNuWechsel()" ${ro?'disabled':''}>${nuOpt}</select></div>
     <div class="tm-row"><label>Rechnung durch</label>
@@ -12138,6 +12482,14 @@ function tmOpen(id, vorDatum){
       </select>
       <div class="tm-hint" id="tm-rech-hint"></div>
     </div>
+
+    ${(t && t.nu_id && tmIstBuero()) ? `<div class="tm-row" style="grid-column:1/-1">
+      <div class="tm-vorschau" style="${t.abgerechnet?'background:var(--gbg);border-color:var(--gbd);color:var(--green)':'background:var(--obg);border-color:var(--obd);color:var(--orange)'}">
+        ${t.abgerechnet
+          ? '✅ Abgerechnet' + (t.abgerechnet_von?' von '+tmE(t.abgerechnet_von):'')
+          : '🧾 Muss noch abgerechnet werden'}
+        <span style="opacity:.75"> — abhaken unter Abrechnung → Nachunternehmer-Aufträge</span>
+      </div></div>` : ''}
 
     <div class="tm-sep" style="grid-column:1/-1">Mail geht an</div>
     <div class="tm-row" style="grid-column:1/-1">
@@ -12148,20 +12500,23 @@ function tmOpen(id, vorDatum){
       <div class="tm-hint">Der gewählte Nachunternehmer wird automatisch ergänzt. Nur wer hier steht (oder Büro ist), sieht den Termin.</div>
     </div>
 
-    ${t?'':`<div class="tm-sep" style="grid-column:1/-1">Serientermin</div>
+    ${t?'':`<div class="tm-sep" style="grid-column:1/-1">Serientermin (befristeter Auftrag)</div>
     <div class="tm-row" style="grid-column:1/-1">
       <label class="tm-chk" style="margin-bottom:8px"><input type="checkbox" id="tm-serie-an" onchange="tmSerieToggle()"> Als Serie anlegen</label>
-      <div id="tm-serie-box" style="display:none;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+      <div id="tm-serie-box" style="display:none;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
         <div><label>Rhythmus</label><select id="tm-rhythmus" onchange="tmSerieVorschau()">
           <option value="woechentlich">wöchentlich</option>
           <option value="2woechentlich">alle 2 Wochen</option>
           <option value="taeglich">täglich (Mo–Fr)</option>
           <option value="monatlich">monatlich</option></select></div>
-        <div><label>Letzter Termin</label><input type="date" id="tm-serie-ende" onchange="tmSerieVorschau()"></div>
+        <div><label>Beginn (erster Einsatz)</label><input type="date" id="tm-serie-start" onchange="tmSerieVorschau()"><div class="tm-hint" style="margin-top:3px">= Datum oben</div></div>
+        <div><label>Ende (letzter Einsatz)</label><input type="date" id="tm-serie-ende" onchange="tmSerieVorschau()"></div>
         <div style="grid-column:1/-1"><div class="tm-vorschau" id="tm-serie-info">Enddatum wählen</div></div>
+        <div style="grid-column:1/-1"><div class="tm-hint">Nach dem Ende erscheint nichts mehr im Kalender – ideal für Aufträge über einige Wochen (z. B. Treppenhaus während einer Renovierung).</div></div>
       </div>
     </div>`}
 
+    </div>
     ${serie?`<div class="tm-row" style="grid-column:1/-1"><div class="tm-vorschau">↻ Teil einer Serie: ${serie.rhythmus}, ${tmDeDat(serie.start_datum)} bis ${tmDeDat(serie.end_datum)}</div></div>`:''}
   </div>
 
@@ -12169,17 +12524,18 @@ function tmOpen(id, vorDatum){
     <div style="display:flex;gap:6px">
       ${t?`<button class="btn btn-o" onclick="tmIcsDownload(${t.id})">📅 .ics laden</button>`:''}
       ${t&&tmIstBuero()?`<button class="btn btn-o" onclick="tmMail(${t.id})">✉ Mail senden</button>`:''}
-      ${t&&tmIstBuero()?`<button class="btn btn-o" style="color:var(--red)" onclick="tmDelete(${t.id})">🗑 Löschen</button>`:''}
+      ${t&&(buero||tmEigen(t))?`<button class="btn btn-o" style="color:var(--red)" onclick="tmDelete(${t.id})">🗑 Löschen</button>`:''}
     </div>
     <div style="display:flex;gap:6px">
       <button class="btn btn-o" onclick="closeDashModal()">Schließen</button>
-      ${ro?'':`<button class="btn btn-p" id="tm-save-btn" onclick="tmSave()">💾 Speichern${t?'':' und senden'}</button>`}
+      ${ro?'':`<button class="btn btn-p" id="tm-save-btn" onclick="tmSave()">💾 Speichern${(t||!buero)?'':' und senden'}</button>`}
     </div>
   </div>`;
 
   const sub = t
     ? 'angelegt von '+(t.erstellt_von||'?')+(t.geaendert_von?' · zuletzt geändert '+t.geaendert_von:'')
-    : 'Büro sieht alles – die Haken steuern nur den Mailversand';
+    : (buero ? 'Büro sieht alles – die Haken steuern nur den Mailversand'
+             : 'Nur für dich sichtbar – es wird keine Mail verschickt');
   openDashModal(t?'📅 Termin bearbeiten':'📅 Neuer Termin', sub, body);
   tmNuWechsel(true);
 }
@@ -12187,7 +12543,13 @@ function tmOpen(id, vorDatum){
 function tmSerieToggle(){
   const an=document.getElementById('tm-serie-an').checked;
   document.getElementById('tm-serie-box').style.display=an?'grid':'none';
-  if(an) tmSerieVorschau();
+  if(an){
+    // Beginn = oberes Datum, wird gespiegelt und ist hier nur zur Kontrolle sichtbar
+    const start=document.getElementById('tm-serie-start');
+    const oben=document.getElementById('tm-datum');
+    if(start){ start.value=oben.value; start.readOnly=true; oben.oninput=()=>{ start.value=oben.value; tmSerieVorschau(); }; }
+    tmSerieVorschau();
+  }
 }
 
 function tmSerieDaten(){
@@ -12210,9 +12572,11 @@ function tmSerieDaten(){
 function tmSerieVorschau(){
   const el=document.getElementById('tm-serie-info'); if(!el) return;
   const d=tmSerieDaten();
-  el.innerHTML = d.length
-    ? `↻ <b>${d.length} Termine</b> werden angelegt · ${tmDeDat(d[0])} bis ${tmDeDat(d[d.length-1])} · <b>eine</b> Mail mit Serien-Kalendereintrag`
-    : 'Enddatum wählen';
+  if(!d.length){ el.innerHTML='Ende (letzter Einsatz) wählen'; return; }
+  const t0=new Date(d[0]+'T12:00:00'), t1=new Date(d[d.length-1]+'T12:00:00');
+  const wochen=Math.max(1, Math.round((t1-t0)/(7*864e5))+1);
+  el.innerHTML = `↻ <b>${d.length} Einsätze</b> über <b>${wochen} Woche${wochen>1?'n':''}</b> · ${tmDeDat(d[0])} bis ${tmDeDat(d[d.length-1])}`
+    + ` · danach endet die Serie automatisch · <b>eine</b> Mail`;
 }
 
 function tmNuWechsel(init){
@@ -12287,8 +12651,14 @@ async function tmSave(){
       await supaFetch('termin_empfaenger','DELETE',null,'termin_id=eq.'+id);
       if(empf.length) await tmEmpfInsert(Number(id),empf);
       await tmLog(Number(id),'geaendert');
-      showAlert('✅ Termin gespeichert. Empfänger werden benachrichtigt.');
-      tmMail(Number(id),true);
+      // v155: beim Ändern nachfragen, ob eine Update-Mail rausgeht
+      const empfCount=empf.length;
+      if(empfCount && confirm('Änderung an die '+empfCount+' Mail-Empfänger dieses Termins senden?')){
+        showAlert('✅ Gespeichert. Empfänger werden benachrichtigt.');
+        tmMail(Number(id),true);
+      } else {
+        showAlert('✅ Termin gespeichert. (Keine Mail verschickt.)');
+      }
     } else {
       const serieAn=document.getElementById('tm-serie-an') && document.getElementById('tm-serie-an').checked;
       let serieId=null, daten=[datum];
@@ -12304,13 +12674,15 @@ async function tmSave(){
         serieId=rows[0].id;
       }
       const neu=daten.map(d=>Object.assign({},basis,{
-        datum:d, serie_id:serieId, erstellt_von:_currentUser||_currentEmail
+        datum:d, serie_id:serieId, erstellt_von:_currentUser||_currentEmail,
+        erstellt_uid:_currentUid
       }));
       const angelegt=await tmInsertReturn('termine',neu);
       for(const r of angelegt){ if(empf.length) await tmEmpfInsert(r.id,empf); }
       await tmLog(angelegt[0].id,'angelegt');
       showAlert('✅ '+angelegt.length+' Termin'+(angelegt.length>1?'e':'')+' angelegt.');
-      tmMail(angelegt[0].id,true);
+      // v158: ohne Empfaenger keine Mail (OL-Termine sind rein privat)
+      if(empf.length) tmMail(angelegt[0].id,true);
     }
     closeDashModal();
     _tmLoaded=false; await renderTermine();
@@ -12440,6 +12812,8 @@ let _tmImp = [];
 function tmImportOpen(){
   if(!tmIstBuero()) return;
   const katOpt=TM_KATEGORIEN.map(k=>`<option>${k}</option>`).join('');
+  const nuOpt='<option value="">— keiner —</option>'+_tmNU.map(n=>`<option value="${n.id}">${tmE(n.name)}</option>`).join('');
+  const heuteIso=tmIso(new Date());
   openDashModal('📥 Termine aus Outlook importieren','CSV-Export einlesen – es werden keine Mails verschickt',`
   <div style="font-size:13px;line-height:1.6;background:var(--s1);border-radius:var(--r);padding:12px 14px;margin-bottom:14px">
     <b>So exportierst du aus Outlook:</b><br>
@@ -12451,6 +12825,12 @@ function tmImportOpen(){
     <div class="tm-row"><label>CSV-Datei</label>
       <input type="file" id="tm-imp-file" accept=".csv,.txt" onchange="tmImportFile(event)"></div>
     <div class="tm-row"><label>Kategorie für alle</label><select id="tm-imp-kat">${katOpt}</select></div>
+    <div class="tm-row"><label>Termine ab</label>
+      <input type="date" id="tm-imp-ab" value="${heuteIso}" onchange="tmImportBuild()">
+      <div class="tm-hint">Alles vor diesem Datum wird übersprungen. Zum Nachholen einfach zurückstellen.</div></div>
+    <div class="tm-row" style="grid-column:1/-1"><label>Nachunternehmer, wenn nicht erkannt</label>
+      <select id="tm-imp-nu" onchange="tmImportBuild()">${nuOpt}</select>
+      <div class="tm-hint">Steht in der Teilnehmerzeile nur ein Name ohne E-Mail, greift diese Vorgabe.</div></div>
   </div>
   <div id="tm-imp-status" style="font-size:13px;color:var(--muted);margin:12px 0"></div>
   <div id="tm-imp-roh" style="display:none;margin-bottom:12px">
@@ -12521,6 +12901,35 @@ function tmPZeit(s){
 }
 function tmMails(s){
   return (String(s||'').match(/[\w.+-]+@[\w.-]+\.\w{2,}/g)||[]).map(x=>x.toLowerCase());
+}
+
+// v158: Outlook schreibt in die Teilnehmerzeile oft nur Klarnamen ohne E-Mail
+// (z. B. "Cahit Günbeyi;'ACS - Richter'"). Deshalb zusaetzlich ueber den Namen suchen.
+function tmImpNorm(s){
+  return String(s||'').toLowerCase()
+    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+    .replace(/[^a-z0-9]+/g,' ').trim();
+}
+function tmImpWorte(s){ return tmImpNorm(s).split(' ').filter(w=>w.length>=4); }
+const TM_IMP_STOP = new Set(['acs','adler','richter','romano','allcleanservice','clean','service',
+  'services','gmbh','gbr','firma','gebaeudeservice','gebaeudereinigung','reinigung','herr','frau']);
+function tmNuAusText(txt){
+  const worte=new Set(tmImpWorte(txt));
+  if(!worte.size) return null;
+  let best=null, bestN=0;
+  for(const n of _tmNU){
+    let treffer=0;
+    for(const w of tmImpWorte((n.name||'')+' '+(n.ansprechpartner||''))){
+      if(!TM_IMP_STOP.has(w) && worte.has(w)) treffer++;
+    }
+    if(treffer>bestN){ bestN=treffer; best=n; }
+  }
+  return best;
+}
+function tmRkAusText(txt){
+  const s=tmImpNorm(txt);
+  for(const k of ['adler','richter','romano']) if(s.indexOf(k)>=0) return k;
+  return '';
 }
 
 function tmImportFile(ev){
@@ -12642,7 +13051,10 @@ function tmMapUI(){
 function tmImportBuild(){
   const st=document.getElementById('tm-imp-status2');
   const m=_tmImpMap, g=(r,k)=> (m[k]>=0 ? (r[m[k]]||'') : '');
-  const heute=tmIso(new Date());
+  const abEl=document.getElementById('tm-imp-ab');
+  const ab=(abEl && abEl.value) ? abEl.value : tmIso(new Date());
+  const fbNuId=(document.getElementById('tm-imp-nu')||{}).value||'';
+  const fbNu=fbNuId?tmNuById(Number(fbNuId)):null;
   const rkMail={'adler@allcleanservice.de':'adler','richter@allcleanservice.de':'richter','romano@allcleanservice.de':'romano'};
   _tmImp=[]; let alt=0, dup=0, ohne=0;
 
@@ -12650,7 +13062,7 @@ function tmImportBuild(){
     const betreff=String(g(r,'betreff')).trim();
     const datum=tmPDat(g(r,'datum'));
     if(!betreff || !datum){ ohne++; continue; }
-    if(datum<heute){ alt++; continue; }
+    if(datum<ab){ alt++; continue; }
 
     const ganz=/wahr|ja|true|ein|^1$/i.test(String(g(r,'gt')).trim());
     const mails=tmMails(g(r,'teil'));
@@ -12660,6 +13072,11 @@ function tmImportBuild(){
       const tr=_tmNU.find(n=>(n.email||'').toLowerCase()===x);
       if(tr) nu=tr;
     }
+    // v158: Reihenfolge – E-Mail, dann Klarname, dann Vorgabe aus dem Dialog
+    const teilTxt=String(g(r,'teil'));
+    if(!nu) nu=tmNuAusText(teilTxt);
+    if(!nu && fbNu) nu=fbNu;
+    if(!rk) rk=tmRkAusText(teilTxt);
     if(!rk && nu && nu.rechnung_durch) rk=nu.rechnung_durch;
     const doppelt=_tmTermine.some(t=>t.datum===datum && (t.betreff||'').trim()===betreff);
     if(doppelt) dup++;
@@ -12670,8 +13087,9 @@ function tmImportBuild(){
       mails, nu, rk, doppelt});
   }
 
-  if(st) st.innerHTML=`<b>${_tmImp.length}</b> künftige Termine`
-    + (alt?` · ${alt} in der Vergangenheit übersprungen`:'')
+  _tmImp.sort((a,b)=> a.datum<b.datum?-1 : a.datum>b.datum?1 : a.betreff.localeCompare(b.betreff));
+  if(st) st.innerHTML=`<b>${_tmImp.length}</b> Termine ab ${tmDeDat(ab)}`
+    + (alt?` · ${alt} davor übersprungen`:'')
     + (ohne?` · ${ohne} ohne Betreff oder Datum`:'')
     + (dup?` · <span style="color:var(--orange)">${dup} mögliche Dubletten, nicht angehakt</span>`:'');
   tmImportVorschau();
@@ -12698,6 +13116,126 @@ function tmImportVorschau(){
       <th style="padding:6px 8px">Sichtbar für</th>
     </tr></thead><tbody>${rows}</tbody></table></div>
     <div class="tm-hint">Orange = ein Termin mit gleichem Datum und Betreff existiert bereits.</div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+// v157 – NACHUNTERNEHMER-AUFTRÄGE (offen / erledigt)
+// Keine Abrechnung in MM. Nur festhalten, welcher Auftrag noch
+// abgerechnet werden muss. Zugriff nur Büro (Romano, Adler, Richter).
+// ══════════════════════════════════════════════════════════
+
+let _nuAbrMk     = null;
+let _nuAbrFilter = 'offen';
+let _abrTab      = 'ma';          // 'ma' | 'nu'
+
+function _nuAbrMkGet(){ return _nuAbrMk || getAM(); }
+function _nuAbrShiftMonth(d){
+  const i=MK.indexOf(_nuAbrMkGet());
+  _nuAbrMk=MK[Math.min(MK.length-1,Math.max(0,i+d))];
+  renderNuAbrechnung();
+}
+function nuAbrSetFilter(f){ _nuAbrFilter=f; renderNuAbrechnung(); }
+
+// Jeder Termin mit Nachunternehmer ist ein abzurechnender Auftrag.
+function _nuAbrCollect(mk){
+  return _tmTermine
+    .filter(t=>t.nu_id && String(t.datum||'').slice(0,7)===mk)
+    .map(t=>{
+      const nu=tmNuById(t.nu_id);
+      return { id:t.id, datum:t.datum, betreff:t.betreff||'', ort:t.ort||'',
+        nuName:nu?nu.name:'—', rech:t.rechnung_durch||'—',
+        erledigt:!!t.abgerechnet, wer:t.abgerechnet_von||'' };
+    })
+    .sort((a,b)=> a.datum.localeCompare(b.datum));
+}
+function _nuAbrOffenCount(mk){ return _nuAbrCollect(mk).filter(e=>!e.erledigt).length; }
+
+function abrSetTab(tab){
+  _abrTab=tab;
+  const ma=document.getElementById('abr-tab-ma');
+  const nu=document.getElementById('abr-tab-nu');
+  const cma=document.getElementById('dash-abr-c');
+  const cnu=document.getElementById('dash-nuabr-c');
+  const akt=(el,on,farbe)=>{ if(!el) return;
+    el.style.borderBottom = on?('2px solid '+farbe):'2px solid transparent';
+    el.style.color = on?farbe:'var(--muted)';
+    el.style.fontWeight = on?'700':'500'; };
+  akt(ma, tab==='ma', 'var(--orange)');
+  akt(nu, tab==='nu', 'var(--ol-m)');
+  if(tab==='nu'){ if(cma)cma.style.display='none'; if(cnu)cnu.style.display='block'; renderNuAbrechnung(); }
+  else          { if(cnu)cnu.style.display='none'; if(cma)cma.style.display='block'; renderAbrechnung(); }
+}
+
+async function renderNuAbrechnung(){
+  const host=document.getElementById('dash-nuabr-c'); if(!host) return;
+  if(!tmIstBuero()){ host.innerHTML='<div style="padding:24px;text-align:center;color:var(--muted)">Kein Zugriff.</div>'; return; }
+  if(!_tmLoaded){
+    host.innerHTML='<div style="padding:24px;text-align:center;color:var(--muted)">Wird geladen…</div>';
+    try{ await tmLoad(); }
+    catch(e){ host.innerHTML='<div style="padding:24px;color:var(--red)">Fehler: '+tmE(e.message)+'</div>'; return; }
+  }
+
+  const mk=_nuAbrMkGet();
+  const all=_nuAbrCollect(mk);
+  const offen=all.filter(e=>!e.erledigt), fertig=all.filter(e=>e.erledigt);
+  const list=_nuAbrFilter==='offen'?offen:_nuAbrFilter==='erledigt'?fertig:all;
+
+  const mn=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const monLabel=mn[parseInt(mk.slice(5,7),10)-1]+' '+mk.slice(0,4);
+  const pill=(f,txt,on)=>`<span onclick="nuAbrSetFilter('${f}')" style="cursor:pointer;font-size:12px;font-weight:${on?600:400};padding:5px 12px;border-radius:6px;${on?'background:var(--olm-bg);color:var(--ol-m);border:1px solid var(--ol-m)':'color:var(--muted);border:1px solid var(--border)'}">${txt}</span>`;
+
+  let h=`<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:8px">
+      <button type="button" onclick="_nuAbrShiftMonth(-1)" style="width:32px;height:32px;border:1px solid var(--border);background:var(--white);border-radius:6px;cursor:pointer;font-size:15px">‹</button>
+      <span style="font-size:15px;font-weight:600;min-width:110px;text-align:center">${monLabel}</span>
+      <button type="button" onclick="_nuAbrShiftMonth(1)" style="width:32px;height:32px;border:1px solid var(--border);background:var(--white);border-radius:6px;cursor:pointer;font-size:15px">›</button>
+    </div>
+    <div style="display:flex;gap:6px">
+      ${pill('offen','Offen',_nuAbrFilter==='offen')}
+      ${pill('erledigt','Erledigt',_nuAbrFilter==='erledigt')}
+      ${pill('alle','Alle',_nuAbrFilter==='alle')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px">
+    <div style="background:var(--s1);border-radius:8px;padding:12px 14px"><div style="font-size:12px;color:var(--muted)">Noch abzurechnen</div><div style="font-size:24px;font-weight:700;color:var(--ol-m)">${offen.length}</div></div>
+    <div style="background:var(--s1);border-radius:8px;padding:12px 14px"><div style="font-size:12px;color:var(--muted)">Erledigt</div><div style="font-size:24px;font-weight:700;color:var(--green)">${fertig.length}</div></div>
+  </div>`;
+
+  if(!list.length){
+    host.innerHTML=h+`<div style="text-align:center;color:var(--muted2);padding:30px;font-size:13px">Keine ${_nuAbrFilter==='erledigt'?'erledigten':(_nuAbrFilter==='offen'?'offenen':'')} Nachunternehmer-Aufträge in ${monLabel}.</div>`;
+    return;
+  }
+
+  h+=`<table style="width:100%;border-collapse:collapse;font-size:13px;border:1px solid var(--border);border-radius:8px;overflow:hidden">
+    <thead><tr style="background:var(--s1);text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase">
+      <th style="padding:7px 10px;width:34px"></th><th style="padding:7px 10px">Datum</th>
+      <th style="padding:7px 10px">Auftrag</th><th style="padding:7px 10px">Nachunternehmer</th>
+      <th style="padding:7px 10px">Rechnung durch</th>
+    </tr></thead><tbody>`;
+  list.forEach(e=>{
+    h+=`<tr style="border-top:1px solid var(--border);${e.erledigt?'opacity:.55':''}">
+      <td style="padding:7px 10px;text-align:center">
+        <input type="checkbox" ${e.erledigt?'checked':''} onchange="nuAbrMark(${e.id},this.checked)" title="als erledigt abhaken" style="width:17px;height:17px;cursor:pointer"></td>
+      <td style="padding:7px 10px;white-space:nowrap">${tmDeDat(e.datum)}</td>
+      <td style="padding:7px 10px;${e.erledigt?'text-decoration:line-through':''}">${tmE(e.betreff)}<div style="font-size:11px;color:var(--muted);text-decoration:none">${tmE(e.ort)}</div></td>
+      <td style="padding:7px 10px;font-size:12px">🏢 ${tmE(e.nuName)}</td>
+      <td style="padding:7px 10px;font-size:12px">${tmE(e.rech)}${e.erledigt&&e.wer?`<div style="font-size:11px;color:var(--green)">✅ ${tmE(e.wer)}</div>`:''}</td>
+    </tr>`;
+  });
+  h+=`</tbody></table>`;
+  host.innerHTML=h;
+}
+
+async function nuAbrMark(id, erledigt){
+  if(!CAN.billSonder()){ alert('Nur die Buchhaltung darf Aufträge abhaken.'); renderNuAbrechnung(); return; }
+  try{
+    const patch={ abgerechnet:!!erledigt,
+      abgerechnet_am: erledigt?new Date().toISOString():null,
+      abgerechnet_von: erledigt?(_currentUser||_currentEmail):null };
+    await supaFetch('termine','PATCH',patch,'id=eq.'+id);
+    const t=_tmTermine.find(x=>x.id===id); if(t) Object.assign(t,patch);
+    renderNuAbrechnung();
+  }catch(e){ showAlert('⚠ Fehler: '+e.message,'#c81e1e'); renderNuAbrechnung(); }
 }
 
 async function tmImportRun(){
