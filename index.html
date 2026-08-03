@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v162</title>
+<title>MitarbeiterManager v165</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1107,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v162</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v165</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -2953,6 +2953,10 @@ function maOSollMA(m, o, monatKey, maAbrModell) {
   // GENAU diesem Objekt abgezogen, nicht mehr anteilig vom Gesamt-Soll aller Objekte.
   const objAbzug = _objUnbezahltStundenAbzug(o, effektivO.wochentage, monatKey);
   if (objAbzug > 0) ergebnis = Math.max(0, Math.round((ergebnis - objAbzug) * 100) / 100);
+  // v163: MA-weite unbezahlte Kalendertage exakt nach Wochentagsstunden
+  // v164: effektivO mitgeben, damit Einsatzzeitraum und Revier-Liste geprueft werden
+  const maAbzug = _maUnbezahltStundenAbzug(m, effektivO.wochentage, monatKey, effektivO);
+  if (maAbzug > 0) ergebnis = Math.max(0, Math.round((ergebnis - maAbzug) * 100) / 100);
   return ergebnis;
 }
 
@@ -2977,8 +2981,14 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
   let unbezahltTage = 0;
 
   // 1) Unbezahlte Tage direkt eingetragen (unbezahlter Urlaub / ruhendes Arbeitsverhaeltnis) - MA-weit, alle Objekte
-  const unbezTage = parseFloat(md.unbezahlt_tage) || 0;
-  if (unbezTage > 0) unbezahltTage += unbezTage;
+  // v163: Tage, die als Datum im Abwesenheitskalender stehen, werden hier
+  // NICHT mehr anteilig gerechnet – sie gehen exakt ueber
+  // _maUnbezahltStundenAbzug() ab. Nur pauschale Angaben ohne Datum
+  // (manuell ins Feld getippt) bleiben beim Arbeitstage-Anteil.
+  const unbezTage  = parseFloat(md.unbezahlt_tage) || 0;
+  const datierte   = _maUnbezKalenderTage(m, mk).length;
+  const pauschale  = Math.max(0, unbezTage - datierte);
+  if (pauschale > 0) unbezahltTage += pauschale;
 
   // 2) KK-Zahlung ab Datum: Arbeitstage ab diesem Datum bis Monatsende
   if (md.kk_ab_datum) {
@@ -3020,6 +3030,56 @@ function _fehlzeitAbzugFaktor(m, monatKey) {
 // für einen unbezahlten Mittwoch, nicht 1/30 des kompletten Monats-Solls).
 // wochentage: die effektiven Std-pro-Wochentag-Werte des Objekts (History-Override
 // beachten, falls vorhanden – daher als Parameter statt aus o selbst gelesen).
+// v163: Die konkreten unbezahlten Kalendertage eines Mitarbeiters (aus dem
+// Abwesenheitskalender, m.abwesenheiten[iso]==='unbezahlt') fuer einen Monat.
+function _maUnbezKalenderTage(m, monatKey) {
+  const mk = (monatKey || getAM()).slice(0, 7);
+  const ab = (m && m.abwesenheiten) || {};
+  return Object.keys(ab).filter(k => k.slice(0, 7) === mk && ab[k] === 'unbezahlt');
+}
+// v164 NEU: Faellt ein Kalendertag in den Einsatzzeitraum dieses Objekts?
+// ALTER FEHLER (v163): Der Stundenabzug fuer unbezahlte Tage lief ohne Blick auf
+// einsatz_ab / einsatz_bis. Endete ein Einsatz am 05.07. und stand am 18.07. ein
+// unbezahlter Samstag im Kalender, wurden trotzdem die vollen 8 Samstagsstunden
+// abgezogen -> Soll fiel von 8:00 auf 0:00, obwohl der MA an dem Tag bei diesem
+// Objekt gar nicht mehr beschaeftigt war. Umgekehrt genauso bei einsatz_ab.
+// JETZT: Ein Tag zaehlt nur, wenn der Einsatz an diesem Tag tatsaechlich lief.
+// ISO-Datumsstrings (YYYY-MM-DD) sind zeichenweise vergleichbar – kein Date noetig.
+function _tagImEinsatz(o, iso) {
+  if (!o) return true;
+  const ab  = String(o.einsatz_ab  || '').slice(0, 10);
+  const bis = String(o.einsatz_bis || '').slice(0, 10);
+  if (ab  && iso < ab)  return false;
+  if (bis && iso > bis) return false;
+  return true;
+}
+
+// v163: Exakter Stundenabzug fuer diese Tage – je Objekt mit dessen eigenen
+// Wochentagsstunden. Beispiel: Mitarbeiter arbeitet nur Sa 8h. Ein unbezahlter
+// Samstag zieht 8h ab, nicht 1/23 des Monatssolls (= 1,5h).
+// v164: Zusaetzlich zwei Filter – (a) Einsatzzeitraum des Objekts, siehe
+// _tagImEinsatz; (b) Tage, die schon ueber die Revier-Liste (unbezahlt_tage_liste)
+// abgezogen werden, zaehlen hier nicht noch einmal. Ohne (b) wurde derselbe Tag
+// doppelt abgezogen, wenn er in beiden Kalendern stand.
+function _maUnbezahltStundenAbzug(m, wochentage, monatKey, effO) {
+  const tage = _maUnbezKalenderTage(m, monatKey);
+  if (!tage.length) return 0;
+  const keys = ['So','Mo','Di','Mi','Do','Fr','Sa'];   // JS getDay(): 0=So..6=Sa
+  const wt = wochentage || {};
+  const objListe = new Set(((effO && effO.unbezahlt_tage_liste) || [])
+    .map(s => String(s || '').slice(0, 10)));
+  let abzug = 0;
+  tage.forEach(iso => {
+    if (!_tagImEinsatz(effO, iso)) return;   // v164 (a)
+    if (objListe.has(iso)) return;           // v164 (b)
+    const p = iso.split('-').map(Number);
+    if (!p[0] || !p[1] || !p[2]) return;
+    const d = new Date(p[0], p[1] - 1, p[2]);
+    abzug += parseFloat(wt[keys[d.getDay()]]) || 0;
+  });
+  return Math.round(abzug * 100) / 100;
+}
+
 function _objUnbezahltStundenAbzug(o, wochentage, monatKey) {
   const liste = o.unbezahlt_tage_liste || [];
   if (!liste.length) return 0;
@@ -3030,6 +3090,8 @@ function _objUnbezahltStundenAbzug(o, wochentage, monatKey) {
   let abzug = 0;
   liste.forEach(iso => {
     if (!iso || iso.slice(0, 7) !== mkPrefix) return;
+    // v164: Tage ausserhalb des Einsatzzeitraums nicht abziehen (siehe _tagImEinsatz)
+    if (!_tagImEinsatz(o, String(iso).slice(0, 10))) return;
     const p = iso.split('-').map(Number);
     if (!p[0] || !p[1] || !p[2]) return;
     // Lokales Datum (kein UTC-Shift, siehe isoLocal-Fix v122)
@@ -6300,7 +6362,20 @@ function _renderFehlzeitHinweis(m, mk) {
   const parts = [];
   if (unbez > 0) parts.push(unbez + ' unbezahlte Tage');
   if (kkDat) { const dp = kkDat.split('-'); parts.push('KK zahlt ab ' + dp[2] + '.' + dp[1] + '.' + dp[0]); }
-  el.innerHTML = '⚠️ ' + parts.join(' + ') + ' → Lohnkürzung ca. ' + proz + '% (' + Math.round((1-faktor)*arbT*10)/10 + ' AT)';
+  // v163: Bei datierten Tagen die tatsaechlich abgezogenen Stunden zeigen –
+  // die Prozentangabe war bei Mitarbeitern ohne Mo-Fr-Rhythmus irrefuehrend.
+  const _dat = _maUnbezKalenderTage(m, mk);
+  let _std = 0;
+  if (_dat.length) (m.objekte || []).forEach(ob => {
+    // v164: Objekt mitgeben – sonst zeigt der Hinweis mehr Stunden an, als
+    // tatsaechlich abgezogen werden (Tage ausserhalb des Einsatzzeitraums).
+    _std += _maUnbezahltStundenAbzug(m, ob.wochentage || {}, mk, ob);
+  });
+  _std = Math.round(_std * 100) / 100;
+  el.innerHTML = '⚠️ ' + parts.join(' + ') + ' → '
+    + (_dat.length
+        ? 'Abzug <strong>' + hhmm(_std) + ' Std.</strong> (exakt nach Wochentag)'
+        : 'Lohnkürzung ca. ' + proz + '% (' + Math.round((1-faktor)*arbT*10)/10 + ' AT)');
   el.style.display = 'block';
 }
 
@@ -8431,6 +8506,14 @@ for(let t=1;t<=_kalTageImMonat;t++){
   _kalHtml += `<span style="text-align:center;font-size:11px;padding:5px 0;border-radius:6px;${istUrlaub?'background:var(--bbg);color:var(--blue);font-weight:700':'color:var(--text2)'}">${t}</span>`;
 }
 
+// v165: Kennzahlen fuer die Vertretungs-Check-Kachel
+let _vtCheckOffen = 0, _vtCheckStd = 0;
+try {
+  const _vtc = _vtCheckDaten(getAM());
+  _vtCheckOffen = _vtc.filter(z => z.offenGes > 0 || z.ohneMA > 0).length;
+  _vtCheckStd = Math.round(_vtc.reduce((s, z) => s + z.offenGes, 0) * 100) / 100;
+} catch(e) {}
+
 // v140: Minijob-KPIs fuer Dashboard-Karte
 let _mjRot = 0, _mjWarn = 0;
 getVisibleMA().filter(x => x.minijob && x.status !== 'Ausgeschieden').forEach(x => {
@@ -8484,6 +8567,12 @@ document.getElementById('dash-c').innerHTML=`
       <div style="font-size:11px;color:var(--muted);margin-bottom:2px">DATEV offen</div>
       <div style="font-size:22px;font-weight:700">${datevOffen}</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">von ${maAktiv} aktiven MA</div>
+    </div>
+    <div class="dcard" style="cursor:pointer;padding:16px;${_vtCheckOffen>0?'border:2px solid var(--ybd);background:var(--ybg)':''}" onclick="showVtCheckModal()" title="Vertretungs-Check öffnen">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">↔</div>
+      <div style="font-size:11px;color:${_vtCheckOffen>0?'#92400e':'var(--muted)'};margin-bottom:2px;font-weight:${_vtCheckOffen>0?700:400}">Vertretungen offen</div>
+      <div style="font-size:22px;font-weight:700;color:${_vtCheckOffen>0?'#92400e':'var(--text)'}">${_vtCheckOffen}</div>
+      <div style="font-size:11px;color:${_vtCheckOffen>0?'#92400e':'var(--green)'};margin-top:2px">${_vtCheckOffen>0?_vtCheckStd+' h nicht vergeben – '+getAMShort():'✅ alles eingetragen'}</div>
     </div>
     <div class="dcard" style="cursor:pointer;padding:16px" onclick="showMinijobModal()" title="Minijob-Monitor öffnen">
       <div style="width:34px;height:34px;border-radius:10px;background:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px">💼</div>
@@ -8788,6 +8877,124 @@ function showDatevOffenModal(){
     }).join('')||'<div class="heute-empty">✅ Alle Freigaben erteilt</div>');
 }
 function _dashMonLabel(){ return getAMShort(); }
+
+// ══════════════════════════════════════════════════════════════════════
+// v165 NEU – VERTRETUNGS-CHECK
+// Frage, die MM bisher nicht beantworten konnte: "Habe ich im Juli alle
+// Vertretungen eingetragen?" Das Heute-Dashboard half dabei nicht, weil es
+// immer den echten Kalendertag nimmt, waehrend Vertretungen am eingestellten
+// ABRECHNUNGSMONAT haengen. Diese Liste arbeitet konsequent im gewaehlten
+// Monat und stellt je Mitarbeiter und Revier gegenueber:
+//   zu vertreten (aus den Fehltagen berechnet)  <->  tatsaechlich eingetragen
+// ══════════════════════════════════════════════════════════════════════
+function _vtCheckDaten(mk) {
+  const zeilen = [];
+  getVisibleMA().forEach(m => {
+    if (_maAusgeschiedenImMonat(m, mk)) return;
+    const fehltage = _vtMarkierteFehltage(m, mk);
+    const vts = ((m.monats_daten || {})[mk] || {}).vertretungen || [];
+    if (!fehltage.length && !vts.length) return;
+    const budget = _vtBudgetMap(m, mk);          // { Revier: zu vertretende Std }
+    // eingetragene Stunden je Revier (nur Zeilen mit echter MA-Verknuepfung)
+    const verg = {};
+    let ohneRevier = 0, ohneMA = 0;
+    vts.forEach(v => {
+      const std = parseFloat(v.stunden) || 0;
+      if (!v.maId && (v.maName || '')) { ohneMA++; return; }
+      if (!v.maId) return;
+      const k = (v.objekt || '').trim();
+      if (!k) { ohneRevier += std; return; }
+      verg[k] = Math.round(((verg[k] || 0) + std) * 100) / 100;
+    });
+    const reviere = [];
+    Object.keys(budget).forEach(k => {
+      const soll = budget[k], ist = verg[k] || 0;
+      if (soll <= 0 && ist <= 0) return;         // nichts zu tun, nichts drin
+      reviere.push({ revier: k, soll: soll, ist: ist,
+                     offen: Math.round((soll - ist) * 100) / 100 });
+    });
+    // Reviere, in denen etwas eingetragen ist, das MM gar nicht erwartet hat
+    Object.keys(verg).forEach(k => {
+      if (!reviere.some(r => r.revier === k)) {
+        reviere.push({ revier: k, soll: 0, ist: verg[k], offen: 0 });
+      }
+    });
+    if (!reviere.length && !ohneRevier && !ohneMA) return;
+    const sollGes = Math.round(reviere.reduce((s, r) => s + r.soll, 0) * 100) / 100;
+    const istGes  = Math.round((reviere.reduce((s, r) => s + r.ist, 0) + ohneRevier) * 100) / 100;
+    zeilen.push({ m: m, fehltage: fehltage.length, reviere: reviere,
+                  sollGes: sollGes, istGes: istGes, ohneRevier: ohneRevier, ohneMA: ohneMA,
+                  offenGes: Math.round(reviere.reduce((s, r) => s + Math.max(0, r.offen), 0) * 100) / 100 });
+  });
+  return zeilen;
+}
+
+function showVtCheckModal() {
+  const mk = getAM();
+  const daten = _vtCheckDaten(mk);
+  // Sortierung: groesste Luecke zuerst – das ist die Arbeitsliste
+  daten.sort((a, b) => (b.offenGes - a.offenGes)
+                    || ((a.m.nachname || '').localeCompare(b.m.nachname || '', 'de')));
+  const offenN = daten.filter(z => z.offenGes > 0).length;
+  const problemN = daten.filter(z => z.ohneMA > 0 || z.ohneRevier > 0).length;
+
+  const koerper = daten.map(z => {
+    const m = z.m;
+    // v165: Etikett ehrlich abstufen. Wer 20 h eingetragen hat, sie aber keinem
+    // Revier zugeordnet hat, bekommt NICHT "20 h fehlen" (die Stunden sind ja da),
+    // sondern "Revier zuordnen" – eine andere Aufgabe.
+    let badgeBg, badgeCol, badgeTxt;
+    if (z.ohneMA > 0) {
+      badgeBg = 'var(--rbg)'; badgeCol = 'var(--red)'; badgeTxt = 'Zeile prüfen';
+    } else if (z.offenGes > 0 && z.ohneRevier >= z.offenGes) {
+      badgeBg = 'var(--ybg)'; badgeCol = '#92400e'; badgeTxt = 'Revier zuordnen';
+    } else if (z.offenGes > 0 && z.istGes <= 0) {
+      badgeBg = 'var(--rbg)'; badgeCol = 'var(--red)'; badgeTxt = z.offenGes + ' h fehlen';
+    } else if (z.offenGes > 0) {
+      badgeBg = 'var(--ybg)'; badgeCol = '#92400e'; badgeTxt = z.offenGes + ' h offen';
+    } else {
+      badgeBg = 'var(--gbg)'; badgeCol = 'var(--green)'; badgeTxt = '✓ vollständig';
+    }
+    const zeilen = z.reviere.map(r => {
+      const ok = r.offen <= 0;
+      const col = ok ? 'var(--green)' : (r.ist <= 0 ? 'var(--red)' : '#92400e');
+      const txt = r.soll <= 0
+        ? r.ist + ' h eingetragen (kein Soll auf den Fehltagen)'
+        : r.ist + ' / ' + r.soll + ' h' + (ok ? '' : ' – ' + r.offen + ' h offen');
+      return '<div style="display:flex;justify-content:space-between;gap:10px;font-size:11px;padding:2px 0">'
+           + '<span style="color:var(--muted)">' + r.revier + '</span>'
+           + '<span style="color:' + col + ';font-weight:600;white-space:nowrap">' + txt + '</span></div>';
+    }).join('');
+    const hinweise = []
+      .concat(z.ohneMA > 0 ? ['⚠ ' + z.ohneMA + ' Zeile(n) ohne gewählten Mitarbeiter'] : [])
+      .concat(z.ohneRevier > 0 ? ['⚠ ' + z.ohneRevier + ' h ohne Revier zugeordnet'] : []);
+    const hinweisHtml = hinweise.length
+      ? '<div style="font-size:10px;color:var(--red);font-weight:600;margin-top:3px">' + hinweises(hinweise) + '</div>'
+      : '';
+    return '<div class="heute-entry" style="cursor:pointer;align-items:flex-start" onclick="_dashMAOpen(\'' + m.id + '\')">'
+      + '<div style="flex:1">'
+      + '<div class="heute-entry-name"><span class="olb ol-' + (m.objektleiter || '?') + '">'
+      + (m.objektleiter || '?') + '</span> ' + (m.nachname || '') + (m.vorname ? ' ' + m.vorname : '') + '</div>'
+      + '<div class="heute-entry-sub">' + z.fehltage + ' Fehltag' + (z.fehltage === 1 ? '' : 'e') + ' im Monat</div>'
+      + '<div style="margin-top:4px">' + zeilen + '</div>' + hinweisHtml
+      + '</div>'
+      + '<span class="heute-entry-badge" style="background:' + badgeBg + ';color:' + badgeCol + ';white-space:nowrap">'
+      + badgeTxt + '</span></div>';
+  }).join('');
+
+  const kopf = '<div style="padding:8px 10px;border-radius:8px;margin-bottom:10px;font-size:12px;'
+    + (offenN || problemN ? 'background:var(--ybg);color:#92400e' : 'background:var(--gbg);color:var(--green)') + '">'
+    + (offenN || problemN
+        ? '<strong>' + offenN + '</strong> Mitarbeiter mit offenen Vertretungsstunden'
+          + (problemN ? ' · <strong>' + problemN + '</strong> mit fehlerhaften Zeilen' : '')
+        : '✅ Für ' + getAMShort() + ' ist alles eingetragen.')
+    + '</div>';
+
+  openDashModal('↔ Vertretungs-Check – ' + getAMShort(),
+    'Was müsste vertreten werden, was ist eingetragen – Klick öffnet die Karte',
+    kopf + (koerper || '<div class="heute-empty">Keine Fehltage in diesem Monat.</div>'));
+}
+function hinweises(arr) { return arr.join('<br>'); }
 function showAbwTagModal(){
   openDashModal('📅 Abwesenheiten nach Tag – '+_dashMonLabel(), '🤒 Krank · 🏖 Urlaub – Klick öffnet die MA-Karte', buildMonatsUebersicht('abw'));
 }
@@ -9705,10 +9912,18 @@ function _renderVtTable() {
     const grundBg = isKrank ? 'background:#fffbeb;border-color:#fcd34d;color:#92400e' : 'background:var(--bbg);border-color:#93c5fd;color:var(--blue)';
     return '<tr style="border-bottom:1px solid var(--border)">'
       + '<td style="padding:5px 6px"><div class="ta-wrap">'
-      + '<input class="ta-inp' + (ss.maName?' ta-ok':'') + '" id="vt-ma-inp-' + i + '" placeholder="MA suchen..." value="' + (ss.maName||'').replace(/"/g,'&quot;') + '" autocomplete="off" style="width:100%"'
+      // v165: gruen nur noch bei echter Verknuepfung (maId), sonst roter Rahmen
+      + '<input class="ta-inp' + (ss.maId?' ta-ok':'') + '" id="vt-ma-inp-' + i + '" placeholder="MA suchen..." value="' + (ss.maName||'').replace(/"/g,'&quot;') + '" autocomplete="off" style="width:100%"'
       + ' oninput="taFilter(\x27vt-ma-inp-' + i + '\x27,this.value,_vtMAList(),function(v){vtPickMA(' + i + ',v)})"'
       + ' onfocus="taFilter(\x27vt-ma-inp-' + i + '\x27,this.value,_vtMAList(),function(v){vtPickMA(' + i + ',v)})"'
-      + ' onblur="taClose()" onkeydown="taKey(event,\x27vt-ma-inp-' + i + '\x27)"></div></td>'
+      + ' onblur="taClose()" onkeydown="taKey(event,\x27vt-ma-inp-' + i + '\x27)"'
+      + (!ss.maId && ss.maName ? ' style="width:100%;border:2px solid var(--red);background:var(--rbg)"' : '')
+      + '></div>'
+      // v165: Warnung, wenn ein Name nur getippt wurde
+      + (!ss.maId && ss.maName
+          ? '<div style="font-size:10px;color:var(--red);margin-top:2px;font-weight:600">⚠ Nicht aus der Liste gewählt – zählt nirgends!</div>'
+          : '')
+      + '</td>'
       + '<td style="padding:5px 6px"><div class="ta-wrap">'
       + '<input class="ta-inp' + (ss.objekt?' ta-ok':'') + '" id="vt-obj-inp-' + i + '" placeholder="Objekt (opt.)" value="' + (ss.objekt||'').replace(/"/g,'&quot;') + '" autocomplete="off" style="width:100%"'
       + ' oninput="taFilter(\x27vt-obj-inp-' + i + '\x27,this.value,_vtObjList(),function(v){vtPickObj(' + i + ',v)})"'
@@ -9891,6 +10106,18 @@ function _renderVtBudgetInfo() {
       + '</div>';
   });
   h += '</div>';
+  // v165: Zeilen ohne Revier-Zuordnung sichtbar machen. Sie zaehlen in KEINER
+  // Kachel mit – ohne diesen Hinweis meldet ein voll vergebenes Revier
+  // faelschlich "noch X h frei".
+  const _ohneObj = (_vtData || []).filter(v => (v.maId || v.maName) && !((v.objekt || '').trim()));
+  if (_ohneObj.length) {
+    const _stdOhne = Math.round(_ohneObj.reduce((s, v) => s + (parseFloat(v.stunden) || 0), 0) * 100) / 100;
+    h += '<div style="margin-top:8px;padding:7px 10px;border-radius:8px;background:var(--rbg);'
+       + 'border:1px solid var(--red);font-size:11px;color:var(--red);font-weight:600">'
+       + '⚠ ' + _ohneObj.length + ' Vertretung' + (_ohneObj.length === 1 ? '' : 'en')
+       + ' ohne Revier (' + _stdOhne + ' h) – diese Stunden werden oben in keiner Kachel mitgezählt.'
+       + '</div>';
+  }
   box.innerHTML = h;
   box.style.display = 'block';
 }
