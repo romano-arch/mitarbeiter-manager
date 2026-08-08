@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v165</title>
+<title>MitarbeiterManager v168</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -245,7 +245,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0
 .kli:last-child{border-bottom:none}
 .klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}
 #alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}
-.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff}
+.amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff;white-space:pre-line;max-width:min(430px,calc(100vw - 40px));cursor:pointer}/* FIX v166: pre-line -> mehrzeilige Meldungen bleiben lesbar; cursor -> Klick schliesst */
 .sec{display:none}
 .sec.active{display:block}
 .empty{text-align:center;padding:45px;color:var(--muted);font-size:14px}
@@ -1107,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v165</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v168</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1128,7 +1128,7 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
 
@@ -1185,7 +1185,7 @@ main{padding:14px 16px}
   <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
 </div>
 
-<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div></div></div></div>
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -9685,42 +9685,183 @@ r.readAsText(f);
 let _alertQueue = [];
 let _alertActive = false;
 let _alertTimer = null;
+let _alertCurMsg = '';
+// FIX v166: Anzeigedauer richtet sich nach der Textlaenge.
+// Alter Fehler: jede Meldung verschwand fest nach 3000ms – und wenn direkt
+// danach eine zweite Meldung kam, wurde die erste sogar schon nach 600ms
+// weggeraeumt. Lange DATEV-Fehlermeldungen waren dadurch nicht lesbar.
+// Jetzt: 2,5s Grundzeit + 55ms je Zeichen, gedeckelt auf 25s. Zusaetzlich
+// schliesst ein Klick die Meldung sofort.
+function _alertDauer(msg) {
+  const len = String(msg || '').length;
+  return Math.min(25000, Math.max(3000, 2500 + len * 55));
+}
+function _alertKurz(msg) {
+  const s = String(msg || '');
+  return s.length <= 60 && s.indexOf('\n') < 0;
+}
+function _alertClose() {
+  const box = document.getElementById('alert');
+  if (box) box.innerHTML = '';
+  if (_alertTimer) clearTimeout(_alertTimer);
+  _alertTimer = null;
+  _alertCurMsg = '';
+  _showNextAlert();
+}
 function _showNextAlert() {
   if (!_alertQueue.length) { _alertActive = false; return; }
   _alertActive = true;
   const {msg, color} = _alertQueue.shift();
   const box = document.getElementById('alert');
   if (!box) { _alertActive = false; return; }
+  _alertCurMsg = msg;
   // DOM statt innerHTML – msg wird als Text gesetzt, keine HTML-Interpretation
   box.innerHTML = '';
   const div = document.createElement('div');
   div.className = 'amsg';
   div.style.background = color;
   div.textContent = msg;
+  div.title = 'Klicken zum Schließen';
+  div.onclick = _alertClose;
   box.appendChild(div);
   if (_alertTimer) clearTimeout(_alertTimer);
   _alertTimer = setTimeout(() => {
     box.innerHTML = '';
     _alertTimer = null;
+    _alertCurMsg = '';
     _showNextAlert();
-  }, 3000);
+  }, _alertDauer(msg));
 }
 function showAlert(msg, color='#057a55') {
   _alertQueue.push({msg: String(msg||''), color});
-  // Falls schon ein Alert laeuft: kuerze dessen Anzeige auf max. 600ms Rest,
-  // damit neue Meldungen nicht zu lange warten muessen
+  // FIX v166: Eine laufende LANGE Meldung wird nicht mehr abgekuerzt.
+  // Nur kurze Bestaetigungen ("Gespeichert ✓") weichen schneller.
   if (_alertActive && _alertTimer) {
+    if (!_alertKurz(_alertCurMsg)) return;
     clearTimeout(_alertTimer);
     _alertTimer = setTimeout(() => {
       const box = document.getElementById('alert');
       if (box) box.innerHTML = '';
       _alertTimer = null;
+      _alertCurMsg = '';
       _showNextAlert();
     }, 600);
   } else if (!_alertActive) {
     _showNextAlert();
   }
 }
+// ── FIX v166: Fehlerfenster fuer blockierende Abbrueche ───────────────────
+// Alter Fehler: Wenn der DATEV-Export abbrach, kam die Begruendung als Toast
+// unten rechts. Der blendete sich nach 3s (oder 0,6s) aus, zeigte keine
+// Zeilenumbrueche und schnitt die Liste nach 10 Eintraegen ab – Romano konnte
+// nicht sehen, welcher Datensatz klemmt.
+// Jetzt: eigenes Fenster, bleibt offen bis zum Schliessen, zeigt ALLE
+// Eintraege, Klick auf eine Zeile oeffnet den Mitarbeiter, Kopieren-Button.
+// eintraege = [{text:'...', maId:'...'}] oder ['...']
+function closeFehlerBox() {
+  const bg = document.getElementById('fehler-box-bg');
+  if (bg) bg.remove();
+}
+function showFehlerBox(titel, eintraege, hinweis, aktion) {
+  closeFehlerBox();
+  const list = (eintraege || []).map(e => (typeof e === 'string' ? {text: e} : e));
+  const bg = document.createElement('div');
+  bg.id = 'fehler-box-bg';
+  bg.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99999;'
+    + 'display:flex;align-items:center;justify-content:center;padding:20px';
+  bg.onclick = (ev) => { if (ev.target === bg) closeFehlerBox(); };
+
+  const box = document.createElement('div');
+  box.style.cssText = 'background:#fff;border-radius:14px;width:min(96vw,700px);max-height:88vh;'
+    + 'display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,.25);overflow:hidden';
+
+  const head = document.createElement('div');
+  head.style.cssText = 'padding:16px 20px;background:#fef2f2;border-bottom:1px solid #fecaca;'
+    + 'display:flex;align-items:flex-start;justify-content:space-between;gap:12px';
+  const headTxt = document.createElement('div');
+  const h1 = document.createElement('div');
+  h1.style.cssText = 'font-weight:700;font-size:16px;color:#b91c1c';
+  h1.textContent = titel;
+  const h2 = document.createElement('div');
+  h2.style.cssText = 'font-size:12px;color:#7f1d1d;margin-top:3px';
+  h2.textContent = list.length + (list.length === 1 ? ' betroffener Eintrag' : ' betroffene Einträge');
+  headTxt.appendChild(h1); headTxt.appendChild(h2);
+  const xBtn = document.createElement('button');
+  xBtn.textContent = '✕';
+  xBtn.style.cssText = 'background:#fff;border:1px solid #fecaca;border-radius:8px;width:32px;height:32px;'
+    + 'cursor:pointer;font-size:15px;color:#b91c1c;flex-shrink:0';
+  xBtn.onclick = closeFehlerBox;
+  head.appendChild(headTxt); head.appendChild(xBtn);
+
+  const body = document.createElement('div');
+  body.style.cssText = 'padding:14px 20px;overflow-y:auto;flex:1';
+  list.forEach(e => {
+    const row = document.createElement('div');
+    row.style.cssText = 'padding:9px 10px;border-bottom:1px solid #f1f5f9;font-size:13px;'
+      + 'display:flex;align-items:center;justify-content:space-between;gap:10px';
+    const t = document.createElement('span');
+    t.textContent = e.text;
+    row.appendChild(t);
+    if (e.maId && typeof openMAM === 'function') {
+      row.style.cursor = 'pointer';
+      row.title = 'Klicken zum Öffnen';
+      const hint = document.createElement('span');
+      hint.style.cssText = 'font-size:11px;color:#94a3b8;white-space:nowrap';
+      hint.textContent = '✏️ öffnen';
+      row.appendChild(hint);
+      row.onclick = () => { closeFehlerBox(); setTimeout(() => openMAM(e.maId), 120); };
+    }
+    body.appendChild(row);
+  });
+  if (hinweis) {
+    const hi = document.createElement('div');
+    hi.style.cssText = 'margin-top:14px;padding:11px 13px;background:#fffbeb;border:1px solid #fde68a;'
+      + 'border-radius:9px;font-size:12.5px;color:#92400e;white-space:pre-line';
+    hi.textContent = hinweis;
+    body.appendChild(hi);
+  }
+
+  const foot = document.createElement('div');
+  foot.style.cssText = 'padding:13px 20px;border-top:1px solid #e2e8f0;display:flex;gap:9px;'
+    + 'justify-content:flex-end;background:#f8fafc';
+  const copyBtn = document.createElement('button');
+  copyBtn.textContent = '📋 Liste kopieren';
+  copyBtn.style.cssText = 'padding:8px 14px;border:1px solid #cbd5e1;background:#fff;border-radius:8px;'
+    + 'cursor:pointer;font-size:13px';
+  copyBtn.onclick = () => {
+    const txt = titel + '\n\n' + list.map(e => '- ' + e.text).join('\n');
+    const done = () => { copyBtn.textContent = '✓ Kopiert'; setTimeout(() => { copyBtn.textContent = '📋 Liste kopieren'; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done, () => {});
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (err) {}
+      ta.remove();
+    }
+  };
+  // FIX v168: optionaler Aktionsbutton (z.B. "Objektnamen reparieren")
+  if (aktion && aktion.label && typeof aktion.fn === 'function') {
+    const aBtn = document.createElement('button');
+    aBtn.textContent = aktion.label;
+    aBtn.style.cssText = 'padding:8px 14px;border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;'
+      + 'border-radius:8px;cursor:pointer;font-size:13px;font-weight:600';
+    aBtn.onclick = () => { closeFehlerBox(); setTimeout(aktion.fn, 100); };
+    foot.appendChild(aBtn);
+  }
+  const okBtn = document.createElement('button');
+  okBtn.textContent = 'Schließen';
+  okBtn.style.cssText = 'padding:8px 16px;border:none;background:#0f172a;color:#fff;border-radius:8px;'
+    + 'cursor:pointer;font-size:13px;font-weight:600';
+  okBtn.onclick = closeFehlerBox;
+  foot.appendChild(copyBtn); foot.appendChild(okBtn);
+
+  box.appendChild(head); box.appendChild(body); box.appendChild(foot);
+  bg.appendChild(box);
+  document.body.appendChild(bg);
+}
+window.showFehlerBox = showFehlerBox;
+window.closeFehlerBox = closeFehlerBox;
 function td(){return isoLocal(new Date());}
 function dl(c,fn,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=fn;a.click();}
 // Lock beim Öffnen von Mitarbeiter-Modal erwerben
@@ -10182,8 +10323,12 @@ function vtSyncToMAB(mitCleanup){
       if(existing.manuelleAnpassung!==null&&existing.manuelleAnpassung!==existing.stunden)existing.geaendertWarnung=true;
       existing.stunden=stunden;
       existing.grund=grund||existing.grund||'';
+      // FIX v168: fehlende kundeId bei bestehenden Gutschriften nachtragen
+      if(!existing.kundeId&&objekt){const _kE=(obj||[]).find(x=>x.name===objekt);if(_kE)existing.kundeId=_kE.id;}
     }else{
-      md.vertretungs_gutschrift.push({quelleMAid:quelle,quelleName:(ma.find(x=>x.id===eMAid)?.nachname||'?'),monat:monatKey,objekt:objekt,datum:datum,grund:grund||'',stunden:stunden,manuelleAnpassung:null,geaendertWarnung:false});
+      // FIX v168: kundeId mitschreiben, damit spaeteres Umbenennen die Zuordnung nicht kappt
+      const _kRef = objekt ? (obj||[]).find(x => x.name === objekt) : null;
+      md.vertretungs_gutschrift.push({quelleMAid:quelle,quelleName:(ma.find(x=>x.id===eMAid)?.nachname||'?'),monat:monatKey,objekt:objekt,kundeId:(_kRef?_kRef.id:null),datum:datum,grund:grund||'',stunden:stunden,manuelleAnpassung:null,geaendertWarnung:false});
     }
   });
   // Cleanup (verwaiste Gutschriften entfernen) NUR beim finalen Speichern, nicht beim AutoFlush.
@@ -10992,7 +11137,7 @@ function exportDatevLohnarten() {
   data.forEach(m => {
     const md = (m.monats_daten||{})[monat]||{};
     const las = m.datev_lohnarten || [];
-    if (!las.length) { ohneLA.push(m.nachname+(m.vorname?' '+m.vorname:'')); return; }
+    if (!las.length) { ohneLA.push({maId: m.id, text: m.nachname+(m.vorname?' '+m.vorname:'')+' (Nr. '+(m.persnr||'-')+')'}); return; } // FIX v166: anklickbar
 
     // FIX v90: Gewichteter Stundenlohn entfernt – war toter Code (sl wurde berechnet
     // aber nie im Export verwendet). DATEV berechnet Geldbeträge selbst aus den
@@ -11021,7 +11166,7 @@ function exportDatevLohnarten() {
     try {
       objLAMap = _mapObjektToLohnart(m);
     } catch(err) {
-      grundLaFehler.push(err.message);
+      grundLaFehler.push({maId: m.id, text: (m.nachname||'?') + ' ' + (m.vorname||'') + ' (Nr. ' + (m.persnr||'-') + '): ' + err.message}); // FIX v166: anklickbar
       return; // MA ueberspringen
     }
 
@@ -11287,17 +11432,13 @@ function exportDatevLohnarten() {
       const h = parseFloat(std) || 0;
       if (h <= 0) return;
       // KST-Lookup via Objektname - PFLICHT, kein Fallback
-      const objName = (g.objekt||'').trim();
-      if (!objName) {
-        vtGutFehler.push((m.nachname||'?') + ' (Nr. ' + (m.persnr||'-') + '): Gutschrift ohne Objekt');
+      // FIX v167: getrennte Diagnose (Kunde fehlt vs. Kostenstelle leer)
+      const trefferKst = _gutKstLookup(g.objekt, g.kundeId);
+      if (trefferKst.fehler) {
+        vtGutFehler.push({maId: m.id, text: (m.nachname||'?') + ' ' + (m.vorname||'') + ' (Nr. ' + (m.persnr||'-') + '): ' + trefferKst.fehler});
         return;
       }
-      const kObj = obj.find(x => x.name === objName);
-      if (!kObj || !kObj.kostenstelle) {
-        vtGutFehler.push((m.nachname||'?') + ' (Nr. ' + (m.persnr||'-') + '): Objekt "' + objName + '" ohne Kostenstelle');
-        return;
-      }
-      const kst = kObj.kostenstelle;
+      const kst = trefferKst.kst;
       kstMapVt.set(kst, (kstMapVt.get(kst) || 0) + h);
     });
     const kstKeys = Array.from(kstMapVt.keys()).sort();
@@ -11308,19 +11449,37 @@ function exportDatevLohnarten() {
     });
   });
   if (vtGutFehler.length) {
-    showAlert('\u26a0 DATEV-Export abgebrochen: Fehler bei Vertretungs-Gutschriften:\n\n' + vtGutFehler.slice(0,10).join('\n') + (vtGutFehler.length>10?'\n\u2026':'') + '\n\nBitte Objekt bei allen Vertretungs-Gutschriften hinterlegen.', '#ef4444');
+    // FIX v166: Fenster statt Toast – bleibt offen, zeigt alle Eintraege
+    showFehlerBox('\u26a0 DATEV-Export abgebrochen \u2013 Vertretungs-Gutschriften',
+      vtGutFehler,
+      'Die Meldung sagt jetzt genau, woran es liegt:\n'
+      + '\u2022 "Kein Kunde mit dem Namen \u2026" \u2013 der Kunde wurde nach dem Anlegen der Vertretung umbenannt. '
+      + 'Die Gutschrift merkt sich nur den alten Namen als Text. Abhilfe: Vertretung beim abwesenden Mitarbeiter '
+      + 'l\u00f6schen und mit dem aktuellen Objektnamen neu eintragen.\n'
+      + '\u2022 "\u2026 Feld Kostenstelle (DATEV) ist leer" \u2013 Kunde \u00f6ffnen und die Kostenstelle nachtragen.\n'
+      + '\u2022 "\u2026 ohne Objekt" \u2013 bei der Vertretung ein Objekt ausw\u00e4hlen.',
+      {label: '\ud83d\udd27 Objektnamen reparieren', fn: openGutschriftReparatur});
     return;
   }
   // FIX v103: Fehler bei Objekt->Lohnart-Zuordnung (mehrere Grundlohnarten + Anzahl-Mismatch)
   if (grundLaFehler.length) {
-    showAlert('\u26a0 DATEV-Export abgebrochen: Zuordnungs-Fehler bei MA mit mehreren Lohnarten:\n\n' + grundLaFehler.slice(0,10).join('\n') + (grundLaFehler.length>10?'\n\u2026':'') + '\n\nPro Objekt muss eine passende Lohnart vorhanden sein.', '#ef4444');
+    // FIX v166: Fenster statt Toast – bleibt offen, zeigt alle Eintraege
+    showFehlerBox('\u26a0 DATEV-Export abgebrochen \u2013 Lohnart-Zuordnung',
+      grundLaFehler,
+      'So beheben: Mitarbeiter \u00f6ffnen \u2192 Anzahl der Grundlohnarten muss zur Anzahl der Objekte mit '
+      + 'unterschiedlichem Stundenlohn passen. Eine einzelne Grundlohnart gilt automatisch f\u00fcr alle Objekte.');
     return;
   }
 
   dl(rows.join('\r\n'), 'DATEV_LohnGehalt_'+monatDATEV.replace('/','-')+'.csv', 'text/plain');
-  let msg = (rows.length-1) + ' Buchungszeilen exportiert \u2713';
-  if (ohneLA.length) msg += '\n\n\u26a0 ' + ohneLA.length + ' MA ohne Lohnart (nicht exportiert):\n' + ohneLA.slice(0,10).join(', ') + (ohneLA.length>10?'\u2026':'');
-  showAlert(msg);
+  showAlert((rows.length-1) + ' Buchungszeilen exportiert \u2713');
+  // FIX v166: Liste der nicht exportierten MA als Fenster statt abgeschnitten im Toast
+  if (ohneLA.length) {
+    showFehlerBox('\u26a0 ' + ohneLA.length + ' Mitarbeiter ohne DATEV-Lohnart \u2013 nicht exportiert',
+      ohneLA,
+      'Die Datei wurde trotzdem erzeugt, diese Mitarbeiter fehlen darin. '
+      + 'Mitarbeiter \u00f6ffnen \u2192 DATEV-Lohnarten hinterlegen \u2192 Export wiederholen.');
+  }
 }
 
 // ── FIX v103: Objekt -> Lohnart Zuordnung ─────────────────────────────────
@@ -11365,6 +11524,229 @@ function _isGrundLohnart(code) {
   if (c === '2199') return false;
   if (c === '2206') return false; // Verstetigt: Festbetrag in DATEV-Stammdaten
   return true;
+}
+// ── FIX v168: Reparatur veralteter Objektnamen in Vertretungen ────────────
+// Alter Fehler: Vertretungen und die daraus erzeugten DATEV-Gutschriften
+// speichern das Objekt nur als TEXT (z.B. "DCO"). Wird der Kunde spaeter
+// umbenannt ("DCO Data Center Operations"), findet der Export den Kunden
+// nicht mehr und bricht ab - auch fuer laengst abgerechnete Monate.
+//
+// Dieses Werkzeug ordnet solche Alt-Namen einmalig dem richtigen Kunden zu.
+// Wichtig fuer die Datensicherheit:
+//   * Es wird NICHTS geloescht. Der alte Name wird in objekt_alt aufbewahrt.
+//   * Vertretung UND Gutschrift werden gemeinsam umgestellt. Wuerde nur eine
+//     Seite geaendert, haelt _gutschriftIstVerwaist() die Gutschrift fuer
+//     verwaist und die Aufraeum-Routine wuerde sie entfernen.
+//   * Zusaetzlich wird kundeId gesetzt - kuenftige Umbenennungen sind damit
+//     wirkungslos.
+//   * Stunden, Datum, Gruende und manuelle Anpassungen bleiben unberuehrt.
+let _grData = null;
+
+function _grNorm(s) { return String(s || '').toLowerCase().replace(/\s+/g, ' ').trim(); }
+
+// Sammelt alle Objektnamen, zu denen es keinen Kunden mit exakt diesem Namen gibt.
+function _grScan() {
+  const treffer = new Map(); // altName -> {vt:0, gut:0, wo:Set, kandidaten:[]}
+  const kundenNamen = new Set((obj || []).map(x => x.name));
+  const merke = (name, art, wer, monat) => {
+    const n = String(name || '').trim();
+    if (!n) return;                 // "ohne Objekt" ist ein anderer Fehler
+    if (kundenNamen.has(n)) return; // Name passt exakt -> nichts zu tun
+    if (!treffer.has(n)) treffer.set(n, {vt: 0, gut: 0, wo: new Set(), kandidaten: []});
+    const t = treffer.get(n);
+    t[art]++;
+    t.wo.add(wer + ' \u00b7 ' + monat);
+  };
+  (ma || []).forEach(m => {
+    const wer = (m.nachname || '?') + (m.vorname ? ' ' + m.vorname : '');
+    const mds = m.monats_daten || {};
+    Object.keys(mds).forEach(mk => {
+      const md = mds[mk] || {};
+      (md.vertretungen || []).forEach(vt => merke(vt.objekt, 'vt', wer, mk));
+      (md.vertretungs_gutschrift || []).forEach(g => merke(g.objekt, 'gut', wer, mk));
+    });
+  });
+  // Kandidaten je Alt-Name suchen (Prefix in beide Richtungen, auch Vollname)
+  treffer.forEach((t, altName) => {
+    const n = _grNorm(altName);
+    t.kandidaten = (obj || []).filter(x => {
+      const kn = _grNorm(x.name), vn = _grNorm(x.vollname);
+      return (kn && (kn === n || kn.indexOf(n) === 0 || n.indexOf(kn) === 0))
+          || (vn && (vn === n || vn.indexOf(n) === 0));
+    });
+  });
+  return Array.from(treffer.entries())
+    .map(([altName, t]) => ({altName, vt: t.vt, gut: t.gut, wo: Array.from(t.wo), kandidaten: t.kandidaten}))
+    .sort((a, b) => a.altName.localeCompare(b.altName));
+}
+
+function closeGutRep() {
+  const bg = document.getElementById('gutrep-bg');
+  if (bg) bg.remove();
+}
+
+function openGutschriftReparatur() {
+  if (typeof CAN !== 'undefined' && CAN.exportDatev && !CAN.exportDatev()) {
+    showAlert('Keine Berechtigung.', '#c81e1e'); return;
+  }
+  _grData = _grScan();
+  closeGutRep();
+  if (!_grData.length) {
+    showAlert('Alle Objektnamen in Vertretungen und Gutschriften passen zu einem Kunden \u2713');
+    return;
+  }
+  const kundenSort = (obj || []).slice().sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+  const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  let rows = '';
+  _grData.forEach((e, i) => {
+    const eindeutig = e.kandidaten.length === 1 ? e.kandidaten[0] : null;
+    let opts = '<option value="">\u2014 nicht \u00e4ndern \u2014</option>';
+    kundenSort.forEach(k => {
+      const sel = (eindeutig && k.id === eindeutig.id) ? ' selected' : '';
+      opts += '<option value="' + esc(k.id) + '"' + sel + '>' + esc(k.name)
+            + (k.kostenstelle ? ' (KSt ' + esc(k.kostenstelle) + ')' : ' \u2013 OHNE Kostenstelle') + '</option>';
+    });
+    const badge = eindeutig
+      ? '<span style="font-size:11px;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;border-radius:4px;padding:1px 6px">Vorschlag eindeutig</span>'
+      : '<span style="font-size:11px;background:#fef3c7;color:#92400e;border:1px solid #fde68a;border-radius:4px;padding:1px 6px">bitte selbst w\u00e4hlen</span>';
+    rows += '<div style="padding:11px 0;border-bottom:1px solid #f1f5f9">'
+      + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px">'
+      + '<strong style="font-size:13px">"' + esc(e.altName) + '"</strong> ' + badge
+      + '<span style="font-size:11px;color:#64748b">' + e.vt + ' Vertretung(en), ' + e.gut + ' Gutschrift(en)</span></div>'
+      + '<div style="font-size:11px;color:#94a3b8;margin-bottom:6px">' + esc(e.wo.slice(0, 4).join('  |  '))
+      + (e.wo.length > 4 ? '  |  \u2026' : '') + '</div>'
+      + '<select id="gr-sel-' + i + '" style="width:100%;padding:7px 9px;border:1px solid #cbd5e1;border-radius:7px;font-size:13px">'
+      + opts + '</select></div>';
+  });
+
+  const bg = document.createElement('div');
+  bg.id = 'gutrep-bg';
+  bg.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99999;'
+    + 'display:flex;align-items:center;justify-content:center;padding:20px';
+  bg.innerHTML = '<div style="background:#fff;border-radius:14px;width:min(96vw,760px);max-height:88vh;'
+    + 'display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,.25);overflow:hidden">'
+    + '<div style="padding:16px 20px;background:#f8fafc;border-bottom:1px solid #e2e8f0">'
+    + '<div style="font-weight:700;font-size:16px">\ud83d\udd27 Objektnamen in Vertretungen reparieren</div>'
+    + '<div style="font-size:12px;color:#64748b;margin-top:3px">' + _grData.length
+    + ' Name(n) ohne passenden Kunden \u2013 Vorschau, es wird noch nichts gespeichert</div></div>'
+    + '<div style="padding:14px 20px;overflow-y:auto;flex:1" id="gr-body">' + rows
+    + '<div style="margin-top:14px;padding:11px 13px;background:#fffbeb;border:1px solid #fde68a;border-radius:9px;font-size:12.5px;color:#92400e">'
+    + 'Beim \u00dcbernehmen wird der Objektname in Vertretung UND Gutschrift auf den gew\u00e4hlten Kunden gesetzt '
+    + 'und zus\u00e4tzlich die Kundennummer fest hinterlegt. Stunden, Daten und Gr\u00fcnde bleiben unver\u00e4ndert, '
+    + 'der alte Name wird aufbewahrt. Vorher bitte ein Backup ziehen.</div></div>'
+    + '<div style="padding:13px 20px;border-top:1px solid #e2e8f0;display:flex;gap:9px;justify-content:flex-end;background:#f8fafc">'
+    + '<button id="gr-cancel" style="padding:8px 14px;border:1px solid #cbd5e1;background:#fff;border-radius:8px;cursor:pointer;font-size:13px">Abbrechen</button>'
+    + '<button id="gr-apply" style="padding:8px 16px;border:none;background:#0f172a;color:#fff;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600">\u2713 Zuordnung \u00fcbernehmen</button>'
+    + '</div></div>';
+  document.body.appendChild(bg);
+  document.getElementById('gr-cancel').onclick = closeGutRep;
+  document.getElementById('gr-apply').onclick = applyGutschriftReparatur;
+}
+
+function applyGutschriftReparatur() {
+  if (!_grData) return;
+  // Zuordnung aus den Auswahlfeldern einsammeln
+  const map = new Map(); // altName -> kundeObjekt
+  _grData.forEach((e, i) => {
+    const sel = document.getElementById('gr-sel-' + i);
+    if (!sel || !sel.value) return;
+    const k = (obj || []).find(x => x.id === sel.value);
+    if (k) map.set(e.altName, k);
+  });
+  if (!map.size) { showAlert('Nichts ausgew\u00e4hlt \u2013 es wurde nichts ge\u00e4ndert.', '#d97706'); return; }
+
+  let vtGeaendert = 0, gutGeaendert = 0;
+  const protokoll = [];
+  (ma || []).forEach(m => {
+    const mds = m.monats_daten || {};
+    Object.keys(mds).forEach(mk => {
+      const md = mds[mk] || {};
+      // Vertretung und Gutschrift MUESSEN gemeinsam umgestellt werden,
+      // sonst gilt die Gutschrift als verwaist (siehe _gutschriftIstVerwaist).
+      (md.vertretungen || []).forEach(vt => {
+        const k = map.get(String(vt.objekt || '').trim());
+        if (!k) return;
+        if (!vt.objekt_alt) vt.objekt_alt = vt.objekt; // Historie aufbewahren
+        vt.objekt = k.name;
+        vt.kundeId = k.id;
+        vtGeaendert++;
+      });
+      (md.vertretungs_gutschrift || []).forEach(g => {
+        const k = map.get(String(g.objekt || '').trim());
+        if (!k) return;
+        if (!g.objekt_alt) g.objekt_alt = g.objekt; // Historie aufbewahren
+        protokoll.push((m.nachname || '?') + ' \u00b7 ' + mk + ': "' + g.objekt + '" \u2192 "' + k.name
+                     + '" (KSt ' + (k.kostenstelle || 'FEHLT') + ')');
+        g.objekt = k.name;
+        g.kundeId = k.id;
+        gutGeaendert++;
+      });
+    });
+  });
+
+  closeGutRep();
+  _grData = null;
+  if (typeof safeSaveAll === 'function') safeSaveAll('Objektnamen-Reparatur');
+  if (typeof render === 'function') render();
+  showFehlerBox('\u2713 Reparatur abgeschlossen',
+    protokoll.length ? protokoll : ['Keine Gutschriften betroffen'],
+    vtGeaendert + ' Vertretung(en) und ' + gutGeaendert + ' Gutschrift(en) umgestellt. '
+    + 'Der alte Name wurde aufbewahrt, Stunden und Daten sind unver\u00e4ndert.\n'
+    + 'N\u00e4chster Schritt: DATEV-Export erneut starten und die Kontroll-Liste gegenpr\u00fcfen.');
+}
+window.openGutschriftReparatur = openGutschriftReparatur;
+window.closeGutRep = closeGutRep;
+
+// ── FIX v167: Kostenstellen-Suche fuer Vertretungs-Gutschriften ───────────
+// Alter Fehler: Der Export suchte den Kunden mit obj.find(x => x.name === objName)
+// und meldete bei jedem Misserfolg pauschal 'Objekt "X" ohne Kostenstelle'.
+// Das vermischte ZWEI voellig verschiedene Ursachen:
+//   (a) Der Kunde existiert gar nicht unter diesem Kurznamen – typischerweise
+//       weil er nach dem Anlegen der Vertretung umbenannt wurde. Die Gutschrift
+//       speichert den Objektnamen als Text, nicht als Kunden-ID, deshalb bricht
+//       die Verbindung beim Umbenennen.
+//   (b) Der Kunde existiert, aber sein Feld "Kostenstelle (DATEV)" ist leer.
+// Fall (a) sah in der Meldung aus wie eine fehlende Kostenstelle, obwohl die
+// Kostenstelle beim Kunden sauber gepflegt war.
+//
+// Jetzt: getrennte Meldungen. Bei (a) werden zusaetzlich aehnlich heissende
+// Kunden vorgeschlagen, damit sofort erkennbar ist, welcher gemeint war.
+// BEWUSST KEIN automatischer Treffer: der Export bricht weiter ab, damit
+// niemals Stunden auf einer geratenen Kostenstelle landen.
+function _gutKstLookup(objName, kundeId) {
+  const nameRoh = String(objName || '').trim();
+  // FIX v168: Wenn die Gutschrift eine Kunden-ID hat, gilt sie. Namen koennen
+  // sich aendern, die ID nicht - damit ueberlebt die Zuordnung ein Umbenennen.
+  if (kundeId) {
+    const perId = (typeof obj !== 'undefined' ? obj : []).find(x => x.id === kundeId);
+    if (perId) {
+      if (perId.kostenstelle) return {kst: perId.kostenstelle, kunde: perId.name};
+      return {fehler: 'Kunde "' + (perId.name || nameRoh) + '" gefunden, aber Feld "Kostenstelle (DATEV)" ist leer'};
+    }
+  }
+  if (!nameRoh) return {fehler: 'Vertretungs-Gutschrift ohne Objekt'};
+  const exakt = (typeof obj !== 'undefined' ? obj : []).find(x => x.name === nameRoh);
+  if (exakt) {
+    if (exakt.kostenstelle) return {kst: exakt.kostenstelle, kunde: exakt.name};
+    return {fehler: 'Kunde "' + nameRoh + '" gefunden, aber Feld "Kostenstelle (DATEV)" ist leer'};
+  }
+  // Kunde nicht gefunden -> aehnliche Namen als Hilfe anbieten
+  const norm = s => String(s || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const n = norm(nameRoh);
+  const kandidaten = (typeof obj !== 'undefined' ? obj : []).filter(x => {
+    const kn = norm(x.name), vn = norm(x.vollname);
+    if (!kn && !vn) return false;
+    return (kn && (kn === n || kn.indexOf(n) === 0 || n.indexOf(kn) === 0))
+        || (vn && (vn === n || vn.indexOf(n) === 0));
+  }).slice(0, 3);
+  let txt = 'Kein Kunde mit dem Namen "' + nameRoh + '" in der Kundenliste (vermutlich umbenannt)';
+  if (kandidaten.length) {
+    txt += ' \u2013 gemeint ist wohl: '
+        + kandidaten.map(k => '"' + k.name + '"' + (k.kostenstelle ? ' (KSt ' + k.kostenstelle + ')' : ' (ohne KSt)')).join(', ');
+  }
+  return {fehler: txt};
 }
 // Liefert Map<objektId, lohnart> fuer Grundlohn-Zuordnung.
 // Bei Fehler: wirft Exception mit Beschreibung.
@@ -11738,16 +12120,13 @@ function _buildDatevControlRows() {
         if (h <= 0) return;
         const objName = (g.objekt||'').trim();
         let kst = null, kundeName = '', fehler = '';
-        if (!objName) {
-          fehler = 'FEHLER: Gutschrift ohne Objekt';
+        // FIX v167: gleiche getrennte Diagnose wie im DATEV-Export
+        const trefferCtrl = _gutKstLookup(g.objekt, g.kundeId);
+        if (trefferCtrl.fehler) {
+          fehler = 'FEHLER: ' + trefferCtrl.fehler;
         } else {
-          const kObj = obj.find(x => x.name === objName);
-          if (!kObj || !kObj.kostenstelle) {
-            fehler = 'FEHLER: Objekt "' + objName + '" ohne Kostenstelle';
-          } else {
-            kst = kObj.kostenstelle;
-            kundeName = kObj.name || objName;
-          }
+          kst = trefferCtrl.kst;
+          kundeName = trefferCtrl.kunde || objName;
         }
         const bucketKey = kst || ('__FEHLER__' + (objName||'?'));
         if (!kstMapVt.has(bucketKey)) {
