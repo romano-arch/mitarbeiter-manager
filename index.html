@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v168</title>
+<title>MitarbeiterManager v170</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1107,7 +1107,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v168</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v170</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1504,11 +1504,10 @@ main{padding:14px 16px}
     </div>
     <div class="mfields" style="grid-template-columns:1fr 1fr;margin-top:6px">
       <div class="fg">
-        <label>Unbezahlte Tage 🚫 <small style="font-weight:400;color:var(--muted)">(kein Lohn)</small></label>
-        <input type="number" min="0" max="31" step="0.5" id="md-unbezahlt" placeholder="0"
-          title="Tage ohne Lohnzahlung, z.B. unbezahlter Urlaub oder ruhendes Arbeitsverhaeltnis"
-          style="color:var(--orange)"
-          onchange="mdFehlzeitChange()">
+        <label>Unbezahlte Tage 🚫 <small style="font-weight:400;color:var(--muted)">(auto aus Kalender)</small></label>
+        <input type="number" min="0" max="31" step="0.5" id="md-unbezahlt" placeholder="0" readonly
+          title="v169: Nur noch Anzeige. Unbezahlte Tage werden mit Datum im Abwesenheitskalender eingetragen (gilt fuer alle Reviere) oder unten beim Objekt (gilt nur fuer dieses Revier). Eine blosse Anzahl ohne Datum laesst sich keinem Wochentag zuordnen und wuerde falsch gerechnet."
+          style="background:var(--s1);color:var(--orange);cursor:default">
       </div>
       <div class="fg">
         <label>KK zahlt ab 🏥 <small style="font-weight:400;color:var(--muted)">(Langzeitkrank &gt;6 Wo.)</small></label>
@@ -2724,7 +2723,10 @@ const _gezaehlt=new Set();
   const _k=o.kunde+'||'+(o.revier||'');
   if(_gezaehlt.has(_k))return; // echtes Duplikat → überspringen
   _gezaehlt.add(_k);
-  t+=maOSollMA(m,o,monatKey,abrMod);
+  // v169 FIX: _mk statt monatKey – die Variable wurde oben berechnet, aber nie
+  // uebergeben. Fiel bisher nicht auf, weil maOSoll() selbst auf getAM()
+  // zurueckfiel; jede neue Rechenfunktion waere darueber gestolpert.
+  t+=maOSollMA(m,o,_mk,abrMod);
 });
 });
 return Math.round(t*10)/10;
@@ -2931,9 +2933,100 @@ function _maOSollBasis(m, effO, monatKey, maAbrModell) {
   return maOSoll(effO, monatKey, maAbrModell);
 }
 
+// ══════════════════════════════════════════════════════════════════════════
+// v169 / REGEL 1: Sollstunden werden GEZAEHLT, nicht multipliziert.
+//
+// ALTER FEHLER: Ein-/Austritt, unbezahlte Tage und "KK zahlt ab" wurden ueber
+// Prozentfaktoren gerechnet – aktive Arbeitstage geteilt durch Arbeitstage im
+// Monat. Das stimmt nur, wenn jemand an allen fuenf Wochentagen gleich viel
+// arbeitet. Beispiel: Mitarbeiter arbeitet NUR freitags 3h. Juli 2026 hat
+// 5 Freitage = 15h. Bei Eintritt am 06.07. entfaellt genau ein Freitag, korrekt
+// waeren 12:00. Die Faktorrechnung ergab 15h x 20/23 = 13:02 – also 1,04h zu
+// viel. Bei Austritt am 30.07. sogar 2,35h zu viel. In die andere Richtung
+// (Eintritt 02.07.) wurden 0,65h ZU WENIG gezahlt – Unterschreitung des
+// Mindestlohns fuer tatsaechlich geleistete Stunden.
+//
+// JETZT: Fuer jeden Kalendertag des Monats wird einzeln geprueft:
+//   (a) hat dieser Wochentag Stunden in der Mo-So-Tabelle?
+//   (b) laeuft der Einsatz an diesem Tag (einsatz_ab / einsatz_bis)?
+//   (c) laeuft das Arbeitsverhaeltnis (Eintritt / Austritt)?
+//   (d) ist der Tag unbezahlt (MA-Kalender ODER Objektliste)?
+//   (e) liegt der Tag ab "KK zahlt ab"?
+// Nur was uebrig bleibt, wird addiert. Keine Prozentfaktoren mehr.
+//
+// Rueckgabe: { std, stdRoh, tage, tageAusgefallen, abzug }
+//   std             = Sollstunden nach allen Abzuegen (das ist der Lohnwert)
+//   stdRoh          = ohne Fehlzeit-Abzug (nur Einsatz + Ein-/Austritt)
+//   tage            = Anzahl bezahlter Einsatztage
+//   tageAusgefallen = Anzahl wegen Fehlzeit entfallener Einsatztage
+// ══════════════════════════════════════════════════════════════════════════
+function _sollExakt(m, effO, monatKey) {
+  const leer = { std:0, stdRoh:0, tage:0, tageAusgefallen:0, abzug:0 };
+  // v169 FIX: Fehlt der Monat, gilt der aktive Monat – genau wie in maOSoll().
+  // Ohne diese Zeile lieferte oBel() (ruft ohne Monat auf) fuer jeden
+  // Mitarbeiter 0 Stunden -> die Kundenbelegung brach zusammen
+  // ("mit MA: 20.7h" statt 595.7h beim Kunden Aumovio).
+  if (!monatKey && typeof getAM === 'function') monatKey = getAM();
+  if (!effO || !monatKey) return leer;
+  const parts = String(monatKey).slice(0,7).split('-').map(Number);
+  const y = parts[0], mo = parts[1];
+  if (!y || !mo) return leer;
+  const wt = effO.wochentage || {};
+  const keys = ['So','Mo','Di','Mi','Do','Fr','Sa'];   // JS getDay(): 0=So..6=Sa
+  const daysInMonth = new Date(y, mo, 0).getDate();
+
+  // (c) Arbeitsverhaeltnis
+  const einISO = String((m && m.eintrittsdatum) || '').slice(0,10);
+  const ausISO = String((m && m.austrittsdatum) || '').slice(0,10);
+  // (d) unbezahlte Tage: MA-weit aus dem Abwesenheitskalender
+  const abw = (m && m.abwesenheiten) || {};
+  // (d) unbezahlte Tage: nur dieses Revier
+  const objUnbez = new Set(((effO.unbezahlt_tage_liste) || [])
+    .map(s => String(s || '').slice(0,10)));
+  // (e) KK zahlt ab
+  const md = ((m && m.monats_daten) || {})[String(monatKey).slice(0,7)] || {};
+  const kkAb = String(md.kk_ab_datum || '').slice(0,10);
+
+  let stdRoh = 0, std = 0, tage = 0, tageAus = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dt = new Date(y, mo-1, d);
+    const h = parseFloat(wt[keys[dt.getDay()]]) || 0;
+    if (h <= 0) continue;                                    // (a)
+    const iso = y + '-' + String(mo).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    if (!_tagImEinsatz(effO, iso)) continue;                 // (b)
+    if (einISO && iso < einISO) continue;                    // (c)
+    if (ausISO && iso > ausISO) continue;                    // (c)
+    stdRoh += h;
+    // Ab hier: der Tag gehoert zum Einsatz. Faellt er trotzdem aus?
+    const unbezahlt = (abw[iso] === 'unbezahlt') || objUnbez.has(iso);   // (d)
+    const kkTag = kkAb && iso >= kkAb;                                   // (e)
+    if (unbezahlt || kkTag) { tageAus++; continue; }
+    std += h;
+    tage++;
+  }
+  const r2 = v => Math.round(v*100)/100;
+  return { std:r2(std), stdRoh:r2(stdRoh), tage, tageAusgefallen:tageAus,
+           abzug:r2(stdRoh - std) };
+}
+
+// v169: Gilt fuer dieses Objekt die exakte Zaehlung? Nein bei 14-Tage-Rhythmus,
+// festen Monatsstunden, Festlohn und (vorerst) bei Verstetigung – die haben
+// eigene Rechenwege. Voraussetzung ist immer eine gefuellte Mo-So-Tabelle.
+function _nutztZaehlregel(m, effO) {
+  if (!effO) return false;
+  if (effO.lohn_fest) return false;
+  if (effO.modell === '14tage' || effO.modell === 'monatlich') return false;
+  if (m && m.verstetigt) return false;          // Schritt 2 der Umstellung
+  return wSum(effO.wochentage || {}) > 0;
+}
+
 function maOSollMA(m, o, monatKey, maAbrModell) {
   const histO = _getHistoryObjekt(m, o.kunde, monatKey, o.revier);
   const effektivO = histO || o;
+  // v169 / REGEL 1: exakte Tageszaehlung statt Prozentfaktoren.
+  if (_nutztZaehlregel(m, effektivO)) {
+    return _sollExakt(m, effektivO, monatKey || getAM()).std;
+  }
   const basis = _maOSollBasis(m, effektivO, monatKey, maAbrModell);
   if (!basis || basis <= 0) return basis;
   // FIX v94: Doppelten Abzug vermeiden.
@@ -6243,11 +6336,20 @@ function renderSollInfo(m, mk){
   const maAbrMod = m.abrechnungsmodell||'arbeitstage';
   objekte.forEach(o=>{
     const histO = _getHistoryObjekt(m, o.kunde, mk, o.revier) || o;
-    const basisRoh = _maOSollBasis(m, histO, mk, maAbrMod);
-    const hatObjZeitraum = !!(histO && (histO.einsatz_ab || histO.einsatz_bis));
-    const aktivFaktor = hatObjZeitraum ? 1 : _maMonatAktivFaktor(m, mk);
-    const roh = Math.round(Math.max(0,basisRoh) * Math.max(0,aktivFaktor) * 100) / 100;
-    const soll = maOSollMA(m, o, mk, maAbrMod); // final, inkl. aller Fehlzeit-Abzuege
+    // v169 / REGEL 1: bei Zaehlregel kommen roh und soll aus derselben Zaehlung,
+    // damit Anzeige und Lohnwert nicht auseinanderlaufen koennen.
+    const _zr = _nutztZaehlregel(m, histO) ? _sollExakt(m, histO, mk) : null;
+    let roh, soll;
+    if (_zr) {
+      roh  = _zr.stdRoh;   // vor Fehlzeit-Abzug
+      soll = _zr.std;      // nach Fehlzeit-Abzug
+    } else {
+      const basisRoh = _maOSollBasis(m, histO, mk, maAbrMod);
+      const hatObjZeitraum = !!(histO && (histO.einsatz_ab || histO.einsatz_bis));
+      const aktivFaktor = hatObjZeitraum ? 1 : _maMonatAktivFaktor(m, mk);
+      roh  = Math.round(Math.max(0,basisRoh) * Math.max(0,aktivFaktor) * 100) / 100;
+      soll = maOSollMA(m, o, mk, maAbrMod); // final, inkl. aller Fehlzeit-Abzuege
+    }
     gesamtSollRoh += roh;
     gesamtSoll += soll;
     // Effektives Modell: MA-Ebene hat Vorrang
@@ -6267,8 +6369,13 @@ function renderSollInfo(m, mk){
       formel = `${Math.round(ws*100)/100}h/Wo × 261/12/5 = <strong>${roh}h</strong>`;
     } else if(effMod==='arbeitstage'){
       if(ws > 0){
-        // Wochentage → calcWochentagStunden (exakt wie maOSoll)
-        formel = `${stdTag||Math.round(ws/5*100)/100}h/Tag × ${arbT} AT = <strong>${roh}h</strong>`;
+        // v169 / REGEL 1: die alte Anzeige "0.6h/Tag x 23 AT = 13.04h" war
+        // rechnerisch unmoeglich (0,6 x 23 = 13,8) – der Text kam aus einer
+        // anderen Quelle als die Zahl. Jetzt wird gezeigt, was gezaehlt wurde.
+        const _tg = _zr ? (_zr.tage + _zr.tageAusgefallen) : 0;
+        formel = _zr
+          ? `📅 ${_tg} Einsatztag${_tg===1?'':'e'} gezählt = <strong>${roh}h</strong>`
+          : `${stdTag||Math.round(ws/5*100)/100}h/Tag × ${arbT} AT = <strong>${roh}h</strong>`;
       } else {
         formel = `${stdTag}h/Tag × <input type="number" min="1" max="31" value="${arbT}"
             style="width:48px;padding:2px 4px;border:1px solid var(--border);border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:center;background:var(--white);outline:none"
@@ -6372,8 +6479,20 @@ function _renderFehlzeitHinweis(m, mk) {
     _std += _maUnbezahltStundenAbzug(m, ob.wochentage || {}, mk, ob);
   });
   _std = Math.round(_std * 100) / 100;
+  // v169 / REGEL 1: Bei Objekten mit Zaehlregel den exakt gezaehlten Abzug
+  // zeigen. Die alte Prozentschaetzung war bei ungleichen Wochentagen falsch.
+  let _exakt = 0, _hatZR = false;
+  (m.objekte || []).forEach(ob => {
+    const _eff = _getHistoryObjekt(m, ob.kunde, mk, ob.revier) || ob;
+    if (!_nutztZaehlregel(m, _eff)) return;
+    _hatZR = true;
+    _exakt += _sollExakt(m, _eff, mk).abzug;
+  });
+  _exakt = Math.round(_exakt * 100) / 100;
   el.innerHTML = '⚠️ ' + parts.join(' + ') + ' → '
-    + (_dat.length
+    + (_hatZR
+        ? 'Abzug <strong>' + hhmm(_exakt) + ' Std.</strong> (exakt nach Wochentag)'
+        : _dat.length
         ? 'Abzug <strong>' + hhmm(_std) + ' Std.</strong> (exakt nach Wochentag)'
         : 'Lohnkürzung ca. ' + proz + '% (' + Math.round((1-faktor)*arbT*10)/10 + ' AT)');
   el.style.display = 'block';
