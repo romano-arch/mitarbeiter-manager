@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v170</title>
+<title>MitarbeiterManager v171</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -244,7 +244,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0
 .kli{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
 .kli:last-child{border-bottom:none}
 .klc{background:var(--s1);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:11px;color:var(--muted)}
-#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert)}
+#alert{position:fixed;bottom:18px;right:18px;z-index:var(--z-alert);pointer-events:none}
 .amsg{padding:11px 16px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh2);animation:su .2s ease;color:#fff;white-space:pre-line;max-width:min(430px,calc(100vw - 40px));cursor:pointer}/* FIX v166: pre-line -> mehrzeilige Meldungen bleiben lesbar; cursor -> Klick schliesst */
 .sec{display:none}
 .sec.active{display:block}
@@ -254,6 +254,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .zettel-box{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--r);border:2px dashed var(--border2);background:var(--white);margin-bottom:12px;cursor:pointer;transition:all .2s;user-select:none}
 .zettel-box.confirmed{border-style:solid;border-color:var(--green);background:var(--gbg)}
+/* v171: Hinweis-Zustand, wenn jemand in den gesperrten Bereich tippt */
+.zettel-box.hinweis{border-color:var(--orange);background:var(--obg);animation:zpuls .5s ease 2}
+@keyframes zpuls{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
 .zettel-icon{font-size:20px;flex-shrink:0;transition:all .2s}
 .zettel-lbl{font-size:13px;font-weight:600}
 .zettel-sub{font-size:11px;color:var(--muted);margin-top:1px}
@@ -1107,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v170</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v171</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1485,7 +1488,7 @@ main{padding:14px 16px}
   <!-- Monatsdaten -->
   <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 15px;box-shadow:0 1px 3px rgba(0,0,0,.08);flex:1">
     <div class="sh" id="mtabs-jahr-label">Monatsdaten 2026</div><div class="mtabs" id="mtabs"></div>
-<div class="mpanel">
+<div class="mpanel" onclick="mpanelKlick(event)">
   <!-- STUNDENZETTEL-BOX – temporär ausgeblendet (aktivieren wenn Programm stabil) -->
   <div class="zettel-box" id="zettel-box" onclick="toggleZettel()">
     <div class="zettel-icon" id="zettel-icon">📄</div>
@@ -6750,7 +6753,7 @@ function closeMAM(){
 function saveMA(){
 // Doppelklick-Schutz
 const _saveBtn = document.getElementById('btn-save-ma');
-if(_saveBtn){if(_saveBtn._saving)return;_saveBtn._saving=true;_saveBtn.disabled=true;setTimeout(()=>{_saveBtn._saving=false;_saveBtn.disabled=false;},2000);}
+if(_saveBtn){if(_saveBtn._saving)return;_saveBtn._saving=true;_saveBtn.disabled=true;setTimeout(()=>{_saveBtn._saving=false;_saveBtn.disabled=false;},20000);}
 // FIX v89: Hilfs-Funktion um Save-Button bei Validierungsfehler freizugeben
 const _saveAbbruch = () => { if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;} };
 const nn=document.getElementById('f-nn').value.trim();
@@ -6877,6 +6880,8 @@ const _zuSpeichern = [m, ..._vtBetroffene];
       const name = (m.nachname || '') + (m.vorname ? ' ' + m.vorname : '');
       if (!confirmConflict(name)) {
         setSyncState('ok', 'Speichern abgebrochen');
+        showAlert('Speichern abgebrochen – nichts wurde geändert.', '#d97706');
+        if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}
         return;
       }
     }
@@ -6887,9 +6892,11 @@ const _zuSpeichern = [m, ..._vtBetroffene];
   Promise.all(_saves).then(()=>{
     setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
     _dirty=false;
+    if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}  // v171
     render();renderObj();closeMAMandReturn();showAlert(eMAid?'Gespeichert ✓':'Hinzugefügt ✓');
   }).catch(e=>{
     setSyncState('error','Speicherfehler!');
+    if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}  // v171
     showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e');
   });
 })();
@@ -10102,7 +10109,7 @@ function renderZettel(confirmed) {
     box.classList.remove('confirmed');
     icon.textContent = '📄';
     lbl.textContent = 'Stundenzettel liegt noch nicht vor';
-    sub.textContent = 'Bitte erst bestätigen, dass der handschriftliche Zettel vorliegt';
+    sub.textContent = '🔒 Felder gesperrt – hier tippen, um sie freizugeben';
     inner.style.opacity = '0.45';
     inner.style.pointerEvents = 'none';
   }
@@ -10115,6 +10122,19 @@ function toggleWeitere() {
   panel.style.display = open ? 'block' : 'none';
   arrow.style.transform = open ? 'rotate(90deg)' : '';
   arrow.textContent = open ? '▾' : '▸';
+}
+
+function mpanelKlick(ev) {
+  // v171: Faengt Taps ab, die im gesperrten Panel ins Leere gehen.
+  const inner = document.getElementById('mpanel-inner');
+  const box   = document.getElementById('zettel-box');
+  if (!inner || !box) return;
+  if (inner.style.pointerEvents !== 'none') return;   // nicht gesperrt -> nichts tun
+  if (box.contains(ev.target)) return;                // Klick galt der Box selbst
+  box.classList.add('hinweis');
+  setTimeout(()=>box.classList.remove('hinweis'), 1200);
+  box.scrollIntoView({block:'nearest', behavior:'smooth'});
+  showAlert('Bitte erst oben den Stundenzettel bestätigen – dann sind die Felder frei.', '#d97706');
 }
 
 function toggleZettel() {
