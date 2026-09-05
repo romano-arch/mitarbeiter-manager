@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v171</title>
+<title>MitarbeiterManager v172</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v171</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v172</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -2309,8 +2309,9 @@ async function initApp() {
       sessionStorage.setItem('mm_monat_sitzung', _gewaehlt);
     }
     await refreshData();
-    deleteTestData();
-    // Testdaten automatisch bereinigt
+    // v172: zweiter deleteTestData()-Aufruf entfernt (siehe Kommentar bei _migrate433).
+    // Er lief NACH dem Laden und konnte ueber safeSaveAll() veraenderte Daten
+    // ungefragt zurueckschreiben.
     startLockPing();
     setSyncState('ok', 'Verbunden · ' + _currentUser);
     applyRoles();
@@ -2338,8 +2339,16 @@ async function refreshData() {
       const names = [...new Set(obj.map(o => o.name).filter(Boolean))];
       kunden = names.map(n => ({ id: 'k_' + n.replace(/\s/g,'_'), name: n, standorte: [n], status: 'aktiv' }));
     }
-    deleteTestData();
-    _migrateHistoryBis();
+    // v172: deleteTestData() hier entfernt - filterte Datensaetze anhand des
+    // Namens und speicherte danach automatisch alles zurueck.
+    _migrate433();
+    // v172: _migrateHistoryBis() hier entfernt. Die Routine hatte weder einen
+    // Versionsmarker noch eine Pruefung, ob der Altfehler ueberhaupt vorliegt.
+    // Sie setzte gueltig_bis bei JEDEM Aufruf um einen weiteren Monat zurueck,
+    // auch bei bereits korrekten Historien. In Verbindung mit dem automatischen
+    // Speichern wurde die Verkuerzung dauerhaft. Bis zu einer geprueften,
+    // einmaligen und protokollierten Migration bleibt sie abgeschaltet.
+    // _migrateHistoryBis();
     updStats(); updFilters(); render();
     setSyncState('ok', 'Zuletzt geladen: ' + new Date().toLocaleTimeString('de-DE'));
   } catch(e) {
@@ -9609,6 +9618,17 @@ i===0?(maSG(m)||''):'',i===0?(md.urlaub||''):'',i===0?(md.krank||''):'',i===0?(m
 dl('\uFEFF'+rows.join('\r\n'),`DATEV_${getAM().replace('-','_')}_${td()}.csv`,'text/csv');
 showAlert(`${data.length} Mitarbeiter exportiert ✓`);
 }
+// ── v172: Nur die harmlose Alt-Migration, ohne Namensfilter, ohne Autospeichern.
+// Alter Fehler: deleteTestData() lief bei jedem Laden automatisch, entfernte
+// Mitarbeiter allein wegen ihres Nachnamens (z.B. jeden, der mit "Testmann"
+// beginnt) und rief danach safeSaveAll() auf. Damit konnten echte Datensaetze
+// aus Anzeige, Export und Backup verschwinden.
+// Jetzt: beim Laden laeuft nur noch diese Umbenennung. Sie aendert keine
+// Datensaetze, nur ein veraltetes Modell-Kennzeichen, und speichert nichts.
+function _migrate433(){
+  ma.forEach(m=>{ (m.objekte||[]).forEach(o=>{ if(o.modell==='433') o.modell='arbeitstage'; }); });
+  ma.forEach(m=>{ if(m.abrechnungsmodell==='433') m.abrechnungsmodell='arbeitstage'; });
+}
 function deleteTestData(){
   const vorher_ma = ma.length, vorher_obj = obj.length, vorher_kd = kunden.length;
   const isTestMA = m => m.id === 'ma_test_001' || String(m.persnr||'').match(/^T-/i) || String(m.nachname||'').startsWith('Testmann');
@@ -9793,7 +9813,9 @@ r.onload=ev=>{
     e.target.value=''; return;
   }
   if (importDone) {
-    _migrateHistoryBis(); // FIX J: History-Migration nach Import
+    // v172: auch nach dem Import abgeschaltet - dieselbe fehlerhafte Routine
+    // wuerde eine frisch importierte, korrekte Historie sofort verkuerzen.
+    // _migrateHistoryBis(); // FIX J: History-Migration nach Import
     safeSaveAll('Import');
     render();
     showAlert('Import: '+importInfo+' ✓');
