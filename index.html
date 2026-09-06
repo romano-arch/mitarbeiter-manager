@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v172</title>
+<title>MitarbeiterManager v177</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v172</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v177</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1553,6 +1553,37 @@ const MK_END_JAHR = Math.max(2027, new Date().getFullYear() + 1);
 const MK = (() => { const a=[]; for(let y=MK_START_JAHR;y<=MK_END_JAHR;y++){for(let m=1;m<=12;m++){a.push(`${y}-${String(m).padStart(2,'0')}`);}} return a; })();
 const WPM = 4.33;
 // Verstetigter Monatslohn: Wochenstunden × Stundenlohn / 5 × 261 / 12
+// v174: Durchschnittliche Monatsstunden, auf denen der Verstetigungsbetrag
+// beruht. Gegenstueck zu calcVerstLohn().
+function verstMonatsStunden(wochenstunden) {
+  return (parseFloat(wochenstunden) || 0) / 5 * 261 / 12;
+}
+
+// v174: Kuerzungsfaktor fuer Fixbetraege (verstetigt / lohn_fest).
+// Liefert 1 = voller Betrag, 0 = nichts. Beruecksichtigt unbezahlte Tage aus
+// dem Abwesenheitskalender des Mitarbeiters UND aus der Revier-Liste.
+function _fixLohnFaktor(m, o, monatKey, wochentage) {
+  const wt = wochentage || o.wochentage || {};
+  const ws = wSum(wt);
+  const basis = verstMonatsStunden(ws);
+  if (!(basis > 0)) return 1;
+  let ausfall = 0;
+  try { ausfall += _maUnbezahltStundenAbzug(m, wt, monatKey, o) || 0; } catch(e) {}
+  try { ausfall += _objUnbezahltStundenAbzug(o, wt, monatKey) || 0; } catch(e) {}
+  if (!(ausfall > 0)) return 1;
+  // v174: Plausibilitaetsgrenze. Die Verstetigungsbasis ist ein Jahresdurchschnitt
+  // (21,75 Tage), der konkrete Monat hat aber mal mehr, mal weniger Arbeitstage.
+  // Ohne diese Grenze bliebe in einem kurzen Monat trotz vollstaendigem Ausfall
+  // ein Restbetrag stehen. Sind alle bezahlten Sollstunden des Monats weg,
+  // gibt es nichts.
+  try {
+    const echteMonatsStd = calcWochentagStunden(wt, monatKey);
+    if (echteMonatsStd > 0 && ausfall >= echteMonatsStd - 0.001) return 0;
+  } catch(e) {}
+  const faktor = 1 - (ausfall / basis);
+  return faktor < 0 ? 0 : faktor;      // nie negativ
+}
+
 function calcVerstLohn(wochenstunden, stundenlohn) {
   return Math.round(wochenstunden * stundenlohn / 5 * 261 / 12 * 100) / 100;
 }
@@ -1880,9 +1911,13 @@ function calcZeitjahr(m) {
 
   // MK-Indices die im Zeitjahr liegen (Format: YYYY-MM)
   const imZeitjahr = MK.filter(mk => {
-    const d = new Date(mk + '-01');
-    return d >= new Date(zyStart.getFullYear(), zyStart.getMonth(), 1) &&
-           d <= new Date(zyEnd.getFullYear(), zyEnd.getMonth(), 1);
+    // v175: Textvergleich statt Datumsobjekte. Alter Fehler: new Date(mk+'-01')
+    // ist UTC-Mitternacht, die Grenze new Date(jahr,monat,1) lokale Mitternacht.
+    // In Deutschland liegt der UTC-Zeitpunkt ein bis zwei Stunden HINTER der
+    // lokalen Grenze - der laufende Monat fiel komplett aus dem Zeitjahr.
+    const gStart = zyStart.getFullYear() + '-' + String(zyStart.getMonth()+1).padStart(2,'0');
+    const gEnd   = zyEnd.getFullYear()   + '-' + String(zyEnd.getMonth()+1).padStart(2,'0');
+    return mk >= gStart && mk <= gEnd;
   });
 
   return {
@@ -1900,9 +1935,19 @@ function calcMonatLohn(m, mk) {
   const sl = parseFloat(m.stundenlohn_tarif) || TARIFLOHN[m.lohngruppe||'']?.lohn || 15;
   const md = (m.monats_daten||{})[mk] || {};
   const _abrMod = m.abrechnungsmodell || 'arbeitstage';
+  // v174: identische Kuerzungslogik wie in maLG. Muss gleich bleiben, sonst
+  // rechnet die Minijob-Jahresgrenze mit anderen Betraegen als die Anzeige.
   const regelLohn = (m.objekte||[]).reduce((s,o) => {
-    if (o.lohn_fest) return s + parseFloat(o.lohn_fest);
-    if (m.verstetigt) { const ws = wSum(o.wochentage||{}); return s + (ws && o.stundenlohn ? calcVerstLohn(ws, +o.stundenlohn) : 0); }
+    if (o.lohn_fest) {
+      const f = _fixLohnFaktor(m, o, mk, o.wochentage);
+      return s + Math.round(parseFloat(o.lohn_fest) * f * 100) / 100;
+    }
+    if (m.verstetigt) {
+      const ws = wSum(o.wochentage||{});
+      if (!(ws && o.stundenlohn)) return s;
+      const f = _fixLohnFaktor(m, o, mk, o.wochentage);
+      return s + Math.round(calcVerstLohn(ws, +o.stundenlohn) * f * 100) / 100;
+    }
     const std = maOSollMA(m, o, mk, _abrMod);
     return s + (std && o.stundenlohn ? std * (+o.stundenlohn) : 0);
   }, 0);
@@ -1930,8 +1975,9 @@ function calcMinijobStatus(m) {
   const zeitjahrEnde = austritt && austritt < zy.end ? austritt : zy.end;
 
   const monateZuPruefen = zy.monate.filter(mk => {
-    const d = new Date(mk + '-01');
-    return d <= zeitjahrEnde;
+    // v175: gleicher Zeitzonenfehler wie in calcZeitjahr, gleiche Loesung.
+    const gEnde = zeitjahrEnde.getFullYear() + '-' + String(zeitjahrEnde.getMonth()+1).padStart(2,'0');
+    return mk <= gEnde;
   });
 
   monateZuPruefen.forEach((mk, idx) => {
@@ -2374,6 +2420,10 @@ async function saveAll() {
   } catch(e) {
     setSyncState('error', 'Speicherfehler!');
     showAlert('Speichern fehlgeschlagen: ' + e.message, '#c81e1e');
+    updStats(); updFilters();
+    // v175: Fehler an den Aufrufer weitergeben. Frueher wurde er hier
+    // verschluckt und der Aufrufer meldete Erfolg.
+    throw e;
   }
   updStats(); updFilters();
 }
@@ -2427,15 +2477,21 @@ async function releaseLock() {
 // Prüft ob der Server-Stand neuer ist als unser lokaler Stand.
 // Gibt true zurück wenn Konflikt (= anderer User hat zwischenzeitlich gespeichert).
 async function checkConflict(table, id, localUpdatedAt) {
-  if (!id || !localUpdatedAt) return false;
+  if (!id) return false;
+  // v175: Fehlender lokaler Zeitstempel heisst NICHT "kein Konflikt". Er heisst,
+  // dass wir es nicht wissen - z.B. weil saveObj den Wert beim Neuaufbau des
+  // Datensatzes verliert. Dann lieber nachfragen als blind ueberschreiben.
+  if (!localUpdatedAt) return true;
   try {
     const rows = await supaFetch(table, 'GET', null, 'id=eq.' + encodeURIComponent(id) + '&select=data');
-    if (!rows || !rows.length) return false;
+    if (!rows || !rows.length) return false;   // Datensatz existiert serverseitig nicht
     const serverTs = rows[0].data?._updated_at;
     if (!serverTs) return false;
     return new Date(serverTs) > new Date(localUpdatedAt);
   } catch(e) {
-    return false; // bei Netzwerkfehler kein Blocking
+    // v175: Ein fehlgeschlagener Vergleich ist kein Freibrief. Frueher wurde
+    // hier false geliefert und ungeprueft ueberschrieben.
+    return true;
   }
 }
 
@@ -2516,11 +2572,12 @@ function calcUebergabeSplit(wochentage, datum, monatKey, altInklusive=false, mod
     const ankertage = _get14TageAnkertage(rhythmus_start, monatKey);
     for (const anker of ankertage) {
       for (let offset = 0; offset < 14; offset++) {
-        const dt = new Date(anker.getTime() + offset * 86400000);
-        if (dt.getMonth() !== m - 1) break;
+        const dt = _addTage(anker, offset);   // v175
+        if (dt.getFullYear() > y || (dt.getFullYear() === y && dt.getMonth() > m - 1)) break;
+        const imMonat = (dt.getFullYear() === y && dt.getMonth() === m - 1);
         const wtKey = WT_IDX[dt.getDay()];
         const std = parseFloat(wochentage[wtKey]) || 0;
-        if (std > 0) {
+        if (std > 0 && imMonat) {
           const dtKey = toKey(dt.getFullYear(), dt.getMonth()+1, dt.getDate());
           // altInklusive=true:  einsatz_bis -> Split-Tag gehoert zu "alt" (bis einschl.)
           // altInklusive=false: einsatz_ab  -> Split-Tag gehoert zu "neu" (ab einschl.)
@@ -2559,17 +2616,35 @@ function calcUebergabeSplit(wochentage, datum, monatKey, altInklusive=false, mod
 // calc14TageEinsaetze: Anzahl kompletter Einsatzblöcke im Monat
 // calc14TageStunden: Gesamtstunden aller Einsatzblöcke im Monat
 // Hilfsfunktion: liefert alle Einsatzblock-Starttage (= Ankertage) im Monat
+// v175: Kalendertag addieren statt feste 24 Stunden. Bei der Zeitumstellung
+// hat ein Tag 23 bzw. 25 Stunden; die alte Millisekunden-Rechnung verschob
+// dadurch den Wochentag (im Oktober wurde ein Sonntag doppelt gezaehlt).
+function _addTage(d, n) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+}
+// v175: Tagesabstand ueber UTC-Mitternacht, damit Sommer-/Winterzeit nichts
+// verschiebt.
+function _tagDiff(a, b) {
+  return Math.round((Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())
+                   - Date.UTC(b.getFullYear(), b.getMonth(), b.getDate())) / 86400000);
+}
+
+// v175: Ankertage jetzt auch aus den 13 Tagen VOR dem Monat.
+// Alter Fehler: Es wurden nur Blockanfaenge innerhalb des Zielmonats gesucht.
+// Ein Block, der im Vormonat begann und in den Monat hineinreichte, fehlte
+// komplett - bei Start 30.06. fielen der 01. und 02.07. unter den Tisch.
 function _get14TageAnkertage(startDatum, monatKey) {
   const [y, m] = monatKey.split('-').map(Number);
-  const daysInMonth = new Date(y, m, 0).getDate();
-  const start = new Date(startDatum);
+  const p = String(startDatum).slice(0,10).split('-').map(Number);
+  if (!p[0] || !p[1] || !p[2]) return [];
+  const start = new Date(p[0], p[1]-1, p[2]);
+  const von = new Date(y, m-1, 1 - 13);      // 13 Tage Vorlauf
+  const bis = new Date(y, m, 0);             // Monatsende
   const ankertage = [];
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dt = new Date(y, m - 1, d);
-    const diffMs = dt.getTime() - start.getTime();
-    const diffDays = Math.round(diffMs / 86400000);
-    if (diffDays < 0) continue;
-    if (diffDays % 14 === 0) ankertage.push(new Date(y, m - 1, d));
+  for (let d = new Date(von); d <= bis; d = _addTage(d, 1)) {
+    const diffDays = _tagDiff(d, start);
+    if (diffDays < 0 || diffDays % 14 !== 0) continue;
+    ankertage.push(new Date(d));
   }
   return ankertage;
 }
@@ -2586,13 +2661,13 @@ function calc14TageEinsaetze(wochentage, startDatum, monatKey) {
     // Block: Ankertag + aufeinanderfolgende Tage mit Stunden (max bis nächsten Anker -1)
     let blockHatStunden = false;
     for (let offset = 0; offset < 14; offset++) {
-      const dt = new Date(anker.getTime() + offset * 86400000);
-      if (dt.getMonth() !== m - 1) break; // Monatsgrenze
+      const dt = _addTage(anker, offset);   // v175
+      if (dt.getFullYear() > y || (dt.getFullYear() === y && dt.getMonth() > m - 1)) break;
+      const imMonat = (dt.getFullYear() === y && dt.getMonth() === m - 1);
       const wtKey = WT_IDX[dt.getDay()];
       const std = parseFloat(wochentage[wtKey]) || 0;
-      if (std > 0) { blockHatStunden = true; break; }
-      // Lücke ohne Stunden beendet den Block
-      if (offset > 0) break;
+      if (std > 0) { if (imMonat) { blockHatStunden = true; break; } }
+      else if (offset > 0) break;
     }
     if (blockHatStunden) count++;
   }
@@ -2608,12 +2683,15 @@ function calc14TageStunden(wochentage, startDatum, monatKey) {
   for (const anker of ankertage) {
     // Block: Ankertag + aufeinanderfolgende Tage MIT Stunden (Lücke = Blockende)
     for (let offset = 0; offset < 14; offset++) {
-      const dt = new Date(anker.getTime() + offset * 86400000);
-      if (dt.getMonth() !== m - 1) break; // Monatsgrenze
+      const dt = _addTage(anker, offset);
+      // v175: nach Monatsende abbrechen, Tage VOR dem Monat aber ueberspringen
+      // statt abzubrechen - sonst geht ein Block aus dem Vormonat verloren.
+      if (dt.getFullYear() > y || (dt.getFullYear() === y && dt.getMonth() > m - 1)) break;
+      const imMonat = (dt.getFullYear() === y && dt.getMonth() === m - 1);
       const wtKey = WT_IDX[dt.getDay()];
       const std = parseFloat(wochentage[wtKey]) || 0;
       if (std > 0) {
-        totalStd += std;
+        if (imMonat) totalStd += std;
       } else if (offset > 0) {
         break; // Erste Lücke nach Blockstart = Blockende
       }
@@ -2768,7 +2846,13 @@ function _objekteStundenGeaendert(alt, neu) {
 // ── EINMALIGE MIGRATION: History gueltig_bis von aktuellem Monat auf Vormonat korrigieren ──
 // Betrifft History-Einträge die mit dem alten Bug gespeichert wurden:
 // gueltig_bis = Monat der Änderung (falsch) statt Vormonat (richtig)
-function _migrateHistoryBis() {
+// v175: Diese Routine ist stillgelegt. Sie besass weder einen Versionsmarker
+// noch eine Pruefung, ob der Altfehler ueberhaupt vorlag, und setzte
+// gueltig_bis bei JEDEM Aufruf um einen weiteren Monat zurueck - auch bei
+// bereits korrekten Historien. Sie bleibt als Vorlage stehen, tut aber nichts.
+// Eine Reparatur bestehender Historien erfolgt geprueft ueber SQL.
+function _migrateHistoryBis() { return 0; }
+function _migrateHistoryBis_ALT_STILLGELEGT() {
   let geaendert = 0;
   ma.forEach(m => {
     if (!m.objekte_history || !m.objekte_history.length) return;
@@ -2836,7 +2920,11 @@ function _archiveObjekteHistory(m, neueObjekte) {
 
   neueObjekte.forEach(neu => {
     if (!neu.kunde) return;
-    const alt = alteObjekte.find(a => a.kunde === neu.kunde);
+    // v175: Revier mitvergleichen. Frueher wurde nur ueber den Kunden gesucht -
+    // bei zwei Revieren desselben Kunden verglich der Code Revier A gegen
+    // Revier B und archivierte unveraenderte Eintraege als geaendert.
+    const alt = alteObjekte.find(a => a.kunde === neu.kunde
+      && String(a.revier||'') === String(neu.revier||''));
     if (!alt) return; // Neues Objekt – noch keine History nötig
     if (!_objekteStundenGeaendert(alt, neu)) return; // Keine Änderung
 
@@ -3222,6 +3310,18 @@ function maOSoll(o, monatKey, maAbrModell){
   if (o.einsatz_ab || o.einsatz_bis) {
     const mk = monatKey || getAM();
     const _splitModell = o.modell === '14tage' ? '14tage' : 'arbeitstage';
+    if (o.einsatz_ab && o.einsatz_bis) {
+      // v175: beide Grenzen. Frueher endete der Zweig hier mit return und das
+      // Enddatum wurde ignoriert - Tage nach einsatz_bis zaehlten mit.
+      const sAb  = calcUebergabeSplit(o.wochentage||{}, o.einsatz_ab,  mk, false, _splitModell, o.rhythmus_start||null);
+      const sBis = calcUebergabeSplit(o.wochentage||{}, o.einsatz_bis, mk, true,  _splitModell, o.rhythmus_start||null);
+      if (!sAb || !sBis) return 0;
+      const gesamt = Math.max(0, sAb.neuStd) + Math.max(0, sAb.altStd);
+      // Innerhalb der Grenzen = Gesamt minus davor (altStd von einsatz_ab)
+      // minus danach (neuStd von einsatz_bis).
+      const drin = gesamt - Math.max(0, sAb.altStd) - Math.max(0, sBis.neuStd);
+      return Math.round(Math.max(0, drin) * 100) / 100;
+    }
     if (o.einsatz_ab) {
       const split = calcUebergabeSplit(o.wochentage||{}, o.einsatz_ab, mk, false, _splitModell, o.rhythmus_start||null);
       return split ? Math.round(Math.max(0, split.neuStd) * 100) / 100 : 0;
@@ -3260,9 +3360,11 @@ function maOSoll(o, monatKey, maAbrModell){
   return parseFloat(o.std_monat)||0;
 }
 function _maAusgeschiedenImMonat(m,mk){
-  // MA gilt als ausgeschieden wenn Status='Ausgeschieden' ODER austrittsdatum vor dem Monat liegt
-  if(m.status==='Ausgeschieden') return true;
-  if(!m.austrittsdatum) return false;
+  // v175: Der Status allein sagt nichts ueber den betrachteten Monat. Frueher
+  // galt 'Ausgeschieden' rueckwirkend fuer alle Monate - abgeschlossene
+  // Abrechnungen wurden dadurch nachtraeglich leer. Jetzt entscheidet das
+  // Austrittsdatum; nur ohne Datum wirkt der Status wie bisher.
+  if(!m.austrittsdatum) return m.status==='Ausgeschieden';
   const monatKey=mk||getAM();
   const [y,mo]=monatKey.split('-').map(Number);
   const monatStart=new Date(y,mo-1,1);
@@ -3286,7 +3388,27 @@ function maLG(m,mk){
   if(_maAusgeschiedenImMonat(m,mk)) return 0;
   const monatKey=mk||getAM();
   const abrMod=m.abrechnungsmodell||'arbeitstage';
-  const regelLohn=(m.objekte||[]).reduce((s,o)=>{if(o.lohn_fest)return s+parseFloat(o.lohn_fest);if(m.verstetigt){const ws=wSum(o.wochentage||{});return s+(ws&&o.stundenlohn?calcVerstLohn(ws,+o.stundenlohn):0);}const std=maOSollMA(m,o,monatKey,abrMod);return s+(std&&o.stundenlohn?std*(+o.stundenlohn):0);},0);
+  // v174: Fixbetraege werden bei unbezahlter Abwesenheit gekuerzt.
+  // Vorher gaben beide Zweige den vollen Betrag zurueck, unabhaengig von Ausfaellen.
+  const regelLohn=(m.objekte||[]).reduce((s,o)=>{
+    if(o.lohn_fest){
+      const f=_fixLohnFaktor(m,o,monatKey,o.wochentage);
+      return s+Math.round(parseFloat(o.lohn_fest)*f*100)/100;
+    }
+    if(m.verstetigt){
+      const ws=wSum(o.wochentage||{});
+      if(!(ws&&o.stundenlohn)) return s;
+      const f=_fixLohnFaktor(m,o,monatKey,o.wochentage);
+      return s+Math.round(calcVerstLohn(ws,+o.stundenlohn)*f*100)/100;
+    }
+    const std=maOSollMA(m,o,monatKey,abrMod);
+    // v175: Lohnsatz aus dem fuer den Monat gueltigen History-Eintrag, nicht
+    // aus dem heutigen Objekt. Sonst werden alte Monate mit dem aktuellen
+    // Satz neu bewertet.
+    let _sl=o.stundenlohn;
+    try { const _h=_getHistoryObjekt(m,o.kunde,monatKey,o.revier); if(_h&&_h.stundenlohn!=null&&_h.stundenlohn!=='') _sl=_h.stundenlohn; } catch(e) {}
+    return s+(std&&_sl?std*(+_sl):0);
+  },0);
   const sl=parseFloat(m.stundenlohn_tarif)||TARIFLOHN[m.lohngruppe||'']?.lohn||0;
   const md=(m.monats_daten||{})[monatKey]||{};
   const sonderLohn=(md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId).reduce((s,e)=>s+(parseFloat(e.stunden)||0)*sl,0);
@@ -4046,19 +4168,32 @@ function syncMAToRev(m) {
     const o = obj.find(x => x.name === ob.kunde);
     if (!o) return;
     o.reviere = o.reviere || [];
-    const inRev = o.reviere.find(r => r.maId === m.id);
+    // v175: Mitarbeiter UND Revier vergleichen. Frueher wurde nur nach maId
+    // gesucht - existierte irgendein Revier des MA, wurde ein zweites beim
+    // selben Kunden nie angelegt und das erste nie aktualisiert.
+    const _revName = String(ob.revier||'');
+    const inRev = o.reviere.find(r => r.maId === m.id && String(r.name||'') === _revName);
+    const _wt = ob.wochentage ? JSON.parse(JSON.stringify(ob.wochentage)) : WT0();
     if (!inRev) {
-      const _wt = ob.wochentage ? JSON.parse(JSON.stringify(ob.wochentage)) : WT0();
-      o.reviere.push({name: ob.revier||'', stunden: '', maId: m.id, wochentage: _wt});
+      o.reviere.push({name: _revName, stunden: '', maId: m.id, wochentage: _wt});
+    } else {
+      inRev.wochentage = _wt;   // v175: bestehendes Revier aktualisieren
     }
   });
   // Objekte die der MA nicht mehr hat → maId aus Revieren entfernen
   // FIX REV-1: ma.filter(()=>true) war toter Code (entfernt)
   obj.forEach(o => {
     if (!o.reviere) return;
-    const maHatKunde = (m.objekte||[]).find(ob => ob.kunde === o.name);
-    if (!maHatKunde) {
+    // v175: revier-genau bereinigen. Frueher wurde nur auf Kundenebene
+    // geprueft - entfernte der MA eines von mehreren Revieren desselben
+    // Kunden, blieb der verwaiste Eintrag stehen.
+    const _eigene = new Set((m.objekte||[])
+      .filter(ob => ob.kunde === o.name)
+      .map(ob => String(ob.revier||'')));
+    if (!_eigene.size) {
       o.reviere = o.reviere.filter(r => r.maId !== m.id);
+    } else {
+      o.reviere = o.reviere.filter(r => r.maId !== m.id || _eigene.has(String(r.name||'')));
     }
   });
 }
@@ -4440,7 +4575,8 @@ if(!_uebergabe){
 // wochentage aus erstem Revier-Block (falls vorhanden), sonst leer
 const firstRev = existingReviere[0];
 const wt = firstRev ? {...(firstRev.wochentage||{})} : {};
-const o={id:eOid||'obj_'+Date.now(),name,vollname:document.getElementById('of-vn').value.trim(),
+const _altObj = eOid ? obj.find(x=>x.id===eOid) : null;   // v175
+const o={id:eOid||'obj_'+Date.now(),_updated_at:(_altObj&&_altObj._updated_at)||undefined,name,vollname:document.getElementById('of-vn').value.trim(),
 kundennummer:document.getElementById('of-nr').value.trim(),adresse:document.getElementById('of-adr').value.trim(),
 telefon:document.getElementById('of-tel').value.trim(),email:document.getElementById('of-em').value.trim(),
 kurzinfo:document.getElementById('of-info').value.trim(),kostenstelle:document.getElementById('of-kst').value.trim(),notiz:'',wochentage:wt,aktiv:st==='aktiv',status:st,objektleiter:(document.getElementById('of-ol')?document.getElementById('of-ol').value:'B')||'B',
@@ -4867,8 +5003,9 @@ function _urlaubUebertrag(m, jahr, teilzeit, sollMonate, ferienMonate, heuteISO)
   } else {
     anspruchRoh = teilzeit / 12 * sollMonate;
   }
-  const dz = anspruchRoh - Math.floor(anspruchRoh);
-  const anspruchPrev = dz >= 0.5 ? Math.ceil(anspruchRoh) : Math.floor(anspruchRoh);
+  // v177: gleiche Rundung wie im Hauptanspruch. Frueher wurde hier noch
+  // kaufmaennisch gerundet - der Uebertrag zeigte 17, das Hauptfeld 17,4.
+  const anspruchPrev = Math.round(anspruchRoh * 100) / 100;
   const genPrev = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => d.startsWith(prev + '-') && t === 'urlaub').length;
   const uebertrag = Math.max(0, anspruchPrev - genPrev);
   if (uebertrag <= 0) return null;
@@ -5041,9 +5178,62 @@ function calcUrlaubAnspruch() {
     }
     return tz / 12 * sollMonate;
   };
-  const _rndBUrlG = function(x){ return (x - Math.floor(x)) >= 0.5 ? Math.ceil(x) : Math.floor(x); };
+  // v176: Rundung nach Beraterauskunft.
+  // Alter Fehler: kaufmaennisch gerundet - jeder Bruchteil unter 0,5 wurde
+  // ABGERUNDET. Das Gesetz kennt in § 5 Abs. 2 BUrlG nur die Aufrundung ab
+  // einem halben Tag beim gesetzlichen Teilurlaub; eine allgemeine Abrundung
+  // steht dort nicht. Aus 17,4 Tagen wurden so unzulaessig 17.
+  // Jetzt: Bruchteile bleiben erhalten (auf 2 Stellen), aufgerundet wird nur
+  // beim gesetzlichen Teilurlaub ab einem halben Tag.
+  const _rndBUrlG = function(x, istTeilurlaub){
+    if (istTeilurlaub && (x - Math.floor(x)) >= 0.5) return Math.ceil(x);
+    return Math.round(x * 100) / 100;
+  };
+
+  // v176: Gesetzlicher Mindesturlaub nach § 3 BUrlG - 24 Werktage bezogen auf
+  // die Sechstagewoche, umgerechnet auf die tatsaechlichen Arbeitstage je Woche.
+  // Bei einer Dreitagewoche sind das 12 Tage, nicht 20. Eine feste Untergrenze
+  // von 20 waere fuer Teilzeitkraefte deutlich zu hoch.
+  const _gesetzlMinimum = 24 / 6 * (_atwJahr.schnitt || arbTagePW || 5);
+
+  // v176: Wartezeit nach § 4 BUrlG - sechs Monate Bestand des
+  // Arbeitsverhaeltnisses. Erst danach entsteht der volle Jahresanspruch.
+  // Davor gilt Teilurlaub (ein Zwoelftel je vollem Monat) OHNE Untergrenze.
+  // Ohne diese Unterscheidung bekaeme ein am 01.10. eingetretener Mitarbeiter
+  // faelschlich den vollen Mindesturlaub statt drei Zwoelfteln.
+  let _wartezeitErfuellt = false;
+  if (_einEff) {
+    const _einD = new Date(_einEff);
+    if (!isNaN(_einD.getTime())) {
+      const _plus6 = new Date(_einD.getFullYear(), _einD.getMonth() + 6, _einD.getDate());
+      _wartezeitErfuellt = _plus6 <= E;    // sechs Monate innerhalb des Zeitraums erreicht
+    }
+  } else {
+    _wartezeitErfuellt = true;             // kein Eintrittsdatum: Altbestand
+  }
 
   let proRata = _proRataOf(teilzeit);
+  // v176: Der Rahmentarifvertrag Gebaeudereinigung erlaubt die Zwoelftelung bei
+  // unterjaehrigem Ausscheiden, schuetzt aber ausdruecklich den gesetzlichen
+  // Mindesturlaub. Frueher kuerzte MM ohne diese Grenze - bei Austritt zum
+  // 31.07. ergab das 17,5 statt der geschuldeten 20 Tage.
+  // v176: Der volle Jahresanspruch entsteht nur, wenn der Mitarbeiter NICHT in
+  // der ersten Jahreshaelfte ausscheidet. Wer bis einschliesslich 30.06. geht,
+  // hat gesetzlichen Teilurlaub nach § 5 Abs. 1 BUrlG - ein Zwoelftel je vollem
+  // Monat, ohne Untergrenze. Ohne diese Unterscheidung bekaeme ein zum 31.03.
+  // Ausscheidender faelschlich den vollen Mindesturlaub.
+  let _austrittErstesHalbjahr = false;
+  if (_ausStr) {
+    const _ausD = new Date(_ausStr);
+    if (!isNaN(_ausD.getTime()) && _ausD.getFullYear() === _jahr && _ausD.getMonth() <= 5) {
+      _austrittErstesHalbjahr = true;
+    }
+  }
+  let _minGriff = false;
+  if (_wartezeitErfuellt && !_austrittErstesHalbjahr && proRata < _gesetzlMinimum) {
+    proRata = _gesetzlMinimum;
+    _minGriff = true;
+  }
   let proRataText = '';
   if (rohMonate <= 0) {
     proRataText = 'Kein voller Beschaeftigungsmonat im Jahr';
@@ -5054,8 +5244,10 @@ function calcUrlaubAnspruch() {
   }
 
   // Rundung §5 Abs. 2 BUrlG
-  const ergebnis = _rndBUrlG(proRata);
-  const _ergebnisPausch = _rndBUrlG(_proRataOf(_teilzeitPausch));
+  // v176: Aufrunden nur beim gesetzlichen Teilurlaub (Wartezeit nicht erfuellt).
+  const _istTeilurlaub = !_wartezeitErfuellt || _austrittErstesHalbjahr;
+  const ergebnis = _rndBUrlG(proRata, _istTeilurlaub);
+  const _ergebnisPausch = _rndBUrlG(_proRataOf(_teilzeitPausch), _istTeilurlaub);
 
   // FIX v135: heutiges Datum lokal (Europe/Berlin-sicher, KEIN toISOString!)
   const _heute = new Date(); _heute.setHours(0, 0, 0, 0);
@@ -5668,9 +5860,9 @@ function renderUnbezahltBlock(o, i) {
     </div>
     <div style="margin-top:7px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px">
       <span style="font-size:11px;color:var(--muted)">
-        <strong id="ubz-cnt-${i}" style="color:var(--acc)">${anzahl}</strong> Tage → Lohnkürzung anteilig
+        <strong id="ubz-cnt-${i}" style="color:var(--acc)">${anzahl}</strong> Tage → Soll- und Lohnkürzung
       </span>
-      <span style="font-size:10px;color:var(--muted2);background:var(--s1);border-radius:4px;padding:2px 6px">Sollstunden bleiben unverändert</span>
+      <span style="font-size:10px;color:var(--muted2);background:var(--s1);border-radius:4px;padding:2px 6px">exakt nach Wochentag berechnet</span>
     </div>
   </div>
 </div>
@@ -6506,7 +6698,12 @@ function _renderFehlzeitHinweis(m, mk) {
         ? 'Abzug <strong>' + hhmm(_exakt) + ' Std.</strong> (exakt nach Wochentag)'
         : _dat.length
         ? 'Abzug <strong>' + hhmm(_std) + ' Std.</strong> (exakt nach Wochentag)'
-        : 'Lohnkürzung ca. ' + proz + '% (' + Math.round((1-faktor)*arbT*10)/10 + ' AT)');
+        : '<strong>kein Abzug</strong> – ohne konkrete Kalendertage kann nicht '
+          + 'gekürzt werden. Bitte die Tage im Abwesenheitskalender eintragen.');
+  // v175: Frueher stand hier "Lohnkuerzung ca. X%". Das war falsch: Seit der
+  // exakten Zaehlregel wertet die Berechnung nur datierte Tage aus, eine blosse
+  // Anzahl im Feld wird ignoriert. Der Hinweis versprach also eine Kuerzung,
+  // die nicht stattfand - und verhinderte damit, dass es jemand bemerkt.
   el.style.display = 'block';
 }
 
@@ -7579,6 +7776,39 @@ function _uhmFeiertage(jahr){
 }
 
 // ── v140: Ebene 1 – Jahres-Heatmap aller MA ─────────────────
+// v177: Wer hat noch Resturlaub aus dem Vorjahr, der am 31.03. verfaellt?
+// Liefert eine Liste, sortiert nach Dringlichkeit. Reine Auswertung, sie
+// veraendert keine Daten.
+function _urlaubVerfallListe(jahr) {
+  const stichtag = jahr + '-03-31';
+  const heute = new Date(); heute.setHours(0,0,0,0);
+  const heuteISO = heute.getFullYear() + '-' + String(heute.getMonth()+1).padStart(2,'0')
+                 + '-' + String(heute.getDate()).padStart(2,'0');
+  const tageBis = Math.round((new Date(jahr,2,31) - heute) / 86400000);
+  const out = [];
+  getVisibleMA().forEach(m => {
+    if (m.status === 'Ausgeschieden') return;
+    const vj = jahr - 1;
+    // Anspruch des Vorjahres: gespeicherter Wert oder Staffelung
+    const basis = parseFloat(m.urlaub_jahres) > 0 ? parseFloat(m.urlaub_jahres) : calcUrlaubTage(m);
+    const genommenVJ = Object.entries(m.abwesenheiten||{})
+      .filter(([d,t]) => t === 'urlaub' && d.startsWith(vj + '-')).length;
+    const uebertrag = Math.round(Math.max(0, basis - genommenVJ) * 100) / 100;
+    if (uebertrag <= 0) return;
+    // Verbrauch Jan-Maerz zaehlt zuerst gegen den Uebertrag
+    const verbraucht = Object.entries(m.abwesenheiten||{})
+      .filter(([d,t]) => t === 'urlaub' && d >= jahr + '-01-01' && d <= stichtag).length;
+    const rest = Math.round(Math.max(0, uebertrag - verbraucht) * 100) / 100;
+    if (rest <= 0) return;
+    out.push({ id: m.id, name: (m.nachname||'') + ' ' + (m.vorname||''),
+               ol: m.objektleiter || '?', uebertrag, verbraucht, rest,
+               verfallen: heuteISO > stichtag });
+  });
+  out.sort((a,b) => b.rest - a.rest);
+  return { liste: out, tageBis, stichtag,
+           gesamt: Math.round(out.reduce((s,x)=>s+x.rest,0)*100)/100 };
+}
+
 function renderUrlaub() {
   const c = document.getElementById('urlaub-c');
   if (!c) return;
@@ -7668,6 +7898,34 @@ function renderUrlaub() {
       <span class="gantt-summary">👥 ${maList.length} MA</span>
     </div>
   </div>`;
+
+  // v177: Hinweisbox "Resturlaub verfaellt am 31.03." Zeigt, wen man noch
+  // ansprechen muss, solange die Frist laeuft - und was danach verfallen ist.
+  const _vf = _urlaubVerfallListe(_ganttYear);
+  if (_vf.liste.length) {
+    const _abgelaufen = _vf.tageBis < 0;
+    const _farbe = _abgelaufen ? 'var(--muted)' : (_vf.tageBis <= 45 ? 'var(--red)' : 'var(--orange)');
+    const _titel = _abgelaufen
+      ? `Zum 31.03.${_ganttYear} verfallen: ${_vf.gesamt} Tage bei ${_vf.liste.length} Mitarbeitern`
+      : `Resturlaub ${_ganttYear-1}: ${_vf.gesamt} Tage bei ${_vf.liste.length} Mitarbeitern – verfaellt am 31.03.${_ganttYear} (noch ${_vf.tageBis} Tage)`;
+    html += `<div style="margin:10px 0;border:1px solid ${_farbe};border-radius:8px;background:var(--white);overflow:hidden">
+      <div style="padding:8px 12px;background:var(--s1);border-bottom:1px solid var(--border);
+                  font-size:13px;font-weight:700;color:${_farbe}">
+        ${_abgelaufen ? '\u23F1' : '\u26A0\uFE0F'} ${esc(_titel)}
+      </div>
+      <div style="max-height:190px;overflow-y:auto">
+        ${_vf.liste.map(x => `<div style="display:flex;align-items:center;justify-content:space-between;
+             gap:8px;padding:5px 12px;border-bottom:1px solid var(--s1);cursor:pointer;font-size:13px"
+             onclick="_ganttDetailId='${esc(x.id)}';renderUrlaub()">
+          <span><span class="olb ol-${esc(x.ol)}" style="width:17px;height:17px;font-size:9px">${esc(x.ol)}</span>
+            ${esc(x.name)}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:${_farbe}">
+            ${x.rest} Tage${x.verbraucht ? ` <span style="color:var(--muted);font-weight:400">(${x.verbraucht} genommen)</span>` : ''}
+          </span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
 
   if (!maList.length) {
     html += `<div class="gantt-empty">Keine Mitarbeiter für diese Auswahl.</div>`;
@@ -9629,9 +9887,17 @@ function _migrate433(){
   ma.forEach(m=>{ (m.objekte||[]).forEach(o=>{ if(o.modell==='433') o.modell='arbeitstage'; }); });
   ma.forEach(m=>{ if(m.abrechnungsmodell==='433') m.abrechnungsmodell='arbeitstage'; });
 }
+// v175: Der Namensfilter ist entfernt. Frueher verschwand jeder Mitarbeiter,
+// dessen Nachname mit "Testmann" beginnt oder dessen Personalnummer mit "T-"
+// anfaengt, allein aufgrund seines Namens aus dem geladenen Bestand - und
+// danach lief ein automatisches Gesamtspeichern. Echte Testdaten gehoeren in
+// eine getrennte Umgebung, nicht in eine Namenspruefung beim Laden.
 function deleteTestData(){
   const vorher_ma = ma.length, vorher_obj = obj.length, vorher_kd = kunden.length;
-  const isTestMA = m => m.id === 'ma_test_001' || String(m.persnr||'').match(/^T-/i) || String(m.nachname||'').startsWith('Testmann');
+  // v175: Nur noch die eine fest vergebene Demo-ID. Namensmuster entfernt -
+  // ein echter Mitarbeiter namens "Testmannshausen" oder mit Personalnummer
+  // "T-12" verschwand sonst allein wegen seines Namens aus dem Bestand.
+  const isTestMA = m => m.id === 'ma_test_001';
   const isTestObj = o => o.id === 'obj_test_001' || String(o.kundennummer||'').match(/^T-/i) || String(o.name||'').includes('TestKunde');
   const isTestKD = k => String(k.kundennummer||'').match(/^T-/i) || String(k.name||'').includes('TestKunde');
   ma = ma.filter(m => !isTestMA(m));
@@ -10249,6 +10515,10 @@ function _vtUpdateHint() {
   if (hint) hint.style.display = _vtData.some(v => v.maId && v.stunden) ? 'block' : 'none';
 }
 
+// v175: getrennte Timer, damit sich Vertretungen und Sonderstunden nicht
+// gegenseitig abwuergen.
+let _vtAutoSaveTimeout = null;
+let _ssAutoSaveTimeout = null;
 function _vtAutoFlush() {
   const m = eMAid ? ma.find(x => x.id === eMAid) : null;
   if (!m) return;
@@ -10259,9 +10529,10 @@ function _vtAutoFlush() {
   m.monats_daten[k].vertretungen = (_vtData||[]).filter(v => v.maId || v.maName);
   // Gutschrift sofort beim Vertreter eintragen (nicht erst beim Speichern-Button)
   vtSyncToMAB();
-  if (_autoSaveTimeout) clearTimeout(_autoSaveTimeout);
-  // Nur betroffene MA speichern (nicht alle 200)
-  _autoSaveTimeout = setTimeout(() => {
+  // v175: eigener Timer fuer Vertretungen. Frueher teilte er sich die Variable
+  // mit den Sonderstunden und wurde von diesen geloescht.
+  if (_vtAutoSaveTimeout) clearTimeout(_vtAutoSaveTimeout);
+  _vtAutoSaveTimeout = setTimeout(() => {
     const betroffene = [m];
     (_vtData||[]).forEach(vt => {
       if (vt.maId) { const vma = ma.find(x => x.id === vt.maId); if (vma && !betroffene.includes(vma)) betroffene.push(vma); }
@@ -10765,8 +11036,9 @@ function _ssAutoFlush(){
   if(!m.monats_daten)m.monats_daten={};
   if(!m.monats_daten[k])m.monats_daten[k]={urlaub:0,krank:0,notiz:'',zettel_ok:false,vertretungen:[],sonderstunden:[]};
   m.monats_daten[k].sonderstunden=(_ssData||[]).filter(e=>e.maId&&parseFloat(e.stunden)>0);
-  if(_autoSaveTimeout)clearTimeout(_autoSaveTimeout);
-  _autoSaveTimeout=setTimeout(()=>supaSave('mitarbeiter',[m]).catch(e=>_saveFehler(e,'Sonderstunden-Autosave')),800);
+  // v175: eigener Timer fuer Sonderstunden (siehe _vtAutoFlush).
+  if(_ssAutoSaveTimeout)clearTimeout(_ssAutoSaveTimeout);
+  _ssAutoSaveTimeout=setTimeout(()=>supaSave('mitarbeiter',[m]).catch(e=>_saveFehler(e,'Sonderstunden-Autosave')),800);
 }
 
 // ── TYPEAHEAD ENGINE (geteilt von VT + SS) ───────────────
@@ -10956,7 +11228,8 @@ function openDatevCheck() {
   if(!CAN.exportDatev()){ showAlert('Keine Berechtigung für DATEV-Export.','#c81e1e'); return; }
   const monat = getAMLabel();
   document.getElementById('datev-check-title').textContent = `📋 DATEV-Prüfliste – ${monat}`;
-  const aktiveMA = ma.filter(m => m.status !== 'Ausgeschieden');
+  // v175: monatsbezogen - siehe _maAusgeschiedenImMonat.
+  const aktiveMA = ma.filter(m => !_maAusgeschiedenImMonat(m, getAM()));
   let rows = '';
   let fehlerCount = 0;
   let warnCount = 0;
@@ -10982,6 +11255,12 @@ function openDatevCheck() {
     let statusText = '🟢 Bereit';
     let problems = [];
 
+    // v175: Pflichtfeld Personalnummer. Ohne sie ist die Zeile in DATEV nicht
+    // zuordenbar - das ist ein Fehler, keine Warnung.
+    if (!String(m.persnr||'').trim()) { problems.push('Personalnummer fehlt'); status = 'err'; }
+    else if (!/^[0-9A-Za-z_-]+$/.test(String(m.persnr).trim())) {
+      problems.push('Personalnummer enthaelt unzulaessige Zeichen'); status = 'err';
+    }
     if (keinZettel) { problems.push('Stundenzettel fehlt'); status = 'warn'; }
     if (!m.datev_lohnarten || !m.datev_lohnarten.length) { problems.push('Keine DATEV-Lohnart hinterlegt'); if(status==='ok') status='warn'; }
     // keinIst-Prüfung entfernt (war toter Code: ist === soll per Design)
@@ -11021,12 +11300,12 @@ function openDatevCheck() {
     if (status === 'ok') return;
 
     rows += `<div class="datev-check-row ${status}" style="cursor:pointer" title="Klicken zum Bearbeiten"
-      onclick="closeDatevCheck();setTimeout(()=>openMAM('${m.id}'),120)">
-      <span style="display:flex;align-items:center;gap:6px">${olBadge} <strong>${m.nachname}</strong> ${m.vorname||''} ${vtBadge}</span>
+      onclick="closeDatevCheck();setTimeout(()=>openMAM('${esc(m.id)}'),120)">
+      <span style="display:flex;align-items:center;gap:6px">${olBadge} <strong>${esc(m.nachname)}</strong> ${esc(m.vorname||'')} ${vtBadge}</span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:12px">${sollAnzeige}</span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600">${istAnzeige}</span>
       <span style="font-size:12px;display:flex;align-items:center;justify-content:space-between;gap:6px">
-        <span>${statusText}</span>
+        <span>${esc(statusText)}</span>
         <span style="font-size:11px;color:var(--muted);white-space:nowrap">✏️ öffnen</span>
       </span>
     </div>`;
@@ -11044,8 +11323,18 @@ function openDatevCheck() {
     : `✅ Alle ${aktiveMA.length} MA geprüft – bereit für Export`;
   document.getElementById('datev-check-sub').textContent = subText;
   const exportBtn = document.getElementById('datev-export-btn');
-  exportBtn.style.opacity = '1';
-  exportBtn.title = '';
+  // v175: Knopf sperren, wenn Pflichtfelder fehlen. Frueher war er immer aktiv,
+  // egal was die Liste anzeigte.
+  const _blocker = datevExportBlocker(getAM());
+  if (_blocker.length) {
+    exportBtn.style.opacity = '.45';
+    exportBtn.style.pointerEvents = 'none';
+    exportBtn.title = _blocker.slice(0,8).join('\n');
+  } else {
+    exportBtn.style.opacity = '1';
+    exportBtn.style.pointerEvents = '';
+    exportBtn.title = '';
+  }
   document.getElementById('datev-check-bg').classList.add('open');
 }
 
@@ -11054,6 +11343,15 @@ function closeDatevCheck() {
 }
 
 function doDatevExport() {
+  // v175: Der Export prueft selbst. Frueher verliess er sich auf die Pruefliste,
+  // die aber nur anzeigte und nichts verhinderte.
+  const blocker = datevExportBlocker(getAM());
+  if (blocker.length) {
+    showAlert('Export gestoppt – ' + blocker.length + ' Pflichtfehler:\n\n' +
+              blocker.slice(0,10).join('\n') +
+              (blocker.length > 10 ? '\n… und ' + (blocker.length-10) + ' weitere' : ''), '#c81e1e');
+    return;
+  }
   closeDatevCheck();
   exportDatevLohnarten();
 }
@@ -11207,7 +11505,18 @@ function getFeiertageImMonat(monatKey) {
 // ── DATEV-EXPORT MIT LOHNARTEN ────────────────────────────
 function exportDatevLohnarten() {
   if(!CAN.exportDatev()){ showAlert('Keine Berechtigung für DATEV-Export.','#c81e1e'); return; }
-  const data = ma.filter(m => m.status !== 'Ausgeschieden');
+  // v175: Pruefung direkt an der Quelle. Frueher lag sie nur in doDatevExport();
+  // jeder andere Aufrufweg exportierte ungeprueft.
+  const _blocker = datevExportBlocker(getAM());
+  if (_blocker.length) {
+    showAlert('Export gestoppt – ' + _blocker.length + ' Pflichtfehler:\n\n' +
+              _blocker.slice(0,10).join('\n') +
+              (_blocker.length > 10 ? '\n… und ' + (_blocker.length-10) + ' weitere' : ''), '#c81e1e');
+    return;
+  }
+  // v175: monatsbezogen statt pauschal. Frueher fehlte ein zum 31.08.
+  // ausgeschiedener Mitarbeiter auch im Juli-Export.
+  const data = ma.filter(m => !_maAusgeschiedenImMonat(m, getAM()));
   const monat = getAM();
   const monatDATEV = monat.slice(5,7) + '/' + monat.slice(0,4); // MM/YYYY für DATEV
   const feiertage = new Set(getFeiertageImMonat(monat));
@@ -11448,7 +11757,9 @@ function exportDatevLohnarten() {
                 const s14 = parseFloat(wt[wtKey]) || 0;
                 if (s14 > 0) {
                   // Sonntag zaehlt auch wenn Feiertag: 2004 greift immer am Sonntag
-                  if (dt.getDay() === 0) hO += s14;
+                  // v173: nur wenn MA anwesend UND Objekt aktiv - wie im Wochen-Zweig.
+                  const _iso14 = isoLocal(dt);
+                  if (dt.getDay() === 0 && _maAnwesendAm(m, _iso14) && _objAktivAm(o, _iso14)) hO += s14;
                 } else if (offset > 0) break;
               }
             });
@@ -11526,7 +11837,7 @@ function exportDatevLohnarten() {
         const abr = m.abrechnungsmodell || 'arbeitstage';
         (m.objekte||[]).forEach(o => {
           // FIX v103 Balta-Fix: Objekt nur verarbeiten, wenn es dieser Lohnart zugeordnet ist.
-          const objKey = o.id || o.kunde;
+          const objKey = _objLAKey(o);   // v173
           const zugeordneteLA = objLAMap.get(objKey);
           if (zugeordneteLA && zugeordneteLA !== laKey) return;
           // Wenn objLAMap leer ist (keine Grundlohnarten) oder genau diese LA passt -> exportieren
@@ -11545,10 +11856,10 @@ function exportDatevLohnarten() {
             const h = parseFloat(e.stunden) || 0;
             if (h <= 0) return;
             const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
-            // Balta-Fix: pruefen ob diese KST eine spezifische LA hat
-            const ssObjKey = e.kunde;
-            const ssZugeordneteLA = ssObjKey ? objLAMap.get(ssObjKey) : null;
-            if (ssZugeordneteLA && ssZugeordneteLA !== laKey) return; // gehoert anderer LA
+            // v173: Sondereinsatz genau EINMAL buchen. Ziel-Lohnart ueber das
+            // passende Revier des MA, sonst die einzige Grundlohnart.
+            const zielLA = _ssZielLohnart(m, e, objLAMap, h);
+            if (zielLA !== laKey) return;   // gehoert einer anderen Lohnart
             add(kst, h);
           });
       }
@@ -11911,6 +12222,67 @@ function _gutKstLookup(objName, kundeId) {
 }
 // Liefert Map<objektId, lohnart> fuer Grundlohn-Zuordnung.
 // Bei Fehler: wirft Exception mit Beschreibung.
+// v173: Schluessel fuer die Lohnart-Zuordnung. Kunde + Revier, weil
+// Mitarbeiter-Objekte keine eigene id besitzen und zwei Reviere desselben
+// Kunden sonst denselben Eintrag ueberschreiben (alter Fehler: o.id || o.kunde).
+// v175: Text fuer die Einbettung in HTML entschaerfen. Alter Fehler: Namen
+// gingen ungefiltert in innerHTML; ein Name mit spitzen Klammern wurde als
+// Markup interpretiert statt als Text angezeigt.
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+// v175: Zentrale Pflichtpruefung vor dem Export. Liefert eine Liste von
+// Fehlern; ist sie nicht leer, wird nicht exportiert. Frueher konnte man
+// trotz angezeigter Fehler exportieren, weil der Knopf immer aktiv war.
+function datevExportBlocker(monatKey) {
+  const mk = monatKey || getAM();
+  const fehler = [];
+  const gesehen = new Map();
+  ma.filter(m => !_maAusgeschiedenImMonat(m, mk)).forEach(m => {
+    const name = (m.nachname||'?') + ' ' + (m.vorname||'');
+    const pnr = String(m.persnr||'').trim();
+    if (!pnr) { fehler.push(name + ': Personalnummer fehlt'); return; }
+    if (!/^[0-9A-Za-z_-]+$/.test(pnr)) {
+      fehler.push(name + ': Personalnummer "' + pnr + '" enthaelt unzulaessige Zeichen');
+    }
+    if (gesehen.has(pnr)) fehler.push('Personalnummer ' + pnr + ' doppelt: ' + gesehen.get(pnr) + ' und ' + name);
+    else gesehen.set(pnr, name);
+  });
+  // Kostenstellen duerfen die CSV-Struktur nicht zerstoeren
+  (obj||[]).forEach(o => {
+    const kst = String(o.kostenstelle||'').trim();
+    if (kst && !/^[0-9A-Za-z_-]+$/.test(kst)) {
+      fehler.push('Objekt "' + (o.name||'?') + '": Kostenstelle "' + kst + '" enthaelt unzulaessige Zeichen');
+    }
+  });
+  return fehler;
+}
+
+function _objLAKey(o) {
+  if (!o) return '';
+  return String(o.kundeId || o.kunde || '') + '|' + String(o.revier || '');
+}
+// v173: Ziel-Lohnart eines Sondereinsatzes. Frueher wurden Sonderstunden
+// innerhalb der Grundlohnart-Schleife gebucht und bei fehlender Zuordnung
+// MEHRFACH addiert (bei zwei Lohnarten doppelt). Jetzt genau eine Lohnart.
+function _ssZielLohnart(m, e, objLAMap, stunden) {
+  if (e && e.kunde) {
+    for (const o of (m.objekte||[])) {
+      if (String(o.kundeId || o.kunde || '') !== String(e.kunde)) continue;
+      const la = objLAMap.get(_objLAKey(o));
+      if (la) return la;
+    }
+  }
+  const grundSet = Array.from(new Set(objLAMap.values()));
+  if (grundSet.length === 1) return grundSet[0];
+  throw new Error(
+    (m.nachname||'?') + ' (Nr. ' + (m.persnr||'-') + '): Sondereinsatz ' +
+    (Number(stunden)||0).toFixed(2) + ' Std' +
+    (e && e.kunde ? ' bei "' + e.kunde + '"' : '') +
+    ' laesst sich keiner Lohnart zuordnen. Bitte Kunde/Revier pruefen.');
+}
 function _mapObjektToLohnart(m) {
   const grundLAs = (m.datev_lohnarten||[]).filter(_isGrundLohnart)
     .map(x => String(x).trim()).sort();
@@ -11929,7 +12301,7 @@ function _mapObjektToLohnart(m) {
   }
   if (grundLAs.length === 1) {
     // Nur eine Grundlohnart -> gilt fuer alle Objekte
-    objekte.forEach(o => map.set(o.id || o.kunde, grundLAs[0]));
+    objekte.forEach(o => map.set(_objLAKey(o), grundLAs[0]));   // v173
     return map;
   }
   // Mehrere Grundlohnarten -> 1:1 Zuordnung nach Anzahl
@@ -11940,7 +12312,7 @@ function _mapObjektToLohnart(m) {
       'aber ' + objekte.length + ' Objekte. Anzahl muss uebereinstimmen.'
     );
   }
-  objekte.forEach((o, i) => map.set(o.id || o.kunde, grundLAs[i]));
+  objekte.forEach((o, i) => map.set(_objLAKey(o), grundLAs[i]));   // v173
   return map;
 }
 
@@ -11992,7 +12364,9 @@ function _buildDatevControlRows() {
   };
 
   const out = []; // {persnr, name, verstetigt, kst, kundeName, laCode, laLabel, stunden, stundenlohn, betrag, notiz}
-  const data = ma.filter(m => m.status !== 'Ausgeschieden');
+  // v175: monatsbezogen statt pauschal. Frueher fehlte ein zum 31.08.
+  // ausgeschiedener Mitarbeiter auch im Juli-Export.
+  const data = ma.filter(m => !_maAusgeschiedenImMonat(m, getAM()));
 
   data.forEach(m => {
     const md = (m.monats_daten||{})[monat]||{};
@@ -12154,7 +12528,9 @@ function _buildDatevControlRows() {
                   const wtKey = WT_IDX_14[dt.getDay()];
                   const s14 = parseFloat(wt[wtKey]) || 0;
                   if (s14 > 0) {
-                    if (dt.getDay() === 0) hO += s14;
+                    // v173: identisch zum DATEV-Export - Zuschlag nur bei Anwesenheit.
+                    const _iso14 = isoLocal(dt);
+                    if (dt.getDay() === 0 && _maAnwesendAm(m, _iso14) && _objAktivAm(o, _iso14)) hO += s14;
                   } else if (offset > 0) break;
                 }
               });
@@ -12209,7 +12585,7 @@ function _buildDatevControlRows() {
         if (istMinijobNichtVerst) return; // Minijob-Soll laeuft ueber 2199
         const abr = m.abrechnungsmodell || 'arbeitstage';
         (m.objekte||[]).forEach(o => {
-          const objKey = o.id || o.kunde;
+          const objKey = _objLAKey(o);   // v173
           const zugeordneteLA = objLAMap.get(objKey);
           if (zugeordneteLA && zugeordneteLA !== laCode) return;
           const hO = maOSollMA(m, o, monat, abr);
@@ -12223,9 +12599,10 @@ function _buildDatevControlRows() {
             if (h <= 0) return;
             const kst = e.kunde ? _kstFuerKundenRef(e.kunde) : _fallbackKst;
             const kn  = e.kunde ? _kundeNameFuerRef(e.kunde) : _fallbackKunde;
-            const ssObjKey = e.kunde;
-            const ssZugeordneteLA = ssObjKey ? objLAMap.get(ssObjKey) : null;
-            if (ssZugeordneteLA && ssZugeordneteLA !== laCode) return;
+            // v173: identische Logik wie im DATEV-Export, damit die
+            // Kontroll-Liste dieselben Zahlen zeigt wie die Exportdatei.
+            const zielLA = _ssZielLohnart(m, e, objLAMap, h);
+            if (zielLA !== laCode) return;
             addBucket(kst, kn, h, slDefault, e.notiz||'');
           });
       }
