@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v177</title>
+<title>MitarbeiterManager v183</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v177</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v183</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1281,7 +1281,7 @@ main{padding:14px 16px}
       Personaldaten
     </div>
     <div class="fg2" style="margin-bottom:5px">
-      <div class="fg"><label>Personal-Nr.</label><input id="f-pnr" maxlength="20"><div class="warn-t" id="w-pnr"></div></div>
+      <div class="fg"><label>Personal-Nr.</label><input id="f-pnr" maxlength="20"><div class="warn-t" id="w-pnr"></div><div id="ol-hint-pnr" style="display:none;font-size:10px;color:var(--muted);margin-top:3px">🔒 Vergibt die Lohnbuchhaltung</div></div>
       <div class="fg"><label>Status</label><select id="f-st"><option>Aktiv</option><option>Krank</option><option>Urlaub</option><option>Ausgeschieden</option></select></div>
     </div>
     <div class="fg2" style="margin-bottom:0">
@@ -4294,20 +4294,11 @@ document.getElementById('obel-info').innerHTML=
 // LV-Sektion befüllen
 lvRenderModal(o);
 document.getElementById('ombg').classList.add('open');
-  if(isOL()){
-    document.querySelectorAll('#ombg input, #ombg select, #ombg textarea').forEach(el=>{ el.disabled=true; });
-    const saveBtn=document.querySelector('#ombg .mactions button');
-    if(saveBtn) saveBtn.style.display='none';
-    document.querySelectorAll('#ombg .rev-add-row, #ombg .btn-d').forEach(el=>el.style.display='none');
-  } else {
-    document.querySelectorAll('#ombg input, #ombg select, #ombg textarea').forEach(el=>{ el.disabled=false; });
-    const saveBtn=document.querySelector('#ombg .mactions button');
-    if(saveBtn) saveBtn.style.display='';
-    document.querySelectorAll('#ombg .rev-add-row, #ombg .btn-d').forEach(el=>el.style.display='');
-  }
 omRevRender(o);
 // MA-Typeahead für obere Tabelle initialisieren
 _omGlobalMAInit(o);
+// v183: Rechte erst hier – vorher standen die Revier-Zeilen noch nicht.
+applyOMPermissions();
 // Sichtbarkeit der Boxen initial setzen
 omGlobalWTUpdate();
 }
@@ -5172,6 +5163,15 @@ function calcUrlaubAnspruch() {
 
   const _proRataOf = function(tz){
     if (rohMonate <= 0) return 0;
+    // v178: Im Eintrittsjahr zaehlt der Eintrittsmonat voll mit.
+    // Eintritt im April = 9 Monate (April bis Dezember), Eintritt im August
+    // = 5 Monate. Je Monat ein Zwoelftel, also 2,33 Tage bei 28 Tagen Basis.
+    if (_einEff && !_ausStr) {
+      const _einD = new Date(_einEff);
+      if (!isNaN(_einD.getTime()) && _einD.getFullYear() === _jahr) {
+        return tz / 12 * (12 - _einD.getMonth());
+      }
+    }
     if (rohMonate < 12) {
       const fa = ferienMonate * (rohMonate / 12);
       return tz / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
@@ -5185,9 +5185,13 @@ function calcUrlaubAnspruch() {
   // steht dort nicht. Aus 17,4 Tagen wurden so unzulaessig 17.
   // Jetzt: Bruchteile bleiben erhalten (auf 2 Stellen), aufgerundet wird nur
   // beim gesetzlichen Teilurlaub ab einem halben Tag.
-  const _rndBUrlG = function(x, istTeilurlaub){
-    if (istTeilurlaub && (x - Math.floor(x)) >= 0.5) return Math.ceil(x);
-    return Math.round(x * 100) / 100;
+  // v178: Vorgabe Romano - Bruchteile werden immer AUFGERUNDET auf ganze Tage.
+  // Damit liegt das Ergebnis nie unter dem Anspruch; die gesetzliche
+  // Aufrundungspflicht ab einem halben Tag ist mit abgedeckt.
+  // Die Zwischenrundung auf zwei Stellen ist noetig, weil 28/12*12 intern
+  // 28.000000000000004 ergibt und sonst auf 29 aufgerundet wuerde.
+  const _rndBUrlG = function(x){
+    return Math.ceil(Math.round(x * 100) / 100);
   };
 
   // v176: Gesetzlicher Mindesturlaub nach § 3 BUrlG - 24 Werktage bezogen auf
@@ -5245,9 +5249,8 @@ function calcUrlaubAnspruch() {
 
   // Rundung §5 Abs. 2 BUrlG
   // v176: Aufrunden nur beim gesetzlichen Teilurlaub (Wartezeit nicht erfuellt).
-  const _istTeilurlaub = !_wartezeitErfuellt || _austrittErstesHalbjahr;
-  const ergebnis = _rndBUrlG(proRata, _istTeilurlaub);
-  const _ergebnisPausch = _rndBUrlG(_proRataOf(_teilzeitPausch), _istTeilurlaub);
+  const ergebnis = _rndBUrlG(proRata);
+  const _ergebnisPausch = _rndBUrlG(_proRataOf(_teilzeitPausch));
 
   // FIX v135: heutiges Datum lokal (Europe/Berlin-sicher, KEIN toISOString!)
   const _heute = new Date(); _heute.setHours(0, 0, 0, 0);
@@ -5278,7 +5281,9 @@ function calcUrlaubAnspruch() {
       if (d <= _heuteISO) genommen++; else geplant++;
     }
   });
-  const rest = ergebnis - genommen - geplant;
+  // v178: nachrunden. Ohne das entstand bei Bruchteilen der Anzeigefehler
+  // "9.030000000000001" - eine Eigenart der binaeren Rechnerarithmetik.
+  const rest = Math.round((ergebnis - genommen - geplant) * 100) / 100;
 
   // FIX v135: Uebertrag Vorjahr – NUR sichtbar fuer Romano + Richter
   const _uebSichtbar = _currentEmail === 'romano@allcleanservice.de' || _currentEmail === 'richter@allcleanservice.de';
@@ -5622,7 +5627,7 @@ document.getElementById('ma-objs').innerHTML=mao.map((o,i)=>{
   <div class="fg">
     <label>Objekt-Modell</label>
     <select style="font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--white);color:var(--text);font-family:inherit;outline:none;width:100%"
-      onchange="setModell(${i},this.value)">
+      onchange="setModell(${i},this.value)" data-ol-lock>
       <option value="arbeitstage" ${(o.modell||'arbeitstage')==='arbeitstage'?'selected':''}>📅 Arbeitstage</option>
       <option value="14tage" ${o.modell==='14tage'?'selected':''}>📅 14-Tage-Rhythmus</option>
       <option value="monatlich" ${o.modell==='monatlich'?'selected':''}>📆 Monatlich (fix)</option>
@@ -5652,7 +5657,7 @@ ${o.modell==='14tage'?`<div style="display:flex;align-items:center;gap:8px;flex-
   <input type="date" value="${o.rhythmus_start||''}"
     title="Erster Reinigungstag – alle 14 Tage ab diesem Datum"
     style="font-size:12px;padding:3px 8px;border:1px solid #93c5fd;border-radius:6px;background:var(--acc-l);font-family:inherit;color:var(--text);outline:none"
-    onchange="mao[${i}].rhythmus_start=this.value;renderMAO()">
+    onchange="mao[${i}].rhythmus_start=this.value;renderMAO()" data-ol-lock>
   ${o.rhythmus_start?`<span style="color:var(--acc);background:var(--acc-l);border:1px solid #93c5fd;border-radius:6px;padding:2px 8px">
     ${calc14TageEinsaetze(o.wochentage||{},o.rhythmus_start,mk)}× Einsatz · <strong>${calc14TageStunden(o.wochentage||{},o.rhythmus_start,mk)}h</strong>
   </span>`:'<span style="color:var(--orange)">⚠ Bitte Startdatum eintragen</span>'}
@@ -5661,18 +5666,18 @@ ${o.modell==='14tage'?`<div style="display:flex;align-items:center;gap:8px;flex-
 ${o.modell==='monatlich'?`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
   <input type="number" step="0.5" min="0" value="${o.std_monat||''}" placeholder="z.B. 86.5"
     style="width:90px;padding:6px 8px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'IBM Plex Mono',monospace;text-align:center;background:var(--white);color:var(--text);outline:none"
-    oninput="mao[${i}].std_monat=+this.value||'';renderMAO()">
+    oninput="mao[${i}].std_monat=+this.value||'';renderMAO()" data-ol-lock>
   <span style="font-size:12px;color:var(--muted)">Stunden / Monat (fest)</span>
 </div>`:''}
 <!-- Wochentage kompakt -->
 <div style="margin-bottom:6px">
   <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">
-    ${o.modell==='14tage'?'Std. pro Einsatz':o.modell==='monatlich'?'Wochentage (gesperrt)':'Std. pro Wochentag'} ${locked?'<span style="color:var(--orange)">🔒 Verstetigt</span>':''}
+    ${o.modell==='14tage'?'Std. pro Einsatz':o.modell==='monatlich'?'Wochentage (gesperrt)':'Std. pro Wochentag'} ${locked?'<span style="color:var(--orange)">🔒 Verstetigt</span>':''}<span class="ol-stunden-hint" style="display:none;color:var(--acc);text-transform:none;letter-spacing:0"> · 🔒 Stunden werden beim Kunden vergeben</span>
   </div>
   <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:3px" class="${locked||o.modell==='monatlich'?'wt-locked':''}">
     ${WT.map(t=>`<div style="text-align:center">
       <div style="font-size:9px;color:var(--muted);margin-bottom:2px;font-weight:600">${t}</div>
-      <input type="text" inputmode="decimal" value="${wt[t]||''}" placeholder="0" id="mawt-${i}-${t}"
+      <input type="text" inputmode="decimal" value="${wt[t]||''}" placeholder="0" data-ol-lock id="mawt-${i}-${t}"
         oninput="(function(el){el.value=el.value.replace(',','.');updMAWT(${i});})(this)"
         onblur="updMAWTonBlur(${i})"
         onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"
@@ -5709,6 +5714,10 @@ ${renderUnbezahltBlock(o, i)}
 ${renderObjektHistory(o, eMAid ? ma.find(x=>x.id===eMAid) : null)}
 </div>`;
 }).join('');
+// v183: Sperre erneut anwenden. Frueher lief sie nur einmal beim Oeffnen des
+// Modals – jeder Neuaufbau (Monatswechsel, Verstetigt-Klick) machte die
+// Stundenfelder fuer den Objektleiter wieder editierbar.
+applyModalPermissions();
 }
 // ══════════════════════════════════════════════════════════
 // EINSATZ_AB – tagesgenaue Stundenzuweisung pro Objekt
@@ -5886,7 +5895,7 @@ function renderObjektHistory(o, m) {
     if (!o.kunde) return '';
     const kundeEsc = o.kunde.replace(/'/g,"\\'");
     return `<div style="margin-top:6px">
-      <button class="btn-i btn-sm" onclick="openHistoryAdd('${kundeEsc}')" style="font-size:11px">📋 Stunden-Verlauf rückwirkend eintragen</button>
+      <button class="btn-i btn-sm" onclick="openHistoryAdd('${kundeEsc}')" data-ol-lock style="font-size:11px">📋 Stunden-Verlauf rückwirkend eintragen</button>
     </div>`;
   }
 
@@ -7011,7 +7020,8 @@ if(neuerStatus==='Ausgeschieden'&&eMAid){
 }
 let m=eMAid?JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid))):{id:(typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():Date.now().toString()),monats_daten:{}}; // VT-3
 saveMT(m,ami);
-m.persnr=pnr;m.nachname=nn;m.vorname=document.getElementById('f-vn').value.trim();
+_olSchutzStunden();                       // v183: OL kann keine Stunden schreiben
+m.persnr=_olSchutzPersnr(pnr);m.nachname=nn;m.vorname=document.getElementById('f-vn').value.trim();
 m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();
 m.objektleiter=document.getElementById('mam-f-ol').value;
 m.eintrittsdatum=document.getElementById('f-ein').value;m.austrittsdatum=document.getElementById('f-aus').value;
@@ -7182,19 +7192,86 @@ function applyRoles(){
 }
 
 // Stammdaten im MA-Modal fuer OL sperren; Stunden/Abwesenheiten (rechtes Panel) offen lassen.
+// v183: Rechte im Mitarbeiter-Modal neu gefasst.
+// Alter Fehler 1: fuer den Objektleiter war das komplette linke Panel gesperrt –
+//   er kam nicht einmal lesend an Eintritt, Urlaubstage oder Lohnarten.
+// Alter Fehler 2: die Sperre lief nur einmal beim Oeffnen. Jeder Neuaufbau des
+//   Objektblocks (Monatswechsel, Klick auf die Verstetigt-Kachel) hob sie auf –
+//   danach konnte der OL Stunden und Stundenlohn aendern und speichern.
+// Neu: der OL darf alles bearbeiten ausser der Personalnummer (vergibt die
+//   Lohnbuchhaltung) und den Stundenfeldern (vergibt die Verwaltung beim Kunden).
+//   Die Funktion laeuft jetzt am Ende von renderMAO() erneut und haelt dauerhaft.
 function applyModalPermissions(){
   const ol = isOL();
-  const leftPanel = document.querySelector('#mam-panels > .modal');
-  if(!leftPanel) return;
-  leftPanel.querySelectorAll('input, select, textarea, button').forEach(el => {
-    // Speichern + Abbrechen NICHT sperren (OL darf Stunden/Abwesenheiten speichern)
-    if(el.id === 'btn-save-ma') return;
-    const oc = el.getAttribute('onclick') || '';
-    if(oc.indexOf('closeMAM') !== -1) return;
+  const pnr = document.getElementById('f-pnr');
+  if(pnr){
+    pnr.disabled = ol;
+    pnr.title = ol ? 'Die Personalnummer vergibt die Lohnbuchhaltung.' : '';
+  }
+  const pnrHint = document.getElementById('ol-hint-pnr');
+  if(pnrHint) pnrHint.style.display = ol ? 'block' : 'none';
+  document.querySelectorAll('#ma-objs [data-ol-lock]').forEach(el => {
     el.disabled = ol;
+    if(ol){
+      el.title = 'Stunden werden beim Kunden vergeben – bitte an die Verwaltung.';
+      el.style.background = 'var(--s2)';
+      el.style.color = 'var(--muted2)';
+      el.style.cursor = 'not-allowed';
+    }
   });
-  const addBtn = leftPanel.querySelector('.add-obj-btn');
-  if(addBtn) addBtn.style.display = ol ? 'none' : '';
+  document.querySelectorAll('#ma-objs .ol-stunden-hint').forEach(el => {
+    el.style.display = ol ? 'inline' : 'none';
+  });
+  // "+ Weiteres Objekt" ist wieder offen: der OL darf Zuordnungen anlegen,
+  // die Stunden dazu kommen weiterhin vom Kunden.
+  const addBtn = document.querySelector('#mam-panels .add-obj-btn');
+  if(addBtn) addBtn.style.display = '';
+}
+
+// v183: Kunden-Modal – die Sperre lief frueher, BEVOR die Revier-Zeilen
+// gezeichnet wurden. Die Zeilen (Reviername, MA-Zuordnung, Mo–So) blieben
+// deshalb tippbar, obwohl es keinen Speichern-Knopf gab. Jetzt eigene
+// Funktion, die nach jedem Zeichnen der Reviere erneut laeuft.
+function applyOMPermissions(){
+  const ol = isOL();
+  document.querySelectorAll('#ombg input, #ombg select, #ombg textarea').forEach(el => { el.disabled = ol; });
+  const saveBtn = document.querySelector('#ombg .mactions button');
+  if(saveBtn) saveBtn.style.display = ol ? 'none' : '';
+  document.querySelectorAll('#ombg .rev-add-row, #ombg .btn-d').forEach(el => { el.style.display = ol ? 'none' : ''; });
+}
+
+// v183: Sicherheitsnetz beim Speichern. Falls die Oberflaechen-Sperre umgangen
+// wird (Browser-Konsole, alter Tab), werden die Stundenfelder eines OL beim
+// Speichern auf den Stand vom Oeffnen des Modals zurueckgesetzt. Neu angelegte
+// Objekte starten mit 0 Stunden – die Stunden kommen vom Kunden.
+function _olSchutzStunden(){
+  if(!isOL() || !Array.isArray(mao)) return;
+  const alt = Array.isArray(window._maoOriginal) ? window._maoOriginal : [];
+  const key = o => (o && o.kunde ? o.kunde : '') + '||' + (o && o.revier ? o.revier : '');
+  mao.forEach((o, i) => {
+    let src = (alt[i] && key(alt[i]) === key(o)) ? alt[i] : null;
+    if(!src) src = alt.find(x => key(x) === key(o)) || null;
+    if(src){
+      o.wochentage    = JSON.parse(JSON.stringify(src.wochentage || WT0()));
+      o.std_monat     = src.std_monat || '';
+      o.std_tag       = src.std_tag || '';
+      o.modell        = src.modell || 'arbeitstage';
+      if(src.rhythmus_start) o.rhythmus_start = src.rhythmus_start; else delete o.rhythmus_start;
+    } else {
+      o.wochentage    = WT0();
+      o.std_monat     = '';
+      o.std_tag       = '';
+      o.modell        = 'arbeitstage';
+      delete o.rhythmus_start;
+    }
+  });
+}
+// v183: dito fuer die Personalnummer – die vergibt allein die Lohnbuchhaltung.
+function _olSchutzPersnr(pnr){
+  if(!isOL()) return pnr;
+  if(!eMAid) return '';
+  const alt = ma.find(x => x.id === eMAid);
+  return alt ? (alt.persnr || '') : '';
 }
 
 function canEditKunden(){
@@ -7779,6 +7856,128 @@ function _uhmFeiertage(jahr){
 // v177: Wer hat noch Resturlaub aus dem Vorjahr, der am 31.03. verfaellt?
 // Liefert eine Liste, sortiert nach Dringlichkeit. Reine Auswertung, sie
 // veraendert keine Daten.
+// v181: Mitarbeiter ohne oder mit stark gekuerzten Stunden im Monat.
+// Zweck: auf einen Blick sehen, wer in diesem Monat faktisch nicht arbeitet -
+// unabhaengig vom Mitarbeitertyp. Bei Verstetigten kommt hinzu, dass ihr
+// Festbetrag in den DATEV-Stammdaten steht und MM fuer sie nichts exportiert;
+// dort muss die Kuerzung dem Lohnbuero gesondert gemeldet werden. Bei allen
+// anderen ergibt sich der Abzug automatisch aus den exportierten Stunden.
+function _kuerzungsListe(monatKey) {
+  const mk = monatKey || getAM();
+  const out = [];
+  getVisibleMA().forEach(m => {
+    if (_maAusgeschiedenImMonat(m, mk)) return;
+
+    // Unbezahlte Kalendertage im Monat (MA-Kalender + Revier-Listen)
+    const tage = new Set();
+    Object.entries(m.abwesenheiten||{}).forEach(([d,t]) => {
+      if (t === 'unbezahlt' && d.startsWith(mk + '-')) tage.add(d);
+    });
+    (m.objekte||[]).forEach(o => (o.unbezahlt_tage_liste||[]).forEach(d => {
+      if (String(d).startsWith(mk + '-')) tage.add(d);
+    }));
+
+    // Sollstunden: voll (ohne Abzuege) und nach Abzug
+    let sollVoll = 0;
+    (m.objekte||[]).forEach(o => {
+      try { sollVoll += calcWochentagStunden(o.wochentage||{}, mk) || 0; } catch(e) {}
+    });
+    sollVoll = Math.round(sollVoll * 100) / 100;
+    let sollNach = 0;
+    try { sollNach = Math.round((maSG(m, mk) || 0) * 100) / 100; } catch(e) {}
+
+    // v182: Springer beruecksichtigen. Wer keine feste Zuordnung hat, arbeitet
+    // ueber Vertretungen und Sondereinsaetze - diese Stunden zaehlen als Arbeit
+    // und duerfen nicht als Ausfall gelten. Frueher fielen Mitarbeiter ohne
+    // Objekte ganz aus der Liste heraus, obwohl gerade sie interessant sind:
+    // in Monaten ohne Einsatz haben sie null Stunden und keinen Lohn.
+    const md = (m.monats_daten||{})[mk] || {};
+    const vtStd = (md.vertretungs_gutschrift||[]).reduce((s,g) => {
+      const std = (g.manuelleAnpassung !== null && g.manuelleAnpassung !== undefined)
+                ? g.manuelleAnpassung : g.stunden;
+      return s + (parseFloat(std)||0);
+    }, 0);
+    const ssStd = (md.sonderstunden||[])
+      .filter(e => e.maId === m.id || !e.maId)
+      .reduce((s,e) => s + (parseFloat(e.stunden)||0), 0);
+    const zusatzStd = Math.round((vtStd + ssStd) * 100) / 100;
+    const gesamtStd = Math.round((sollNach + zusatzStd) * 100) / 100;
+
+    // Aufnehmen, wenn im Monat unterm Strich nichts uebrig bleibt ODER
+    // unbezahlte Tage anfallen. Wer ueber Vertretungen arbeitet, faellt raus.
+    if (!(gesamtStd <= 0 || tage.size > 0)) return;
+
+    // Grund, warum keine Stunden anfallen
+    let grund = '';
+    if (tage.size > 0) grund = 'unbezahlte Tage';
+    else if (!(m.objekte||[]).length) grund = 'kein Objekt zugeordnet';
+    else if (sollVoll <= 0) grund = 'keine Wochenstunden';
+    else grund = 'kein Einsatz im Monat';
+
+    // Geldwirkung nur bei Fixlohn - dort haengt sie nicht an den Stunden
+    const istFix = !!m.verstetigt || (m.objekte||[]).some(o => o.lohn_fest);
+    let voll = 0, gekuerzt = 0;
+    if (istFix) {
+      (m.objekte||[]).forEach(o => {
+        const wt = o.wochentage || {};
+        let betrag = 0;
+        if (o.lohn_fest) betrag = parseFloat(o.lohn_fest) || 0;
+        else if (m.verstetigt) {
+          const ws = wSum(wt);
+          betrag = (ws && o.stundenlohn) ? calcVerstLohn(ws, +o.stundenlohn) : 0;
+        }
+        if (!betrag) return;
+        const f = _fixLohnFaktor(m, o, mk, wt);
+        voll     += betrag;
+        gekuerzt += Math.round(betrag * f * 100) / 100;
+      });
+    }
+    voll     = Math.round(voll * 100) / 100;
+    gekuerzt = Math.round(gekuerzt * 100) / 100;
+
+    out.push({ id: m.id, name: (m.nachname||'') + ' ' + (m.vorname||''),
+               persnr: m.persnr || '', ol: m.objektleiter || '?',
+               tage: tage.size, sollVoll, sollNach, zusatzStd, grund,
+               melden: istFix,                       // muss ans Lohnbuero gemeldet werden
+               voll, abzug: Math.round((voll - gekuerzt)*100)/100, rest: gekuerzt,
+               typ: m.verstetigt ? 'Verstetigt' : (m.minijob ? 'Minijob' : 'Festangestellt') });
+  });
+  // Wer komplett ausfaellt zuerst, dann nach Anzahl unbezahlter Tage
+  out.sort((a,b) => (a.sollNach - b.sollNach) || (b.tage - a.tage));
+  return { liste: out,
+           summeMelden: Math.round(out.filter(x=>x.melden)
+                                      .reduce((s,x)=>s+x.abzug,0)*100)/100,
+           anzahlMelden: out.filter(x=>x.melden && x.abzug > 0).length };
+}
+
+// v181: Liste als Excel.
+function exportKuerzungen() {
+  const mk = getAM();
+  const d = _kuerzungsListe(mk);
+  if (!d.liste.length) { showAlert('Keine Ausfaelle in ' + getAMLabel(), '#374151'); return; }
+  _loadSheetJS(() => {
+    const rows = [['Personalnr','Name','OL','Typ','Grund','Unbez. Tage','Soll Std.',
+                   'Soll nach Abzug','Vertretung/Sonder Std.','Melden an Lohnbuero',
+                   'Voller Betrag','Kuerzung EUR','Auszuzahlen']];
+    d.liste.forEach(x => rows.push([x.persnr, x.name, x.ol, x.typ, x.grund, x.tage,
+                                    x.sollVoll, x.sollNach, x.zusatzStd,
+                                    x.melden ? 'JA' : 'nein (ueber Stunden)',
+                                    x.melden ? x.voll : '', x.melden ? x.abzug : '',
+                                    x.melden ? x.rest : '']));
+    rows.push([]);
+    rows.push(['','','','','','','','','','Summe zu melden', '', d.summeMelden, '']);
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols'] = [{wch:10},{wch:24},{wch:5},{wch:14},{wch:20},{wch:11},{wch:10},{wch:14},
+                   {wch:20},{wch:20},{wch:13},{wch:12},{wch:13}];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Ausfaelle');
+    try {
+      XLSX.writeFile(wb, `Ausfaelle_${mk}.xlsx`);
+      showAlert('Liste exportiert ✓');
+    } catch(err) { showAlert('Export fehlgeschlagen: '+err.message,'#c81e1e'); }
+  });
+}
+
 function _urlaubVerfallListe(jahr) {
   const stichtag = jahr + '-03-31';
   const heute = new Date(); heute.setHours(0,0,0,0);
@@ -8994,6 +9193,66 @@ document.getElementById('dash-c').innerHTML=`
         </div>
       </div>
     </div>
+
+    ${(()=>{
+      // v181: Wer arbeitet in diesem Monat nicht oder nur gekuerzt?
+      // Die Spalte "melden" unterscheidet die beiden Faelle: Bei Fixlohn
+      // (verstetigt / lohn_fest) exportiert MM nichts, dort muss die Kuerzung
+      // dem Lohnbuero gesondert mitgeteilt werden. Bei Stundenabrechnung ergibt
+      // sie sich automatisch aus den exportierten Stunden.
+      const _kz = _kuerzungsListe(getAM());
+      const _leer = !_kz.liste.length;
+      const _hhmm = x => { const t=Math.round(x*60); return Math.floor(t/60)+':'+String(t%60).padStart(2,'0'); };
+      return `<div class="dcard" style="padding:18px 18px 16px;grid-column:span 2;
+                   border-color:${_leer?'var(--border)':'#fca5a5'}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px">
+          <span style="font-size:13px;font-weight:700">🚫 Ohne Lohn / gekürzt – ${getAMLabel()}
+            ${_leer?'':`<span style="font-size:11px;font-weight:400;color:var(--muted)">· ${_kz.liste.length} Mitarbeiter</span>`}</span>
+          <span style="display:flex;align-items:center;gap:10px">
+            ${_kz.anzahlMelden?`<span style="font-size:11px;color:var(--red);font-weight:600">
+              ${_kz.anzahlMelden}× ans Lohnbüro melden · −${_kz.summeMelden.toFixed(2).replace('.',',')} €</span>`:''}
+            <button type="button" onclick="exportKuerzungen()" ${_leer?'disabled':''}
+              style="font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid var(--border);
+                     background:var(--white);cursor:${_leer?'default':'pointer'};opacity:${_leer?'.45':'1'}">📊 Excel</button>
+          </span>
+        </div>
+        ${_leer
+          ? `<div style="font-size:12px;color:var(--muted);padding:6px 0">
+               In ${getAMLabel()} hat kein Mitarbeiter unbezahlte Tage oder fehlende Stunden.
+             </div>`
+          : `<div>
+            <div style="display:grid;grid-template-columns:1.5fr .55fr .95fr .5fr .7fr .8fr 1fr;gap:6px;
+                        padding:0 2px 5px;font-size:10px;color:var(--muted2);text-transform:uppercase;
+                        letter-spacing:.05em;border-bottom:1px solid var(--border)">
+              <span>Mitarbeiter</span><span>Nr.</span><span>Grund</span>
+              <span style="text-align:right">Unbez.</span>
+              <span style="text-align:right">Soll</span><span style="text-align:right">nach Abzug</span>
+              <span style="text-align:right">Lohnbüro</span>
+            </div>
+            ${_kz.liste.map(x=>`<div style="display:grid;grid-template-columns:1.5fr .55fr .95fr .5fr .7fr .8fr 1fr;
+                gap:6px;padding:6px 2px;font-size:12px;border-bottom:1px solid var(--s1);cursor:pointer"
+                onclick="openMAM('${esc(x.id)}')">
+              <span><span class="olb ol-${esc(x.ol)}" style="width:16px;height:16px;font-size:9px">${esc(x.ol)}</span>
+                ${esc(x.name)}</span>
+              <span style="color:var(--muted)">${esc(x.persnr)}</span>
+              <span style="font-size:11px;color:var(--muted)">${esc(x.grund)}</span>
+              <span style="text-align:right">${x.tage||'–'}</span>
+              <span style="text-align:right;font-family:'IBM Plex Mono',monospace;color:var(--muted)">${_hhmm(x.sollVoll)}</span>
+              <span style="text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:600;
+                           color:${x.sollNach<=0?'var(--red)':'var(--text)'}">${x.sollNach<=0?'0:00':_hhmm(x.sollNach)}</span>
+              <span style="text-align:right;font-size:11px">
+                ${x.melden
+                  ? `<span style="color:var(--red);font-weight:600">melden −${x.abzug.toFixed(2).replace('.',',')} €</span>`
+                  : `<span style="color:var(--muted)">läuft über Stunden</span>`}
+              </span>
+            </div>`).join('')}
+            <div style="font-size:11px;color:var(--muted);margin-top:8px">
+              „läuft über Stunden“ = der Abzug steckt bereits im DATEV-Export.
+              „melden“ = Festbetrag aus den DATEV-Stammdaten, Kürzung dem Lohnbüro mitteilen.
+            </div>
+          </div>`}
+      </div>`;
+    })()}
 
     <div class="dcard" style="padding:18px 18px 16px;grid-column:span 2">
       <div style="font-size:13px;font-weight:700;margin-bottom:14px">Berichte &amp; Übersichten</div>
