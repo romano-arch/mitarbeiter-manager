@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v183</title>
+<title>MitarbeiterManager v184</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v183</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v184</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1953,7 +1953,7 @@ function calcMonatLohn(m, mk) {
   }, 0);
   const sonderLohn = (md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId)
     .reduce((s,e) => s + (parseFloat(e.stunden)||0) * sl, 0);
-  const vtGutLohn = (md.vertretungs_gutschrift||[]).reduce((s,g) => {
+  const vtGutLohn = _vtGutschriften(m, mk).reduce((s,g) => {
     const std = (g.manuelleAnpassung !== null && g.manuelleAnpassung !== undefined) ? g.manuelleAnpassung : g.stunden;
     return s + (parseFloat(std)||0) * sl;
   }, 0);
@@ -2046,7 +2046,7 @@ function _isKrankheitsvertretungMonat(m, mk) {
   if (vts.some(v => v.grund === 'urlaub')) return false; // explizit Urlaub → nein
 
   // Methode 2: aus vertretungs_gutschrift des Vertreters → quelleMA Abwesenheit prüfen
-  const gutschriften = (m.monats_daten||{})[mk]?.vertretungs_gutschrift || [];
+  const gutschriften = _vtGutschriften(m, mk);
   if (!gutschriften.length) return false;
   return gutschriften.some(g => {
     if (!g.quelleMAid) return false;
@@ -3380,7 +3380,7 @@ function maSG(m,mk){
   const md=(m.monats_daten||{})[monatKey]||{};
   // FIX v90: Filter konsistent zu maLG – nur Sonderstunden DIESES MA (oder ohne maId-Zuordnung)
   const sonderStd=(md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId).reduce((s,e)=>s+(parseFloat(e.stunden)||0),0);
-  const vtGutStd=(md.vertretungs_gutschrift||[]).reduce((s,g)=>{const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;return s+(parseFloat(std)||0);},0);
+  const vtGutStd=_vtGutschriften(m,monatKey).reduce((s,g)=>{const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;return s+(parseFloat(std)||0);},0);
   // FIX v90: 2 Dezimalstellen (konsistent mit Lohn)
   return Math.round((regelStd+sonderStd+vtGutStd)*100)/100;
 }
@@ -3412,7 +3412,7 @@ function maLG(m,mk){
   const sl=parseFloat(m.stundenlohn_tarif)||TARIFLOHN[m.lohngruppe||'']?.lohn||0;
   const md=(m.monats_daten||{})[monatKey]||{};
   const sonderLohn=(md.sonderstunden||[]).filter(e=>e.maId===m.id||!e.maId).reduce((s,e)=>s+(parseFloat(e.stunden)||0)*sl,0);
-  const vtGutLohn=(md.vertretungs_gutschrift||[]).reduce((s,g)=>{const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;return s+(parseFloat(std)||0)*sl;},0);
+  const vtGutLohn=_vtGutschriften(m,monatKey).reduce((s,g)=>{const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;return s+(parseFloat(std)||0)*sl;},0);
   return Math.round((regelLohn+sonderLohn+vtGutLohn)*100)/100;
 }
 function maKu(m){return(m.objekte||[]).map(o=>o.kunde).filter(Boolean);}
@@ -5377,11 +5377,10 @@ if (id) {
   window._maoLoadedAt = null;
 }
 const m=id?(ma.find(x=>x.id===id)||{}):{};
-// FIX v104: Altlasten bereinigen (Gutschriften mit falschem Monat)
-if (id && m) {
-  const _rm = _bereinigeAltLastenGutschriften(m);
-  if (_rm > 0) console.log('[v104] '+_rm+' verwaiste Gutschriften bei '+(m.nachname||'?')+' bereinigt');
-}
+// v184: Bereinigung abgeschaltet. Die alten Kopien werden nicht mehr gelesen,
+// also muss beim Oeffnen auch nichts mehr an gespeicherten Daten geaendert
+// werden. Frueher loeschte diese Zeile beim blossen Oeffnen eines Mitarbeiters
+// Datensaetze aus abgerechneten Monaten.
 document.getElementById('mamtitle').textContent=id?m.nachname+' bearbeiten':'Neuer Mitarbeiter';
 document.getElementById('f-pnr').value=m.persnr||'';
 document.getElementById('f-st').value=m.status||'Aktiv';
@@ -6615,7 +6614,7 @@ function renderSollInfo(m, mk){
     gesamtSoll += sonderStd;
   }
   // Vertretungsgutschriften addieren
-  const vtStd = (md.vertretungs_gutschrift||[]).reduce((s,g)=>{
+  const vtStd = _vtGutschriften(m, mk).reduce((s,g)=>{
     const std = g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined ? g.manuelleAnpassung : g.stunden;
     return s+(parseFloat(std)||0);
   },0);
@@ -7892,7 +7891,7 @@ function _kuerzungsListe(monatKey) {
     // Objekte ganz aus der Liste heraus, obwohl gerade sie interessant sind:
     // in Monaten ohne Einsatz haben sie null Stunden und keinen Lohn.
     const md = (m.monats_daten||{})[mk] || {};
-    const vtStd = (md.vertretungs_gutschrift||[]).reduce((s,g) => {
+    const vtStd = _vtGutschriften(m, mk).reduce((s,g) => {
       const std = (g.manuelleAnpassung !== null && g.manuelleAnpassung !== undefined)
                 ? g.manuelleAnpassung : g.stunden;
       return s + (parseFloat(std)||0);
@@ -8362,7 +8361,7 @@ function _jbSammle(m, jahr){
       if (t==='urlaub') u++; else if (t==='krank') k++; else if (t==='unbezahlt') ub++;
     }
 
-    const gut = (md.vertretungs_gutschrift||[]).map(g => {
+    const gut = _vtGutschriften(m, mk).map(g => {
       const std = (g.manuelleAnpassung!==null && g.manuelleAnpassung!==undefined) ? g.manuelleAnpassung : g.stunden;
       const e = { mk, mo, datum:(g.datum||''), fuer:(g.quelleName||'?'), objekt:(g.objekt||''),
                   grund:(g.grund||''), std: parseFloat(std)||0 };
@@ -10986,6 +10985,12 @@ function vtRemove(i){_vtData.splice(i,1);_renderVtTable();_vtUpdateHint();_vtAut
 
 // ── DATEV-Gutschrift: Vertretungsstunden beim Vertreter buchen ────────────────
 function vtSyncToMAB(mitCleanup){
+  // v184: schreibt nichts mehr. Frueher legte diese Funktion bei jedem
+  // Tastendruck eine Kopie der Vertretungsstunden beim Vertreter an. Genau
+  // diese Kopie lief auseinander. Die Funktion bleibt als leerer Aufruf
+  // stehen, damit die bestehenden Aufrufstellen unveraendert bleiben.
+  return;
+  /* eslint-disable no-unreachable */
   const monatKey=_vtSyncMonat||getAM(); // FIX VT-A: _vtSyncMonat bevorzugen (Monat des geöffneten MA-Modals)
   // FIX v122: Mehrere Zeilen mit gleichem Vertreter+Objekt vorher summieren
   // (sonst ueberschrieb die letzte Zeile die vorherige statt zu addieren).
@@ -11041,6 +11046,7 @@ function vtSyncToMAB(mitCleanup){
       window._vtCleanupBetroffene.add(maB.id);
     }
   });
+  /* eslint-enable no-unreachable */
 }
 
 function vtGutschriftEdit(maId,monatKey,idx,val){
@@ -11057,6 +11063,12 @@ function vtGutschriftEdit(maId,monatKey,idx,val){
 function renderWurdeVertretenVon(m, monatKey) {
   const container = document.getElementById('vt-wurde-vertreten-block');
   if (!container) return;
+  // v184: Dieser Block zeigte dieselben Vorgaenge wie der Gutschriften-Block
+  // darueber - nur mit falscher Ueberschrift ("Wurde vertreten von", obwohl es
+  // die Vertretungen sind, die der Mitarbeiter GELEISTET hat). Seit die
+  // Gutschriften live aus derselben Quelle kommen, ist er eine Dopplung.
+  container.style.display = 'none';
+  return;
   if (!m || !m.id) { container.style.display='none'; return; }
   const eintraege = [];
   (ma||[]).forEach(vertreter => {
@@ -11121,37 +11133,80 @@ function vtGutschriftDelete(maId, monatKey, idx) {
     .catch(e=>_saveFehler(e,'Gutschrift'));
 }
 
+// v184: Vertretungsgutschriften werden nicht mehr als Kopie beim Vertreter
+// gespeichert, sondern bei jedem Zugriff aus den Vertretungszeilen der
+// abwesenden Mitarbeiter berechnet.
+// Alter Fehler: die gespeicherte Kopie lief auseinander, sobald die Quellzeile
+// spaeter geaendert oder geloescht wurde. Belegt am 07.09.2026 durch eine
+// Datenbankpruefung: Incecik hatte 32,25 statt 33,5 Std. gutgeschrieben, und in
+// Maerz/April standen 49 Kopien ohne jede Quelle (446 Std.). Ursache war, dass
+// das Aufraeumen der Kopien nur beim Klick auf Speichern lief, das Loeschen
+// einer Quellzeile aber schon beim Autosave wirkte.
+// Warum es jetzt haelt: es gibt nur noch EINE Zahl, naemlich die Zeile beim
+// Abwesenden. Auseinanderlaufen ist mechanisch ausgeschlossen.
+// Rueckgabeform ist identisch zu den alten Datensaetzen, damit Soll, Lohn,
+// DATEV-Export, Kontroll-Liste und Jahresbericht unveraendert weiterrechnen.
+// ACHTUNG: Alte Kopien in monats_daten[...].vertretungs_gutschrift bleiben in
+// der Datenbank gespeichert, werden aber nicht mehr gelesen (Entscheidung
+// Romano 07.09.2026: Maerz/April nicht mehr mitrechnen, Daten behalten).
+function _vtGutschriften(m, mk){
+  if(!m || !m.id || !mk) return [];
+  const out = [];
+  (ma||[]).forEach(quelle => {
+    if(!quelle || !quelle.id || quelle.id === m.id) return;
+    const vts = ((quelle.monats_daten||{})[mk]||{}).vertretungen || [];
+    vts.forEach(vt => {
+      if(vt.maId !== m.id) return;
+      const std = parseFloat(vt.stunden) || 0;
+      if(std <= 0) return;
+      const objekt = vt.objekt || '';
+      const _kRef = objekt ? (obj||[]).find(x => x.name === objekt) : null;
+      out.push({
+        quelleMAid:  quelle.id,
+        // v184: voller Name statt nur Nachname - bei "Agca", "Incecik" und
+        // "Uenal" gibt es mehrere, der Nachname allein war nicht vergleichbar.
+        quelleName:  (quelle.nachname||'?') + (quelle.vorname ? ', ' + quelle.vorname : ''),
+        quellePersnr: quelle.persnr || '',
+        monat:       mk,
+        objekt:      objekt,
+        kundeId:     _kRef ? _kRef.id : (vt.kundeId || null),
+        datum:       vt.datum || '',
+        grund:       vt.grund || '',
+        stunden:     std
+      });
+    });
+  });
+  return out;
+}
+
 function renderVtGutschrift(m,monatKey){
   const container=document.getElementById('vt-gutschrift-block');
   if(!container)return;
-  const gutschriften=(m.monats_daten?.[monatKey]?.vertretungs_gutschrift)||[];
+  const gutschriften=_vtGutschriften(m, monatKey);   // v184: live aus der Quelle
   if(!gutschriften.length){container.style.display='none';return;}
   container.style.display='block';
-  let html='<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);margin-bottom:8px">⬆ Gutgeschriebene Vertretungen (DATEV Zulage)</div>';
+  let html='<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);margin-bottom:8px">⬆ Hat vertreten f\u00fcr (DATEV Zulage)</div><div style="font-size:10px;color:var(--muted);margin:-4px 0 8px">\u00c4nderung nur beim vertretenen Mitarbeiter m\u00f6glich.</div>';
   let total=0;
   const _vtSl = parseFloat(m.stundenlohn_tarif) || TARIFLOHN[m.lohngruppe||'']?.lohn || 15; // FIX VT-2: echter Stundenlohn statt hartcodiert 15
   gutschriften.forEach((g,i)=>{
-    const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;
+    // v184: keine Handkorrektur mehr - die Stunden stehen ausschliesslich in
+    // der Vertretungszeile beim Abwesenden. Weniger gutschreiben heisst: dort
+    // weniger eintragen. Verwaiste Eintraege kann es nicht mehr geben, weil
+    // die Liste aus der Quelle entsteht.
+    const std=g.stunden;
     total+=parseFloat(std)||0;
     const lohn=Math.round((parseFloat(std)||0)*_vtSl*100)/100;
-    // FIX v106: Warnungen fuer verwaiste und unvollstaendige Gutschriften
-    const istVerwaist = _gutschriftIstVerwaist(g, monatKey);
     const objektFehlt = !g.objekt;
-    const monatFalsch = g.monat && g.monat !== monatKey;
     let warnParts = [];
-    if (g.geaendertWarnung) warnParts.push('<span style="color:var(--yellow);font-size:10px">\u26a0 Quelle ge\u00e4ndert</span>');
-    if (istVerwaist) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Verwaist - Quelle nicht mehr vorhanden</span>');
-    if (objektFehlt) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Objekt fehlt</span>');
-    if (monatFalsch) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Monat ' + g.monat + ' passt nicht</span>');
+    if (objektFehlt) warnParts.push('<span style="color:var(--red);font-size:10px;font-weight:600">\u26a0 Objekt fehlt \u2013 ohne Objekt keine Kostenstelle im DATEV-Export</span>');
     const warn = warnParts.length ? '<div style="margin-top:2px;display:flex;gap:8px;flex-wrap:wrap">' + warnParts.join('') + '</div>' : '';
-    const problemZeile = (istVerwaist || objektFehlt || monatFalsch);
+    const problemZeile = objektFehlt;
     const rowBg = problemZeile ? 'background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;margin:3px 0;padding:6px 8px' : 'padding:5px 0;border-bottom:1px solid var(--border)';
     html+='<div style="' + rowBg + ';font-size:12px">' +
       '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
       '<span style="flex:1;color:var(--text2)">Vertr. f\u00fcr <strong>' + (g.quelleName||'?') + '</strong>' + (g.objekt?' \u2013 ' + g.objekt : '') + (g.datum?' <span style="font-size:10px;color:var(--muted);font-family:\'IBM Plex Mono\',monospace">' + g.datum.slice(8,10) + '.' + g.datum.slice(5,7) + '.</span>':'') + '</span>' +
-      '<input type="number" step="0.5" min="0" value="' + (std||'') + '" style="width:64px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:\'IBM Plex Mono\',monospace;text-align:center;background:var(--white);outline:none" oninput="vtGutschriftEdit(\'' + m.id + '\',\'' + monatKey + '\',' + i + ',this.value)">' +
+      '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;font-weight:600;color:var(--text)">' + std + '</span>' +
       '<span style="font-size:11px;color:var(--muted)">h \u00d7 ' + _vtSl.toFixed(2) + '\u20ac = <strong>\u20ac ' + lohn + '</strong></span>' +
-      (problemZeile ? '<button onclick="vtGutschriftDelete(\'' + m.id + '\',\'' + monatKey + '\',' + i + ')" style="background:var(--white);border:1px solid var(--rbd);color:var(--red);border-radius:5px;padding:2px 6px;font-size:11px;cursor:pointer" title="Verwaiste Gutschrift l\u00f6schen">\u2715 L\u00f6schen</button>' : '') +
       '</div>' + warn +
       '</div>';
   });
@@ -12152,7 +12207,7 @@ function exportDatevLohnarten() {
     const md = (m.monats_daten||{})[monat]||{};
     // FIX v104: Nur Gutschriften, die tatsaechlich zum aktuellen Monat gehoeren.
     // Defensive gegen Altlasten (g.monat != monat).
-    const guts = (md.vertretungs_gutschrift || []).filter(g => !g.monat || g.monat === monat);
+    const guts = _vtGutschriften(m, monat);   // v184: live aus der Quelle
     if (!guts.length) return;
     const laVt = m.minijob ? '2199' : '1000';
     // Pro KST akkumulieren (falls mehrere Gutschriften auf gleichem Objekt)
@@ -12906,7 +12961,7 @@ function _buildDatevControlRows() {
     // KST kommt PFLICHTWEISE aus gutschrift.objekt. Wenn Objekt fehlt oder nicht
     // in obj[] gefunden wird -> Fehler im Notiz-Feld, damit Romano es sieht.
     // FIX v104: Nur Eintraege fuer den aktuellen Monat (Altlasten-Schutz).
-    const gutsCtrl = (md.vertretungs_gutschrift || []).filter(g => !g.monat || g.monat === monat);
+    const gutsCtrl = _vtGutschriften(m, monat);   // v184: live aus der Quelle
     if (gutsCtrl.length) {
       const laVtCtrl = m.minijob ? '2199' : '1000';
       const kstMapVt = new Map(); // kst -> {stunden, kunden:Set, notizen:Set}
