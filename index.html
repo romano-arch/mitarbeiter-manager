@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v184</title>
+<title>MitarbeiterManager v188</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v184</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v188</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1131,7 +1131,7 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
 
@@ -1188,7 +1188,7 @@ main{padding:14px 16px}
   <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
 </div>
 
-<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -1543,6 +1543,18 @@ main{padding:14px 16px}
     <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:18px;border-top:1px solid var(--border);padding-top:12px">
       <button class="btn btn-o" onclick="uebAbbrechen()">Abbrechen</button>
       <button class="btn btn-p" onclick="uebUebernehmen()">✓ Übernehmen und speichern</button>
+    </div>
+  </div>
+</div>
+<!-- v187: Altfaelle – Reviere mit abgemeldeten Mitarbeitern -->
+<div class="mbg" id="revbrbg" role="dialog" aria-modal="true" aria-label="Reviere bereinigen" style="z-index:var(--z-alert)">
+  <div class="modal" style="max-width:900px;width:100%">
+    <div style="font-size:17px;font-weight:600;margin-bottom:3px">🧹 Reviere bereinigen</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Reviere, in denen noch jemand Abgemeldetes steht. <strong>Freigeben</strong> = Name raus, Stunden bleiben beim Kunden. <strong>Entfernen</strong> = das Revier ist doppelt, weil der Nachfolger schon ein eigenes hat. Mitarbeiter-Daten und Abrechnung werden nicht verändert.</div>
+    <div id="revbr-body" style="max-height:60vh;overflow:auto"></div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:18px;border-top:1px solid var(--border);padding-top:12px">
+      <button class="btn btn-o" onclick="revBrSchliessen()">Schließen</button>
+      <button class="btn btn-p" id="revbr-go" onclick="revBrAusfuehren()">✓ Ausgewählte ausführen</button>
     </div>
   </div>
 </div>
@@ -4149,17 +4161,12 @@ function syncRevToMA(oName) {
       m.objekte.push({kunde: oName, modell:'arbeitstage', std_monat:'', std_tag:'', stundenlohn: sl, lohn_fest:'', wochentage: WT0(), arbtage_monat:{}});
     }
   });
-  // 2) MA→Revier: MA die das Objekt in m.objekte haben, aber nicht in Revieren → Revier-Eintrag anlegen
-  ma.filter(m => m.status !== 'Ausgeschieden' && (m.objekte||[]).find(ob => ob.kunde === oName && _objAktivAm(ob, _heuteIso)))
-    .forEach(m => {
-      const inRev = reviere.find(r => r.maId === m.id);
-      if (!inRev) {
-        o.reviere = o.reviere || [];
-        o.reviere.push({name: '', stunden: '', maId: m.id, wochentage: WT0()});
-      }
-    });
+  // 2) v187: entfernt. Legte schon beim blossen Oeffnen der Revier-Ansicht fuer
+  // jeden MA ohne Revier ein leeres Revier an. Reviere werden nur noch im
+  // Kunden-Dialog vergeben.
 }
-function syncMAToRev(m) {
+// v187: altObjekte = Objekte des MA vor dem Speichern (optional).
+function syncMAToRev(m, altObjekte) {
   // Für jeden Kunden den der MA hat: Revier-Eintrag sicherstellen
   const _heuteIso = _monatsEnde(getAM());
   (m.objekte||[]).forEach(ob => {
@@ -4174,11 +4181,10 @@ function syncMAToRev(m) {
     const _revName = String(ob.revier||'');
     const inRev = o.reviere.find(r => r.maId === m.id && String(r.name||'') === _revName);
     const _wt = ob.wochentage ? JSON.parse(JSON.stringify(ob.wochentage)) : WT0();
-    if (!inRev) {
-      o.reviere.push({name: _revName, stunden: '', maId: m.id, wochentage: _wt});
-    } else {
-      inRev.wochentage = _wt;   // v175: bestehendes Revier aktualisieren
-    }
+    // v187: Kein neues Revier mehr anlegen. Frueher entstand hier fuer einen
+    // Nachfolger ein zweites Revier neben dem des Vorgaengers – die Kundenseite
+    // zaehlte doppelt. Reviere werden nur noch im Kunden-Dialog zugewiesen.
+    if (inRev) inRev.wochentage = _wt;   // v175: bestehendes Revier aktualisieren
   });
   // Objekte die der MA nicht mehr hat → maId aus Revieren entfernen
   // FIX REV-1: ma.filter(()=>true) war toter Code (entfernt)
@@ -4193,7 +4199,15 @@ function syncMAToRev(m) {
     if (!_eigene.size) {
       o.reviere = o.reviere.filter(r => r.maId !== m.id);
     } else {
-      o.reviere = o.reviere.filter(r => r.maId !== m.id || _eigene.has(String(r.name||'')));
+      // v187: Nur Reviere raeumen, deren Namen der MA vorher als Objekt hatte und
+      // jetzt nicht mehr. Frueher fiel auch ein im Kunden-Dialog vergebenes
+      // Revier weg, nur weil der Revier-Name beim MA leer war. Das wurde bisher
+      // durch das neu angelegte Revier verdeckt, das es jetzt nicht mehr gibt.
+      const _vorher = new Set((altObjekte||[])
+        .filter(ob => ob.kunde === o.name)
+        .map(ob => String(ob.revier||'')));
+      o.reviere = o.reviere.filter(r => r.maId !== m.id || _eigene.has(String(r.name||''))
+        || !_vorher.has(String(r.name||'')));
     }
   });
 }
@@ -4366,39 +4380,76 @@ function _revierPaare(alt, neu){
 }
 
 // Liefert alle Reviere, in denen ein Mitarbeiter das Revier verlaesst
-function _revierWechsel(alt, neu){
+// v187: Spaetester zulaessiger letzter Arbeitstag eines MA bei einem Kunden –
+// ein schon eingetragenes einsatz_bis oder das Austrittsdatum, das fruehere.
+// Alter Fehler: der Uebergabe-Dialog schlug immer "heute" vor und schrieb das
+// ungeprueft in einsatz_bis. Ein laengst beendeter Einsatz lief dadurch wieder
+// bis heute und wurde fuer die Zwischenmonate erneut abgerechnet.
+function _uebGrenze(maId, kunde){
+  const m=ma.find(x=>String(x.id)===String(maId));
+  if(!m) return '';
+  const ob=kunde?(m.objekte||[]).find(x=>x.kunde===kunde):null;
+  const d=[ob&&ob.einsatz_bis, m.austrittsdatum]
+    .map(x=>String(x||'').slice(0,10)).filter(Boolean).sort();
+  return d[0]||'';
+}
+// v187: Hat der MA bei diesem Kunden einen laufenden oder geplanten Einsatz?
+function _uebHatEinsatz(m, kunde){
+  const heute=isoLocal(new Date());
+  return (m.objekte||[]).some(x=>x.kunde===kunde
+    && !(x.einsatz_bis && String(x.einsatz_bis).slice(0,10)<heute));
+}
+// v187: kunde als dritter Parameter. Neu: Kommt ein MA in ein FREIES Revier und
+// hat bei diesem Kunden noch keinen Einsatz, fragt der Dialog seinen ersten
+// Arbeitstag ab. Frueher bekam er dann gar kein einsatz_ab und wurde ab dem
+// Monatsersten bezahlt. Seit v187 bleiben Reviere beim Abmelden unbesetzt
+// stehen, deshalb ist das jetzt der normale Weg fuer Nachfolger.
+function _revierWechsel(alt, neu, kunde){
   const raus=[];
-  const nochDrin = {};
+  const nochDrin = {}, warDrin = {}, erfasst = {};
   neu.forEach(r=>{ if(r.maId) nochDrin[r.maId]=true; });
+  alt.forEach(r=>{ if(r.maId) warDrin[r.maId]=true; });
+  const _nm=(m)=>m.nachname+(m.vorname?', '+m.vorname:'');
   _revierPaare(alt, neu).forEach(par=>{
     const altId=par.alt?(par.alt.maId||''):'';
     const neuId=par.neu?(par.neu.maId||''):'';
-    if(!altId || altId===neuId) return;
+    if(altId===neuId) return;
+    const mNeu=neuId?ma.find(x=>String(x.id)===String(neuId)):null;
     // Steht der alte MA noch in einem anderen Revier desselben Kunden,
     // ist er nicht raus – dann kein Enddatum setzen.
-    if(nochDrin[altId]) return;
-    const mAlt=ma.find(x=>String(x.id)===String(altId));
-    const mNeu=neuId?ma.find(x=>String(x.id)===String(neuId)):null;
-    if(!mAlt) return;
-    raus.push({
-      revier:((par.neu||par.alt).name||'(ohne Name)'),
-      altId, neuId,
-      altName:mAlt.nachname+(mAlt.vorname?', '+mAlt.vorname:''),
-      neuName:mNeu?(mNeu.nachname+(mNeu.vorname?', '+mNeu.vorname:'')):'',
-      wtNeu:(par.neu&&par.neu.wochentage)?par.neu.wochentage:null,
-      bis:'', ab:''
-    });
+    const mAlt=(altId && !nochDrin[altId])?ma.find(x=>String(x.id)===String(altId)):null;
+    if(mAlt){
+      raus.push({
+        revier:((par.neu||par.alt).name||'(ohne Name)'),
+        altId, neuId,
+        altName:_nm(mAlt),
+        neuName:mNeu?_nm(mNeu):'',
+        wtNeu:(par.neu&&par.neu.wochentage)?par.neu.wochentage:null,
+        bis:kunde?_uebGrenze(altId,kunde):'', ab:'', _kd:kunde||''
+      });
+      if(neuId) erfasst[neuId]=true;
+      return;
+    }
+    if(mNeu && kunde && !warDrin[neuId] && !erfasst[neuId] && !_uebHatEinsatz(mNeu,kunde)){
+      erfasst[neuId]=true;
+      raus.push({
+        revier:((par.neu||par.alt).name||'(ohne Name)'),
+        altId:'', neuId, altName:'', neuName:_nm(mNeu),
+        wtNeu:(par.neu&&par.neu.wochentage)?par.neu.wochentage:null,
+        bis:'', ab:'', _kd:kunde
+      });
+    }
   });
   return raus;
 }
 
-function uebOeffnen(objName, wechsel, weiter){
+function uebOeffnen(objName, wechsel, weiter, beiAbbruch){
   const heute=new Date().toISOString().slice(0,10);
   wechsel.forEach(w=>{
-    if(!w.bis) w.bis=heute;
+    if(!w.bis && w.altId) w.bis=heute;   // v187: nur wenn jemand das Revier verlaesst
     if(!w.ab && w.neuId) w.ab=_tagPlus(heute,1);
   });
-  _uebDaten={objName, wechsel, weiter};
+  _uebDaten={objName, wechsel, weiter, beiAbbruch};   // v187: beiAbbruch fuer die Abmelde-Kette
   uebZeichnen();
   document.getElementById('uebbg').classList.add('open');
 }
@@ -4436,13 +4487,15 @@ function uebZeichnen(){
       ? '<div style="font-size:11px;color:var(--orange);margin-top:6px">⚠ Zwischen beiden liegt eine Lücke – diese Tage werden niemandem berechnet.</div>' : '';
     return `<div style="border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:10px;background:var(--s1)">
       <div style="font-size:13px;font-weight:600;margin-bottom:10px">📍 ${_kdEsc(w.revier)}
-        <span style="font-weight:400;color:var(--muted)"> — ${_kdEsc(w.altName)}${w.neuName?' → '+_kdEsc(w.neuName):' verlässt das Revier'}</span></div>
+        <span style="font-weight:400;color:var(--muted)"> — ${w.altId?(_kdEsc(w.altName)+(w.neuName?' → '+_kdEsc(w.neuName):' verlässt das Revier')):(_kdEsc(w.neuName)+' übernimmt das freie Revier')}</span></div>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <div style="flex:1;min-width:190px">
+        ${w.altId?`<div style="flex:1;min-width:190px">
           <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Letzter Arbeitstag <strong>${_kdEsc(w.altName)}</strong></div>
           <input type="date" value="${w.bis||''}" style="${inp}" onchange="uebSet(${i},'bis',this.value)">
           ${_uebSplitInfo(w.altId, _uebDaten.objName, w.bis, true, null)}
-        </div>
+          ${(()=>{ const g=_uebGrenze(w.altId, w._kd||_uebDaten.objName);
+            return g?'<div style="font-size:11px;color:var(--muted);margin-top:4px">spätestens '+new Date(g+'T12:00:00').toLocaleDateString('de-DE')+' (Austritt bzw. Einsatzende)</div>':''; })()}
+        </div>`:''}
         ${w.neuId?`<div style="flex:1;min-width:190px">
           <div style="font-size:11px;color:var(--muted);margin-bottom:3px">Erster Arbeitstag <strong>${_kdEsc(w.neuName)}</strong></div>
           <input type="date" value="${w.ab||''}" style="${inp}" onchange="uebSet(${i},'ab',this.value)">
@@ -4454,13 +4507,18 @@ function uebZeichnen(){
 }
 function uebAbbrechen(){
   document.getElementById('uebbg').classList.remove('open');
+  const _cb=_uebDaten&&_uebDaten.beiAbbruch;   // v187
   _uebDaten=null;
+  if(_cb){ _cb(); return; }
   setSyncState('ok','Speichern abgebrochen');
 }
 function uebUebernehmen(){
   if(!_uebDaten) return;
   for(const w of _uebDaten.wechsel){
-    if(!w.bis){ showAlert('Bitte für jeden Wechsel den letzten Arbeitstag angeben.','#c81e1e'); return; }
+    if(w.altId && !w.bis){ showAlert('Bitte für jeden Wechsel den letzten Arbeitstag angeben.','#c81e1e'); return; }
+    // v187: ein beendeter Einsatz / ein Austritt wird nicht nach hinten verlaengert
+    if(w.altId){ const g=_uebGrenze(w.altId, w._kd||_uebDaten.objName);
+      if(g && w.bis>g){ showAlert('Letzter Arbeitstag von '+w.altName+' liegt nach '+new Date(g+'T12:00:00').toLocaleDateString('de-DE')+' (Austritt bzw. bereits eingetragenes Einsatzende). Bitte Datum prüfen.','#c81e1e'); return; } }
     if(w.neuId && !w.ab){ showAlert('Bitte für jeden Nachfolger den ersten Arbeitstag angeben.','#c81e1e'); return; }
     if(w.neuId && w.ab<=w.bis){ showAlert('Der Nachfolger kann frühestens am Tag nach dem letzten Arbeitstag beginnen.','#c81e1e'); return; }
   }
@@ -4477,7 +4535,13 @@ function _uebAnwenden(kunde, wechsel){
     const mAlt=ma.find(x=>String(x.id)===String(w.altId));
     if(mAlt){
       const ob=(mAlt.objekte||[]).find(x=>x.kunde===kunde);
-      if(ob){ ob.einsatz_bis=w.bis; if(geaendert.indexOf(mAlt)<0) geaendert.push(mAlt); }
+      if(ob){
+        // v187: ein vorhandenes Einsatzende wird nie nach hinten verschoben –
+        // sonst liefe ein laengst beendeter Einsatz wieder und wuerde abgerechnet.
+        const _altBis=String(ob.einsatz_bis||'').slice(0,10);
+        if(!_altBis || String(w.bis)<_altBis) ob.einsatz_bis=w.bis;
+        if(geaendert.indexOf(mAlt)<0) geaendert.push(mAlt);
+      }
     }
     if(w.neuId && w.ab){
       const mNeu=ma.find(x=>String(x.id)===String(w.neuId));
@@ -4497,6 +4561,208 @@ function _uebAnwenden(kunde, wechsel){
     }
   });
   return geaendert;
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// v187 – REVIERE BEIM ABMELDEN FREIGEBEN
+// Alter Fehler: Beim Abmelden (Austrittsdatum / Ausgeschieden) kam nur eine
+// Warnung. Name und Stunden blieben im Revier beim Kunden stehen. Bekam ein
+// Nachfolger den Kunden im MA-Dialog, legte MM ein ZWEITES Revier an – die
+// Kundenseite zaehlte doppelt, beim Kunden standen negative Stunden.
+// Jetzt: nach dem Speichern je Kunde der Uebergabe-Dialog, letzter Arbeitstag
+// vorbelegt mit Austritt bzw. vorhandenem Einsatzende. Das Objekt beim MA
+// bekommt einsatz_bis (Historie bleibt, nichts wird geloescht), der Name
+// kommt aus dem Revier, das Revier bleibt mit seinen Stunden unbesetzt stehen.
+// ══════════════════════════════════════════════════════════════════════
+function _austrittReviereFaelle(m){
+  if(!m || !(m.austrittsdatum || m.status==='Ausgeschieden')) return [];
+  return obj.filter(o=>(o.reviere||[]).some(r=>r.maId && String(r.maId)===String(m.id)));
+}
+function _revierFreigeben(o, maId){
+  let n=0;
+  (o.reviere||[]).forEach(r=>{
+    if(r.maId && String(r.maId)===String(maId)){ r.maId=''; r.maName=''; n++; }
+  });
+  if(n && o.global_maId && String(o.global_maId)===String(maId)){ o.global_maId=''; o.global_maName=''; }
+  return n;
+}
+async function _austrittRevierAnwenden(o, m, d){
+  const geaendert=_uebAnwenden(o.name, d);
+  _revierFreigeben(o, m.id);
+  setSyncState('syncing','Speichert…');
+  try{
+    await Promise.all([
+      supaSave('objekte',[o]),
+      geaendert.length ? supaSave('mitarbeiter',geaendert) : Promise.resolve()
+    ]);
+    setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
+    render(); renderObj();
+    showAlert('Revier bei '+o.name+' ist jetzt unbesetzt ✓ – Nachfolger im Kunden-Dialog eintragen.');
+  }catch(e){
+    setSyncState('error','Speicherfehler!');
+    showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e');
+  }
+}
+function _austrittReviereFreigeben(m){
+  if(typeof canEditKunden==='function' && !canEditKunden()) return;
+  const faelle=_austrittReviereFaelle(m);
+  if(!faelle.length) return;
+  const name=m.nachname+(m.vorname?', '+m.vorname:'');
+  const offen=[];
+  const weiter=(i)=>{
+    if(i>=faelle.length){
+      if(offen.length) setTimeout(()=>showAlert('⚠ '+name+' steht noch in Revieren bei: '
+        +offen.join(', ')+' – dort bitte austragen.','#c05621'), 600);
+      return;
+    }
+    const o=faelle[i];
+    const revNamen=(o.reviere||[]).filter(r=>String(r.maId)===String(m.id))
+      .map(r=>r.name||'(ohne Name)').join(', ');
+    uebOeffnen(o.name, [{
+      revier:o.name+' · '+revNamen, altId:m.id, neuId:'', altName:name, neuName:'',
+      wtNeu:null, bis:_uebGrenze(m.id, o.name), ab:'', _kd:o.name
+    }], (d)=>{ _austrittRevierAnwenden(o, m, d).then(()=>weiter(i+1)); },
+        ()=>{ offen.push(o.name); weiter(i+1); });
+  };
+  weiter(0);
+}
+// v187: Kunden, die der MA in diesem Speichern NEU bekommen hat, in deren
+// Revieren er aber nicht steht. MM legt dafuer kein Revier mehr selbst an –
+// die Zuweisung passiert im Kunden-Dialog. Nur ein Hinweis, keine Aenderung.
+function _kundenOhneRevier(m, altObjekte){
+  const vorher=new Set((altObjekte||[]).map(x=>x.kunde));
+  const heute=isoLocal(new Date());
+  const out=[];
+  (m.objekte||[]).forEach(ob=>{
+    if(!ob.kunde || vorher.has(ob.kunde) || out.indexOf(ob.kunde)>=0) return;
+    if(ob.einsatz_bis && String(ob.einsatz_bis).slice(0,10)<heute) return;
+    const o=obj.find(x=>x.name===ob.kunde);
+    if(!o) return;
+    if((o.reviere||[]).some(r=>String(r.maId)===String(m.id))) return;
+    out.push(ob.kunde);
+  });
+  return out;
+}
+function _nachSaveMAReviere(m, mAlt){
+  if(_austrittReviereFaelle(m).length){ setTimeout(()=>_austrittReviereFreigeben(m), 400); return; }
+  const fehlt=_kundenOhneRevier(m, mAlt&&mAlt.objekte);
+  if(fehlt.length) setTimeout(()=>showAlert('ℹ '+m.nachname+' ist neu bei '+fehlt.join(', ')
+    +' – bitte im Kunden-Dialog einem Revier zuweisen.','#c05621'), 1400);
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// v187 – ALTFAELLE BEREINIGEN (Admin-Werkzeug, einmalig)
+// Findet Reviere, in denen noch jemand Abgemeldetes / mit beendetem Einsatz
+// steht. Vorschlag je Fall: "entfernen", wenn es daneben schon ein gleich
+// grosses Revier mit dem Nachfolger gibt (das doppelte), sonst "freigeben".
+// Geaendert werden NUR die Reviere beim Kunden. Die Objekte beim Mitarbeiter
+// (einsatz_ab / einsatz_bis, Stunden) bleiben unberuehrt – kein Lohneffekt.
+// ══════════════════════════════════════════════════════════════════════
+function _wtNorm(wt){ return WT.map(t=>Math.round((parseFloat((wt||{})[t])||0)*100)/100).join('|'); }
+function _revMaLaeuft(kunde, maId, heute){
+  const m=ma.find(x=>String(x.id)===String(maId));
+  if(!m) return false;
+  const aus=String(m.austrittsdatum||'').slice(0,10);
+  if(aus ? aus<heute : m.status==='Ausgeschieden') return false;
+  const ob=(m.objekte||[]).find(x=>x.kunde===kunde);
+  return !!ob && !(ob.einsatz_bis && String(ob.einsatz_bis).slice(0,10)<heute);
+}
+function _revAltfaelle(heute){
+  heute=heute||isoLocal(new Date());
+  const dt=(s)=>new Date(s+'T12:00:00').toLocaleDateString('de-DE');
+  const nm=(m)=>m?(m.nachname+(m.vorname?', '+m.vorname:'')):'(gelöscht)';
+  const out=[];
+  obj.forEach(o=>{
+    (o.reviere||[]).forEach((r,ri)=>{
+      if(!r.maId) return;
+      const m=ma.find(x=>String(x.id)===String(r.maId));
+      let grund='', vorschlag='freigeben';
+      if(!m) grund='Mitarbeiter gelöscht';
+      else{
+        const aus=String(m.austrittsdatum||'').slice(0,10);
+        const ob=(m.objekte||[]).find(x=>x.kunde===o.name);
+        const bis=ob?String(ob.einsatz_bis||'').slice(0,10):'';
+        if(aus && aus<heute) grund='Austritt '+dt(aus);
+        else if(!aus && m.status==='Ausgeschieden') grund='Ausgeschieden (ohne Datum)';
+        else if(bis && bis<heute) grund='Einsatz beendet '+dt(bis);
+        else if(!ob){ grund='Kunde fehlt beim Mitarbeiter'; vorschlag='nichts'; }
+      }
+      if(!grund) return;
+      const key=_wtNorm(r.wochentage);
+      const dup=(o.reviere||[]).find((x,xi)=>xi!==ri && x.maId && String(x.maId)!==String(r.maId)
+        && _revMaLaeuft(o.name, x.maId, heute) && _wtNorm(x.wochentage)===key);
+      if(dup && vorschlag!=='nichts') vorschlag='entfernen';
+      out.push({oid:o.id, kunde:o.name, ri, revier:r.name||'(ohne Name)', maId:r.maId,
+        maName:nm(m), grund, std:Math.round(wSum(r.wochentage||{})*100)/100,
+        dupName:dup?nm(ma.find(x=>String(x.id)===String(dup.maId))):'', vorschlag});
+    });
+  });
+  return out;
+}
+// wahl: Array wie faelle, je 'freigeben' | 'entfernen' | 'nichts'. Liefert geaenderte Objekte.
+function _revAltfaelleAnwenden(faelle, wahl){
+  const geaendert=new Map(), weg=new Map();
+  faelle.forEach((f,i)=>{
+    const w=wahl[i]; if(w!=='freigeben' && w!=='entfernen') return;
+    const o=obj.find(x=>x.id===f.oid);
+    const r=o&&o.reviere?o.reviere[f.ri]:null;
+    if(!r || String(r.maId)!==String(f.maId)) return;   // inzwischen geaendert
+    if(w==='freigeben'){ r.maId=''; r.maName=''; }
+    else { if(!weg.has(o)) weg.set(o,[]); weg.get(o).push(f.ri); }
+    if(o.global_maId && String(o.global_maId)===String(f.maId)){ o.global_maId=''; o.global_maName=''; }
+    geaendert.set(o.id,o);
+  });
+  weg.forEach((idx,o)=>{ idx.sort((a,b)=>b-a).forEach(ri=>o.reviere.splice(ri,1)); });
+  return [...geaendert.values()];
+}
+let _revBrFaelle=[];
+function revBrOeffnen(){
+  if(typeof canEditKunden==='function' && !canEditKunden()){ showAlert('Keine Berechtigung.','#c81e1e'); return; }
+  _revBrFaelle=_revAltfaelle();
+  const b=document.getElementById('revbr-body');
+  if(!_revBrFaelle.length){
+    b.innerHTML='<div style="padding:20px;text-align:center;color:var(--green);font-size:13px">✓ Keine Reviere mit abgemeldeten Mitarbeitern gefunden.</div>';
+  } else {
+    const opt=(v,s)=>`<option value="${v}" ${s===v?'selected':''}>${{freigeben:'Revier freigeben',entfernen:'Revier entfernen',nichts:'Nichts tun'}[v]}</option>`;
+    b.innerHTML='<table class="rev-table"><thead><tr><th>Kunde</th><th>Revier</th><th>Mitarbeiter</th><th>Grund</th><th>h/Wo</th><th>Doppelt zu</th><th style="width:160px">Aktion</th></tr></thead><tbody>'
+      + _revBrFaelle.map((f,i)=>`<tr>
+        <td><strong>${_kdEsc(f.kunde)}</strong></td><td>${_kdEsc(f.revier)}</td>
+        <td>${_kdEsc(f.maName)}</td><td style="font-size:12px">${_kdEsc(f.grund)}</td>
+        <td style="font-family:'IBM Plex Mono',monospace">${f.std}</td>
+        <td style="font-size:12px">${f.dupName?_kdEsc(f.dupName):'–'}</td>
+        <td><select class="rev-inp wide" id="revbr-w-${i}">${opt('freigeben',f.vorschlag)}${opt('entfernen',f.vorschlag)}${opt('nichts',f.vorschlag)}</select></td>
+      </tr>`).join('') + '</tbody></table>';
+  }
+  document.getElementById('revbr-go').style.display=_revBrFaelle.length?'':'none';
+  document.getElementById('revbrbg').classList.add('open');
+}
+function revBrSchliessen(){ document.getElementById('revbrbg').classList.remove('open'); _revBrFaelle=[]; }
+async function revBrAusfuehren(){
+  const wahl=_revBrFaelle.map((f,i)=>{ const el=document.getElementById('revbr-w-'+i); return el?el.value:'nichts'; });
+  const nF=wahl.filter(w=>w==='freigeben').length, nE=wahl.filter(w=>w==='entfernen').length;
+  if(!nF && !nE){ showAlert('Nichts ausgewählt.','#c05621'); return; }
+  if(!confirm('Reviere bereinigen\n\n'+nF+'× freigeben (Name raus, Stunden bleiben)\n'+nE+'× entfernen (doppeltes Revier)\n\nDie Mitarbeiter-Daten und die Abrechnung bleiben unverändert. Fortfahren?')) return;
+  const kandidaten=[...new Set(_revBrFaelle.filter((f,i)=>wahl[i]!=='nichts').map(f=>f.oid))];
+  const gesperrt=new Set();
+  for(const id of kandidaten){
+    const o=obj.find(x=>x.id===id);
+    if(o && await checkConflict('objekte', id, o._updated_at)) gesperrt.add(id);
+  }
+  const faelle=_revBrFaelle.filter(f=>!gesperrt.has(f.oid));
+  const w2=wahl.filter((w,i)=>!gesperrt.has(_revBrFaelle[i].oid));
+  const geaendert=_revAltfaelleAnwenden(faelle, w2);
+  setSyncState('syncing','Speichert…');
+  try{
+    if(geaendert.length) await supaSave('objekte', geaendert);
+    setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
+    revBrSchliessen(); renderObj(); render();
+    showAlert('✓ '+geaendert.length+' Kunde(n) bereinigt'
+      +(gesperrt.size?' · '+gesperrt.size+' übersprungen (gerade von jemand anderem geändert – bitte neu laden)':''),
+      gesperrt.size?'#c05621':undefined);
+  }catch(e){
+    setSyncState('error','Speicherfehler!');
+    showAlert('Speichern fehlgeschlagen: '+e.message,'#c81e1e');
+  }
 }
 
 // ── v159: REVIERE BEIM KUNDEN → MITARBEITER SPIEGELN ─────────────────────
@@ -4560,7 +4826,7 @@ const _alteReviere = (oldObj && oldObj.reviere) ? JSON.parse(JSON.stringify(oldO
 existingReviere.forEach((r,ri)=>{ if(!r.rid) r.rid=(_alteReviere[ri]&&_alteReviere[ri].rid)||('rev_'+Date.now()+'_'+ri); });
 // v160: verlaesst jemand ein Revier, erst die Stichtage klaeren
 if(!_uebergabe){
-  const _w=_revierWechsel(_alteReviere, existingReviere);
+  const _w=_revierWechsel(_alteReviere, existingReviere, (oldObj&&oldObj.name)||name);   // v187: Kundenname fuer Stichtag-Vorschlag
   if(_w.length){ uebOeffnen(name, _w, (d)=>saveObj(d)); return; }
 }
 // wochentage aus erstem Revier-Block (falls vorhanden), sonst leer
@@ -7071,7 +7337,7 @@ if(eMAid){const i=ma.findIndex(x=>x.id===eMAid);ma[i]=m;}else ma.push(m);
 // Bidirektionaler Sync: MA-Objekte → Reviere
 // FIX v89: Vorher-Zustand der Objekte merken, damit wir nur veränderte speichern
 const _objAlt = JSON.parse(JSON.stringify(obj));
-syncMAToRev(m);
+syncMAToRev(m, _mAltFuerLog && _mAltFuerLog.objekte);   // v187
 window._vtCleanupBetroffene = new Set(); // FIX v106: Reset vor Cleanup
 vtSyncToMAB(true);
 // Alle durch vtSyncToMAB betroffenen MAs (Vertreter-Gutschriften) sammeln und mitspeichern
@@ -7109,6 +7375,7 @@ const _zuSpeichern = [m, ..._vtBetroffene];
     _dirty=false;
     if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}  // v171
     render();renderObj();closeMAMandReturn();showAlert(eMAid?'Gespeichert ✓':'Hinzugefügt ✓');
+    _nachSaveMAReviere(m, _mAltFuerLog);   // v187: Abmeldung -> Reviere freigeben
   }).catch(e=>{
     setSyncState('error','Speicherfehler!');
     if(_saveBtn){_saveBtn._saving=false;_saveBtn.disabled=false;}  // v171
@@ -10295,6 +10562,143 @@ function exportMAExcel() {
   });
 }
 
+
+// ── v185: MA + REVIERE als Excel ──────────────────────────────────────────
+// Alter Zustand: Der vorhandene "Excel Export" listete nur o.kunde. Zwei
+// Reviere beim gleichen Kunden erschienen dadurch als zwei identische Zeilen,
+// das Revier war nirgends ablesbar.
+// Jetzt: eigene Liste, eine Zeile je Mitarbeiter x Revier, mit Kunde UND
+// Revier. Reine Leseoperation - es wird nichts berechnet und nichts
+// gespeichert. Die Lohnlogik bleibt unberuehrt.
+function exportMAReviereExcel() {
+  const OLNAME = { M: 'M - Fr. Grippo', I: 'I - Hr. Incecik' };
+  const WTAGE  = ['Mo','Di','Mi','Do','Fr','Sa','So'];   // v186
+  const _s  = v => (v === null || v === undefined) ? '' : String(v);
+  const _dt = v => _s(v).slice(0, 10);
+
+  // Eine flache Zeilenliste aufbauen. Ausgeschiedene bleiben drin und sind
+  // ueber die Status-Spalte filterbar - es soll nichts stillschweigend fehlen.
+  const flach = [];
+  (ma || []).forEach(m => {
+    const basis = {
+      persnr:   _s(m.persnr),
+      nachname: _s(m.nachname),
+      vorname:  _s(m.vorname),
+      status:   _s(m.status),
+      ol:       OLNAME[m.objektleiter] || _s(m.objektleiter)
+    };
+    const objekte = m.objekte || [];
+    if (!objekte.length) {
+      flach.push(Object.assign({}, basis, {
+        kunde: '\u2014 kein Objekt \u2014', revier: '', woche: '', ab: '', bis: '',
+        tage: ['','','','','','',''], _leer: 1
+      }));
+      return;
+    }
+    objekte.forEach(o => {
+      const wt = o.wochentage || {};
+      const ws = wSum(wt);
+      // v186: Tage einzeln. 0 wird als leere Zelle ausgegeben, damit auf einen
+      // Blick sichtbar ist, an welchen Tagen das Revier ueberhaupt bedient wird.
+      // Excel-SUMME ignoriert leere Zellen, die Summenbildung bleibt moeglich.
+      const tage = WTAGE.map(d => {
+        const v = parseFloat(wt[d]);
+        return (v && !isNaN(v)) ? Math.round(v * 100) / 100 : '';
+      });
+      flach.push(Object.assign({}, basis, {
+        kunde:  _s(o.kunde),
+        revier: _s(o.revier) || '(ohne Revier)',
+        tage:   tage,
+        woche:  ws ? Math.round(ws * 100) / 100 : 0,
+        ab:     _dt(o.einsatz_ab),
+        bis:    _dt(o.einsatz_bis)
+      }));
+    });
+  });
+
+  const cmp = (a, b) => String(a).localeCompare(String(b), 'de');
+
+  // Blatt 1: nach Mitarbeiter
+  const nachMA = flach.slice().sort((a, b) =>
+    cmp(a.nachname, b.nachname) || cmp(a.vorname, b.vorname) ||
+    cmp(a.kunde, b.kunde) || cmp(a.revier, b.revier));
+
+  // Blatt 2: dieselben Zeilen, nach Objekt/Revier sortiert
+  // Zeilen ohne Objekt gehoeren ans Ende, nicht an den Anfang (der Gedankenstrich
+  // sortiert sonst vor allen Buchstaben).
+  const nachObj = flach.slice().sort((a, b) =>
+    (a._leer ? 1 : 0) - (b._leer ? 1 : 0) ||
+    cmp(a.kunde, b.kunde) || cmp(a.revier, b.revier) ||
+    cmp(a.nachname, b.nachname) || cmp(a.vorname, b.vorname));
+
+  // v186: Mo-So stehen direkt vor Std/Woche, damit die Summe rechts neben
+  // ihren Bestandteilen steht.
+  const H1 = ['Pers-Nr','Nachname','Vorname','Status','Objektleiter',
+              'Kunde','Revier'].concat(WTAGE, ['Std/Woche','Einsatz ab','Einsatz bis']);
+  const H2 = ['Kunde','Revier','Pers-Nr','Nachname','Vorname','Status',
+              'Objektleiter'].concat(WTAGE, ['Std/Woche','Einsatz ab','Einsatz bis']);
+
+  const aoa1 = [H1].concat(nachMA.map(r =>
+    [r.persnr, r.nachname, r.vorname, r.status, r.ol, r.kunde, r.revier]
+      .concat(r.tage, [r.woche, r.ab, r.bis])));
+  const aoa2 = [H2].concat(nachObj.map(r =>
+    [r.kunde, r.revier, r.persnr, r.nachname, r.vorname, r.status, r.ol]
+      .concat(r.tage, [r.woche, r.ab, r.bis])));
+
+  const fileBase = 'MA_Reviere_' + td();
+
+  // Gleiches Muster wie die DATEV-Kontroll-Liste: wenn SheetJS nicht laedt,
+  // wird still auf CSV ausgewichen statt den Export abzubrechen.
+  let done = false;
+  const csvFallback = (reason) => {
+    if (done) return; done = true;
+    const esc = v => {
+      if (v === null || v === undefined) return '';
+      const s = String(v).replace(/"/g, '""');
+      return /[;"\r\n]/.test(s) ? '"' + s + '"' : s;
+    };
+    const csv = aoa1.map(row => row.map(esc).join(';')).join('\r\n');
+    dl('\uFEFF' + csv, fileBase + '.csv', 'text/csv;charset=utf-8');
+    showAlert('MA + Reviere als CSV exportiert \u2713' + (reason ? ' (' + reason + ')' : ''));
+  };
+
+  const tm = setTimeout(() => csvFallback('SheetJS Timeout'), 5000);
+
+  try {
+    _loadSheetJS(() => {
+      clearTimeout(tm);
+      if (done) return;
+      try {
+        const TAGCOLS = WTAGE.map(() => ({ wch: 5 }));   // v186
+        const ws1 = XLSX.utils.aoa_to_sheet(aoa1);
+        ws1['!cols'] = [{wch:9},{wch:20},{wch:16},{wch:14},{wch:15},
+                        {wch:26},{wch:26}]
+                        .concat(TAGCOLS, [{wch:10},{wch:12},{wch:12}]);
+        ws1['!autofilter'] = { ref: 'A1:Q' + aoa1.length };
+        ws1['!freeze'] = { xSplit: '0', ySplit: '1' };
+
+        const ws2 = XLSX.utils.aoa_to_sheet(aoa2);
+        ws2['!cols'] = [{wch:26},{wch:26},{wch:9},{wch:20},{wch:16},
+                        {wch:14},{wch:15}]
+                        .concat(TAGCOLS, [{wch:10},{wch:12},{wch:12}]);
+        ws2['!autofilter'] = { ref: 'A1:Q' + aoa2.length };
+
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws1, 'Nach Mitarbeiter');
+        XLSX.utils.book_append_sheet(wb, ws2, 'Nach Objekt');
+        XLSX.writeFile(wb, fileBase + '.xlsx');
+        done = true;
+        showAlert('MA + Reviere exportiert \u2713 (' + flach.length + ' Zeilen)');
+      } catch (err) {
+        csvFallback(err.message);
+      }
+    });
+  } catch (err) {
+    clearTimeout(tm);
+    csvFallback(err.message);
+  }
+}
+
 function exportJSON(){dl(JSON.stringify({ma,obj,kunden},null,2),`Backup_${td()}.json`,'application/json');showAlert('Backup gespeichert ✓','#374151');}
 function handleImport(e){
 // FIX v92: Struktur-Validierung, safeSaveAll nur bei Erfolg, bessere Fehlermeldungen
@@ -13017,6 +13421,37 @@ function _buildDatevControlRows() {
   return out;
 }
 
+// v188: Ein- und Austritte eines Monats fuer das Lohnbuero.
+// Alter Stand: Die DATEV-Datei enthaelt nur Stunden je Lohnart. Ein Austritt
+// kam dort nie an – der MA fehlte im Folgemonat einfach. Verstetigte haben ihren
+// Festbetrag in den DATEV-Stammdaten und wuerden ohne Hinweis weiterbezahlt.
+// Jetzt: eigenes Blatt in der Kontroll-Liste. Rein informativ – die
+// DATEV-Datei und alle Stundenberechnungen bleiben unveraendert.
+function _personalVeraenderungen(monat){
+  const mk=monat||getAM();
+  const dt=(s)=>{ const p=String(s).slice(0,10).split('-'); return p[2]+'.'+p[1]+'.'+p[0]; };
+  const out=[];
+  ma.forEach(m=>{
+    const name=((m.nachname||'')+(m.vorname?', '+m.vorname:'')).trim();
+    const typ=m.verstetigt?'Verstetigt':(m.minijob?'Minijob':'Festangestellt');
+    const ohnePnr=!String(m.persnr||'').trim();
+    const ein=String(m.eintrittsdatum||'').slice(0,10);
+    const aus=String(m.austrittsdatum||'').slice(0,10);
+    if(aus && aus.slice(0,7)===mk){
+      out.push({art:'Austritt', datum:aus, datumTxt:dt(aus), persnr:m.persnr||'', name, typ,
+        hinweis:(m.verstetigt?'⚠ Festbetrag endet – in DATEV-Stammdaten beenden':'Austritt in DATEV-Stammdaten eintragen')
+               +(ohnePnr?' · ⚠ keine Pers-Nr in MM':''), warn:!!m.verstetigt||ohnePnr});
+    }
+    if(ein && ein.slice(0,7)===mk){
+      out.push({art:'Eintritt', datum:ein, datumTxt:dt(ein), persnr:m.persnr||'', name, typ,
+        hinweis:(m.verstetigt?'Neu in DATEV anlegen – Festbetrag in Stammdaten eintragen':'Neu in DATEV anlegen')
+               +(ohnePnr?' · ⚠ keine Pers-Nr in MM':''), warn:ohnePnr});
+    }
+  });
+  // Austritte zuerst, darin Warnungen oben, dann nach Datum
+  out.sort((a,b)=>(a.art===b.art?0:(a.art==='Austritt'?-1:1)) || (b.warn-a.warn) || a.datum.localeCompare(b.datum));
+  return out;
+}
 function exportDatevControlExcel() {
   if(!CAN.exportDatev()){ showAlert('Keine Berechtigung für DATEV-Export.','#c81e1e'); return; }
   const monat = getAM();
@@ -13024,7 +13459,8 @@ function exportDatevControlExcel() {
   const fileBase = 'DATEV_Kontrolle_' + monat;
 
   const ctrlRows = _buildDatevControlRows();
-  if (!ctrlRows.length) {
+  const _pv = _personalVeraenderungen(monat);   // v188
+  if (!ctrlRows.length && !_pv.length) {
     showAlert('Keine Daten fuer Kontroll-Liste vorhanden.', '#f59e0b');
     return;
   }
@@ -13040,6 +13476,18 @@ function exportDatevControlExcel() {
   const aoa = [];
   aoa.push(['DATEV Kontroll-Liste – ' + monatLabel]);
   aoa.push(['Erzeugt am: ' + new Date().toLocaleString('de-DE')]);
+  // v188: Hinweis auf Blatt 2, damit es beim Durchblaettern nicht untergeht
+  if (_pv.length) aoa.push(['Personalveränderungen: ' + _pv.filter(p=>p.art==='Austritt').length + ' Austritt(e), '
+    + _pv.filter(p=>p.art==='Eintritt').length + ' Eintritt(e) – siehe Blatt „Personalveränderungen“'
+    + (_pv.some(p=>p.warn) ? ' · ⚠ bitte beachten' : '')]);
+  // v188: Tabelle fuer Blatt 2 (und fuer den CSV-Fallback unten angehaengt)
+  const aoaPV = [
+    ['Personalveränderungen – ' + monatLabel],
+    ['Diese Angaben sind NICHT in der DATEV-Importdatei enthalten und müssen in DATEV eingetragen werden.'],
+    [],
+    ['Art', 'Datum', 'Pers-Nr', 'Mitarbeiter', 'Typ', 'Hinweis']
+  ].concat(_pv.length ? _pv.map(p => [p.art, p.datumTxt, p.persnr, p.name, p.typ, p.hinweis])
+                      : [['Keine Ein- oder Austritte in diesem Monat.']]);
   aoa.push([]);
   aoa.push(header);
 
@@ -13097,7 +13545,7 @@ function exportDatevControlExcel() {
       const s = String(v).replace(/"/g,'""');
       return /[;"\r\n]/.test(s) ? '"' + s + '"' : s;
     };
-    const csv = aoa.map(row => row.map(esc).join(sep)).join('\r\n');
+    const csv = aoa.concat([[], []], aoaPV).map(row => row.map(esc).join(sep)).join('\r\n');   // v188
     dl('\uFEFF' + csv, fileBase + '.csv', 'text/csv;charset=utf-8');
     showAlert('Kontroll-Liste als CSV exportiert \u2713' + (reason ? ' ('+reason+')' : ''));
   };
@@ -13123,6 +13571,11 @@ function exportDatevControlExcel() {
         ];
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Kontrolle');
+        // v188: Blatt 2 – Personalveraenderungen
+        const wsPV = XLSX.utils.aoa_to_sheet(aoaPV);
+        wsPV['!cols'] = [{wch:10}, {wch:12}, {wch:10}, {wch:28}, {wch:15}, {wch:55}];
+        wsPV['!merges'] = [ { s:{r:0,c:0}, e:{r:0,c:5} }, { s:{r:1,c:0}, e:{r:1,c:5} } ];
+        XLSX.utils.book_append_sheet(wb, wsPV, 'Personalveränderungen');
         XLSX.writeFile(wb, fileBase + '.xlsx');
         done = true;
         showAlert('Kontroll-Liste als Excel exportiert \u2713');
