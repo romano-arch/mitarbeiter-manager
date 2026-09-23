@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v188</title>
+<title>MitarbeiterManager v189</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v188</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v189</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -3427,6 +3427,43 @@ function maLG(m,mk){
   const vtGutLohn=_vtGutschriften(m,monatKey).reduce((s,g)=>{const std=(g.manuelleAnpassung!==null&&g.manuelleAnpassung!==undefined)?g.manuelleAnpassung:g.stunden;return s+(parseFloat(std)||0)*sl;},0);
   return Math.round((regelLohn+sonderLohn+vtGutLohn)*100)/100;
 }
+// v189: Arbeitet der MA im gewaehlten Monat noch bei diesem Kunden?
+// Alter Fehler: Kundenkarte und Kunden-Dialog prueften nur "steht der Kunde
+// ueberhaupt in seiner Objektliste". Beendete Einsaetze bleiben dort aber
+// absichtlich stehen (Historie) – also blieben Abgemeldete sichtbar. Der
+// Kunden-Dialog schaute zudem nur auf den Status, nicht aufs Austrittsdatum.
+// Jetzt dieselbe Regel wie bei der Kapazitaet (oBelW): Austritt vor
+// Monatsbeginn -> weg; Einsatz beim Kunden am Monatsende beendet -> weg.
+function _maBeimKunden(m, kunde, mk){
+  mk=mk||getAM();
+  if(_maAusgeschiedenImMonat(m,mk)) return false;
+  const e=_monatsEnde(mk);
+  return (m.objekte||[]).some(o=>o.kunde===kunde && _objAktivAm(o,e));
+}
+// v189: Letztes Einsatzende eines MA beim Kunden ueber ALLE seine Objekte dort.
+// null = kein Objekt dort, '' = mindestens ein Einsatz laeuft offen.
+// Alter Fehler (v187/v188): es wurde nur das ERSTE Objekt des Kunden gelesen.
+// Hatte jemand EG (beendet) und OG (laeuft), galt er als beendet.
+function _kdEinsatzBis(m, kunde){
+  const obs=(m.objekte||[]).filter(x=>x.kunde===kunde);
+  if(!obs.length) return null;
+  if(obs.some(x=>!x.einsatz_bis)) return '';
+  return obs.map(x=>String(x.einsatz_bis).slice(0,10)).sort().pop();
+}
+// v189: Steht im Revier jemand, der nicht mehr da ist? Liefert den Grund oder ''.
+function _revMaAbgemeldet(maId, kunde){
+  if(!maId) return '';
+  const m=ma.find(x=>String(x.id)===String(maId));
+  if(!m) return 'Mitarbeiter gelöscht';
+  const heute=isoLocal(new Date());
+  const dt=(s)=>new Date(s+'T12:00:00').toLocaleDateString('de-DE');
+  const aus=String(m.austrittsdatum||'').slice(0,10);
+  if(aus && aus<heute) return 'Austritt '+dt(aus);
+  if(!aus && m.status==='Ausgeschieden') return 'ausgeschieden';
+  const bis=_kdEinsatzBis(m,kunde)||'';
+  if(bis && bis<heute) return 'Einsatz beendet '+dt(bis);
+  return '';
+}
 function maKu(m){return(m.objekte||[]).map(o=>o.kunde).filter(Boolean);}
 function isEh(o){return o.aktiv===false||o.status==='ehemalig';}
 function updStats(){
@@ -3699,7 +3736,7 @@ kdGrid.className = 'kdgrid';
 kdGrid.innerHTML = kdList.map(k=>{
   const standorte = k.standorte || [];
   const maList = [...new Set(standorte.flatMap(s=>
-    ma.filter(m=>!_maAusgeschiedenImMonat(m,getAM())&&maKu(m).includes(s))
+    ma.filter(m=>_maBeimKunden(m,s))   /* v189 */
   ).map(m=>m.id))].map(id=>ma.find(m=>m.id===id)).filter(Boolean);
   const eh = k.status==='ehemalig';
   const maChips = maList.slice(0,6).map(m=>{
@@ -4299,9 +4336,11 @@ const kapW=oKapW(o.name),belW=oBelW(o.name);
 const diffW=Math.round((belW-kapW)*100)/100;
 const pct=kapW>0?Math.round(belW/kapW*100):0;
 const _okW=Math.abs(diffW)<0.01;
-const ml=ma.filter(m=>m.status!=='Ausgeschieden'&&maKu(m).includes(o.name));
+const ml=ma.filter(m=>_maBeimKunden(m,o.name));   // v189: nur wer im Monat noch dort arbeitet
+const _mlBeendet=ma.filter(m=>maKu(m).includes(o.name) && ml.indexOf(m)<0);   // v189: Historie
 document.getElementById('obel-info').innerHTML=
 `<div style="font-size:13px;margin-bottom:6px"><strong>${ml.length} Mitarbeiter</strong> zugeordnet`+
+(_mlBeendet.length?` <span style="font-size:11px;color:var(--muted2)" title="${_kdEsc(_mlBeendet.map(m=>m.nachname+(m.vorname?' '+m.vorname:'')).join(', '))}">(+${_mlBeendet.length} beendet)</span>`:'')+   // v189
 (kapW>0?` · Belegung: <strong style="color:${_okW?'var(--green)':'var(--red)'}" title="Monat: ${bel}h / ${kap}h">${belW}h / ${kapW}h pro Woche (${pct}%)</strong>${_okW?'':` <span style="color:var(--red);font-size:12px">⚠ ${diffW>0?'+':'−'}${Math.abs(diffW)} h/Wo</span>`}`:'')+'</div>'+
 (ml.length?`<div style="font-size:12px;margin-top:4px;display:flex;flex-wrap:wrap;gap:4px">${ml.map(m=>`<button onclick="openMAMfromOM('${m.id}')" style="background:var(--acc-l);border:1px solid #bfdbfe;border-radius:6px;padding:3px 9px;font-size:12px;color:var(--acc);cursor:pointer;font-family:inherit">${m.nachname}${m.vorname?' '+m.vorname:''}</button>`).join('')}</div>`:'');
 } else bw.style.display='none';
@@ -4388,8 +4427,8 @@ function _revierPaare(alt, neu){
 function _uebGrenze(maId, kunde){
   const m=ma.find(x=>String(x.id)===String(maId));
   if(!m) return '';
-  const ob=kunde?(m.objekte||[]).find(x=>x.kunde===kunde):null;
-  const d=[ob&&ob.einsatz_bis, m.austrittsdatum]
+  const _eb=kunde?(_kdEinsatzBis(m,kunde)||''):'';   // v189: alle Objekte des Kunden
+  const d=[_eb, m.austrittsdatum]
     .map(x=>String(x||'').slice(0,10)).filter(Boolean).sort();
   return d[0]||'';
 }
@@ -4534,14 +4573,15 @@ function _uebAnwenden(kunde, wechsel){
   wechsel.forEach(w=>{
     const mAlt=ma.find(x=>String(x.id)===String(w.altId));
     if(mAlt){
-      const ob=(mAlt.objekte||[]).find(x=>x.kunde===kunde);
-      if(ob){
+      // v189: ALLE Objekte dieses Kunden beenden, nicht nur das erste. Frueher
+      // bekam bei EG+OG nur EG das Enddatum, OG lief weiter und wurde bezahlt.
+      (mAlt.objekte||[]).filter(x=>x.kunde===kunde).forEach(ob=>{
         // v187: ein vorhandenes Einsatzende wird nie nach hinten verschoben –
         // sonst liefe ein laengst beendeter Einsatz wieder und wuerde abgerechnet.
         const _altBis=String(ob.einsatz_bis||'').slice(0,10);
         if(!_altBis || String(w.bis)<_altBis) ob.einsatz_bis=w.bis;
         if(geaendert.indexOf(mAlt)<0) geaendert.push(mAlt);
-      }
+      });
     }
     if(w.neuId && w.ab){
       const mNeu=ma.find(x=>String(x.id)===String(w.neuId));
@@ -4664,8 +4704,8 @@ function _revMaLaeuft(kunde, maId, heute){
   if(!m) return false;
   const aus=String(m.austrittsdatum||'').slice(0,10);
   if(aus ? aus<heute : m.status==='Ausgeschieden') return false;
-  const ob=(m.objekte||[]).find(x=>x.kunde===kunde);
-  return !!ob && !(ob.einsatz_bis && String(ob.einsatz_bis).slice(0,10)<heute);
+  const bis=_kdEinsatzBis(m,kunde);   // v189: alle Objekte des Kunden
+  return bis!==null && !(bis && bis<heute);
 }
 function _revAltfaelle(heute){
   heute=heute||isoLocal(new Date());
@@ -4680,8 +4720,8 @@ function _revAltfaelle(heute){
       if(!m) grund='Mitarbeiter gelöscht';
       else{
         const aus=String(m.austrittsdatum||'').slice(0,10);
-        const ob=(m.objekte||[]).find(x=>x.kunde===o.name);
-        const bis=ob?String(ob.einsatz_bis||'').slice(0,10):'';
+        const _eb=_kdEinsatzBis(m,o.name);   // v189: alle Objekte des Kunden
+        const ob=_eb!==null, bis=_eb||'';
         if(aus && aus<heute) grund='Austritt '+dt(aus);
         else if(!aus && m.status==='Ausgeschieden') grund='Ausgeschieden (ohne Datum)';
         else if(bis && bis<heute) grund='Einsatz beendet '+dt(bis);
@@ -5075,7 +5115,9 @@ container.innerHTML = '';
 omUpdGesamt();
 return;
 }
+const _omKdName = ((obj.find(x=>x.id===eOid))||{}).name || '';   // v189
 container.innerHTML = omRevData.map((rev, i) => {
+const _revAbg = _revMaAbgemeldet(rev.maId, _omKdName);   // v189
 const wt = rev.wochentage || {Mo:0,Di:0,Mi:0,Do:0,Fr:0,Sa:0,So:0};
 const ws = WT_ALL.reduce((s,t) => s+(parseFloat(wt[t])||0), 0);
 const mon = Math.round(calcWochentagStunden(wt, getAM()) * 10) / 10;
@@ -5097,6 +5139,7 @@ oninput="omRevData[${i}].name=this.value">
   value="${rev.maName||_maNameById(rev.maId)||''}"
   placeholder="MA suchen…" autocomplete="off"
   style="min-width:140px;flex:1">
+${_revAbg?`<span title="Nicht mehr aktiv. Namen im Feld löschen und speichern – dann kommt der Übergabe-Dialog. Oder Admin-Werkzeuge → Reviere bereinigen." style="font-size:11px;font-weight:600;color:var(--red);background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;padding:2px 8px;white-space:nowrap">⚠ ${_kdEsc(_revAbg)}</span>`:''}
 <select style="font-size:11px;padding:2px 6px;border:1px solid var(--border);border-radius:5px;background:var(--white);color:var(--text);font-family:inherit"
   onchange="omRevData[${i}].modell=this.value;omRevDraw()">
   <option value="arbeitstage" ${rev.modell!=='14tage'&&rev.modell!=='monatlich'?'selected':''}>📅 Arbeitstage</option>
