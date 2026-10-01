@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v189</title>
+<title>MitarbeiterManager v190</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1110,7 +1110,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v189</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v190</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -7039,6 +7039,13 @@ function updArbTageMonat(maId, kunde, mk, val){
 }
 // FIX v92: chkUeber() und chkGrund() geloescht – waren leere Noops
 let kalYear=parseInt(getAM()?.slice(0,4)||new Date().getFullYear()), kalMonth=0, kalMode='urlaub'; // FIX KAL-1: dynamisch statt hartcodiert 2026
+// v190 FIX: Speicher-Warteschlange für Kalenderklicks. Alter Fehler: jeder Klick auf Urlaub/Krank
+// löste sofort und unabhängig voneinander ein supaSave() aus. Wurden mehrere Tage schnell
+// hintereinander angeklickt, konnten die Server-Antworten in falscher Reihenfolge ankommen –
+// eine ältere (langsamere) Antwort überschrieb dann den neueren Stand, und zuletzt markierte
+// Tage gingen wortlos verloren. Jetzt laufen alle Kalender-Speicherungen strikt nacheinander
+// über diese eine Promise-Kette, sodass immer die aktuellste Version gespeichert wird.
+let _kalSaveChain = Promise.resolve();
 const KAL_WD=['Mo','Di','Mi','Do','Fr','Sa','So'];
 const KAL_MN=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
 function kalNav(d){
@@ -7157,7 +7164,10 @@ if(kalMode==='clear'){
 _protokollLog(maName, k, logAktion, logTyp);
 kalSyncMonthFields(m, kalYear, kalMonth);
 // Nur diesen einen MA speichern (kein kompletter Array-Überschreib)
-supaSave('mitarbeiter',[m]).then(()=>{
+// v190 FIX: über _kalSaveChain statt direktem supaSave() – siehe Kommentar bei der
+// Deklaration von _kalSaveChain weiter oben. Jeder Klick hängt sich hinten an die Kette an,
+// sodass Speicherungen für diesen MA garantiert in der Reihenfolge der Klicks passieren.
+_kalSaveChain = _kalSaveChain.then(()=>supaSave('mitarbeiter',[m])).then(()=>{
   setSyncState('ok','Gespeichert um '+new Date().toLocaleTimeString('de-DE')+' · '+_currentUser);
 }).catch(e=>{
   setSyncState('error','Speicherfehler!');
@@ -7260,7 +7270,13 @@ function closeMAM(){
   // Abbrechen: KEINE Daten schreiben – weder Stammdaten noch Monatsdaten.
   // Änderungen an Vertretungen/_ssData/_vtData gehen verloren (gewolltes Verhalten bei Abbruch).
   // Pending AutoSave-Timer canceln damit kein verzögertes Speichern mehr stattfindet.
-  if (_autoSaveTimeout) { clearTimeout(_autoSaveTimeout); _autoSaveTimeout = null; }
+  // v190 FIX: hier stand bisher "_autoSaveTimeout" – eine Variable, die nirgendwo im Code
+  // je gesetzt wurde (toter Code). Die echten Timer der Vertretungen/Sonderstunden-Autosaves
+  // heißen _vtAutoSaveTimeout/_ssAutoSaveTimeout und liefen beim Schließen des Fensters
+  // munter weiter, konnten Minuten später feuern und mit altem Stand einen inzwischen neu
+  // geladenen MA-Datensatz überschreiben. Jetzt werden die tatsächlichen Timer gecancelt.
+  if (_vtAutoSaveTimeout) { clearTimeout(_vtAutoSaveTimeout); _vtAutoSaveTimeout = null; }
+  if (_ssAutoSaveTimeout) { clearTimeout(_ssAutoSaveTimeout); _ssAutoSaveTimeout = null; }
   // Lock freigeben damit andere Benutzer sofort editieren können
   releaseLock();
   // eMAid zurücksetzen damit async Callbacks (Kalender-Render, calcUrlaubAnspruch etc.)
