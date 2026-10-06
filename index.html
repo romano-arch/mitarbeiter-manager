@@ -1131,7 +1131,7 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-email-imp" onclick="openEmailImport();closeAdminDrop()">📥 E-Mails Import</button><button class="admin-drop-btn" id="btn-lohn-export" onclick="exportLohnabrechnungsliste();closeAdminDrop()" title="Personalnummer, Name, E-Mail aller aktiven MA für den Lohnabrechnungs-Versand">⬇ Lohnabrechnungsliste</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
 
@@ -1188,7 +1188,7 @@ main{padding:14px 16px}
   <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
 </div>
 
-<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="openEmailImport()" style="border-color:#a7f3d0">📥<div class="ak-title">E-Mails Import</div><div class="ak-desc">Adressen per Personalnummer einlesen</div></div><div class="admin-kachel" onclick="exportLohnabrechnungsliste()" style="border-color:#a7f3d0">⬇<div class="ak-title">Lohnabrechnungsliste</div><div class="ak-desc">Pers.-Nr. + Name + E-Mail, nur aktive MA</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -1299,6 +1299,7 @@ main{padding:14px 16px}
   <div id="weitere-panel" style="display:none;padding:10px 14px;border-top:1px solid var(--border)">
     <div class="fg2" style="margin-bottom:8px">
       <div class="fg"><label>Telefon</label><input id="f-tel" maxlength="30"></div>
+      <div class="fg"><label>E-Mail</label><input id="f-email" type="email" maxlength="100" placeholder="name@mail.de"></div>
       <div class="fg"><label>Objektleiter *</label><select id="mam-f-ol"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select></div>
       <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein" oninput="calcUrlaubAnspruch()"></div>
       <div class="fg"><label>Austrittsdatum</label><input type="date" id="f-aus"></div>
@@ -5696,6 +5697,7 @@ document.getElementById('f-st').value=m.status||'Aktiv';
 document.getElementById('f-vn').value=m.vorname||'';
 document.getElementById('f-nn').value=m.nachname||'';
 document.getElementById('f-tel').value=m.telefon||'';
+document.getElementById('f-email').value=m.email||'';
 document.getElementById('mam-f-ol').value=m.objektleiter||'M';
 document.getElementById('f-ein').value=m.eintrittsdatum||'';
 document.getElementById('f-aus').value=m.austrittsdatum||'';
@@ -7346,7 +7348,7 @@ let m=eMAid?JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid))):{id:(typeof cry
 saveMT(m,ami);
 _olSchutzStunden();                       // v183: OL kann keine Stunden schreiben
 m.persnr=_olSchutzPersnr(pnr);m.nachname=nn;m.vorname=document.getElementById('f-vn').value.trim();
-m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();
+m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();m.email=document.getElementById('f-email').value.trim();
 m.objektleiter=document.getElementById('mam-f-ol').value;
 m.eintrittsdatum=document.getElementById('f-ein').value;m.austrittsdatum=document.getElementById('f-aus').value;
 m.urlaub_jahres=parseFloat(document.getElementById('f-urltage').value)||0;
@@ -11051,7 +11053,7 @@ safeSaveAll();
 function markDirty(){
 _dirty=true;
 }
-['f-pnr','f-st','f-vn','f-nn','f-tel','f-ol','f-ein','f-aus','f-urltage',
+['f-pnr','f-st','f-vn','f-nn','f-tel','f-email','f-ol','f-ein','f-aus','f-urltage',
 'of-n','of-vn','of-nr','of-s','of-ol','of-adr','of-tel','of-em','of-info',
 'md-url','md-krank','md-unbezahlt','md-kk-ab','md-notiz',
 'search','snotiz'].forEach(id=>{
@@ -12234,6 +12236,100 @@ function saveLohnArtenImport() {
   safeSaveAll();
   closeLohnArtenImport();
   showAlert(`${saved} Mitarbeiter mit Lohnarten gespeichert ✓`);
+}
+
+// ── LOHNABRECHNUNGSLISTE EXPORT (für Lohnabrechnung-Versand-Tool) ──
+function exportLohnabrechnungsliste() {
+  _loadSheetJS(() => {
+    const rows = [['Personalnummer', 'Nachname', 'Vorname', 'E-Mail']];
+    const aktive = ma.filter(m => m.status !== 'Ausgeschieden' && m.persnr)
+      .sort((a,b) => (a.nachname||'').localeCompare(b.nachname||'','de'));
+    let ohneMail = 0;
+    aktive.forEach(m => {
+      if (!m.email) ohneMail++;
+      rows.push([m.persnr||'', m.nachname||'', m.vorname||'', m.email||'']);
+    });
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols'] = [{wch:10},{wch:20},{wch:16},{wch:28}];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Lohnabrechnungsliste');
+    const mk = getAM ? getAM() : new Date().toISOString().slice(0,7);
+    try {
+      XLSX.writeFile(wb, `Lohnabrechnungsliste_${mk}.xlsx`);
+      showAlert(`Exportiert ✓ (${aktive.length} aktive MA` + (ohneMail ? `, ${ohneMail} ohne E-Mail` : '') + ')');
+    } catch(err) {
+      showAlert('Export fehlgeschlagen: '+err.message,'#c81e1e');
+    }
+  });
+}
+
+// ── E-MAIL BULK-IMPORT ─────────────────────────────────────
+function openEmailImport() {
+  document.getElementById('email-import-bg').classList.add('open');
+  document.getElementById('email-import-result').innerHTML = '';
+  document.getElementById('email-import-file').value = '';
+  document.getElementById('email-import-status').textContent = '';
+  document.getElementById('email-import-save-btn').style.display = 'none';
+}
+function closeEmailImport() {
+  document.getElementById('email-import-bg').classList.remove('open');
+}
+function handleEmailImportFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  document.getElementById('email-import-status').textContent = '⏳ Wird gelesen…';
+  _loadSheetJS(() => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const wb = XLSX.read(ev.target.result, {type:'array'});
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:null});
+        // Spalten: 0=Personalnummer, 1=Nachname, 2=Vorname, 3=E-Mail
+        const map = {}; // persnr -> email
+        rows.slice(1).forEach(r => {
+          const pnr = r[0] != null ? String(r[0]).trim() : null;
+          const email = r[3] != null ? String(r[3]).trim() : null;
+          if (!pnr || !email) return;
+          map[pnr] = email;
+        });
+        let treffer = 0, nichtGef = [];
+        Object.entries(map).forEach(([pnr, email]) => {
+          const m = ma.find(x => String(x.persnr||'').trim() === pnr);
+          if (m) treffer++; else nichtGef.push(pnr);
+        });
+        let html = `<div style="margin-bottom:10px;font-size:13px;color:var(--green);font-weight:600">✅ ${treffer} MA zugeordnet</div>`;
+        if (nichtGef.length) html += `<div style="font-size:12px;color:var(--orange);margin-bottom:8px">⚠ Nicht gefunden (${nichtGef.length}): ${nichtGef.join(', ')}</div>`;
+        html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="background:var(--s1)"><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Pers.Nr.</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Name</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Bisherige E-Mail</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Neue E-Mail</th></tr></thead><tbody>';
+        Object.entries(map).forEach(([pnr, email]) => {
+          const m = ma.find(x => String(x.persnr||'').trim() === pnr);
+          const name = m ? (m.nachname + (m.vorname?' '+m.vorname:'')) : `<span style="color:var(--red)">⚠ ${pnr} nicht gefunden</span>`;
+          const bisher = m && m.email ? m.email : '<span style="color:var(--muted)">–</span>';
+          const changed = m && m.email && m.email !== email;
+          html += `<tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-family:'IBM Plex Mono',monospace">${pnr}</td><td style="padding:4px 8px">${name}</td><td style="padding:4px 8px">${bisher}</td><td style="padding:4px 8px${changed?';color:var(--orange);font-weight:600':''}">${email}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('email-import-result').innerHTML = html;
+        document.getElementById('email-import-status').textContent = '';
+        document.getElementById('email-import-save-btn').style.display = 'inline-block';
+        window._emailImportMap = map;
+      } catch(err) {
+        document.getElementById('email-import-status').textContent = '❌ Fehler: ' + err.message;
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+function saveEmailImport() {
+  if (!window._emailImportMap) return;
+  let saved = 0;
+  Object.entries(window._emailImportMap).forEach(([pnr, email]) => {
+    const m = ma.find(x => String(x.persnr||'').trim() === pnr);
+    if (m) { m.email = email; saved++; }
+  });
+  safeSaveAll();
+  closeEmailImport();
+  showAlert(`${saved} Mitarbeiter mit E-Mail gespeichert ✓`);
 }
 
 // ── BAYERISCHE FEIERTAGE ──────────────────────────────────
@@ -15272,6 +15368,31 @@ async function tmImportRun(){
     <div style="padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
       <button class="btn btn-o" onclick="closeLohnArtenImport()">Abbrechen</button>
       <button class="btn btn-p" id="la-import-save-btn" style="display:none" onclick="saveLohnArtenImport()">💾 Speichern & Übernehmen</button>
+    </div>
+  </div>
+</div>
+<!-- ── E-MAIL IMPORT MODAL ─────────────────────────────────── -->
+<div class="datev-modal-bg" id="email-import-bg" onclick="if(event.target.id==='email-import-bg')closeEmailImport()">
+  <div class="datev-modal" style="max-width:700px">
+    <div class="datev-modal-head">
+      <div>
+        <div style="font-weight:700;font-size:16px">📥 E-Mails Import</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Excel/CSV hochladen · Spalten: Personalnummer | Nachname | Vorname | E-Mail</div>
+      </div>
+      <button class="btn btn-o btn-sm" onclick="closeEmailImport()">✕</button>
+    </div>
+    <div style="padding:16px 20px">
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Excel- oder CSV-Datei</label>
+        <input type="file" id="email-import-file" accept=".xlsx,.xls,.csv" onchange="handleEmailImportFile(event)"
+          style="border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;width:100%;font-family:inherit;font-size:13px;background:var(--white);cursor:pointer">
+      </div>
+      <div id="email-import-status" style="font-size:13px;color:var(--muted);margin-bottom:8px"></div>
+      <div id="email-import-result" style="max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r);padding:10px;background:var(--s1);font-size:13px"></div>
+    </div>
+    <div style="padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
+      <button class="btn btn-o" onclick="closeEmailImport()">Abbrechen</button>
+      <button class="btn btn-p" id="email-import-save-btn" style="display:none" onclick="saveEmailImport()">💾 Speichern & Übernehmen</button>
     </div>
   </div>
 </div>
