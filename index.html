@@ -1077,6 +1077,36 @@ main{padding:14px 16px}
   .user-badge:hover{border-color:var(--border);color:var(--text2);background:var(--white)}
 
 }
+/* ── NEUEINSTELLUNG (Wizard) ───────────────────────────── */
+.neu-modal{max-width:480px;width:100%;border-radius:14px;margin:0;padding:0;display:flex;flex-direction:column;max-height:calc(100vh - 28px);overflow:hidden}
+.neu-head{background:var(--acc);color:#fff;padding:16px 18px 14px;flex-shrink:0}
+.neu-head .ttl{font-size:16px;font-weight:700}
+.neu-head .sub{font-size:12px;opacity:.85;margin-top:2px}
+.neu-steps{display:flex;gap:6px;margin-top:12px}
+.neu-step{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.3)}
+.neu-step.active{background:#fff;opacity:.85}
+.neu-step.done{background:#fff}
+.neu-body{flex:1;overflow-y:auto;padding:18px}
+.neu-screen{display:none}
+.neu-screen.active{display:block}
+.neu-sec-ttl{font-size:16px;font-weight:700;margin:0 0 3px}
+.neu-sec-sub{font-size:12px;color:var(--muted);margin:0 0 16px}
+.nchipgroup{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.nchip{padding:9px 14px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;background:var(--white);cursor:pointer;user-select:none}
+.nchip.sel{background:var(--acc-l);border-color:var(--acc);color:var(--acc);font-weight:600}
+.neu-foot{flex-shrink:0;border-top:1px solid var(--border);padding:12px 18px;display:flex;gap:10px;background:var(--white)}
+.sigpad-wrap{border:1.5px dashed var(--border2);border-radius:10px;background:var(--s1);height:140px;position:relative;overflow:hidden}
+.sigpad-wrap canvas{width:100%;height:100%;touch-action:none;display:block}
+.sigpad-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:12px;pointer-events:none}
+.sigpad-clear{position:absolute;top:7px;right:7px;background:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--muted);cursor:pointer;z-index:2}
+.neu-badge{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;margin-left:4px;vertical-align:2px}
+.neu-badge.zero{display:none}
+.neu-list-card{border:1px solid var(--border);border-radius:var(--r2);background:var(--white);padding:14px 16px;margin-bottom:10px;box-shadow:var(--sh)}
+.neu-list-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.neu-status{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.neu-status.offen{background:#fff7ed;color:#9a3412}
+.neu-status.uebernommen{background:var(--gbg);color:var(--green)}
+.neu-status.verworfen{background:var(--s1);color:var(--muted)}
 </style>
 <!-- Supabase Auth Client (echte Anmeldung) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1122,6 +1152,7 @@ main{padding:14px 16px}
 <nav class="tabs" role="navigation" aria-label="Hauptnavigation">
 <button class="tab" data-tab="heute" onclick="showTab('heute')" type="button"><span class="tab-icon">🔴</span><span class="tab-lbl">Heute</span></button>
 <button class="tab active" data-tab="liste" onclick="showTab('liste')" type="button"><span class="tab-icon">📋</span><span class="tab-lbl">Mitarbeiter</span></button>
+<button class="tab" data-tab="neueinst" onclick="showTab('neueinst')" type="button"><span class="tab-icon">📥</span><span class="tab-lbl">Neueinstellung</span><span class="neu-badge zero" id="neu-badge">0</span></button>
 <button class="tab" data-tab="urlaub" onclick="showTab('urlaub')" type="button"><span class="tab-icon">🏖</span><span class="tab-lbl">Urlaub</span></button>
 <button class="tab" data-tab="dashboard" onclick="showTab('dashboard')" type="button"><span class="tab-icon">📈</span><span class="tab-lbl">Übersicht</span></button>
 <button class="tab" data-tab="objekte" onclick="showTab('objekte')" type="button"><span class="tab-icon">🏢</span><span class="tab-lbl">Kunden</span></button><button class="tab" data-tab="termine" onclick="showTab('termine')" type="button"><span class="tab-icon">📅</span><span class="tab-lbl">Termine</span></button>
@@ -1131,8 +1162,9 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-email-imp" onclick="openEmailImport();closeAdminDrop()">📥 E-Mails Import</button><button class="admin-drop-btn" id="btn-lohn-export" onclick="exportLohnabrechnungsliste();closeAdminDrop()" title="Personalnummer, Name, E-Mail aller aktiven MA für den Lohnabrechnungs-Versand">⬇ Lohnabrechnungsliste</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-o" onclick="openNeu()">📥 Neueinstellung</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
+<div class="sec" id="tab-neueinst"><div class="toolbar"><button class="btn btn-p" onclick="openNeu()">📥 Neue Anfrage ausfüllen</button><div style="font-size:13px;color:var(--muted)">Vor Ort beim Kunden ausgefüllte Einstellungsbögen – landen hier sofort im Büro.</div><label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin-left:auto" id="neu-filter-wrap"><input type="checkbox" id="neu-f-alle" onchange="renderNeuListe()"> auch erledigte anzeigen</label></div><div id="neu-list" style="padding:4px 2px 30px"></div></div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
 
 <div class="sec" id="tab-heute"><div id="heute-c"></div></div>
@@ -1188,7 +1220,7 @@ main{padding:14px 16px}
   <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
 </div>
 
-<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="openEmailImport()" style="border-color:#a7f3d0">📥<div class="ak-title">E-Mails Import</div><div class="ak-desc">Adressen per Personalnummer einlesen</div></div><div class="admin-kachel" onclick="exportLohnabrechnungsliste()" style="border-color:#a7f3d0">⬇<div class="ak-title">Lohnabrechnungsliste</div><div class="ak-desc">Pers.-Nr. + Name + E-Mail, nur aktive MA</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -1299,7 +1331,6 @@ main{padding:14px 16px}
   <div id="weitere-panel" style="display:none;padding:10px 14px;border-top:1px solid var(--border)">
     <div class="fg2" style="margin-bottom:8px">
       <div class="fg"><label>Telefon</label><input id="f-tel" maxlength="30"></div>
-      <div class="fg"><label>E-Mail</label><input id="f-email" type="email" maxlength="100" placeholder="name@mail.de"></div>
       <div class="fg"><label>Objektleiter *</label><select id="mam-f-ol"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select></div>
       <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein" oninput="calcUrlaubAnspruch()"></div>
       <div class="fg"><label>Austrittsdatum</label><input type="date" id="f-aus"></div>
@@ -2237,7 +2268,7 @@ function updLohngruppeInfo() {
 
 // ─────────────────────────────────────────────────────────
 
-let ma = [], obj = [], kunden = [];
+let ma = [], obj = [], kunden = [], neueinst = [];
 let eMAid=null, eOid=null, eSid=null;
 let sKey='nachname', sDir=1, pg=1;
 const PER=25;
@@ -2408,6 +2439,10 @@ async function refreshData() {
     // Speichern wurde die Verkuerzung dauerhaft. Bis zu einer geprueften,
     // einmaligen und protokollierten Migration bleibt sie abgeschaltet.
     // _migrateHistoryBis();
+    // Neueinstellungen separat laden: Tabelle existiert evtl. noch nicht (neues Feature) -
+    // darf den normalen Start nicht blockieren, falls das SQL-Setup noch fehlt.
+    try { neueinst = (await supaLoad('neueinstellungen')) || []; } catch(e) { neueinst = []; }
+    renderNeuBadge();
     updStats(); updFilters(); render();
     setSyncState('ok', 'Zuletzt geladen: ' + new Date().toLocaleTimeString('de-DE'));
   } catch(e) {
@@ -5697,7 +5732,6 @@ document.getElementById('f-st').value=m.status||'Aktiv';
 document.getElementById('f-vn').value=m.vorname||'';
 document.getElementById('f-nn').value=m.nachname||'';
 document.getElementById('f-tel').value=m.telefon||'';
-document.getElementById('f-email').value=m.email||'';
 document.getElementById('mam-f-ol').value=m.objektleiter||'M';
 document.getElementById('f-ein').value=m.eintrittsdatum||'';
 document.getElementById('f-aus').value=m.austrittsdatum||'';
@@ -7348,7 +7382,7 @@ let m=eMAid?JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid))):{id:(typeof cry
 saveMT(m,ami);
 _olSchutzStunden();                       // v183: OL kann keine Stunden schreiben
 m.persnr=_olSchutzPersnr(pnr);m.nachname=nn;m.vorname=document.getElementById('f-vn').value.trim();
-m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();m.email=document.getElementById('f-email').value.trim();
+m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();
 m.objektleiter=document.getElementById('mam-f-ol').value;
 m.eintrittsdatum=document.getElementById('f-ein').value;m.austrittsdatum=document.getElementById('f-aus').value;
 m.urlaub_jahres=parseFloat(document.getElementById('f-urltage').value)||0;
@@ -10248,6 +10282,7 @@ if(t==='heute')renderHeute();
 if(t==='urlaub')renderUrlaub();
 if(t==='dashboard')renderDash();
 if(t==='termine')renderTermine();
+if(t==='neueinst')renderNeuListe();
 }
 function renderMinijob() {
   const container = document.getElementById('minijob-list');
@@ -11053,7 +11088,7 @@ safeSaveAll();
 function markDirty(){
 _dirty=true;
 }
-['f-pnr','f-st','f-vn','f-nn','f-tel','f-email','f-ol','f-ein','f-aus','f-urltage',
+['f-pnr','f-st','f-vn','f-nn','f-tel','f-ol','f-ein','f-aus','f-urltage',
 'of-n','of-vn','of-nr','of-s','of-ol','of-adr','of-tel','of-em','of-info',
 'md-url','md-krank','md-unbezahlt','md-kk-ab','md-notiz',
 'search','snotiz'].forEach(id=>{
@@ -12236,100 +12271,6 @@ function saveLohnArtenImport() {
   safeSaveAll();
   closeLohnArtenImport();
   showAlert(`${saved} Mitarbeiter mit Lohnarten gespeichert ✓`);
-}
-
-// ── LOHNABRECHNUNGSLISTE EXPORT (für Lohnabrechnung-Versand-Tool) ──
-function exportLohnabrechnungsliste() {
-  _loadSheetJS(() => {
-    const rows = [['Personalnummer', 'Nachname', 'Vorname', 'E-Mail']];
-    const aktive = ma.filter(m => m.status !== 'Ausgeschieden' && m.persnr)
-      .sort((a,b) => (a.nachname||'').localeCompare(b.nachname||'','de'));
-    let ohneMail = 0;
-    aktive.forEach(m => {
-      if (!m.email) ohneMail++;
-      rows.push([m.persnr||'', m.nachname||'', m.vorname||'', m.email||'']);
-    });
-    const ws = XLSX.utils.aoa_to_sheet(rows);
-    ws['!cols'] = [{wch:10},{wch:20},{wch:16},{wch:28}];
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Lohnabrechnungsliste');
-    const mk = getAM ? getAM() : new Date().toISOString().slice(0,7);
-    try {
-      XLSX.writeFile(wb, `Lohnabrechnungsliste_${mk}.xlsx`);
-      showAlert(`Exportiert ✓ (${aktive.length} aktive MA` + (ohneMail ? `, ${ohneMail} ohne E-Mail` : '') + ')');
-    } catch(err) {
-      showAlert('Export fehlgeschlagen: '+err.message,'#c81e1e');
-    }
-  });
-}
-
-// ── E-MAIL BULK-IMPORT ─────────────────────────────────────
-function openEmailImport() {
-  document.getElementById('email-import-bg').classList.add('open');
-  document.getElementById('email-import-result').innerHTML = '';
-  document.getElementById('email-import-file').value = '';
-  document.getElementById('email-import-status').textContent = '';
-  document.getElementById('email-import-save-btn').style.display = 'none';
-}
-function closeEmailImport() {
-  document.getElementById('email-import-bg').classList.remove('open');
-}
-function handleEmailImportFile(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  document.getElementById('email-import-status').textContent = '⏳ Wird gelesen…';
-  _loadSheetJS(() => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const wb = XLSX.read(ev.target.result, {type:'array'});
-        const ws = wb.Sheets[wb.SheetNames[0]];
-        const rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:null});
-        // Spalten: 0=Personalnummer, 1=Nachname, 2=Vorname, 3=E-Mail
-        const map = {}; // persnr -> email
-        rows.slice(1).forEach(r => {
-          const pnr = r[0] != null ? String(r[0]).trim() : null;
-          const email = r[3] != null ? String(r[3]).trim() : null;
-          if (!pnr || !email) return;
-          map[pnr] = email;
-        });
-        let treffer = 0, nichtGef = [];
-        Object.entries(map).forEach(([pnr, email]) => {
-          const m = ma.find(x => String(x.persnr||'').trim() === pnr);
-          if (m) treffer++; else nichtGef.push(pnr);
-        });
-        let html = `<div style="margin-bottom:10px;font-size:13px;color:var(--green);font-weight:600">✅ ${treffer} MA zugeordnet</div>`;
-        if (nichtGef.length) html += `<div style="font-size:12px;color:var(--orange);margin-bottom:8px">⚠ Nicht gefunden (${nichtGef.length}): ${nichtGef.join(', ')}</div>`;
-        html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="background:var(--s1)"><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Pers.Nr.</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Name</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Bisherige E-Mail</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Neue E-Mail</th></tr></thead><tbody>';
-        Object.entries(map).forEach(([pnr, email]) => {
-          const m = ma.find(x => String(x.persnr||'').trim() === pnr);
-          const name = m ? (m.nachname + (m.vorname?' '+m.vorname:'')) : `<span style="color:var(--red)">⚠ ${pnr} nicht gefunden</span>`;
-          const bisher = m && m.email ? m.email : '<span style="color:var(--muted)">–</span>';
-          const changed = m && m.email && m.email !== email;
-          html += `<tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-family:'IBM Plex Mono',monospace">${pnr}</td><td style="padding:4px 8px">${name}</td><td style="padding:4px 8px">${bisher}</td><td style="padding:4px 8px${changed?';color:var(--orange);font-weight:600':''}">${email}</td></tr>`;
-        });
-        html += '</tbody></table>';
-        document.getElementById('email-import-result').innerHTML = html;
-        document.getElementById('email-import-status').textContent = '';
-        document.getElementById('email-import-save-btn').style.display = 'inline-block';
-        window._emailImportMap = map;
-      } catch(err) {
-        document.getElementById('email-import-status').textContent = '❌ Fehler: ' + err.message;
-      }
-    };
-    reader.readAsArrayBuffer(file);
-  });
-}
-function saveEmailImport() {
-  if (!window._emailImportMap) return;
-  let saved = 0;
-  Object.entries(window._emailImportMap).forEach(([pnr, email]) => {
-    const m = ma.find(x => String(x.persnr||'').trim() === pnr);
-    if (m) { m.email = email; saved++; }
-  });
-  safeSaveAll();
-  closeEmailImport();
-  showAlert(`${saved} Mitarbeiter mit E-Mail gespeichert ✓`);
 }
 
 // ── BAYERISCHE FEIERTAGE ──────────────────────────────────
@@ -15345,6 +15286,319 @@ async function tmImportRun(){
   }
 }
 
+// ═══════════════════════════════════════════════════════════
+// ── NEUEINSTELLUNG: mobiler Einstellungs-Assistent ──────────
+// Tabelle 'neueinstellungen' (id + data jsonb, gleiches Muster wie
+// 'mitarbeiter'/'objekte'). Läuft unabhängig von saveMA() - beim
+// "Übernehmen" wird ein normaler, vollständiger Mitarbeiter-Datensatz
+// angelegt und per openMAM() zur Vervollständigung geöffnet; die
+// unterschriebenen Zusatzangaben (Rente/Bank/Befreiung) bleiben als
+// archiviertes, signiertes Dokument im neueinstellungen-Datensatz
+// erhalten und sind jederzeit über "📄 ansehen" einsehbar.
+// ═══════════════════════════════════════════════════════════
+let neuStep = 1;
+const NEU_TITEL = ['Person','Beschäftigung','Rente & Bank','Unterschrift'];
+let _sigPads = {}; // canvasId -> {ctx, drawing, hasInk}
+
+function openNeu(){
+  neuStep = 1;
+  document.querySelectorAll('#neubg input[type=text],#neubg input:not([type=checkbox])').forEach(el=>{ if(el.tagName==='INPUT') el.value=''; });
+  ['n-vorname','n-nachname','n-gebdat','n-gebort','n-staat','n-strasse','n-plzort','n-tel','n-email',
+   'n-kunde','n-eintritt','n-wstd','n-neben-ag','n-vsnr','n-steuerid','n-steuerklasse','n-kk','n-iban','n-kontoinhaber']
+   .forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('n-confirm').checked=false;
+  // Chips zurücksetzen
+  _neuChipSet('n-art-chips','Vollzeit');
+  _neuChipSet('n-neben-chips','nein');
+  _neuChipSet('n-rv-chips','voll');
+  // OL automatisch vom eingeloggten Nutzer, nur Admin/Superadmin wählt manuell
+  if(isOL()){
+    document.getElementById('neu-ol-info').textContent = 'Objektleiter wird automatisch übernommen: eingeloggt als ' + (_currentKuerzel==='I'?'I – Hr. Incecik':_currentKuerzel==='M'?'M – Fr. Grippo':_currentKuerzel);
+    document.getElementById('neu-ol-wahl-wrap').style.display='none';
+  } else {
+    document.getElementById('neu-ol-info').textContent = 'Objektleiter für diesen Mitarbeiter auswählen:';
+    document.getElementById('neu-ol-wahl-wrap').style.display='';
+  }
+  _neuGoStep(1);
+  document.getElementById('neubg').classList.add('open');
+  document.getElementById('neubg').style.display='flex';
+  setTimeout(()=>{ _sigInit('n-sig-main'); _sigInit('n-sig-bef'); },50);
+}
+function neuClose(){
+  document.getElementById('neubg').style.display='none';
+}
+function _neuChipSet(groupId, val){
+  const g=document.getElementById(groupId); if(!g) return;
+  g.querySelectorAll('.nchip').forEach(c=>c.classList.toggle('sel', c.dataset.v===val));
+}
+function _neuChipVal(groupId){
+  const g=document.getElementById(groupId); if(!g) return '';
+  const sel=g.querySelector('.nchip.sel'); return sel?sel.dataset.v:'';
+}
+document.addEventListener('click', function(ev){
+  const chip = ev.target.closest('#neubg .nchip');
+  if(!chip) return;
+  chip.parentElement.querySelectorAll('.nchip').forEach(c=>c.classList.remove('sel'));
+  chip.classList.add('sel');
+  _neuUpdWarnings();
+});
+function _neuUpdWarnings(){
+  const art = _neuChipVal('n-art-chips');
+  const neben = _neuChipVal('n-neben-chips');
+  document.getElementById('neu-neben-ag-wrap').style.display = (neben==='minijob'||neben==='sv') ? '' : 'none';
+  document.getElementById('neu-minijob-warn').style.display = (art==='Minijob' && neben==='minijob') ? 'flex' : 'none';
+  document.getElementById('neu-rv-wrap').style.display = (art==='Minijob') ? '' : 'none';
+  const rv = _neuChipVal('n-rv-chips');
+  document.getElementById('neu-befreiung-box').style.display = (art==='Minijob' && rv==='befreit') ? 'block' : 'none';
+  if(art==='Minijob' && rv==='befreit') _neuFillBefreiung();
+}
+function _neuFillBefreiung(){
+  const vn=document.getElementById('n-vorname').value.trim(), nn=document.getElementById('n-nachname').value.trim();
+  document.getElementById('bf-name').textContent = (vn+' '+nn).trim() || '–';
+  document.getElementById('bf-gebdat').textContent = _neuDatDe(document.getElementById('n-gebdat').value) || '–';
+  const adr = [document.getElementById('n-strasse').value.trim(), document.getElementById('n-plzort').value.trim()].filter(Boolean).join(', ');
+  document.getElementById('bf-adresse').textContent = adr || '–';
+  document.getElementById('bf-eintritt').textContent = _neuDatDe(document.getElementById('n-eintritt').value) || '–';
+}
+function _neuDatDe(iso){
+  if(!iso) return '';
+  const p=iso.split('-'); return p.length===3 ? (p[2]+'.'+p[1]+'.'+p[0]) : iso;
+}
+function _neuGoStep(n){
+  document.querySelectorAll('.neu-screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('neu-s'+n).classList.add('active');
+  document.querySelectorAll('.neu-step').forEach((s,i)=>{
+    s.classList.toggle('active', i+1===n);
+    s.classList.toggle('done', i+1<n);
+  });
+  document.getElementById('neu-hdr-sub').textContent = 'Schritt '+n+' von 4 · '+NEU_TITEL[n-1];
+  document.getElementById('neu-btn-back').style.display = n>1 ? '' : 'none';
+  document.getElementById('neu-btn-next').textContent = n===4 ? '✓ Absenden ans Büro' : 'Weiter →';
+  if(n===3) _neuUpdWarnings();
+  if(n===4) _neuBuildSummary();
+  document.querySelector('#neubg .neu-body').scrollTop = 0;
+}
+function _neuBuildSummary(){
+  const vn=document.getElementById('n-vorname').value.trim(), nn=document.getElementById('n-nachname').value.trim();
+  const art=_neuChipVal('n-art-chips'), kunde=document.getElementById('n-kunde').value.trim();
+  const ein=_neuDatDe(document.getElementById('n-eintritt').value);
+  document.getElementById('neu-summary').innerHTML =
+    '<b>'+(vn+' '+nn).trim()+'</b><br><span style="font-size:12.5px;color:var(--muted)">'+
+    [art, ein?('ab '+ein):'', kunde].filter(Boolean).join(' · ')+'</span>';
+}
+function neuNav(dir){
+  if(dir<0){ if(neuStep>1){ neuStep--; _neuGoStep(neuStep); } return; }
+  // Validierung pro Schritt
+  if(neuStep===1){
+    if(!document.getElementById('n-vorname').value.trim() || !document.getElementById('n-nachname').value.trim()){
+      alert('Bitte Vor- und Nachname eingeben.'); return;
+    }
+  }
+  if(neuStep===4){
+    if(!document.getElementById('n-confirm').checked){ alert('Bitte die Richtigkeit der Angaben bestätigen.'); return; }
+    if(_sigIsEmpty('n-sig-main')){ alert('Bitte Unterschrift des Mitarbeiters einholen.'); return; }
+    const art=_neuChipVal('n-art-chips'), rv=_neuChipVal('n-rv-chips');
+    if(art==='Minijob' && rv==='befreit' && _sigIsEmpty('n-sig-bef')){ alert('Bitte auch die Befreiungserklärung unterschreiben lassen.'); return; }
+    submitNeu();
+    return;
+  }
+  if(neuStep<4){ neuStep++; _neuGoStep(neuStep); }
+}
+
+// ── Unterschriften-Pad (Canvas, Touch + Maus) ───────────────
+function _sigInit(id){
+  const canvas = document.getElementById(id);
+  if(!canvas) return;
+  const wrap = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = wrap.clientWidth * dpr;
+  canvas.height = wrap.clientHeight * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.lineWidth = 2.2; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0f172a';
+  const st = { ctx, drawing:false, hasInk:false, lastX:0, lastY:0 };
+  _sigPads[id] = st;
+  const pos = (ev) => {
+    const r = canvas.getBoundingClientRect();
+    const p = ev.touches ? ev.touches[0] : ev;
+    return { x: p.clientX - r.left, y: p.clientY - r.top };
+  };
+  const start = (ev) => { ev.preventDefault(); const p=pos(ev); st.drawing=true; st.lastX=p.x; st.lastY=p.y; const h=document.getElementById(id+'-hint'); if(h) h.style.display='none'; };
+  const move = (ev) => {
+    if(!st.drawing) return; ev.preventDefault();
+    const p=pos(ev);
+    ctx.beginPath(); ctx.moveTo(st.lastX, st.lastY); ctx.lineTo(p.x, p.y); ctx.stroke();
+    st.lastX=p.x; st.lastY=p.y; st.hasInk=true;
+  };
+  const end = () => { st.drawing=false; };
+  canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', move); window.addEventListener('mouseup', end);
+  canvas.addEventListener('touchstart', start, {passive:false}); canvas.addEventListener('touchmove', move, {passive:false}); canvas.addEventListener('touchend', end);
+}
+function sigClear(id){
+  const st=_sigPads[id]; const canvas=document.getElementById(id);
+  if(!st||!canvas) return;
+  st.ctx.clearRect(0,0,canvas.width,canvas.height); st.hasInk=false;
+  const h=document.getElementById(id+'-hint'); if(h) h.style.display='flex';
+}
+function _sigIsEmpty(id){ return !(_sigPads[id] && _sigPads[id].hasInk); }
+function _sigData(id){
+  const canvas=document.getElementById(id);
+  if(!canvas || _sigIsEmpty(id)) return '';
+  return canvas.toDataURL('image/png');
+}
+
+// ── Absenden ─────────────────────────────────────────────────
+async function submitNeu(){
+  const btn=document.getElementById('neu-btn-next');
+  btn.disabled=true; btn.textContent='Wird gesendet…';
+  try{
+    const art=_neuChipVal('n-art-chips');
+    const neben=_neuChipVal('n-neben-chips');
+    const rv=_neuChipVal('n-rv-chips');
+    const ol = isOL() ? _currentKuerzel : document.getElementById('n-ol-admin').value;
+    const rec = {
+      id: (typeof crypto!=='undefined'&&crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2)),
+      status: 'offen',
+      ma_id: null,
+      erstellt_von: _currentUser || '',
+      erstellt_am: new Date().toISOString(),
+      vorname: document.getElementById('n-vorname').value.trim(),
+      nachname: document.getElementById('n-nachname').value.trim(),
+      geburtsdatum: document.getElementById('n-gebdat').value,
+      geburtsort: document.getElementById('n-gebort').value.trim(),
+      staatsangehoerigkeit: document.getElementById('n-staat').value.trim(),
+      strasse: document.getElementById('n-strasse').value.trim(),
+      plzort: document.getElementById('n-plzort').value.trim(),
+      telefon: document.getElementById('n-tel').value.trim(),
+      email: document.getElementById('n-email').value.trim(),
+      objektleiter: ol,
+      kunde: document.getElementById('n-kunde').value.trim(),
+      eintrittsdatum: document.getElementById('n-eintritt').value,
+      beschaeftigungsart: art,
+      wochenstunden: parseFloat(document.getElementById('n-wstd').value)||0,
+      weitere_beschaeftigung: neben,
+      weitere_beschaeftigung_ag: document.getElementById('n-neben-ag').value.trim(),
+      versicherungsnummer: document.getElementById('n-vsnr').value.trim(),
+      rentenversicherung: art==='Minijob' ? rv : 'voll',
+      steuerid: document.getElementById('n-steuerid').value.trim(),
+      steuerklasse: document.getElementById('n-steuerklasse').value.trim(),
+      krankenkasse: document.getElementById('n-kk').value.trim(),
+      iban: document.getElementById('n-iban').value.trim(),
+      kontoinhaber: document.getElementById('n-kontoinhaber').value.trim(),
+      unterschrift_mitarbeiter: _sigData('n-sig-main'),
+      unterschrift_befreiung: (art==='Minijob' && rv==='befreit') ? _sigData('n-sig-bef') : '',
+    };
+    await supaSave('neueinstellungen', [rec]);
+    neueinst.push(rec);
+    renderNeuBadge();
+    neuClose();
+    showAlert('✅ Angaben gesendet – im Büro sofort sichtbar.');
+  }catch(e){
+    alert('⚠ Senden fehlgeschlagen: ' + e.message + '\n\nFalls die Tabelle "neueinstellungen" noch nicht angelegt ist, bitte zuerst im Supabase-Projekt das Setup-SQL ausführen.');
+  }finally{
+    btn.disabled=false; btn.textContent='✓ Absenden ans Büro';
+  }
+}
+
+// ── Büro-Liste ───────────────────────────────────────────────
+function renderNeuBadge(){
+  const offen = neueinst.filter(n=>n.status==='offen' && (isAdmin() || n.objektleiter===_currentKuerzel)).length;
+  const b=document.getElementById('neu-badge');
+  if(!b) return;
+  b.textContent = offen; b.classList.toggle('zero', offen===0);
+}
+function renderNeuListe(){
+  const wrap=document.getElementById('neu-list'); if(!wrap) return;
+  const zeigeAlle = document.getElementById('neu-f-alle').checked;
+  document.getElementById('neu-filter-wrap').style.display = isAdmin() ? '' : 'none';
+  let liste = isAdmin() ? neueinst.slice() : neueinst.filter(n=>n.objektleiter===_currentKuerzel);
+  if(!isAdmin() || !zeigeAlle) liste = liste.filter(n=>n.status==='offen');
+  liste.sort((a,b)=>(b.erstellt_am||'').localeCompare(a.erstellt_am||''));
+  if(!liste.length){ wrap.innerHTML='<div class="empty" style="padding:30px;text-align:center;color:var(--muted)">Keine offenen Neueinstellungen.</div>'; return; }
+  wrap.innerHTML = liste.map(n=>{
+    const dat = n.erstellt_am ? new Date(n.erstellt_am).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
+    const olLbl = n.objektleiter==='I' ? 'Hr. Incecik' : n.objektleiter==='M' ? 'Fr. Grippo' : (n.objektleiter||'–');
+    const stLbl = n.status==='offen' ? 'offen' : n.status==='uebernommen' ? 'übernommen' : 'verworfen';
+    const btns = n.status==='offen' && isAdmin()
+      ? '<button class="btn btn-p btn-sm" onclick="uebernehmeNeu(\''+n.id+'\')">✓ Übernehmen</button><button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen</button><button class="btn btn-o btn-sm" onclick="verwerfenNeu(\''+n.id+'\')">✕ Verwerfen</button>'
+      : '<button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen</button>';
+    return '<div class="neu-list-card">'
+      + '<div class="neu-list-top"><div><b>'+_esc((n.vorname||'')+' '+(n.nachname||''))+'</b><br>'
+      + '<span style="font-size:12px;color:var(--muted)">'+_esc([n.beschaeftigungsart, n.kunde, n.eintrittsdatum?_neuDatDe(n.eintrittsdatum):''].filter(Boolean).join(' · '))+'</span></div>'
+      + '<span class="neu-status '+n.status+'">'+stLbl+'</span></div>'
+      + '<div style="font-size:11.5px;color:var(--muted2);margin:8px 0">eingereicht von '+_esc(n.erstellt_von||'–')+' ('+olLbl+') · '+dat+'</div>'
+      + '<div style="display:flex;gap:8px;flex-wrap:wrap">'+btns+'</div>'
+      + '</div>';
+  }).join('');
+}
+function _esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+async function uebernehmeNeu(id){
+  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  if(!confirm('Mitarbeiter "'+n.vorname+' '+n.nachname+'" jetzt als neuen Mitarbeiter anlegen?\n\nDie Grunddaten werden übernommen, im Mitarbeiter-Modal kannst du danach Lohngruppe, Stunden usw. ergänzen.')) return;
+  try{
+    const newId = (typeof crypto!=='undefined'&&crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36));
+    const neuMA = {
+      id: newId, persnr:'', status:'Aktiv',
+      vorname: n.vorname||'', nachname: n.nachname||'', telefon: n.telefon||'',
+      objektleiter: n.objektleiter||'', eintrittsdatum: n.eintrittsdatum||'', austrittsdatum:'',
+      urlaub_jahres: 0, weitere_notiz: 'Angelegt aus Neueinstellungs-Formular vom '+_neuDatDe((n.erstellt_am||'').slice(0,10)),
+      lohngruppe:'', datev_lohnarten:[], minijob: n.beschaeftigungsart==='Minijob',
+      verstetigt:false, abrechnungsmodell:'arbeitstage',
+      objekte:[{kunde:n.kunde||'', std_monat:'', stundenlohn:'', lohn_fest:'', wochentage:WT0()}],
+      monats_daten:{}
+    };
+    await supaSave('mitarbeiter',[neuMA]);
+    ma.push(neuMA);
+    n.status='uebernommen'; n.ma_id=newId;
+    await supaSave('neueinstellungen',[n]);
+    renderNeuBadge(); renderNeuListe(); updStats(); updFilters(); render();
+    showAlert('✅ Mitarbeiter angelegt – Modal öffnet zur Vervollständigung.');
+    openMAM(newId);
+  }catch(e){
+    showAlert('⚠ Übernehmen fehlgeschlagen: '+e.message,'#c81e1e');
+  }
+}
+async function verwerfenNeu(id){
+  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  if(!confirm('Diese Neueinstellung wirklich verwerfen?')) return;
+  n.status='verworfen';
+  try{ await supaSave('neueinstellungen',[n]); }catch(e){ showAlert('⚠ Speichern fehlgeschlagen: '+e.message,'#c81e1e'); }
+  renderNeuBadge(); renderNeuListe();
+}
+function ansehenNeu(id){
+  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  const row = (lbl,val) => val ? ('<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--muted)">'+lbl+'</span><span style="font-weight:600;text-align:right">'+_esc(val)+'</span></div>') : '';
+  let h = '';
+  h += row('Name', (n.vorname||'')+' '+(n.nachname||''));
+  h += row('Geburtsdatum', n.geburtsdatum?_neuDatDe(n.geburtsdatum):'');
+  h += row('Geburtsort', n.geburtsort);
+  h += row('Staatsangehörigkeit', n.staatsangehoerigkeit);
+  h += row('Adresse', [n.strasse,n.plzort].filter(Boolean).join(', '));
+  h += row('Telefon', n.telefon); h += row('E-Mail', n.email);
+  h += row('Kunde/Einsatzort', n.kunde);
+  h += row('Eintrittsdatum', n.eintrittsdatum?_neuDatDe(n.eintrittsdatum):'');
+  h += row('Beschäftigungsart', n.beschaeftigungsart);
+  h += row('Wochenstunden', n.wochenstunden);
+  h += row('Weitere Beschäftigung', n.weitere_beschaeftigung==='nein'?'Nein':(n.weitere_beschaeftigung==='minijob'?'Ja, Minijob bei '+(n.weitere_beschaeftigung_ag||'–'):n.weitere_beschaeftigung==='sv'?'Ja, sozialvers.pflichtig bei '+(n.weitere_beschaeftigung_ag||'–'):''));
+  h += row('Versicherungsnummer', n.versicherungsnummer);
+  h += row('Rentenversicherung', n.rentenversicherung==='befreit'?'Befreiung beantragt':'voller Beitragssatz');
+  h += row('Steuer-ID', n.steuerid); h += row('Steuerklasse', n.steuerklasse);
+  h += row('Krankenkasse', n.krankenkasse);
+  h += row('IBAN', n.iban); h += row('Kontoinhaber', n.kontoinhaber);
+  h += row('Eingereicht von', n.erstellt_von); h += row('Status', n.status);
+  if(n.unterschrift_mitarbeiter){
+    h += '<div style="margin-top:14px;font-size:12px;font-weight:600;color:var(--text2)">Unterschrift Mitarbeiter</div>'
+       + '<img src="'+n.unterschrift_mitarbeiter+'" style="max-width:100%;border:1px solid var(--border);border-radius:8px;margin-top:6px;background:#fff">';
+  }
+  if(n.unterschrift_befreiung){
+    h += '<div style="margin-top:14px;font-size:12px;font-weight:600;color:var(--text2)">Unterschrift Befreiungserklärung</div>'
+       + '<img src="'+n.unterschrift_befreiung+'" style="max-width:100%;border:1px solid var(--border);border-radius:8px;margin-top:6px;background:#fff">';
+  }
+  document.getElementById('neuview-body').innerHTML = h;
+  document.getElementById('neuviewbg').style.display='flex';
+}
+
 </script>
 <!-- ── LOHNARTEN IMPORT MODAL ─────────────────────────────── -->
 <div class="datev-modal-bg" id="la-import-bg" onclick="if(event.target.id==='la-import-bg')closeLohnArtenImport()">
@@ -15368,31 +15622,6 @@ async function tmImportRun(){
     <div style="padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
       <button class="btn btn-o" onclick="closeLohnArtenImport()">Abbrechen</button>
       <button class="btn btn-p" id="la-import-save-btn" style="display:none" onclick="saveLohnArtenImport()">💾 Speichern & Übernehmen</button>
-    </div>
-  </div>
-</div>
-<!-- ── E-MAIL IMPORT MODAL ─────────────────────────────────── -->
-<div class="datev-modal-bg" id="email-import-bg" onclick="if(event.target.id==='email-import-bg')closeEmailImport()">
-  <div class="datev-modal" style="max-width:700px">
-    <div class="datev-modal-head">
-      <div>
-        <div style="font-weight:700;font-size:16px">📥 E-Mails Import</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">Excel/CSV hochladen · Spalten: Personalnummer | Nachname | Vorname | E-Mail</div>
-      </div>
-      <button class="btn btn-o btn-sm" onclick="closeEmailImport()">✕</button>
-    </div>
-    <div style="padding:16px 20px">
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Excel- oder CSV-Datei</label>
-        <input type="file" id="email-import-file" accept=".xlsx,.xls,.csv" onchange="handleEmailImportFile(event)"
-          style="border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;width:100%;font-family:inherit;font-size:13px;background:var(--white);cursor:pointer">
-      </div>
-      <div id="email-import-status" style="font-size:13px;color:var(--muted);margin-bottom:8px"></div>
-      <div id="email-import-result" style="max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r);padding:10px;background:var(--s1);font-size:13px"></div>
-    </div>
-    <div style="padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
-      <button class="btn btn-o" onclick="closeEmailImport()">Abbrechen</button>
-      <button class="btn btn-p" id="email-import-save-btn" style="display:none" onclick="saveEmailImport()">💾 Speichern & Übernehmen</button>
     </div>
   </div>
 </div>
@@ -15421,4 +15650,135 @@ async function tmImportRun(){
     <div style="padding:16px 20px" id="kap-over-body"></div>
   </div>
 </div>
+
+<!-- ── NEUEINSTELLUNG: WIZARD ── -->
+<div class="mbg" id="neubg" role="dialog" aria-modal="true" aria-label="Neueinstellung" style="z-index:var(--z-alert);align-items:flex-start;justify-content:center;padding:14px">
+  <div class="modal neu-modal">
+    <div class="neu-head">
+      <div class="ttl">📥 Neuer Mitarbeiter</div>
+      <div class="sub" id="neu-hdr-sub">Schritt 1 von 4 · Person</div>
+      <div class="neu-steps">
+        <div class="neu-step active" data-s="1"></div>
+        <div class="neu-step" data-s="2"></div>
+        <div class="neu-step" data-s="3"></div>
+        <div class="neu-step" data-s="4"></div>
+      </div>
+    </div>
+    <div class="neu-body">
+
+      <!-- SCHRITT 1: PERSON -->
+      <div class="neu-screen active" id="neu-s1">
+        <div class="neu-sec-ttl">Persönliche Angaben</div>
+        <div class="neu-sec-sub">Vom Objektleiter oder vom Mitarbeiter selbst ausfüllbar</div>
+        <div class="fg"><label>Vorname *</label><input id="n-vorname" maxlength="50"></div>
+        <div class="fg"><label>Nachname *</label><input id="n-nachname" maxlength="50"></div>
+        <div class="fg"><label>Geburtsdatum</label><input id="n-gebdat" type="date"></div>
+        <div class="fg"><label>Geburtsort</label><input id="n-gebort" maxlength="60"></div>
+        <div class="fg"><label>Staatsangehörigkeit</label><input id="n-staat" maxlength="40"></div>
+        <div class="fg"><label>Straße, Hausnummer</label><input id="n-strasse" maxlength="80"></div>
+        <div class="fg"><label>PLZ, Ort</label><input id="n-plzort" maxlength="60"></div>
+        <div class="fg"><label>Telefon</label><input id="n-tel" maxlength="30"></div>
+        <div class="fg"><label>E-Mail</label><input id="n-email" type="email" maxlength="80"></div>
+      </div>
+
+      <!-- SCHRITT 2: BESCHÄFTIGUNG -->
+      <div class="neu-screen" id="neu-s2">
+        <div class="neu-sec-ttl">Beschäftigung</div>
+        <div class="neu-sec-sub" id="neu-ol-info">Objektleiter wird automatisch übernommen</div>
+        <div class="fg" id="neu-ol-wahl-wrap" style="display:none">
+          <label>Objektleiter</label>
+          <select class="fsel" id="n-ol-admin" style="width:100%"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select>
+        </div>
+        <div class="fg"><label>Einsatzort / Kunde</label><input id="n-kunde" maxlength="80" placeholder="z.B. AUMOVIO Alzenau"></div>
+        <div class="fg"><label>Eintrittsdatum</label><input id="n-eintritt" type="date"></div>
+        <div class="fg"><label>Beschäftigungsart</label>
+          <div class="nchipgroup" id="n-art-chips">
+            <div class="nchip sel" data-v="Vollzeit">Vollzeit</div><div class="nchip" data-v="Teilzeit">Teilzeit</div><div class="nchip" data-v="Minijob">Minijob</div><div class="nchip" data-v="kurzfristig">kurzfristig</div>
+          </div>
+        </div>
+        <div class="fg"><label>Wochenstunden</label><input id="n-wstd" type="number" step="0.5" min="0" max="48"></div>
+        <div class="fg"><label>Übt der Mitarbeiter eine weitere Beschäftigung aus?</label>
+          <div class="nchipgroup" id="n-neben-chips">
+            <div class="nchip sel" data-v="nein">Nein</div><div class="nchip" data-v="minijob">Ja, Minijob</div><div class="nchip" data-v="sv">Ja, sozialvers.pflichtig</div>
+          </div>
+        </div>
+        <div class="fg" id="neu-neben-ag-wrap" style="display:none"><label>Arbeitgeber der weiteren Beschäftigung</label><input id="n-neben-ag" maxlength="80"></div>
+        <div class="confirm" style="display:none;background:#fff7ed;border-color:#fed7aa;color:#9a3412" id="neu-minijob-warn">
+          ⚠ Ein weiterer Minijob ist neben diesem Minijob gesetzlich <b>nicht</b> zulässig – beide würden zusammengerechnet und versicherungspflichtig. Bitte vor Einstellung mit dem Büro klären.
+        </div>
+      </div>
+
+      <!-- SCHRITT 3: RENTE / STEUER / BANK -->
+      <div class="neu-screen" id="neu-s3">
+        <div class="neu-sec-ttl">Rente, Steuer &amp; Bank</div>
+        <div class="neu-sec-sub">Für Lohnabrechnung &amp; DATEV</div>
+        <div class="fg"><label>Versicherungsnummer (Rentenversicherung)</label><input id="n-vsnr" maxlength="30" placeholder="12 345678 A 123"><div class="hint">Steht auf dem Versicherungsnummernachweis der Rentenversicherung (früher „Sozialversicherungsausweis“) – ist dieselbe Nummer.</div></div>
+        <div class="fg" id="neu-rv-wrap" style="display:none"><label>Rentenversicherung (nur bei Minijob relevant)</label>
+          <div class="nchipgroup" id="n-rv-chips"><div class="nchip sel" data-v="voll">voller Beitragssatz (18,6%)</div><div class="nchip" data-v="befreit">Befreiung beantragen</div></div>
+          <div class="hint">Bei „Befreiung" zahlt der Mitarbeiter keinen Arbeitnehmeranteil mehr – dafür erwirbt er auch keine vollen Rentenansprüche.</div>
+        </div>
+        <div class="card" id="neu-befreiung-box" style="display:none;border:1px solid var(--acc);background:var(--acc-l);border-radius:var(--r2);padding:14px;margin-top:4px">
+          <div style="display:inline-block;font-size:11px;background:var(--white);color:var(--acc);padding:3px 9px;border-radius:20px;font-weight:600;margin-bottom:8px;border:none;text-decoration:none">📄 Erklärung zur Befreiung von der Rentenversicherungspflicht</div>
+          <div style="font-size:12.5px;line-height:1.5;color:var(--text2)">
+            Hiermit beantrage ich, <b id="bf-name">–</b>, geb. <b id="bf-gebdat">–</b>,
+            wohnhaft <b id="bf-adresse">–</b>,
+            die <b>Befreiung von der Versicherungspflicht in der gesetzlichen Rentenversicherung</b>
+            im Rahmen meiner geringfügig entlohnten Beschäftigung bei ACS All Clean Services KG
+            ab dem <b id="bf-eintritt">–</b>.<br><br>
+            Mir ist bekannt, dass dadurch keine vollen Ansprüche in der gesetzlichen Rentenversicherung erworben werden.
+          </div>
+          <label style="display:block;font-size:12px;font-weight:600;color:var(--text2);margin:14px 0 6px">Unterschrift zur Befreiungserklärung</label>
+          <div class="sigpad-wrap" style="height:110px">
+            <canvas id="n-sig-bef"></canvas>
+            <div class="sigpad-hint" id="n-sig-bef-hint">Hier unterschreiben</div>
+            <button type="button" class="sigpad-clear" onclick="sigClear('n-sig-bef')">✕ löschen</button>
+          </div>
+        </div>
+        <div class="row2" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+          <div class="fg"><label>Steuer-ID</label><input id="n-steuerid" maxlength="20"></div>
+          <div class="fg"><label>Steuerklasse</label><input id="n-steuerklasse" maxlength="4"></div>
+        </div>
+        <div class="fg"><label>Krankenkasse</label><input id="n-kk" maxlength="60"></div>
+        <div class="fg"><label>IBAN</label><input id="n-iban" maxlength="34" style="text-transform:uppercase"></div>
+        <div class="fg"><label>Kontoinhaber (falls abweichend)</label><input id="n-kontoinhaber" maxlength="60"></div>
+      </div>
+
+      <!-- SCHRITT 4: BESTÄTIGUNG -->
+      <div class="neu-screen" id="neu-s4">
+        <div class="neu-sec-ttl">Bestätigung &amp; Unterschrift</div>
+        <div class="neu-sec-sub">Mitarbeiter bestätigt die Richtigkeit seiner Angaben</div>
+        <div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:14px" id="neu-summary"></div>
+        <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text2);margin-bottom:6px">Unterschrift Mitarbeiter/in</label>
+        <div class="sigpad-wrap">
+          <canvas id="n-sig-main"></canvas>
+          <div class="sigpad-hint" id="n-sig-main-hint">Hier mit dem Finger unterschreiben</div>
+          <button type="button" class="sigpad-clear" onclick="sigClear('n-sig-main')">✕ löschen</button>
+        </div>
+        <div class="confirm" style="display:flex;gap:10px;align-items:flex-start;background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:12px;font-size:12.5px;color:var(--text2);margin-top:14px">
+          <input type="checkbox" id="n-confirm" style="margin-top:2px">
+          <span>Ich bestätige, dass die vorstehenden Angaben vollständig und wahrheitsgemäß sind.</span>
+        </div>
+        <div class="hint" style="margin-top:10px">Zeitstempel und Ersteller werden automatisch mitgespeichert.</div>
+      </div>
+
+    </div>
+    <div class="neu-foot">
+      <button class="btn btn-o" onclick="neuClose()" id="neu-btn-cancel" type="button">Abbrechen</button>
+      <button class="btn btn-s" onclick="neuNav(-1)" id="neu-btn-back" type="button" style="display:none">← Zurück</button>
+      <button class="btn btn-p" onclick="neuNav(1)" id="neu-btn-next" type="button" style="margin-left:auto">Weiter →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── NEUEINSTELLUNG: ANSICHT (Büro) ── -->
+<div class="mbg" id="neuviewbg" role="dialog" aria-modal="true" aria-label="Einstellungsbogen ansehen" style="z-index:var(--z-alert);align-items:flex-start;justify-content:center;padding:14px" onclick="if(event.target===this)document.getElementById('neuviewbg').style.display='none'">
+  <div class="modal" style="max-width:520px;width:100%;border-radius:14px;max-height:calc(100vh - 28px);overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div style="font-weight:700;font-size:16px">📄 Einstellungsbogen</div>
+      <button class="btn btn-o" onclick="document.getElementById('neuviewbg').style.display='none'" style="padding:4px 10px">✕</button>
+    </div>
+    <div id="neuview-body"></div>
+  </div>
+</div>
+
 </body></html>
