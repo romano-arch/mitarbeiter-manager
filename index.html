@@ -1107,6 +1107,31 @@ main{padding:14px 16px}
 .neu-status.offen{background:#fff7ed;color:#9a3412}
 .neu-status.uebernommen{background:var(--gbg);color:var(--green)}
 .neu-status.verworfen{background:var(--s1);color:var(--muted)}
+/* ── NEUEINSTELLUNG v2: Personalfragebogen, Verträge, PDF ── */
+#neubg .fg{margin-bottom:12px}
+#neubg input:not([type=checkbox]),#neubg select{font-size:15px;padding:10px 11px}
+#neubg label{text-transform:none;letter-spacing:0;font-size:12px;color:var(--text2)}
+.neu-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.neu-row31{display:grid;grid-template-columns:100px 1fr;gap:10px}
+.neu-hint{font-size:11.5px;color:var(--muted)}
+.neu-subttl{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin:18px 0 8px;padding-top:12px;border-top:1px solid var(--border)}
+.neu-warn{background:var(--obg);border:1px solid var(--obd);color:#9a3412;border-radius:10px;padding:10px 12px;font-size:12.5px;margin-bottom:12px}
+.neu-chk{display:flex!important;gap:10px;align-items:flex-start;font-size:13px!important;font-weight:400!important;margin:10px 0;cursor:pointer;color:var(--text)!important}
+.neu-chk input{width:20px!important;height:20px;flex-shrink:0;margin-top:1px}
+.neu-chk b.pf{color:var(--red)}
+.neu-wt{width:100%;border-collapse:collapse;font-size:12.5px}
+.neu-wt td,.neu-wt th{padding:3px 2px;text-align:left;font-size:12px}
+#neubg .neu-wt input{padding:7px 4px;font-size:13px}
+.neu-foto-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.neu-foto{border:1.5px dashed var(--border2);border-radius:10px;background:var(--s1);height:110px;position:relative;display:flex!important;align-items:center;justify-content:center;text-align:center;font-size:12px!important;color:var(--muted)!important;cursor:pointer;overflow:hidden;padding:6px}
+.neu-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.neu-foto .lbl{position:absolute;left:0;right:0;bottom:0;background:rgba(15,23,42,.65);color:#fff;font-size:11px;padding:3px}
+.neu-foto input{display:none}
+.neu-doc{border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden}
+.neu-doc-h{background:var(--s1);padding:10px 12px;font-weight:700;font-size:13.5px}
+.neu-doc-b{padding:12px;font-size:12.5px;line-height:1.5;color:var(--text2)}
+.neu-doc-text{max-height:240px;overflow-y:auto;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:10px;font-size:12px;white-space:pre-wrap}
+.neu-sig-lbl{font-size:12px;font-weight:600;margin-top:10px;color:var(--text2)}
 </style>
 <!-- Supabase Auth Client (echte Anmeldung) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1162,7 +1187,7 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-o" onclick="openNeu()">📥 Neueinstellung</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-o" onclick="openNeu()">📥 Neueinstellung</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-email-imp" onclick="openEmailImport();closeAdminDrop()">📥 E-Mails Import</button><button class="admin-drop-btn" id="btn-lohn-export" onclick="exportLohnabrechnungsliste();closeAdminDrop()" title="Personalnummer, Name, E-Mail aller aktiven MA für den Lohnabrechnungs-Versand">⬇ Lohnabrechnungsliste</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
 <div class="sec" id="tab-neueinst"><div class="toolbar"><button class="btn btn-p" onclick="openNeu()">📥 Neue Anfrage ausfüllen</button><div style="font-size:13px;color:var(--muted)">Vor Ort beim Kunden ausgefüllte Einstellungsbögen – landen hier sofort im Büro.</div><label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin-left:auto" id="neu-filter-wrap"><input type="checkbox" id="neu-f-alle" onchange="renderNeuListe()"> auch erledigte anzeigen</label></div><div id="neu-list" style="padding:4px 2px 30px"></div></div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
@@ -1220,7 +1245,7 @@ main{padding:14px 16px}
   <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
 </div>
 
-<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="openEmailImport()" style="border-color:#a7f3d0">📥<div class="ak-title">E-Mails Import</div><div class="ak-desc">Adressen per Personalnummer einlesen</div></div><div class="admin-kachel" onclick="exportLohnabrechnungsliste()" style="border-color:#a7f3d0">⬇<div class="ak-title">Lohnabrechnungsliste</div><div class="ak-desc">Pers.-Nr. + Name + E-Mail, nur aktive MA</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -1331,6 +1356,7 @@ main{padding:14px 16px}
   <div id="weitere-panel" style="display:none;padding:10px 14px;border-top:1px solid var(--border)">
     <div class="fg2" style="margin-bottom:8px">
       <div class="fg"><label>Telefon</label><input id="f-tel" maxlength="30"></div>
+      <div class="fg"><label>E-Mail</label><input id="f-email" type="email" maxlength="100" placeholder="name@mail.de"></div>
       <div class="fg"><label>Objektleiter *</label><select id="mam-f-ol"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select></div>
       <div class="fg"><label>Eintrittsdatum</label><input type="date" id="f-ein" oninput="calcUrlaubAnspruch()"></div>
       <div class="fg"><label>Austrittsdatum</label><input type="date" id="f-aus"></div>
@@ -5732,6 +5758,7 @@ document.getElementById('f-st').value=m.status||'Aktiv';
 document.getElementById('f-vn').value=m.vorname||'';
 document.getElementById('f-nn').value=m.nachname||'';
 document.getElementById('f-tel').value=m.telefon||'';
+document.getElementById('f-email').value=m.email||'';
 document.getElementById('mam-f-ol').value=m.objektleiter||'M';
 document.getElementById('f-ein').value=m.eintrittsdatum||'';
 document.getElementById('f-aus').value=m.austrittsdatum||'';
@@ -7382,7 +7409,7 @@ let m=eMAid?JSON.parse(JSON.stringify(ma.find(x=>x.id===eMAid))):{id:(typeof cry
 saveMT(m,ami);
 _olSchutzStunden();                       // v183: OL kann keine Stunden schreiben
 m.persnr=_olSchutzPersnr(pnr);m.nachname=nn;m.vorname=document.getElementById('f-vn').value.trim();
-m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();
+m.status=document.getElementById('f-st').value;m.telefon=document.getElementById('f-tel').value.trim();m.email=document.getElementById('f-email').value.trim();
 m.objektleiter=document.getElementById('mam-f-ol').value;
 m.eintrittsdatum=document.getElementById('f-ein').value;m.austrittsdatum=document.getElementById('f-aus').value;
 m.urlaub_jahres=parseFloat(document.getElementById('f-urltage').value)||0;
@@ -11088,7 +11115,7 @@ safeSaveAll();
 function markDirty(){
 _dirty=true;
 }
-['f-pnr','f-st','f-vn','f-nn','f-tel','f-ol','f-ein','f-aus','f-urltage',
+['f-pnr','f-st','f-vn','f-nn','f-tel','f-email','f-ol','f-ein','f-aus','f-urltage',
 'of-n','of-vn','of-nr','of-s','of-ol','of-adr','of-tel','of-em','of-info',
 'md-url','md-krank','md-unbezahlt','md-kk-ab','md-notiz',
 'search','snotiz'].forEach(id=>{
@@ -12271,6 +12298,100 @@ function saveLohnArtenImport() {
   safeSaveAll();
   closeLohnArtenImport();
   showAlert(`${saved} Mitarbeiter mit Lohnarten gespeichert ✓`);
+}
+
+// ── LOHNABRECHNUNGSLISTE EXPORT (für Lohnabrechnung-Versand-Tool) ──
+function exportLohnabrechnungsliste() {
+  _loadSheetJS(() => {
+    const rows = [['Personalnummer', 'Nachname', 'Vorname', 'E-Mail']];
+    const aktive = ma.filter(m => m.status !== 'Ausgeschieden' && m.persnr)
+      .sort((a,b) => (a.nachname||'').localeCompare(b.nachname||'','de'));
+    let ohneMail = 0;
+    aktive.forEach(m => {
+      if (!m.email) ohneMail++;
+      rows.push([m.persnr||'', m.nachname||'', m.vorname||'', m.email||'']);
+    });
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols'] = [{wch:10},{wch:20},{wch:16},{wch:28}];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Lohnabrechnungsliste');
+    const mk = getAM ? getAM() : new Date().toISOString().slice(0,7);
+    try {
+      XLSX.writeFile(wb, `Lohnabrechnungsliste_${mk}.xlsx`);
+      showAlert(`Exportiert ✓ (${aktive.length} aktive MA` + (ohneMail ? `, ${ohneMail} ohne E-Mail` : '') + ')');
+    } catch(err) {
+      showAlert('Export fehlgeschlagen: '+err.message,'#c81e1e');
+    }
+  });
+}
+
+// ── E-MAIL BULK-IMPORT ─────────────────────────────────────
+function openEmailImport() {
+  document.getElementById('email-import-bg').classList.add('open');
+  document.getElementById('email-import-result').innerHTML = '';
+  document.getElementById('email-import-file').value = '';
+  document.getElementById('email-import-status').textContent = '';
+  document.getElementById('email-import-save-btn').style.display = 'none';
+}
+function closeEmailImport() {
+  document.getElementById('email-import-bg').classList.remove('open');
+}
+function handleEmailImportFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  document.getElementById('email-import-status').textContent = '⏳ Wird gelesen…';
+  _loadSheetJS(() => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const wb = XLSX.read(ev.target.result, {type:'array'});
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:null});
+        // Spalten: 0=Personalnummer, 1=Nachname, 2=Vorname, 3=E-Mail
+        const map = {}; // persnr -> email
+        rows.slice(1).forEach(r => {
+          const pnr = r[0] != null ? String(r[0]).trim() : null;
+          const email = r[3] != null ? String(r[3]).trim() : null;
+          if (!pnr || !email) return;
+          map[pnr] = email;
+        });
+        let treffer = 0, nichtGef = [];
+        Object.entries(map).forEach(([pnr, email]) => {
+          const m = ma.find(x => String(x.persnr||'').trim() === pnr);
+          if (m) treffer++; else nichtGef.push(pnr);
+        });
+        let html = `<div style="margin-bottom:10px;font-size:13px;color:var(--green);font-weight:600">✅ ${treffer} MA zugeordnet</div>`;
+        if (nichtGef.length) html += `<div style="font-size:12px;color:var(--orange);margin-bottom:8px">⚠ Nicht gefunden (${nichtGef.length}): ${nichtGef.join(', ')}</div>`;
+        html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="background:var(--s1)"><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Pers.Nr.</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Name</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Bisherige E-Mail</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid var(--border)">Neue E-Mail</th></tr></thead><tbody>';
+        Object.entries(map).forEach(([pnr, email]) => {
+          const m = ma.find(x => String(x.persnr||'').trim() === pnr);
+          const name = m ? (m.nachname + (m.vorname?' '+m.vorname:'')) : `<span style="color:var(--red)">⚠ ${pnr} nicht gefunden</span>`;
+          const bisher = m && m.email ? m.email : '<span style="color:var(--muted)">–</span>';
+          const changed = m && m.email && m.email !== email;
+          html += `<tr style="border-bottom:1px solid var(--border)"><td style="padding:4px 8px;font-family:'IBM Plex Mono',monospace">${pnr}</td><td style="padding:4px 8px">${name}</td><td style="padding:4px 8px">${bisher}</td><td style="padding:4px 8px${changed?';color:var(--orange);font-weight:600':''}">${email}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('email-import-result').innerHTML = html;
+        document.getElementById('email-import-status').textContent = '';
+        document.getElementById('email-import-save-btn').style.display = 'inline-block';
+        window._emailImportMap = map;
+      } catch(err) {
+        document.getElementById('email-import-status').textContent = '❌ Fehler: ' + err.message;
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+function saveEmailImport() {
+  if (!window._emailImportMap) return;
+  let saved = 0;
+  Object.entries(window._emailImportMap).forEach(([pnr, email]) => {
+    const m = ma.find(x => String(x.persnr||'').trim() === pnr);
+    if (m) { m.email = email; saved++; }
+  });
+  safeSaveAll();
+  closeEmailImport();
+  showAlert(`${saved} Mitarbeiter mit E-Mail gespeichert ✓`);
 }
 
 // ── BAYERISCHE FEIERTAGE ──────────────────────────────────
@@ -15297,20 +15418,76 @@ async function tmImportRun(){
 // erhalten und sind jederzeit über "📄 ansehen" einsehbar.
 // ═══════════════════════════════════════════════════════════
 let neuStep = 1;
-const NEU_TITEL = ['Person','Beschäftigung','Rente & Bank','Unterschrift'];
+const NEU_TITEL = ['Person','Beschäftigung','SV, Steuer & Bank','Ausweise','Unterschriften'];
+const NEU_TAGE = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
+const NEU_FOTOS = [['ausweis_v','Personalausweis / Pass – Vorderseite'],['ausweis_r','Personalausweis – Rückseite'],['sv','Sozialversicherungs-ausweis'],['bank','Bankkarte'],['kk','Gesundheitskarte Krankenkasse'],['aufenthalt','Aufenthalts- / Arbeitserlaubnis'],['kinder','Nachweis Kinder']];
+const NEU_FIRMA = 'A.C.S. All Clean Service KG', NEU_FIRMA_ADR = 'Daimlerstr. 6, 63755 Alzenau', NEU_BETRIEBSNR = '71516860';
 let _sigPads = {}; // canvasId -> {ctx, drawing, hasInk}
+let _neuFotos = {}; // key -> dataURL (verkleinert)
+
+// ── Texte der Dokumente (Personalfragebogen/Befreiung 1:1 aus den Papiervorlagen) ──
+const NEU_T = {
+  verpflichtung:'Hiermit verpflichte ich mich, die Aufnahme weiterer Beschäftigungen meinem Arbeitgeber sofort unaufgefordert mitzuteilen. Dies gilt auch für Veränderungen der Entgelthöhe der Minijobs.',
+  ausweis:'Mitführungs- und Vorlagepflicht von Ausweispapieren gemäß 2a Abs. 1 des Schwarzarbeitsbekämpfungsgesetzes (SchwarzArbG) sind Sie verpflichtet Ihren Personalausweis, Pass, Pass- oder Ausweisersatz und Ihren Aufenthaltstitel an Ihrem Arbeitsplatz mitzuführen und den Behörden der Zollverwaltung auf Verlangen vorzuzeigen.',
+  urlaub:'Hinweis: Der zustehende Urlaub muss bis zum Jahresende genommen werden, sonst verfällt er.',
+  email:'Mit meiner Unterschrift erkläre ich mein Einverständnis zur Übermittlung der Lohnabrechnungen per E-Mail.',
+  richtig:'Ich bestätige, dass meine Angaben vollständig und wahrheitsgemäß sind.',
+  merkblatt:'Ich habe das „Merkblatt über die möglichen Folgen einer Befreiung von der Rentenversicherungspflicht“ in Papierform erhalten.',
+  bef_titel:'Antrag auf Befreiung von der Rentenversicherungspflicht bei einer geringfügig entlohnten Beschäftigung nach § 6 Absatz 1b Sozialgesetzbuch – Sechstes Buch – (SGB VI)',
+  bef1:'Hiermit beantrage ich die Befreiung von der Versicherungspflicht in der Rentenversicherung im Rahmen meiner geringfügig entlohnten Beschäftigung und verzichte damit auf den Erwerb von Pflichtbeitragszeiten. Ich habe die Hinweise auf dem „Merkblatt über die möglichen Folgen einer Befreiung von der Rentenversicherungspflicht“ zur Kenntnis genommen.',
+  bef2:'Mir ist bekannt, dass der Befreiungsantrag für alle von mir zeitgleich ausgeübten geringfügig entlohnten Beschäftigungen gilt und für die Dauer der Beschäftigungen bindend ist; eine Rücknahme ist nicht möglich. Ich verpflichte mich, alle weiteren Arbeitgeber, bei denen ich eine geringfügig entlohnte Beschäftigung ausübe, über diesen Befreiungsantrag zu informieren.',
+  bef_hinweis:'Hinweis für den Arbeitgeber: Der Befreiungsantrag ist nach § 8 Absatz 2 Nr. 4a Beitragsverfahrensverordnung (BVV) zu den Entgeltunterlagen zu nehmen und nicht an die Minijob-Zentrale zu senden.',
+  av:[
+    ['§ 1 Tätigkeit','{ANREDE} {NAME} wird ab dem {EINTRITT} als Reinigungskraft auf Aushilfsbasis eingestellt. Einsatzobjekt: {OBJEKT}.\nDer Arbeitgeber kann bei gleicher Vergütung auch andere zumutbare Tätigkeiten entsprechend den Vorkenntnissen zuweisen. Bei Bedarf sind in zumutbarem Rahmen vorübergehend auch auswärtige Einsätze zu leisten. Dadurch entstehende Mehrausgaben (z. B. Fahrtkosten) werden nicht erstattet.'],
+    ['§ 2 Probezeit','Die Probezeit beträgt 3 Monate. In dieser Zeit ist das Arbeitsverhältnis täglich kündbar, danach mit einer Frist von 2 Wochen.'],
+    ['§ 3 Entgelt','Die Bruttostundenvergütung richtet sich nach dem Mindestlohntarifvertrag. Der Lohn wird monatlich nachträglich gezahlt.'],
+    ['§ 4 Verschwiegenheit','Der Arbeitnehmer wahrt Stillschweigen über alle Betriebs- und Geschäftsgeheimnisse sowie über Tatsachen, deren Bekanntwerden dem Betrieb schaden kann. Das gilt auch nach Ende des Arbeitsverhältnisses. Vertrauliche Unterlagen dürfen nur berechtigten Personen zugänglich gemacht werden.'],
+    ['§ 5 Arbeitszeit','{TABELLE}'],
+    ['§ 6 Ausschlussfristen','Ansprüche aus dem Arbeitsverhältnis (z. B. Mehrarbeit, rückständiger Lohn) sind innerhalb von 2 Monaten geltend zu machen, nach Beendigung des Arbeitsverhältnisses innerhalb von 3 Monaten. Danach verfallen sie. Ausgenommen sind Ansprüche auf den gesetzlichen Mindestlohn sowie Ansprüche aus vorsätzlichem Handeln.'],
+    ['§ 7 Nebenabreden','Nebenabreden bestehen nicht. Änderungen und Ergänzungen dieses Vertrags bedürfen der Schriftform.'],
+    ['§ 8 Urlaub','Der Urlaubsanspruch richtet sich nach dem Bundesurlaubsgesetz und dem Rahmentarifvertrag für die gewerblichen Beschäftigten in der Gebäudereinigung in der jeweils gültigen Fassung. Bei weniger als fünf Arbeitstagen pro Woche besteht der Anspruch anteilig.'],
+    ['§ 9 Schlussbestimmungen','Ist eine Bestimmung dieses Vertrags unwirksam, bleibt der Vertrag im Übrigen wirksam. An die Stelle der unwirksamen Bestimmung tritt eine zulässige Regelung, die ihr am nächsten kommt.']
+  ],
+  rv:['Die Firma A.C.S. All Clean Service KG ist nicht verpflichtet {DATIV} Arbeitsangebote zu machen.','{NOMINATIV} ist nicht verpflichtet Beschäftigungsangebote anzunehmen.','Für den Fall, dass ein befristetes Arbeitsverhältnis zustande kommt, wird folgende Vergütung vereinbart: Der Stundenlohn beträgt {LOHN} €.\nDieser richtet sich nach dem Tarifvertrag der Gebäudereiniger und wird bei Tariferhöhung angepasst.']
+};
+
+// Welche Dokumente braucht dieser Datensatz?
+function _neuDocs(n){
+  const l=[{k:'fb',t:'Personalfragebogen'}];
+  if(n.beschaeftigungsart==='Minijob' && n.rentenversicherung==='befreit') l.push({k:'bef',t:'Antrag Befreiung RV-Pflicht'});
+  if(n.beschaeftigungsart==='Minijob') l.push({k:'av',t:'Anstellungsvertrag auf Aushilfsbasis'});
+  if(n.springer) l.push({k:'rv',t:'Rahmenvereinbarung (Springer)'});
+  return l;
+}
+const _NEU_SIGKEY = {fb:'unterschrift_mitarbeiter', bef:'unterschrift_befreiung', av:'unterschrift_vertrag', rv:'unterschrift_rahmen'};
+
+function _neuV(id){ const el=document.getElementById(id); return el ? (el.value||'').trim() : ''; }
 
 function openNeu(){
   neuStep = 1;
-  document.querySelectorAll('#neubg input[type=text],#neubg input:not([type=checkbox])').forEach(el=>{ if(el.tagName==='INPUT') el.value=''; });
-  ['n-vorname','n-nachname','n-gebdat','n-gebort','n-staat','n-strasse','n-plzort','n-tel','n-email',
-   'n-kunde','n-eintritt','n-wstd','n-neben-ag','n-vsnr','n-steuerid','n-steuerklasse','n-kk','n-iban','n-kontoinhaber']
-   .forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-  document.getElementById('n-confirm').checked=false;
+  _neuFotos = {};
+  document.querySelectorAll('#neubg input').forEach(el=>{ if(el.type==='checkbox') el.checked=false; else if(el.type!=='file') el.value=''; });
+  document.querySelectorAll('#neubg select').forEach(el=>{ if(el.id!=='n-ol-admin') el.value=''; });
+  document.getElementById('n-lohn').value='15,00';
+  document.getElementById('n-sigort').value='Alzenau';
+  document.getElementById('n-sigdat').value=new Date().toISOString().slice(0,10);
+  document.getElementById('n-docs').innerHTML='';
   // Chips zurücksetzen
-  _neuChipSet('n-art-chips','Vollzeit');
+  _neuChipSet('n-anrede-chips','');
+  _neuChipSet('n-kinder-chips','nein');
+  _neuChipSet('n-art-chips','Minijob');
   _neuChipSet('n-neben-chips','nein');
+  _neuChipSet('n-neben-art-chips','hauptberuflich');
   _neuChipSet('n-rv-chips','voll');
+  // Arbeitszeit-Tabelle
+  document.getElementById('n-az').innerHTML = NEU_TAGE.map((t,i)=>
+    '<tr><td>'+t.slice(0,2)+'</td><td><input type="time" id="n-az-v'+i+'" onchange="_neuAzCalc('+i+')"></td>'
+    +'<td><input type="time" id="n-az-b'+i+'" onchange="_neuAzCalc('+i+')"></td>'
+    +'<td><input id="n-az-s'+i+'" inputmode="decimal" oninput="_neuAzSum()"></td></tr>').join('');
+  _neuAzSum();
+  // Foto-Kacheln
+  document.getElementById('n-fotos').innerHTML = NEU_FOTOS.map(([k,l])=>
+    '<label class="neu-foto" id="n-foto-'+k+'"><input type="file" accept="image/*" capture="environment" onchange="_neuFotoSet(\''+k+'\',this)"><span>📷<br>'+l+'</span></label>').join('');
   // OL automatisch vom eingeloggten Nutzer, nur Admin/Superadmin wählt manuell
   if(isOL()){
     document.getElementById('neu-ol-info').textContent = 'Objektleiter wird automatisch übernommen: eingeloggt als ' + (_currentKuerzel==='I'?'I – Hr. Incecik':_currentKuerzel==='M'?'M – Fr. Grippo':_currentKuerzel);
@@ -15322,9 +15499,9 @@ function openNeu(){
   _neuGoStep(1);
   document.getElementById('neubg').classList.add('open');
   document.getElementById('neubg').style.display='flex';
-  setTimeout(()=>{ _sigInit('n-sig-main'); _sigInit('n-sig-bef'); },50);
 }
 function neuClose(){
+  if(neuStep>1 && !confirm('Neueinstellung abbrechen? Die eingegebenen Daten gehen verloren.')) return;
   document.getElementById('neubg').style.display='none';
 }
 function _neuChipSet(groupId, val){
@@ -15343,22 +15520,47 @@ document.addEventListener('click', function(ev){
   _neuUpdWarnings();
 });
 function _neuUpdWarnings(){
-  const art = _neuChipVal('n-art-chips');
+  const art = _neuChipVal('n-art-chips'), mini = art==='Minijob';
   const neben = _neuChipVal('n-neben-chips');
-  document.getElementById('neu-neben-ag-wrap').style.display = (neben==='minijob'||neben==='sv') ? '' : 'none';
-  document.getElementById('neu-minijob-warn').style.display = (art==='Minijob' && neben==='minijob') ? 'flex' : 'none';
-  document.getElementById('neu-rv-wrap').style.display = (art==='Minijob') ? '' : 'none';
-  const rv = _neuChipVal('n-rv-chips');
-  document.getElementById('neu-befreiung-box').style.display = (art==='Minijob' && rv==='befreit') ? 'block' : 'none';
-  if(art==='Minijob' && rv==='befreit') _neuFillBefreiung();
+  document.getElementById('n-vertrag-hint').style.display = (art==='Teilzeit'||art==='Vollzeit') ? '' : 'none';
+  document.getElementById('n-az-wrap').style.display = mini ? '' : 'none';
+  document.getElementById('n-wstd-wrap').style.display = mini ? 'none' : '';
+  document.getElementById('neu-rv-wrap').style.display = mini ? '' : 'none';
+  document.getElementById('n-lohn-wrap').style.display = document.getElementById('n-springer').checked ? '' : 'none';
+  document.getElementById('neu-neben-ag-wrap').style.display = neben==='ja' ? '' : 'none';
+  document.getElementById('neu-minijob-warn').style.display = (mini && neben==='ja' && _neuChipVal('n-neben-art-chips')==='minijob') ? 'flex' : 'none';
+  const kinder = _neuChipVal('n-kinder-chips')==='ja';
+  document.getElementById('n-kinder-hint').style.display = kinder ? '' : 'none';
+  const fk=document.getElementById('n-foto-kinder'); if(fk) fk.style.display = kinder ? '' : 'none';
 }
-function _neuFillBefreiung(){
-  const vn=document.getElementById('n-vorname').value.trim(), nn=document.getElementById('n-nachname').value.trim();
-  document.getElementById('bf-name').textContent = (vn+' '+nn).trim() || '–';
-  document.getElementById('bf-gebdat').textContent = _neuDatDe(document.getElementById('n-gebdat').value) || '–';
-  const adr = [document.getElementById('n-strasse').value.trim(), document.getElementById('n-plzort').value.trim()].filter(Boolean).join(', ');
-  document.getElementById('bf-adresse').textContent = adr || '–';
-  document.getElementById('bf-eintritt').textContent = _neuDatDe(document.getElementById('n-eintritt').value) || '–';
+function _neuAzCalc(i){
+  const a=document.getElementById('n-az-v'+i).value, b=document.getElementById('n-az-b'+i).value;
+  if(a&&b){
+    let m=(+b.slice(0,2)*60 + +b.slice(3,5))-(+a.slice(0,2)*60 + +a.slice(3,5)); if(m<0) m+=1440;
+    document.getElementById('n-az-s'+i).value=String(Math.round(m/60*100)/100).replace('.',',');
+  }
+  _neuAzSum();
+}
+function _neuAzSum(){
+  let s=0; for(let i=0;i<7;i++){ const el=document.getElementById('n-az-s'+i); if(el) s+=parseFloat((el.value||'0').replace(',','.'))||0; }
+  document.getElementById('n-az-sum').textContent=String(Math.round(s*100)/100).replace('.',',');
+  return s;
+}
+function _neuFotoSet(k, inp){
+  const f=inp.files && inp.files[0]; if(!f) return;
+  const img=new Image();
+  img.onload=()=>{
+    const max=1400, sc=Math.min(1,max/Math.max(img.width,img.height)), c=document.createElement('canvas');
+    c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    _neuFotos[k]=c.toDataURL('image/jpeg',0.72);
+    const el=document.getElementById('n-foto-'+k);
+    el.querySelectorAll('img,.lbl').forEach(x=>x.remove());
+    el.insertAdjacentHTML('beforeend','<img src="'+_neuFotos[k]+'"><div class="lbl">✓ '+NEU_FOTOS.find(x=>x[0]===k)[1]+'</div>');
+    URL.revokeObjectURL(img.src);
+  };
+  img.onerror=()=>alert('Foto konnte nicht gelesen werden.');
+  img.src=URL.createObjectURL(f);
 }
 function _neuDatDe(iso){
   if(!iso) return '';
@@ -15367,42 +15569,103 @@ function _neuDatDe(iso){
 function _neuGoStep(n){
   document.querySelectorAll('.neu-screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('neu-s'+n).classList.add('active');
-  document.querySelectorAll('.neu-step').forEach((s,i)=>{
+  document.querySelectorAll('#neubg .neu-step').forEach((s,i)=>{
     s.classList.toggle('active', i+1===n);
     s.classList.toggle('done', i+1<n);
   });
-  document.getElementById('neu-hdr-sub').textContent = 'Schritt '+n+' von 4 · '+NEU_TITEL[n-1];
+  document.getElementById('neu-hdr-sub').textContent = 'Schritt '+n+' von '+NEU_TITEL.length+' · '+NEU_TITEL[n-1];
   document.getElementById('neu-btn-back').style.display = n>1 ? '' : 'none';
-  document.getElementById('neu-btn-next').textContent = n===4 ? '✓ Absenden ans Büro' : 'Weiter →';
-  if(n===3) _neuUpdWarnings();
-  if(n===4) _neuBuildSummary();
+  document.getElementById('neu-btn-next').textContent = n===NEU_TITEL.length ? '✓ Absenden ans Büro' : 'Weiter →';
+  _neuUpdWarnings();
+  if(n===NEU_TITEL.length) _neuBuildDocs();
   document.querySelector('#neubg .neu-body').scrollTop = 0;
 }
-function _neuBuildSummary(){
-  const vn=document.getElementById('n-vorname').value.trim(), nn=document.getElementById('n-nachname').value.trim();
-  const art=_neuChipVal('n-art-chips'), kunde=document.getElementById('n-kunde').value.trim();
-  const ein=_neuDatDe(document.getElementById('n-eintritt').value);
-  document.getElementById('neu-summary').innerHTML =
-    '<b>'+(vn+' '+nn).trim()+'</b><br><span style="font-size:12.5px;color:var(--muted)">'+
-    [art, ein?('ab '+ein):'', kunde].filter(Boolean).join(' · ')+'</span>';
+
+// Formular → Datensatz (ohne Unterschriften)
+function _neuCollect(){
+  const art=_neuChipVal('n-art-chips');
+  const plz=_neuV('n-plz'), ort=_neuV('n-ort');
+  const az=NEU_TAGE.map((t,i)=>({tag:t, von:_neuV('n-az-v'+i), bis:_neuV('n-az-b'+i), std:_neuV('n-az-s'+i)}));
+  const neben=_neuChipVal('n-neben-chips'), nebenArt=_neuChipVal('n-neben-art-chips');
+  return {
+    anrede:_neuChipVal('n-anrede-chips'),
+    vorname:_neuV('n-vorname'), nachname:_neuV('n-nachname'), geburtsname:_neuV('n-gebname'),
+    geburtsdatum:_neuV('n-gebdat'), geburtsort:_neuV('n-gebort'),
+    familienstand:_neuV('n-famstand'), konfession:_neuV('n-konf'),
+    staatsangehoerigkeit:_neuV('n-staat'), aufenthalt_bis:_neuV('n-aufenthalt'),
+    strasse:_neuV('n-strasse'), plz:plz, ort:ort, plzort:[plz,ort].filter(Boolean).join(' '),
+    telefon:_neuV('n-tel'), email:_neuV('n-email'), kinder:_neuChipVal('n-kinder-chips'),
+    kunde:_neuV('n-kunde'), eintrittsdatum:_neuV('n-eintritt'), beschaeftigungsart:art,
+    wochenstunden: art==='Minijob' ? _neuAzSum() : (parseFloat(_neuV('n-wstd'))||0),
+    arbeitszeit: art==='Minijob' ? az : [],
+    springer:document.getElementById('n-springer').checked, stundenlohn:_neuV('n-lohn'),
+    // Kompatibel zu alten Datensätzen: nein | minijob | sv  (+ neu: schueler)
+    weitere_beschaeftigung: neben==='nein' ? 'nein' : neben==='schueler' ? 'schueler' : (nebenArt==='minijob' ? 'minijob' : 'sv'),
+    weitere_beschaeftigung_art: neben==='ja' ? nebenArt : '',
+    weitere_beschaeftigung_ag:_neuV('n-neben-ag'),
+    versicherungsnummer:_neuV('n-vsnr'), steuerid:_neuV('n-steuerid'), steuerklasse:_neuV('n-steuerklasse'),
+    krankenkasse:_neuV('n-kk'), rentenversicherung: art==='Minijob' ? _neuChipVal('n-rv-chips') : 'voll',
+    bank:_neuV('n-bank'), iban:_neuV('n-iban'), kontoinhaber:_neuV('n-kontoinhaber'),
+    sig_ort:_neuV('n-sigort'), sig_datum:_neuV('n-sigdat')
+  };
 }
+
+function _neuNameVoll(n){ return ((n.vorname||'')+' '+(n.nachname||'')).trim(); }
+function _neuAnredeNom(n){ return n.anrede ? n.anrede+' '+_neuNameVoll(n) : _neuNameVoll(n); }
+function _neuAnredeDat(n){ return n.anrede==='Frau' ? 'Frau '+_neuNameVoll(n) : n.anrede==='Herr' ? 'Herrn '+_neuNameVoll(n) : _neuNameVoll(n); }
+function _neuFill(s,n){
+  return s.replace('{ANREDE}', n.anrede||'Frau / Herr').replace('{NAME}', _neuNameVoll(n))
+          .replace('{EINTRITT}', _neuDatDe(n.eintrittsdatum)||'……').replace('{OBJEKT}', n.kunde||'……')
+          .replace('{DATIV}', _neuAnredeDat(n)).replace('{NOMINATIV}', _neuAnredeNom(n)).replace('{LOHN}', n.stundenlohn||'15,00');
+}
+function _neuAzText(n){
+  return (n.arbeitszeit||[]).filter(a=>a.std||a.von).map(a=>a.tag+': '+(a.von&&a.bis?a.von+'–'+a.bis+' Uhr':'')+(a.std?' ('+a.std+' Std.)':'')).join('\n') || '(keine Zeiten eingetragen)';
+}
+
+function _neuBuildDocs(){
+  const n=_neuCollect(), docs=_neuDocs(n);
+  const sigPad=(id,lbl)=>'<div class="neu-sig-lbl">'+lbl+'</div><div class="sigpad-wrap" style="margin-top:6px"><canvas id="'+id+'"></canvas>'
+    +'<div class="sigpad-hint" id="'+id+'-hint">Hier mit dem Finger unterschreiben</div>'
+    +'<button type="button" class="sigpad-clear" onclick="sigClear(\''+id+'\')">✕ löschen</button></div>';
+  let h='<div class="neu-doc"><div class="neu-doc-h">📄 Personalfragebogen – Erklärungen</div><div class="neu-doc-b">'
+    +'<label class="neu-chk"><input type="checkbox" id="n-c-verpfl"><span><b class="pf">Pflicht:</b> '+NEU_T.verpflichtung+'</span></label>'
+    +'<label class="neu-chk"><input type="checkbox" id="n-c-ausweis"><span><b class="pf">Pflicht:</b> Zur Kenntnis genommen – '+NEU_T.ausweis+'</span></label>'
+    +'<div class="neu-hint" style="margin:8px 0">'+NEU_T.urlaub+'</div>'
+    +'<label class="neu-chk"><input type="checkbox" id="n-c-email" checked><span>'+NEU_T.email+'</span></label>'
+    +'<label class="neu-chk"><input type="checkbox" id="n-c-richtig"><span><b class="pf">Pflicht:</b> '+NEU_T.richtig+'</span></label>'
+    +sigPad('n-sig-fb','Unterschrift Mitarbeiter/in – Personalfragebogen')+'</div></div>';
+  docs.filter(x=>x.k!=='fb').forEach(x=>{
+    let txt='', extra='';
+    if(x.k==='bef'){
+      txt=NEU_T.bef_titel+'\n\nName: '+n.nachname+'\nVorname: '+n.vorname+'\nRentenversicherungsnummer: '+(n.versicherungsnummer||'–')+'\n\n'+NEU_T.bef1+'\n\n'+NEU_T.bef2;
+      extra='<label class="neu-chk"><input type="checkbox" id="n-c-merkblatt"><span><b class="pf">Pflicht:</b> '+NEU_T.merkblatt+'</span></label>';
+    }
+    if(x.k==='av') txt='Zwischen '+NEU_FIRMA+', '+NEU_FIRMA_ADR+' und '+_neuNameVoll(n)+' wird folgender Anstellungsvertrag geschlossen.\n\n'
+      + NEU_T.av.map(([t,b])=>t+'\n'+(b==='{TABELLE}'?_neuAzText(n):_neuFill(b,n))).join('\n\n');
+    if(x.k==='rv') txt='Rahmenvereinbarung für zeitweilige Arbeitseinsätze\n\nzwischen der Firma '+NEU_FIRMA+', '+NEU_FIRMA_ADR+' (Arbeitgeber) und '+_neuNameVoll(n)+' (Arbeitnehmer)\n\n'+NEU_T.rv.map(s=>_neuFill(s,n)).join('\n\n');
+    h+='<div class="neu-doc"><div class="neu-doc-h">📄 '+x.t+'</div><div class="neu-doc-b"><div class="neu-doc-text">'+_esc(txt)+'</div>'+extra+sigPad('n-sig-'+x.k,'Unterschrift Mitarbeiter/in – '+x.t)+'</div></div>';
+  });
+  document.getElementById('n-docs').innerHTML=h;
+  setTimeout(()=>{ docs.forEach(x=>_sigInit('n-sig-'+x.k)); },50);
+}
+
 function neuNav(dir){
   if(dir<0){ if(neuStep>1){ neuStep--; _neuGoStep(neuStep); } return; }
-  // Validierung pro Schritt
   if(neuStep===1){
-    if(!document.getElementById('n-vorname').value.trim() || !document.getElementById('n-nachname').value.trim()){
-      alert('Bitte Vor- und Nachname eingeben.'); return;
-    }
+    if(!_neuV('n-vorname') || !_neuV('n-nachname')){ alert('Bitte Vor- und Nachname eingeben.'); return; }
   }
-  if(neuStep===4){
-    if(!document.getElementById('n-confirm').checked){ alert('Bitte die Richtigkeit der Angaben bestätigen.'); return; }
-    if(_sigIsEmpty('n-sig-main')){ alert('Bitte Unterschrift des Mitarbeiters einholen.'); return; }
-    const art=_neuChipVal('n-art-chips'), rv=_neuChipVal('n-rv-chips');
-    if(art==='Minijob' && rv==='befreit' && _sigIsEmpty('n-sig-bef')){ alert('Bitte auch die Befreiungserklärung unterschreiben lassen.'); return; }
-    submitNeu();
+  if(neuStep===NEU_TITEL.length){
+    const n=_neuCollect(), fehl=[];
+    if(!document.getElementById('n-c-verpfl').checked) fehl.push('Verpflichtungserklärung weitere Beschäftigung');
+    if(!document.getElementById('n-c-ausweis').checked) fehl.push('Kenntnisnahme Ausweis-Mitführpflicht');
+    if(!document.getElementById('n-c-richtig').checked) fehl.push('Bestätigung Richtigkeit der Angaben');
+    const mb=document.getElementById('n-c-merkblatt'); if(mb && !mb.checked) fehl.push('Merkblatt RV-Befreiung erhalten');
+    _neuDocs(n).forEach(x=>{ if(_sigIsEmpty('n-sig-'+x.k)) fehl.push('Unterschrift: '+x.t); });
+    if(fehl.length){ alert('Es fehlt noch:\n• '+fehl.join('\n• ')); return; }
+    submitNeu(n);
     return;
   }
-  if(neuStep<4){ neuStep++; _neuGoStep(neuStep); }
+  neuStep++; _neuGoStep(neuStep);
 }
 
 // ── Unterschriften-Pad (Canvas, Touch + Maus) ───────────────
@@ -15448,51 +15711,36 @@ function _sigData(id){
 }
 
 // ── Absenden ─────────────────────────────────────────────────
-async function submitNeu(){
+async function submitNeu(n){
   const btn=document.getElementById('neu-btn-next');
   btn.disabled=true; btn.textContent='Wird gesendet…';
   try{
-    const art=_neuChipVal('n-art-chips');
-    const neben=_neuChipVal('n-neben-chips');
-    const rv=_neuChipVal('n-rv-chips');
     const ol = isOL() ? _currentKuerzel : document.getElementById('n-ol-admin').value;
-    const rec = {
+    const rec = Object.assign({
       id: (typeof crypto!=='undefined'&&crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2)),
+      version: 2,
       status: 'offen',
       ma_id: null,
       erstellt_von: _currentUser || '',
       erstellt_am: new Date().toISOString(),
-      vorname: document.getElementById('n-vorname').value.trim(),
-      nachname: document.getElementById('n-nachname').value.trim(),
-      geburtsdatum: document.getElementById('n-gebdat').value,
-      geburtsort: document.getElementById('n-gebort').value.trim(),
-      staatsangehoerigkeit: document.getElementById('n-staat').value.trim(),
-      strasse: document.getElementById('n-strasse').value.trim(),
-      plzort: document.getElementById('n-plzort').value.trim(),
-      telefon: document.getElementById('n-tel').value.trim(),
-      email: document.getElementById('n-email').value.trim(),
       objektleiter: ol,
-      kunde: document.getElementById('n-kunde').value.trim(),
-      eintrittsdatum: document.getElementById('n-eintritt').value,
-      beschaeftigungsart: art,
-      wochenstunden: parseFloat(document.getElementById('n-wstd').value)||0,
-      weitere_beschaeftigung: neben,
-      weitere_beschaeftigung_ag: document.getElementById('n-neben-ag').value.trim(),
-      versicherungsnummer: document.getElementById('n-vsnr').value.trim(),
-      rentenversicherung: art==='Minijob' ? rv : 'voll',
-      steuerid: document.getElementById('n-steuerid').value.trim(),
-      steuerklasse: document.getElementById('n-steuerklasse').value.trim(),
-      krankenkasse: document.getElementById('n-kk').value.trim(),
-      iban: document.getElementById('n-iban').value.trim(),
-      kontoinhaber: document.getElementById('n-kontoinhaber').value.trim(),
-      unterschrift_mitarbeiter: _sigData('n-sig-main'),
-      unterschrift_befreiung: (art==='Minijob' && rv==='befreit') ? _sigData('n-sig-bef') : '',
-    };
+      einwilligung_email: document.getElementById('n-c-email').checked,
+      merkblatt_erhalten: !!(document.getElementById('n-c-merkblatt') && document.getElementById('n-c-merkblatt').checked),
+      foto_keys: Object.keys(_neuFotos)
+    }, n);
+    _neuDocs(rec).forEach(x=>{ rec[_NEU_SIGKEY[x.k]] = _sigData('n-sig-'+x.k); });
     await supaSave('neueinstellungen', [rec]);
     neueinst.push(rec);
+    // Fotos getrennt speichern (eigene Tabelle, wird nur für die Personalakte geladen)
+    let fotoWarn='';
+    if(rec.foto_keys.length){
+      try{ await supaSave('neueinstellung_fotos', [{ id: rec.id, fotos: _neuFotos }]); }
+      catch(e){ rec.foto_keys=[]; fotoWarn=' ⚠ Fotos konnten NICHT gespeichert werden ('+e.message.slice(0,80)+') – bitte Tabelle "neueinstellung_fotos" anlegen.'; try{ await supaSave('neueinstellungen',[rec]); }catch(_){} }
+    }
     renderNeuBadge();
-    neuClose();
-    showAlert('✅ Angaben gesendet – im Büro sofort sichtbar.');
+    if(typeof renderNeuListe==='function') renderNeuListe();
+    document.getElementById('neubg').style.display='none';
+    showAlert('✅ Angaben gesendet – im Büro sofort sichtbar.'+fotoWarn, fotoWarn?'#c05621':undefined);
   }catch(e){
     alert('⚠ Senden fehlgeschlagen: ' + e.message + '\n\nFalls die Tabelle "neueinstellungen" noch nicht angelegt ist, bitte zuerst im Supabase-Projekt das Setup-SQL ausführen.');
   }finally{
@@ -15520,12 +15768,13 @@ function renderNeuListe(){
     const olLbl = n.objektleiter==='I' ? 'Hr. Incecik' : n.objektleiter==='M' ? 'Fr. Grippo' : (n.objektleiter||'–');
     const stLbl = n.status==='offen' ? 'offen' : n.status==='uebernommen' ? 'übernommen' : 'verworfen';
     const btns = n.status==='offen' && isAdmin()
-      ? '<button class="btn btn-p btn-sm" onclick="uebernehmeNeu(\''+n.id+'\')">✓ Übernehmen</button><button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen</button><button class="btn btn-o btn-sm" onclick="verwerfenNeu(\''+n.id+'\')">✕ Verwerfen</button>'
-      : '<button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen</button>';
+      ? '<button class="btn btn-p btn-sm" onclick="uebernehmeNeu(\''+n.id+'\')">✓ Übernehmen</button><button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen / PDF</button><button class="btn btn-o btn-sm" onclick="verwerfenNeu(\''+n.id+'\')">✕ Verwerfen</button>'
+      : '<button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen / PDF</button>';
     return '<div class="neu-list-card">'
       + '<div class="neu-list-top"><div><b>'+_esc((n.vorname||'')+' '+(n.nachname||''))+'</b><br>'
       + '<span style="font-size:12px;color:var(--muted)">'+_esc([n.beschaeftigungsart, n.kunde, n.eintrittsdatum?_neuDatDe(n.eintrittsdatum):''].filter(Boolean).join(' · '))+'</span></div>'
       + '<span class="neu-status '+n.status+'">'+stLbl+'</span></div>'
+      + ((_neuBrauchtAG(n) && !n.ag_unterschrift && n.status!=='verworfen') ? '<div style="font-size:11.5px;color:var(--orange);margin-top:6px">✍ Gegenzeichnung Arbeitgeber offen</div>' : '')
       + '<div style="font-size:11.5px;color:var(--muted2);margin:8px 0">eingereicht von '+_esc(n.erstellt_von||'–')+' ('+olLbl+') · '+dat+'</div>'
       + '<div style="display:flex;gap:8px;flex-wrap:wrap">'+btns+'</div>'
       + '</div>';
@@ -15540,7 +15789,7 @@ async function uebernehmeNeu(id){
     const newId = (typeof crypto!=='undefined'&&crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36));
     const neuMA = {
       id: newId, persnr:'', status:'Aktiv',
-      vorname: n.vorname||'', nachname: n.nachname||'', telefon: n.telefon||'',
+      vorname: n.vorname||'', nachname: n.nachname||'', telefon: n.telefon||'', email: n.email||'',
       objektleiter: n.objektleiter||'', eintrittsdatum: n.eintrittsdatum||'', austrittsdatum:'',
       urlaub_jahres: 0, weitere_notiz: 'Angelegt aus Neueinstellungs-Formular vom '+_neuDatDe((n.erstellt_am||'').slice(0,10)),
       lohngruppe:'', datev_lohnarten:[], minijob: n.beschaeftigungsart==='Minijob',
@@ -15566,38 +15815,209 @@ async function verwerfenNeu(id){
   try{ await supaSave('neueinstellungen',[n]); }catch(e){ showAlert('⚠ Speichern fehlgeschlagen: '+e.message,'#c81e1e'); }
   renderNeuBadge(); renderNeuListe();
 }
+// ── Büro: Ansicht, Gegenzeichnung, PDF ─────────────────────
+function _neuBrauchtAG(n){ return _neuDocs(n).some(x=>x.k!=='fb'); }
 function ansehenNeu(id){
   const n = neueinst.find(x=>x.id===id); if(!n) return;
   const row = (lbl,val) => val ? ('<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--muted)">'+lbl+'</span><span style="font-weight:600;text-align:right">'+_esc(val)+'</span></div>') : '';
+  const docs = _neuDocs(n);
   let h = '';
-  h += row('Name', (n.vorname||'')+' '+(n.nachname||''));
-  h += row('Geburtsdatum', n.geburtsdatum?_neuDatDe(n.geburtsdatum):'');
-  h += row('Geburtsort', n.geburtsort);
+  h += row('Name', _neuAnredeNom(n));
+  h += row('Geburtsdatum / -ort', [n.geburtsdatum?_neuDatDe(n.geburtsdatum):'', n.geburtsort].filter(Boolean).join(', '));
+  h += row('Geburtsname', n.geburtsname);
+  h += row('Familienstand', n.familienstand); h += row('Konfession', n.konfession);
   h += row('Staatsangehörigkeit', n.staatsangehoerigkeit);
+  h += row('Aufenthaltstitel bis', n.aufenthalt_bis?_neuDatDe(n.aufenthalt_bis):'');
   h += row('Adresse', [n.strasse,n.plzort].filter(Boolean).join(', '));
   h += row('Telefon', n.telefon); h += row('E-Mail', n.email);
-  h += row('Kunde/Einsatzort', n.kunde);
+  h += row('Kinder', n.kinder==='ja'?'ja':'');
+  h += row('Objekt', n.kunde);
   h += row('Eintrittsdatum', n.eintrittsdatum?_neuDatDe(n.eintrittsdatum):'');
-  h += row('Beschäftigungsart', n.beschaeftigungsart);
-  h += row('Wochenstunden', n.wochenstunden);
-  h += row('Weitere Beschäftigung', n.weitere_beschaeftigung==='nein'?'Nein':(n.weitere_beschaeftigung==='minijob'?'Ja, Minijob bei '+(n.weitere_beschaeftigung_ag||'–'):n.weitere_beschaeftigung==='sv'?'Ja, sozialvers.pflichtig bei '+(n.weitere_beschaeftigung_ag||'–'):''));
-  h += row('Versicherungsnummer', n.versicherungsnummer);
-  h += row('Rentenversicherung', n.rentenversicherung==='befreit'?'Befreiung beantragt':'voller Beitragssatz');
+  h += row('Beschäftigungsart', (n.beschaeftigungsart||'')+(n.springer?' (Springer)':''));
+  h += row('Wochenstunden', n.wochenstunden ? String(n.wochenstunden).replace('.',',') : '');
+  h += row('Weitere Beschäftigung', _neuWeitereTxt(n));
+  h += row('SV-Nummer', n.versicherungsnummer);
+  if(n.beschaeftigungsart==='Minijob') h += row('Rentenversicherung', n.rentenversicherung==='befreit'?'Befreiung beantragt':'voller Beitragssatz');
   h += row('Steuer-ID', n.steuerid); h += row('Steuerklasse', n.steuerklasse);
   h += row('Krankenkasse', n.krankenkasse);
-  h += row('IBAN', n.iban); h += row('Kontoinhaber', n.kontoinhaber);
+  h += row('Bank', n.bank); h += row('IBAN', n.iban); h += row('Kontoinhaber', n.kontoinhaber);
+  h += row('Lohnabrechnung per E-Mail', n.einwilligung_email===false?'nicht eingewilligt':(n.version===2?'eingewilligt':''));
+  h += row('Ausweisfotos', (n.foto_keys||[]).length ? (n.foto_keys.length+' Stück') : '');
   h += row('Eingereicht von', n.erstellt_von); h += row('Status', n.status);
-  if(n.unterschrift_mitarbeiter){
-    h += '<div style="margin-top:14px;font-size:12px;font-weight:600;color:var(--text2)">Unterschrift Mitarbeiter</div>'
-       + '<img src="'+n.unterschrift_mitarbeiter+'" style="max-width:100%;border:1px solid var(--border);border-radius:8px;margin-top:6px;background:#fff">';
+
+  h += '<div style="margin-top:14px;font-size:12px;font-weight:700;color:var(--text2)">Dokumente</div><ul style="margin:4px 0 0 18px;font-size:13px">'
+     + docs.map(x=>'<li>'+x.t+(n[_NEU_SIGKEY[x.k]]?' ✓ unterschrieben':' – <span style="color:var(--red)">ohne Unterschrift</span>')+'</li>').join('') + '</ul>';
+
+  // Gegenzeichnung Arbeitgeber
+  if(_neuBrauchtAG(n)){
+    if(n.ag_unterschrift){
+      h += '<div style="margin-top:12px;font-size:12.5px;color:var(--green);font-weight:600">✍ Gegengezeichnet von '+_esc(n.ag_name||'–')+' am '+_neuDatDe(n.ag_datum)+'</div>';
+    } else if(isAdmin()){
+      const heute=new Date().toISOString().slice(0,10);
+      h += '<div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)"><div style="font-size:13px;font-weight:700;margin-bottom:8px">✍ Gegenzeichnung Arbeitgeber</div>'
+        + '<div class="neu-row2"><div class="fg"><label>Unterzeichner</label><input id="neu-ag-name" value="'+_esc(_currentUser||'')+'"></div><div class="fg"><label>Datum</label><input type="date" id="neu-ag-dat" value="'+heute+'"></div></div>'
+        + (docs.some(x=>x.k==='bef') ? '<div class="neu-row2" style="margin-top:8px"><div class="fg"><label>Befreiungsantrag eingegangen am</label><input type="date" id="neu-ag-eing" value="'+(n.erstellt_am||'').slice(0,10)+'"></div><div class="fg"><label>Befreiung wirkt ab</label><input type="date" id="neu-ag-ab" value="'+(n.eintrittsdatum||'')+'"></div></div>' : '')
+        + '<div class="neu-sig-lbl">Unterschrift Arbeitgeber (Vertrag, Befreiung, Rahmenvereinbarung)</div>'
+        + '<div class="sigpad-wrap" style="margin-top:6px"><canvas id="neu-agsig"></canvas><div class="sigpad-hint" id="neu-agsig-hint">Hier unterschreiben</div><button type="button" class="sigpad-clear" onclick="sigClear(\'neu-agsig\')">✕ löschen</button></div>'
+        + '<button class="btn btn-s" style="margin-top:10px" onclick="neuGegenzeichnen(\''+n.id+'\')">✍ Gegenzeichnen</button></div>';
+    } else {
+      h += '<div style="margin-top:12px;font-size:12.5px;color:var(--orange)">Gegenzeichnung durch das Büro steht noch aus.</div>';
+    }
   }
-  if(n.unterschrift_befreiung){
-    h += '<div style="margin-top:14px;font-size:12px;font-weight:600;color:var(--text2)">Unterschrift Befreiungserklärung</div>'
-       + '<img src="'+n.unterschrift_befreiung+'" style="max-width:100%;border:1px solid var(--border);border-radius:8px;margin-top:6px;background:#fff">';
-  }
+
+  // PDF
+  h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">'
+     + '<button class="btn btn-p" onclick="neuPdf(\''+n.id+'\',false)">📄 PDF für Mitarbeiter</button>'
+     + (isAdmin() ? '<button class="btn btn-o" onclick="neuPdf(\''+n.id+'\',true)">🗂 PDF Personalakte</button>' : '')
+     + (n.email ? '<button class="btn btn-o" onclick="neuMail(\''+n.id+'\')">✉ Mail vorbereiten</button>' : '')
+     + '</div><div class="neu-hint" style="margin-top:6px">PDF herunterladen und an die Mail anhängen. Personalakte = mit Ausweisfotos.</div>';
+
   document.getElementById('neuview-body').innerHTML = h;
   document.getElementById('neuviewbg').style.display='flex';
+  if(document.getElementById('neu-agsig')) setTimeout(()=>_sigInit('neu-agsig'),50);
 }
+function _neuWeitereTxt(n){
+  const w=n.weitere_beschaeftigung;
+  if(!w || w==='nein') return 'Nein';
+  if(w==='schueler') return 'Schüler';
+  const art = n.weitere_beschaeftigung_art || (w==='minijob'?'minijob':'sozialvers.pflichtig');
+  return 'Ja – '+(art==='minijob'?'Minijob':art)+(n.weitere_beschaeftigung_ag?', bei '+n.weitere_beschaeftigung_ag:'');
+}
+async function neuGegenzeichnen(id){
+  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  if(_sigIsEmpty('neu-agsig')){ alert('Bitte unterschreiben.'); return; }
+  const name=(document.getElementById('neu-ag-name').value||'').trim();
+  if(!name){ alert('Bitte Namen des Unterzeichners eintragen.'); return; }
+  n.ag_unterschrift=_sigData('neu-agsig'); n.ag_name=name; n.ag_datum=document.getElementById('neu-ag-dat').value;
+  if(document.getElementById('neu-ag-eing')){ n.bef_eingang=document.getElementById('neu-ag-eing').value; n.bef_ab=document.getElementById('neu-ag-ab').value; }
+  try{ await supaSave('neueinstellungen',[n]); showAlert('✅ Gegengezeichnet.'); }
+  catch(e){ showAlert('⚠ Speichern fehlgeschlagen: '+e.message,'#c81e1e'); return; }
+  ansehenNeu(id); renderNeuListe();
+}
+function neuMail(id){
+  const n = neueinst.find(x=>x.id===id); if(!n||!n.email) return;
+  const body='Hallo '+(n.vorname||'')+',\n\nanbei erhältst du deine Einstellungsunterlagen als PDF.\n\nViele Grüße\n'+NEU_FIRMA;
+  location.href='mailto:'+encodeURIComponent(n.email)+'?subject='+encodeURIComponent('Deine Einstellungsunterlagen – '+NEU_FIRMA)+'&body='+encodeURIComponent(body);
+}
+function _loadJsPDF(cb){
+  if(window.jspdf){ cb(); return; }
+  const s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+  s.onload=cb; s.onerror=()=>showAlert('⚠ PDF-Bibliothek konnte nicht geladen werden (Internet?).','#c81e1e');
+  document.head.appendChild(s);
+}
+async function neuPdf(id, akte){
+  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  if(_neuBrauchtAG(n) && !n.ag_unterschrift && !confirm('Noch nicht vom Arbeitgeber gegengezeichnet – die Arbeitgeber-Unterschrift bleibt im PDF leer.\n\nTrotzdem erzeugen?')) return;
+  let fotos={};
+  if(akte && (n.foto_keys||[]).length){
+    try{ const r=await supaFetch('neueinstellung_fotos','GET',null,'select=data&id=eq.'+encodeURIComponent(n.id)); fotos=(r[0]&&r[0].data&&r[0].data.fotos)||{}; }
+    catch(e){ showAlert('⚠ Fotos konnten nicht geladen werden: '+e.message,'#c05621'); }
+  }
+  _loadJsPDF(()=>{
+    try{
+      const doc=_neuBuildPdf(n, fotos);
+      const name='Einstellung_'+((n.nachname||'')+'_'+(n.vorname||'')).replace(/[^\wÄÖÜäöüß-]/g,'_')+(akte?'_Personalakte':'')+'.pdf';
+      doc.save(name);
+    }catch(e){ showAlert('⚠ PDF-Fehler: '+e.message,'#c81e1e'); }
+  });
+}
+function _neuBuildPdf(d, fotos){
+  const {jsPDF}=window.jspdf; const doc=new jsPDF({unit:'mm',format:'a4'});
+  const L=20,R=190,W=R-L; let y=0;
+  const ortDat=[d.sig_ort,_neuDatDe(d.sig_datum||(d.erstellt_am||'').slice(0,10))].filter(Boolean).join(', ');
+  const agOrtDat=['Alzenau',_neuDatDe(d.ag_datum)].filter(Boolean).join(', ');
+  const foot=()=>{doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(120);doc.text(NEU_FIRMA+' · '+NEU_FIRMA_ADR+' · Tel. 06023-310056 · www.allcleanservice.de',L,289);doc.setTextColor(0);};
+  const newPage=(first)=>{if(!first)doc.addPage();doc.addImage(NEU_LOGO,'JPEG',R-62,10,62,16);y=36;foot();};
+  const need=h=>{if(y+h>281)newPage();};
+  const title=(t,sub)=>{doc.setFont('helvetica','bold');doc.setFontSize(15);const ls=doc.splitTextToSize(t,W);need(ls.length*6.5);doc.text(ls,L,y);y+=ls.length*6.5;if(sub){doc.setFont('helvetica','normal');doc.setFontSize(10.5);doc.text(sub,L,y);y+=6;}y+=3;};
+  const para=(t,o={})=>{doc.setFont('helvetica',o.bold?'bold':'normal');doc.setFontSize(o.size||9);const lh=(o.size||9)*0.42;
+    String(t).split('\n').forEach(p=>{const ls=doc.splitTextToSize(p||' ',o.w||W);ls.forEach(l=>{need(lh);doc.text(l,o.x||L,y);y+=lh;});});y+=o.after==null?2.5:o.after;};
+  const head=t=>{y+=0.5;para(t,{bold:true,size:9.5,after:0.8});};
+  const field=(lbl,val,x=L,w=W)=>{need(7);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(110);doc.text(lbl,x,y);doc.setTextColor(0);doc.setFontSize(10);doc.text(doc.splitTextToSize(String(val||'–'),w-48)[0],x+48,y);doc.setDrawColor(215);doc.line(x+47,y+1.3,x+w,y+1.3);y+=5.9;};
+  const field2=(l1,v1,l2,v2)=>{need(7);const y0=y;field(l1,v1,L,W/2-4);const y1=y;y=y0;field(l2,v2,L+W/2+2,W/2-2);y=Math.max(y,y1);};
+  const sigBox=(img,lbl,x,w,ort)=>{const h=18;doc.setFont('helvetica','normal');doc.setFontSize(9);if(ort)doc.text(ort,x,y+h-4);
+    if(img){try{const p=doc.getImageProperties(img),r=Math.min(w*0.45/p.width,(h-2)/p.height);doc.addImage(img,'PNG',x+w-p.width*r,y,p.width*r,p.height*r);}catch(e){}}
+    doc.setDrawColor(60);doc.line(x,y+h,x+w,y+h);doc.setFontSize(7.5);doc.setTextColor(90);doc.text(doc.splitTextToSize(lbl,w),x,y+h+3.5);doc.setTextColor(0);};
+  const sigRow=(a,b)=>{need(28);if(a)sigBox(a.img,a.lbl,L,W/2-6,a.ort);if(b)sigBox(b.img,b.lbl,L+W/2+6,W/2-6,b.ort);y+=27;};
+  const docs=_neuDocs(d);
+  const adr=[d.strasse,d.plzort].filter(Boolean).join(', ');
+
+  // 1 PERSONALFRAGEBOGEN
+  newPage(true); title('Personalfragebogen');
+  field('Anrede',d.anrede); field2('Name',d.nachname,'Vorname',d.vorname);
+  field('Straße / Haus-Nr.',d.strasse); field2('PLZ',d.plz||'','Ort',d.ort||d.plzort);
+  field('Handy-Nr.',d.telefon); field('E-Mail-Adresse',d.email);
+  field2('Familienstand',d.familienstand,'Geburtsdatum',_neuDatDe(d.geburtsdatum));
+  field2('Geburtsname',d.geburtsname,'Geburtsort',d.geburtsort);
+  field('Bank (Name)',d.bank); field('IBAN',d.iban); if(d.kontoinhaber) field('Kontoinhaber',d.kontoinhaber);
+  field('Krankenkasse mit Ortsbezeichnung',d.krankenkasse); field('Sozialversicherungsnummer',d.versicherungsnummer);
+  field2('Identifikationsnummer',d.steuerid,'Steuerklasse',d.steuerklasse);
+  field('Konfession',d.konfession); field('Staatsangehörigkeit',d.staatsangehoerigkeit);
+  field('Aufenthaltstitel gültig bis',_neuDatDe(d.aufenthalt_bis)); field('Eintrittsdatum',_neuDatDe(d.eintrittsdatum));
+  field2('Beschäftigungsart',(d.beschaeftigungsart||'')+(d.springer?' (Springer)':''),'Objekt',d.kunde);
+  field('Weitere Beschäftigung',_neuWeitereTxt(d));
+  if(d.beschaeftigungsart==='Minijob') field('Minijob: Befreiung RV-Pflicht',d.rentenversicherung==='befreit'?'ja (Antrag anbei)':'nein');
+  field('Kinder',d.kinder==='ja'?'ja (Nachweis beigefügt)':'nein');
+  y+=2; para(NEU_T.verpflichtung,{bold:true});
+  para(NEU_T.ausweis);
+  para('Immer in Kopie beifügen: Personalausweis, Sozialversicherungsnummer, Bankkarte, Gesundheitskarte der Krankenkasse, Aufenthalts- und Arbeitserlaubnis'+((d.foto_keys||[]).length?' – digital erfasst ('+d.foto_keys.length+' Fotos, Personalakte).':'.'),{size:8.5});
+  para(NEU_T.urlaub);
+  para(d.einwilligung_email===false?'Einwilligung zur Übermittlung der Lohnabrechnungen per E-Mail: nicht erteilt.':NEU_T.email);
+  para(NEU_T.richtig,{size:8.5});
+  y+=1; sigRow({img:d.unterschrift_mitarbeiter,lbl:'Unterschrift Mitarbeiter/in',ort:ortDat},null);
+
+  // 2 BEFREIUNG
+  if(docs.some(x=>x.k==='bef')){
+    newPage(); title(NEU_T.bef_titel);
+    head('Arbeitnehmer:'); field('Name',d.nachname); field('Vorname',d.vorname); field('Rentenversicherungsnummer',d.versicherungsnummer);
+    y+=2; para(NEU_T.bef1); para(NEU_T.bef2);
+    if(d.merkblatt_erhalten) para(NEU_T.merkblatt,{size:8.5});
+    y+=2;
+    sigRow({img:d.unterschrift_befreiung,lbl:'(Unterschrift des Arbeitnehmers bzw. bei Minderjährigen Unterschrift des gesetzlichen Vertreters)',ort:ortDat},null);
+    y+=4; head('Arbeitgeber:'); field('Name',NEU_FIRMA); field('Betriebsnummer',NEU_BETRIEBSNR);
+    field('Der Befreiungsantrag ist am',(_neuDatDe(d.bef_eingang)||'__.__.____')+'  bei mir eingegangen.');
+    field('Die Befreiung wirkt ab dem',_neuDatDe(d.bef_ab)||'__.__.____'); y+=2;
+    sigRow({img:d.ag_unterschrift,lbl:'(Unterschrift des Arbeitgebers)'+(d.ag_name?' – '+d.ag_name:''),ort:d.ag_unterschrift?agOrtDat:''},null);
+    doc.setDrawColor(150);need(16);doc.rect(L,y-4,W,15);para(NEU_T.bef_hinweis,{size:8.5,x:L+3,w:W-6});
+  }
+
+  // 3 AUSHILFSVERTRAG
+  if(docs.some(x=>x.k==='av')){
+    newPage(); title('Anstellungsvertrag auf Aushilfsbasis');
+    para('Zwischen   '+NEU_FIRMA+', '+NEU_FIRMA_ADR,{bold:true}); para('und   '+_neuAnredeNom(d)+(adr?', '+adr:''));
+    para('wird folgender Anstellungsvertrag geschlossen.');
+    NEU_T.av.forEach(([t,b])=>{ head(t); if(b==='{TABELLE}') azTable(); else para(_neuFill(b,d)); });
+    y+=2; sigRow({img:d.ag_unterschrift,lbl:'Arbeitgeber'+(d.ag_name?' – '+d.ag_name:''),ort:d.ag_unterschrift?'Ort / Datum: '+agOrtDat:'Ort / Datum:'},{img:d.unterschrift_vertrag,lbl:'Mitarbeiter Unterschrift',ort:'Ort / Datum: '+ortDat});
+  }
+  function azTable(){
+    const cw=(W-24)/7, az=(d.arbeitszeit&&d.arbeitszeit.length)?d.arbeitszeit:NEU_TAGE.map(t=>({tag:t}));
+    need(22); doc.setFontSize(8.5); doc.setDrawColor(120);
+    const rows=[['',...NEU_TAGE],['Zeit in Std.',...az.map(a=>a.std||'')],['Arbeitszeit',...az.map(a=>a.von&&a.bis?a.von+'-'+a.bis:'')]];
+    rows.forEach((r,ri)=>{ r.forEach((c,ci)=>{ const x=ci?L+24+(ci-1)*cw:L, w=ci?cw:24; doc.rect(x,y-4.2,w,6.4); doc.setFont('helvetica',ri===0||ci===0?'bold':'normal'); doc.text(String(c||''),x+1.2,y); }); y+=6.4; });
+    doc.setFont('helvetica','normal'); y+=3;
+  }
+
+  // 4 RAHMENVEREINBARUNG
+  if(docs.some(x=>x.k==='rv')){
+    newPage(); y+=8; title('Rahmenvereinbarung','für zeitweilige Arbeitseinsätze'); y+=4;
+    para('zwischen der Firma '+NEU_FIRMA+', '+NEU_FIRMA_ADR+'\n(Arbeitgeber)',{size:10.5,after:4}); para('und',{size:10.5,after:4});
+    para(_neuAnredeNom(d)+(adr?', '+adr:'')+'\n(Arbeitnehmer)',{size:10.5,after:6});
+    NEU_T.rv.forEach(s=>para(_neuFill(s,d),{size:10.5,after:5})); y+=8;
+    sigRow({img:d.ag_unterschrift,lbl:'(Unterschrift AG oder seines Berechtigten)'+(d.ag_name?' – '+d.ag_name:''),ort:d.ag_unterschrift?agOrtDat:''},{img:d.unterschrift_rahmen,lbl:'(Unterschrift Arbeitnehmer)',ort:ortDat});
+  }
+
+  // 5 AUSWEISFOTOS (nur Personalakte)
+  Object.entries(fotos||{}).forEach(([k,img])=>{
+    const f=NEU_FOTOS.find(x=>x[0]===k); newPage(); title('Anlage: '+(f?f[1].replace('-',''):k));
+    try{ const p=doc.getImageProperties(img), r=Math.min(W/p.width,220/p.height); doc.addImage(img,'JPEG',L,y,p.width*r,p.height*r); }catch(e){}
+  });
+
+  const pc=doc.getNumberOfPages();
+  for(let i=1;i<=pc;i++){ doc.setPage(i); doc.setFontSize(7.5); doc.setTextColor(120); doc.text('Seite '+i+' / '+pc,R,289,{align:'right'}); doc.setTextColor(0); }
+  return doc;
+}
+const NEU_LOGO='data:image/jpeg;base64,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';
 
 </script>
 <!-- ── LOHNARTEN IMPORT MODAL ─────────────────────────────── -->
@@ -15622,6 +16042,31 @@ function ansehenNeu(id){
     <div style="padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
       <button class="btn btn-o" onclick="closeLohnArtenImport()">Abbrechen</button>
       <button class="btn btn-p" id="la-import-save-btn" style="display:none" onclick="saveLohnArtenImport()">💾 Speichern & Übernehmen</button>
+    </div>
+  </div>
+</div>
+<!-- ── E-MAIL IMPORT MODAL ─────────────────────────────────── -->
+<div class="datev-modal-bg" id="email-import-bg" onclick="if(event.target.id==='email-import-bg')closeEmailImport()">
+  <div class="datev-modal" style="max-width:700px">
+    <div class="datev-modal-head">
+      <div>
+        <div style="font-weight:700;font-size:16px">📥 E-Mails Import</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Excel/CSV hochladen · Spalten: Personalnummer | Nachname | Vorname | E-Mail</div>
+      </div>
+      <button class="btn btn-o btn-sm" onclick="closeEmailImport()">✕</button>
+    </div>
+    <div style="padding:16px 20px">
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Excel- oder CSV-Datei</label>
+        <input type="file" id="email-import-file" accept=".xlsx,.xls,.csv" onchange="handleEmailImportFile(event)"
+          style="border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;width:100%;font-family:inherit;font-size:13px;background:var(--white);cursor:pointer">
+      </div>
+      <div id="email-import-status" style="font-size:13px;color:var(--muted);margin-bottom:8px"></div>
+      <div id="email-import-result" style="max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r);padding:10px;background:var(--s1);font-size:13px"></div>
+    </div>
+    <div style="padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
+      <button class="btn btn-o" onclick="closeEmailImport()">Abbrechen</button>
+      <button class="btn btn-p" id="email-import-save-btn" style="display:none" onclick="saveEmailImport()">💾 Speichern & Übernehmen</button>
     </div>
   </div>
 </div>
@@ -15656,12 +16101,9 @@ function ansehenNeu(id){
   <div class="modal neu-modal">
     <div class="neu-head">
       <div class="ttl">📥 Neuer Mitarbeiter</div>
-      <div class="sub" id="neu-hdr-sub">Schritt 1 von 4 · Person</div>
+      <div class="sub" id="neu-hdr-sub">Schritt 1 von 5 · Person</div>
       <div class="neu-steps">
-        <div class="neu-step active" data-s="1"></div>
-        <div class="neu-step" data-s="2"></div>
-        <div class="neu-step" data-s="3"></div>
-        <div class="neu-step" data-s="4"></div>
+        <div class="neu-step active"></div><div class="neu-step"></div><div class="neu-step"></div><div class="neu-step"></div><div class="neu-step"></div>
       </div>
     </div>
     <div class="neu-body">
@@ -15669,16 +16111,22 @@ function ansehenNeu(id){
       <!-- SCHRITT 1: PERSON -->
       <div class="neu-screen active" id="neu-s1">
         <div class="neu-sec-ttl">Persönliche Angaben</div>
-        <div class="neu-sec-sub">Vom Objektleiter oder vom Mitarbeiter selbst ausfüllbar</div>
-        <div class="fg"><label>Vorname *</label><input id="n-vorname" maxlength="50"></div>
-        <div class="fg"><label>Nachname *</label><input id="n-nachname" maxlength="50"></div>
-        <div class="fg"><label>Geburtsdatum</label><input id="n-gebdat" type="date"></div>
-        <div class="fg"><label>Geburtsort</label><input id="n-gebort" maxlength="60"></div>
+        <div class="neu-sec-sub">Personalfragebogen</div>
+        <div class="fg"><label>Anrede</label><div class="nchipgroup" id="n-anrede-chips"><div class="nchip" data-v="Frau">Frau</div><div class="nchip" data-v="Herr">Herr</div></div></div>
+        <div class="neu-row2"><div class="fg"><label>Vorname *</label><input id="n-vorname" maxlength="50"></div><div class="fg"><label>Nachname *</label><input id="n-nachname" maxlength="50"></div></div>
+        <div class="fg"><label>Geburtsname (falls abweichend)</label><input id="n-gebname" maxlength="50"></div>
+        <div class="neu-row2"><div class="fg"><label>Geburtsdatum</label><input id="n-gebdat" type="date"></div><div class="fg"><label>Geburtsort</label><input id="n-gebort" maxlength="60"></div></div>
+        <div class="neu-row2">
+          <div class="fg"><label>Familienstand</label><select id="n-famstand"><option></option><option>ledig</option><option>verheiratet</option><option>geschieden</option><option>verwitwet</option><option>eingetragene Lebenspartnerschaft</option><option>getrennt lebend</option></select></div>
+          <div class="fg"><label>Konfession</label><select id="n-konf"><option></option><option>keine</option><option>römisch-katholisch</option><option>evangelisch</option><option>sonstige</option></select></div>
+        </div>
         <div class="fg"><label>Staatsangehörigkeit</label><input id="n-staat" maxlength="40"></div>
-        <div class="fg"><label>Straße, Hausnummer</label><input id="n-strasse" maxlength="80"></div>
-        <div class="fg"><label>PLZ, Ort</label><input id="n-plzort" maxlength="60"></div>
-        <div class="fg"><label>Telefon</label><input id="n-tel" maxlength="30"></div>
-        <div class="fg"><label>E-Mail</label><input id="n-email" type="email" maxlength="80"></div>
+        <div class="fg"><label>Aufenthaltstitel gültig bis</label><input id="n-aufenthalt" type="date"><div class="neu-hint">Nur bei Staatsangehörigkeit außerhalb der EU</div></div>
+        <div class="fg"><label>Straße / Haus-Nr.</label><input id="n-strasse" maxlength="80"></div>
+        <div class="neu-row31"><div class="fg"><label>PLZ</label><input id="n-plz" inputmode="numeric" maxlength="5"></div><div class="fg"><label>Ort</label><input id="n-ort" maxlength="60"></div></div>
+        <div class="fg"><label>Handy-Nr.</label><input id="n-tel" type="tel" maxlength="30"></div>
+        <div class="fg"><label>E-Mail-Adresse</label><input id="n-email" type="email" maxlength="80"><div class="neu-hint">Hierhin gehen Lohnabrechnungen und die Einstellungsunterlagen</div></div>
+        <div class="fg"><label>Kinder</label><div class="nchipgroup" id="n-kinder-chips"><div class="nchip sel" data-v="nein">Nein</div><div class="nchip" data-v="ja">Ja</div></div><div class="neu-hint" id="n-kinder-hint" style="display:none">Nachweis (z. B. Geburtsurkunde) im Schritt „Ausweise“ fotografieren</div></div>
       </div>
 
       <!-- SCHRITT 2: BESCHÄFTIGUNG -->
@@ -15687,85 +16135,71 @@ function ansehenNeu(id){
         <div class="neu-sec-sub" id="neu-ol-info">Objektleiter wird automatisch übernommen</div>
         <div class="fg" id="neu-ol-wahl-wrap" style="display:none">
           <label>Objektleiter</label>
-          <select class="fsel" id="n-ol-admin" style="width:100%"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select>
+          <select class="fsel" id="n-ol-admin"><option value="M">M – Fr. Grippo</option><option value="I">I – Hr. Incecik</option></select>
         </div>
-        <div class="fg"><label>Einsatzort / Kunde</label><input id="n-kunde" maxlength="80" placeholder="z.B. AUMOVIO Alzenau"></div>
+        <div class="fg"><label>Objekt / Kunde</label><input id="n-kunde" maxlength="80" placeholder="z.B. AUMOVIO Alzenau"></div>
         <div class="fg"><label>Eintrittsdatum</label><input id="n-eintritt" type="date"></div>
         <div class="fg"><label>Beschäftigungsart</label>
-          <div class="nchipgroup" id="n-art-chips">
-            <div class="nchip sel" data-v="Vollzeit">Vollzeit</div><div class="nchip" data-v="Teilzeit">Teilzeit</div><div class="nchip" data-v="Minijob">Minijob</div><div class="nchip" data-v="kurzfristig">kurzfristig</div>
-          </div>
+          <div class="nchipgroup" id="n-art-chips"><div class="nchip sel" data-v="Minijob">Minijob</div><div class="nchip" data-v="Teilzeit">Teilzeit</div><div class="nchip" data-v="Vollzeit">Vollzeit</div><div class="nchip" data-v="kurzfristig">kurzfristig</div></div>
         </div>
-        <div class="fg"><label>Wochenstunden</label><input id="n-wstd" type="number" step="0.5" min="0" max="48"></div>
-        <div class="fg"><label>Übt der Mitarbeiter eine weitere Beschäftigung aus?</label>
-          <div class="nchipgroup" id="n-neben-chips">
-            <div class="nchip sel" data-v="nein">Nein</div><div class="nchip" data-v="minijob">Ja, Minijob</div><div class="nchip" data-v="sv">Ja, sozialvers.pflichtig</div>
-          </div>
+        <div class="neu-warn" id="n-vertrag-hint" style="display:none">Der Arbeitsvertrag wird individuell im Büro erstellt – hier nur der Personalfragebogen.</div>
+        <div class="fg" id="n-wstd-wrap"><label>Wochenstunden</label><input id="n-wstd" type="number" step="0.5" min="0" max="48"></div>
+        <label class="neu-chk"><input type="checkbox" id="n-springer" onchange="_neuUpdWarnings()"><span><b>Als Springer einsetzen</b> → Rahmenvereinbarung für zeitweilige Arbeitseinsätze</span></label>
+        <div class="fg" id="n-lohn-wrap" style="display:none"><label>Stundenlohn (€) für Rahmenvereinbarung</label><input id="n-lohn" inputmode="decimal" value="15,00"></div>
+        <div id="n-az-wrap">
+          <div class="neu-subttl">Arbeitszeit (Anstellungsvertrag § 5)</div>
+          <table class="neu-wt"><thead><tr><th>Tag</th><th>von</th><th>bis</th><th style="width:60px">Std.</th></tr></thead><tbody id="n-az"></tbody></table>
+          <div class="neu-hint" style="margin-top:6px">Stunden rechnen sich aus von/bis. Summe: <b id="n-az-sum">0</b> Std./Woche</div>
         </div>
-        <div class="fg" id="neu-neben-ag-wrap" style="display:none"><label>Arbeitgeber der weiteren Beschäftigung</label><input id="n-neben-ag" maxlength="80"></div>
-        <div class="confirm" style="display:none;background:#fff7ed;border-color:#fed7aa;color:#9a3412" id="neu-minijob-warn">
-          ⚠ Ein weiterer Minijob ist neben diesem Minijob gesetzlich <b>nicht</b> zulässig – beide würden zusammengerechnet und versicherungspflichtig. Bitte vor Einstellung mit dem Büro klären.
+        <div class="neu-subttl">Weitere Beschäftigung</div>
+        <div class="fg"><label>Steht der Mitarbeiter bei einer anderen Firma im Beschäftigungsverhältnis?</label>
+          <div class="nchipgroup" id="n-neben-chips"><div class="nchip sel" data-v="nein">Nein</div><div class="nchip" data-v="ja">Ja</div><div class="nchip" data-v="schueler">Schüler</div></div></div>
+        <div id="neu-neben-ag-wrap" style="display:none">
+          <div class="fg"><label>Wenn ja</label><div class="nchipgroup" id="n-neben-art-chips"><div class="nchip sel" data-v="hauptberuflich">Hauptberuflich</div><div class="nchip" data-v="nebenberuflich">Nebenberuflich</div><div class="nchip" data-v="minijob">dort Minijob</div></div></div>
+          <div class="fg"><label>Arbeitgeber</label><input id="n-neben-ag" maxlength="80"></div>
         </div>
+        <div class="neu-warn" id="neu-minijob-warn" style="display:none">⚠ Ein weiterer Minijob neben diesem Minijob ist <b>nicht</b> zulässig – beide werden zusammengerechnet und versicherungspflichtig. Bitte vor Einstellung mit dem Büro klären.</div>
       </div>
 
-      <!-- SCHRITT 3: RENTE / STEUER / BANK -->
+      <!-- SCHRITT 3: SV / STEUER / BANK -->
       <div class="neu-screen" id="neu-s3">
-        <div class="neu-sec-ttl">Rente, Steuer &amp; Bank</div>
+        <div class="neu-sec-ttl">Sozialversicherung, Steuer &amp; Bank</div>
         <div class="neu-sec-sub">Für Lohnabrechnung &amp; DATEV</div>
-        <div class="fg"><label>Versicherungsnummer (Rentenversicherung)</label><input id="n-vsnr" maxlength="30" placeholder="12 345678 A 123"><div class="hint">Steht auf dem Versicherungsnummernachweis der Rentenversicherung (früher „Sozialversicherungsausweis“) – ist dieselbe Nummer.</div></div>
-        <div class="fg" id="neu-rv-wrap" style="display:none"><label>Rentenversicherung (nur bei Minijob relevant)</label>
-          <div class="nchipgroup" id="n-rv-chips"><div class="nchip sel" data-v="voll">voller Beitragssatz (18,6%)</div><div class="nchip" data-v="befreit">Befreiung beantragen</div></div>
-          <div class="hint">Bei „Befreiung" zahlt der Mitarbeiter keinen Arbeitnehmeranteil mehr – dafür erwirbt er auch keine vollen Rentenansprüche.</div>
+        <div class="fg"><label>Sozialversicherungsnummer</label><input id="n-vsnr" maxlength="30" placeholder="12 345678 A 123"><div class="neu-hint">= Rentenversicherungsnummer, steht auf dem SV-Ausweis</div></div>
+        <div class="neu-row2"><div class="fg"><label>Identifikationsnr. (Steuer-ID)</label><input id="n-steuerid" maxlength="20" inputmode="numeric"></div><div class="fg"><label>Steuerklasse</label><input id="n-steuerklasse" maxlength="4"></div></div>
+        <div class="fg"><label>Krankenkasse mit Ortsbezeichnung</label><input id="n-kk" maxlength="80" placeholder="z.B. AOK Bayern, Aschaffenburg"></div>
+        <div class="fg" id="neu-rv-wrap"><label>Minijob: Befreiung von der RV-Pflicht?</label>
+          <div class="nchipgroup" id="n-rv-chips"><div class="nchip sel" data-v="voll">Nein (voller Beitrag)</div><div class="nchip" data-v="befreit">Ja, Befreiung</div></div>
+          <div class="neu-hint">Bei „Ja“ wird der Befreiungsantrag automatisch erstellt. Das Merkblatt bekommt der Mitarbeiter auf Papier.</div>
         </div>
-        <div class="card" id="neu-befreiung-box" style="display:none;border:1px solid var(--acc);background:var(--acc-l);border-radius:var(--r2);padding:14px;margin-top:4px">
-          <div style="display:inline-block;font-size:11px;background:var(--white);color:var(--acc);padding:3px 9px;border-radius:20px;font-weight:600;margin-bottom:8px;border:none;text-decoration:none">📄 Erklärung zur Befreiung von der Rentenversicherungspflicht</div>
-          <div style="font-size:12.5px;line-height:1.5;color:var(--text2)">
-            Hiermit beantrage ich, <b id="bf-name">–</b>, geb. <b id="bf-gebdat">–</b>,
-            wohnhaft <b id="bf-adresse">–</b>,
-            die <b>Befreiung von der Versicherungspflicht in der gesetzlichen Rentenversicherung</b>
-            im Rahmen meiner geringfügig entlohnten Beschäftigung bei ACS All Clean Services KG
-            ab dem <b id="bf-eintritt">–</b>.<br><br>
-            Mir ist bekannt, dass dadurch keine vollen Ansprüche in der gesetzlichen Rentenversicherung erworben werden.
-          </div>
-          <label style="display:block;font-size:12px;font-weight:600;color:var(--text2);margin:14px 0 6px">Unterschrift zur Befreiungserklärung</label>
-          <div class="sigpad-wrap" style="height:110px">
-            <canvas id="n-sig-bef"></canvas>
-            <div class="sigpad-hint" id="n-sig-bef-hint">Hier unterschreiben</div>
-            <button type="button" class="sigpad-clear" onclick="sigClear('n-sig-bef')">✕ löschen</button>
-          </div>
-        </div>
-        <div class="row2" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
-          <div class="fg"><label>Steuer-ID</label><input id="n-steuerid" maxlength="20"></div>
-          <div class="fg"><label>Steuerklasse</label><input id="n-steuerklasse" maxlength="4"></div>
-        </div>
-        <div class="fg"><label>Krankenkasse</label><input id="n-kk" maxlength="60"></div>
-        <div class="fg"><label>IBAN</label><input id="n-iban" maxlength="34" style="text-transform:uppercase"></div>
+        <div class="neu-subttl">Bankverbindung</div>
+        <div class="fg"><label>Bank (Name)</label><input id="n-bank" maxlength="60"></div>
+        <div class="fg"><label>IBAN</label><input id="n-iban" maxlength="34" style="font-family:'IBM Plex Mono',monospace"></div>
         <div class="fg"><label>Kontoinhaber (falls abweichend)</label><input id="n-kontoinhaber" maxlength="60"></div>
       </div>
 
-      <!-- SCHRITT 4: BESTÄTIGUNG -->
+      <!-- SCHRITT 4: FOTOS -->
       <div class="neu-screen" id="neu-s4">
-        <div class="neu-sec-ttl">Bestätigung &amp; Unterschrift</div>
-        <div class="neu-sec-sub">Mitarbeiter bestätigt die Richtigkeit seiner Angaben</div>
-        <div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:14px" id="neu-summary"></div>
-        <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text2);margin-bottom:6px">Unterschrift Mitarbeiter/in</label>
-        <div class="sigpad-wrap">
-          <canvas id="n-sig-main"></canvas>
-          <div class="sigpad-hint" id="n-sig-main-hint">Hier mit dem Finger unterschreiben</div>
-          <button type="button" class="sigpad-clear" onclick="sigClear('n-sig-main')">✕ löschen</button>
-        </div>
-        <div class="confirm" style="display:flex;gap:10px;align-items:flex-start;background:var(--gbg);border:1px solid var(--gbd);border-radius:var(--r2);padding:12px;font-size:12.5px;color:var(--text2);margin-top:14px">
-          <input type="checkbox" id="n-confirm" style="margin-top:2px">
-          <span>Ich bestätige, dass die vorstehenden Angaben vollständig und wahrheitsgemäß sind.</span>
-        </div>
-        <div class="hint" style="margin-top:10px">Zeitstempel und Ersteller werden automatisch mitgespeichert.</div>
+        <div class="neu-sec-ttl">Ausweise &amp; Nachweise</div>
+        <div class="neu-sec-sub">Ersetzt die Papierkopien – Antippen öffnet die Kamera</div>
+        <div class="neu-foto-grid" id="n-fotos"></div>
+        <div class="neu-hint" style="margin-top:10px">Fotos kommen nur in die PDF für die Personalakte – nicht in die Mail an den Mitarbeiter.</div>
+      </div>
+
+      <!-- SCHRITT 5: ERKLÄRUNGEN & UNTERSCHRIFTEN -->
+      <div class="neu-screen" id="neu-s5">
+        <div class="neu-sec-ttl">Erklärungen &amp; Unterschriften</div>
+        <div class="neu-sec-sub">Jedes Dokument einzeln lesen und unterschreiben</div>
+        <div class="neu-row2"><div class="fg"><label>Ort</label><input id="n-sigort" value="Alzenau"></div><div class="fg"><label>Datum</label><input id="n-sigdat" type="date"></div></div>
+        <div id="n-docs"></div>
+        <div class="neu-hint">Zeitstempel und Ersteller werden automatisch mitgespeichert.</div>
       </div>
 
     </div>
     <div class="neu-foot">
       <button class="btn btn-o" onclick="neuClose()" id="neu-btn-cancel" type="button">Abbrechen</button>
       <button class="btn btn-s" onclick="neuNav(-1)" id="neu-btn-back" type="button" style="display:none">← Zurück</button>
-      <button class="btn btn-p" onclick="neuNav(1)" id="neu-btn-next" type="button" style="margin-left:auto">Weiter →</button>
+      <button class="btn btn-p" onclick="neuNav(1)" id="neu-btn-next" type="button" style="flex:1">Weiter →</button>
     </div>
   </div>
 </div>
