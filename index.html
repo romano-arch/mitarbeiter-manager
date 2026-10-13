@@ -1111,6 +1111,8 @@ main{padding:14px 16px}
 #neubg .fg{margin-bottom:12px}
 #neubg input:not([type=checkbox]),#neubg select{font-size:15px;padding:10px 11px}
 #neubg label{text-transform:none;letter-spacing:0;font-size:12px;color:var(--text2)}
+#neuviewbg label{text-transform:none;letter-spacing:0;font-size:12px;color:var(--text2)}
+#neuviewbg .neu-foto{font-size:12px!important;color:var(--muted)!important}
 .neu-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .neu-row31{display:grid;grid-template-columns:100px 1fr;gap:10px}
 .neu-hint{font-size:11.5px;color:var(--muted)}
@@ -15506,6 +15508,7 @@ function _neuPruefEmail(v){
   const d=String(v||'').trim(); if(!d) return '';
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d) ? '' : 'E-Mail-Adresse ist ungültig.';
 }
+function _neuDarfErgaenzen(n){ return !!n && n.status!=='verworfen' && (isAdmin() || (isOL() && n.objektleiter===_currentKuerzel)); }
 const NEU_STATUS_TXT = {offen:'offen', uebernommen:'übernommen', verworfen:'verworfen'};
 
 // Datensatz frisch laden, ändern, speichern und nachprüfen, ob er wirklich in der DB angekommen ist
@@ -15844,7 +15847,8 @@ function renderNeuListe(){
   const zeigeAlle = document.getElementById('neu-f-alle').checked;
   document.getElementById('neu-filter-wrap').style.display = isAdmin() ? '' : 'none';
   let liste = isAdmin() ? neueinst.slice() : neueinst.filter(n=>n.objektleiter===_currentKuerzel);
-  if(!isAdmin() || !zeigeAlle) liste = liste.filter(n=>n.status==='offen');
+  if(isAdmin()){ if(!zeigeAlle) liste = liste.filter(n=>n.status==='offen'); }
+  else { const grenze=new Date(Date.now()-60*864e5).toISOString(); liste = liste.filter(n=>n.status==='offen' || (n.status==='uebernommen' && (n.erstellt_am||'')>=grenze)); }
   liste.sort((a,b)=>(b.erstellt_am||'').localeCompare(a.erstellt_am||''));
   if(!liste.length){ wrap.innerHTML='<div class="empty" style="padding:30px;text-align:center;color:var(--muted)">Keine offenen Neueinstellungen.</div>'; return; }
   wrap.innerHTML = liste.map(n=>{
@@ -15853,7 +15857,8 @@ function renderNeuListe(){
     const stLbl = n.status==='offen' ? 'offen' : n.status==='uebernommen' ? 'übernommen' : 'verworfen';
     const btns = n.status==='offen' && isAdmin()
       ? '<button class="btn btn-p btn-sm" onclick="uebernehmeNeu(\''+n.id+'\')">✓ Übernehmen</button><button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen / PDF</button><button class="btn btn-o btn-sm" onclick="verwerfenNeu(\''+n.id+'\')">✕ Verwerfen</button>'
-      : '<button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen / PDF</button>';
+      : '<button class="btn btn-o btn-sm" onclick="ansehenNeu(\''+n.id+'\')">📄 Ansehen / PDF</button>'
+        + (!isAdmin() && _neuDarfErgaenzen(n) ? '<button class="btn btn-p btn-sm" onclick="neuBearbeiten(\''+n.id+'\')">✏ Ergänzen</button>' : '');
     return '<div class="neu-list-card">'
       + '<div class="neu-list-top"><div><b>'+_esc((n.vorname||'')+' '+(n.nachname||''))+'</b><br>'
       + '<span style="font-size:12px;color:var(--muted)">'+_esc([n.beschaeftigungsart, n.kunde, n.eintrittsdatum?_neuDatDe(n.eintrittsdatum):''].filter(Boolean).join(' · '))+'</span></div>'
@@ -15956,7 +15961,7 @@ function ansehenNeu(id){
   // PDF
   h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">'
      + '<button class="btn btn-p" onclick="neuPdf(\''+n.id+'\',false)">📄 PDF für Mitarbeiter</button>'
-     + (isAdmin() ? '<button class="btn btn-o" onclick="neuBearbeiten(\''+n.id+'\')">✏ Bearbeiten</button>' : '')
+     + (_neuDarfErgaenzen(n) ? '<button class="btn btn-o" onclick="neuBearbeiten(\''+n.id+'\')">✏ Bearbeiten / Ergänzen</button>' : '')
      + (isAdmin() ? '<button class="btn btn-o" onclick="neuPdf(\''+n.id+'\',true)">🗂 PDF Personalakte</button>' : '')
      + (n.email ? '<button class="btn btn-o" onclick="neuMail(\''+n.id+'\')">✉ Mail vorbereiten</button>' : '')
      + '</div><div class="neu-hint" style="margin-top:6px">PDF herunterladen und an die Mail anhängen. Personalakte = mit Ausweisfotos.</div>';
@@ -16142,20 +16147,42 @@ function _neuFehlend(n){
 
 function neuBearbeiten(id){
   const n = neueinst.find(x=>x.id===id); if(!n) return;
-  if(!isAdmin()){ alert('Nur das Büro darf Neueinstellungen bearbeiten.'); return; }
+  if(!_neuDarfErgaenzen(n)){ alert('Keine Berechtigung, diese Neueinstellung zu ändern.'); return; }
+  _neuEdFotos = {};
   const signiert = _neuDocs(n).some(x=>x.k!=='fb' && n[_NEU_SIGKEY[x.k]]);
-  let h = '<div style="font-size:15px;font-weight:700;margin-bottom:4px">✏ '+_esc(_neuNameVoll(n))+' bearbeiten</div>'
+  let h = '<div style="font-size:15px;font-weight:700;margin-bottom:4px">✏ '+_esc(_neuNameVoll(n))+' ergänzen / bearbeiten</div>'
         + '<div class="neu-hint" style="margin-bottom:12px">Fehlende Angaben nachtragen oder korrigieren. Jede Änderung wird mit Datum und Name gespeichert und im PDF vermerkt.'
         + (signiert ? ' <b style="color:var(--orange)">Name, Anschrift, Objekt und Eintrittsdatum stehen im unterschriebenen Vertrag – bei Änderungen sollte der Mitarbeiter neu unterschreiben.</b>' : '')
-        + (n.status==='uebernommen' ? ' Hinweis: Der Mitarbeiter ist schon übernommen – Änderungen hier ändern NICHT den Mitarbeiter-Datensatz.' : '')
+        + (n.status==='uebernommen' ? ' Der Mitarbeiter ist schon übernommen – Telefon und E-Mail werden dort automatisch mit aktualisiert.' : '')
         + '</div><div class="neu-row2">';
   NEU_EDIT_FELDER.forEach(([k,lbl,typ])=>{
     h += '<div class="fg" style="margin-bottom:8px"><label>'+lbl+'</label><input id="neu-ed-'+k+'" type="'+(typ||'text')+'" value="'+_esc(k==='ort'?(n.ort||(!n.plz?n.plzort:'')||''):(n[k]||''))+'"></div>';
   });
-  h += '</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-o" onclick="ansehenNeu(\''+n.id+'\')">Abbrechen</button>'
+  h += '</div><div class="neu-subttl">Ausweise &amp; Nachweise (Fotos)</div><div class="neu-foto-grid">'
+     + NEU_FOTOS.map(([k,l])=>{ const da=(n.foto_keys||[]).includes(k);
+         return '<label class="neu-foto" id="neu-edfoto-'+k+'" style="'+(da?'border-style:solid;border-color:var(--green)':'')+'"><input type="file" accept="image/*" capture="environment" onchange="_neuEdFotoSet(\''+k+'\',this)"><span>'+(da?'✓ vorhanden – antippen zum Ersetzen':'📷')+'<br>'+l+'</span></label>'; }).join('')
+     + '</div>';
+  h += '<div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-o" onclick="ansehenNeu(\''+n.id+'\')">Abbrechen</button>'
      + '<button class="btn btn-p" onclick="neuBearbeitenSpeichern(\''+n.id+'\')">💾 Speichern</button></div>';
   document.getElementById('neuview-body').innerHTML = h;
   document.getElementById('neuviewbg').style.display='flex';
+}
+let _neuEdFotos = {};
+function _neuEdFotoSet(k, inp){
+  const f=inp.files && inp.files[0]; if(!f) return;
+  const img=new Image();
+  img.onload=()=>{
+    const max=1400, sc=Math.min(1,max/Math.max(img.width,img.height)), c=document.createElement('canvas');
+    c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    _neuEdFotos[k]=c.toDataURL('image/jpeg',0.72);
+    const el=document.getElementById('neu-edfoto-'+k);
+    el.querySelectorAll('img,.lbl').forEach(x=>x.remove());
+    el.insertAdjacentHTML('beforeend','<img src="'+_neuEdFotos[k]+'"><div class="lbl">✓ neu: '+NEU_FOTOS.find(x=>x[0]===k)[1]+'</div>');
+    URL.revokeObjectURL(img.src);
+  };
+  img.onerror=()=>alert('Foto konnte nicht gelesen werden.');
+  img.src=URL.createObjectURL(f);
 }
 async function neuBearbeitenSpeichern(id){
   const werte={};
@@ -16164,9 +16191,21 @@ async function neuBearbeitenSpeichern(id){
   if(fe.length){ alert('Bitte prüfen:\n• '+fe.join('\n• ')); return; }
   const am = new Date().toISOString(), von = _currentUser || '';
   let anzahl=0;
+  const neueFotos = Object.keys(_neuEdFotos);
+  if(neueFotos.length){
+    try{
+      let alt={};
+      try{ const r=await supaFetch('neueinstellung_fotos','GET',null,'select=data&id=eq.'+encodeURIComponent(id)); alt=(r[0]&&r[0].data&&r[0].data.fotos)||{}; }catch(_){}
+      await supaSave('neueinstellung_fotos',[{ id:id, fotos:Object.assign(alt,_neuEdFotos) }]);
+    }catch(e){ alert('⚠ Fotos konnten NICHT gespeichert werden:\n\n'+e.message+'\n\nFalls die Tabelle "neueinstellung_fotos" fehlt: SQL in Supabase ausführen.'); return; }
+  }
+  let rec=null;
   try{
-    await _neuAktualisieren(id, n=>{
+    rec = await _neuAktualisieren(id, n=>{
       const neu=[];
+      neueFotos.forEach(k=>{ const lbl=NEU_FOTOS.find(x=>x[0]===k)[1]; const war=(n.foto_keys||[]).includes(k);
+        neu.push({feld:'foto_'+k, label:'Foto', alt:war?'ersetzt':'', neu:lbl, am, von}); });
+      if(neueFotos.length) n.foto_keys=[...new Set([...(n.foto_keys||[]), ...neueFotos])];
       NEU_EDIT_FELDER.forEach(([k,lbl])=>{
         if(!(k in werte)) return;
         const alt = k==='ort' ? (n.ort||(!n.plz?n.plzort:'')||'') : (n[k]||'');
@@ -16176,12 +16215,26 @@ async function neuBearbeitenSpeichern(id){
       if(neu.length){ n.plzort=[n.plz,n.ort].filter(Boolean).join(' '); n.aenderungen=(n.aenderungen||[]).concat(neu); }
     });
   }catch(e){ alert('⚠ Änderungen NICHT gespeichert:\n\n'+e.message); return; }
+  _neuEdFotos = {};
+  // Bereits übernommenen Mitarbeiter mitziehen (Telefon / E-Mail)
+  if(rec && rec.ma_id && anzahl){
+    try{
+      const r=await supaFetch('mitarbeiter','GET',null,'id=eq.'+encodeURIComponent(rec.ma_id)+'&select=data');
+      const m=r&&r[0]&&r[0].data;
+      if(m && ((rec.telefon||'')!==(m.telefon||'') || (rec.email||'')!==(m.email||''))){
+        if(rec.telefon) m.telefon=rec.telefon; if(rec.email) m.email=rec.email;
+        await supaSave('mitarbeiter',[m]);
+        const i=ma.findIndex(x=>x.id===m.id); if(i>=0) ma[i]=m;
+      }
+    }catch(e){ showAlert('⚠ Telefon/E-Mail beim Mitarbeiter nicht aktualisiert: '+e.message,'#c05621'); }
+  }
   showAlert(anzahl ? '✅ '+anzahl+' Änderung(en) gespeichert.' : 'Keine Änderungen.');
   ansehenNeu(id); renderNeuListe();
 }
 function _neuAenderTxt(a,pdf){
   const d = a.am ? new Date(a.am).toLocaleDateString('de-DE') : '';
   const fmt = v => (/^\d{4}-\d{2}-\d{2}$/.test(v) ? _neuDatDe(v) : v) || '–';
+  if(String(a.feld||'').startsWith('foto_')) return d+', '+(a.von||'–')+': Foto '+(a.alt?'ersetzt':'nachgetragen')+': '+a.neu;
   return d+', '+(a.von||'–')+': '+a.label+' '+(a.alt ? fmt(a.alt)+(pdf?' -> ':' → ')+fmt(a.neu) : 'nachgetragen: '+fmt(a.neu));
 }
 
