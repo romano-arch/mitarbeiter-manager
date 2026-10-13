@@ -1346,7 +1346,7 @@ main{padding:14px 16px}
 
 <!-- LINKES PANEL: Stammdaten + Objekte -->
 <div class="modal" style="max-width:680px;border-radius:12px;margin:0;padding:18px 20px;flex:1;min-width:0;max-height:calc(100vh - 28px);overflow-y:auto;display:flex;flex-direction:column">
-<div class="mtitle" id="mamtitle">Mitarbeiter</div>
+<div class="mtitle" id="mamtitle">Mitarbeiter</div><div id="mam-neu-link" style="margin:-8px 0 12px"></div>
 
 <!-- BLOCK 1: Personaldaten -->
 <div style="border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px">
@@ -5773,6 +5773,7 @@ const m=id?(ma.find(x=>x.id===id)||{}):{};
 // werden. Frueher loeschte diese Zeile beim blossen Oeffnen eines Mitarbeiters
 // Datensaetze aus abgerechneten Monaten.
 document.getElementById('mamtitle').textContent=id?m.nachname+' bearbeiten':'Neuer Mitarbeiter';
+{ const _nl=document.getElementById('mam-neu-link'); if(_nl){ const _ne=(id && typeof neueinst!=='undefined')?neueinst.find(x=>x.ma_id===id):null; _nl.innerHTML=_ne?'<button type="button" class="btn btn-o" onclick="ansehenNeu(\''+_ne.id+'\')">📄 Einstellungsunterlagen (Fragebogen, Verträge, PDF)</button>':''; } }
 document.getElementById('f-pnr').value=m.persnr||'';
 document.getElementById('f-st').value=m.status||'Aktiv';
 document.getElementById('f-vn').value=m.vorname||'';
@@ -15471,6 +15472,60 @@ const NEU_T = {
   rv:['Die Firma A.C.S. All Clean Service KG ist nicht verpflichtet {DATIV} Arbeitsangebote zu machen.','{NOMINATIV} ist nicht verpflichtet Beschäftigungsangebote anzunehmen.','Für den Fall, dass ein befristetes Arbeitsverhältnis zustande kommt, wird folgende Vergütung vereinbart: Der Stundenlohn beträgt {LOHN} €.\nDieser richtet sich nach dem Tarifvertrag der Gebäudereiniger und wird bei Tariferhöhung angepasst.']
 };
 
+
+// ── Prüfungen (Steuer-ID, SV-Nummer, IBAN, E-Mail) ──
+function _neuPruefSteuerId(v){
+  const d=String(v||'').replace(/\s/g,''); if(!d) return '';
+  if(!/^\d{11}$/.test(d)) return 'Steuer-ID muss genau 11 Ziffern haben (eingegeben: '+d.length+').';
+  if(d[0]==='0') return 'Steuer-ID darf nicht mit 0 beginnen.';
+  let p=10; for(let i=0;i<10;i++){ let sm=(+d[i]+p)%10; if(sm===0) sm=10; p=(sm*2)%11; }
+  let pz=11-p; if(pz===10) pz=0;
+  if(pz!==+d[10]) return 'Steuer-ID ist ungültig (Prüfziffer stimmt nicht) – bitte genau abschreiben.';
+  return '';
+}
+function _neuPruefSvNr(v){
+  const d=String(v||'').replace(/\s/g,'').toUpperCase(); if(!d) return '';
+  if(!/^\d{8}[A-Z]\d{3}$/.test(d)) return 'SV-Nummer hat das falsche Format. Richtig: 12 Zeichen, z. B. 12 220493 D 500 (8 Ziffern, 1 Buchstabe, 3 Ziffern).';
+  return '';
+}
+function _neuSvNrGebdatPasst(v, gebdat){
+  const d=String(v||'').replace(/\s/g,''); if(!d || !gebdat) return true;
+  const p=gebdat.split('-'); if(p.length!==3) return true;
+  return d.slice(2,8)===(p[2]+p[1]+p[0].slice(2));
+}
+function _neuPruefIban(v){
+  const d=String(v||'').replace(/\s/g,'').toUpperCase(); if(!d) return '';
+  if(!/^[A-Z]{2}\d{2}[A-Z0-9]{10,30}$/.test(d)) return 'IBAN hat das falsche Format.';
+  if(d.startsWith('DE') && d.length!==22) return 'Deutsche IBAN muss 22 Zeichen haben (eingegeben: '+d.length+').';
+  const r=(d.slice(4)+d.slice(0,4)).replace(/[A-Z]/g,c=>String(c.charCodeAt(0)-55));
+  let m=0; for(const ch of r) m=(m*10+(+ch))%97;
+  if(m!==1) return 'IBAN ist ungültig (Prüfziffer stimmt nicht) – bitte genau abschreiben.';
+  return '';
+}
+function _neuPruefEmail(v){
+  const d=String(v||'').trim(); if(!d) return '';
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d) ? '' : 'E-Mail-Adresse ist ungültig.';
+}
+const NEU_STATUS_TXT = {offen:'offen', uebernommen:'übernommen', verworfen:'verworfen'};
+
+// Datensatz frisch laden, ändern, speichern und nachprüfen, ob er wirklich in der DB angekommen ist
+async function _neuLadeFrisch(id){
+  try{ const r=await supaFetch('neueinstellungen','GET',null,'select=data&id=eq.'+encodeURIComponent(id)); return (r&&r[0]&&r[0].data)||null; }
+  catch(e){ return null; }
+}
+async function _neuAktualisieren(id, aenderFn){
+  let n = await _neuLadeFrisch(id);
+  if(!n){ const lok=neueinst.find(x=>x.id===id); n = lok ? JSON.parse(JSON.stringify(lok)) : null; }
+  if(!n) throw new Error('Datensatz nicht gefunden.');
+  aenderFn(n);
+  await supaSave('neueinstellungen',[n]);
+  const k = await _neuLadeFrisch(id);
+  if(!k || k._updated_at !== n._updated_at)
+    throw new Error('Die Änderung ist in der Datenbank NICHT angekommen. Vermutlich fehlt in Supabase das Schreibrecht (UPDATE) für die Tabelle "neueinstellungen".');
+  const i=neueinst.findIndex(x=>x.id===id); if(i>=0) neueinst[i]=k; else neueinst.push(k);
+  return k;
+}
+
 // Welche Dokumente braucht dieser Datensatz?
 function _neuDocs(n){
   const l=[{k:'fb',t:'Personalfragebogen'}];
@@ -15673,6 +15728,14 @@ function neuNav(dir){
   if(dir<0){ if(neuStep>1){ neuStep--; _neuGoStep(neuStep); } return; }
   if(neuStep===1){
     if(!_neuV('n-vorname') || !_neuV('n-nachname')){ alert('Bitte Vor- und Nachname eingeben.'); return; }
+    if(!_neuV('n-tel')){ alert('Bitte Handy-Nr. eingeben.'); return; }
+    if(!_neuV('n-email')){ alert('Bitte E-Mail-Adresse eingeben – dorthin gehen die Lohnabrechnungen.'); return; }
+    const em=_neuPruefEmail(_neuV('n-email')); if(em){ alert(em); return; }
+  }
+  if(neuStep===3){
+    const fe=[_neuPruefSvNr(_neuV('n-vsnr')), _neuPruefSteuerId(_neuV('n-steuerid')), _neuPruefIban(_neuV('n-iban'))].filter(Boolean);
+    if(fe.length){ alert('Bitte prüfen:\n• '+fe.join('\n• ')); return; }
+    if(!_neuSvNrGebdatPasst(_neuV('n-vsnr'), _neuV('n-gebdat')) && !confirm('Das Geburtsdatum in der SV-Nummer passt nicht zum eingegebenen Geburtsdatum.\n\nTrotzdem weiter?')) return;
   }
   if(neuStep===NEU_TITEL.length){
     const n=_neuCollect(), fehl=[];
@@ -15819,12 +15882,13 @@ async function uebernehmeNeu(id){
       objekte:[{kunde:n.kunde||'', std_monat:'', stundenlohn:'', lohn_fest:'', wochentage:WT0()}],
       monats_daten:{}
     };
+    const frisch = await _neuLadeFrisch(id);
+    if(frisch && frisch.status==='uebernommen'){ alert('Diese Neueinstellung wurde bereits übernommen (evtl. an einem anderen PC).'); return; }
     await supaSave('mitarbeiter',[neuMA]);
     ma.push(neuMA);
-    n.status='uebernommen'; n.ma_id=newId;
-    await supaSave('neueinstellungen',[n]);
+    await _neuAktualisieren(id, x=>{ x.status='uebernommen'; x.ma_id=newId; });
     renderNeuBadge(); renderNeuListe(); updStats(); updFilters(); render();
-    showAlert('✅ Mitarbeiter angelegt – Modal öffnet zur Vervollständigung.');
+    showAlert('✅ Mitarbeiter angelegt. Einstellungsunterlagen: im Mitarbeiter oben „📄 Einstellungsunterlagen“ – PDF für die Personalakte herunterladen.');
     openMAM(newId);
   }catch(e){
     showAlert('⚠ Übernehmen fehlgeschlagen: '+e.message,'#c81e1e');
@@ -15833,8 +15897,7 @@ async function uebernehmeNeu(id){
 async function verwerfenNeu(id){
   const n = neueinst.find(x=>x.id===id); if(!n) return;
   if(!confirm('Diese Neueinstellung wirklich verwerfen?')) return;
-  n.status='verworfen';
-  try{ await supaSave('neueinstellungen',[n]); }catch(e){ showAlert('⚠ Speichern fehlgeschlagen: '+e.message,'#c81e1e'); }
+  try{ await _neuAktualisieren(id, x=>{ x.status='verworfen'; }); }catch(e){ alert('⚠ Nicht gespeichert:\n\n'+e.message); }
   renderNeuBadge(); renderNeuListe();
 }
 // ── Büro: Ansicht, Gegenzeichnung, PDF ─────────────────────
@@ -15865,7 +15928,7 @@ function ansehenNeu(id){
   h += row('Bank', n.bank); h += row('IBAN', n.iban); h += row('Kontoinhaber', n.kontoinhaber);
   h += row('Lohnabrechnung per E-Mail', n.einwilligung_email===false?'nicht eingewilligt':(n.version===2?'eingewilligt':''));
   h += row('Ausweisfotos', (n.foto_keys||[]).length ? (n.foto_keys.length+' Stück') : '');
-  h += row('Eingereicht von', n.erstellt_von); h += row('Status', n.status);
+  h += row('Eingereicht von', n.erstellt_von); h += row('Status', NEU_STATUS_TXT[n.status]||n.status);
 
   const _fehlt=_neuFehlend(n);
   if(_fehlt.length) h += '<div style="margin-top:12px;padding:9px 11px;border-radius:8px;background:var(--rbg);color:var(--red);font-size:12.5px">⚠ Unvollständig – fehlt: '+_esc(_fehlt.join(', '))+'</div>';
@@ -15899,6 +15962,7 @@ function ansehenNeu(id){
      + '</div><div class="neu-hint" style="margin-top:6px">PDF herunterladen und an die Mail anhängen. Personalakte = mit Ausweisfotos.</div>';
 
   document.getElementById('neuview-body').innerHTML = h;
+  document.getElementById('neuviewbg').style.zIndex='300';
   document.getElementById('neuviewbg').style.display='flex';
   if(document.getElementById('neu-agsig')) setTimeout(()=>_sigInit('neu-agsig'),50);
 }
@@ -15910,14 +15974,16 @@ function _neuWeitereTxt(n){
   return 'Ja – '+(art==='minijob'?'Minijob':art)+(n.weitere_beschaeftigung_ag?', bei '+n.weitere_beschaeftigung_ag:'');
 }
 async function neuGegenzeichnen(id){
-  const n = neueinst.find(x=>x.id===id); if(!n) return;
   if(_sigIsEmpty('neu-agsig')){ alert('Bitte unterschreiben.'); return; }
   const name=(document.getElementById('neu-ag-name').value||'').trim();
   if(!name){ alert('Bitte Namen des Unterzeichners eintragen.'); return; }
-  n.ag_unterschrift=_sigData('neu-agsig'); n.ag_name=name; n.ag_datum=document.getElementById('neu-ag-dat').value;
-  if(document.getElementById('neu-ag-eing')){ n.bef_eingang=document.getElementById('neu-ag-eing').value; n.bef_ab=document.getElementById('neu-ag-ab').value; }
-  try{ await supaSave('neueinstellungen',[n]); showAlert('✅ Gegengezeichnet.'); }
-  catch(e){ showAlert('⚠ Speichern fehlgeschlagen: '+e.message,'#c81e1e'); return; }
+  const sig=_sigData('neu-agsig'), dat=document.getElementById('neu-ag-dat').value;
+  const eing=document.getElementById('neu-ag-eing'), ab=document.getElementById('neu-ag-ab');
+  const eingV=eing?eing.value:null, abV=ab?ab.value:null;
+  try{
+    await _neuAktualisieren(id, n=>{ n.ag_unterschrift=sig; n.ag_name=name; n.ag_datum=dat; if(eingV!==null){ n.bef_eingang=eingV; n.bef_ab=abV; } });
+    showAlert('✅ Gegengezeichnet und gespeichert.');
+  }catch(e){ alert('⚠ Gegenzeichnung NICHT gespeichert:\n\n'+e.message); return; }
   ansehenNeu(id); renderNeuListe();
 }
 function neuMail(id){
@@ -16092,20 +16158,25 @@ function neuBearbeiten(id){
   document.getElementById('neuviewbg').style.display='flex';
 }
 async function neuBearbeitenSpeichern(id){
-  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  const werte={};
+  NEU_EDIT_FELDER.forEach(([k])=>{ const el=document.getElementById('neu-ed-'+k); if(el) werte[k]=(el.value||'').trim(); });
+  const fe=[_neuPruefSvNr(werte.versicherungsnummer), _neuPruefSteuerId(werte.steuerid), _neuPruefIban(werte.iban), _neuPruefEmail(werte.email)].filter(Boolean);
+  if(fe.length){ alert('Bitte prüfen:\n• '+fe.join('\n• ')); return; }
   const am = new Date().toISOString(), von = _currentUser || '';
-  const neu = [];
-  NEU_EDIT_FELDER.forEach(([k,lbl])=>{
-    const el=document.getElementById('neu-ed-'+k); if(!el) return;
-    const alt = k==='ort' ? (n.ort||(!n.plz?n.plzort:'')||'') : (n[k]||'');
-    const wert = (el.value||'').trim();
-    if(wert!==String(alt)){ neu.push({feld:k, label:lbl, alt:String(alt), neu:wert, am, von}); n[k]=wert; }
-  });
-  if(!neu.length){ ansehenNeu(id); return; }
-  n.plzort = [n.plz,n.ort].filter(Boolean).join(' ');
-  n.aenderungen = (n.aenderungen||[]).concat(neu);
-  try{ await supaSave('neueinstellungen',[n]); showAlert('✅ '+neu.length+' Änderung(en) gespeichert.'); }
-  catch(e){ showAlert('⚠ Speichern fehlgeschlagen: '+e.message,'#c81e1e'); return; }
+  let anzahl=0;
+  try{
+    await _neuAktualisieren(id, n=>{
+      const neu=[];
+      NEU_EDIT_FELDER.forEach(([k,lbl])=>{
+        if(!(k in werte)) return;
+        const alt = k==='ort' ? (n.ort||(!n.plz?n.plzort:'')||'') : (n[k]||'');
+        if(werte[k]!==String(alt)){ neu.push({feld:k, label:lbl, alt:String(alt), neu:werte[k], am, von}); n[k]=werte[k]; }
+      });
+      anzahl=neu.length;
+      if(neu.length){ n.plzort=[n.plz,n.ort].filter(Boolean).join(' '); n.aenderungen=(n.aenderungen||[]).concat(neu); }
+    });
+  }catch(e){ alert('⚠ Änderungen NICHT gespeichert:\n\n'+e.message); return; }
+  showAlert(anzahl ? '✅ '+anzahl+' Änderung(en) gespeichert.' : 'Keine Änderungen.');
   ansehenNeu(id); renderNeuListe();
 }
 function _neuAenderTxt(a,pdf){
@@ -16249,8 +16320,8 @@ const NEU_LOGO='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDA
         <div class="fg"><label>Aufenthaltstitel gültig bis</label><input id="n-aufenthalt" type="date"><div class="neu-hint">Nur bei Staatsangehörigkeit außerhalb der EU</div></div>
         <div class="fg"><label>Straße / Haus-Nr.</label><input id="n-strasse" maxlength="80"></div>
         <div class="neu-row31"><div class="fg"><label>PLZ</label><input id="n-plz" inputmode="numeric" maxlength="5"></div><div class="fg"><label>Ort</label><input id="n-ort" maxlength="60"></div></div>
-        <div class="fg"><label>Handy-Nr.</label><input id="n-tel" type="tel" maxlength="30"></div>
-        <div class="fg"><label>E-Mail-Adresse</label><input id="n-email" type="email" maxlength="80"><div class="neu-hint">Hierhin gehen Lohnabrechnungen und die Einstellungsunterlagen</div></div>
+        <div class="fg"><label>Handy-Nr. *</label><input id="n-tel" type="tel" maxlength="30"></div>
+        <div class="fg"><label>E-Mail-Adresse *</label><input id="n-email" type="email" maxlength="80"><div class="neu-hint">Hierhin gehen Lohnabrechnungen und die Einstellungsunterlagen</div></div>
         <div class="fg"><label>Kinder</label><div class="nchipgroup" id="n-kinder-chips"><div class="nchip sel" data-v="nein">Nein</div><div class="nchip" data-v="ja">Ja</div></div><div class="neu-hint" id="n-kinder-hint" style="display:none">Nachweis (z. B. Geburtsurkunde) im Schritt „Ausweise“ fotografieren</div></div>
       </div>
 
