@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v190</title>
+<title>MitarbeiterManager v191</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -10484,7 +10484,7 @@ function genNachweispdf(maId, mk) {
   </style></head><body>
   <h1>Nachweis Krankheitsvertretung – § 8 SGB IV Ausnahme</h1>
   <div class="box">
-    <strong>Arbeitgeber:</strong> ACS All Clean Service<br>
+    <strong>Arbeitgeber:</strong> ACS All Clean Services<br>
     <strong>Abwesender Mitarbeiter:</strong> ${mObj.nachname}, ${mObj.vorname} (PersNr. ${mObj.persnr||'–'})<br>
     <strong>Monat:</strong> ${mnLabel}<br>
     <strong>Zeitjahr (Beschäftigungsjahr):</strong> ${zy.startLabel} – ${zy.endLabel}<br>
@@ -15444,7 +15444,7 @@ let neuStep = 1;
 const NEU_TITEL = ['Person','Beschäftigung','SV, Steuer & Bank','Ausweise','Unterschriften'];
 const NEU_TAGE = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
 const NEU_FOTOS = [['ausweis_v','Personalausweis / Pass – Vorderseite'],['ausweis_r','Personalausweis – Rückseite'],['sv','Sozialversicherungs-ausweis'],['bank','Bankkarte'],['kk','Gesundheitskarte Krankenkasse'],['aufenthalt','Aufenthalts- / Arbeitserlaubnis'],['kinder','Nachweis Kinder']];
-const NEU_FIRMA = 'A.C.S. All Clean Service KG', NEU_FIRMA_ADR = 'Daimlerstr. 6, 63755 Alzenau', NEU_BETRIEBSNR = '71516860';
+const NEU_FIRMA = 'A.C.S. All Clean Services KG', NEU_FIRMA_ADR = 'Daimlerstr. 6, 63755 Alzenau', NEU_BETRIEBSNR = '71516860';
 let _sigPads = {}; // canvasId -> {ctx, drawing, hasInk}
 let _neuFotos = {}; // key -> dataURL (verkleinert)
 
@@ -15471,7 +15471,7 @@ const NEU_T = {
     ['§ 8 Urlaub','Der Urlaubsanspruch richtet sich nach dem Bundesurlaubsgesetz und dem Rahmentarifvertrag für die gewerblichen Beschäftigten in der Gebäudereinigung in der jeweils gültigen Fassung. Bei weniger als fünf Arbeitstagen pro Woche besteht der Anspruch anteilig.'],
     ['§ 9 Schlussbestimmungen','Ist eine Bestimmung dieses Vertrags unwirksam, bleibt der Vertrag im Übrigen wirksam. An die Stelle der unwirksamen Bestimmung tritt eine zulässige Regelung, die ihr am nächsten kommt.']
   ],
-  rv:['Die Firma A.C.S. All Clean Service KG ist nicht verpflichtet {DATIV} Arbeitsangebote zu machen.','{NOMINATIV} ist nicht verpflichtet Beschäftigungsangebote anzunehmen.','Für den Fall, dass ein befristetes Arbeitsverhältnis zustande kommt, wird folgende Vergütung vereinbart: Der Stundenlohn beträgt {LOHN} €.\nDieser richtet sich nach dem Tarifvertrag der Gebäudereiniger und wird bei Tariferhöhung angepasst.']
+  rv:['Die Firma A.C.S. All Clean Services KG ist nicht verpflichtet {DATIV} Arbeitsangebote zu machen.','{NOMINATIV} ist nicht verpflichtet Beschäftigungsangebote anzunehmen.','Für den Fall, dass ein befristetes Arbeitsverhältnis zustande kommt, wird folgende Vergütung vereinbart: Der Stundenlohn beträgt {LOHN} €.\nDieser richtet sich nach dem Tarifvertrag der Gebäudereiniger und wird bei Tariferhöhung angepasst.']
 };
 
 
@@ -15539,6 +15539,7 @@ function _neuDocs(n){
 }
 const _NEU_SIGKEY = {fb:'unterschrift_mitarbeiter', bef:'unterschrift_befreiung', av:'unterschrift_vertrag', rv:'unterschrift_rahmen'};
 
+function _heuteLokal(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function _neuV(id){ const el=document.getElementById(id); return el ? (el.value||'').trim() : ''; }
 
 function openNeu(){
@@ -15548,7 +15549,7 @@ function openNeu(){
   document.querySelectorAll('#neubg select').forEach(el=>{ if(el.id!=='n-ol-admin') el.value=''; });
   document.getElementById('n-lohn').value='15,00';
   document.getElementById('n-sigort').value='Alzenau';
-  document.getElementById('n-sigdat').value=new Date().toISOString().slice(0,10);
+  document.getElementById('n-sigdat').value=_heuteLokal();
   document.getElementById('n-docs').innerHTML='';
   // Chips zurücksetzen
   _neuChipSet('n-anrede-chips','');
@@ -15906,6 +15907,7 @@ async function verwerfenNeu(id){
   renderNeuBadge(); renderNeuListe();
 }
 // ── Büro: Ansicht, Gegenzeichnung, PDF ─────────────────────
+function _neuDarfGegenzeichnen(n){ return !!n && n.status!=='verworfen' && (isAdmin() || (isOL() && n.objektleiter===_currentKuerzel)); }
 function _neuBrauchtAG(n){ return _neuDocs(n).some(x=>x.k!=='fb'); }
 function ansehenNeu(id){
   const n = neueinst.find(x=>x.id===id); if(!n) return;
@@ -15945,10 +15947,11 @@ function ansehenNeu(id){
   if(_neuBrauchtAG(n)){
     if(n.ag_unterschrift){
       h += '<div style="margin-top:12px;font-size:12.5px;color:var(--green);font-weight:600">✍ Gegengezeichnet von '+_esc(n.ag_name||'–')+' am '+_neuDatDe(n.ag_datum)+'</div>';
-    } else if(isAdmin()){
-      const heute=new Date().toISOString().slice(0,10);
+    } else if(_neuDarfGegenzeichnen(n)){
+      const heute=_heuteLokal();
+      const agName = isAdmin() ? (_currentUser||'') : ('i.A. '+(_currentUser||''));
       h += '<div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)"><div style="font-size:13px;font-weight:700;margin-bottom:8px">✍ Gegenzeichnung Arbeitgeber</div>'
-        + '<div class="neu-row2"><div class="fg"><label>Unterzeichner</label><input id="neu-ag-name" value="'+_esc(_currentUser||'')+'"></div><div class="fg"><label>Datum</label><input type="date" id="neu-ag-dat" value="'+heute+'"></div></div>'
+        + '<div class="neu-row2"><div class="fg"><label>Unterzeichner</label><input id="neu-ag-name" value="'+_esc(agName)+'"'+(isAdmin()?'':' readonly style="background:var(--bg2,#f3f4f6)"')+'></div><div class="fg"><label>Datum</label><input type="date" id="neu-ag-dat" value="'+heute+'"></div></div>'
         + (docs.some(x=>x.k==='bef') ? '<div class="neu-row2" style="margin-top:8px"><div class="fg"><label>Befreiungsantrag eingegangen am</label><input type="date" id="neu-ag-eing" value="'+(n.erstellt_am||'').slice(0,10)+'"></div><div class="fg"><label>Befreiung wirkt ab</label><input type="date" id="neu-ag-ab" value="'+(n.eintrittsdatum||'')+'"></div></div>' : '')
         + '<div class="neu-sig-lbl">Unterschrift Arbeitgeber (Vertrag, Befreiung, Rahmenvereinbarung)</div>'
         + '<div class="sigpad-wrap" style="margin-top:6px"><canvas id="neu-agsig"></canvas><div class="sigpad-hint" id="neu-agsig-hint">Hier unterschreiben</div><button type="button" class="sigpad-clear" onclick="sigClear(\'neu-agsig\')">✕ löschen</button></div>'
@@ -15963,8 +15966,9 @@ function ansehenNeu(id){
      + '<button class="btn btn-p" onclick="neuPdf(\''+n.id+'\',false)">📄 PDF für Mitarbeiter</button>'
      + (_neuDarfErgaenzen(n) ? '<button class="btn btn-o" onclick="neuBearbeiten(\''+n.id+'\')">✏ Bearbeiten / Ergänzen</button>' : '')
      + (isAdmin() ? '<button class="btn btn-o" onclick="neuPdf(\''+n.id+'\',true)">🗂 PDF Personalakte</button>' : '')
-     + (n.email ? '<button class="btn btn-o" onclick="neuMail(\''+n.id+'\')">✉ Mail vorbereiten</button>' : '')
-     + '</div><div class="neu-hint" style="margin-top:6px">PDF herunterladen und an die Mail anhängen. Personalakte = mit Ausweisfotos.</div>';
+     + (_neuDarfErgaenzen(n) ? '<button class="btn btn-s" id="neu-send-btn" onclick="neuSenden(\''+n.id+'\')">✉ Unterlagen senden</button>' : '')
+     + '</div><div class="neu-hint" style="margin-top:6px">„Unterlagen senden“ schickt das PDF an den Mitarbeiter'+(n.email?' ('+_esc(n.email)+')':' (keine E-Mail hinterlegt)')+' und die Personalakte an '+NEU_PERSONAL_MAIL+' zur DATEV-Anmeldung. Absender: info@allcleanservice.de.</div>'
+     + ((n.versand||[]).length ? '<div style="margin-top:8px;font-size:12px;color:var(--green)">'+n.versand.map(v=>'✉ gesendet am '+new Date(v.am).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})+' von '+_esc(v.von||'–')+(v.an_ma?' an '+_esc(v.an_ma):' (ohne MA-Mail)')).join('<br>')+'</div>' : '');
 
   document.getElementById('neuview-body').innerHTML = h;
   document.getElementById('neuviewbg').style.zIndex='300';
@@ -15979,17 +15983,58 @@ function _neuWeitereTxt(n){
   return 'Ja – '+(art==='minijob'?'Minijob':art)+(n.weitere_beschaeftigung_ag?', bei '+n.weitere_beschaeftigung_ag:'');
 }
 async function neuGegenzeichnen(id){
+  if(!_neuDarfGegenzeichnen(neueinst.find(x=>x.id===id))){ alert('Keine Berechtigung zur Gegenzeichnung.'); return; }
   if(_sigIsEmpty('neu-agsig')){ alert('Bitte unterschreiben.'); return; }
-  const name=(document.getElementById('neu-ag-name').value||'').trim();
+  const name = isAdmin() ? (document.getElementById('neu-ag-name').value||'').trim() : ('i.A. '+(_currentUser||'')).trim();
   if(!name){ alert('Bitte Namen des Unterzeichners eintragen.'); return; }
   const sig=_sigData('neu-agsig'), dat=document.getElementById('neu-ag-dat').value;
   const eing=document.getElementById('neu-ag-eing'), ab=document.getElementById('neu-ag-ab');
   const eingV=eing?eing.value:null, abV=ab?ab.value:null;
   try{
-    await _neuAktualisieren(id, n=>{ n.ag_unterschrift=sig; n.ag_name=name; n.ag_datum=dat; if(eingV!==null){ n.bef_eingang=eingV; n.bef_ab=abV; } });
+    await _neuAktualisieren(id, n=>{ n.ag_unterschrift=sig; n.ag_name=name; n.ag_datum=dat; n.ag_von=_currentEmail||''; if(eingV!==null){ n.bef_eingang=eingV; n.bef_ab=abV; } });
     showAlert('✅ Gegengezeichnet und gespeichert.');
   }catch(e){ alert('⚠ Gegenzeichnung NICHT gespeichert:\n\n'+e.message); return; }
   ansehenNeu(id); renderNeuListe();
+}
+const NEU_PERSONAL_MAIL = 'richter@allcleanservice.de';
+async function neuSenden(id){
+  const n = neueinst.find(x=>x.id===id); if(!n) return;
+  if(!_neuDarfErgaenzen(n)){ alert('Keine Berechtigung.'); return; }
+  const fehlt=_neuFehlend(n);
+  if(fehlt.length && !confirm('Die Neueinstellung ist unvollständig (fehlt: '+fehlt.join(', ')+').\n\nTrotzdem senden?')) return;
+  if(_neuBrauchtAG(n) && !n.ag_unterschrift){ alert('Bitte zuerst gegenzeichnen (Arbeitgeber-Unterschrift fehlt).'); return; }
+  if(!n.email && !confirm('Für den Mitarbeiter ist keine E-Mail hinterlegt.\n\nNur die Personalakte an '+NEU_PERSONAL_MAIL+' senden?')) return;
+  if((n.versand||[]).length && !confirm('Die Unterlagen wurden schon gesendet. Nochmal senden?')) return;
+  const btn=document.getElementById('neu-send-btn'); if(btn){ btn.disabled=true; btn.textContent='⏳ wird gesendet…'; }
+  try{
+    let fotos={};
+    if((n.foto_keys||[]).length){
+      try{ const r=await supaFetch('neueinstellung_fotos','GET',null,'select=data&id=eq.'+encodeURIComponent(n.id)); fotos=(r[0]&&r[0].data&&r[0].data.fotos)||{}; }catch(_){}
+    }
+    await new Promise((ok,err)=>{ _loadJsPDF(ok); setTimeout(()=>window.jspdf?ok():err(new Error('PDF-Bibliothek nicht geladen (Internet?)')),15000); });
+    const b64 = doc => doc.output('datauristring').split(',')[1];
+    const basis=((n.nachname||'')+'_'+(n.vorname||'')).replace(/[^\wÄÖÜäöüß-]/g,'_');
+    const res=await fetch(SUPA_URL+'/functions/v1/neu-mail',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':'Bearer '+(_token||SUPA_KEY)},
+      body:JSON.stringify({
+        neu_id:n.id,
+        pdf_ma: n.email ? b64(_neuBuildPdf(n,{})) : null,
+        pdf_akte: b64(_neuBuildPdf(n,fotos)),
+        datei_ma:'Einstellungsunterlagen_'+basis+'.pdf',
+        datei_akte:'Personalakte_'+basis+'.pdf',
+        absender_name:_currentUser||_currentEmail||''
+      })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    const j=await res.json();
+    await _neuAktualisieren(id, x=>{ x.versand=(x.versand||[]).concat([{am:new Date().toISOString(), von:_currentUser||_currentEmail||'', an_ma:j.an_ma||'', an_buero:j.an_buero||''}]); });
+    showAlert('✅ Gesendet'+(j.an_ma?' an '+j.an_ma:'')+' + Personalakte an '+(j.an_buero||NEU_PERSONAL_MAIL)+'.');
+    ansehenNeu(id); renderNeuListe();
+  }catch(e){
+    alert('⚠ Versand fehlgeschlagen:\n\n'+e.message+'\n\n(Ist die Supabase-Funktion „neu-mail“ eingerichtet?)');
+    if(btn){ btn.disabled=false; btn.textContent='✉ Unterlagen senden'; }
+  }
 }
 function neuMail(id){
   const n = neueinst.find(x=>x.id===id); if(!n||!n.email) return;
