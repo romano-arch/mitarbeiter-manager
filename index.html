@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v191</title>
+<title>MitarbeiterManager v193</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1186,7 +1186,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v190</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v193</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -15654,7 +15654,7 @@ function _neuGoStep(n){
   });
   document.getElementById('neu-hdr-sub').textContent = 'Schritt '+n+' von '+NEU_TITEL.length+' · '+NEU_TITEL[n-1];
   document.getElementById('neu-btn-back').style.display = n>1 ? '' : 'none';
-  document.getElementById('neu-btn-next').textContent = n===NEU_TITEL.length ? '✓ Absenden ans Büro' : 'Weiter →';
+  document.getElementById('neu-btn-next').textContent = n===NEU_TITEL.length ? _neuAbsendenTxt() : 'Weiter →';
   _neuUpdWarnings();
   if(n===NEU_TITEL.length) _neuBuildDocs();
   document.querySelector('#neubg .neu-body').scrollTop = 0;
@@ -15828,13 +15828,23 @@ async function submitNeu(n){
     renderNeuBadge();
     if(typeof renderNeuListe==='function') renderNeuListe();
     document.getElementById('neubg').style.display='none';
-    showAlert('✅ Angaben gesendet – im Büro sofort sichtbar.'+fotoWarn, fotoWarn?'#c05621':undefined);
+    // v192: Direkt weiter zu Gegenzeichnung + Versand. Frueher endete der Ablauf
+    // hier – Gegenzeichnen und "Unterlagen senden" lagen versteckt unter
+    // Neueinstellung > Ansehen, deshalb wurde der Versand nie ausgeloest.
+    if(_neuDarfErgaenzen(rec)){
+      showAlert('✅ Gespeichert. Jetzt gegenzeichnen und „Unterlagen senden“ klicken.'+fotoWarn, fotoWarn?'#c05621':undefined);
+      ansehenNeu(rec.id);
+    } else {
+      showAlert('✅ Angaben gesendet – im Büro sofort sichtbar.'+fotoWarn, fotoWarn?'#c05621':undefined);
+    }
   }catch(e){
     alert('⚠ Senden fehlgeschlagen: ' + e.message + '\n\nFalls die Tabelle "neueinstellungen" noch nicht angelegt ist, bitte zuerst im Supabase-Projekt das Setup-SQL ausführen.');
   }finally{
-    btn.disabled=false; btn.textContent='✓ Absenden ans Büro';
+    btn.disabled=false; btn.textContent=_neuAbsendenTxt();
   }
 }
+// v192: Admin und OL duerfen ihre Neueinstellung selbst gegenzeichnen und senden
+function _neuAbsendenTxt(){ return (isAdmin()||isOL()) ? '✓ Speichern – weiter zu Gegenzeichnung & Versand' : '✓ Absenden ans Büro'; }
 
 // ── Büro-Liste ───────────────────────────────────────────────
 function renderNeuBadge(){
@@ -15997,6 +16007,24 @@ async function neuGegenzeichnen(id){
   ansehenNeu(id); renderNeuListe();
 }
 const NEU_PERSONAL_MAIL = 'richter@allcleanservice.de';
+// v193: Foto fuer den Versand verkleinern (max. 1000px, JPEG 60 %). Gespeichertes
+// Original bleibt unveraendert. Bei Fehler wird das Original verwendet.
+function _neuFotoKlein(src, max=1000, q=0.6){
+  return new Promise(ok=>{
+    if(!src || typeof src!=='string'){ ok(src); return; }
+    const img=new Image();
+    img.onload=()=>{
+      try{
+        const sc=Math.min(1,max/Math.max(img.width,img.height)), c=document.createElement('canvas');
+        c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        ok(c.toDataURL('image/jpeg',q));
+      }catch(_){ ok(src); }
+    };
+    img.onerror=()=>ok(src);
+    img.src=src;
+  });
+}
 async function neuSenden(id){
   const n = neueinst.find(x=>x.id===id); if(!n) return;
   if(!_neuDarfErgaenzen(n)){ alert('Keine Berechtigung.'); return; }
@@ -16011,6 +16039,10 @@ async function neuSenden(id){
     if((n.foto_keys||[]).length){
       try{ const r=await supaFetch('neueinstellung_fotos','GET',null,'select=data&id=eq.'+encodeURIComponent(n.id)); fotos=(r[0]&&r[0].data&&r[0].data.fotos)||{}; }catch(_){}
     }
+    // v193: Fotos fuer den Mailversand verkleinern. Frueher gingen sie in voller
+    // Groesse (1400px) in die Personalakte -> Anhang zu gross, die Supabase-Funktion
+    // brach mit "CPU Time exceeded" ab (21.10.2026) und Fr. Richter bekam nichts.
+    for(const k of Object.keys(fotos)){ fotos[k]=await _neuFotoKlein(fotos[k]); }
     await new Promise((ok,err)=>{ _loadJsPDF(ok); setTimeout(()=>window.jspdf?ok():err(new Error('PDF-Bibliothek nicht geladen (Internet?)')),15000); });
     const b64 = doc => doc.output('datauristring').split(',')[1];
     const basis=((n.nachname||'')+'_'+(n.vorname||'')).replace(/[^\wÄÖÜäöüß-]/g,'_');
