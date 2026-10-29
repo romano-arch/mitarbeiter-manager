@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v196</title>
+<title>MitarbeiterManager v197</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1186,7 +1186,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v196</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v197</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1915,19 +1915,71 @@ async function supaLoad(table) {
   return rows.map(r => r.data);
 }
 
+// v197: Schutz vor gegenseitigem Ueberschreiben.
+// Alter Fehler: saveAll()/safeSaveAll() (z. B. „Kunde ehemalig“, Reviere speichern)
+// schrieb ALLE Mitarbeiter, Objekte und Kunden aus dem eigenen Speicher zurueck.
+// Hatte ein anderes Fenster/ein anderer Benutzer inzwischen etwas geaendert, wurde
+// das unbemerkt mit dem alten Stand ueberschrieben (29.10.2026: Adressen zurueckgedreht).
+// Jetzt: (1) gespeichert wird nur, was sich seit dem Laden/letzten Speichern wirklich
+// geaendert hat; (2) vorher wird geprueft, ob jemand anderes den Datensatz seitdem
+// gespeichert hat – dann wird er NICHT ueberschrieben und es kommt eine Meldung.
+const _SNAP_TABELLEN = ['mitarbeiter', 'objekte', 'kunden'];
+const _snap = { mitarbeiter:{}, objekte:{}, kunden:{} };   // id -> { json, ts }
+function _snapJson(item){
+  const { _updated_at, _updated_by, ...rest } = item || {};
+  return JSON.stringify(rest);
+}
+// Stand merken, den dieses Fenster gerade im Speicher hat (nach Laden bzw. Speichern)
+function _snapMerken(table, items){
+  if (!_snap[table]) return;
+  (items || []).forEach(it => { if (it && it.id != null) _snap[table][it.id] = { json:_snapJson(it), ts:it._updated_at || null }; });
+}
+function _snapNeu(table, items){ if (_snap[table]) { _snap[table] = {}; _snapMerken(table, items); } }
+
 async function supaSave(table, items) {
   if (!items || !items.length) return;
   // Netzwerk-Check: verhindert stille Datenverluste bei Offline-Zustand
   if (!navigator.onLine) {
     throw new Error('Kein Internet – Daten wurden NICHT gespeichert. Bitte Verbindung prüfen und erneut speichern.');
   }
-  const now = new Date().toISOString();
-  const rows = items.map(item => {
-    item._updated_at = now;
-    item._updated_by = _currentUser || 'unknown';
-    return { id: item.id, data: item };
-  });
-  await supaFetch(table, 'POST', rows);
+  let zuSpeichern = items, konflikte = [];
+  if (_snap[table]) {
+    // (1) nur Geaendertes / Neues
+    zuSpeichern = items.filter(it => { const s = _snap[table][it.id]; return !s || s.json !== _snapJson(it); });
+    if (!zuSpeichern.length) return;
+    // (2) Wurde einer dieser Datensaetze inzwischen von jemand anderem gespeichert?
+    const mitStand = zuSpeichern.filter(it => _snap[table][it.id] && _snap[table][it.id].ts);
+    if (mitStand.length) {
+      const server = {};
+      for (let i = 0; i < mitStand.length; i += 50) {
+        const ids = mitStand.slice(i, i + 50).map(it => '"' + String(it.id).replace(/"/g, '') + '"').join(',');
+        const r = await supaFetch(table, 'GET', null,
+          'select=id,ts:data->>_updated_at,von:data->>_updated_by&id=in.(' + encodeURIComponent(ids) + ')');
+        (r || []).forEach(x => { server[x.id] = x; });
+      }
+      konflikte = mitStand.filter(it => { const sv = server[it.id]; return sv && sv.ts && sv.ts !== _snap[table][it.id].ts; })
+        .map(it => ({ it, von:server[it.id].von || 'jemand', ts:server[it.id].ts }));
+      const kIds = new Set(konflikte.map(k => k.it.id));
+      zuSpeichern = zuSpeichern.filter(it => !kIds.has(it.id));
+    }
+  }
+  if (zuSpeichern.length) {
+    const now = new Date().toISOString();
+    const rows = zuSpeichern.map(item => {
+      item._updated_at = now;
+      item._updated_by = _currentUser || 'unknown';
+      return { id: item.id, data: item };
+    });
+    await supaFetch(table, 'POST', rows);
+    _snapMerken(table, zuSpeichern);
+  }
+  if (konflikte.length) {
+    const nm = it => it.name || ((it.nachname || '') + (it.vorname ? ' ' + it.vorname : '')) || it.id;
+    const wer = [...new Set(konflikte.map(k => k.von))].join(', ');
+    throw new Error(konflikte.length + ' Datensatz/Datensätze NICHT gespeichert, weil ' + wer
+      + ' sie inzwischen geändert hat: ' + konflikte.slice(0, 5).map(k => nm(k.it)).join(', ')
+      + (konflikte.length > 5 ? ' …' : '') + '. Bitte oben „Neu laden“ (Strg+F5) und die Änderung wiederholen.');
+  }
 }
 
 // ── SICHERER SAVE-WRAPPER ─────────────────────────────────
@@ -2158,6 +2210,7 @@ const ClaudeVorschlaege = {
       const o = frisch.find(x => x.id === v.objektId);
       if (!o) { quittung.push({ v, status:'fehler', info:'Objekt nicht gefunden' }); continue; }
       if (String(o[v.feld] || '') !== String(v.alt || '')) { quittung.push({ v, status:'fehler', info:'Wert im MM war inzwischen „'+(o[v.feld]||'')+'“' }); continue; }
+      if (!geaendert[o.id]) _snapMerken('objekte', [o]);   // v197: frisch geladener Stand ist die Grundlage
       o[v.feld] = v.neu;
       geaendert[o.id] = o;
       quittung.push({ v, status:'ok', info:'' });
@@ -2700,6 +2753,8 @@ async function refreshData() {
     ma = maData || [];
     obj = objData || [];
     kunden = kundenData || [];
+    // v197: geladenen Stand merken (Grundlage fuer „nur Geaendertes speichern“)
+    _snapNeu('mitarbeiter', ma); _snapNeu('objekte', obj); _snapNeu('kunden', kunden);
     // kunden[] aus obj[] sichern falls leer
     if (!kunden.length && obj.length) {
       const names = [...new Set(obj.map(o => o.name).filter(Boolean))];
