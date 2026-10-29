@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v195</title>
+<title>MitarbeiterManager v196</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1186,7 +1186,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v195</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v196</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1266,7 +1266,7 @@ main{padding:14px 16px}
   <div id="proto-empty" style="display:none;text-align:center;padding:30px;color:var(--muted);font-size:13px">Noch keine Einträge vorhanden.</div>
 </div>
 
-<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><!-- v195: Kachel fuer die Verbindung zu Claude (das Admin-Tools-Menue aus v194 ist ausgeblendet) --><div class="admin-kachel" onclick="ClaudeExport.verbinden()">🤖<div class="ak-title" id="ak-claude-titel">Claude-Ordner verbinden</div><div class="ak-desc" id="ak-claude-desc">Objekte + Mitarbeiter ohne Lohn für Claude auf K: ablegen</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="openEmailImport()" style="border-color:#a7f3d0">📥<div class="ak-title">E-Mails Import</div><div class="ak-desc">Adressen per Personalnummer einlesen</div></div><div class="admin-kachel" onclick="exportLohnabrechnungsliste()" style="border-color:#a7f3d0">⬇<div class="ak-title">Lohnabrechnungsliste</div><div class="ak-desc">Pers.-Nr. + Name + E-Mail, nur aktive MA</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
+<div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">⚙ Admin-Werkzeuge</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Nur für Admins sichtbar</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="admin-kachel" onclick="exportJSON()">💾<div class="ak-title">Backup</div><div class="ak-desc">JSON-Export aller Daten</div></div><!-- v195: Kachel fuer die Verbindung zu Claude (das Admin-Tools-Menue aus v194 ist ausgeblendet) --><div class="admin-kachel" onclick="ClaudeExport.verbinden()">🤖<div class="ak-title" id="ak-claude-titel">Claude-Ordner verbinden</div><div class="ak-desc" id="ak-claude-desc">Objekte + Mitarbeiter ohne Lohn für Claude auf K: ablegen</div></div><!-- v196: Vorschlaege von Claude ansehen und uebernehmen --><div class="admin-kachel" onclick="ClaudeVorschlaege.oeffnen()">📨<div class="ak-title" id="ak-cv-titel">Vorschläge von Claude</div><div class="ak-desc" id="ak-cv-desc">Kundennummern u. a. prüfen und übernehmen</div></div><div class="admin-kachel" onclick="exportMAExcel()">⬇<div class="ak-title">Excel Export</div><div class="ak-desc">MA-Liste als .xlsx</div></div><div class="admin-kachel" onclick="revBrOeffnen()">🧹<div class="ak-title">Reviere bereinigen</div><div class="ak-desc">Abgemeldete aus Revieren nehmen</div></div><div class="admin-kachel" onclick="exportMAReviereExcel()">📋<div class="ak-title">MA + Reviere</div><div class="ak-desc">Wer arbeitet in welchem Revier</div></div><!-- FIX v93: Import-Kachel entfernt --><div class="admin-kachel" onclick="document.getElementById('ifile').click()">♻<div class="ak-title">Backup wiederherstellen</div><div class="ak-desc">JSON-Backup einspielen</div></div><div class="admin-kachel" onclick="openLohnUpdate()">📊<div class="ak-title">Tariflohn</div><div class="ak-desc">Stundenlöhne aktualisieren</div></div><div class="admin-kachel" onclick="syncAlleMAzuKunden()">🔄<div class="ak-title">Sync MA ↔ Kunden</div><div class="ak-desc">Zuordnungen abgleichen</div></div><div class="admin-kachel" onclick="syncMARevierenZuKunden()" style="border-color:#a7f3d0">📥<div class="ak-title">Stunden MA → Kunden</div><div class="ak-desc">Stunden übertragen</div></div><div class="admin-kachel" onclick="openLohnArtenImport()">📥<div class="ak-title">Lohnarten Import</div><div class="ak-desc">DATEV-Lohnarten einlesen</div></div><div class="admin-kachel" onclick="openEmailImport()" style="border-color:#a7f3d0">📥<div class="ak-title">E-Mails Import</div><div class="ak-desc">Adressen per Personalnummer einlesen</div></div><div class="admin-kachel" onclick="exportLohnabrechnungsliste()" style="border-color:#a7f3d0">⬇<div class="ak-title">Lohnabrechnungsliste</div><div class="ak-desc">Pers.-Nr. + Name + E-Mail, nur aktive MA</div></div><div class="admin-kachel" onclick="exportDatevControlExcel()" style="border-color:#bfdbfe">📊<div class="ak-title">DATEV Kontroll-Liste</div><div class="ak-desc">Lesbare Excel/CSV zur Prüfung</div></div><div class="admin-kachel" onclick="diagnoseHistoryProbleme()" style="border-color:#fca5a5">🔍<div class="ak-title">History-Diagnose</div><div class="ak-desc">History-Konflikte prüfen</div></div><div class="admin-kachel" onclick="openGutschriftReparatur()" style="border-color:#bfdbfe">🔧<div class="ak-title">Objektnamen reparieren</div><div class="ak-desc">Vertretungen auf aktuelle Kunden umstellen</div></div></div></div></div>
 
 
 <!-- FIX v93: Grosses Import-Modal entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) -->
@@ -2057,6 +2057,7 @@ const ClaudeExport = {
         this.geschrieben = new Date().toLocaleTimeString('de-DE', { hour:'2-digit', minute:'2-digit' });
       }
       this.zustand = 'ok'; this.fehler = ''; this.zeit = Date.now();
+      ClaudeVorschlaege.lesen().catch(()=>{});   // v196: offene Vorschlaege zaehlen
     } catch(e) {
       this.zustand = 'fehler'; this.fehler = e.message || String(e);
     } finally {
@@ -2080,6 +2081,113 @@ const ClaudeExport = {
   }
 };
 setInterval(() => { ClaudeExport.schreiben(false).catch(()=>{}); }, 60000);
+
+// ── v196: VORSCHLAEGE VON CLAUDE ───────────────────────────
+// Claude legt im selben Ordner mm-vorschlaege.json ab:
+//   { vorschlaege:[{ id, art:'objekt-feld', objektId, objekt, feld, alt, neu, grund }] }
+// Erlaubte Felder: nur CV_FELDER. Nichts wird ohne Klick gebucht. Vor dem Speichern
+// wird das Objekt frisch aus Supabase geladen, damit keine fremde Aenderung
+// ueberschrieben wird; weicht der aktuelle Wert von „alt“ ab, wird nicht gebucht.
+// Quittung in mm-erledigt.json, damit Claude sieht, was entschieden ist.
+const CV_FELDER = { kundennummer:'Kundennummer', adresse:'Adresse' };
+const ClaudeVorschlaege = {
+  liste:[], erledigt:{},
+  async _datei(name){
+    const h = await ClaudeExport.holen();
+    if (!h || await h.queryPermission({ mode:'readwrite' }) !== 'granted') return null;
+    try { const f = await h.getFileHandle(name); return JSON.parse(await (await f.getFile()).text()); }
+    catch(e) { return null; }
+  },
+  async lesen(){
+    const d = await this._datei('mm-vorschlaege.json');
+    const q = await this._datei('mm-erledigt.json');
+    this.erledigt = {};
+    ((q && q.erledigt) || []).forEach(e => { this.erledigt[e.id] = e; });
+    this.liste = ((d && d.vorschlaege) || []).filter(v => v && v.id && !this.erledigt[v.id]
+      && v.art === 'objekt-feld' && CV_FELDER[v.feld]);
+    this.rendern();
+    return this.liste;
+  },
+  rendern(){
+    const t = document.getElementById('ak-cv-titel'), d = document.getElementById('ak-cv-desc');
+    if (t) t.textContent = 'Vorschläge von Claude' + (this.liste.length ? ' (' + this.liste.length + ')' : '');
+    if (d) d.textContent = this.liste.length ? this.liste.length + ' offen – ansehen und übernehmen' : 'Zurzeit nichts offen';
+  },
+  async oeffnen(){
+    if (!isAdmin()) return;
+    await this.lesen();
+    if (ClaudeExport.zustand !== 'ok') { showAlert('Erst den Claude-Ordner verbinden bzw. freigeben (Kachel daneben).', '#c81e1e'); return; }
+    if (!this.liste.length) { showAlert('Keine offenen Vorschläge von Claude.', '#374151'); return; }
+    let box = document.getElementById('cv-modal');
+    if (box) box.remove();
+    box = document.createElement('div');
+    box.id = 'cv-modal';
+    box.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+    const zeilen = this.liste.map((v,i) => {
+      const o = obj.find(x => x.id === v.objektId);
+      const aktuell = o ? String(o[v.feld] || '') : '';
+      const passt = o && aktuell === String(v.alt || '');
+      return '<tr style="border-top:1px solid var(--border)"><td style="padding:6px"><input type="checkbox" class="cv-cb" data-i="'+i+'" '+(passt?'checked':'disabled')+'></td>'
+        + '<td style="padding:6px">'+esc(v.objekt || (o && o.name) || '?')+'</td>'
+        + '<td style="padding:6px">'+esc(CV_FELDER[v.feld])+'</td>'
+        + '<td style="padding:6px;color:var(--muted)">'+esc(aktuell || '–')+'</td>'
+        + '<td style="padding:6px;font-weight:600">'+esc(v.neu)+'</td>'
+        + '<td style="padding:6px;font-size:11px;color:var(--muted)">'+esc(passt ? (v.grund||'') : (o ? 'Wert im MM hat sich geändert – nicht übernehmen' : 'Objekt nicht gefunden'))+'</td></tr>';
+    }).join('');
+    box.innerHTML = '<div style="background:var(--white);border-radius:12px;max-width:1000px;width:100%;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 10px 40px rgba(0,0,0,.25)">'
+      + '<div style="padding:16px 18px;border-bottom:1px solid var(--border)"><div style="font-size:17px;font-weight:700">📨 Vorschläge von Claude ('+this.liste.length+')</div>'
+      + '<div style="font-size:12.5px;color:var(--muted)">Haken setzen, was übernommen werden soll. Nicht angehakte bleiben offen, „Ablehnen“ entfernt sie dauerhaft.</div></div>'
+      + '<div style="overflow:auto;padding:0 12px"><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase">'
+      + '<th style="padding:6px"><input type="checkbox" id="cv-alle" checked></th><th style="padding:6px">Objekt</th><th style="padding:6px">Feld</th><th style="padding:6px">jetzt</th><th style="padding:6px">neu</th><th style="padding:6px">Hinweis</th></tr></thead><tbody>'+zeilen+'</tbody></table></div>'
+      + '<div style="padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end">'
+      + '<button class="btn btn-s" id="cv-zu" type="button">Schließen</button><button class="btn btn-o" id="cv-ab" type="button">Angehakte ablehnen</button><button class="btn btn-p" id="cv-ok" type="button">Angehakte übernehmen</button></div></div>';
+    document.body.appendChild(box);
+    const gewaehlt = () => [...box.querySelectorAll('.cv-cb:checked')].map(c => this.liste[+c.dataset.i]);
+    box.querySelector('#cv-alle').onchange = e => box.querySelectorAll('.cv-cb:not([disabled])').forEach(c => { c.checked = e.target.checked; });
+    box.querySelector('#cv-zu').onclick = () => box.remove();
+    box.querySelector('#cv-ab').onclick = async () => { const g = gewaehlt(); if (!g.length) return; await this.quittieren(g.map(v => ({ v, status:'abgelehnt', info:'' }))); box.remove(); showAlert(g.length + ' Vorschläge abgelehnt', '#374151'); };
+    box.querySelector('#cv-ok').onclick = async () => { const g = gewaehlt(); if (!g.length) return; box.remove(); await this.uebernehmen(g); };
+  },
+  async uebernehmen(gewaehlt){
+    setSyncState('syncing', 'Übernehme Vorschläge…');
+    let frisch;
+    try { frisch = await supaLoad('objekte'); }
+    catch(e) { _saveFehler(e, 'Vorschläge'); return; }
+    const geaendert = {}, quittung = [];
+    for (const v of gewaehlt) {
+      const o = frisch.find(x => x.id === v.objektId);
+      if (!o) { quittung.push({ v, status:'fehler', info:'Objekt nicht gefunden' }); continue; }
+      if (String(o[v.feld] || '') !== String(v.alt || '')) { quittung.push({ v, status:'fehler', info:'Wert im MM war inzwischen „'+(o[v.feld]||'')+'“' }); continue; }
+      o[v.feld] = v.neu;
+      geaendert[o.id] = o;
+      quittung.push({ v, status:'ok', info:'' });
+    }
+    const liste = Object.values(geaendert);
+    try {
+      if (liste.length) await supaSave('objekte', liste);
+      liste.forEach(n => { const i = obj.findIndex(x => x.id === n.id); if (i >= 0) obj[i] = n; });
+      setSyncState('ok', 'Gespeichert um ' + new Date().toLocaleTimeString('de-DE') + ' · ' + _currentUser);
+    } catch(e) {
+      _saveFehler(e, 'Vorschläge');
+      quittung.forEach(q => { if (q.status === 'ok') { q.status = 'fehler'; q.info = 'Speichern fehlgeschlagen'; } });
+    }
+    await this.quittieren(quittung);
+    const ok = quittung.filter(q => q.status === 'ok').length, f = quittung.length - ok;
+    showAlert(ok + ' übernommen' + (f ? ', ' + f + ' nicht (siehe Hinweis)' : ''), f ? '#d97706' : '#057a55');
+    try { renderObj(); } catch(e) {}
+    ClaudeExport.schreiben(true).catch(()=>{});
+  },
+  async quittieren(eintraege){
+    const h = await ClaudeExport.holen(); if (!h) return;
+    const alt = await this._datei('mm-erledigt.json');
+    const erledigt = (alt && alt.erledigt) || [];
+    const am = new Date().toISOString();
+    eintraege.forEach(q => erledigt.push({ id:q.v.id, status:q.status, info:q.info, objekt:q.v.objekt||'', feld:q.v.feld, neu:q.v.neu, am, von:_currentUser||'' }));
+    const f = await h.getFileHandle('mm-erledigt.json', { create:true });
+    const w = await f.createWritable(); await w.write(JSON.stringify({ quelle:'MM', erledigt }, null, 1)); await w.close();
+    await this.lesen();
+  }
+};
 
 // ── TARIFVERTRAG GEBÄUDEREINIGUNG ─────────────────────────
 // Lohntarifvertrag 2025/2026 · IG BAU / BIV · allgemeinverbindlich
