@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v193</title>
+<title>MitarbeiterManager v194</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1186,7 +1186,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v193</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v194</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1208,7 +1208,7 @@ main{padding:14px 16px}
   <span id="am-label" style="font-size:12px;font-weight:600;color:var(--acc);min-width:90px;text-align:center">–</span>
   <button onclick="amNav(1)" style="background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);padding:0 3px;line-height:1" title="Nächster Monat">▶</button>
 </div>
-<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-o" onclick="openNeu()">📥 Neueinstellung</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-email-imp" onclick="openEmailImport();closeAdminDrop()">📥 E-Mails Import</button><button class="admin-drop-btn" id="btn-lohn-export" onclick="exportLohnabrechnungsliste();closeAdminDrop()" title="Personalnummer, Name, E-Mail aller aktiven MA für den Lohnabrechnungs-Versand">⬇ Lohnabrechnungsliste</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
+<button class="btn btn-p" onclick="openMAM()">+ Mitarbeiter</button><button class="btn btn-o" onclick="openNeu()">📥 Neueinstellung</button><button class="btn btn-s" id="btn-datev" onclick="openDatevCheck()">📋 DATEV Prüfen & Export</button><div style="position:relative;display:inline-block" id="admin-tools-wrap"><button class="btn btn-o" id="btn-admin-tools" onclick="toggleAdminDrop()" style="display:none;align-items:center;gap:5px">⚙ Admin-Tools <span id="admin-drop-arrow" style="font-size:10px;transition:transform .2s">▾</span></button><div id="admin-drop" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:var(--z-alert);min-width:200px;padding:6px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 10px 4px">Admin-Werkzeuge</div><button class="admin-drop-btn" id="btn-backup" onclick="exportJSON();closeAdminDrop()">💾 Backup</button><!-- v194: Verbindung zu Claude --><button class="admin-drop-btn" id="btn-claude" onclick="ClaudeExport.verbinden();closeAdminDrop()" title="MM legt Objekte und Mitarbeiter (ohne Lohn) als Datei für Claude auf K: ab">🤖 Claude-Ordner verbinden</button><button class="admin-drop-btn" id="btn-ma-excel" onclick="exportMAExcel();closeAdminDrop()">⬇ Excel Export</button><button class="admin-drop-btn" id="btn-ma-reviere" onclick="exportMAReviereExcel();closeAdminDrop()" title="Alle Mitarbeiter mit ihren Revieren als Excel">📋 MA + Reviere</button><!-- FIX v93: Import-Button entfernt (CSV/XLSX-Setup-Import nicht mehr gebraucht) --><button class="admin-drop-btn" id="btn-restore" onclick="document.getElementById('ifile').click();closeAdminDrop()" title="JSON-Backup wiederherstellen">♻ Backup wiederherstellen</button><button class="admin-drop-btn" id="btn-lohnupdate" onclick="openLohnUpdate();closeAdminDrop()">📊 Tariflohn</button><button class="admin-drop-btn" id="btn-rev-sync" onclick="syncAlleMAzuKunden();closeAdminDrop()">🔄 Sync MA↔Kunden</button><button class="admin-drop-btn" id="btn-ma-rev-sync" onclick="syncMARevierenZuKunden();closeAdminDrop()" style="background:var(--gbg);color:var(--green);border:1px solid var(--gbd)">📥 Stunden MA→Kunden</button><button class="admin-drop-btn" id="btn-lohnarten-imp" onclick="openLohnArtenImport();closeAdminDrop()">📥 Lohnarten Import</button><button class="admin-drop-btn" id="btn-email-imp" onclick="openEmailImport();closeAdminDrop()">📥 E-Mails Import</button><button class="admin-drop-btn" id="btn-lohn-export" onclick="exportLohnabrechnungsliste();closeAdminDrop()" title="Personalnummer, Name, E-Mail aller aktiven MA für den Lohnabrechnungs-Versand">⬇ Lohnabrechnungsliste</button><button class="admin-drop-btn" id="btn-datev-control" onclick="exportDatevControlExcel();closeAdminDrop()" title="Kontroll-Liste für aktuellen Monat">📊 DATEV Kontroll-Liste</button><button class="admin-drop-btn" id="btn-gut-rep" onclick="openGutschriftReparatur();closeAdminDrop()" title="Veraltete Objektnamen in Vertretungen dem richtigen Kunden zuordnen">🔧 Objektnamen reparieren</button></div></div></div><div class="tw"><table><thead><tr><th onclick="sb('persnr')">Nr</th><th onclick="sb('objektleiter')">OL</th><th onclick="sb('nachname')" style="cursor:pointer">Name</th><th onclick="sb('_objekte')">Objekte</th><th id="th-stunden" onclick="sb('_sg')" style="cursor:pointer">– Soll/Mon</th><th id="th-info">– Info</th><th onclick="sb('status')">Status</th></tr></thead><tbody id="tbody"></tbody></table><div id="tbody-cards" style="display:none"></div><div class="pager"><span id="pinfo" style="color:var(--muted)"></span><div class="pbtns" id="pbtns"></div></div></div>
 </div>
 <div class="sec" id="tab-neueinst"><div class="toolbar"><button class="btn btn-p" onclick="openNeu()">📥 Neue Anfrage ausfüllen</button><div style="font-size:13px;color:var(--muted)">Vor Ort beim Kunden ausgefüllte Einstellungsbögen – landen hier sofort im Büro.</div><label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin-left:auto" id="neu-filter-wrap"><input type="checkbox" id="neu-f-alle" onchange="renderNeuListe()"> auch erledigte anzeigen</label></div><div id="neu-list" style="padding:4px 2px 30px"></div></div>
 <div class="sec" id="tab-objekte"><div class="toolbar"><div class="sw"><svg class="si" width="14" height="14" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="sb" placeholder="Kunde / Objekt suchen..." id="osearch" oninput="renderObj()"></div><select class="fsel" id="of-st" onchange="renderObj()"><option value="aktiv">Aktive Kunden</option><option value="ehemalig">Ehemalige Kunden</option><option value="">Alle</option></select><select class="fsel" id="of-kap" onchange="renderObj()"><option value="">Alle Kapazitäten</option><option value="miss">⚠ Kapazität fehlt</option><option value="over">🔴 Überschritten</option><option value="ok">✅ OK</option></select><button class="btn btn-p" id="btn-neuer-kunde" onclick="openOM()">+ Neuer Kunde</button><div style="font-size:12px;color:var(--muted);margin-left:auto" id="oinfo"></div></div><div id="ogrid"></div></div>
@@ -1960,6 +1960,120 @@ async function supaStateGet(key) {
 async function supaStateSet(key, value) {
   await supaFetch('app_state', 'POST', [{ key, value }]);
 }
+// ── v194: STAND FUER CLAUDE ───────────────────────────────
+// Wie bei AQT: Admin waehlt einmal einen Ordner (K:\KI Programme\MM\claude),
+// das MM legt dort mm-stand.json ab (nach dem Laden und hoechstens 1x/Minute,
+// nur bei Aenderung). Claude liest nur diese Datei, kein Zugriff auf Supabase.
+// Bewusst NICHT enthalten: Lohn, Lohngruppe, Stundenlohn, Monatsdaten/Stunden-
+// abrechnung, DATEV, Bank, Steuer, SV, Telefon/E-Mail der MA, Fotos, Neueinstellungen.
+const ClaudeExport = {
+  DB:'mm-claude', handle:null, geholt:false, zeit:0, laeuft:false,
+  zustand:'', fehler:'', letzter:'', geschrieben:'',
+  _db(){
+    return new Promise((ok, err) => {
+      const r = indexedDB.open(this.DB, 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('h');
+      r.onsuccess = () => ok(r.result);
+      r.onerror = () => err(r.error);
+    });
+  },
+  async holen(){
+    if (this.geholt) return this.handle;
+    this.geholt = true;
+    try {
+      const d = await this._db();
+      this.handle = await new Promise(ok => {
+        const q = d.transaction('h').objectStore('h').get('ordner');
+        q.onsuccess = () => ok(q.result || null); q.onerror = () => ok(null);
+      });
+    } catch(e) { this.handle = null; }
+    return this.handle;
+  },
+  async merken(h){
+    this.handle = h; this.geholt = true; this.letzter = '';
+    try {
+      const d = await this._db();
+      await new Promise(ok => { const t = d.transaction('h','readwrite'); t.objectStore('h').put(h,'ordner'); t.oncomplete = ok; t.onerror = ok; });
+    } catch(e) {}
+  },
+  // Knopf im Admin-Menue: Ordner waehlen bzw. nach Browser-Neustart wieder freigeben
+  async verbinden(){
+    if (!window.showDirectoryPicker) { showAlert('Dieser Browser kann keinen Ordner verbinden – bitte Chrome oder Edge verwenden.', '#c81e1e'); return; }
+    try {
+      const h = await this.holen();
+      if (h && await h.requestPermission({ mode:'readwrite' }) === 'granted') { await this.schreiben(true); }
+      else {
+        const neu = await window.showDirectoryPicker({ id:'mm-claude', mode:'readwrite' });
+        await this.merken(neu);
+        await this.schreiben(true);
+      }
+      if (this.zustand === 'ok') showAlert('Claude-Ordner verbunden – Stand abgelegt um ' + this.geschrieben + ' Uhr', '#057a55');
+      else if (this.fehler) showAlert('Claude-Ordner: ' + this.fehler, '#c81e1e');
+    } catch(e) {
+      if (e && e.name === 'AbortError') return;   // Auswahl abgebrochen
+      showAlert('Claude-Ordner: ' + (e.message || e), '#c81e1e');
+    }
+  },
+  daten(){
+    const zahl = x => Math.round((parseFloat(x)||0)*100)/100;
+    const wt = w => { const r = {}; WT.forEach(t => { const v = parseFloat(w && w[t]); if (v) r[t] = zahl(v); }); return r; };
+    const istTest = k => /^T-/i.test(String(k.kundennummer||'')) || String(k.name||'').includes('TestKunde');
+    const objekte = obj.filter(o => !istTest(o)).map(o => {
+      const rev = (o.reviere||[]).map(r => ({ name:r.name||'', maId:r.maId||'', maName:r.maName||'',
+        wochentage:wt(r.wochentage), wochenstunden:zahl(wSum(r.wochentage||{})) }));
+      return { id:o.id, name:o.name||'', vollname:o.vollname||'', kundennummer:o.kundennummer||'',
+        adresse:o.adresse||'', telefon:o.telefon||'', email:o.email||'', kurzinfo:o.kurzinfo||'',
+        status:isEh(o) ? 'ehemalig' : 'aktiv', objektleiter:o.objektleiter||'',
+        wochenstunden:zahl(rev.length ? rev.reduce((s,r) => s + r.wochenstunden, 0) : wSum(o.wochentage||{})),
+        reviere:rev };
+    });
+    const mitarbeiter = ma.map(m => ({ id:m.id, persnr:m.persnr||'',
+      name:(m.nachname||'') + (m.vorname ? ', ' + m.vorname : ''), status:m.status||'',
+      objektleiter:m.objektleiter||'', eintritt:m.eintrittsdatum||'', austritt:m.austrittsdatum||'',
+      objekte:(m.objekte||[]).filter(x => x.kunde).map(x => ({ kunde:x.kunde, revier:x.revier||'',
+        wochenstunden:zahl(wSum(x.wochentage||{})) })) }));
+    return { quelle:'MM', version:'v194',
+      objektleiter:{ M:'Fr. Grippo', I:'Hr. Incecik', B:'beide' },
+      anzahl:{ objekte:objekte.length, mitarbeiter:mitarbeiter.length },
+      objekte, mitarbeiter };
+  },
+  async schreiben(erzwingen){
+    if (this.laeuft || !isAdmin() || !window.showDirectoryPicker) return;
+    if (!erzwingen && Date.now() - this.zeit < 60000) return;
+    if (!obj.length && !ma.length) return;   // noch nichts geladen
+    this.laeuft = true;
+    try {
+      const h = await this.holen();
+      if (!h) { this.zustand = 'kein-ordner'; return; }
+      if (await h.queryPermission({ mode:'readwrite' }) !== 'granted') { this.zustand = 'freigeben'; return; }
+      const d = this.daten(), inhalt = JSON.stringify(d);
+      if (erzwingen || inhalt !== this.letzter) {
+        d.erstellt = new Date().toISOString();
+        d.von = _currentUser || '';
+        const f = await h.getFileHandle('mm-stand.json', { create:true });
+        const w = await f.createWritable();
+        await w.write(JSON.stringify(d)); await w.close();
+        this.letzter = inhalt;
+        this.geschrieben = new Date().toLocaleTimeString('de-DE', { hour:'2-digit', minute:'2-digit' });
+      }
+      this.zustand = 'ok'; this.fehler = ''; this.zeit = Date.now();
+    } catch(e) {
+      this.zustand = 'fehler'; this.fehler = e.message || String(e);
+    } finally {
+      this.laeuft = false;
+      this.rendern();
+    }
+  },
+  rendern(){
+    const b = document.getElementById('btn-claude'); if (!b) return;
+    b.textContent = this.zustand === 'ok' ? '🤖 Claude: verbunden · ' + this.geschrieben + ' Uhr'
+      : this.zustand === 'freigeben' ? '🤖 Claude-Ordner freigeben'
+      : this.zustand === 'fehler' ? '🤖 Claude: Fehler – neu verbinden'
+      : '🤖 Claude-Ordner verbinden';
+  }
+};
+setInterval(() => { ClaudeExport.schreiben(false).catch(()=>{}); }, 60000);
+
 // ── TARIFVERTRAG GEBÄUDEREINIGUNG ─────────────────────────
 // Lohntarifvertrag 2025/2026 · IG BAU / BIV · allgemeinverbindlich
 const TARIFLOHN = {
@@ -2479,6 +2593,7 @@ async function refreshData() {
     // v172: deleteTestData() hier entfernt - filterte Datensaetze anhand des
     // Namens und speicherte danach automatisch alles zurueck.
     _migrate433();
+    setTimeout(() => { ClaudeExport.schreiben(true).catch(()=>{}); }, 3000);   // v194: Stand fuer Claude
     // v172: _migrateHistoryBis() hier entfernt. Die Routine hatte weder einen
     // Versionsmarker noch eine Pruefung, ob der Altfehler ueberhaupt vorliegt.
     // Sie setzte gueltig_bis bei JEDEM Aufruf um einen weiteren Monat zurueck,
