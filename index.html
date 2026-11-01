@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v198</title>
+<title>MitarbeiterManager v199</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1186,7 +1186,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v198</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v199</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -2018,9 +2018,12 @@ async function supaStateSet(key, value) {
 // nur bei Aenderung). Claude liest nur diese Datei, kein Zugriff auf Supabase.
 // Bewusst NICHT enthalten: Lohn, Lohngruppe, Stundenlohn, Monatsdaten/Stunden-
 // abrechnung, DATEV, Bank, Steuer, SV, Telefon/E-Mail der MA, Fotos, Neueinstellungen.
+// v199: Zweite Datei mm-monate.json mit den Stunden je Mitarbeiter fuer Vormonat
+// und laufenden Monat (siehe monate()). Kein Euro. Urlaub, Krank und unbezahlt
+// sind bewusst zu einer Zahl zusammengefasst, damit kein Krankheitsgrund abfliesst.
 const ClaudeExport = {
   DB:'mm-claude', handle:null, geholt:false, zeit:0, laeuft:false,
-  zustand:'', fehler:'', letzter:'', geschrieben:'',
+  zustand:'', fehler:'', letzter:'', geschrieben:'', letzterMonate:'', zeitMonate:0,
   _db(){
     return new Promise((ok, err) => {
       const r = indexedDB.open(this.DB, 1);
@@ -2089,6 +2092,47 @@ const ClaudeExport = {
       anzahl:{ objekte:objekte.length, mitarbeiter:mitarbeiter.length },
       objekte, mitarbeiter };
   },
+  // v199: Stunden je Mitarbeiter. stunden = maSG, also dieselbe Monatssumme wie im
+  // MM (Regelstunden + Sonderstunden + Vertretung). hinweise folgen der DATEV-Pruefliste.
+  monate(){
+    const zahl = x => Math.round((parseFloat(x)||0)*100)/100;
+    const mk = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+    const jetzt = new Date();
+    const liste = [mk(new Date(jetzt.getFullYear(), jetzt.getMonth()-1, 1)), mk(jetzt)].filter(k => MK.includes(k));
+    const monate = {};
+    liste.forEach(k => {
+      monate[k] = ma.filter(m => !_maAusgeschiedenImMonat(m, k)).map(m => {
+        const md = (m.monats_daten||{})[k] || {};
+        const kalender = Object.entries(m.abwesenheiten||{}).filter(([d,t]) => d.startsWith(k+'-') && t).length;
+        const abwesendTage = Math.max(kalender, (parseInt(md.urlaub)||0) + (parseInt(md.krank)||0));
+        const sonder = (md.sonderstunden||[]).filter(e => e.maId===m.id || !e.maId).reduce((s,e) => s + (parseFloat(e.stunden)||0), 0);
+        const vertretung = _vtGutschriften(m,k).reduce((s,g) => s + (parseFloat(g.manuelleAnpassung ?? g.stunden)||0), 0);
+        const vts = md.vertretungen||[];
+        const stunden = maSG(m,k);
+        const hinweise = [];
+        if (!String(m.persnr||'').trim()) hinweise.push('Personalnummer fehlt');
+        if (!md.zettel_ok && stunden > 0) hinweise.push('Stundenzettel fehlt');
+        if (!m.datev_lohnarten || !m.datev_lohnarten.length) hinweise.push('Keine DATEV-Lohnart');
+        if (abwesendTage > 0 && !vts.length) hinweise.push('Abwesend ohne Vertretung');
+        if (vts.some(v => !v.maId || !v.stunden)) hinweise.push('Vertretung unvollstaendig');
+        if (m.minijob) {
+          const mj = calcMinijobStatus(m);
+          if (!mj.ok || mj.ausnahmeGenutzt) hinweise.push('Minijob-Grenze pruefen');
+        }
+        return { id:m.id, persnr:m.persnr||'', objektleiter:m.objektleiter||'', stunden:zahl(stunden),
+          sonderstunden:zahl(sonder), vertretungsstunden:zahl(vertretung), abwesendTage,
+          vertretungen:vts.length, zettelOk:!!md.zettel_ok, hinweise };
+      });
+    });
+    return { quelle:'MM', version:'v199', monate };
+  },
+  async _ablegen(h, name, d){
+    d.erstellt = new Date().toISOString();
+    d.von = _currentUser || '';
+    const f = await h.getFileHandle(name, { create:true });
+    const w = await f.createWritable();
+    await w.write(JSON.stringify(d)); await w.close();
+  },
   async schreiben(erzwingen){
     if (this.laeuft || !isAdmin() || !window.showDirectoryPicker) return;
     if (!erzwingen && Date.now() - this.zeit < 60000) return;
@@ -2100,16 +2144,18 @@ const ClaudeExport = {
       if (await h.queryPermission({ mode:'readwrite' }) !== 'granted') { this.zustand = 'freigeben'; return; }
       const d = this.daten(), inhalt = JSON.stringify(d);
       if (erzwingen || inhalt !== this.letzter) {
-        d.erstellt = new Date().toISOString();
-        d.von = _currentUser || '';
-        const f = await h.getFileHandle('mm-stand.json', { create:true });
-        const w = await f.createWritable();
-        await w.write(JSON.stringify(d)); await w.close();
+        await this._ablegen(h, 'mm-stand.json', d);
         this.letzter = inhalt;
         this.geschrieben = new Date().toLocaleTimeString('de-DE', { hour:'2-digit', minute:'2-digit' });
       }
       this.zustand = 'ok'; this.fehler = ''; this.zeit = Date.now();
       ClaudeVorschlaege.lesen().catch(()=>{});   // v196: offene Vorschlaege zaehlen
+      // v199: Stunden hoechstens alle 5 Minuten neu rechnen
+      if (erzwingen || Date.now() - this.zeitMonate >= 300000) {
+        const mo = this.monate(), txt = JSON.stringify(mo);
+        if (erzwingen || txt !== this.letzterMonate) { await this._ablegen(h, 'mm-monate.json', mo); this.letzterMonate = txt; }
+        this.zeitMonate = Date.now();
+      }
     } catch(e) {
       this.zustand = 'fehler'; this.fehler = e.message || String(e);
     } finally {
@@ -2129,7 +2175,7 @@ const ClaudeExport = {
     if (t) t.textContent = txt;
     if (d) d.textContent = this.zustand === 'ok' ? 'Zuletzt abgelegt ' + this.geschrieben + ' Uhr'
       : this.zustand === 'fehler' ? this.fehler
-      : 'Objekte + Mitarbeiter ohne Lohn für Claude auf K: ablegen';
+      : 'Objekte, Mitarbeiter und Stunden ohne Euro für Claude auf K: ablegen';
   }
 };
 setInterval(() => { ClaudeExport.schreiben(false).catch(()=>{}); }, 60000);
