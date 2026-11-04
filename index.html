@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v200</title>
+<title>MitarbeiterManager v201</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1186,7 +1186,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v200</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v201</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1536,7 +1536,8 @@ main{padding:14px 16px}
       </tr></thead>
       <tbody id="vt-rows"></tbody>
     </table>
-    <div class="rev-add-row" onclick="vtAddRow()" style="margin-top:6px;font-size:12px;padding:8px">＋ Vertretung hinzufügen</div>
+    <div id="vt-gesperrt-hint" style="display:none;margin-top:6px;font-size:12px;padding:8px 10px;border-radius:8px"></div>
+    <div id="vt-add-row" class="rev-add-row" onclick="vtAddRow()" style="margin-top:6px;font-size:12px;padding:8px">＋ Vertretung hinzufügen</div>
     <div id="vt-gutschrift-hint" style="display:none;margin-top:5px;font-size:11px;color:var(--green);background:var(--gbg);border:1px solid var(--gbd);border-radius:6px;padding:5px 9px">
       ✓ Als DATEV-Posten beim Vertreter (15 €/Std.).
     </div>
@@ -2115,6 +2116,7 @@ const ClaudeExport = {
         if (!m.datev_lohnarten || !m.datev_lohnarten.length) hinweise.push('Keine DATEV-Lohnart');
         if (abwesendTage > 0 && !vts.length) hinweise.push('Abwesend ohne Vertretung');
         if (vts.some(v => !v.maId || !v.stunden)) hinweise.push('Vertretung unvollstaendig');
+        if (vts.some(v => v.maId && parseFloat(v.stunden) > 0) && !_vtHatFehltage(m, k)) hinweise.push('Vertretung ohne Abwesenheit'); // v201
         if (m.minijob) {
           const mj = calcMinijobStatus(m);
           if (!mj.ok || mj.ausnahmeGenutzt) hinweise.push('Minijob-Grenze pruefen');
@@ -7111,6 +7113,7 @@ function ubzToggleTag(i, iso) {
   if(idx>=0) mao[i].unbezahlt_tage_liste.splice(idx,1);
   else mao[i].unbezahlt_tage_liste.push(iso);
   mao[i].unbezahlt_tage_liste.sort();
+  _vtGateRender(); // v201: Vertretung oeffnet sich auch bei unbezahlten Objekttagen
   // Badge + Zähler live aktualisieren ohne renderMAO()
   const n=mao[i].unbezahlt_tage_liste.length;
   const cntEl=document.getElementById('ubz-cnt-'+i);
@@ -11670,6 +11673,7 @@ function renderVtBlock(m, md, _vtMk) {
 function _renderVtTable() {
   const tbody = document.getElementById('vt-rows');
   if (!tbody) return;
+  _vtGateRender();
   if (_vtData.length === 0) {
     tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted2);padding:12px;font-size:12px">Noch keine Vertretung eingetragen.</td></tr>';
     _renderVtBudgetInfo();
@@ -11742,7 +11746,40 @@ function _vtAutoFlush() {
   }, 800);
 }
 
+// v201: Vertretung nur, wenn der MA im Monat fehlt (Kalender Urlaub/Krank/
+// Unbezahlt oder unbezahlte Objekttage). Vorher liess sich ohne Abwesenheit
+// eine Vertretung eintragen ("frei"), der Vertreter bekam die Stunden bezahlt,
+// waehrend der Vertretene voll bezahlt wurde (Dinc 10/2026, 4,5 Std.).
+function _vtHatFehltage(m, mk, objekte) {
+  if (!m || !mk) return false;
+  if (_vtMarkierteFehltage(m, mk).length) return true;
+  return (objekte || m.objekte || []).some(o => (o.unbezahlt_tage_liste || []).some(d => String(d).startsWith(mk + '-')));
+}
+function _vtGateRender() {
+  const m = eMAid ? ma.find(x => x.id === eMAid) : null;
+  const mk = _vtSyncMonat || getAM();
+  const _obj = (m && typeof mao !== 'undefined' && Array.isArray(mao) && mao.length) ? mao : null;
+  const offen = !m || _vtHatFehltage(m, mk, _obj);
+  const add = document.getElementById('vt-add-row');
+  if (add) add.style.display = offen ? '' : 'none';
+  const hint = document.getElementById('vt-gesperrt-hint');
+  if (!hint) return;
+  if (offen) { hint.style.display = 'none'; return; }
+  const alt = (_vtData || []).some(v => v.maId || v.maName);
+  hint.style.cssText = 'display:block;margin-top:6px;font-size:12px;padding:8px 10px;border-radius:8px;'
+    + (alt ? 'background:var(--rbg);border:1px solid var(--red);color:var(--red);font-weight:600'
+           : 'background:var(--s2);border:1px solid var(--border);color:var(--muted)');
+  hint.textContent = alt
+    ? '⚠ Keine Abwesenheit in diesem Monat – diese Vertretung wird trotzdem bezahlt. Bitte löschen oder Urlaub/Krank eintragen.'
+    : 'Erst Urlaub, Krank oder Unbezahlt im Kalender eintragen – dann kann eine Vertretung eingetragen werden.';
+}
 function vtAddRow() {
+  const _m = eMAid ? ma.find(x => x.id === eMAid) : null;
+  const _obj = (typeof mao !== 'undefined' && Array.isArray(mao) && mao.length) ? mao : null;
+  if (_m && !_vtHatFehltage(_m, _vtSyncMonat || getAM(), _obj)) {
+    showAlert('Erst Urlaub, Krank oder Unbezahlt im Kalender eintragen.', '#c81e1e');
+    return;
+  }
   _vtData.push({maId:'', maName:'', objekt:'', stunden:'', grund: _vtAbsTyp});
   _renderVtTable();
   _vtUpdateHint();
@@ -12524,6 +12561,10 @@ function openDatevCheck() {
     if (ueberSoll) { problems.push('Über Soll – kein Grund'); status = 'err'; }
     if (vtFehlend) { problems.push('Abwesend – keine Vertretung eingetragen'); status = 'err'; }
     if (vtUnvollst) { problems.push('Vertretung unvollständig'); status = 'warn'; }
+    // v201: Vertretung ohne Abwesenheit kostet doppelt (Vertreter + voller Lohn)
+    if (vts.some(v => v.maId && parseFloat(v.stunden) > 0) && !_vtHatFehltage(m, getAM())) {
+      problems.push('Vertretung ohne Abwesenheit'); status = 'err';
+    }
 
     // Minijob-Ausnahme-Prüfung
     if (m.minijob) {
