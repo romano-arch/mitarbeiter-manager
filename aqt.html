@@ -2529,7 +2529,7 @@ function appStarten(){
     '<div class="app">'+
       '<aside class="nav"><div class="brand"><div class="logo">Akquise &amp; Vertrieb</div>'+
       '<div class="sub">A.C.S. All Clean Services</div>'+
-      '<div class="sub" style="opacity:.55;font-size:10px;letter-spacing:.06em">STAND 30.10.2026 · B38</div></div>'+
+      '<div class="sub" style="opacity:.55;font-size:10px;letter-spacing:.06em">STAND 05.11.2026 · B41</div></div>'+
       '<div class="nav-list" id="navList"></div>'+
       '<div class="nav-foot" style="display:flex;align-items:center;gap:8px">'+
       '<span class="dot" id="storeDot"></span><span id="storeLabel" style="flex:1">Speicher</span>'+
@@ -3341,6 +3341,11 @@ function naechsterSchritt(v){
     if(zg === "Kunde") return {
       ton:"crit", was:"Aktueller Kunde – keine Kaltakquise",
       warum:"Diese Firma ist Kunde. Für einen neuen Auftrag „Will ein Angebot“ wählen, sonst den Kontakt löschen.",
+      tasten:'<button class="btn" data-act="akq-angebot">Angebot anlegen</button>'
+    };
+    if(fk && keineWerbung(fk)) return {
+      ton:"crit", was:"Ehemaliger Kunde – keine Werbung",
+      warum:"Diese Firma ist gesperrt und wird nicht angesprochen. Meldet sie sich selbst, „Will ein Angebot“ wählen, sonst den Kontakt löschen.",
       tasten:'<button class="btn" data-act="akq-angebot">Angebot anlegen</button>'
     };
     if(zg === "Ehemaliger Kunde" && stufenIndexAkq(v) === 0) return {
@@ -4673,7 +4678,7 @@ function renderFirmen(){
       fseg("liste","Alle Firmen",alle.filter(x=>!x.ablage).length)+
       fseg("anruf","Anrufliste",akq.length,akqUeber)+
     "</div>"+
-    '<span class="tiny muted">Kunden sind für Kaltakquise gesperrt · Ehemalige werden zur Rückgewinnung angesprochen</span></div>';
+    '<span class="tiny muted">Kunden sind für Kaltakquise gesperrt · Ehemalige werden zur Rückgewinnung angesprochen, außer sie sind gesperrt</span></div>';
   if(App.firmenAnsicht === "anruf"){
     $("#content").innerHTML = fkopf + akquiseHTML(akq);
     return;
@@ -4930,6 +4935,10 @@ function fJetzt(x, vorgaenge){
     ton = "ok"; was = "Aktueller Kunde";
     warum = "Keine Kaltakquise. Briefe nur mit eigenem Anlass (z.B. Saisonstart). Für einen weiteren Auftrag ein Angebot anlegen.";
     tasten = '<button class="btn primary" data-act="angebot-fuer-firma">+ Angebot</button>';
+  } else if(!offen.length && keineWerbung(x)){
+    ton = "warn"; was = "Ehemaliger Kunde – keine Werbung";
+    warum = "Gesperrt: keine Briefe, keine Kaltakquise. Meldet sich die Firma selbst, ein Angebot anlegen.";
+    tasten = '<button class="btn primary" data-act="angebot-fuer-firma">+ Angebot</button>';
   } else if(!offen.length && zg === "Ehemaliger Kunde"){
     ton = "warn"; was = "Ehemaliger Kunde – zurückgewinnen";
     warum = "Nicht wie Kaltakquise ansprechen: an die frühere Zusammenarbeit anknüpfen. Kontaktweg: "+
@@ -5054,7 +5063,7 @@ function firmaOeffnen(id){
           '<div class="fx-chips">'+chips+"</div></div>"+
         '<div class="fx-aktionen">'+
           '<button class="btn" data-act="angebot-fuer-firma">+ Angebot</button>'+
-          (zielgruppe(x)==="Kunde" ? "" : '<button class="btn" data-act="vorgang-fuer-firma">+ Akquise-Kontakt</button>')+
+          (zielgruppe(x)==="Kunde" || keineWerbung(x) ? "" : '<button class="btn" data-act="vorgang-fuer-firma">+ Akquise-Kontakt</button>')+
           '<button class="btn ghost" data-act="fmenu" aria-label="Weitere Aktionen" style="font-size:17px;padding:3px 11px">⋯</button>'+
           '<button class="btn ghost" data-close="1">Schliessen</button>'+
           '<div class="fx-menu hidden" id="fMenu">'+
@@ -5785,7 +5794,7 @@ const NfExport = {
     const aktivitaeten = Store.data.aktivitaeten.filter(a => (a.datum||"") >= ab).map(a => ({
       id:a.id, vorgangId:a.vorgangId, typ:a.typ||"", datum:a.datum||"", text:String(a.text||"").slice(0,400) }));
     const vl = (typeof Vorlagen!=="undefined") ? Vorlagen.aktuell() : {};
-    return { quelle:"AQT", stand:"B38", seite:App.seite, anzahlFirmen:Store.data.firmen.length,
+    return { quelle:"AQT", stand:"B41", seite:App.seite, anzahlFirmen:Store.data.firmen.length,
       vorgaenge, firmen, aktivitaeten,
       einstellungen:{ nachfassTage:Number(vl.nachfassTage)||14, ich:vl.ich||"",
         vorlagen:(vl.stufen||[]).map(s => ({ kurz:s.kurz||"", betreff:s.betreff||"" })) },
@@ -5799,7 +5808,7 @@ const NfExport = {
       nv.set(v.firmaId, (nv.get(v.firmaId)||0)+1);
       if(!v.ergebnis) offen.set(v.firmaId, v.id);
     }
-    return { quelle:"AQT", stand:"B38",
+    return { quelle:"AQT", stand:"B41",
       felder:["id","name","branche","gruppe","segment","hauptkategorie","unterkategorie","ablage","kontaktweg","status","quelle",
         "ansprechpartner","briefanrede","telefon","email","website","strasse","plz","ort","gesperrt","notiz","angelegt",
         "vorgaenge","offenerVorgang","briefe","letzterBrief"],
@@ -6185,7 +6194,7 @@ const ClaudeKanal = {
   },
   /* B38: daten = { felder:{name, plz, ort, …}, akquise:{ titel, text, wiedervorlage, anlass } }.
      Gleiche Firma = gleicher Name (dubNorm) und gleiche PLZ oder gleicher Ort.
-     Kunden bekommen nur eine Notiz, keinen Akquise-Kontakt. */
+     Kunden und gesperrte Ehemalige (B40) bekommen nur eine Notiz, keinen Akquise-Kontakt. */
   firmaAnlegen(a){
     const d = a.daten || {}, fe = d.felder || {}, ak = d.akquise || {};
     const name = String(fe.name||"").trim(); if(!name) throw new Error("Firmenname fehlt");
@@ -6202,9 +6211,9 @@ const ClaudeKanal = {
       p.name = name;
       f = neueFirma(p); neu = true;
     }
-    if(zielgruppe(f) === "Kunde"){
+    if(zielgruppe(f) === "Kunde" || keineWerbung(f)){
       f.notiz = [f.notiz, ISO(new Date())+": "+text+" "+marke].filter(Boolean).join("\n");
-      return "„"+f.name+"“ ist Kunde – nur Notiz ergänzt";
+      return "„"+f.name+"“ ist "+(keineWerbung(f) ? "ehemaliger Kunde" : "Kunde")+" – nur Notiz ergänzt";
     }
     let v = Store.data.vorgaenge.find(x => x.firmaId === f.id && !istDeal(x) && !x.ergebnis);
     const vNeu = !v;
@@ -6367,6 +6376,14 @@ function anfrAusfuehren(){
         email:e.email, ansprechpartner:e.ansprechpartner, kontaktweg:"Aktiv",
         status:"Interessent", quelle:"Eingehende Anfrage" });
       neuF++;
+    } else {
+      /* B41: bestehende Firma aus der Anfrage anreichern – nur leere Felder, nichts ueberschreiben */
+      const erg = { ansprechpartner:e.ansprechpartner, telefon:e.telefon, email:e.email,
+        strasse:e.strasse, plz:e.plz, ort:e.ort };
+      let geaendert = [];
+      for(const k in erg) if(!String(f[k]||"").trim() && String(erg[k]||"").trim()){ f[k] = String(erg[k]).trim(); geaendert.push(k); }
+      if(f.status==="Kein Interesse" || f.status==="Verloren") f.status = "Interessent";
+      if(geaendert.length) e.ergaenzt = geaendert;
     }
     const v = neuerVorgang({ firmaId:f.id, titel:e.titel||("Angebot "+f.name), stufe:"neu",
       kontaktweg:"Aktiv", herkunft: zielgruppe(f)==="Kunde" ? "Bestandskunde" : "Eingehende Anfrage",
@@ -6381,6 +6398,7 @@ function anfrAusfuehren(){
     neueAktivitaet({ vorgangId:v.id, typ:"E-Mail", datum:e.anfrageAm||ISO(new Date()),
       text:"Anfrage aus Outlook übernommen"+(e.ansprechpartner?"\nAnsprechpartner: "+e.ansprechpartner:"")+
         (e.email?"\nE-Mail: "+e.email:"")+(e.telefon?"\nTelefon: "+e.telefon:"")+
+        (e.ergaenzt?"\nFirmendaten ergänzt: "+e.ergaenzt.join(", "):"")+
         (e.schluessel?"\n[Anfrage-Import "+e.schluessel+"]":"") });
   }
   Anfr = null;
@@ -6638,6 +6656,9 @@ function zielgruppe(f){
   if(f.quelle==="Altangebot" || f.quelle==="Empfehlung" || f.quelle==="Eingehende Anfrage") return "Interessent (Angebot erhalten)";
   return "Kaltakquise";
 }
+/* B40: Gesperrte Ehemalige (Privatkunden, Einmalauftraege) bekommen keine
+   Werbung, alle anderen Ehemaligen duerfen zurueckgewonnen werden */
+function keineWerbung(f){ return zielgruppe(f) === "Ehemaliger Kunde" && !!f.gesperrt; }
 function empfaengerWahl(liste, titel, weiter){
   const n = new Map(ZIELGRUPPEN.map(z=>[z,0]));
   for(const f of liste) n.set(zielgruppe(f), n.get(zielgruppe(f))+1);
@@ -6688,8 +6709,8 @@ function serienbriefExport2(ids, wahl){
   let liste = ids.length
     ? Store.data.firmen.filter(f=>ids.includes(f.id))
     : firmenGefiltert();
-  const gesperrtRaus = liste.filter(f=>f.gesperrt||f.ablage).length;
-  liste = liste.filter(f=>!f.gesperrt && !f.ablage);
+  const gesperrtRaus = liste.filter(f=>f.gesperrt||f.ablage||keineWerbung(f)).length;
+  liste = liste.filter(f=>!f.gesperrt && !f.ablage && !keineWerbung(f));
   if(!liste.length){ toast("Keine anschreibbaren Firmen (alle gesperrt?)"); return; }
   if(!wahl){
     if(gesperrtRaus) toast(gesperrtRaus+" gesperrte Firma"+(gesperrtRaus>1?"n":"")+" ausgelassen");
@@ -7034,8 +7055,8 @@ function digitalpostExport2(ids, wahl){
   let liste = (ids && ids.length)
     ? Store.data.firmen.filter(f=>ids.includes(f.id))
     : firmenGefiltert();
-  const gesperrtRaus = liste.filter(f=>f.gesperrt||f.ablage).length;
-  liste = liste.filter(f=>!f.gesperrt && !f.ablage);
+  const gesperrtRaus = liste.filter(f=>f.gesperrt||f.ablage||keineWerbung(f)).length;
+  liste = liste.filter(f=>!f.gesperrt && !f.ablage && !keineWerbung(f));
   if(!liste.length){ toast("Keine anschreibbaren Firmen (alle gesperrt?)"); return; }
   if(!wahl){
     if(gesperrtRaus) toast(gesperrtRaus+" gesperrte Firma"+(gesperrtRaus>1?"n":"")+" ausgelassen");
@@ -7754,6 +7775,13 @@ function aktion(act, el){
                       herkunft: zielgruppe(x)==="Kunde" ? "Bestandskunde" : "Eingehende Anfrage" } : {}));
         vorgangOeffnen(v.id);
       };
+      /* B40: Gesperrte Ehemalige bekommen keine Werbung */
+      if(!angebot && keineWerbung(x)){
+        bestaetigen("Ehemaliger Kunde", "„"+(x.name||"")+"“ ist gesperrt und bekommt keine Werbung. "+
+          "Meldet sich die Firma selbst, besser „+ Angebot“ nehmen. Trotzdem einen Akquise-Kontakt anlegen?",
+          "Trotzdem anlegen", anlegen);
+        return;
+      }
       /* B28: Kaltakquise bei einem aktuellen Kunden nur nach Rueckfrage */
       if(!angebot && zielgruppe(x) === "Kunde"){
         bestaetigen("Aktueller Kunde", "„"+(x.name||"")+"“ ist Kunde. Kaltakquise ist hier nicht vorgesehen – "+
