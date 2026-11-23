@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v202</title>
+<title>MitarbeiterManager v205</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -142,6 +142,10 @@ code{font-size:11px;color:var(--muted);background:var(--s1);padding:2px 6px;bord
 .kal-wd-so{color:#DC2626!important;font-weight:700}
 .kal-day.kal-feiertag{background:var(--white);border-color:#DC2626;color:#DC2626;font-weight:700}
 .kal-day.kal-sonntag{background:#DC2626;border-color:#DC2626;color:#fff;font-weight:700}
+/* v203: Schulferien Bayern bei Schul-Kunden gruen */
+.kal-day.kal-ferien{background:#dcfce7;border-color:#86efac;color:#166534}
+/* v205: Urlaub an einem Tag ohne Arbeitsstunden - zaehlt nicht */
+.kal-day.kal-urlaub.kal-urlaub-frei{background:#f3f4f6;border:1px dashed #9ca3af;color:#9ca3af;font-weight:400}
 .kal-day.kal-urlaub{background:var(--bbg);border-color:#93c5fd;color:var(--blue);font-weight:600}
 .kal-day.kal-krank{background:#DC2626;border-color:#991b1b;color:#fff;font-weight:700}
 .kal-day.kal-unbezahlt{background:#e5e7eb;border-color:#9ca3af;color:#374151;font-weight:600}
@@ -1186,7 +1190,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v202</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v205</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -1290,7 +1294,7 @@ main{padding:14px 16px}
   </div>
 </div>
 </main><div class="mbg" id="ombg" role="dialog" aria-modal="true" aria-label="Kunden-Details" style="z-index:var(--z-modal)">
-<div class="modal md"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px"><div class="mtitle" style="margin:0;border:none;padding:0" id="omtitle">🏢 Kunde / Objekt</div><button onclick="closeOMandReturn()" style="background:var(--s1);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0" title="Schließen">✕</button></div><div class="fg2"><div class="fg full"><label>Kurzname *</label><input id="of-n" placeholder="z.B. Conti, Bock..."></div><div class="fg full"><label>Vollständiger Name</label><input id="of-vn" placeholder="Firma GmbH & Co. KG"></div><div class="fg"><label>Kundennummer</label><input id="of-nr" placeholder="12345"></div><div class="fg"><label>Status</label><select id="of-s"><option value="aktiv">Aktiver Kunde</option><option value="ehemalig">Ehemaliger Kunde</option></select></div><div class="fg"><label>Objektleiter (Sichtbarkeit)</label><select id="of-ol"><option value="B">Beide (M + I)</option><option value="M">M – Grippo</option><option value="I">I – Incecik</option></select></div><div class="fg full"><label>Adresse</label><input id="of-adr" placeholder="Straße, PLZ Ort"></div><div class="fg"><label>Telefon</label><input id="of-tel" placeholder="06023..."></div><div class="fg"><label>E-Mail</label><input id="of-em" placeholder="info@..."></div><div class="fg full"><label>Kurzinfo / Notiz</label><textarea id="of-info" rows="2" placeholder="z.B. 2× Woche à 1,75h, Ansprechpartner..."></textarea></div><div class="fg"><label>Kostenstelle (DATEV)</label><input id="of-kst" placeholder="z.B. 100, 200..."></div></div><div class="sh">📅 Wöchentliche Reinigungsstunden</div>
+<div class="modal md"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px"><div class="mtitle" style="margin:0;border:none;padding:0" id="omtitle">🏢 Kunde / Objekt</div><button onclick="closeOMandReturn()" style="background:var(--s1);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0" title="Schließen">✕</button></div><div class="fg2"><div class="fg full"><label>Kurzname *</label><input id="of-n" placeholder="z.B. Conti, Bock..."></div><div class="fg full"><label>Vollständiger Name</label><input id="of-vn" placeholder="Firma GmbH & Co. KG"></div><div class="fg"><label>Kundennummer</label><input id="of-nr" placeholder="12345"></div><div class="fg"><label>Status</label><select id="of-s"><option value="aktiv">Aktiver Kunde</option><option value="ehemalig">Ehemaliger Kunde</option></select></div><div class="fg"><label>Objektleiter (Sichtbarkeit)</label><select id="of-ol"><option value="B">Beide (M + I)</option><option value="M">M – Grippo</option><option value="I">I – Incecik</option></select></div><div class="fg full"><label>Adresse</label><input id="of-adr" placeholder="Straße, PLZ Ort"></div><div class="fg"><label>Telefon</label><input id="of-tel" placeholder="06023..."></div><div class="fg"><label>E-Mail</label><input id="of-em" placeholder="info@..."></div><div class="fg full"><label>Kurzinfo / Notiz</label><textarea id="of-info" rows="2" placeholder="z.B. 2× Woche à 1,75h, Ansprechpartner..."></textarea></div><div class="fg"><label>Kostenstelle (DATEV)</label><input id="of-kst" placeholder="z.B. 100, 200..."></div><div class="fg"><label>Schule (Ferien Bayern)</label><label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text2);margin-top:6px;cursor:pointer"><input type="checkbox" id="of-schule" style="width:auto;margin:0"> Schulferien im Mitarbeiterkalender grün zeigen</label></div></div><div class="sh">📅 Wöchentliche Reinigungsstunden</div>
 <!-- Versteckte Felder für Rückwärtskompatibilität mit saveObj() -->
 <input type="hidden" id="omgw-revier">
 <input type="hidden" id="omgw-ma-inp">
@@ -4805,6 +4809,7 @@ document.getElementById('of-tel').value=o.telefon||'';
 document.getElementById('of-em').value=o.email||'';
 document.getElementById('of-info').value=o.kurzinfo||'';
 document.getElementById('of-kst').value=o.kostenstelle||'';
+{ const _sc=document.getElementById('of-schule'); if(_sc) _sc.checked=!!o.schule; }   // v203
 const omgwRev=document.getElementById('omgw-revier');if(omgwRev)omgwRev.value=o.global_revier||'';
 const bw=document.getElementById('obel-wrap');
 if(id){
@@ -5355,7 +5360,9 @@ const _altObj = eOid ? obj.find(x=>x.id===eOid) : null;   // v175
 const o={id:eOid||'obj_'+Date.now(),_updated_at:(_altObj&&_altObj._updated_at)||undefined,name,vollname:document.getElementById('of-vn').value.trim(),
 kundennummer:document.getElementById('of-nr').value.trim(),adresse:document.getElementById('of-adr').value.trim(),
 telefon:document.getElementById('of-tel').value.trim(),email:document.getElementById('of-em').value.trim(),
-kurzinfo:document.getElementById('of-info').value.trim(),kostenstelle:document.getElementById('of-kst').value.trim(),notiz:'',wochentage:wt,aktiv:st==='aktiv',status:st,objektleiter:(document.getElementById('of-ol')?document.getElementById('of-ol').value:'B')||'B',
+kurzinfo:document.getElementById('of-info').value.trim(),kostenstelle:document.getElementById('of-kst').value.trim(),
+schule:!!(document.getElementById('of-schule')&&document.getElementById('of-schule').checked),   // v203: Schul-Kunde, Ferien Bayern gruen
+notiz:'',wochentage:wt,aktiv:st==='aktiv',status:st,objektleiter:(document.getElementById('of-ol')?document.getElementById('of-ol').value:'B')||'B',
 global_revier:firstRev?firstRev.name||'':'',
 global_maId:firstRev?firstRev.maId||'':'',
 global_maName:firstRev?firstRev.maName||'':'',
@@ -5739,6 +5746,91 @@ function calcUrlaubTage(m) {
   return Math.min(28 + jahre, 30);
 }
 
+// ── v205: Urlaub nur an Arbeitstagen zaehlen ──
+// Alter Fehler: jeder Urlaub-Eintrag im Kalender zaehlte als Urlaubstag, auch an
+// Tagen, an denen der MA gar keine Stunden hat (z.B. ganze Woche markiert, er
+// arbeitet aber nur Mo+Mi -> 5 statt 2 Tage abgezogen). Jetzt zaehlt ein Tag nur,
+// wenn an diesem Wochentag mindestens ein aktives Objekt Stunden hat (Stand des
+// Monats aus objekte_history, Einsatz ab/bis beachtet). Hat der MA gar keine
+// Wochentage hinterlegt, zaehlt wie bisher jeder Tag.
+const _WK_SO = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+function _urlaubZaehlt(m, objListe, iso) {
+  const liste = (objListe || []).filter(o => o && o.kunde);
+  const hatWT = liste.some(o => WT.some(t => (parseFloat((o.wochentage || {})[t]) || 0) > 0));
+  if (!hatWT) return true;
+  const wk = _WK_SO[new Date(iso + 'T00:00:00').getDay()];
+  const mk = String(iso).slice(0, 7);
+  return liste.some(o => {
+    let eff = o;
+    try {
+      const hh = (m && typeof _getHistoryObjekt === 'function') ? _getHistoryObjekt(m, o.kunde, mk, o.revier) : null;
+      if (hh) eff = hh;
+    } catch (e) {}
+    if (!_objAktivAm(eff, iso)) return false;
+    return (parseFloat((eff.wochentage || {})[wk]) || 0) > 0;
+  });
+}
+// Objektliste fuer die Zaehlung: im offenen Modal der bearbeitete Stand (mao)
+function _urlaubObjListe(m) {
+  if (m && typeof eMAid !== 'undefined' && eMAid && m.id === eMAid && Array.isArray(mao) && mao.length) return mao;
+  return (m && m.objekte) || [];
+}
+
+// ── v205: Urlaubsanspruch bei Schul-Kunden automatisch ──
+// Vertrag (Romano 23.11.2026): von den Schulferien sind 6 Wochen bezahlt - das
+// IST der Urlaub -, der Rest ist unbezahlt (ruhendes Arbeitsverhaeltnis). Fuer
+// unbezahlte Zeiten entsteht anteilig kein Urlaub (BAG 19.03.2019, 9 AZR 315/17).
+// Anspruch = Basis x (Arbeitstage im Zeitraum - unbezahlte Ferientage) / Arbeitstage.
+// Unbezahlte Ferientage = Ferientage (ohne Feiertage), an denen der MA NUR bei
+// Schulen Stunden hat, minus 6 Wochen x Schul-Arbeitstage/Woche (anteilig bei
+// Eintritt/Austritt im Jahr). Beispiel 2027, 5-Tage-Woche: 261 AT, 67 Ferientage,
+// 30 bezahlt, 37 unbezahlt -> 28 x 224/261 = 24,03.
+function _schulUrlaubInfo(objListe, jahr, S, E) {
+  const liste = (objListe || []).filter(o => o && o.kunde);
+  const _obj = (typeof obj !== 'undefined' && Array.isArray(obj)) ? obj : [];
+  const istSchule = o => _obj.some(x => x.name === o.kunde && x.schule);
+  if (!liste.some(istSchule)) return null;
+  if (!(S instanceof Date) || !(E instanceof Date) || isNaN(S.getTime()) || isNaN(E.getTime()) || E < S) return null;
+  const sf = getSchulferienBY(jahr);
+  const ft = new Set(getBayernFeiertage(jahr));
+  let at = 0, ferienTage = 0;
+  const d = new Date(S.getFullYear(), S.getMonth(), S.getDate());
+  const ende = new Date(E.getFullYear(), E.getMonth(), E.getDate());
+  for (; d <= ende; d.setDate(d.getDate() + 1)) {
+    const iso = isoLocal(d), wk = _WK_SO[d.getDay()];
+    let schul = false, sonst = false;
+    liste.forEach(o => {
+      if (!_objAktivAm(o, iso)) return;
+      if ((parseFloat((o.wochentage || {})[wk]) || 0) <= 0) return;
+      if (istSchule(o)) schul = true; else sonst = true;
+    });
+    if (!schul && !sonst) continue;
+    at++;
+    if (schul && !sonst && sf.has(iso) && !ft.has(iso)) ferienTage++;
+  }
+  // Wochentage, an denen der MA nur bei Schulen arbeitet -> Grundlage der 6 bezahlten Wochen
+  let schulTageWoche = 0;
+  _WK_SO.forEach(wk => {
+    let schul = false, sonst = false;
+    liste.forEach(o => {
+      if ((parseFloat((o.wochentage || {})[wk]) || 0) <= 0) return;
+      if (istSchule(o)) schul = true; else sonst = true;
+    });
+    if (schul && !sonst) schulTageWoche++;
+  });
+  const tageJahr = Math.round((new Date(jahr, 11, 31) - new Date(jahr, 0, 1)) / 86400000) + 1;
+  const tageZeitraum = Math.round((ende - new Date(S.getFullYear(), S.getMonth(), S.getDate())) / 86400000) + 1;
+  const bezahlt = Math.min(ferienTage, Math.round(6 * schulTageWoche * tageZeitraum / tageJahr * 100) / 100);
+  const unbezahlt = Math.max(0, Math.round((ferienTage - bezahlt) * 100) / 100);
+  const faktor = at > 0 ? (at - unbezahlt) / at : 1;
+  return { at, ferienTage, bezahlt, unbezahlt, faktor, schulTageWoche };
+}
+// Feld "Jahresurlaub" unter 28 und unter der Staffel = von Hand schon gekuerzter Wert
+// -> keine zweite Kuerzung, nur Hinweis mit Vorschlag.
+function _schulFeldIstHandwert(feld, autoBasis) {
+  return feld > 0 && feld < 28 && feld < autoBasis;
+}
+
 // ── FIX v135: Volle Beschaeftigungsmonate (jahrestagsgenau, §4/§5 BUrlG) ──
 // Eintritt 13.07. -> Monate laufen 13.07.-12.08., 13.08.-12.09. usw.
 // Eintritt 01.07. -> Monate = Kalendermonate (01.-31.07. usw.)
@@ -5785,12 +5877,13 @@ function _urlaubUebertrag(m, jahr, teilzeit, sollMonate, ferienMonate, heuteISO)
   // v177: gleiche Rundung wie im Hauptanspruch. Frueher wurde hier noch
   // kaufmaennisch gerundet - der Uebertrag zeigte 17, das Hauptfeld 17,4.
   const anspruchPrev = Math.round(anspruchRoh * 100) / 100;
-  const genPrev = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => d.startsWith(prev + '-') && t === 'urlaub').length;
+  const _ol = _urlaubObjListe(m);   // v205: nur Arbeitstage zaehlen
+  const genPrev = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => d.startsWith(prev + '-') && t === 'urlaub' && _urlaubZaehlt(m, _ol, d)).length;
   const uebertrag = Math.max(0, anspruchPrev - genPrev);
   if (uebertrag <= 0) return null;
   // Verbrauchsreihenfolge: Urlaub Jan-Maerz zaehlt zuerst gegen den Uebertrag
   const stichtag = jahr + '-03-31';
-  const verbrJanMrz = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => t === 'urlaub' && d >= jahr + '-01-01' && d <= stichtag).length;
+  const verbrJanMrz = Object.entries(m.abwesenheiten || {}).filter(([d, t]) => t === 'urlaub' && d >= jahr + '-01-01' && d <= stichtag && _urlaubZaehlt(m, _ol, d)).length;
   const verbraucht = Math.min(uebertrag, verbrJanMrz);
   const rest = uebertrag - verbraucht;
   const verfallen = (heuteISO > stichtag) ? rest : 0;
@@ -5946,8 +6039,20 @@ function calcUrlaubAnspruch() {
   // ── v145: Arbeitstage/Woche monatsgenau gewichten ──
   // Beispiel: Jan–Mai 5 Tage, Jun–Dez 7 Tage -> (5×5 + 7×7)/12 = 6,17 statt 7
   const _atwJahr = _arbTagePWJahr(mao, _mEdit, _jahr, S, E, arbTagePW);
-  const _teilzeitPausch = teilzeit;                  // alt: ein Snapshot fuers ganze Jahr
-  teilzeit = basis / 5 * _atwJahr.schnitt;           // neu: gewichteter Schnitt
+  // v205: Schul-Kunde -> unbezahlte Ferientage kuerzen den Anspruch automatisch
+  const _sfInfo = _schulUrlaubInfo(mao, _jahr, S, E);
+  const _autoBasis = _mEdit ? calcUrlaubTage(_mEdit) : 28;
+  let _schulFaktor = 1, _schulHand = false;
+  if (_sfInfo) {
+    // altes Ferienfeld (ferien_von/bis) nicht zusaetzlich abziehen
+    ferienMonate = 0; sollMonate = 12; schulText = '';
+    if (_sfInfo.unbezahlt > 0) {
+      if (_schulFeldIstHandwert(basis, _autoBasis)) _schulHand = true;
+      else _schulFaktor = _sfInfo.faktor;
+    }
+  }
+  const _teilzeitPausch = teilzeit * _schulFaktor;   // alt: ein Snapshot fuers ganze Jahr
+  teilzeit = basis / 5 * _atwJahr.schnitt * _schulFaktor;   // neu: gewichteter Schnitt (v205: x Schulfaktor)
 
   const _proRataOf = function(tz){
     if (rohMonate <= 0) return 0;
@@ -5986,7 +6091,7 @@ function calcUrlaubAnspruch() {
   // die Sechstagewoche, umgerechnet auf die tatsaechlichen Arbeitstage je Woche.
   // Bei einer Dreitagewoche sind das 12 Tage, nicht 20. Eine feste Untergrenze
   // von 20 waere fuer Teilzeitkraefte deutlich zu hoch.
-  const _gesetzlMinimum = 24 / 6 * (_atwJahr.schnitt || arbTagePW || 5);
+  const _gesetzlMinimum = 24 / 6 * (_atwJahr.schnitt || arbTagePW || 5) * _schulFaktor;   // v205: anteilig bei Schule
 
   // v176: Wartezeit nach § 4 BUrlG - sechs Monate Bestand des
   // Arbeitsverhaeltnisses. Erst danach entsteht der volle Jahresanspruch.
@@ -6063,9 +6168,10 @@ function calcUrlaubAnspruch() {
 
   // FIX v135: genommen (bis heute) / geplant (ab morgen) getrennt zaehlen
   const _mUrl = eMAid ? ma.find(x => x.id === eMAid) : null;
-  let genommen = 0, geplant = 0;
+  let genommen = 0, geplant = 0, _ohneAT = 0;
   if (_mUrl) Object.entries(_mUrl.abwesenheiten || {}).forEach(([d, t]) => {
     if (t === 'urlaub' && d.startsWith(_jahr + '-')) {
+      if (!_urlaubZaehlt(_mUrl, mao, d)) { _ohneAT++; return; }   // v205: kein Arbeitstag
       if (d <= _heuteISO) genommen++; else geplant++;
     }
   });
@@ -6097,6 +6203,17 @@ function calcUrlaubAnspruch() {
         : '';
       hh += `<div style="font-size:11.5px;color:var(--text2);margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed #bfdbfe;line-height:1.6" title="Wechselt die Zahl der Arbeitstage/Woche unterjährig, wird jeder Zeitabschnitt einzeln bewertet (BAG). Datenquelle: Stunden-Verlauf + Einsatz ab/bis.">📅 <strong>Arbeitstage/Woche im Jahr:</strong> ${_atwJahr.txt} → Ø <strong>${Math.round(_atwJahr.schnitt*100)/100}</strong> · zeitabschnittsweise gerechnet${_abw}</div>`;
     }
+    // v205: Schul-Kunde – Rechenweg zeigen
+    if (_sfInfo) {
+      const _r2 = x => Math.round(x * 100) / 100;
+      const _weg = `🏫 <strong>Schule:</strong> ${_sfInfo.ferienTage} Ferientage, davon ${_r2(_sfInfo.bezahlt)} bezahlt (6 Wochen), <strong>${_r2(_sfInfo.unbezahlt)} unbezahlt</strong> → Anspruch × (${_sfInfo.at} − ${_r2(_sfInfo.unbezahlt)}) / ${_sfInfo.at} = × ${_r2(_sfInfo.faktor)}`;
+      if (_schulHand) {
+        const _vorschlag = _rndBUrlG(_proRataOf(_autoBasis / 5 * _atwJahr.schnitt * _sfInfo.faktor));
+        hh += `<div style="font-size:11.5px;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:5px 8px;margin-bottom:7px;line-height:1.6">${_weg}<br>Im Feld „Jahresurlaub" steht der Handwert <strong>${basis}</strong> – automatisch wären es <strong>${_vorschlag} Tage</strong> (Basis ${_autoBasis}). <button type="button" onclick="document.getElementById('f-urltage').value=${_autoBasis};calcUrlaubAnspruch()" style="margin-left:4px;background:var(--white);border:1px solid #d97706;color:#92400e;border-radius:6px;padding:1px 8px;font-size:11px;cursor:pointer;font-family:inherit">Automatik übernehmen</button></div>`;
+      } else {
+        hh += `<div style="font-size:11.5px;color:#166534;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:5px 8px;margin-bottom:7px;line-height:1.6">${_weg}${_sfInfo.unbezahlt > 0 ? '' : ' (keine unbezahlten Ferientage)'}</div>`;
+      }
+    }
     hh += `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--text2)">`;
     hh += `<span><span style="${mono};color:var(--acc)">${ergebnis}</span> Anspruch</span>`;
     if (erdient !== null && erdient < ergebnis) {
@@ -6109,6 +6226,10 @@ function calcUrlaubAnspruch() {
     hh += `<span style="color:var(--muted)">=</span><span><span style="${mono};color:${rest < 0 ? 'var(--red)' : 'var(--green)'}">${rest}</span> Rest</span></div>`;
     if (erdient !== null && (genommen + geplant) > erdient) {
       hh += `<div style="margin-top:7px;font-size:11px;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:4px 8px">⚠ ${genommen + geplant - erdient} Tag(e) mehr eingetragen als bisher erdient (${erdient} von ${ergebnis})</div>`;
+    }
+    // v205: Urlaub an Tagen ohne Arbeitsstunden zaehlt nicht
+    if (_ohneAT > 0) {
+      hh += `<div style="margin-top:7px;font-size:11px;color:var(--muted);background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:4px 8px">ℹ ${_ohneAT} Urlaubstag${_ohneAT===1?'':'e'} an Tagen ohne Arbeitsstunden – zählen nicht (im Kalender grau)</div>`;
     }
     // FIX v139: Doppel-Kuerzungs-Warnung. Das Feld "Jahresurlaub" erwartet die
     // 5-Tage-Basis (28-30). Steht dort ein bereits Teilzeit-gekuerzter Wert
@@ -6648,6 +6769,7 @@ function renderUnbezahltBlock(o, i) {
     <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
       <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)"><div style="width:9px;height:9px;border-radius:3px;background:var(--bbg);border:1px solid #93c5fd"></div> angeklickt = kein Lohn</div>
       <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)"><div style="width:9px;height:9px;border-radius:3px;background:var(--white);border:1px solid var(--rbd)"></div> Feiertag (gesperrt)</div>
+      ${(obj||[]).some(x=>x.name===o.kunde&&x.schule)?`<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)"><div style="width:9px;height:9px;border-radius:3px;background:#dcfce7;border:1px solid #86efac"></div> Schulferien Bayern</div>`:''}
     </div>
     <div style="margin-top:8px">
       <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:3px">Grund</div>
@@ -7041,6 +7163,9 @@ function _ubzRenderKal(i) {
   container.innerHTML = '';
   const liste = new Set(mao[i]?.unbezahlt_tage_liste || []);
   const feiertage = _ubzGetFeiertage(y);
+  // v203: Schulferien gruen, wenn dieses Objekt ein Schul-Kunde ist
+  const _sfKal = getSchulferienBY(y);
+  const _istSchule = !!(mao[i] && mao[i].kunde && (obj||[]).some(x => x.name === mao[i].kunde && x.schule));
   const erster = new Date(y, m, 1).getDay();
   const letzter = new Date(y, m+1, 0).getDate();
   const offset = erster === 0 ? 6 : erster - 1;
@@ -7064,6 +7189,11 @@ function _ubzRenderKal(i) {
       el.style.cssText=base+'background:var(--white);border-color:var(--rbd);color:var(--red);font-weight:700;cursor:default';
     } else if(istAus){
       el.style.cssText=base+'background:var(--bbg);border-color:#93c5fd;color:var(--acc);font-weight:700';
+      el.onclick=()=>ubzToggleTag(i,iso);
+    } else if(_istSchule && _sfKal.has(iso)){
+      // v203: Schulferientag (noch nicht als unbezahlt markiert)
+      el.style.cssText=base+'background:#dcfce7;border-color:#86efac;color:#166534';
+      el.title='Schulferien: '+_sfKal.get(iso);
       el.onclick=()=>ubzToggleTag(i,iso);
     } else if(istSo){
       el.style.cssText=base+'background:transparent;color:var(--muted2)';
@@ -7114,6 +7244,8 @@ function ubzToggleTag(i, iso) {
   else mao[i].unbezahlt_tage_liste.push(iso);
   mao[i].unbezahlt_tage_liste.sort();
   _vtGateRender(); // v201: Vertretung oeffnet sich auch bei unbezahlten Objekttagen
+  // v204: Budget "Zu vertreten je Revier" und max-Hinweise sofort neu
+  if (typeof _renderVtTable === 'function') { _renderVtTable(); _vtUpdateHint(); }
   // Badge + Zähler live aktualisieren ohne renderMAO()
   const n=mao[i].unbezahlt_tage_liste.length;
   const cntEl=document.getElementById('ubz-cnt-'+i);
@@ -7661,9 +7793,10 @@ function kalSyncMonthFields(m, y, mo){
 const ab=m.abwesenheiten||{};
 const prefix=`${y}-${String(mo+1).padStart(2,'0')}-`;
 let u=0,k=0,ubz=0;
+const _olK=_urlaubObjListe(m);   // v205: Urlaub nur an Arbeitstagen
 Object.entries(ab).forEach(([key,val])=>{
 if(key.startsWith(prefix)){
-if(val==='urlaub')u++;
+if(val==='urlaub'){ if(_urlaubZaehlt(m,_olK,key))u++; }
 else if(val==='krank')k++;
 else if(val==='unbezahlt')ubz++;
 }
@@ -7717,10 +7850,17 @@ html+=`<div class="kal-day kal-other">${daysInPrev-i}</div>`;
 let u=0,k=0,ub=0;
 // KAL-3: Feiertage ermitteln und markieren
 const _kalFT = new Set(getBayernFeiertage(kalYear));
+// v203: Schulferien Bayern gruen, wenn der MA an dem Tag bei einem Schul-Kunden eingesetzt ist
+const _kalSF = getSchulferienBY(kalYear);
+let _sfTage=0;
+// v205: Urlaub an Tagen ohne Arbeitsstunden grau, zaehlt nicht
+const _kalM=(typeof eMAid!=='undefined'&&eMAid)?ma.find(x=>x.id===eMAid):null;
+let _uFrei=0;
 for(let d=1;d<=daysInMonth;d++){
 const key=kalDayKey(kalYear,kalMonth,d);
 const typ=ab[key]||'';
-if(typ==='urlaub')u++;
+const _uZ=typ==='urlaub'?_urlaubZaehlt(_kalM,mao,key):true;
+if(typ==='urlaub'){ if(_uZ)u++; else _uFrei++; }
 if(typ==='krank')k++;
 if(typ==='unbezahlt')ub++;
 const isToday=today.getFullYear()===kalYear&&today.getMonth()===kalMonth&&today.getDate()===d;
@@ -7728,13 +7868,19 @@ const isFeiertag=_kalFT.has(key);
 const dayOfWeek=new Date(kalYear,kalMonth,d).getDay();
 const isSonntag=dayOfWeek===0;
 let cls='kal-day';
-if(typ==='urlaub')cls+=' kal-urlaub';
+if(typ==='urlaub')cls+=' kal-urlaub'+(_uZ?'':' kal-urlaub-frei');
 else if(typ==='krank')cls+=' kal-krank';
 else if(typ==='unbezahlt')cls+=' kal-unbezahlt';
 else if(isToday)cls+=' kal-today';
 if(isFeiertag)cls+=' kal-feiertag';
 else if(isSonntag)cls+=' kal-sonntag';
-const ftTitle=isFeiertag?` title="Feiertag"`:isSonntag?` title="Sonntag"`:'';
+// v203: Schulferien (nur Schul-Kunden). Urlaub/Krank/Unbezahlt behalten ihre Farbe.
+const _sfName=(_kalSF.has(key)&&_maSchuleAmTag(mao,key))?_kalSF.get(key):'';
+if(_sfName && !isFeiertag && !isSonntag){
+  if(dayOfWeek>=1&&dayOfWeek<=5)_sfTage++;
+  if(!typ)cls+=' kal-ferien';
+}
+const ftTitle=!_uZ?` title="Kein Arbeitstag – Urlaub zählt nicht"`:isFeiertag?` title="Feiertag"`:isSonntag?` title="Sonntag"`:_sfName?` title="Schulferien: ${_sfName}"`:'';
 const label=typ==='urlaub'?`${d}<br><span style="font-size:8px">U</span>`:typ==='krank'?`${d}<br><span style="font-size:8px">K</span>`:typ==='unbezahlt'?`${d}<br><span style="font-size:8px">UB</span>`:`${d}`;
 html+=`<div class="${cls}"${ftTitle} onclick="kalClick(${kalYear},${kalMonth},${d})">${label}</div>`;
 }
@@ -7744,9 +7890,11 @@ for(let d=1;d<=rem;d++)html+=`<div class="kal-day kal-other">${d}</div>`;
 document.getElementById('kal-grid').innerHTML=html;
 const parts=[];
 if(u)parts.push(`🏖 ${u} Urlaubstag${u!==1?'e':''}`);
+if(_uFrei)parts.push(`${_uFrei} Urlaub ohne Arbeitstag (zählt nicht)`);   // v205
 if(k)parts.push(`🤒 ${k} Kranktag${k!==1?'e':''}`);
 if(ub)parts.push(`🚫 ${ub} unbezahlt`);
-document.getElementById('kal-summary').textContent=parts.length?parts.join(' · '):'Keine Abwesenheiten eingetragen.';
+document.getElementById('kal-summary').textContent=(parts.length?parts.join(' · '):'Keine Abwesenheiten eingetragen.')
+  +(_sfTage?` · 🟩 ${_sfTage} Schulferientag${_sfTage!==1?'e':''} Mo–Fr (grün)`:'');   // v203
 }
 function closeMAM(){
   // Abbrechen: KEINE Daten schreiben – weder Stammdaten noch Monatsdaten.
@@ -8798,12 +8946,12 @@ function _urlaubVerfallListe(jahr) {
     // Anspruch des Vorjahres: gespeicherter Wert oder Staffelung
     const basis = parseFloat(m.urlaub_jahres) > 0 ? parseFloat(m.urlaub_jahres) : calcUrlaubTage(m);
     const genommenVJ = Object.entries(m.abwesenheiten||{})
-      .filter(([d,t]) => t === 'urlaub' && d.startsWith(vj + '-')).length;
+      .filter(([d,t]) => t === 'urlaub' && d.startsWith(vj + '-') && _urlaubZaehlt(m, m.objekte, d)).length;   // v205
     const uebertrag = Math.round(Math.max(0, basis - genommenVJ) * 100) / 100;
     if (uebertrag <= 0) return;
     // Verbrauch Jan-Maerz zaehlt zuerst gegen den Uebertrag
     const verbraucht = Object.entries(m.abwesenheiten||{})
-      .filter(([d,t]) => t === 'urlaub' && d >= jahr + '-01-01' && d <= stichtag).length;
+      .filter(([d,t]) => t === 'urlaub' && d >= jahr + '-01-01' && d <= stichtag && _urlaubZaehlt(m, m.objekte, d)).length;   // v205
     const rest = Math.round(Math.max(0, uebertrag - verbraucht) * 100) / 100;
     if (rest <= 0) return;
     out.push({ id: m.id, name: (m.nachname||'') + ' ' + (m.vorname||''),
@@ -10516,7 +10664,7 @@ function _urlaubCheckMA(m, jahr){
   }
   let ferienMonate = 0;
   mrg.forEach(([v,b]) => { ferienMonate += (b - v) / (1000*60*60*24*30.44); });
-  const sollMonate = ferienMonate > 0 ? Math.max(0, 12 - ferienMonate) : 12;
+  let sollMonate = ferienMonate > 0 ? Math.max(0, 12 - ferienMonate) : 12;   // v205: let (Schule setzt zurueck)
   // Beschaeftigungszeitraum im Jahr (Fallback Eintritt: fruehestes einsatz_ab)
   let S = new Date(jahr, 0, 1), E = new Date(jahr, 11, 31);
   let einEff = m.eintrittsdatum || '';
@@ -10530,8 +10678,15 @@ function _urlaubCheckMA(m, jahr){
   const rohMonate = _volleMonate(S, E);
   // v145: identische Gewichtung wie calcUrlaubAnspruch()
   const atwJahr = _arbTagePWJahr(objekte, m, jahr, S, E, arbTagePW);
-  const teilzeitPausch = teilzeit;
-  teilzeit = basis / 5 * atwJahr.schnitt;
+  // v205: gleiche Schul-Kuerzung wie calcUrlaubAnspruch()
+  const sfInfo = _schulUrlaubInfo(objekte, jahr, S, E);
+  let schulFaktor = 1;
+  if (sfInfo) {
+    ferienMonate = 0; sollMonate = 12;
+    if (sfInfo.unbezahlt > 0 && !_schulFeldIstHandwert(basis, auto)) schulFaktor = sfInfo.faktor;
+  }
+  const teilzeitPausch = teilzeit * schulFaktor;
+  teilzeit = basis / 5 * atwJahr.schnitt * schulFaktor;
   const _pr = function(tz){
     if (rohMonate <= 0) return 0;
     if (rohMonate < 12) {
@@ -10549,13 +10704,15 @@ function _urlaubCheckMA(m, jahr){
   const heuteISO = h.getFullYear() + '-' + String(h.getMonth()+1).padStart(2,'0') + '-' + String(h.getDate()).padStart(2,'0');
   let genommen = 0, geplant = 0;
   Object.entries(m.abwesenheiten || {}).forEach(([d, t]) => {
-    if (t === 'urlaub' && d.startsWith(jahr + '-')) { if (d <= heuteISO) genommen++; else geplant++; }
+    if (t === 'urlaub' && d.startsWith(jahr + '-') && _urlaubZaehlt(m, objekte, d)) { if (d <= heuteISO) genommen++; else geplant++; }   // v205
   });
   // Flags
   const flags = [];
   if (feld > 0 && feld < 20) flags.push({typ:'rot', txt:'Feld ' + feld + ' < 20 → vermutlich bereits Teilzeit-gekürzt → Doppel-Kürzung! Feld erwartet 5-Tage-Basis (28–30).'});
   if (!tageGesetzt && objekte.some(o => o.kunde)) flags.push({typ:'gelb', txt:'Keine Wochentage hinterlegt → App nimmt 5 Tage/Woche an.'});
   if (feld >= 20 && feld <= 60 && feld !== auto) flags.push({typ:'info', txt:'Basis manuell ' + feld + ' (Staffel wäre ' + auto + ').'});
+  // v205: Schule mit Handwert -> Hinweis auf Automatik
+  if (sfInfo && sfInfo.unbezahlt > 0 && _schulFeldIstHandwert(basis, auto)) flags.push({typ:'gelb', txt:'Schule: Handwert ' + basis + ' im Feld – automatisch wäre Basis ' + auto + ' × ' + (Math.round(sfInfo.faktor*100)/100) + ' (' + (Math.round(sfInfo.unbezahlt*100)/100) + ' unbezahlte Ferientage).'});
   // v145: unterjaehriger Wechsel der Arbeitstage/Woche
   if (atwJahr.wechsel) {
     const _d = anspruchPausch - anspruch;
@@ -11841,18 +11998,28 @@ function _vtBudgetMap(m, mk) {
   const out = {};
   if (!m) return out;
   const fehltage = _vtMarkierteFehltage(m, mk);
-  if (!fehltage.length) return out;
   // v146 FIX: Solange das MA-Modal offen ist, gilt der BEARBEITETE Stand (mao).
   // Vorher wurde immer m.objekte gelesen -> frisch geaenderte/neue Objekte
   // hatten Budget 0 und die Stunden wurden beim Objekt-Klick nicht uebernommen.
   const _quelle = (eMAid && m.id === eMAid && typeof mao !== 'undefined' && Array.isArray(mao) && mao.length)
     ? mao : (m.objekte || []);
+  // v204: Unbezahlte Tage, die nur an EINEM Objekt angeklickt sind (Objekt-Kalender
+  // "Unbezahlte Abwesenheit"), geben jetzt auch die Stunden dieses Objekts fuer die
+  // Vertretung frei. Vorher zaehlte nur der Abwesenheitskalender des MA - wer an
+  // einem Tag 2 von 3 Objekten gemacht hatte, bekam fuer das dritte kein Budget
+  // (Wunsch Romano 23.11.2026).
+  const _prefix = mk + '-';
+  const _objUnbez = o => (o.unbezahlt_tage_liste || []).map(String).filter(d => d.startsWith(_prefix));
+  if (!fehltage.length && !_quelle.some(o => _objUnbez(o).length)) return out;
+  const _fSet = new Set(fehltage);
   _quelle.forEach(o => {
     const k = o.kunde || '';
     if (!k) return;
     const aktivSet = _vt14AktivSet(o, mk);
     let sum = 0;
     fehltage.forEach(iso => { sum += _vtTagStdEntry(o, iso, aktivSet); });
+    // v204: nur dieses Objekt, Tage aus dem MA-Kalender nicht doppelt zaehlen
+    _objUnbez(o).forEach(iso => { if (!_fSet.has(iso)) sum += _vtTagStdEntry(o, iso, aktivSet); });
     out[k] = Math.round(((out[k] || 0) + sum) * 100) / 100;
   });
   return out;
@@ -12849,6 +13016,86 @@ function saveEmailImport() {
   safeSaveAll();
   closeEmailImport();
   showAlert(`${saved} Mitarbeiter mit E-Mail gespeichert ✓`);
+}
+
+// ── v203: SCHULFERIEN BAYERN ──────────────────────────────
+// Quelle: Ferienordnung KM Bayern, BayMBl. 2022 Nr. 747 (Schuljahre 2024/25 bis 2029/30),
+// abgeglichen mit km.bayern.de am 23.11.2026. Erster und letzter Ferientag.
+// Fuer Schuljahre ab 2030/31 hier neue Zeilen anhaengen, sobald das KM sie veroeffentlicht.
+// Wunsch Romano 23.11.2026: bei Schul-Kunden die Ferien im MA-Kalender gruen zeigen,
+// damit man unbezahlte Ferienzeiten im Voraus sieht.
+const SCHULFERIEN_BY = [
+  ['2024-07-29','2024-09-09','Sommerferien'],
+  ['2024-10-28','2024-10-31','Allerheiligen'],
+  ['2024-12-23','2025-01-03','Weihnachtsferien'],
+  ['2025-03-03','2025-03-07','Frühjahrsferien'],
+  ['2025-04-14','2025-04-25','Osterferien'],
+  ['2025-06-10','2025-06-20','Pfingstferien'],
+  ['2025-08-01','2025-09-15','Sommerferien'],
+  ['2025-11-03','2025-11-07','Allerheiligen'],
+  ['2025-12-22','2026-01-05','Weihnachtsferien'],
+  ['2026-02-16','2026-02-20','Frühjahrsferien'],
+  ['2026-03-30','2026-04-10','Osterferien'],
+  ['2026-05-26','2026-06-05','Pfingstferien'],
+  ['2026-08-03','2026-09-14','Sommerferien'],
+  ['2026-11-02','2026-11-06','Allerheiligen'],
+  ['2026-12-24','2027-01-08','Weihnachtsferien'],
+  ['2027-02-08','2027-02-12','Frühjahrsferien'],
+  ['2027-03-22','2027-04-02','Osterferien'],
+  ['2027-05-18','2027-05-28','Pfingstferien'],
+  ['2027-08-02','2027-09-13','Sommerferien'],
+  ['2027-11-02','2027-11-05','Allerheiligen'],
+  ['2027-12-24','2028-01-07','Weihnachtsferien'],
+  ['2028-02-28','2028-03-03','Frühjahrsferien'],
+  ['2028-04-10','2028-04-21','Osterferien'],
+  ['2028-06-06','2028-06-16','Pfingstferien'],
+  ['2028-07-31','2028-09-11','Sommerferien'],
+  ['2028-10-30','2028-11-03','Allerheiligen'],
+  ['2028-12-23','2029-01-05','Weihnachtsferien'],
+  ['2029-02-12','2029-02-16','Frühjahrsferien'],
+  ['2029-03-26','2029-04-06','Osterferien'],
+  ['2029-05-22','2029-06-01','Pfingstferien'],
+  ['2029-07-30','2029-09-10','Sommerferien'],
+  ['2029-10-29','2029-11-02','Allerheiligen'],
+  ['2029-12-24','2030-01-04','Weihnachtsferien'],
+  ['2030-03-04','2030-03-08','Frühjahrsferien'],
+  ['2030-04-15','2030-04-26','Osterferien'],
+  ['2030-06-11','2030-06-21','Pfingstferien'],
+  ['2030-07-29','2030-09-09','Sommerferien']
+];
+const _sfCache = {};
+// Map 'YYYY-MM-DD' -> Name der Ferien fuer ein Kalenderjahr (inkl. Buss- und Bettag, schulfrei in Bayern)
+function getSchulferienBY(year) {
+  if (_sfCache[year]) return _sfCache[year];
+  const res = new Map();
+  const pad = n => String(n).padStart(2, '0');
+  const iso = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  SCHULFERIEN_BY.forEach(([von, bis, name]) => {
+    if (bis < year + '-01-01' || von > year + '-12-31') return;
+    const [vy, vm, vd] = von.split('-').map(Number);
+    const d = new Date(vy, vm - 1, vd);
+    while (iso(d) <= bis) {
+      if (d.getFullYear() === year) res.set(iso(d), name);
+      d.setDate(d.getDate() + 1);
+    }
+  });
+  // Buss- und Bettag: Mittwoch vor dem 23. November
+  const nov23 = new Date(year, 10, 23);
+  const bbt = new Date(year, 10, 23 - (((nov23.getDay() - 3) + 7) % 7 || 7));
+  res.set(iso(bbt), 'Buß- und Bettag');
+  _sfCache[year] = res;
+  return res;
+}
+// true, wenn der MA am Tag iso bei einem Schul-Kunden eingesetzt ist (einsatz_ab/bis beachtet)
+function _maSchuleAmTag(objListe, iso) {
+  return (objListe || []).some(o => {
+    if (!o || !o.kunde) return false;
+    const ab = (o.einsatz_ab || '').slice(0, 10), bis = (o.einsatz_bis || '').slice(0, 10);
+    if (ab && iso < ab) return false;
+    if (bis && iso > bis) return false;
+    const k = (typeof obj !== 'undefined' ? obj : []).find(x => x.name === o.kunde);
+    return !!(k && k.schule);
+  });
 }
 
 // ── BAYERISCHE FEIERTAGE ──────────────────────────────────
