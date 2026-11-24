@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v218</title>
+<title>MitarbeiterManager v220</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1193,7 +1193,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v218</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v220</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -11006,6 +11006,15 @@ function _urlaubCheckMA(m, jahr){
   };
   const _rnd = _urlRund;   // v217: ab 0,5 auf, darunter Bruchteil (vorher abgerundet)
   let proRata = _pr(teilzeit);
+  // v220: gesetzliche Untergrenze wie in calcUrlaubAnspruch (Fall Mantik 154: Eintritt
+  // 18.06.2026 -> Wartezeit am 17.12. erfuellt -> voller Mindesturlaub 20; Check zeigte 14).
+  { const gMin = 24 / 6 * (atwJahr.schnitt || arbTagePW || 5) * schulFaktor;
+    let wz = true;
+    if (einEff) { const e = new Date(einEff); if (!isNaN(e.getTime())) wz = new Date(e.getFullYear(), e.getMonth() + 6, e.getDate()) <= E; }
+    let h1 = false;
+    if (m.austrittsdatum) { const a = new Date(m.austrittsdatum); if (!isNaN(a.getTime()) && a.getFullYear() === jahr && a.getMonth() <= 5) h1 = true; }
+    if (wz && !h1) { if (proRata < gMin) proRata = gMin; }
+    else { const vm = _volleMonate(S, E); if (vm > 0 && proRata < gMin / 12 * vm) proRata = gMin / 12 * vm; } }
   if (_austrittIn6Monaten(einEff, m.austrittsdatum)) {   // v216: nur BUrlG
     proRata = 24 / 6 * (atwJahr.schnitt || arbTagePW || 5) * schulFaktor / 12 * _volleMonate(S, E);
   }
@@ -12331,9 +12340,15 @@ function _vtBudgetMap(m, mk) {
     if (!k) return;
     const aktivSet = _vt14AktivSet(o, mk);
     let sum = 0;
-    fehltage.forEach(iso => { sum += _vtTagStdEntry(o, iso, aktivSet); });
+    // v219: Schule hat in den Ferien zu -> Fehltage in den Schulferien geben keine
+    // Vertretung frei (Romano 24.11.2026). Ausnahme: Grundreinigungstag (ferien_bezahlt_liste).
+    const _istSchule = (typeof obj !== 'undefined' && Array.isArray(obj)) && obj.some(x => x.name === k && x.schule);
+    const _sf = _istSchule ? getSchulferienBY(parseInt(String(mk).slice(0, 4), 10)) : null;
+    const _gr = new Set((o.ferien_bezahlt_liste || []).map(s => String(s || '').slice(0, 10)));
+    const _zaehlt = iso => !(_sf && _sf.has(iso) && !_gr.has(iso));
+    fehltage.forEach(iso => { if (_zaehlt(iso)) sum += _vtTagStdEntry(o, iso, aktivSet); });
     // v204: nur dieses Objekt, Tage aus dem MA-Kalender nicht doppelt zaehlen
-    _objUnbez(o).forEach(iso => { if (!_fSet.has(iso)) sum += _vtTagStdEntry(o, iso, aktivSet); });
+    _objUnbez(o).forEach(iso => { if (!_fSet.has(iso) && _zaehlt(iso)) sum += _vtTagStdEntry(o, iso, aktivSet); });
     out[k] = Math.round(((out[k] || 0) + sum) * 100) / 100;
   });
   return out;
