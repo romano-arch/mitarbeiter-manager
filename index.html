@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="MM 2026">
 <meta name="theme-color" content="#1e4fc2">
 <link rel="manifest" id="pwa-manifest">
-<title>MitarbeiterManager v213</title>
+<title>MitarbeiterManager v217</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1193,7 +1193,7 @@ main{padding:14px 16px}
   </div>
 </div>
 <!-- ── LOCK BANNER ── -->
-<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v213</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
+<header role="banner"><div class="logo"><div class="logo-mark">👥</div><div><div class="logo-text">MitarbeiterManager <span style="font-size:10px;opacity:.55;font-weight:400">v217</span></div><div class="logo-sub" id="sync-label">Wird geladen...</div></div></div><div class="hstats"><button class="hstat" onclick="fSt('')" id="hs-alle" aria-label="Alle Mitarbeiter anzeigen" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-total">—</div><div class="hl">Gesamt</div></div></button><button class="hstat" onclick="fSt('Aktiv')" id="hs-aktiv" aria-label="Aktive Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--green)"></span><div><div class="hv" id="st-aktiv" style="color:var(--green)">—</div><div class="hl">Aktiv</div></div></button><button class="hstat" onclick="fSt('Krank')" id="hs-krank" aria-label="Kranke Mitarbeiter filtern" type="button"><span class="dot" style="background:#d97706"></span><div><div class="hv" id="st-krank" style="color:#d97706">—</div><div class="hl">Krank</div></div></button><button class="hstat" onclick="fSt('Urlaub')" id="hs-urlaub" aria-label="Mitarbeiter im Urlaub filtern" type="button"><span class="dot" style="background:var(--blue)"></span><div><div class="hv" id="st-urlaub" style="color:var(--blue)">—</div><div class="hl">Urlaub</div></div></button><button class="hstat" onclick="fSt('Ausgeschieden')" id="hs-ausgeschieden" aria-label="Ausgeschiedene Mitarbeiter filtern" type="button"><span class="dot" style="background:var(--muted2)"></span><div><div class="hv" id="st-ausgeschieden" style="color:var(--muted)">—</div><div class="hl">Ausgeschieden</div></div></button><button class="hstat" onclick="fOL('M')" id="hs-m" aria-label="Filter: Fr. Grippo" type="button"><span class="olb ol-M">M</span><div><div class="hv" id="st-m" style="color:var(--ol-m)">—</div><div class="hl">Fr. Grippo</div></div></button><button class="hstat" onclick="fOL('I')" id="hs-i" aria-label="Filter: Hr. Incecik" type="button"><span class="olb ol-I">I</span><div><div class="hv" id="st-i" style="color:var(--ol-i)">—</div><div class="hl">Hr. Incecik</div></div></button></div>
 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
   <div id="sync-bar"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">–</span></div>
   <div class="user-badge" onclick="doLogout()" title="Abmelden"><div class="user-dot"></div><span id="user-name-badge">–</span><span style="color:rgba(255,255,255,.7);font-size:11px">abmelden</span></div>
@@ -3773,17 +3773,19 @@ function _sfBezahltSet(o, jahr, wochentage, m) {
     const keys = ['So','Mo','Di','Mi','Do','Fr','Sa'];
     const nTage = keys.filter(k => (parseFloat(wt[k]) || 0) > 0).length;
     const nVoll = SCHUL_URLAUB_TAGE / 5 * nTage;               // Jahresanspruch (Bruchteil)
-    let N = Math.ceil(Math.round(nVoll * 100) / 100);
+    let N = Math.floor(_urlRund(nVoll));   // v217: ganze Ferientage, Bruchteil < 0,5 bleibt Resturlaub
     const einISO = String((m && m.eintrittsdatum) || '').slice(0, 10);
     const ausISO = String((m && m.austrittsdatum) || '').slice(0, 10);
     const einD = einISO ? new Date(einISO + 'T00:00:00') : null;
     const einImJahr = einD && !isNaN(einD.getTime()) && einD.getFullYear() === jahr;
-    if (einImJahr) N = Math.ceil(Math.round(nVoll * (12 - einD.getMonth()) / 12 * 100) / 100);
-    if (ausISO && ausISO.slice(0, 4) === String(jahr)) {
-      const ausD = new Date(ausISO + 'T00:00:00');
-      const letzter = new Date(ausD.getFullYear(), ausD.getMonth() + 1, 0).getDate() === ausD.getDate();
-      const mon = ausD.getMonth() + (letzter ? 1 : 0) - (einImJahr ? einD.getMonth() : 0);
-      N = Math.min(N, Math.ceil(Math.round(nVoll * Math.max(0, mon) / 12 * 100) / 100));
+    const ausImJahr = !!ausISO && ausISO.slice(0, 4) === String(jahr);
+    if (einImJahr || ausImJahr) {
+      // v214: § 15 Nr. 1.4 RTV - 1/12 je vollem Kalendermonat im Jahr
+      const _S = einImJahr ? einD : new Date(jahr, 0, 1);
+      const _E = ausImJahr ? new Date(ausISO + 'T00:00:00') : new Date(jahr, 11, 31);
+      N = Math.floor(_urlRund(nVoll * _volleKalMonate(_S, _E) / 12));
+      // v216: Austritt in den ersten 6 Monaten -> nur gesetzlicher Teilurlaub
+      if (_austrittIn6Monaten(einISO, ausISO)) N = Math.floor(_urlRund(4 * nTage / 12 * _volleMonate(_S, _E)));
     }
     if (N <= 0) return set;
     const sf = getSchulferienBY(jahr);
@@ -3804,7 +3806,7 @@ function _sfBezahltSet(o, jahr, wochentage, m) {
       if (ausISO && iso > ausISO) continue;   // v213: nach Austritt
       // v213: im Eintrittsjahr nur, was bis zu diesem Tag schon angespart ist
       if (einImJahr) {
-        const angespart = Math.floor(Math.round(nVoll / 12 * _volleMonate(einD, new Date(d.getTime())) * 100) / 100);
+        const angespart = Math.floor(Math.round(nVoll / 12 * _volleKalMonate(einD, new Date(d.getTime())) * 100) / 100);   // v214: volle Kalendermonate
         if (c >= angespart) continue;
       }
       set.add(iso); c++;
@@ -6043,6 +6045,41 @@ function _volleMonate(S, E) {
   }
   return n;
 }
+// v214: § 15 Nr. 1.4 RTV Gebaeudereinigung - Beginnt oder endet die Beschaeftigung im
+// Jahr, gibt es 1/12 fuer jeden VOLLEN KALENDERMONAT. Eintritt am 02.11. -> November
+// zaehlt nicht, erst der Dezember (am 31.12.). Eintritt am 01. -> der Monat zaehlt.
+function _volleKalMonate(S, E) {
+  if (!(S instanceof Date) || !(E instanceof Date) || isNaN(S.getTime()) || isNaN(E.getTime()) || E < S) return 0;
+  const s = new Date(S.getFullYear(), S.getMonth(), S.getDate());
+  const e = new Date(E.getFullYear(), E.getMonth(), E.getDate());
+  let n = 0, y = s.getFullYear(), mo = s.getMonth();
+  if (s.getDate() !== 1) mo++;
+  while (n < 12) {
+    const last = new Date(y, mo + 1, 0);
+    if (last > e) break;
+    n++; mo++;
+  }
+  return n;
+}
+
+// v217: Rundung Urlaub (Vorgabe Romano): Bruchteil ab 0,5 -> auf ganzen Tag aufrunden,
+// darunter (0,1 - 0,49) bleibt der Bruchteil stehen und wird so gewaehrt/bezahlt.
+// Zwischenrundung auf 2 Stellen, weil 28/12*12 intern 28.000000000000004 ergibt.
+function _urlRund(x) {
+  const r = Math.round((Number(x) || 0) * 100) / 100;
+  return (r - Math.floor(r)) >= 0.5 ? Math.ceil(r) : r;
+}
+
+// v216: § 15 Nr. 1.1 RTV letzter Satz - Ausscheiden innerhalb der ersten sechs Monate:
+// Anspruch nur nach §§ 3, 5 BUrlG (gesetzl. Minimum, 1/12 je vollem Monat ab Eintrittstag).
+// Eintritt 01.01., Austritt 30.06. = sechs Monate voll -> NICHT innerhalb.
+function _austrittIn6Monaten(einStr, ausStr) {
+  if (!einStr || !ausStr) return false;
+  const e = new Date(String(einStr).slice(0, 10) + 'T00:00:00'), a = new Date(String(ausStr).slice(0, 10) + 'T00:00:00');
+  if (isNaN(e.getTime()) || isNaN(a.getTime()) || a < e) return false;
+  const letzterTag = new Date(_addMonateClamped(e, 6).getTime() - 86400000);
+  return a < letzterTag;
+}
 
 // FIX v135: Urlaubs-Uebertrag aus dem Vorjahr (§7 Abs. 3 BUrlG, Stichtag 31.03.)
 // Rueckgabe null wenn kein Uebertrag existiert. Verfall wird NUR markiert,
@@ -6057,12 +6094,12 @@ function _urlaubUebertrag(m, jahr, teilzeit, sollMonate, ferienMonate, heuteISO)
   const aus = m.austrittsdatum ? new Date(m.austrittsdatum) : null;
   if (ein && !isNaN(ein.getTime()) && ein > s) s = ein;
   if (aus && !isNaN(aus.getTime()) && aus < e) e = aus;
-  const rohM = _volleMonate(s, e);
+  const rohM = _volleKalMonate(s, e);   // v214: volle Kalendermonate (§ 15 RTV)
   if (rohM <= 0) return null; // im Vorjahr nicht (voll) beschaeftigt
   let anspruchRoh;
   if (rohM < 12) {
     const fa = ferienMonate * (rohM / 12);
-    const bm = Math.max(1, Math.min(rohM - fa, sollMonate));
+    const bm = Math.max(0, Math.min(rohM - fa, sollMonate));   // v214: kein Mindestmonat
     anspruchRoh = teilzeit / 12 * bm;
   } else {
     anspruchRoh = teilzeit / 12 * sollMonate;
@@ -6229,7 +6266,8 @@ function calcUrlaubAnspruch() {
     const _aus = new Date(_ausStr);
     if (!isNaN(_aus.getTime()) && _aus < E) E = _aus;
   }
-  const rohMonate = _volleMonate(S, E);
+  const rohMonate = _volleMonate(S, E);        // BUrlG: Monate ab Eintrittstag (fuer gesetzl. Untergrenze)
+  const kalMonate = _volleKalMonate(S, E);     // v214: § 15 Nr. 1.4 RTV - volle Kalendermonate
 
   // ── v145: Arbeitstage/Woche monatsgenau gewichten ──
   // Beispiel: Jan–Mai 5 Tage, Jun–Dez 7 Tage -> (5×5 + 7×7)/12 = 6,17 statt 7
@@ -6253,19 +6291,12 @@ function calcUrlaubAnspruch() {
   teilzeit = _basisEff / 5 * _atwJahr.schnitt * _schulFaktor;   // neu: gewichteter Schnitt (v205: x Schulfaktor)
 
   const _proRataOf = function(tz){
-    if (rohMonate <= 0) return 0;
-    // v178: Im Eintrittsjahr zaehlt der Eintrittsmonat voll mit.
-    // Eintritt im April = 9 Monate (April bis Dezember), Eintritt im August
-    // = 5 Monate. Je Monat ein Zwoelftel, also 2,33 Tage bei 28 Tagen Basis.
-    if (_einEff && !_ausStr) {
-      const _einD = new Date(_einEff);
-      if (!isNaN(_einD.getTime()) && _einD.getFullYear() === _jahr) {
-        return tz / 12 * (12 - _einD.getMonth());
-      }
-    }
-    if (rohMonate < 12) {
-      const fa = ferienMonate * (rohMonate / 12);
-      return tz / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
+    // v214: § 15 Nr. 1.4 RTV - 1/12 je vollem Kalendermonat. Die alte Regel aus v178
+    // (Eintrittsmonat zaehlt immer voll) ist raus: Eintritt 02.11. = nur Dezember.
+    if (kalMonate <= 0) return 0;
+    if (kalMonate < 12) {
+      const fa = ferienMonate * (kalMonate / 12);
+      return tz / 12 * Math.max(0, Math.min(kalMonate - fa, sollMonate));
     }
     return tz / 12 * sollMonate;
   };
@@ -6276,13 +6307,13 @@ function calcUrlaubAnspruch() {
   // steht dort nicht. Aus 17,4 Tagen wurden so unzulaessig 17.
   // Jetzt: Bruchteile bleiben erhalten (auf 2 Stellen), aufgerundet wird nur
   // beim gesetzlichen Teilurlaub ab einem halben Tag.
-  // v178: Vorgabe Romano - Bruchteile werden immer AUFGERUNDET auf ganze Tage.
+  // v178 (ueberholt durch v217, siehe _urlRund): Bruchteile wurden immer aufgerundet.
   // Damit liegt das Ergebnis nie unter dem Anspruch; die gesetzliche
   // Aufrundungspflicht ab einem halben Tag ist mit abgedeckt.
   // Die Zwischenrundung auf zwei Stellen ist noetig, weil 28/12*12 intern
   // 28.000000000000004 ergibt und sonst auf 29 aufgerundet wuerde.
   const _rndBUrlG = function(x){
-    return Math.ceil(Math.round(x * 100) / 100);
+    return _urlRund(x);   // v217: ab 0,5 auf, darunter Bruchteil
   };
 
   // v176: Gesetzlicher Mindesturlaub nach § 3 BUrlG - 24 Werktage bezogen auf
@@ -6328,14 +6359,27 @@ function calcUrlaubAnspruch() {
   if (_wartezeitErfuellt && !_austrittErstesHalbjahr && proRata < _gesetzlMinimum) {
     proRata = _gesetzlMinimum;
     _minGriff = true;
+  } else if (rohMonate > 0) {
+    // v214: gesetzlicher Teilurlaub (§ 5 BUrlG, Monate ab Eintrittstag) darf nicht
+    // unterschritten werden - "Der gesetzliche Mindesturlaub darf nicht unterschritten werden."
+    const _gesTeil = _gesetzlMinimum / 12 * rohMonate;
+    if (proRata < _gesTeil) { proRata = _gesTeil; _minGriff = true; }
   }
   let proRataText = '';
-  if (rohMonate <= 0) {
-    proRataText = 'Kein voller Beschaeftigungsmonat im Jahr';
-  } else if (rohMonate < 12) {
-    const _fa = ferienMonate * (rohMonate / 12);
-    const _beschMonate = Math.max(1, Math.min(rohMonate - _fa, sollMonate));
-    proRataText = `Pro-Rata: ${Math.round(_beschMonate*10)/10} volle Monate`;
+  if (kalMonate <= 0) {
+    proRataText = 'Kein voller Kalendermonat im Jahr (§ 15 RTV)';
+  } else if (kalMonate < 12) {
+    const _fa = ferienMonate * (kalMonate / 12);
+    const _beschMonate = Math.max(0, Math.min(kalMonate - _fa, sollMonate));
+    proRataText = `Anteilig: ${Math.round(_beschMonate*10)/10} volle Kalendermonate (§ 15 RTV)`;
+  }
+
+  // v216: Austritt in den ersten sechs Monaten -> nur Bundesurlaubsgesetz
+  const _kurzAus = _austrittIn6Monaten(_einEff, _ausStr);
+  if (_kurzAus) {
+    proRata = _gesetzlMinimum / 12 * rohMonate;
+    _minGriff = false;
+    proRataText = `Austritt in den ersten 6 Monaten: Bundesurlaubsgesetz, ${rohMonate} volle Monate × ${Math.round(_gesetzlMinimum/12*100)/100} Tage`;
   }
 
   // Rundung §5 Abs. 2 BUrlG
@@ -6357,10 +6401,10 @@ function calcUrlaubAnspruch() {
       erdient = 0; // Eintritt liegt in der Zukunft
     } else {
       const _grenzE = _heute < E ? _heute : E;
-      const erdMon = Math.min(_volleMonate(S, _grenzE), rohMonate);
+      const erdMon = Math.min(_volleKalMonate(S, _grenzE), kalMonate);   // v214
       const erdRoh = teilzeit / 12 * erdMon;
       const _dz2 = erdRoh - Math.floor(erdRoh);
-      erdient = Math.min(ergebnis, _dz2 >= 0.5 ? Math.ceil(erdRoh) : Math.floor(erdRoh));
+      erdient = Math.min(ergebnis, _urlRund(erdRoh));   // v217
     }
   }
 
@@ -6400,6 +6444,7 @@ function calcUrlaubAnspruch() {
   if (_rowsEl) {
     const mono = "font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px";
     let hh = '';
+    const _fz = x => (Math.round((Number(x)||0)*100)/100).toLocaleString('de-DE');   // v217: Bruchteile mit Komma
     if (ueb) {
       const verfTxt = ueb.verfallen > 0
         ? ` <span style="color:var(--red);font-weight:700">· ${ueb.verfallen} Tag${ueb.verfallen === 1 ? '' : 'e'} verfallen 31.03.</span>`
@@ -6428,15 +6473,15 @@ function calcUrlaubAnspruch() {
       }
     }
     hh += `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--text2)">`;
-    hh += `<span><span style="${mono};color:var(--acc)">${ergebnis}</span> Anspruch</span>`;
+    hh += `<span><span style="${mono};color:var(--acc)">${_fz(ergebnis)}</span> Anspruch</span>`;
     if (erdient !== null && erdient < ergebnis) {
-      hh += `<span style="color:var(--muted)">·</span><span title="Im ersten Jahr wächst der Urlaub jeden vollen Monat um 1/12. Bis heute sind davon ${erdient} von ${ergebnis} Tagen angespart."><span style="${mono};color:#d97706">${erdient}</span> davon bis heute angespart</span>`;   // v208: statt "erdient" (unverstaendlich)
+      hh += `<span style="color:var(--muted)">·</span><span title="Im ersten Jahr wächst der Urlaub jeden vollen Monat um 1/12. Bis heute sind davon ${_fz(erdient)} von ${_fz(ergebnis)} Tagen angespart."><span style="${mono};color:#d97706">${_fz(erdient)}</span> davon bis heute angespart</span>`;   // v208: statt "erdient" (unverstaendlich)
     }
     hh += `<span style="color:var(--muted)">−</span><span><span style="${mono};color:var(--blue)">${genommen}</span> genommen</span>`;
     if (geplant > 0) {
       hh += `<span style="color:var(--muted)">−</span><span title="Urlaub ab morgen (noch stornierbar)"><span style="${mono};color:#7c3aed">${geplant}</span> geplant</span>`;
     }
-    hh += `<span style="color:var(--muted)">=</span><span><span style="${mono};color:${rest < 0 ? 'var(--red)' : 'var(--green)'}">${rest}</span> Rest</span></div>`;
+    hh += `<span style="color:var(--muted)">=</span><span><span style="${mono};color:${rest < 0 ? 'var(--red)' : 'var(--green)'}">${_fz(rest)}</span> Rest</span></div>`;
     if (erdient !== null && (genommen + geplant) > erdient) {
       hh += `<div style="margin-top:7px;font-size:11px;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:4px 8px">⚠ ${genommen + geplant - erdient} Tag(e) mehr Urlaub eingetragen als bis heute angespart (${erdient} von ${ergebnis})</div>`;
     }
@@ -6453,7 +6498,7 @@ function calcUrlaubAnspruch() {
     // (< 20 = gesetzl. Mindesturlaub bei 5-Tage-Woche), kuerzt die App erneut:
     // z.B. 11 / 5 x 2 Tage = 4 statt 11. Nur Hinweis, kein Auto-Fix.
     if (_feldUrl && _feldUrl > 0 && _feldUrl < 20) {
-      hh += `<div style="margin-top:7px;font-size:11px;color:#991b1b;background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;padding:5px 8px;line-height:1.5">⚠ <strong>Doppel-Kürzung?</strong> Feld „Jahresurlaub" = ${_feldUrl} – das Feld erwartet die <strong>5-Tage-Basis (28–30)</strong>. Die App kürzt selbst auf ${arbTagePW} Arbeitstag${arbTagePW===1?'':'e'}/Woche: ${_feldUrl} ÷ 5 × ${arbTagePW} = <strong>${ergebnis}</strong>. Vermutlich gehört hier <strong>28</strong> ins Feld → Anspruch wäre ${(x=>{const d=x-Math.floor(x);return d>=0.5?Math.ceil(x):Math.floor(x);})(28/5*arbTagePW)} Tage (volles Jahr).</div>`;
+      hh += `<div style="margin-top:7px;font-size:11px;color:#991b1b;background:var(--rbg);border:1px solid var(--rbd);border-radius:6px;padding:5px 8px;line-height:1.5">⚠ <strong>Doppel-Kürzung?</strong> Feld „Jahresurlaub" = ${_feldUrl} – das Feld erwartet die <strong>5-Tage-Basis (28–30)</strong>. Die App kürzt selbst auf ${arbTagePW} Arbeitstag${arbTagePW===1?'':'e'}/Woche: ${_feldUrl} ÷ 5 × ${arbTagePW} = <strong>${ergebnis}</strong>. Vermutlich gehört hier <strong>28</strong> ins Feld → Anspruch wäre ${_urlRund(28/5*arbTagePW)} Tage (volles Jahr).</div>`;
     }
     _rowsEl.innerHTML = hh;
   }
@@ -10937,7 +10982,7 @@ function _urlaubCheckMA(m, jahr){
   }
   if (einEff) { const d = new Date(einEff); if (!isNaN(d.getTime()) && d > S) S = d; }
   if (m.austrittsdatum) { const d = new Date(m.austrittsdatum); if (!isNaN(d.getTime()) && d < E) E = d; }
-  const rohMonate = _volleMonate(S, E);
+  const rohMonate = _volleKalMonate(S, E);   // v214: volle Kalendermonate (§ 15 RTV)
   // v145: identische Gewichtung wie calcUrlaubAnspruch()
   const atwJahr = _arbTagePWJahr(objekte, m, jahr, S, E, arbTagePW);
   // v205: gleiche Schul-Kuerzung wie calcUrlaubAnspruch()
@@ -10955,12 +11000,15 @@ function _urlaubCheckMA(m, jahr){
     if (rohMonate <= 0) return 0;
     if (rohMonate < 12) {
       const fa = ferienMonate * (rohMonate / 12);
-      return tz / 12 * Math.max(1, Math.min(rohMonate - fa, sollMonate));
+      return tz / 12 * Math.max(0, Math.min(rohMonate - fa, sollMonate));   // v214
     }
     return tz / 12 * sollMonate;
   };
-  const _rnd = function(x){ return (x - Math.floor(x)) >= 0.5 ? Math.ceil(x) : Math.floor(x); };
-  const proRata = _pr(teilzeit);
+  const _rnd = _urlRund;   // v217: ab 0,5 auf, darunter Bruchteil (vorher abgerundet)
+  let proRata = _pr(teilzeit);
+  if (_austrittIn6Monaten(einEff, m.austrittsdatum)) {   // v216: nur BUrlG
+    proRata = 24 / 6 * (atwJahr.schnitt || arbTagePW || 5) * schulFaktor / 12 * _volleMonate(S, E);
+  }
   const anspruch = _rnd(proRata);
   const anspruchPausch = _rnd(_pr(teilzeitPausch));
   // genommen / geplant im Jahr
